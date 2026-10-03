@@ -1,0 +1,9 @@
+tool_use (session,id) 349729  tool_result (session,id) 408086  orphaned results 76618
+metadata turn_type counts {'progress': 1322498, 'queue_operation': 354144, 'file_snapshot': 60456, 'system_event': 58938, 'summary': 836}
+metadata rows whose raw JSON contains tool_use blocks, by turn_type {'progress': 174063}
+distinct tool_use ids found inside metadata rows: 172814
+orphaned results whose tool_use is found inside a metadata row of the same session: 0 / 76618
+hidden ids that are NOT in the tool_use table: 172814
+tool_result blocks inside metadata rows (distinct session,id): 173759; of these paired with a hidden tool_use: 172769
+orphaned results whose id matches a hidden tool_use in ANY session: 0
+orphaned results whose id also appears as a tool_result inside metadata rows: 69

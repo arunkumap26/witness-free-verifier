@@ -1,0 +1,24 @@
+## Who&When
+### Algorithm-Generated: files 126, messages 1099, messages with any timestamp key 0
+  name {'Computer_terminal': 303, 'Verification_Expert': 125, 'WebServing_Expert': 45, 'Validation_Expert': 43, 'DataVerification_Expert': 37, 'DataAnalysis_Expert': 28, 'PythonDebugging_Expert': 19, 'VideoContentAnalysis_Expert': 12, 'Literature_Expert': 10, 'Statistics_Expert': 9, 'VerificationExpert': 9, 'Research_Expert': 9, 'DataExtraction_Expert': 9, 'Federico_Lauria_Expert': 7, 'Web_Design_Expert': 6, 'Mesopotamian_Number_Systems_Expert': 6, 'ScientificPaperAnalysis_Expert': 6, 'StreamingService_Expert': 5, 'Geography_Expert': 5, 'Geometry_Expert': 5, 'CorporateHistory_IPOs_MondayCom_Expert': 5, 'Python_Expert': 5, 'InformationExtraction_Expert': 5, 'Data_Analysis_Expert': 5, 'Clinical_Trial_Data_Analysis_Expert': 5}
+  role {'user': 731, 'assistant': 368}
+  'exitcode: N' results {'0': 146, '1': 87, '124': 1, '127': 1, '6': 1}
+  tool-like {'code block in message': 266}
+  mistake_agent {'Verification_Expert': 18, 'PythonDebugging_Expert': 7, 'DataAnalysis_Expert': 6, 'Validation_Expert': 5, 'DataVerification_Expert': 5, 'WebServing_Expert': 4, 'Statistics_Expert': 2, 'Geometry_Expert': 2, 'Research_Expert': 2, 'DataExtraction_Expert': 2, 'VideoContentAnalysis_Expert': 2, 'Excel_Expert': 1, 'Movie_Expert': 1, 'Tickets_Pricing_Expert': 1, 'Filmography_Expert': 1}
+### Hand-Crafted: files 58, messages 2993, messages with any timestamp key 0
+  name {None: 2993}
+  role {'Orchestrator (thought)': 1563, 'Orchestrator (-> WebSurfer)': 602, 'WebSurfer': 568, 'human': 58, 'Orchestrator (-> Assistant)': 41, 'Assistant': 39, 'Orchestrator (-> FileSurfer)': 36, 'FileSurfer': 35, 'Orchestrator (termination condition)': 31, 'Orchestrator (-> ComputerTerminal)': 10, 'ComputerTerminal': 10}
+  'exitcode: N' results {}
+  tool-like {'code block in message': 120, 'websurfer action report': 558}
+  mistake_agent {'WebSurfer': 31, 'Orchestrator': 18, 'Assistant': 4, 'FileSurfer': 3, 'Websurfer': 2}
+
+## collusion-wiki full-wiki-logs
+events 19913
+event_type {'save': 14591, 'delete': 5217, 'probe': 101, 'revert': 4}
+time_grade {'reqlog': 19803, 'rclog': 104, 'write_date': 6}
+request_action {None: 14591, 'delete': 5217, 'browse-bare': 43, 'form_editprefs': 26, 'browse': 24, 'form_edit': 4, 'form_search': 2, 'editprefs': 2, 'showtop': 1, 'random': 1, 'rc': 1, "<script>alert('XSS')</script>": 1}
+success_observed {'None': 14591, 'True': 5221, 'False': 101}
+event keys {'event_id': 19913, 'event_type': 19913, 'time': 19913, 'time_grade': 19913, 'wiki': 19812, 'page': 19812, 'page_key': 19812, 'revision_ref': 19812, 'related_event_id': 19812, 'relation_type': 19812, 'round_id': 19812, 'ip16': 5322, 'request_action': 5322, 'source_refs': 5322, 'success_observed': 5322, 'winning_clock': 5221, 'uncertainty_seconds': 5221, 'request_time': 5221, 'success_time': 5221, 'write_date': 5221, 'rcs_date': 5221, 'recent_changes_time': 5221, 'clock_delta_seconds': 5221, 'change_summary': 5221, 'actor_label': 5221, 'page_held': 5221, 'clock_note': 5221, 'param_family': 101}
+revisions 14591 time_grade {'reqlog': 14482, 'rclog': 103, 'write_date': 6}
+revision keys ['archived_at', 'body', 'body_encoding', 'body_len', 'body_sha256', 'change_summary', 'diff_base', 'diff_base_reason', 'hunks', 'ip16', 'label', 'lines', 'name', 'page_id', 'page_key', 'rcs_path', 'rcs_rev', 'recent_changes_time', 'related_event_id', 'relation_type', 'request_action', 'request_time', 'rev_id', 'round_id', 'seq', 'success_time', 'time', 'time_grade', 'uncertainty_seconds', 'wiki', 'winning_clock', 'write_date']
+revision bodies mentioning tool-ish text {'code fence': 2}
