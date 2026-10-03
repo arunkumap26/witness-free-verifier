@@ -1,0 +1,12 @@
+turn_ids with differing content: 5259
+by role/turn_type {('metadata', 'progress'): 2492, ('tool_result', 'tool_result'): 1946, ('tool_use', 'tool_use'): 654, ('user', 'user_prompt'): 88, ('assistant', 'assistant_response'): 57, ('metadata', 'queue_operation'): 19, ('user', 'system_injected'): 3}
+by tool_name {'Read': 912, 'Bash': 458, 'Edit': 231, 'Write': 138, 'Grep': 95, 'Task': 60, 'Agent': 48, 'ExitPlanMode': 16, 'apply_patch': 13, 'mcp__conductor__GetWorkspaceDiff': 12}
+sessions affected: 915
+length change pinned-mirror: longer 554, shorter 4655, same length 50
+mirror ends with truncation marker: 15; pinned: 15
+one is null/empty, other not: 0
+divergence kind {'diverge earlier': 5061, 'diverge in last 10%': 198}
+
+sessions.parquet 5851; distinct session_id in conversations 5825; transcript files 5850
+conversation session_ids not in sessions.parquet: 40; without a transcript file: 40
+sessions.parquet ids with no conversation rows: 66

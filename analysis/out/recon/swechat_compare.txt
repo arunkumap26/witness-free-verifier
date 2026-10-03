@@ -1,0 +1,38 @@
+## Side-by-side counts (mirror vs pinned)
+metric                                                mirror         pinned  same?
+row_groups                                                 3          1,347  NO
+rows                                               2,692,480      2,692,480  yes
+ts_null                                              114,534        114,534  yes
+ts_ms_multiple                                     2,577,946      2,577,946  yes
+assistant_rows_with_input_tokens                      38,402         38,402  yes
+result_truncated_10256                                 1,567          1,552  NO
+sessions                                               5,825          5,825  yes
+tool_use_distinct                                    349,729        349,729  yes
+tool_result_distinct                                 408,086        408,086  yes
+calls_with_result                                    331,468        331,468  yes
+orphaned_results                                      76,618         76,618  yes
+hidden_subagent_tool_use                             172,814        172,814  yes
+hidden_subagent_tool_result                          173,759        173,759  yes
+hidden_paired                                        172,769        172,769  yes
+hidden_ids_also_in_tool_use_table                          0              0  yes
+orphans_matching_hidden_use                                0              0  yes
+roles: identical=True
+tool_use_by_agent: identical=True
+exit_code_prefix_on_results: identical=True
+turn_types: identical=True
+
+## Row-level diff on turn_id
+duplicate turn_id: mirror 2465 pinned 2465
+turn_id presence {'both': 2690015, 'left_only': 0, 'right_only': 0}
+rows in both: 2,690,015; identical content: 2,684,756; identical other fields: 2,690,015
+same row order (position-wise turn_id equal): 620,000 of 2,692,480
+
+## Pinned raw transcripts/
+transcript files 5850; sessions 5851
+transcript_path examples ['', '', '']
+session_ids with a transcript file named <session_id>.jsonl: 5850
+sessions without such a file (session_id, agent): [['bce82ae2-ddd8-4ee3-ae55-afeb35efbd13', 'Claude Code']]
+files not matching any session_id: 0
+
+orphan check, seeded sample of 50 sessions with orphans (4386 such sessions in total)
+  sessions without transcript file: 2; orphan ids checked: 1367; found as a tool_use id in the raw file: 1367; where: {'top-level assistant': 1367, 'inside progress/other': 0}
