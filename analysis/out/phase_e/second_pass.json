@@ -1,0 +1,1695 @@
+{
+ "item": "second_pass (A1 write-up assembly for analysis/SECOND_PASS.md)",
+ "script": "analysis/probes/phase_e_second_pass.py",
+ "prereg_section": "prereg_e.json a1, survival_rule, followups; PREREG_E.md section 1",
+ "check_frozen": "passed",
+ "prereg_e_json_sha256": "568d423f0e061f9a3dd14a4ae51926b3b5746a9a3dc33b421c3e632ad4bb1c08",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "spec_module_sha256_lf_prereg": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "assembly_only": "no IR cache, raw source, sample file or split opened; every label/number copied by path",
+ "a1_rows": [
+  {
+   "candidate": "P1 latency physics",
+   "unit": "swechat/opencode",
+   "source": "a1_p1_p3.json verdicts['P1/swechat/opencode']",
+   "phase_b": "ALIVE",
+   "E_label": "ALIVE",
+   "BuE_label": "ALIVE",
+   "status": "DOWNGRADED",
+   "final_label": "WEAK",
+   "reasons": [
+    "AC4_UNTESTABLE_WITHOUT_DOMINANT"
+   ],
+   "deciding": {
+    "E_or_B_verdict": "ALIVE",
+    "fp_share": {
+     "num": 6,
+     "den": 3283,
+     "rate": 0.0018275967103259215,
+     "lo": 0.0,
+     "verdict_hi": 0.004971221665505013,
+     "n_sessions": 186
+    },
+    "auc": {
+     "auc": 0.998575791752764,
+     "lo": 0.9958088588801979,
+     "hi": 0.9999647063756288,
+     "n_G": 37,
+     "n_W": 3283
+    },
+    "G_eligible": {
+     "n": 37,
+     "sessions": 7
+    }
+   }
+  },
+  {
+   "candidate": "P1 latency physics",
+   "unit": "cc_local",
+   "source": "a1_p1_p3.json verdicts['P1/cc_local']",
+   "phase_b": "ALIVE",
+   "E_label": null,
+   "BuE_label": "ALIVE",
+   "status": "DOWNGRADED (B only, unreplicated)",
+   "final_label": "WEAK",
+   "reasons": [
+    "AC4_UNTESTABLE_WITHOUT_DOMINANT"
+   ],
+   "deciding": {
+    "E_or_B_verdict": "ALIVE",
+    "fp_share": {
+     "num": 1,
+     "den": 1019,
+     "rate": 0.0009813542688910696,
+     "lo": 0.0,
+     "verdict_hi": 0.003315100677300343,
+     "n_sessions": 112
+    },
+    "auc": {
+     "auc": 0.9186405998447793,
+     "lo": 0.8808936368383673,
+     "hi": 0.9713657076123107,
+     "n_G": 153,
+     "n_W": 1019
+    },
+    "G_eligible": {
+     "n": 153,
+     "sessions": 12
+    }
+   }
+  },
+  {
+   "candidate": "P1 latency physics",
+   "unit": "swechat/claude_code",
+   "source": "a1_p1_p3.json verdicts['P1/swechat/claude_code']",
+   "phase_b": "WEAK",
+   "E_label": "ALIVE",
+   "BuE_label": "WEAK",
+   "status": "DOWNGRADED",
+   "final_label": "WEAK",
+   "reasons": [
+    "K2_floor_UNSTABLE"
+   ],
+   "deciding": {
+    "E_or_B_verdict": "ALIVE",
+    "fp_share": {
+     "num": 63,
+     "den": 18256,
+     "rate": 0.003450920245398773,
+     "lo": 0.002449804436610388,
+     "verdict_hi": 0.004560762239420573,
+     "n_sessions": 926
+    },
+    "auc": {
+     "auc": 0.9860613411137978,
+     "lo": 0.9728134922752899,
+     "hi": 0.9947733292528291,
+     "n_G": 3320,
+     "n_W": 18256
+    },
+    "G_eligible": {
+     "n": 3320,
+     "sessions": 823
+    }
+   }
+  },
+  {
+   "candidate": "P3 zero-error tail",
+   "unit": "swechat/claude_code",
+   "source": "a1_p1_p3.json verdicts['P3zero/swechat/claude_code']",
+   "phase_b": "ALIVE",
+   "E_label": "ALIVE",
+   "BuE_label": "ALIVE",
+   "status": "SURVIVES",
+   "final_label": "ALIVE",
+   "reasons": [],
+   "deciding": {
+    "E_verdict": "ALIVE",
+    "Z_E": {
+     "k": 8,
+     "n": 380,
+     "share": 0.021052631578947368,
+     "lo": 0.01070532951241686,
+     "hi": 0.040986826835409954
+    },
+    "Z_BuE": {
+     "k": 17,
+     "n": 793,
+     "share": 0.021437578814627996,
+     "lo": 0.013426861939361844,
+     "hi": 0.03406262656123853
+    }
+   }
+  },
+  {
+   "candidate": "P2 knowledge precedence",
+   "unit": "swechat/claude_code main",
+   "source": "a1_p2_p4_f3.json verdicts['P2/swechat/claude_code/main']",
+   "phase_b": "WEAK",
+   "E_label": "WEAK",
+   "BuE_label": "WEAK",
+   "status": "SURVIVES",
+   "final_label": "WEAK",
+   "reasons": [],
+   "deciding": {
+    "E_or_B": {
+     "label": "WEAK",
+     "deciding_statistic": "S_deep",
+     "value": 0.1361397223466189,
+     "ci": [
+      0.11725933526879567,
+      0.156274682203093
+     ],
+     "hi_used": 0.156274682203093,
+     "k": 608,
+     "n": 4466,
+     "n_sessions": 511,
+     "caps_applied": [],
+     "S_deep_k_n_s": [
+      608,
+      4466,
+      511
+     ],
+     "S_path_any_k_n_s": [
+      7868,
+      26595,
+      1500
+     ]
+    },
+    "BuE": {
+     "label": "WEAK",
+     "deciding_statistic": "S_deep",
+     "value": 0.14022585242846178,
+     "ci": [
+      0.12703858212729816,
+      0.15324395780098102
+     ],
+     "hi_used": 0.15324395780098102,
+     "k": 1279,
+     "n": 9121,
+     "n_sessions": 1097,
+     "caps_applied": [],
+     "S_deep_k_n_s": [
+      1279,
+      9121,
+      1097
+     ],
+     "S_path_any_k_n_s": [
+      16090,
+      55078,
+      3112
+     ]
+    }
+   }
+  },
+  {
+   "candidate": "P2 knowledge precedence",
+   "unit": "swechat/claude_code subagent",
+   "source": "a1_p2_p4_f3.json verdicts['P2/swechat/claude_code/subagent']",
+   "phase_b": "WEAK",
+   "E_label": "WEAK",
+   "BuE_label": "WEAK",
+   "status": "SURVIVES",
+   "final_label": "WEAK",
+   "reasons": [],
+   "deciding": {
+    "E_or_B": {
+     "label": "WEAK",
+     "deciding_statistic": "S_deep",
+     "value": 0.07727272727272727,
+     "ci": [
+      0.06080369066791635,
+      0.09691305611147613
+     ],
+     "hi_used": 0.09691305611147613,
+     "k": 612,
+     "n": 7920,
+     "n_sessions": 306,
+     "caps_applied": [],
+     "S_deep_k_n_s": [
+      612,
+      7920,
+      306
+     ],
+     "S_path_any_k_n_s": [
+      4663,
+      26445,
+      605
+     ]
+    },
+    "BuE": {
+     "label": "WEAK",
+     "deciding_statistic": "S_deep",
+     "value": 0.07698036560595803,
+     "ci": [
+      0.06668515366086404,
+      0.0893649494987623
+     ],
+     "hi_used": 0.0893649494987623,
+     "k": 1137,
+     "n": 14770,
+     "n_sessions": 602,
+     "caps_applied": [],
+     "S_deep_k_n_s": [
+      1137,
+      14770,
+      602
+     ],
+     "S_path_any_k_n_s": [
+      9804,
+      55115,
+      1246
+     ]
+    }
+   }
+  },
+  {
+   "candidate": "P2 knowledge precedence",
+   "unit": "swechat/opencode subagent",
+   "source": "a1_p2_p4_f3.json verdicts['P2/swechat/opencode/subagent']",
+   "phase_b": "WEAK",
+   "E_label": "ALIVE",
+   "BuE_label": "WEAK",
+   "status": "DOWNGRADED",
+   "final_label": "WEAK",
+   "reasons": [
+    "AC4_UNTESTABLE_WITHOUT_DOMINANT"
+   ],
+   "deciding": {
+    "E_or_B": {
+     "label": "ALIVE",
+     "deciding_statistic": "S_deep",
+     "value": 0.04310344827586207,
+     "ci": [
+      0.004131384636228154,
+      0.09542405702739111
+     ],
+     "hi_used": 0.09542405702739111,
+     "k": 10,
+     "n": 232,
+     "n_sessions": 49,
+     "caps_applied": [],
+     "S_deep_k_n_s": [
+      10,
+      232,
+      49
+     ],
+     "S_path_any_k_n_s": [
+      217,
+      2365,
+      162
+     ]
+    },
+    "BuE": {
+     "label": "WEAK",
+     "deciding_statistic": "S_deep",
+     "value": 0.057649667405764965,
+     "ci": [
+      0.023636729538798907,
+      0.10062961892572561
+     ],
+     "hi_used": 0.10062961892572561,
+     "k": 26,
+     "n": 451,
+     "n_sessions": 102,
+     "caps_applied": [],
+     "S_deep_k_n_s": [
+      26,
+      451,
+      102
+     ],
+     "S_path_any_k_n_s": [
+      461,
+      4863,
+      338
+     ]
+    }
+   }
+  },
+  {
+   "candidate": "P2 knowledge precedence",
+   "unit": "swechat/codex subagent",
+   "source": "a1_p2_p4_f3.json verdicts['P2/swechat/codex/subagent']",
+   "phase_b": "WEAK",
+   "E_label": "WEAK",
+   "BuE_label": "WEAK",
+   "status": "SURVIVES",
+   "final_label": "WEAK",
+   "reasons": [],
+   "deciding": {
+    "E_or_B": {
+     "label": "WEAK",
+     "deciding_statistic": "S_path_any",
+     "value": 0.11854684512428298,
+     "ci": [
+      0.08599472262719779,
+      0.15331138552982168
+     ],
+     "hi_used": 0.15331138552982168,
+     "k": 62,
+     "n": 523,
+     "n_sessions": 23,
+     "caps_applied": [
+      "S_deep INSUFFICIENT_N -> S_path_any (cap WEAK; not binding)"
+     ],
+     "S_deep_k_n_s": [
+      0,
+      0,
+      0
+     ],
+     "S_path_any_k_n_s": [
+      62,
+      523,
+      23
+     ]
+    },
+    "BuE": {
+     "label": "WEAK",
+     "deciding_statistic": "S_path_any",
+     "value": 0.125948406676783,
+     "ci": [
+      0.10273605086774104,
+      0.14914157382666976
+     ],
+     "hi_used": 0.14914157382666976,
+     "k": 166,
+     "n": 1318,
+     "n_sessions": 59,
+     "caps_applied": [
+      "S_deep INSUFFICIENT_N -> S_path_any (cap WEAK; not binding)"
+     ],
+     "S_deep_k_n_s": [
+      0,
+      0,
+      0
+     ],
+     "S_path_any_k_n_s": [
+      166,
+      1318,
+      59
+     ]
+    }
+   }
+  },
+  {
+   "candidate": "P2 knowledge precedence",
+   "unit": "aiv_cc main (single-agent case study)",
+   "source": "a1_p2_p4_f3.json verdicts['P2/aiv_cc/main']",
+   "phase_b": "WEAK",
+   "E_label": null,
+   "BuE_label": "WEAK",
+   "status": "KILLED (B only, unreplicated)",
+   "final_label": "DEAD",
+   "reasons": [
+    "AC4_DOMINATED",
+    "CONFINED on tool"
+   ],
+   "deciding": {
+    "E_or_B": {
+     "label": "WEAK",
+     "deciding_statistic": "S_path_any",
+     "value": 0.1924640824071564,
+     "ci": [
+      0.08081858323162773,
+      0.35122375656172505
+     ],
+     "hi_used": 0.35122375656172505,
+     "k": 710,
+     "n": 3689,
+     "n_sessions": 53,
+     "caps_applied": [
+      "S_deep INSUFFICIENT_N -> S_path_any (cap WEAK; not binding)"
+     ],
+     "S_deep_k_n_s": [
+      0,
+      1235,
+      13
+     ],
+     "S_path_any_k_n_s": [
+      710,
+      3689,
+      53
+     ]
+    },
+    "BuE": {
+     "label": "WEAK",
+     "deciding_statistic": "S_path_any",
+     "value": 0.1924640824071564,
+     "ci": [
+      0.08081858323162773,
+      0.35122375656172505
+     ],
+     "hi_used": 0.35122375656172505,
+     "k": 710,
+     "n": 3689,
+     "n_sessions": 53,
+     "caps_applied": [
+      "S_deep INSUFFICIENT_N -> S_path_any (cap WEAK; not binding)"
+     ],
+     "S_deep_k_n_s": [
+      0,
+      1235,
+      13
+     ],
+     "S_path_any_k_n_s": [
+      710,
+      3689,
+      53
+     ]
+    }
+   }
+  },
+  {
+   "candidate": "P4 round numbers",
+   "unit": "swechat/claude_code",
+   "source": "a1_p2_p4_f3.json verdicts['P4round/swechat/claude_code']",
+   "phase_b": "ALIVE",
+   "E_label": "ALIVE",
+   "BuE_label": "ALIVE (full statistic); F3 WEAK",
+   "status": "DOWNGRADED",
+   "final_label": "WEAK",
+   "reasons": [
+    "F3_ALIVE_not_kept (WEAK)"
+   ],
+   "deciding": {
+    "F3_label_BuE": "WEAK",
+    "g_BuE": 0.11830036865458492,
+    "g_full_BuE": 0.2552217314812936,
+    "T_noparam_remaining_BuE": [
+     307,
+     158
+    ],
+    "E_full_label": "ALIVE",
+    "F3_label_E": "WEAK"
+   }
+  },
+  {
+   "candidate": "P4 round numbers",
+   "unit": "cc_local",
+   "source": "a1_p2_p4_f3.json verdicts['P4round/cc_local']",
+   "phase_b": "ALIVE",
+   "E_label": null,
+   "BuE_label": "ALIVE (full statistic); F3 WEAK",
+   "status": "DOWNGRADED (B only, unreplicated)",
+   "final_label": "WEAK",
+   "reasons": [
+    "F3_ALIVE_not_kept (WEAK)"
+   ],
+   "deciding": {
+    "F3_label_BuE": "WEAK",
+    "g_BuE": 0.4324816162039096,
+    "g_full_BuE": 0.5271773995937112,
+    "T_noparam_remaining_BuE": [
+     206,
+     12
+    ],
+    "E_full_label": "ALIVE",
+    "F3_label_E": null
+   }
+  },
+  {
+   "candidate": "P4 round numbers",
+   "unit": "swechat/* (pooled)",
+   "source": "a1_p2_p4_f3.json verdicts['P4round/swechat/* (pooled)']",
+   "phase_b": "ALIVE",
+   "E_label": "ALIVE",
+   "BuE_label": "ALIVE (full statistic); F3 WEAK",
+   "status": "KILLED",
+   "final_label": "DEAD",
+   "reasons": [
+    "F3_ALIVE_not_kept (WEAK)",
+    "AC4_DOMINATED"
+   ],
+   "deciding": {
+    "F3_label_BuE": "WEAK",
+    "g_BuE": 0.12033146913475022,
+    "g_full_BuE": 0.26022175126641167,
+    "T_noparam_remaining_BuE": [
+     319,
+     166
+    ],
+    "E_full_label": "ALIVE",
+    "F3_label_E": "WEAK"
+   }
+  }
+ ],
+ "r1_rows": [
+  {
+   "candidate": "R1 request-id clock bracket",
+   "unit": "swechat/claude_code",
+   "source": "computed here: prereg_e_common.survival_status() on n6_grid.json cells.R1_bracket['swechat/claude_code'] label_E / label_B and f1_bracket.json r1['swechat/claude_code'].artifact_checks",
+   "phase_b": null,
+   "E_label": "ALIVE",
+   "B_label": "ALIVE",
+   "BuE_label": "ALIVE",
+   "n6_cell_label": "ALIVE",
+   "f1_label": "PENDING_N7",
+   "status": "SURVIVES",
+   "final_label": "ALIVE",
+   "reasons": [],
+   "survival_inputs": {
+    "phase_b_label": null,
+    "e_label": "ALIVE",
+    "has_e": true,
+    "e_seen": false
+   },
+   "checks": [
+    {
+     "name": "AC1_parser",
+     "effect": "pass",
+     "result": [
+      "PASS",
+      "PASS"
+     ]
+    },
+    {
+     "name": "AC2_truncation",
+     "effect": "pass",
+     "result": "PASS"
+    },
+    {
+     "name": "AC3_join",
+     "effect": "pass",
+     "result": "PASS"
+    },
+    {
+     "name": "AC4_dominance",
+     "effect": "pass"
+    },
+    {
+     "name": "AC5_post_strat",
+     "effect": "pass",
+     "result": "PASS"
+    }
+   ],
+   "agrees_with_n6_cell": true
+  },
+  {
+   "candidate": "R1 request-id clock bracket",
+   "unit": "cc_local",
+   "source": "computed here: prereg_e_common.survival_status() on n6_grid.json cells.R1_bracket.cc_local label_E / label_B and f1_bracket.json r1.cc_local.artifact_checks",
+   "phase_b": null,
+   "E_label": null,
+   "B_label": "ALIVE",
+   "BuE_label": "WEAK",
+   "n6_cell_label": "WEAK",
+   "f1_label": "PENDING_N7",
+   "status": "DOWNGRADED (B only, unreplicated)",
+   "final_label": "WEAK",
+   "reasons": [
+    "AC4_UNTESTABLE_WITHOUT_DOMINANT"
+   ],
+   "survival_inputs": {
+    "phase_b_label (B label, r4_r5 convention)": "ALIVE",
+    "e_label": null,
+    "has_e": false,
+    "e_seen": false
+   },
+   "checks": [
+    {
+     "name": "AC2_truncation",
+     "effect": "pass",
+     "result": "PASS"
+    },
+    {
+     "name": "AC3_join",
+     "effect": "pass",
+     "result": "PASS"
+    },
+    {
+     "name": "AC4_UNTESTABLE_WITHOUT_DOMINANT",
+     "effect": "cap_weak"
+    }
+   ],
+   "agrees_with_n6_cell": true
+  }
+ ],
+ "r2_r5_rows": [
+  {
+   "candidate": "R2 image-token ledger",
+   "unit": "aiv_cu (Gemini strata)",
+   "source": "r2_r3.json R2.survival",
+   "phase_b": null,
+   "E_label": "ALIVE",
+   "BuE_label": "DEAD",
+   "status": "KILLED",
+   "final_label": "DEAD",
+   "reasons": [
+    "CONFINED on repo (agent_id), model generation (R2 stratum)",
+    "R2 Phase D kill rule fired on B u E (session-level honest flag rate > 0.05)"
+   ]
+  },
+  {
+   "candidate": "R3 git execution window",
+   "unit": "swechat/claude_code",
+   "source": "r2_r3.json R3.units['swechat/claude_code'].survival",
+   "phase_b": null,
+   "E_label": "WEAK",
+   "BuE_label": "WEAK",
+   "status": "SURVIVES (E not blind)",
+   "final_label": "WEAK",
+   "reasons": []
+  },
+  {
+   "candidate": "R3 git execution window",
+   "unit": "swechat/codex",
+   "source": "r2_r3.json R3.units['swechat/codex'].survival",
+   "phase_b": null,
+   "E_label": "INSUFFICIENT_N",
+   "BuE_label": "INSUFFICIENT_N",
+   "status": "NOT_RUN (NOT_REPLICABLE_AT_N) (E not blind)",
+   "final_label": null,
+   "reasons": [
+    "no usable label"
+   ]
+  },
+  {
+   "candidate": "R3 git execution window",
+   "unit": "swechat/opencode",
+   "source": "r2_r3.json R3.units['swechat/opencode'].survival",
+   "phase_b": null,
+   "E_label": "INSUFFICIENT_N",
+   "BuE_label": "INSUFFICIENT_N",
+   "status": "NOT_RUN (NOT_REPLICABLE_AT_N) (E not blind)",
+   "final_label": null,
+   "reasons": [
+    "no usable label"
+   ]
+  },
+  {
+   "candidate": "R3 git execution window",
+   "unit": "swechat/gemini",
+   "source": "r2_r3.json R3.units['swechat/gemini'].survival",
+   "phase_b": null,
+   "E_label": "INSUFFICIENT_N",
+   "BuE_label": "INSUFFICIENT_N",
+   "status": "NOT_RUN (NOT_REPLICABLE_AT_N) (E not blind)",
+   "final_label": null,
+   "reasons": [
+    "no usable label"
+   ]
+  },
+  {
+   "candidate": "R4 dual-rendering recount",
+   "unit": "swechat/claude_code",
+   "source": "r4_r5.json R4.units['swechat/claude_code'].survival",
+   "phase_b": null,
+   "E_label": "WEAK",
+   "BuE_label": "WEAK",
+   "status": "SURVIVES (E not blind)",
+   "final_label": "WEAK",
+   "reasons": []
+  },
+  {
+   "candidate": "R4 dual-rendering recount",
+   "unit": "cc_local",
+   "source": "r4_r5.json R4.units.cc_local.survival",
+   "phase_b": null,
+   "E_label": null,
+   "BuE_label": "WEAK",
+   "status": "SURVIVES (B only, unreplicated)",
+   "final_label": "WEAK",
+   "reasons": []
+  },
+  {
+   "candidate": "R5 usage-ledger reconciliation",
+   "unit": "swechat/claude_code",
+   "source": "r4_r5.json R5.units['swechat/claude_code'].survival",
+   "phase_b": null,
+   "E_label": "ALIVE",
+   "BuE_label": "ALIVE",
+   "status": "SURVIVES (E not blind)",
+   "final_label": "ALIVE",
+   "reasons": []
+  },
+  {
+   "candidate": "R5 usage-ledger reconciliation",
+   "unit": "swechat/codex",
+   "source": "r4_r5.json R5.units['swechat/codex'].survival",
+   "phase_b": null,
+   "E_label": "NOT_RUN",
+   "BuE_label": "NOT_RUN",
+   "status": "NOT_RUN (NOT_REPLICABLE_AT_N) (E not blind)",
+   "final_label": null,
+   "reasons": [
+    "no usable label"
+   ]
+  },
+  {
+   "candidate": "R5 usage-ledger reconciliation",
+   "unit": "swechat/opencode",
+   "source": "r4_r5.json R5.units['swechat/opencode'].survival",
+   "phase_b": null,
+   "E_label": "NOT_RUN",
+   "BuE_label": "NOT_RUN",
+   "status": "NOT_RUN (NOT_REPLICABLE_AT_N) (E not blind)",
+   "final_label": null,
+   "reasons": [
+    "no usable label"
+   ]
+  },
+  {
+   "candidate": "R5 usage-ledger reconciliation",
+   "unit": "swechat/gemini",
+   "source": "r4_r5.json R5.units['swechat/gemini'].survival",
+   "phase_b": null,
+   "E_label": "INSUFFICIENT_N",
+   "BuE_label": "NOT_RUN",
+   "status": "NOT_RUN (NOT_REPLICABLE_AT_N) (E not blind)",
+   "final_label": null,
+   "reasons": [
+    "no usable label"
+   ]
+  }
+ ],
+ "followups": {
+  "F1": {
+   "step0_result": "REPRODUCED",
+   "honest": {
+    "swechat/claude_code|B": {
+     "responses_decoded": 155326,
+     "sessions_with_decoded_responses": 1639,
+     "streams_ge2": 3676,
+     "streams_main": 1608,
+     "sessions_with_streams": 1610,
+     "inconsistent_streams": 10,
+     "inconsistent_streams_main": 10,
+     "rate_by_session": {
+      "rate": 0.002720348204570185,
+      "lo": 0.0011158935131094301,
+      "hi": 0.004659581746534241,
+      "n_sessions": 1610,
+      "num": 10.0,
+      "den": 3676.0
+     },
+     "wilson_per_stream": {
+      "k": 10,
+      "n": 3676,
+      "p": 0.002720348204570185,
+      "lo": 0.0014783203274293178,
+      "hi": 0.00500065420234392
+     },
+     "sessions_with_inconsistent_stream": 10,
+     "tolerance_sensitivity_streams_over": {
+      "0": 18,
+      "1000": 12,
+      "2000": 10,
+      "3000": 9,
+      "5000": 7,
+      "10000": 3,
+      "60000": 2
+     },
+     "slack_U_minus_L_consistent_ms": {
+      "n": 3666,
+      "n_sessions": 1603,
+      "q0.05": 1102.75,
+      "q0.25": 1703.25,
+      "q0.5": 2268.5,
+      "q0.75": 2805.0,
+      "q0.95": 3807.0,
+      "min": -1851.0,
+      "max": 38373.0
+     },
+     "slack_p50_cluster": {
+      "q": 0.5,
+      "value": 2268.5,
+      "lo": 2223.0,
+      "hi": 2310.025,
+      "n": 3666,
+      "n_sessions": 1603
+     },
+     "streams_with_nan_L": 0
+    },
+    "swechat/claude_code|E": {
+     "responses_decoded": 141081,
+     "sessions_with_decoded_responses": 1506,
+     "streams_ge2": 3332,
+     "streams_main": 1486,
+     "sessions_with_streams": 1486,
+     "inconsistent_streams": 11,
+     "inconsistent_streams_main": 9,
+     "rate_by_session": {
+      "rate": 0.0033013205282112846,
+      "lo": 0.001452643811737362,
+      "hi": 0.005401191309966088,
+      "n_sessions": 1486,
+      "num": 11.0,
+      "den": 3332.0
+     },
+     "wilson_per_stream": {
+      "k": 11,
+      "n": 3332,
+      "p": 0.0033013205282112846,
+      "lo": 0.0018444134911557047,
+      "hi": 0.005902237309050156
+     },
+     "sessions_with_inconsistent_stream": 10,
+     "tolerance_sensitivity_streams_over": {
+      "0": 17,
+      "1000": 14,
+      "2000": 11,
+      "3000": 10,
+      "5000": 7,
+      "10000": 6,
+      "60000": 3
+     },
+     "slack_U_minus_L_consistent_ms": {
+      "n": 3321,
+      "n_sessions": 1481,
+      "q0.05": 1084.0,
+      "q0.25": 1637.0,
+      "q0.5": 2216.0,
+      "q0.75": 2734.0,
+      "q0.95": 3747.0,
+      "min": -1906.0,
+      "max": 20713.0
+     },
+     "slack_p50_cluster": {
+      "q": 0.5,
+      "value": 2216.0,
+      "lo": 2164.0,
+      "hi": 2272.0125,
+      "n": 3321,
+      "n_sessions": 1481
+     },
+     "streams_with_nan_L": 0
+    },
+    "cc_local|B": {
+     "responses_decoded": 31085,
+     "sessions_with_decoded_responses": 186,
+     "streams_ge2": 847,
+     "streams_main": 174,
+     "sessions_with_streams": 174,
+     "inconsistent_streams": 1,
+     "inconsistent_streams_main": 1,
+     "rate_by_session": {
+      "rate": 0.0011806375442739079,
+      "lo": 0.0,
+      "hi": 0.002481505242687303,
+      "n_sessions": 174,
+      "num": 1.0,
+      "den": 847.0
+     },
+     "wilson_per_stream": {
+      "k": 1,
+      "n": 847,
+      "p": 0.0011806375442739079,
+      "lo": 0.00020843656528088872,
+      "hi": 0.00665723619919137
+     },
+     "sessions_with_inconsistent_stream": 1,
+     "tolerance_sensitivity_streams_over": {
+      "0": 1,
+      "1000": 1,
+      "2000": 1,
+      "3000": 1,
+      "5000": 1,
+      "10000": 1,
+      "60000": 0
+     },
+     "slack_U_minus_L_consistent_ms": {
+      "n": 846,
+      "n_sessions": 174,
+      "q0.05": 1039.5,
+      "q0.25": 1270.5,
+      "q0.5": 1586.5,
+      "q0.75": 2051.5,
+      "q0.95": 3526.25,
+      "min": 130.0,
+      "max": 9382.0
+     },
+     "slack_p50_cluster": {
+      "q": 0.5,
+      "value": 1586.5,
+      "lo": 1323.0,
+      "hi": 1854.0,
+      "n": 846,
+      "n_sessions": 174
+     },
+     "streams_with_nan_L": 0
+    }
+   },
+   "categories_meeting_shared_cause_rule": {
+    "swechat/claude_code|B": [],
+    "swechat/claude_code|E": [],
+    "cc_local|B": [
+     "user_input_binding"
+    ]
+   },
+   "effective_fp": {
+    "swechat/claude_code": {
+     "adopted_on_B": [
+      "restamped_copy",
+      "user_input_binding"
+     ],
+     "B": {
+      "adopted": [
+       "restamped_copy",
+       "user_input_binding"
+      ],
+      "honest": {
+       "streams": 3671,
+       "flagged": 7,
+       "abstained": 0,
+       "rate_by_session": {
+        "rate": 0.0019068373740125306,
+        "lo": 0.0005686920155746767,
+        "hi": 0.003488106921557364,
+        "n_sessions": 1610,
+        "num": 7.0,
+        "den": 3671.0
+       },
+       "wilson_per_stream": {
+        "k": 7,
+        "n": 3671,
+        "p": 0.0019068373740125306,
+        "lo": 0.000923974189604958,
+        "hi": 0.003931092216522588
+       }
+      },
+      "back_5s": {
+       "streams": 3671,
+       "flagged": 1443,
+       "abstained": 0,
+       "rate_by_session": {
+        "rate": 0.39308090438572596,
+        "lo": 0.3716348640388684,
+        "hi": 0.4146516118623388,
+        "n_sessions": 1610,
+        "num": 1443.0,
+        "den": 3671.0
+       },
+       "wilson_per_stream": {
+        "k": 1443,
+        "n": 3671,
+        "p": 0.39308090438572596,
+        "lo": 0.3774000616538381,
+        "hi": 0.4089852889419535
+       }
+      },
+      "back_30s": {
+       "streams": 3671,
+       "flagged": 3581,
+       "abstained": 2,
+       "rate_by_session": {
+        "rate": 0.9754835194769818,
+        "lo": 0.9695257782981856,
+        "hi": 0.981122829243967,
+        "n_sessions": 1610,
+        "num": 3581.0,
+        "den": 3671.0
+       },
+       "wilson_per_stream": {
+        "k": 3581,
+        "n": 3671,
+        "p": 0.9754835194769818,
+        "lo": 0.9699617468553123,
+        "hi": 0.9800111717053135
+       }
+      }
+     },
+     "E": {
+      "adopted": [
+       "restamped_copy",
+       "user_input_binding"
+      ],
+      "honest": {
+       "streams": 3325,
+       "flagged": 11,
+       "abstained": 0,
+       "rate_by_session": {
+        "rate": 0.0033082706766917294,
+        "lo": 0.0014539986219452702,
+        "hi": 0.0055064396762571225,
+        "n_sessions": 1484,
+        "num": 11.0,
+        "den": 3325.0
+       },
+       "wilson_per_stream": {
+        "k": 11,
+        "n": 3325,
+        "p": 0.0033082706766917294,
+        "lo": 0.0018482985037389299,
+        "hi": 0.005914642214137223
+       }
+      },
+      "back_5s": {
+       "streams": 3325,
+       "flagged": 1378,
+       "abstained": 0,
+       "rate_by_session": {
+        "rate": 0.41443609022556394,
+        "lo": 0.39159338367541124,
+        "hi": 0.43861480990112667,
+        "n_sessions": 1484,
+        "num": 1378.0,
+        "den": 3325.0
+       },
+       "wilson_per_stream": {
+        "k": 1378,
+        "n": 3325,
+        "p": 0.41443609022556394,
+        "lo": 0.39779955328218825,
+        "hi": 0.43127011467677995
+       }
+      },
+      "back_30s": {
+       "streams": 3325,
+       "flagged": 3260,
+       "abstained": 1,
+       "rate_by_session": {
+        "rate": 0.9804511278195489,
+        "lo": 0.9752885909380912,
+        "hi": 0.9853160712170007,
+        "n_sessions": 1484,
+        "num": 3260.0,
+        "den": 3325.0
+       },
+       "wilson_per_stream": {
+        "k": 3260,
+        "n": 3325,
+        "p": 0.9804511278195489,
+        "lo": 0.9751610095580778,
+        "hi": 0.9846323311644127
+       }
+      }
+     },
+     "still_flagged_by_category_vector_B": {
+      "(none)": 5,
+      "restamped_copy": 1,
+      "clock_step": 1
+     },
+     "still_flagged_by_category_vector_E": {
+      "clock_step": 3,
+      "(none)": 8
+     }
+    },
+    "cc_local": {
+     "adopted_on_B": [],
+     "B": {
+      "adopted": [],
+      "honest": {
+       "streams": 847,
+       "flagged": 1,
+       "abstained": 0,
+       "rate_by_session": {
+        "rate": 0.0011806375442739079,
+        "lo": 0.0,
+        "hi": 0.002481505242687303,
+        "n_sessions": 174,
+        "num": 1.0,
+        "den": 847.0
+       },
+       "wilson_per_stream": {
+        "k": 1,
+        "n": 847,
+        "p": 0.0011806375442739079,
+        "lo": 0.00020843656528088872,
+        "hi": 0.00665723619919137
+       }
+      },
+      "back_5s": {
+       "streams": 847,
+       "flagged": 217,
+       "abstained": 0,
+       "rate_by_session": {
+        "rate": 0.256198347107438,
+        "lo": 0.15725679687954824,
+        "hi": 0.3044670411296683,
+        "n_sessions": 174,
+        "num": 217.0,
+        "den": 847.0
+       },
+       "wilson_per_stream": {
+        "k": 217,
+        "n": 847,
+        "p": 0.256198347107438,
+        "lo": 0.22794602123355465,
+        "hi": 0.2866522306619802
+       }
+      },
+      "back_30s": {
+       "streams": 847,
+       "flagged": 763,
+       "abstained": 0,
+       "rate_by_session": {
+        "rate": 0.9008264462809917,
+        "lo": 0.8740200984541519,
+        "hi": 0.9764206048315993,
+        "n_sessions": 174,
+        "num": 763.0,
+        "den": 847.0
+       },
+       "wilson_per_stream": {
+        "k": 763,
+        "n": 847,
+        "p": 0.9008264462809917,
+        "lo": 0.8788513180951003,
+        "hi": 0.9191820643817321
+       }
+      }
+     },
+     "still_flagged_by_category_vector_B": {
+      "user_input_binding": 1
+     }
+    }
+   },
+   "source": "f1_bracket.json step0; units.<unit|split>.honest / .benign; f1_effective_fp"
+  },
+  "F2": {
+   "verdicts": {
+    "F2_outcome_BuE": {
+     "outcome": "OPEN",
+     "deciding": {
+      "BENIGN": 0,
+      "COMPROMISE_LIKE": 3,
+      "UNEXPLAINED": 28,
+      "n_step_series": 31,
+      "step_sessions": 28,
+      "benign_share": 0.0,
+      "rule": "DISMISSIBLE_AS_BENIGN if BENIGN share >= 0.8 of step series and COMPROMISE_LIKE = 0; otherwise OPEN. COMPROMISE_LIKE series are listed individually (series index, factor, direction, covariate vector) for human review. No verdict changes either way (no_rescue)."
+     },
+     "json_path": "populations.BuE.outcome; populations.BuE.outcome_deciding"
+    },
+    "F2_outcome_B": {
+     "outcome": "INSUFFICIENT_N",
+     "deciding": {
+      "n_step_series": 21,
+      "step_sessions": 18,
+      "control_series": 135,
+      "control_sessions": 103,
+      "min_n": {
+       "den_min": 30,
+       "sessions_min": 5,
+       "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+      },
+      "label": "insufficient n",
+      "rule": "report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+     },
+     "json_path": "populations.B.outcome; populations.B.outcome_deciding"
+    },
+    "F2_outcome_E": {
+     "outcome": "INSUFFICIENT_N",
+     "deciding": {
+      "n_step_series": 10,
+      "step_sessions": 10,
+      "control_series": 113,
+      "control_sessions": 93,
+      "min_n": {
+       "den_min": 30,
+       "sessions_min": 5,
+       "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+      },
+      "label": "insufficient n",
+      "rule": "report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+     },
+     "json_path": "populations.E.outcome; populations.E.outcome_deciding"
+    },
+    "F2_outcome_pooled_index_sensitivity": {
+     "outcome": "OPEN",
+     "deciding": {
+      "BENIGN": 0,
+      "COMPROMISE_LIKE": 4,
+      "UNEXPLAINED": 31,
+      "n_step_series": 35,
+      "step_sessions": 30,
+      "benign_share": 0.0,
+      "rule": "DISMISSIBLE_AS_BENIGN if BENIGN share >= 0.8 of step series and COMPROMISE_LIKE = 0; otherwise OPEN. COMPROMISE_LIKE series are listed individually (series index, factor, direction, covariate vector) for human review. No verdict changes either way (no_rescue)."
+     },
+     "json_path": "sensitivity_pooled_index.outcome"
+    },
+    "E_replication_floor_label": {
+     "label": "STABLE",
+     "deciding": {
+      "k": 10,
+      "n": 123,
+      "p": 0.08130081300813008,
+      "lo": 0.04475838884502016,
+      "hi": 0.14320518146629724
+     },
+     "json_path": "steps.E.label; steps.E.step_share_wilson"
+    }
+   },
+   "verdict_effect": "none: F2 moves no mechanism verdict (prereg_e.json followups.F2_floor_shift.outcome_rule, no_rescue)",
+   "source": "f2_floor_shift.json verdicts; verdict_effect"
+  },
+  "F3": {
+   "P4round/swechat/claude_code": {
+    "kill_test_result": "CAP_WEAK",
+    "label_used": "WEAK",
+    "status": "DOWNGRADED",
+    "final_label": "WEAK"
+   },
+   "P4round/cc_local": {
+    "kill_test_result": "CAP_WEAK",
+    "label_used": "WEAK",
+    "status": "DOWNGRADED (B only, unreplicated)",
+    "final_label": "WEAK"
+   },
+   "P4round/swechat/* (pooled)": {
+    "kill_test_result": "CAP_WEAK",
+    "label_used": "WEAK",
+    "status": "KILLED",
+    "final_label": "DEAD"
+   },
+   "source": "f3_round.json candidates.<c>.kill_test / .survival"
+  }
+ },
+ "n7_walkthrough_union": {
+  "rule": "an attack type 'walks through' if no cell of any detector, unit, split and parameter in n7_timing.json cells or n7_content.json cells is labelled DETECTS; the replication-split reading counts only E cells (B for cc_local, aiv_cc, whowhen)",
+  "attack_types": [
+   "time_result_early",
+   "time_result_late",
+   "time_tail_early",
+   "time_tail_late",
+   "time_response_early",
+   "time_response_late",
+   "id_swap_adjacent",
+   "id_splice_foreign",
+   "sub_single_flip_error",
+   "sub_single_digit",
+   "sub_matched_bytes",
+   "rewrite_consistent_k",
+   "reorder_adjacent_pairs",
+   "reorder_lines",
+   "delete_pair",
+   "delete_response",
+   "insert_pair_consistent",
+   "insert_pair_squeezed",
+   "inline_fabrication",
+   "image_relabel_gui",
+   "image_insert_screenshot"
+  ],
+  "n_attack_types": 21,
+  "per_attack": {
+   "time_result_early": {
+    "DETECTS_cells": 21,
+    "DETECTS_cells_replication_split": 21,
+    "detectors_with_DETECTS": [
+     "P1_FLOOR"
+    ],
+    "halves": [
+     "n7_timing"
+    ]
+   },
+   "time_result_late": {
+    "DETECTS_cells": 22,
+    "DETECTS_cells_replication_split": 13,
+    "detectors_with_DETECTS": [
+     "P1_GEN",
+     "R1_BRACKET"
+    ],
+    "halves": [
+     "n7_timing"
+    ]
+   },
+   "time_tail_early": {
+    "DETECTS_cells": 38,
+    "DETECTS_cells_replication_split": 25,
+    "detectors_with_DETECTS": [
+     "P1_FLOOR",
+     "R1_BRACKET"
+    ],
+    "halves": [
+     "n7_timing"
+    ]
+   },
+   "time_tail_late": {
+    "DETECTS_cells": 23,
+    "DETECTS_cells_replication_split": 13,
+    "detectors_with_DETECTS": [
+     "P1_GEN",
+     "R1_BRACKET"
+    ],
+    "halves": [
+     "n7_timing"
+    ]
+   },
+   "time_response_early": {
+    "DETECTS_cells": 12,
+    "DETECTS_cells_replication_split": 8,
+    "detectors_with_DETECTS": [
+     "R1_BRACKET"
+    ],
+    "halves": [
+     "n7_timing"
+    ]
+   },
+   "time_response_late": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "id_swap_adjacent": {
+    "DETECTS_cells": 3,
+    "DETECTS_cells_replication_split": 2,
+    "detectors_with_DETECTS": [
+     "R1_BRACKET"
+    ],
+    "halves": [
+     "n7_timing"
+    ]
+   },
+   "id_splice_foreign": {
+    "DETECTS_cells": 3,
+    "DETECTS_cells_replication_split": 2,
+    "detectors_with_DETECTS": [
+     "R1_BRACKET"
+    ],
+    "halves": [
+     "n7_timing"
+    ]
+   },
+   "sub_single_flip_error": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "sub_single_digit": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "sub_matched_bytes": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "rewrite_consistent_k": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "reorder_adjacent_pairs": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "reorder_lines": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "delete_pair": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "delete_response": {
+    "DETECTS_cells": 2,
+    "DETECTS_cells_replication_split": 1,
+    "detectors_with_DETECTS": [
+     "R5_LEDGER"
+    ],
+    "halves": [
+     "n7_content"
+    ]
+   },
+   "insert_pair_consistent": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "insert_pair_squeezed": {
+    "DETECTS_cells": 0,
+    "DETECTS_cells_replication_split": 0,
+    "detectors_with_DETECTS": [],
+    "halves": []
+   },
+   "inline_fabrication": {
+    "DETECTS_cells": 6,
+    "DETECTS_cells_replication_split": 4,
+    "detectors_with_DETECTS": [
+     "N2",
+     "R5_LEDGER"
+    ],
+    "halves": [
+     "n7_content"
+    ]
+   },
+   "image_relabel_gui": {
+    "DETECTS_cells": 2,
+    "DETECTS_cells_replication_split": 1,
+    "detectors_with_DETECTS": [
+     "R2_IMAGE"
+    ],
+    "halves": [
+     "n7_content"
+    ]
+   },
+   "image_insert_screenshot": {
+    "DETECTS_cells": 2,
+    "DETECTS_cells_replication_split": 1,
+    "detectors_with_DETECTS": [
+     "R2_IMAGE"
+    ],
+    "halves": [
+     "n7_content"
+    ]
+   }
+  },
+  "detectors_with_any_DETECTS_cell": [
+   "N2",
+   "P1_FLOOR",
+   "P1_GEN",
+   "R1_BRACKET",
+   "R2_IMAGE",
+   "R5_LEDGER"
+  ],
+  "no_DETECTS_any_split": [
+   "time_response_late",
+   "sub_single_flip_error",
+   "sub_single_digit",
+   "sub_matched_bytes",
+   "rewrite_consistent_k",
+   "reorder_adjacent_pairs",
+   "reorder_lines",
+   "delete_pair",
+   "insert_pair_consistent",
+   "insert_pair_squeezed"
+  ],
+  "n_no_DETECTS_any_split": 10,
+  "no_DETECTS_replication_split": [
+   "time_response_late",
+   "sub_single_flip_error",
+   "sub_single_digit",
+   "sub_matched_bytes",
+   "rewrite_consistent_k",
+   "reorder_adjacent_pairs",
+   "reorder_lines",
+   "delete_pair",
+   "insert_pair_consistent",
+   "insert_pair_squeezed"
+  ],
+  "n_no_DETECTS_replication_split": 10
+ },
+ "r3_n7_recheck": {
+  "rule": "label and recall k of every R3_GIT cell r2_r3.json used, against the final n7_timing.json cells",
+  "r2_r3_read_mtime": {
+   "swechat/claude_code": "2026-10-04T03:58:08",
+   "swechat/codex": "2026-10-04T03:58:08",
+   "swechat/opencode": "2026-10-04T03:58:08",
+   "swechat/gemini": "2026-10-04T03:58:08"
+  },
+  "n_same": 488,
+  "n_differ": 0,
+  "differ": [],
+  "missing_in_final": []
+ },
+ "deviations": [
+  {
+   "item": "R1 survival status computed in this assembly",
+   "prereg_said": "survival_rule.function survival_status(); a1.proposal_rules for R1",
+   "what_you_did": "f1_bracket.json labelled R1 PENDING_N7 (N7 absent when it ran); n6_grid.json composed the label from f1 + n7_timing.json but computed no status. survival_status() is called here on the n6-composed E label (swechat/claude_code; base None as r2_r3 did for R2/R3) or B label (cc_local, has_e=False, the r4_r5 convention for R4 cc_local) with f1's artifact-check effects (NOT_RUN checks left out, as the siblings did)",
+   "why": "smallest faithful completion: every input is a committed item output; the function is the frozen one",
+   "effect_on_verdict": "none: the final labels equal the n6 cells (agrees_with_n6_cell)"
+  },
+  {
+   "item": "assembly script and JSON for SECOND_PASS.md",
+   "prereg_said": "outputs: interpretation goes to SECOND_PASS.md; no SECOND_PASS script is named",
+   "what_you_did": "this assembly script writes second_pass.json (copied labels, two mechanical derivations, input sha256) and checks the .md numbers against the Phase E outputs",
+   "why": "traceability of the R1 status and of the combined N7 walk-through",
+   "effect_on_verdict": "none"
+  }
+ ],
+ "inputs_sha256": {
+  "analysis/out/phase_e/a1_p1_p3.json": "05b63d8451e96a654141f21db1f6d8090d82327a1f78f7ed9844d3b349d13751",
+  "analysis/out/phase_e/a1_p2_p4_f3.json": "9ebd5e5e89e49920ffeb2c13e695f9398cb73918043372245f726ef2a39a9c42",
+  "analysis/out/phase_e/f1_bracket.json": "e0bbbd598d3695056523a3118043852e89f638cccafb7e1d28ef580830bbc69e",
+  "analysis/out/phase_e/f2_floor_shift.json": "ce313640eaac73de5d9145df2fc9833c2e10bbe085de737b59deb2e776c7a772",
+  "analysis/out/phase_e/f3_round.json": "d1cb643788996f67e1acb46a09a96279503003d5d5c6367ab3a6fdd9a3b34380",
+  "analysis/out/phase_e/r2_r3.json": "5b5c3305bd3d9338bff5217f0b5dc2a944d9ae253ea9a2c780017c0183f3d865",
+  "analysis/out/phase_e/r4_r5.json": "d3e02c6902407fdfb87c8f157a7eb5183c4eac4639d91f827f93dc15a998a77c",
+  "analysis/out/phase_e/n6_grid.json": "63b1a0256f2cff051c9dcd03a9958bfe42d609680ee276490a08e2a7d474bef3",
+  "analysis/out/phase_e/n7_timing.json": "e7899b2ec5e1b1307ff5c429bb5766010262805b5b8df3867a11388dd4d6cc5e",
+  "analysis/out/phase_e/n7_content.json": "5c677a8138f24097de49ecbab0d7ff2dbe94a2a666a3aac96b326ef31b74252f",
+  "analysis/out/phase_e/n1.json": "398b4723e90440a829a402fad41a0043d4f6243ac4ec7b2407c46bc3b2b822c5",
+  "analysis/out/phase_e/n2.json": "e924a2978e873be09583af753138e4e4d1c062bc82c2ca78fd558b642528cf34",
+  "analysis/out/phase_e/n3.json": "64865fdeb491ff4895c21b0a24dbb7ee53b7a9ba09f9ce413009deb6859d2077",
+  "analysis/out/phase_e/n4_n5cg.json": "995bca333eddef93ebadbbd238e181dcbae8b9d5752da9fe65f21a2359ec2a1c",
+  "analysis/out/phase_e/n5_battery.json": "fe2d9a7b156c9d59903dc509bd52c76e833d34a3cd8d8cd871c6ee87452138f6",
+  "analysis/out/phase_e/fig_data.json": "4f29185f89b83f3f61fde79d7393bbba4cd7c4cd7bd5fc43f6303e59d4a32208"
+ },
+ "counts": {
+  "rule": "one row per candidate x unit in a1_rows + r1_rows + r2_r5_rows; status read without its suffix",
+  "n_rows": 25,
+  "status": {
+   "DOWNGRADED": 7,
+   "SURVIVES": 9,
+   "KILLED": 3,
+   "NOT_RUN": 6
+  },
+  "final_label": {
+   "WEAK": 13,
+   "ALIVE": 3,
+   "DEAD": 3,
+   "none (NOT_RUN)": 6
+  }
+ },
+ "md_number_check": {
+  "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\SECOND_PASS.md": {
+   "n_number_tokens": 646,
+   "found_in_phase_e_outputs": 646,
+   "found_only_in_prereg": [],
+   "not_found": [],
+   "n_fractions_k_over_n": 180,
+   "fractions_not_found_as_a_pair": [
+    "35/248"
+   ],
+   "fraction_rule": "k/n matches if k and n sit together in one JSON container (dict values or a short list) or appear as 'k/n' inside a string of a Phase E output",
+   "rule": "a token matches if some number in analysis/out/phase_e/*.json (+ n7_content_shards) rounds to it at the token's decimals (integers: exact); else prereg_e.json / prereg.json (thresholds); commas stripped, U+2212 read as minus"
+  },
+  "subtree_checks": [
+   {
+    "section": "2.1 P1 opencode",
+    "subtree": "a1_p1_p3.json candidates['P1/swechat/opencode']",
+    "n_tokens": 23,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "2.2 P1 cc_local",
+    "subtree": "a1_p1_p3.json candidates['P1/cc_local']",
+    "n_tokens": 13,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "2.3 P1 claude_code",
+    "subtree": "a1_p1_p3.json candidates['P1/swechat/claude_code']",
+    "n_tokens": 25,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "2.4 P2",
+    "subtree": "a1_p2_p4_f3.json candidates",
+    "n_tokens": 44,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "2.4 P2 instrument",
+    "subtree": "a1_p2_p4_f3.json instrument_check",
+    "n_tokens": 2,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "2.5 P3",
+    "subtree": "a1_p1_p3.json candidates['P3zero/swechat/claude_code']",
+    "n_tokens": 21,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "2.6 P4",
+    "subtree": "a1_p2_p4_f3.json candidates",
+    "n_tokens": 25,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "4.3 F3",
+    "subtree": "f3_round.json (whole file)",
+    "n_tokens": 25,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "3.1/4.1 R1 and F1",
+    "subtree": "f1_bracket.json (whole file)",
+    "n_tokens": 59,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "3.1 R1 N7 cells",
+    "subtree": "n7_timing.json cells",
+    "n_tokens": 8,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "4.2 F2",
+    "subtree": "f2_floor_shift.json (whole file)",
+    "n_tokens": 28,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "3.2 R2",
+    "subtree": "r2_r3.json R2",
+    "n_tokens": 18,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "3.3 R3",
+    "subtree": "r2_r3.json R3",
+    "n_tokens": 12,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "3.4 R4",
+    "subtree": "r4_r5.json R4",
+    "n_tokens": 7,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "3.5 R5",
+    "subtree": "r4_r5.json R5",
+    "n_tokens": 29,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "6 N1",
+    "subtree": "n1.json (whole file)",
+    "n_tokens": 15,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "6 N2",
+    "subtree": "n2.json (whole file)",
+    "n_tokens": 5,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "6 N3",
+    "subtree": "n3.json (whole file)",
+    "n_tokens": 6,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "6 N5abdef",
+    "subtree": "n5_battery.json (whole file)",
+    "n_tokens": 2,
+    "not_found_in_subtree": []
+   },
+   {
+    "section": "6 N4/N5c/N5g",
+    "subtree": "n4_n5cg.json (whole file)",
+    "n_tokens": 3,
+    "not_found_in_subtree": []
+   }
+  ]
+ },
+ "runtime_s": 0.88
+}

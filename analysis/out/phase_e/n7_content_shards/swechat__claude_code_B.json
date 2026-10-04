@@ -1,0 +1,5799 @@
+{
+ "item": "n7_content",
+ "script_sha256_lf": "185679a26250708c9cb75be9b2572e455a82e1e5d8931d18d79de403e958706a",
+ "script_sha256_lf_at_write": "185679a26250708c9cb75be9b2572e455a82e1e5d8931d18d79de403e958706a",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "prereg_e_json_sha256": "568d423f0e061f9a3dd14a4ae51926b3b5746a9a3dc33b421c3e632ad4bb1c08",
+ "result": {
+  "unit": "swechat/claude_code",
+  "split": "B",
+  "sessions": 1679,
+  "rows": 856891,
+  "detector_status": {
+   "P2_KFN": [
+    "RUN",
+    "D_unit 6"
+   ],
+   "P3_ZERO": [
+    "RUN",
+    "L75 134"
+   ],
+   "N2": [
+    "RUN",
+    "tau 0.4088050314465409"
+   ],
+   "N5a": [
+    "RUN",
+    ""
+   ],
+   "N5b": [
+    "RUN",
+    ""
+   ],
+   "N5c": [
+    "RUN",
+    ""
+   ],
+   "N5d": [
+    "RUN",
+    ""
+   ],
+   "N5f": [
+    "RUN",
+    ""
+   ],
+   "R2_IMAGE": [
+    "NOT_TESTABLE",
+    "no prompt IMAGE usage"
+   ],
+   "R4_DUAL": [
+    "RUN",
+    "raw numLines join; E not blind"
+   ],
+   "R5_LEDGER": [
+    "RUN",
+    "Claude-format F0 recount vs Entire tally; E not blind"
+   ]
+  },
+  "populations": {
+   "P2_KFN": 1679,
+   "P3_ZERO": 1679,
+   "N2": 1679,
+   "N5a": 1679,
+   "N5b": 1679,
+   "N5c": 1679,
+   "N5d": 1679,
+   "N5f": 1679,
+   "R4_DUAL": 1679,
+   "R5_LEDGER": 1679
+  },
+  "raw_joins": {
+   "sessions_with_raw": 1679,
+   "sessions_with_numlines": 1554,
+   "numlines_counters": 30011,
+   "sessions_with_tally": 1648,
+   "sessions_with_tally_api_gt0": 1645
+  },
+  "honest_population": {
+   "P2_KFN": {
+    "population_sessions": 1679,
+    "deciding_sessions": 625,
+    "flagged_sessions": 285,
+    "session_flag_rate_all": [
+     0.16974389517569982,
+     0.15254547369296742,
+     0.18845013753984266
+    ],
+    "session_flag_rate_deciding": [
+     0.456,
+     0.4173394006712983,
+     0.4951981922614849
+    ],
+    "decision_units": 11505,
+    "flagged_units": 1196,
+    "unit_flag_rate": {
+     "rate": 0.103954802259887,
+     "lo": 0.09142940602844668,
+     "hi": 0.11671998101502068,
+     "n_sessions": 625,
+     "num": 1196.0,
+     "den": 11505.0
+    }
+   },
+   "P3_ZERO": {
+    "population_sessions": 1679,
+    "deciding_sessions": 413,
+    "flagged_sessions": 9,
+    "session_flag_rate_all": [
+     0.005360333531864205,
+     0.0028226178041729218,
+     0.010156381526483035
+    ],
+    "session_flag_rate_deciding": [
+     0.021791767554479417,
+     0.01150610605898688,
+     0.04089173523132579
+    ],
+    "decision_units": 413,
+    "flagged_units": 9,
+    "unit_flag_rate": {
+     "rate": 0.021791767554479417,
+     "lo": 0.009685230024213076,
+     "hi": 0.03631961259079903,
+     "n_sessions": 413,
+     "num": 9.0,
+     "den": 413.0
+    }
+   },
+   "N2": {
+    "population_sessions": 1679,
+    "deciding_sessions": 1599,
+    "flagged_sessions": 265,
+    "session_flag_rate_all": [
+     0.15783204288266825,
+     0.1411763137625077,
+     0.1760499777672477
+    ],
+    "session_flag_rate_deciding": [
+     0.1657285803627267,
+     0.1483082757050873,
+     0.18475121064715105
+    ],
+    "decision_units": 49998,
+    "flagged_units": 793,
+    "unit_flag_rate": {
+     "rate": 0.015860634425377017,
+     "lo": 0.012818077806578912,
+     "hi": 0.019183900241866596,
+     "n_sessions": 1599,
+     "num": 793.0,
+     "den": 49998.0
+    }
+   },
+   "N5a": {
+    "population_sessions": 1679,
+    "deciding_sessions": 348,
+    "flagged_sessions": 119,
+    "session_flag_rate_all": [
+     0.07087552114353782,
+     0.059555236517785104,
+     0.08415502117967139
+    ],
+    "session_flag_rate_deciding": [
+     0.34195402298850575,
+     0.2940824189692813,
+     0.39327689272097927
+    ],
+    "decision_units": 2146,
+    "flagged_units": 640,
+    "unit_flag_rate": {
+     "rate": 0.2982292637465051,
+     "lo": 0.2062770925894987,
+     "hi": 0.40218652932517934,
+     "n_sessions": 348,
+     "num": 640.0,
+     "den": 2146.0
+    },
+    "descriptive_pairs_with_redacted_key": {
+     "pairs": 287,
+     "flagged": 277
+    }
+   },
+   "N5b": {
+    "population_sessions": 1679,
+    "deciding_sessions": 817,
+    "flagged_sessions": 196,
+    "session_flag_rate_all": [
+     0.11673615247170935,
+     0.10224412864527485,
+     0.13297800990894204
+    ],
+    "session_flag_rate_deciding": [
+     0.23990208078335373,
+     0.2118808728028003,
+     0.2703578441433193
+    ],
+    "decision_units": 6693,
+    "flagged_units": 529,
+    "unit_flag_rate": {
+     "rate": 0.07903780068728522,
+     "lo": 0.06290796249965323,
+     "hi": 0.0960852282518712,
+     "n_sessions": 817,
+     "num": 529.0,
+     "den": 6693.0
+    }
+   },
+   "N5c": {
+    "population_sessions": 1679,
+    "deciding_sessions": 291,
+    "flagged_sessions": 19,
+    "session_flag_rate_all": [
+     0.011316259678379988,
+     0.0072564083747753685,
+     0.01760725080740791
+    ],
+    "session_flag_rate_deciding": [
+     0.06529209621993128,
+     0.04219410468755308,
+     0.09971802711474348
+    ],
+    "decision_units": 575,
+    "flagged_units": 36,
+    "unit_flag_rate": {
+     "rate": 0.06260869565217392,
+     "lo": 0.0262207103663058,
+     "hi": 0.10442311232780216,
+     "n_sessions": 291,
+     "num": 36.0,
+     "den": 575.0
+    }
+   },
+   "N5d": {
+    "population_sessions": 1679,
+    "deciding_sessions": 863,
+    "flagged_sessions": 159,
+    "session_flag_rate_all": [
+     0.09469922572960095,
+     0.0816043245459816,
+     0.1096445725575842
+    ],
+    "session_flag_rate_deciding": [
+     0.1842410196987254,
+     0.1597941126710794,
+     0.21148663804508377
+    ],
+    "decision_units": 3649,
+    "flagged_units": 704,
+    "unit_flag_rate": {
+     "rate": 0.19292956974513564,
+     "lo": 0.14974525128611002,
+     "hi": 0.23315457861207942,
+     "n_sessions": 863,
+     "num": 704.0,
+     "den": 3649.0
+    }
+   },
+   "N5f": {
+    "population_sessions": 1679,
+    "deciding_sessions": 3,
+    "flagged_sessions": 1,
+    "session_flag_rate_all": [
+     0.0005955926146515784,
+     0.00010514175442666892,
+     0.0033661296950074308
+    ],
+    "session_flag_rate_deciding": [
+     0.3333333333333333,
+     0.0614903152761605,
+     0.7923450448735121
+    ],
+    "decision_units": 28,
+    "flagged_units": 1,
+    "unit_flag_rate": {
+     "rate": 0.03571428571428571,
+     "lo": 0.0,
+     "hi": 0.04,
+     "n_sessions": 3,
+     "num": 1.0,
+     "den": 28.0
+    }
+   },
+   "R4_DUAL": {
+    "population_sessions": 1679,
+    "deciding_sessions": 1554,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.0022828054642813683
+    ],
+    "session_flag_rate_deciding": [
+     0.0,
+     0.0,
+     0.0024659760016679487
+    ],
+    "decision_units": 30011,
+    "flagged_units": 0,
+    "unit_flag_rate": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 1554,
+     "num": 0.0,
+     "den": 30011.0
+    }
+   },
+   "R5_LEDGER": {
+    "population_sessions": 1679,
+    "deciding_sessions": 1645,
+    "flagged_sessions": 13,
+    "session_flag_rate_all": [
+     0.007742703990470518,
+     0.004530419893053858,
+     0.013202443378213028
+    ],
+    "session_flag_rate_deciding": [
+     0.007902735562310031,
+     0.004624171736676209,
+     0.01347435270618113
+    ],
+    "decision_units": 1645,
+    "flagged_units": 13,
+    "unit_flag_rate": {
+     "rate": 0.007902735562310031,
+     "lo": 0.00425531914893617,
+     "hi": 0.01276595744680851,
+     "n_sessions": 1645,
+     "num": 13.0,
+     "den": 1645.0
+    }
+   }
+  },
+  "attack_eligibility": {
+   "sub_single_flip_error|-": {
+    "eligible_sessions": 1117,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 500,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.00013311219612905032,
+     "max": 0.034482758620689655,
+     "mean": 0.000622205098531487
+    },
+    "seconds": 169.9
+   },
+   "sub_single_digit|-": {
+    "eligible_sessions": 1637,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 124.6
+   },
+   "sub_matched_bytes|any": {
+    "eligible_sessions": 1645,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 500,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.0,
+     "max": 0.027237354085603113,
+     "mean": 0.0002393937612533552
+    },
+    "seconds": 125.9
+   },
+   "sub_matched_bytes|samecmd": {
+    "eligible_sessions": 1501,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 500,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.019626728110599085,
+     "max": 0.049689440993788817,
+     "mean": 0.004817706212482783
+    },
+    "seconds": 141.5
+   },
+   "rewrite_consistent_k|2": {
+    "eligible_sessions": 1631,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 1000,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.00012489402035372556,
+     "max": 0.04552238805970149,
+     "mean": 0.0003205508176391647
+    },
+    "seconds": 135.0
+   },
+   "rewrite_consistent_k|5": {
+    "eligible_sessions": 1576,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 2500,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 2.778497466133041e-05,
+     "max": 0.0488771466314399,
+     "mean": 0.0002761860324724074
+    },
+    "seconds": 155.1
+   },
+   "reorder_adjacent_pairs|-": {
+    "eligible_sessions": 1635,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 143.6
+   },
+   "reorder_lines|-": {
+    "eligible_sessions": 1632,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 135.0
+   },
+   "delete_pair|-": {
+    "eligible_sessions": 1649,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 124.0
+   },
+   "delete_response|-": {
+    "eligible_sessions": 1639,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 121.4
+   },
+   "insert_pair_consistent|-": {
+    "eligible_sessions": 1649,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 128.7
+   },
+   "insert_pair_squeezed|-": {
+    "eligible_sessions": 1640,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 117.1
+   },
+   "inline_fabrication|tau": {
+    "eligible_sessions": 1646,
+    "unit_sessions": 1679,
+    "tampered_sessions_attempted": 500,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 67.1
+   }
+  },
+  "cells": {
+   "swechat/claude_code|B|P2_KFN|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 114,
+    "recall": [
+     0.228,
+     0.19338117351570927,
+     0.2667666189651022
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 112,
+    "fpr": [
+     0.224,
+     0.18963838082995066,
+     0.262570408599108
+    ],
+    "adr": {
+     "rate": 0.004,
+     "lo": 0.0,
+     "hi": 0.01,
+     "n_sessions": 500,
+     "num": 2.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 5,
+     "n": 114,
+     "share": [
+      0.043859649122807015,
+      0.01887723116129667,
+      0.0985821380258155
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 275,
+    "abstain_tampered": 275,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.228,
+     "recall_ci_lo": 0.19338117351570927,
+     "fpr_ci_hi": 0.262570408599108,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 12,
+    "recall": [
+     0.024,
+     0.013781177149521824,
+     0.04147745969189818
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.024,
+     "lo": 0.012,
+     "hi": 0.038,
+     "n_sessions": 500,
+     "num": 12.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 12,
+     "n": 12,
+     "share": [
+      1.0,
+      0.7574992425007574,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 319,
+    "abstain_tampered": 319,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.024,
+     "recall_ci_lo": 0.013781177149521824,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 100,
+    "recall": [
+     0.2,
+     0.16728494139259462,
+     0.23728982972594745
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 100,
+    "fpr": [
+     0.2,
+     0.16728494139259462,
+     0.23728982972594745
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 100,
+     "share": [
+      0.0,
+      0.0,
+      0.03699480747600191
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 2,
+    "abstain_tampered": 2,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.2,
+     "recall_ci_lo": 0.16728494139259462,
+     "fpr_ci_hi": 0.23728982972594745,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 50,
+    "recall": [
+     0.1,
+     0.07667718662472012,
+     0.1294225082000026
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 49,
+    "fpr": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 12,
+     "n": 50,
+     "share": [
+      0.24,
+      0.14297252401872207,
+      0.3741294937519236
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 361,
+    "abstain_tampered": 361,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.1,
+     "recall_ci_lo": 0.07667718662472012,
+     "fpr_ci_hi": 0.1272066458982347,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 71,
+    "recall": [
+     0.142,
+     0.1141288975465133,
+     0.17533032932161352
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 71,
+    "fpr": [
+     0.142,
+     0.1141288975465133,
+     0.17533032932161352
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 71,
+     "share": [
+      0.0,
+      0.0,
+      0.05132974174790491
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 198,
+    "abstain_tampered": 198,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.142,
+     "recall_ci_lo": 0.1141288975465133,
+     "fpr_ci_hi": 0.17533032932161352,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.012,
+     0.0055109199671753584,
+     0.025930707718986326
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.012,
+     0.0055109199671753584,
+     0.025930707718986326
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 6,
+     "share": [
+      0.0,
+      0.0,
+      0.3903430336530645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 394,
+    "abstain_tampered": 404,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.012,
+     "recall_ci_lo": 0.0055109199671753584,
+     "fpr_ci_hi": 0.025930707718986326,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 73,
+    "recall": [
+     0.146,
+     0.11774829657860897,
+     0.1796499333412706
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 72,
+    "fpr": [
+     0.144,
+     0.11593760751948218,
+     0.177491120874521
+    ],
+    "adr": {
+     "rate": 0.004,
+     "lo": 0.0,
+     "hi": 0.01,
+     "n_sessions": 500,
+     "num": 2.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 73,
+     "share": [
+      0.0273972602739726,
+      0.007545600452515573,
+      0.09450328973196781
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 188,
+    "abstain_tampered": 187,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.146,
+     "recall_ci_lo": 0.11774829657860897,
+     "fpr_ci_hi": 0.177491120874521,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|sub_single_flip_error|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|sub_single_digit|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 93,
+    "recall": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 93,
+    "fpr": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 93,
+     "share": [
+      0.03225806451612903,
+      0.011030412935116203,
+      0.09059533467748004
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 306,
+    "abstain_tampered": 306,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.186,
+     "recall_ci_lo": 0.15433345489426237,
+     "fpr_ci_hi": 0.22245480554314495,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|sub_single_digit|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 84,
+    "recall": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 84,
+    "fpr": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 84,
+     "share": [
+      0.023809523809523808,
+      0.006553765293517748,
+      0.0827160112132854
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.168,
+     "recall_ci_lo": 0.13778772464256234,
+     "fpr_ci_hi": 0.20327502206195752,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|sub_single_digit|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 43,
+    "recall": [
+     0.086,
+     0.06447280005130328,
+     0.11384038409228468
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.014,
+     "lo": 0.004,
+     "hi": 0.026,
+     "n_sessions": 500,
+     "num": 7.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 9,
+     "n": 43,
+     "share": [
+      0.20930232558139536,
+      0.11422705997811457,
+      0.35205931794236645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 392,
+    "abstain_tampered": 392,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.086,
+     "recall_ci_lo": 0.06447280005130328,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|sub_single_digit|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 56,
+    "recall": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 56,
+    "fpr": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 56,
+     "share": [
+      0.0,
+      0.0,
+      0.06419614448811528
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 249,
+    "abstain_tampered": 249,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.112,
+     "recall_ci_lo": 0.0872623972834597,
+     "fpr_ci_hi": 0.14265430669652132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|sub_single_digit|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      0.48990002040399916
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 422,
+    "abstain_tampered": 422,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008,
+     "recall_ci_lo": 0.0031152647975077885,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|sub_single_digit|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 49,
+    "recall": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 49,
+    "fpr": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 49,
+     "share": [
+      0.061224489795918366,
+      0.021039764955529186,
+      0.16520743422087725
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 236,
+    "abstain_tampered": 236,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.098,
+     "recall_ci_lo": 0.07492354740061163,
+     "fpr_ci_hi": 0.1272066458982347,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|sub_single_digit|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|sub_single_digit|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 25,
+    "abstain_tampered": 25,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 96,
+    "recall": [
+     0.192,
+     0.15987567270959485,
+     0.22882109230544162
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 93,
+    "fpr": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "adr": {
+     "rate": 0.006,
+     "lo": 0.0,
+     "hi": 0.014,
+     "n_sessions": 500,
+     "num": 3.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 96,
+     "share": [
+      0.020833333333333332,
+      0.005731849710137293,
+      0.07280855829614466
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 306,
+    "abstain_tampered": 307,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.192,
+     "recall_ci_lo": 0.15987567270959485,
+     "fpr_ci_hi": 0.22245480554314495,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 2,
+    "recall": [
+     0.004,
+     0.0010976075412372681,
+     0.014466014041418871
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 2,
+     "share": [
+      1.0,
+      0.34237195288961925,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 375,
+    "abstain_tampered": 375,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.004,
+     "recall_ci_lo": 0.0010976075412372681,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 84,
+    "recall": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 84,
+    "fpr": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 84,
+     "share": [
+      0.023809523809523808,
+      0.006553765293517748,
+      0.0827160112132854
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.168,
+     "recall_ci_lo": 0.13778772464256234,
+     "fpr_ci_hi": 0.20327502206195752,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 37,
+    "recall": [
+     0.074,
+     0.05416087387750307,
+     0.10033530111082659
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 37,
+     "share": [
+      0.05405405405405406,
+      0.01495066277053994,
+      0.1770496506353991
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 392,
+    "abstain_tampered": 392,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.074,
+     "recall_ci_lo": 0.05416087387750307,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 56,
+    "recall": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 56,
+    "fpr": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 56,
+     "share": [
+      0.0,
+      0.0,
+      0.06419614448811528
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 250,
+    "abstain_tampered": 250,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.112,
+     "recall_ci_lo": 0.0872623972834597,
+     "fpr_ci_hi": 0.14265430669652132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      0.48990002040399916
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 422,
+    "abstain_tampered": 422,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008,
+     "recall_ci_lo": 0.0031152647975077885,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 49,
+    "recall": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 49,
+    "fpr": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 49,
+     "share": [
+      0.0,
+      0.0,
+      0.07270029673590504
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 238,
+    "abstain_tampered": 240,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.098,
+     "recall_ci_lo": 0.07492354740061163,
+     "fpr_ci_hi": 0.1272066458982347,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|sub_matched_bytes|any": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 80,
+    "recall": [
+     0.16,
+     0.13047587742957925,
+     0.19470886317143507
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.16,
+     "lo": 0.128,
+     "hi": 0.194,
+     "n_sessions": 500,
+     "num": 80.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 80,
+     "n": 80,
+     "share": [
+      1.0,
+      0.954180263735425,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 28,
+    "abstain_tampered": 28,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.16,
+     "recall_ci_lo": 0.13047587742957925,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 102,
+    "recall": [
+     0.204,
+     0.17099770962966332,
+     0.24151606454063146
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 101,
+    "fpr": [
+     0.202,
+     0.16914066023346225,
+     0.2394036124109562
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 5,
+     "n": 102,
+     "share": [
+      0.049019607843137254,
+      0.021117285132196968,
+      0.1096592715336131
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 296,
+    "abstain_tampered": 296,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.204,
+     "recall_ci_lo": 0.17099770962966332,
+     "fpr_ci_hi": 0.2394036124109562,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 3,
+     "share": [
+      1.0,
+      0.43849391955098227,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 361,
+    "abstain_tampered": 361,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.006,
+     "recall_ci_lo": 0.002042559297638913,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 89,
+    "recall": [
+     0.178,
+     0.14696436225520904,
+     0.2139458920786927
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 89,
+    "fpr": [
+     0.178,
+     0.14696436225520904,
+     0.2139458920786927
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 89,
+     "share": [
+      0.02247191011235955,
+      0.006184269063094168,
+      0.07827786859933303
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.178,
+     "recall_ci_lo": 0.14696436225520904,
+     "fpr_ci_hi": 0.2139458920786927,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 42,
+    "recall": [
+     0.084,
+     0.06274379952220428,
+     0.11159988309550732
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 40,
+    "fpr": [
+     0.08,
+     0.05929780247392154,
+     0.1071068770920373
+    ],
+    "adr": {
+     "rate": 0.004,
+     "lo": 0.0,
+     "hi": 0.010049999999999955,
+     "n_sessions": 500,
+     "num": 2.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 4,
+     "n": 42,
+     "share": [
+      0.09523809523809523,
+      0.0376616388283121,
+      0.2206539522505333
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 387,
+    "abstain_tampered": 387,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.084,
+     "recall_ci_lo": 0.06274379952220428,
+     "fpr_ci_hi": 0.1071068770920373,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 60,
+    "recall": [
+     0.12,
+     0.09437448030757052,
+     0.15142022977591602
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 60,
+    "fpr": [
+     0.12,
+     0.09437448030757052,
+     0.15142022977591602
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 60,
+     "share": [
+      0.0,
+      0.0,
+      0.06017393047793289
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 234,
+    "abstain_tampered": 234,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.12,
+     "recall_ci_lo": 0.09437448030757052,
+     "fpr_ci_hi": 0.15142022977591602,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 413,
+    "abstain_tampered": 414,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.01,
+     "recall_ci_lo": 0.004278690781520357,
+     "fpr_ci_hi": 0.023193435378764938,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 54,
+    "recall": [
+     0.108,
+     0.08372241545896647,
+     0.13825528546926177
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 54,
+    "fpr": [
+     0.108,
+     0.08372241545896647,
+     0.13825528546926177
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 54,
+     "share": [
+      0.0,
+      6.938893903907228e-18,
+      0.06641586678100189
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 216,
+    "abstain_tampered": 212,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.108,
+     "recall_ci_lo": 0.08372241545896647,
+     "fpr_ci_hi": 0.13825528546926177,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|sub_matched_bytes|samecmd": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 30,
+    "recall": [
+     0.06,
+     0.042348086000950205,
+     0.08436157830624476
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.06,
+     "lo": 0.038,
+     "hi": 0.08,
+     "n_sessions": 500,
+     "num": 30.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 30,
+     "n": 30,
+     "share": [
+      1.0,
+      0.8864829086095221,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 18,
+    "abstain_tampered": 18,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.06,
+     "recall_ci_lo": 0.042348086000950205,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 99,
+    "recall": [
+     0.198,
+     0.16543056787682525,
+     0.23517470171584037
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 93,
+    "fpr": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "adr": {
+     "rate": 0.012,
+     "lo": 0.004,
+     "hi": 0.022,
+     "n_sessions": 500,
+     "num": 6.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 10,
+     "n": 99,
+     "share": [
+      0.10101010101010101,
+      0.05579607351869981,
+      0.1760322916564822
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 307,
+    "abstain_tampered": 308,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.198,
+     "recall_ci_lo": 0.16543056787682525,
+     "fpr_ci_hi": 0.22245480554314495,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 3,
+     "share": [
+      1.0,
+      0.43849391955098227,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 374,
+    "abstain_tampered": 374,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.006,
+     "recall_ci_lo": 0.002042559297638913,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 85,
+    "recall": [
+     0.17,
+     0.13961985448969885,
+     0.2054123937406974
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 85,
+    "fpr": [
+     0.17,
+     0.13961985448969885,
+     0.2054123937406974
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 6,
+     "n": 85,
+     "share": [
+      0.07058823529411765,
+      0.03275051687715236,
+      0.14556234556566722
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 8,
+    "abstain_tampered": 9,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.17,
+     "recall_ci_lo": 0.13961985448969885,
+     "fpr_ci_hi": 0.2054123937406974,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 45,
+    "recall": [
+     0.09,
+     0.0679421955899675,
+     0.11830999160537325
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.018,
+     "lo": 0.008,
+     "hi": 0.03,
+     "n_sessions": 500,
+     "num": 9.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 13,
+     "n": 45,
+     "share": [
+      0.28888888888888886,
+      0.1772991803190016,
+      0.43368817472260224
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 392,
+    "abstain_tampered": 392,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.09,
+     "recall_ci_lo": 0.0679421955899675,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 54,
+    "recall": [
+     0.108,
+     0.08372241545896647,
+     0.13825528546926177
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 56,
+    "fpr": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 54,
+     "share": [
+      0.0,
+      6.938893903907228e-18,
+      0.06641586678100189
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 248,
+    "abstain_tampered": 250,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.108,
+     "recall_ci_lo": 0.08372241545896647,
+     "fpr_ci_hi": 0.14265430669652132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.012,
+     0.0055109199671753584,
+     0.025930707718986326
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.004,
+     "lo": 0.0,
+     "hi": 0.01,
+     "n_sessions": 500,
+     "num": 2.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 6,
+     "share": [
+      0.3333333333333333,
+      0.09676933255921683,
+      0.7000116786584712
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 421,
+    "abstain_tampered": 420,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.012,
+     "recall_ci_lo": 0.0055109199671753584,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 55,
+    "recall": [
+     0.11,
+     0.08549101658817662,
+     0.140456185865928
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 50,
+    "fpr": [
+     0.1,
+     0.07667718662472012,
+     0.1294225082000026
+    ],
+    "adr": {
+     "rate": 0.012,
+     "lo": 0.004,
+     "hi": 0.024,
+     "n_sessions": 500,
+     "num": 6.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 6,
+     "n": 55,
+     "share": [
+      0.10909090909090909,
+      0.050966556283051315,
+      0.21825793795231957
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 234,
+    "abstain_tampered": 240,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.11,
+     "recall_ci_lo": 0.08549101658817662,
+     "fpr_ci_hi": 0.1294225082000026,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|rewrite_consistent_k|2": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 126,
+    "recall": [
+     0.252,
+     0.21593322346148225,
+     0.29184858732984587
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.252,
+     "lo": 0.218,
+     "hi": 0.292,
+     "n_sessions": 500,
+     "num": 126.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 126,
+     "n": 126,
+     "share": [
+      1.0,
+      0.9704131803674632,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 22,
+    "abstain_tampered": 22,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.252,
+     "recall_ci_lo": 0.21593322346148225,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 103,
+    "recall": [
+     0.206,
+     0.17285607517585092,
+     0.24362720052032025
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 96,
+    "fpr": [
+     0.192,
+     0.15987567270959485,
+     0.22882109230544162
+    ],
+    "adr": {
+     "rate": 0.014,
+     "lo": 0.004,
+     "hi": 0.024,
+     "n_sessions": 500,
+     "num": 7.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 16,
+     "n": 103,
+     "share": [
+      0.1553398058252427,
+      0.09793740125754884,
+      0.23752743640867857
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 306,
+    "abstain_tampered": 306,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.206,
+     "recall_ci_lo": 0.17285607517585092,
+     "fpr_ci_hi": 0.22882109230544162,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 3,
+     "share": [
+      1.0,
+      0.43849391955098227,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 371,
+    "abstain_tampered": 371,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.006,
+     "recall_ci_lo": 0.002042559297638913,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 88,
+    "recall": [
+     0.176,
+     0.14512588004549448,
+     0.21181487276253086
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 88,
+    "fpr": [
+     0.176,
+     0.14512588004549448,
+     0.21181487276253086
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 11,
+     "n": 88,
+     "share": [
+      0.125,
+      0.07125200897954588,
+      0.21011939569981514
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 5,
+    "abstain_tampered": 4,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.176,
+     "recall_ci_lo": 0.14512588004549448,
+     "fpr_ci_hi": 0.21181487276253086,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 52,
+    "recall": [
+     0.104,
+     0.08019382152134363,
+     0.13384487635513181
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 39,
+    "fpr": [
+     0.078,
+     0.057581071819524224,
+     0.10485410622055823
+    ],
+    "adr": {
+     "rate": 0.026,
+     "lo": 0.014,
+     "hi": 0.042,
+     "n_sessions": 500,
+     "num": 13.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 18,
+     "n": 52,
+     "share": [
+      0.34615384615384615,
+      0.23150828073938617,
+      0.4819669778491929
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 389,
+    "abstain_tampered": 390,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.104,
+     "recall_ci_lo": 0.08019382152134363,
+     "fpr_ci_hi": 0.10485410622055823,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 56,
+    "recall": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 57,
+    "fpr": [
+     0.114,
+     0.08903649378821105,
+     0.14484971171764635
+    ],
+    "adr": {
+     "rate": 0.004,
+     "lo": 0.0,
+     "hi": 0.01,
+     "n_sessions": 500,
+     "num": 2.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 6,
+     "n": 56,
+     "share": [
+      0.10714285714285714,
+      0.050038674581190865,
+      0.21468686751661398
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 242,
+    "abstain_tampered": 249,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.112,
+     "recall_ci_lo": 0.0872623972834597,
+     "fpr_ci_hi": 0.14484971171764635,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 418,
+    "abstain_tampered": 419,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.01,
+     "recall_ci_lo": 0.004278690781520357,
+     "fpr_ci_hi": 0.023193435378764938,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 55,
+    "recall": [
+     0.11,
+     0.08549101658817662,
+     0.140456185865928
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 52,
+    "fpr": [
+     0.104,
+     0.08019382152134363,
+     0.13384487635513181
+    ],
+    "adr": {
+     "rate": 0.01,
+     "lo": 0.002,
+     "hi": 0.02,
+     "n_sessions": 500,
+     "num": 5.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 6,
+     "n": 55,
+     "share": [
+      0.10909090909090909,
+      0.050966556283051315,
+      0.21825793795231957
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 225,
+    "abstain_tampered": 242,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.11,
+     "recall_ci_lo": 0.08549101658817662,
+     "fpr_ci_hi": 0.13384487635513181,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|rewrite_consistent_k|5": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 230,
+    "recall": [
+     0.46,
+     0.41678432000862,
+     0.5038256494738523
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.46,
+     "lo": 0.418,
+     "hi": 0.50405,
+     "n_sessions": 500,
+     "num": 230.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 230,
+     "n": 230,
+     "share": [
+      1.0,
+      0.9835717853452937,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 17,
+    "abstain_tampered": 17,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.46,
+     "recall_ci_lo": 0.41678432000862,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 97,
+    "recall": [
+     0.194,
+     0.16172591779703405,
+     0.2309403487438788
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 93,
+    "fpr": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "adr": {
+     "rate": 0.008,
+     "lo": 0.002,
+     "hi": 0.016,
+     "n_sessions": 500,
+     "num": 4.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 9,
+     "n": 97,
+     "share": [
+      0.09278350515463918,
+      0.04958265664341581,
+      0.1670104953890787
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 307,
+    "abstain_tampered": 307,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.194,
+     "recall_ci_lo": 0.16172591779703405,
+     "fpr_ci_hi": 0.22245480554314495,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 3,
+     "share": [
+      1.0,
+      0.43849391955098227,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 374,
+    "abstain_tampered": 374,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.006,
+     "recall_ci_lo": 0.002042559297638913,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 95,
+    "recall": [
+     0.19,
+     0.15802683592828387,
+     0.22670042756087622
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 85,
+    "fpr": [
+     0.17,
+     0.13961985448969885,
+     0.2054123937406974
+    ],
+    "adr": {
+     "rate": 0.022,
+     "lo": 0.012,
+     "hi": 0.036,
+     "n_sessions": 500,
+     "num": 11.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 16,
+     "n": 95,
+     "share": [
+      0.16842105263157894,
+      0.1064116433136824,
+      0.2562049068028677
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 8,
+    "abstain_tampered": 8,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.19,
+     "recall_ci_lo": 0.15802683592828387,
+     "fpr_ci_hi": 0.2054123937406974,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 35,
+    "recall": [
+     0.07,
+     0.05075944317125315,
+     0.09579772876532376
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 35,
+     "share": [
+      0.05714285714285714,
+      0.015812829614043955,
+      0.1860738073937003
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 392,
+    "abstain_tampered": 393,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.07,
+     "recall_ci_lo": 0.05075944317125315,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 56,
+    "recall": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 56,
+    "fpr": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 56,
+     "share": [
+      0.03571428571428571,
+      0.009849218502577639,
+      0.12119005852210082
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 248,
+    "abstain_tampered": 248,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.112,
+     "recall_ci_lo": 0.0872623972834597,
+     "fpr_ci_hi": 0.14265430669652132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      0.48990002040399916
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 421,
+    "abstain_tampered": 421,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008,
+     "recall_ci_lo": 0.0031152647975077885,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 50,
+    "recall": [
+     0.1,
+     0.07667718662472012,
+     0.1294225082000026
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 50,
+    "fpr": [
+     0.1,
+     0.07667718662472012,
+     0.1294225082000026
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 50,
+     "share": [
+      0.0,
+      0.0,
+      0.07135003417431873
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 234,
+    "abstain_tampered": 234,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.1,
+     "recall_ci_lo": 0.07667718662472012,
+     "fpr_ci_hi": 0.1294225082000026,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|reorder_adjacent_pairs|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 139,
+    "recall": [
+     0.278,
+     0.24053595389789068,
+     0.31884937672983044
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.278,
+     "lo": 0.238,
+     "hi": 0.31404999999999994,
+     "n_sessions": 500,
+     "num": 139.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 139,
+     "n": 139,
+     "share": [
+      1.0,
+      0.9731058739190823,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 22,
+    "abstain_tampered": 22,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.278,
+     "recall_ci_lo": 0.24053595389789068,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|reorder_lines|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 93,
+    "recall": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 93,
+    "fpr": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 6,
+     "n": 93,
+     "share": [
+      0.06451612903225806,
+      0.029901024142029796,
+      0.13368156846280116
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 307,
+    "abstain_tampered": 307,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.186,
+     "recall_ci_lo": 0.15433345489426237,
+     "fpr_ci_hi": 0.22245480554314495,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|reorder_lines|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 84,
+    "recall": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 84,
+    "fpr": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 84,
+     "share": [
+      0.011904761904761904,
+      0.002104528901587875,
+      0.06439699201788535
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 8,
+    "abstain_tampered": 8,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.168,
+     "recall_ci_lo": 0.13778772464256234,
+     "fpr_ci_hi": 0.20327502206195752,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|reorder_lines|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 41,
+    "recall": [
+     0.082,
+     0.06101875732494105,
+     0.10935542376689417
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.01,
+     "lo": 0.002,
+     "hi": 0.02,
+     "n_sessions": 500,
+     "num": 5.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 10,
+     "n": 41,
+     "share": [
+      0.24390243902439024,
+      0.13824855751022433,
+      0.39343630654458195
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 392,
+    "abstain_tampered": 392,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.082,
+     "recall_ci_lo": 0.06101875732494105,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|reorder_lines|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 65,
+    "recall": [
+     0.13,
+     0.10332021037816715,
+     0.16232200733470134
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 56,
+    "fpr": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "adr": {
+     "rate": 0.018,
+     "lo": 0.008,
+     "hi": 0.030049999999999952,
+     "n_sessions": 500,
+     "num": 9.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 14,
+     "n": 65,
+     "share": [
+      0.2153846153846154,
+      0.13286637631048948,
+      0.32966790528668427
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 249,
+    "abstain_tampered": 249,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.13,
+     "recall_ci_lo": 0.10332021037816715,
+     "fpr_ci_hi": 0.14265430669652132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|reorder_lines|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      0.48990002040399916
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 422,
+    "abstain_tampered": 422,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008,
+     "recall_ci_lo": 0.0031152647975077885,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|reorder_lines|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 49,
+    "recall": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 49,
+    "fpr": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 49,
+     "share": [
+      0.02040816326530612,
+      0.003611579538530696,
+      0.10693768467754147
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 236,
+    "abstain_tampered": 236,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.098,
+     "recall_ci_lo": 0.07492354740061163,
+     "fpr_ci_hi": 0.1272066458982347,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|reorder_lines|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|reorder_lines|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 24,
+    "abstain_tampered": 24,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 95,
+    "recall": [
+     0.19,
+     0.15802683592828387,
+     0.22670042756087622
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 93,
+    "fpr": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "adr": {
+     "rate": 0.004,
+     "lo": 0.0,
+     "hi": 0.01,
+     "n_sessions": 500,
+     "num": 2.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 306,
+    "abstain_tampered": 308,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.19,
+     "recall_ci_lo": 0.15802683592828387,
+     "fpr_ci_hi": 0.22245480554314495,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 375,
+    "abstain_tampered": 375,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.006,
+     "recall_ci_lo": 0.002042559297638913,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 85,
+    "recall": [
+     0.17,
+     0.13961985448969885,
+     0.2054123937406974
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 84,
+    "fpr": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 13,
+    "abstain_tampered": 15,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.17,
+     "recall_ci_lo": 0.13961985448969885,
+     "fpr_ci_hi": 0.20327502206195752,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 35,
+    "recall": [
+     0.07,
+     0.05075944317125315,
+     0.09579772876532376
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 392,
+    "abstain_tampered": 393,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.07,
+     "recall_ci_lo": 0.05075944317125315,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 56,
+    "recall": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 56,
+    "fpr": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 251,
+    "abstain_tampered": 251,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.112,
+     "recall_ci_lo": 0.0872623972834597,
+     "fpr_ci_hi": 0.14265430669652132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 422,
+    "abstain_tampered": 425,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008,
+     "recall_ci_lo": 0.0031152647975077885,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 48,
+    "recall": [
+     0.096,
+     0.07317313790557156,
+     0.12498755386739835
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 49,
+    "fpr": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 239,
+    "abstain_tampered": 245,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.096,
+     "recall_ci_lo": 0.07317313790557156,
+     "fpr_ci_hi": 0.1272066458982347,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 29,
+    "abstain_tampered": 32,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R5_LEDGER|delete_pair|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R5_LEDGER",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 229,
+    "recall": [
+     0.458,
+     0.41481382806562594,
+     0.50182663989097
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "adr": {
+     "rate": 0.448,
+     "lo": 0.404,
+     "hi": 0.492,
+     "n_sessions": 500,
+     "num": 224.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 11,
+    "abstain_tampered": 11,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.458,
+     "recall_ci_lo": 0.41481382806562594,
+     "fpr_ci_hi": 0.023193435378764938,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 92,
+    "recall": [
+     0.184,
+     0.15248894558374934,
+     0.2203298133277816
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 90,
+    "fpr": [
+     0.18,
+     0.14880438031986262,
+     0.21607537553991554
+    ],
+    "adr": {
+     "rate": 0.004,
+     "lo": 0.0,
+     "hi": 0.01,
+     "n_sessions": 500,
+     "num": 2.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 309,
+    "abstain_tampered": 310,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.184,
+     "recall_ci_lo": 0.15248894558374934,
+     "fpr_ci_hi": 0.21607537553991554,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 380,
+    "abstain_tampered": 380,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.006,
+     "recall_ci_lo": 0.002042559297638913,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 83,
+    "recall": [
+     0.166,
+     0.13595723820567882,
+     0.20113600697296466
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 84,
+    "fpr": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 21,
+    "abstain_tampered": 24,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.166,
+     "recall_ci_lo": 0.13595723820567882,
+     "fpr_ci_hi": 0.20327502206195752,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 34,
+    "recall": [
+     0.068,
+     0.04906621332682857,
+     0.09352145708387197
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 395,
+    "abstain_tampered": 399,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.068,
+     "recall_ci_lo": 0.04906621332682857,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 53,
+    "recall": [
+     0.106,
+     0.08195666053446124,
+     0.1360515388678906
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 53,
+    "fpr": [
+     0.106,
+     0.08195666053446124,
+     0.1360515388678906
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 258,
+    "abstain_tampered": 261,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.106,
+     "recall_ci_lo": 0.08195666053446124,
+     "fpr_ci_hi": 0.1360515388678906,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 424,
+    "abstain_tampered": 425,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008,
+     "recall_ci_lo": 0.0031152647975077885,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 47,
+    "recall": [
+     0.094,
+     0.07142604659353205,
+     0.12276514365356148
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 47,
+    "fpr": [
+     0.094,
+     0.07142604659353205,
+     0.12276514365356148
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 244,
+    "abstain_tampered": 249,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.094,
+     "recall_ci_lo": 0.07142604659353205,
+     "fpr_ci_hi": 0.12276514365356148,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 35,
+    "abstain_tampered": 35,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R5_LEDGER|delete_response|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R5_LEDGER",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 379,
+    "recall": [
+     0.758,
+     0.7185828923419191,
+     0.7934828044961348
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "adr": {
+     "rate": 0.748,
+     "lo": 0.708,
+     "hi": 0.784,
+     "n_sessions": 500,
+     "num": 374.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 10,
+    "abstain_tampered": 10,
+    "label": "DETECTS",
+    "deciding_number": {
+     "recall_point": 0.758,
+     "recall_ci_lo": 0.7185828923419191,
+     "fpr_ci_hi": 0.023193435378764938,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 119,
+    "recall": [
+     0.238,
+     0.20275841101838787,
+     0.2772368890918055
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 93,
+    "fpr": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "adr": {
+     "rate": 0.062,
+     "lo": 0.04195000000000001,
+     "hi": 0.084,
+     "n_sessions": 500,
+     "num": 31.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 8,
+     "n": 119,
+     "share": [
+      0.06722689075630252,
+      0.03445533736402665,
+      0.12706649237443327
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 306,
+    "abstain_tampered": 255,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.238,
+     "recall_ci_lo": 0.20275841101838787,
+     "fpr_ci_hi": 0.22245480554314495,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 3,
+     "share": [
+      1.0,
+      0.43849391955098227,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 375,
+    "abstain_tampered": 373,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.006,
+     "recall_ci_lo": 0.002042559297638913,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 84,
+    "recall": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 84,
+    "fpr": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 84,
+     "share": [
+      0.0,
+      0.0,
+      0.043733265332143306
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 13,
+    "abstain_tampered": 13,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.168,
+     "recall_ci_lo": 0.13778772464256234,
+     "fpr_ci_hi": 0.20327502206195752,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 36,
+    "recall": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 36,
+     "share": [
+      0.0,
+      0.0,
+      0.09642183044857634
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 392,
+    "abstain_tampered": 395,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.072,
+     "recall_ci_lo": 0.05245772605354006,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 56,
+    "recall": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 56,
+    "fpr": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 56,
+     "share": [
+      0.0,
+      0.0,
+      0.06419614448811528
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 251,
+    "abstain_tampered": 237,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.112,
+     "recall_ci_lo": 0.0872623972834597,
+     "fpr_ci_hi": 0.14265430669652132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      0.48990002040399916
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 422,
+    "abstain_tampered": 421,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008,
+     "recall_ci_lo": 0.0031152647975077885,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 52,
+    "recall": [
+     0.104,
+     0.08019382152134363,
+     0.13384487635513181
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 49,
+    "fpr": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "adr": {
+     "rate": 0.006,
+     "lo": 0.0,
+     "hi": 0.014,
+     "n_sessions": 500,
+     "num": 3.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 52,
+     "share": [
+      0.057692307692307696,
+      0.019813812690573196,
+      0.15642755575159178
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 239,
+    "abstain_tampered": 233,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.104,
+     "recall_ci_lo": 0.08019382152134363,
+     "fpr_ci_hi": 0.1272066458982347,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 29,
+    "abstain_tampered": 29,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R5_LEDGER|insert_pair_consistent|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R5_LEDGER",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 5,
+     "n": 5,
+     "share": [
+      1.0,
+      0.5655085052479191,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 11,
+    "abstain_tampered": 11,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.01,
+     "recall_ci_lo": 0.004278690781520357,
+     "fpr_ci_hi": 0.023193435378764938,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P2_KFN|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 116,
+    "recall": [
+     0.232,
+     0.19712863776715053,
+     0.27095815776541365
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 93,
+    "fpr": [
+     0.186,
+     0.15433345489426237,
+     0.22245480554314495
+    ],
+    "adr": {
+     "rate": 0.052,
+     "lo": 0.034,
+     "hi": 0.072,
+     "n_sessions": 500,
+     "num": 26.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 8,
+     "n": 116,
+     "share": [
+      0.06896551724137931,
+      0.03535706703611625,
+      0.1302081457113771
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 306,
+    "abstain_tampered": 242,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.232,
+     "recall_ci_lo": 0.19712863776715053,
+     "fpr_ci_hi": 0.22245480554314495,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|P3_ZERO|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.006,
+     0.002042559297638913,
+     0.017490563810893606
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 3,
+     "share": [
+      1.0,
+      0.43849391955098227,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 375,
+    "abstain_tampered": 373,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.006,
+     "recall_ci_lo": 0.002042559297638913,
+     "fpr_ci_hi": 0.017490563810893606,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 84,
+    "recall": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 84,
+    "fpr": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 84,
+     "share": [
+      0.0,
+      0.0,
+      0.043733265332143306
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 10,
+    "abstain_tampered": 10,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.168,
+     "recall_ci_lo": 0.13778772464256234,
+     "fpr_ci_hi": 0.20327502206195752,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5a|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 35,
+    "recall": [
+     0.07,
+     0.05075944317125315,
+     0.09579772876532376
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 35,
+     "share": [
+      0.0,
+      0.0,
+      0.09890426758938868
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 392,
+    "abstain_tampered": 394,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.07,
+     "recall_ci_lo": 0.05075944317125315,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5b|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 56,
+    "recall": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 56,
+    "fpr": [
+     0.112,
+     0.0872623972834597,
+     0.14265430669652132
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 56,
+     "share": [
+      0.0,
+      0.0,
+      0.06419614448811528
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 249,
+    "abstain_tampered": 239,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.112,
+     "recall_ci_lo": 0.0872623972834597,
+     "fpr_ci_hi": 0.14265430669652132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5c|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.008,
+     0.0031152647975077885,
+     0.020387359836901122
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      0.48990002040399916
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 422,
+    "abstain_tampered": 422,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008,
+     "recall_ci_lo": 0.0031152647975077885,
+     "fpr_ci_hi": 0.020387359836901122,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5d|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 51,
+    "recall": [
+     0.102,
+     0.07843397139617729,
+     0.1316352249544218
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 49,
+    "fpr": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "adr": {
+     "rate": 0.004,
+     "lo": 0.0,
+     "hi": 0.01,
+     "n_sessions": 500,
+     "num": 2.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 51,
+     "share": [
+      0.058823529411764705,
+      0.020206272864052077,
+      0.15924873938941972
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 236,
+    "abstain_tampered": 232,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.102,
+     "recall_ci_lo": 0.07843397139617729,
+     "fpr_ci_hi": 0.1272066458982347,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N5f|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R4_DUAL|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R4_DUAL",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 26,
+    "abstain_tampered": 26,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R5_LEDGER|insert_pair_squeezed|-": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R5_LEDGER",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 5,
+     "n": 5,
+     "share": [
+      1.0,
+      0.5655085052479191,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 10,
+    "abstain_tampered": 10,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.01,
+     "recall_ci_lo": 0.004278690781520357,
+     "fpr_ci_hi": 0.023193435378764938,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|N2|inline_fabrication|tau": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "N2",
+    "attack": "inline_fabrication",
+    "param": "tau",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 220,
+    "recall": [
+     0.44,
+     0.3971110206093619,
+     0.4838039336143465
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 84,
+    "fpr": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "adr": {
+     "rate": 0.272,
+     "lo": 0.234,
+     "hi": 0.31204999999999994,
+     "n_sessions": 500,
+     "num": 136.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 163,
+     "n": 220,
+     "share": [
+      0.740909090909091,
+      0.67922819434077,
+      0.7943209582742935
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.44,
+     "recall_ci_lo": 0.3971110206093619,
+     "fpr_ci_hi": 0.20327502206195752,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "swechat/claude_code|B|R5_LEDGER|inline_fabrication|tau": {
+    "unit": "swechat/claude_code",
+    "split": "B",
+    "detector": "R5_LEDGER",
+    "attack": "inline_fabrication",
+    "param": "tau",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 368,
+    "recall": [
+     0.736,
+     0.6956683729184137,
+     0.7727328071349999
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.01,
+     0.004278690781520357,
+     0.023193435378764938
+    ],
+    "adr": {
+     "rate": 0.726,
+     "lo": 0.69,
+     "hi": 0.766,
+     "n_sessions": 500,
+     "num": 363.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 368,
+     "n": 368,
+     "share": [
+      1.0,
+      0.9896687191535319,
+      0.9999999999999999
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 10,
+    "abstain_tampered": 10,
+    "label": "DETECTS",
+    "deciding_number": {
+     "recall_point": 0.736,
+     "recall_ci_lo": 0.6956683729184137,
+     "fpr_ci_hi": 0.023193435378764938,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   }
+  },
+  "runtime_s": 2065.6,
+  "limit": null
+ }
+}

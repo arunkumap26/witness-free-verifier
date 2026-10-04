@@ -1,0 +1,2464 @@
+{
+ "item": "F3 (followups.F3_round_numbers), written by analysis/probes/phase_e_a1_p2_p4_f3.py",
+ "source": "a1_p2_p4_f3.json candidates['P4round/*'] (same run)",
+ "prereg": {
+  "prereg_e_json_sha256": "568d423f0e061f9a3dd14a4ae51926b3b5746a9a3dc33b421c3e632ad4bb1c08",
+  "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+  "spec_module_sha256_lf_prereg": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+  "check_frozen": "passed",
+  "phase_b_prereg_json_sha256": "3189a3260e9ed2204d80e9b8496c975e9a87e383104531304ca720a2d79806e4",
+  "phase_b_spec_module_sha_ok": true,
+  "phase_b_calibration_sha_ok": true
+ },
+ "run_utc": "2026-10-04T10:23:52Z",
+ "rule": {
+  "exclusion_set": {
+   "json_number": "every JSON-number argument value (a parameter by construction)",
+   "string_parameter": "an integer occurrence inside an argument string whose preceding context (<= 48 chars, same line) matches PARAM_CONTEXT (CLI option argument, numeric positional of sleep/timeout/head/tail/seq/wait/ulimit/nice/kill/watch/xargs -n/parallel -j, key=value or key: value with a parameter-like key, call arguments of range/sleep/setTimeout/islice/..., host:port, brace range, SQL LIMIT/OFFSET)",
+   "value_level_rule_primary": "a distinct T_orig value is EXCLUDED if ANY of its occurrences in call args in the unit is a parameter occurrence (strict)",
+   "value_level_rule_secondary": "excluded if its FIRST occurrence (the one that assigned it to T_orig) is a parameter occurrence (reported)"
+  },
+  "statistic": "last-0 share of the remaining distinct T_orig values (T_orig_noparam) against M_all, B ∪ E and E; gap g = p(T_orig_noparam) - p(M_all) and g_full = p(T_orig) - p(M_all) on the same data",
+  "verdict": "Phase B round-number rule applied to T_orig_noparam (ALIVE if its CI lo > M_all CI hi + 0.05; WEAK if its point > M_all CI hi; DEAD otherwise; >= 100 distinct values from >= 10 sessions). COLLAPSE = DEAD: the rule gives DEAD, OR g <= 0.25 x g_full. ALIVE is kept only if the rule gives ALIVE AND g >= 0.5 x g_full; otherwise WEAK. Below min n after exclusion: INSUFFICIENT_N and the candidate is capped at WEAK ('parameter-confounded, residual untestable').",
+  "functions": "int_occurrences(), is_param_occurrence(), classify_args_ints()"
+ },
+ "candidates": {
+  "P4round/swechat/claude_code": {
+   "populations": {
+    "B": {
+     "full": {
+      "label": "ALIVE",
+      "reason": "T_orig last-0 CI lo 0.3344 > M_all CI hi 0.1224 + 0.05",
+      "deciding": {
+       "T_orig_distinct": 300,
+       "T_orig_sessions": 130,
+       "M_all_distinct": 20419,
+       "M_all_sessions": 1141,
+       "T_orig_last0": 0.42333333333333334,
+       "T_orig_last0_lo": 0.3344027873381675,
+       "T_orig_last0_hi": 0.5204448341836735,
+       "T_orig_last0_k_n": [
+        127,
+        300
+       ],
+       "M_all_last0": 0.11582349772270924,
+       "M_all_last0_lo": 0.10971500178301413,
+       "M_all_last0_hi": 0.12238214714783502,
+       "M_all_last0_k_n": [
+        2365,
+        20419
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10,
+       "M_all_hi_used": 0.12238214714783502
+      },
+      "redaction_rerun_noredact": {
+       "label": "ALIVE",
+       "T_orig": [
+        121,
+        277
+       ],
+       "M_all": [
+        2055,
+        18190
+       ]
+      },
+      "label_capped": "ALIVE",
+      "redaction_cap": "redaction rerun gives the same label: verdict stands"
+     },
+     "T_orig": {
+      "distinct_values": 300,
+      "sessions": 130,
+      "round": {
+       "last_0": {
+        "k": 127,
+        "n": 300,
+        "n_sessions": 130,
+        "rate": 0.42333333333333334,
+        "lo": 0.3344027873381675,
+        "hi": 0.5204448341836735
+       },
+       "last_000": {
+        "k": 70,
+        "n": 300,
+        "n_sessions": 130,
+        "rate": 0.23333333333333334,
+        "lo": 0.16164504001940333,
+        "hi": 0.30072419106317405
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 20419,
+      "sessions": 1141,
+      "round": {
+       "last_0": {
+        "k": 2365,
+        "n": 20419,
+        "n_sessions": 1141,
+        "rate": 0.11582349772270924,
+        "lo": 0.10971500178301413,
+        "hi": 0.12238214714783502
+       },
+       "last_000": {
+        "k": 179,
+        "n": 20419,
+        "n_sessions": 1141,
+        "rate": 0.008766345070767423,
+        "lo": 0.006431982887806734,
+        "hi": 0.011830196910342239
+       }
+      }
+     },
+     "g_full": 0.3075098356106241,
+     "F3": {
+      "strict": {
+       "excluded_values": 100,
+       "remaining": {
+        "distinct_values": 200,
+        "sessions": 91,
+        "round": {
+         "last_0": {
+          "k": 54,
+          "n": 200,
+          "n_sessions": 91,
+          "rate": 0.27,
+          "lo": 0.15977672006810617,
+          "hi": 0.4033178811087663
+         },
+         "last_000": {
+          "k": 18,
+          "n": 200,
+          "n_sessions": 91,
+          "rate": 0.09,
+          "lo": 0.03664207520228462,
+          "hi": 0.1538551401869159
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.2700 > M_all CI hi 0.1224",
+        "deciding": {
+         "T_orig_distinct": 200,
+         "T_orig_sessions": 91,
+         "M_all_distinct": 20419,
+         "M_all_sessions": 1141,
+         "T_orig_last0": 0.27,
+         "T_orig_last0_lo": 0.15977672006810617,
+         "T_orig_last0_hi": 0.4033178811087663,
+         "T_orig_last0_k_n": [
+          54,
+          200
+         ],
+         "M_all_last0": 0.11582349772270924,
+         "M_all_last0_lo": 0.10971500178301413,
+         "M_all_last0_hi": 0.12238214714783502,
+         "M_all_last0_k_n": [
+          2365,
+          20419
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.12238214714783502
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.1541765022772908,
+       "g_full": 0.3075098356106241,
+       "g_over_g_full": 0.5013709625617067,
+       "collapse_threshold_0.25_g_full": 0.07687745890265603,
+       "keep_alive_threshold_0.5_g_full": 0.15375491780531206,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.1542 vs 0.5 x g_full 0.1538: ALIVE not kept",
+       "excluded_by_param_kind": {
+        "json_number": 58,
+        "param_key_assign": 38,
+        "sql_limit": 5,
+        "cli_option": 17,
+        "call_arg": 6,
+        "host_port": 13,
+        "numeric_positional_cmd": 1
+       },
+       "excluded_by_origin_first_occurrence": {
+        "json_number": 51,
+        "args_string": 49
+       },
+       "excluded_last0": {
+        "k": 73,
+        "n": 100
+       }
+      },
+      "strict_calibration_code": {
+       "excluded_values": 93,
+       "remaining": {
+        "distinct_values": 207,
+        "sessions": 94,
+        "round": {
+         "last_0": {
+          "k": 58,
+          "n": 207,
+          "n_sessions": 94,
+          "rate": 0.28019323671497587,
+          "lo": 0.1748635211542211,
+          "hi": 0.40889532019704433
+         },
+         "last_000": {
+          "k": 19,
+          "n": 207,
+          "n_sessions": 94,
+          "rate": 0.09178743961352658,
+          "lo": 0.04039968652037618,
+          "hi": 0.15464643531290836
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1749 > M_all CI hi 0.1224 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 207,
+         "T_orig_sessions": 94,
+         "M_all_distinct": 20419,
+         "M_all_sessions": 1141,
+         "T_orig_last0": 0.28019323671497587,
+         "T_orig_last0_lo": 0.1748635211542211,
+         "T_orig_last0_hi": 0.40889532019704433,
+         "T_orig_last0_k_n": [
+          58,
+          207
+         ],
+         "M_all_last0": 0.11582349772270924,
+         "M_all_last0_lo": 0.10971500178301413,
+         "M_all_last0_hi": 0.12238214714783502,
+         "M_all_last0_k_n": [
+          2365,
+          20419
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.12238214714783502
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.16436973899226665,
+       "g_full": 0.3075098356106241,
+       "g_over_g_full": 0.534518639593679,
+       "collapse_threshold_0.25_g_full": 0.07687745890265603,
+       "keep_alive_threshold_0.5_g_full": 0.15375491780531206,
+       "f3_label": "ALIVE",
+       "f3_reason": "rule ALIVE and g 0.1644 >= 0.5 x g_full 0.1538"
+      },
+      "first_occurrence": {
+       "excluded_values": 78,
+       "remaining": {
+        "distinct_values": 222,
+        "sessions": 100,
+        "round": {
+         "last_0": {
+          "k": 65,
+          "n": 222,
+          "n_sessions": 100,
+          "rate": 0.2927927927927928,
+          "lo": 0.1844146303742654,
+          "hi": 0.42041781996803235
+         },
+         "last_000": {
+          "k": 26,
+          "n": 222,
+          "n_sessions": 100,
+          "rate": 0.11711711711711711,
+          "lo": 0.05701486949080017,
+          "hi": 0.18780056098268688
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1844 > M_all CI hi 0.1224 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 222,
+         "T_orig_sessions": 100,
+         "M_all_distinct": 20419,
+         "M_all_sessions": 1141,
+         "T_orig_last0": 0.2927927927927928,
+         "T_orig_last0_lo": 0.1844146303742654,
+         "T_orig_last0_hi": 0.42041781996803235,
+         "T_orig_last0_k_n": [
+          65,
+          222
+         ],
+         "M_all_last0": 0.11582349772270924,
+         "M_all_last0_lo": 0.10971500178301413,
+         "M_all_last0_hi": 0.12238214714783502,
+         "M_all_last0_k_n": [
+          2365,
+          20419
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.12238214714783502
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.17696929507008358,
+       "g_full": 0.3075098356106241,
+       "g_over_g_full": 0.5754914951538854,
+       "collapse_threshold_0.25_g_full": 0.07687745890265603,
+       "keep_alive_threshold_0.5_g_full": 0.15375491780531206,
+       "f3_label": "ALIVE",
+       "f3_reason": "rule ALIVE and g 0.1770 >= 0.5 x g_full 0.1538"
+      }
+     },
+     "F3_label": "WEAK"
+    },
+    "E": {
+     "full": {
+      "label": "ALIVE",
+      "reason": "T_orig last-0 CI lo 0.2887 > M_all CI hi 0.1177 + 0.05",
+      "deciding": {
+       "T_orig_distinct": 248,
+       "T_orig_sessions": 118,
+       "M_all_distinct": 17722,
+       "M_all_sessions": 1087,
+       "T_orig_last0": 0.36693548387096775,
+       "T_orig_last0_lo": 0.28870292887029286,
+       "T_orig_last0_hi": 0.45384615384615384,
+       "T_orig_last0_k_n": [
+        91,
+        248
+       ],
+       "M_all_last0": 0.11291050671481774,
+       "M_all_last0_lo": 0.10777569827435235,
+       "M_all_last0_hi": 0.11770751799053658,
+       "M_all_last0_k_n": [
+        2001,
+        17722
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10,
+       "M_all_hi_used": 0.11770751799053658
+      },
+      "redaction_rerun_noredact": {
+       "label": "ALIVE",
+       "T_orig": [
+        90,
+        242
+       ],
+       "M_all": [
+        1745,
+        15599
+       ]
+      },
+      "label_capped": "ALIVE",
+      "redaction_cap": "redaction rerun gives the same label: verdict stands"
+     },
+     "T_orig": {
+      "distinct_values": 248,
+      "sessions": 118,
+      "round": {
+       "last_0": {
+        "k": 91,
+        "n": 248,
+        "n_sessions": 118,
+        "rate": 0.36693548387096775,
+        "lo": 0.28870292887029286,
+        "hi": 0.45384615384615384
+       },
+       "last_000": {
+        "k": 56,
+        "n": 248,
+        "n_sessions": 118,
+        "rate": 0.22580645161290322,
+        "lo": 0.15058919741346521,
+        "hi": 0.32004878048780483
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 17722,
+      "sessions": 1087,
+      "round": {
+       "last_0": {
+        "k": 2001,
+        "n": 17722,
+        "n_sessions": 1087,
+        "rate": 0.11291050671481774,
+        "lo": 0.10777569827435235,
+        "hi": 0.11770751799053658
+       },
+       "last_000": {
+        "k": 137,
+        "n": 17722,
+        "n_sessions": 1087,
+        "rate": 0.007730504457736147,
+        "lo": 0.005578579427184585,
+        "hi": 0.010104233294902638
+       }
+      }
+     },
+     "g_full": 0.25402497715615,
+     "F3": {
+      "strict": {
+       "excluded_values": 92,
+       "remaining": {
+        "distinct_values": 156,
+        "sessions": 85,
+        "round": {
+         "last_0": {
+          "k": 31,
+          "n": 156,
+          "n_sessions": 85,
+          "rate": 0.1987179487179487,
+          "lo": 0.13113808322824716,
+          "hi": 0.28824772162386075
+         },
+         "last_000": {
+          "k": 17,
+          "n": 156,
+          "n_sessions": 85,
+          "rate": 0.10897435897435898,
+          "lo": 0.05201788014016592,
+          "hi": 0.18790269239747873
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.1987 > M_all CI hi 0.1177",
+        "deciding": {
+         "T_orig_distinct": 156,
+         "T_orig_sessions": 85,
+         "M_all_distinct": 17722,
+         "M_all_sessions": 1087,
+         "T_orig_last0": 0.1987179487179487,
+         "T_orig_last0_lo": 0.13113808322824716,
+         "T_orig_last0_hi": 0.28824772162386075,
+         "T_orig_last0_k_n": [
+          31,
+          156
+         ],
+         "M_all_last0": 0.11291050671481774,
+         "M_all_last0_lo": 0.10777569827435235,
+         "M_all_last0_hi": 0.11770751799053658,
+         "M_all_last0_k_n": [
+          2001,
+          17722
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11770751799053658
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.08580744200313097,
+       "g_full": 0.25402497715615,
+       "g_over_g_full": 0.3377913580143138,
+       "collapse_threshold_0.25_g_full": 0.0635062442890375,
+       "keep_alive_threshold_0.5_g_full": 0.127012488578075,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.0858 vs 0.5 x g_full 0.1270: ALIVE not kept",
+       "excluded_by_param_kind": {
+        "json_number": 63,
+        "host_port": 9,
+        "cli_option": 20,
+        "param_key_assign": 23,
+        "sql_limit": 2,
+        "call_arg": 2,
+        "numeric_positional_cmd": 1
+       },
+       "excluded_by_origin_first_occurrence": {
+        "json_number": 57,
+        "args_string": 35
+       },
+       "excluded_last0": {
+        "k": 60,
+        "n": 92
+       }
+      },
+      "strict_calibration_code": {
+       "excluded_values": 85,
+       "remaining": {
+        "distinct_values": 163,
+        "sessions": 90,
+        "round": {
+         "last_0": {
+          "k": 34,
+          "n": 163,
+          "n_sessions": 90,
+          "rate": 0.2085889570552147,
+          "lo": 0.13380169552345922,
+          "hi": 0.29372665006226645
+         },
+         "last_000": {
+          "k": 18,
+          "n": 163,
+          "n_sessions": 90,
+          "rate": 0.11042944785276074,
+          "lo": 0.05170944357366771,
+          "hi": 0.18370492032429409
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.2086 > M_all CI hi 0.1177",
+        "deciding": {
+         "T_orig_distinct": 163,
+         "T_orig_sessions": 90,
+         "M_all_distinct": 17722,
+         "M_all_sessions": 1087,
+         "T_orig_last0": 0.2085889570552147,
+         "T_orig_last0_lo": 0.13380169552345922,
+         "T_orig_last0_hi": 0.29372665006226645,
+         "T_orig_last0_k_n": [
+          34,
+          163
+         ],
+         "M_all_last0": 0.11291050671481774,
+         "M_all_last0_lo": 0.10777569827435235,
+         "M_all_last0_hi": 0.11770751799053658,
+         "M_all_last0_k_n": [
+          2001,
+          17722
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11770751799053658
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.09567845034039697,
+       "g_full": 0.25402497715615,
+       "g_over_g_full": 0.3766497744101089,
+       "collapse_threshold_0.25_g_full": 0.0635062442890375,
+       "keep_alive_threshold_0.5_g_full": 0.127012488578075,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.0957 vs 0.5 x g_full 0.1270: ALIVE not kept"
+      },
+      "first_occurrence": {
+       "excluded_values": 80,
+       "remaining": {
+        "distinct_values": 168,
+        "sessions": 93,
+        "round": {
+         "last_0": {
+          "k": 37,
+          "n": 168,
+          "n_sessions": 93,
+          "rate": 0.22023809523809523,
+          "lo": 0.14606741573033707,
+          "hi": 0.3125171703296703
+         },
+         "last_000": {
+          "k": 20,
+          "n": 168,
+          "n_sessions": 93,
+          "rate": 0.11904761904761904,
+          "lo": 0.05376163671790431,
+          "hi": 0.20133616383616382
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.2202 > M_all CI hi 0.1177",
+        "deciding": {
+         "T_orig_distinct": 168,
+         "T_orig_sessions": 93,
+         "M_all_distinct": 17722,
+         "M_all_sessions": 1087,
+         "T_orig_last0": 0.22023809523809523,
+         "T_orig_last0_lo": 0.14606741573033707,
+         "T_orig_last0_hi": 0.3125171703296703,
+         "T_orig_last0_k_n": [
+          37,
+          168
+         ],
+         "M_all_last0": 0.11291050671481774,
+         "M_all_last0_lo": 0.10777569827435235,
+         "M_all_last0_hi": 0.11770751799053658,
+         "M_all_last0_k_n": [
+          2001,
+          17722
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11770751799053658
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.10732758852327749,
+       "g_full": 0.25402497715615,
+       "g_over_g_full": 0.4225080136797054,
+       "collapse_threshold_0.25_g_full": 0.0635062442890375,
+       "keep_alive_threshold_0.5_g_full": 0.127012488578075,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.1073 vs 0.5 x g_full 0.1270: ALIVE not kept"
+      }
+     },
+     "F3_label": "WEAK"
+    },
+    "BuE": {
+     "full": {
+      "label": "ALIVE",
+      "reason": "T_orig last-0 CI lo 0.3045 > M_all CI hi 0.1176 + 0.05",
+      "deciding": {
+       "T_orig_distinct": 459,
+       "T_orig_sessions": 217,
+       "M_all_distinct": 34788,
+       "M_all_sessions": 2159,
+       "T_orig_last0": 0.3681917211328976,
+       "T_orig_last0_lo": 0.30453139889460645,
+       "T_orig_last0_hi": 0.4369389633849788,
+       "T_orig_last0_k_n": [
+        169,
+        459
+       ],
+       "M_all_last0": 0.112969989651604,
+       "M_all_last0_lo": 0.1086967345304415,
+       "M_all_last0_hi": 0.11755699912560236,
+       "M_all_last0_k_n": [
+        3930,
+        34788
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10,
+       "M_all_hi_used": 0.11755699912560236
+      },
+      "redaction_rerun_noredact": {
+       "label": "ALIVE",
+       "T_orig": [
+        163,
+        436
+       ],
+       "M_all": [
+        3416,
+        30815
+       ]
+      },
+      "label_capped": "ALIVE",
+      "redaction_cap": "redaction rerun gives the same label: verdict stands"
+     },
+     "T_orig": {
+      "distinct_values": 459,
+      "sessions": 217,
+      "round": {
+       "last_0": {
+        "k": 169,
+        "n": 459,
+        "n_sessions": 217,
+        "rate": 0.3681917211328976,
+        "lo": 0.30453139889460645,
+        "hi": 0.4369389633849788
+       },
+       "last_000": {
+        "k": 85,
+        "n": 459,
+        "n_sessions": 217,
+        "rate": 0.18518518518518517,
+        "lo": 0.13361663857920664,
+        "hi": 0.24656439066551425
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 34788,
+      "sessions": 2159,
+      "round": {
+       "last_0": {
+        "k": 3930,
+        "n": 34788,
+        "n_sessions": 2159,
+        "rate": 0.112969989651604,
+        "lo": 0.1086967345304415,
+        "hi": 0.11755699912560236
+       },
+       "last_000": {
+        "k": 234,
+        "n": 34788,
+        "n_sessions": 2159,
+        "rate": 0.006726457399103139,
+        "lo": 0.005156199171611958,
+        "hi": 0.00873247135752056
+       }
+      }
+     },
+     "g_full": 0.2552217314812936,
+     "F3": {
+      "strict": {
+       "excluded_values": 152,
+       "remaining": {
+        "distinct_values": 307,
+        "sessions": 158,
+        "round": {
+         "last_0": {
+          "k": 71,
+          "n": 307,
+          "n_sessions": 158,
+          "rate": 0.23127035830618892,
+          "lo": 0.15840733557891873,
+          "hi": 0.3163813747228381
+         },
+         "last_000": {
+          "k": 26,
+          "n": 307,
+          "n_sessions": 158,
+          "rate": 0.08469055374592833,
+          "lo": 0.044105614973262035,
+          "hi": 0.13455825496342738
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.2313 > M_all CI hi 0.1176",
+        "deciding": {
+         "T_orig_distinct": 307,
+         "T_orig_sessions": 158,
+         "M_all_distinct": 34788,
+         "M_all_sessions": 2159,
+         "T_orig_last0": 0.23127035830618892,
+         "T_orig_last0_lo": 0.15840733557891873,
+         "T_orig_last0_hi": 0.3163813747228381,
+         "T_orig_last0_k_n": [
+          71,
+          307
+         ],
+         "M_all_last0": 0.112969989651604,
+         "M_all_last0_lo": 0.1086967345304415,
+         "M_all_last0_hi": 0.11755699912560236,
+         "M_all_last0_k_n": [
+          3930,
+          34788
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11755699912560236
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.11830036865458492,
+       "g_full": 0.2552217314812936,
+       "g_over_g_full": 0.46351996739453083,
+       "collapse_threshold_0.25_g_full": 0.0638054328703234,
+       "keep_alive_threshold_0.5_g_full": 0.1276108657406468,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.1183 vs 0.5 x g_full 0.1276: ALIVE not kept",
+       "excluded_by_param_kind": {
+        "json_number": 90,
+        "param_key_assign": 50,
+        "host_port": 20,
+        "cli_option": 31,
+        "sql_limit": 5,
+        "call_arg": 7,
+        "numeric_positional_cmd": 2
+       },
+       "excluded_by_origin_first_occurrence": {
+        "json_number": 80,
+        "args_string": 72
+       },
+       "excluded_last0": {
+        "k": 98,
+        "n": 152
+       }
+      },
+      "strict_calibration_code": {
+       "excluded_values": 140,
+       "remaining": {
+        "distinct_values": 319,
+        "sessions": 166,
+        "round": {
+         "last_0": {
+          "k": 77,
+          "n": 319,
+          "n_sessions": 166,
+          "rate": 0.2413793103448276,
+          "lo": 0.1728100716520335,
+          "hi": 0.3236632706374085
+         },
+         "last_000": {
+          "k": 29,
+          "n": 319,
+          "n_sessions": 166,
+          "rate": 0.09090909090909091,
+          "lo": 0.05150932400932401,
+          "hi": 0.13678045032347896
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1728 > M_all CI hi 0.1176 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 319,
+         "T_orig_sessions": 166,
+         "M_all_distinct": 34788,
+         "M_all_sessions": 2159,
+         "T_orig_last0": 0.2413793103448276,
+         "T_orig_last0_lo": 0.1728100716520335,
+         "T_orig_last0_hi": 0.3236632706374085,
+         "T_orig_last0_k_n": [
+          77,
+          319
+         ],
+         "M_all_last0": 0.112969989651604,
+         "M_all_last0_lo": 0.1086967345304415,
+         "M_all_last0_hi": 0.11755699912560236,
+         "M_all_last0_k_n": [
+          3930,
+          34788
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11755699912560236
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.12840932069322358,
+       "g_full": 0.2552217314812936,
+       "g_over_g_full": 0.5031284755727601,
+       "collapse_threshold_0.25_g_full": 0.0638054328703234,
+       "keep_alive_threshold_0.5_g_full": 0.1276108657406468,
+       "f3_label": "ALIVE",
+       "f3_reason": "rule ALIVE and g 0.1284 >= 0.5 x g_full 0.1276"
+      },
+      "first_occurrence": {
+       "excluded_values": 118,
+       "remaining": {
+        "distinct_values": 341,
+        "sessions": 176,
+        "round": {
+         "last_0": {
+          "k": 86,
+          "n": 341,
+          "n_sessions": 176,
+          "rate": 0.25219941348973607,
+          "lo": 0.1773628631498471,
+          "hi": 0.34017670889137464
+         },
+         "last_000": {
+          "k": 37,
+          "n": 341,
+          "n_sessions": 176,
+          "rate": 0.10850439882697947,
+          "lo": 0.06010805887855068,
+          "hi": 0.1639999113789436
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1774 > M_all CI hi 0.1176 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 341,
+         "T_orig_sessions": 176,
+         "M_all_distinct": 34788,
+         "M_all_sessions": 2159,
+         "T_orig_last0": 0.25219941348973607,
+         "T_orig_last0_lo": 0.1773628631498471,
+         "T_orig_last0_hi": 0.34017670889137464,
+         "T_orig_last0_k_n": [
+          86,
+          341
+         ],
+         "M_all_last0": 0.112969989651604,
+         "M_all_last0_lo": 0.1086967345304415,
+         "M_all_last0_hi": 0.11755699912560236,
+         "M_all_last0_k_n": [
+          3930,
+          34788
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11755699912560236
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.13922942383813208,
+       "g_full": 0.2552217314812936,
+       "g_over_g_full": 0.5455233887414358,
+       "collapse_threshold_0.25_g_full": 0.0638054328703234,
+       "keep_alive_threshold_0.5_g_full": 0.1276108657406468,
+       "f3_label": "ALIVE",
+       "f3_reason": "rule ALIVE and g 0.1392 >= 0.5 x g_full 0.1276"
+      }
+     },
+     "F3_label": "WEAK"
+    }
+   },
+   "kill_test": {
+    "by_population": {
+     "BuE": {
+      "f3_label": "WEAK",
+      "f3_reason": "rule WEAK; g 0.1183 vs 0.5 x g_full 0.1276: ALIVE not kept",
+      "g": 0.11830036865458492,
+      "g_full": 0.2552217314812936,
+      "remaining_distinct": 307,
+      "remaining_sessions": 158,
+      "excluded": 152
+     },
+     "E": {
+      "f3_label": "WEAK",
+      "f3_reason": "rule WEAK; g 0.0858 vs 0.5 x g_full 0.1270: ALIVE not kept",
+      "g": 0.08580744200313097,
+      "g_full": 0.25402497715615,
+      "remaining_distinct": 156,
+      "remaining_sessions": 85,
+      "excluded": 92
+     }
+    },
+    "testable_populations": [
+     "BuE",
+     "E"
+    ],
+    "label_used": "WEAK",
+    "result": "CAP_WEAK",
+    "variants_reported_not_deciding": {
+     "BuE": {
+      "strict_calibration_code": "ALIVE",
+      "first_occurrence": "ALIVE"
+     },
+     "E": {
+      "strict_calibration_code": "WEAK",
+      "first_occurrence": "WEAK"
+     }
+    }
+   },
+   "survival": {
+    "phase_b_label": "ALIVE",
+    "E_label": "ALIVE",
+    "BuE_label_full_statistic": "ALIVE",
+    "BuE_F3_label": "WEAK",
+    "checks_in_order": [
+     {
+      "name": "AC2_truncation",
+      "effect": "pass",
+      "result": "PASS",
+      "per_statistic": {
+       "full": {
+        "ref": "ALIVE",
+        "check": "ALIVE",
+        "result": "PASS"
+       },
+       "F3": {
+        "ref": "WEAK",
+        "check": "WEAK",
+        "result": "PASS"
+       }
+      }
+     },
+     {
+      "name": "AC3_join",
+      "effect": "pass",
+      "result": "PASS",
+      "per_statistic": {
+       "full": {
+        "ref": "ALIVE",
+        "check": "ALIVE",
+        "result": "PASS"
+       },
+       "F3": {
+        "ref": "WEAK",
+        "check": "WEAK",
+        "result": "PASS"
+       }
+      }
+     },
+     {
+      "name": "AC5_sampling",
+      "effect": "pass",
+      "result": "PASS",
+      "per_statistic": {
+       "full": {
+        "ref": "ALIVE",
+        "check": "ALIVE",
+        "result": "PASS"
+       },
+       "F3": {
+        "ref": "WEAK",
+        "check": "WEAK",
+        "result": "PASS"
+       }
+      }
+     },
+     {
+      "name": "F3_ALIVE_not_kept (WEAK)",
+      "effect": "cap_weak"
+     },
+     {
+      "name": "AC4_UNTESTABLE_WITHOUT_DOMINANT",
+      "effect": "cap_weak"
+     }
+    ],
+    "status": "DOWNGRADED",
+    "final_label": "WEAK",
+    "reasons": [
+     "F3_ALIVE_not_kept (WEAK)"
+    ],
+    "final_label_other_order": "WEAK"
+   }
+  },
+  "P4round/cc_local": {
+   "populations": {
+    "B": {
+     "full": {
+      "label": "ALIVE",
+      "reason": "T_orig last-0 CI lo 0.4346 > M_all CI hi 0.1301 + 0.05",
+      "deciding": {
+       "T_orig_distinct": 341,
+       "T_orig_sessions": 14,
+       "M_all_distinct": 18550,
+       "M_all_sessions": 28,
+       "T_orig_last0": 0.6480938416422287,
+       "T_orig_last0_lo": 0.4346273291925466,
+       "T_orig_last0_hi": 0.7857449680903289,
+       "T_orig_last0_k_n": [
+        221,
+        341
+       ],
+       "M_all_last0": 0.12091644204851752,
+       "M_all_last0_lo": 0.11003374314301505,
+       "M_all_last0_hi": 0.13014514402041003,
+       "M_all_last0_k_n": [
+        2243,
+        18550
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10,
+       "M_all_hi_used": 0.13014514402041003
+      },
+      "label_capped": "ALIVE"
+     },
+     "T_orig": {
+      "distinct_values": 341,
+      "sessions": 14,
+      "round": {
+       "last_0": {
+        "k": 221,
+        "n": 341,
+        "n_sessions": 14,
+        "rate": 0.6480938416422287,
+        "lo": 0.4346273291925466,
+        "hi": 0.7857449680903289
+       },
+       "last_000": {
+        "k": 128,
+        "n": 341,
+        "n_sessions": 14,
+        "rate": 0.375366568914956,
+        "lo": 0.19066810196939546,
+        "hi": 0.5488109756097561
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 18550,
+      "sessions": 28,
+      "round": {
+       "last_0": {
+        "k": 2243,
+        "n": 18550,
+        "n_sessions": 28,
+        "rate": 0.12091644204851752,
+        "lo": 0.11003374314301505,
+        "hi": 0.13014514402041003
+       },
+       "last_000": {
+        "k": 142,
+        "n": 18550,
+        "n_sessions": 28,
+        "rate": 0.007654986522911051,
+        "lo": 0.0022933389238780663,
+        "hi": 0.01066658379993959
+       }
+      }
+     },
+     "g_full": 0.5271773995937112,
+     "F3": {
+      "strict": {
+       "excluded_values": 135,
+       "remaining": {
+        "distinct_values": 206,
+        "sessions": 12,
+        "round": {
+         "last_0": {
+          "k": 114,
+          "n": 206,
+          "n_sessions": 12,
+          "rate": 0.5533980582524272,
+          "lo": 0.13149460188933873,
+          "hi": 0.7306056994818653
+         },
+         "last_000": {
+          "k": 35,
+          "n": 206,
+          "n_sessions": 12,
+          "rate": 0.16990291262135923,
+          "lo": 0.0640625,
+          "hi": 0.22656510416666667
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.5534 > M_all CI hi 0.1301",
+        "deciding": {
+         "T_orig_distinct": 206,
+         "T_orig_sessions": 12,
+         "M_all_distinct": 18550,
+         "M_all_sessions": 28,
+         "T_orig_last0": 0.5533980582524272,
+         "T_orig_last0_lo": 0.13149460188933873,
+         "T_orig_last0_hi": 0.7306056994818653,
+         "T_orig_last0_k_n": [
+          114,
+          206
+         ],
+         "M_all_last0": 0.12091644204851752,
+         "M_all_last0_lo": 0.11003374314301505,
+         "M_all_last0_hi": 0.13014514402041003,
+         "M_all_last0_k_n": [
+          2243,
+          18550
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.13014514402041003
+        }
+       },
+       "g": 0.4324816162039096,
+       "g_full": 0.5271773995937112,
+       "g_over_g_full": 0.8203720731147003,
+       "collapse_threshold_0.25_g_full": 0.1317943498984278,
+       "keep_alive_threshold_0.5_g_full": 0.2635886997968556,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.4325 vs 0.5 x g_full 0.2636: ALIVE not kept",
+       "excluded_by_param_kind": {
+        "json_number": 102,
+        "param_key_assign": 26,
+        "sql_limit": 9,
+        "call_arg": 5,
+        "cli_option": 31
+       },
+       "excluded_by_origin_first_occurrence": {
+        "json_number": 83,
+        "args_string": 52
+       },
+       "excluded_last0": {
+        "k": 107,
+        "n": 135
+       }
+      },
+      "strict_calibration_code": {
+       "excluded_values": 124,
+       "remaining": {
+        "distinct_values": 217,
+        "sessions": 12,
+        "round": {
+         "last_0": {
+          "k": 124,
+          "n": 217,
+          "n_sessions": 12,
+          "rate": 0.5714285714285714,
+          "lo": 0.13149460188933873,
+          "hi": 0.741318886337543
+         },
+         "last_000": {
+          "k": 43,
+          "n": 217,
+          "n_sessions": 12,
+          "rate": 0.19815668202764977,
+          "lo": 0.0640625,
+          "hi": 0.27014882967404974
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.5714 > M_all CI hi 0.1301",
+        "deciding": {
+         "T_orig_distinct": 217,
+         "T_orig_sessions": 12,
+         "M_all_distinct": 18550,
+         "M_all_sessions": 28,
+         "T_orig_last0": 0.5714285714285714,
+         "T_orig_last0_lo": 0.13149460188933873,
+         "T_orig_last0_hi": 0.741318886337543,
+         "T_orig_last0_k_n": [
+          124,
+          217
+         ],
+         "M_all_last0": 0.12091644204851752,
+         "M_all_last0_lo": 0.11003374314301505,
+         "M_all_last0_hi": 0.13014514402041003,
+         "M_all_last0_k_n": [
+          2243,
+          18550
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.13014514402041003
+        }
+       },
+       "g": 0.45051212938005386,
+       "g_full": 0.5271773995937112,
+       "g_over_g_full": 0.8545740574752592,
+       "collapse_threshold_0.25_g_full": 0.1317943498984278,
+       "keep_alive_threshold_0.5_g_full": 0.2635886997968556,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.4505 vs 0.5 x g_full 0.2636: ALIVE not kept"
+      },
+      "first_occurrence": {
+       "excluded_values": 109,
+       "remaining": {
+        "distinct_values": 232,
+        "sessions": 12,
+        "round": {
+         "last_0": {
+          "k": 138,
+          "n": 232,
+          "n_sessions": 12,
+          "rate": 0.5948275862068966,
+          "lo": 0.1638683236382866,
+          "hi": 0.7511961722488039
+         },
+         "last_000": {
+          "k": 55,
+          "n": 232,
+          "n_sessions": 12,
+          "rate": 0.23706896551724138,
+          "lo": 0.09089442815249267,
+          "hi": 0.32669421324602577
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.5948 > M_all CI hi 0.1301",
+        "deciding": {
+         "T_orig_distinct": 232,
+         "T_orig_sessions": 12,
+         "M_all_distinct": 18550,
+         "M_all_sessions": 28,
+         "T_orig_last0": 0.5948275862068966,
+         "T_orig_last0_lo": 0.1638683236382866,
+         "T_orig_last0_hi": 0.7511961722488039,
+         "T_orig_last0_k_n": [
+          138,
+          232
+         ],
+         "M_all_last0": 0.12091644204851752,
+         "M_all_last0_lo": 0.11003374314301505,
+         "M_all_last0_hi": 0.13014514402041003,
+         "M_all_last0_k_n": [
+          2243,
+          18550
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.13014514402041003
+        }
+       },
+       "g": 0.47391114415837904,
+       "g_full": 0.5271773995937112,
+       "g_over_g_full": 0.8989595239166478,
+       "collapse_threshold_0.25_g_full": 0.1317943498984278,
+       "keep_alive_threshold_0.5_g_full": 0.2635886997968556,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.4739 vs 0.5 x g_full 0.2636: ALIVE not kept"
+      }
+     },
+     "F3_label": "WEAK"
+    }
+   },
+   "kill_test": {
+    "by_population": {
+     "B": {
+      "f3_label": "WEAK",
+      "f3_reason": "rule WEAK; g 0.4325 vs 0.5 x g_full 0.2636: ALIVE not kept",
+      "g": 0.4324816162039096,
+      "g_full": 0.5271773995937112,
+      "remaining_distinct": 206,
+      "remaining_sessions": 12,
+      "excluded": 135
+     }
+    },
+    "testable_populations": [
+     "B"
+    ],
+    "label_used": "WEAK",
+    "result": "CAP_WEAK",
+    "variants_reported_not_deciding": {
+     "B": {
+      "strict_calibration_code": "WEAK",
+      "first_occurrence": "WEAK"
+     }
+    }
+   },
+   "survival": {
+    "phase_b_label": "ALIVE",
+    "E_label": null,
+    "BuE_label_full_statistic": "ALIVE",
+    "BuE_F3_label": "WEAK",
+    "checks_in_order": [
+     {
+      "name": "AC2_truncation",
+      "effect": "pass",
+      "result": "PASS",
+      "per_statistic": {
+       "full": {
+        "ref": "ALIVE",
+        "check": "ALIVE",
+        "result": "PASS"
+       },
+       "F3": {
+        "ref": "WEAK",
+        "check": "WEAK",
+        "result": "PASS"
+       }
+      }
+     },
+     {
+      "name": "AC3_join",
+      "effect": "pass",
+      "result": "PASS",
+      "per_statistic": {
+       "full": {
+        "ref": "ALIVE",
+        "check": "ALIVE",
+        "result": "PASS"
+       },
+       "F3": {
+        "ref": "WEAK",
+        "check": "WEAK",
+        "result": "PASS"
+       }
+      }
+     },
+     {
+      "name": "F3_ALIVE_not_kept (WEAK)",
+      "effect": "cap_weak"
+     },
+     {
+      "name": "AC4_UNTESTABLE_WITHOUT_DOMINANT",
+      "effect": "cap_weak"
+     }
+    ],
+    "status": "DOWNGRADED (B only, unreplicated)",
+    "final_label": "WEAK",
+    "reasons": [
+     "F3_ALIVE_not_kept (WEAK)"
+    ],
+    "final_label_other_order": "WEAK"
+   }
+  },
+  "P4round/swechat/* (pooled)": {
+   "populations": {
+    "B": {
+     "full": {
+      "label": "ALIVE",
+      "reason": "T_orig last-0 CI lo 0.3548 > M_all CI hi 0.1238 + 0.05",
+      "deciding": {
+       "T_orig_distinct": 322,
+       "T_orig_sessions": 145,
+       "M_all_distinct": 23570,
+       "M_all_sessions": 1239,
+       "T_orig_last0": 0.43788819875776397,
+       "T_orig_last0_lo": 0.35484062602425437,
+       "T_orig_last0_hi": 0.5284642414220753,
+       "T_orig_last0_k_n": [
+        141,
+        322
+       ],
+       "M_all_last0": 0.11781926177344082,
+       "M_all_last0_lo": 0.11201443806562852,
+       "M_all_last0_hi": 0.12383468657451098,
+       "M_all_last0_k_n": [
+        2777,
+        23570
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10,
+       "M_all_hi_used": 0.12383468657451098
+      },
+      "redaction_rerun_noredact": {
+       "label": "ALIVE",
+       "T_orig": [
+        135,
+        299
+       ],
+       "M_all": [
+        2446,
+        21175
+       ]
+      },
+      "label_capped": "ALIVE",
+      "redaction_cap": "redaction rerun gives the same label: verdict stands"
+     },
+     "T_orig": {
+      "distinct_values": 322,
+      "sessions": 145,
+      "round": {
+       "last_0": {
+        "k": 141,
+        "n": 322,
+        "n_sessions": 145,
+        "rate": 0.43788819875776397,
+        "lo": 0.35484062602425437,
+        "hi": 0.5284642414220753
+       },
+       "last_000": {
+        "k": 80,
+        "n": 322,
+        "n_sessions": 145,
+        "rate": 0.2484472049689441,
+        "lo": 0.18403801669516243,
+        "hi": 0.3219628117316473
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 23570,
+      "sessions": 1239,
+      "round": {
+       "last_0": {
+        "k": 2777,
+        "n": 23570,
+        "n_sessions": 1239,
+        "rate": 0.11781926177344082,
+        "lo": 0.11201443806562852,
+        "hi": 0.12383468657451098
+       },
+       "last_000": {
+        "k": 227,
+        "n": 23570,
+        "n_sessions": 1239,
+        "rate": 0.009630886720407298,
+        "lo": 0.007023831452299499,
+        "hi": 0.01276561555342747
+       }
+      }
+     },
+     "g_full": 0.32006893698432315,
+     "F3": {
+      "strict": {
+       "excluded_values": 109,
+       "remaining": {
+        "distinct_values": 213,
+        "sessions": 98,
+        "round": {
+         "last_0": {
+          "k": 60,
+          "n": 213,
+          "n_sessions": 98,
+          "rate": 0.28169014084507044,
+          "lo": 0.17528791936080815,
+          "hi": 0.40746996996996987
+         },
+         "last_000": {
+          "k": 20,
+          "n": 213,
+          "n_sessions": 98,
+          "rate": 0.09389671361502347,
+          "lo": 0.04347303511705686,
+          "hi": 0.162501539408867
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1753 > M_all CI hi 0.1238 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 213,
+         "T_orig_sessions": 98,
+         "M_all_distinct": 23570,
+         "M_all_sessions": 1239,
+         "T_orig_last0": 0.28169014084507044,
+         "T_orig_last0_lo": 0.17528791936080815,
+         "T_orig_last0_hi": 0.40746996996996987,
+         "T_orig_last0_k_n": [
+          60,
+          213
+         ],
+         "M_all_last0": 0.11781926177344082,
+         "M_all_last0_lo": 0.11201443806562852,
+         "M_all_last0_hi": 0.12383468657451098,
+         "M_all_last0_k_n": [
+          2777,
+          23570
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.12383468657451098
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.16387087907162962,
+       "g_full": 0.32006893698432315,
+       "g_over_g_full": 0.5119862008966398,
+       "collapse_threshold_0.25_g_full": 0.08001723424608079,
+       "keep_alive_threshold_0.5_g_full": 0.16003446849216157,
+       "f3_label": "ALIVE",
+       "f3_reason": "rule ALIVE and g 0.1639 >= 0.5 x g_full 0.1600",
+       "excluded_by_param_kind": {
+        "json_number": 67,
+        "param_key_assign": 43,
+        "cli_option": 17,
+        "sql_limit": 5,
+        "call_arg": 6,
+        "host_port": 13,
+        "numeric_positional_cmd": 2
+       },
+       "excluded_by_origin_first_occurrence": {
+        "json_number": 62,
+        "args_string": 47
+       },
+       "excluded_last0": {
+        "k": 81,
+        "n": 109
+       }
+      },
+      "strict_calibration_code": {
+       "excluded_values": 103,
+       "remaining": {
+        "distinct_values": 219,
+        "sessions": 100,
+        "round": {
+         "last_0": {
+          "k": 63,
+          "n": 219,
+          "n_sessions": 100,
+          "rate": 0.2876712328767123,
+          "lo": 0.186504329004329,
+          "hi": 0.40609844884421703
+         },
+         "last_000": {
+          "k": 20,
+          "n": 219,
+          "n_sessions": 100,
+          "rate": 0.091324200913242,
+          "lo": 0.04205069800179877,
+          "hi": 0.14833308981102666
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1865 > M_all CI hi 0.1238 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 219,
+         "T_orig_sessions": 100,
+         "M_all_distinct": 23570,
+         "M_all_sessions": 1239,
+         "T_orig_last0": 0.2876712328767123,
+         "T_orig_last0_lo": 0.186504329004329,
+         "T_orig_last0_hi": 0.40609844884421703,
+         "T_orig_last0_k_n": [
+          63,
+          219
+         ],
+         "M_all_last0": 0.11781926177344082,
+         "M_all_last0_lo": 0.11201443806562852,
+         "M_all_last0_hi": 0.12383468657451098,
+         "M_all_last0_k_n": [
+          2777,
+          23570
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.12383468657451098
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.1698519711032715,
+       "g_full": 0.32006893698432315,
+       "g_over_g_full": 0.5306730878154251,
+       "collapse_threshold_0.25_g_full": 0.08001723424608079,
+       "keep_alive_threshold_0.5_g_full": 0.16003446849216157,
+       "f3_label": "ALIVE",
+       "f3_reason": "rule ALIVE and g 0.1699 >= 0.5 x g_full 0.1600"
+      },
+      "first_occurrence": {
+       "excluded_values": 90,
+       "remaining": {
+        "distinct_values": 232,
+        "sessions": 106,
+        "round": {
+         "last_0": {
+          "k": 68,
+          "n": 232,
+          "n_sessions": 106,
+          "rate": 0.29310344827586204,
+          "lo": 0.18612313612313613,
+          "hi": 0.4241489955357142
+         },
+         "last_000": {
+          "k": 25,
+          "n": 232,
+          "n_sessions": 106,
+          "rate": 0.10775862068965517,
+          "lo": 0.0518827260897853,
+          "hi": 0.17843584947183094
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1861 > M_all CI hi 0.1238 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 232,
+         "T_orig_sessions": 106,
+         "M_all_distinct": 23570,
+         "M_all_sessions": 1239,
+         "T_orig_last0": 0.29310344827586204,
+         "T_orig_last0_lo": 0.18612313612313613,
+         "T_orig_last0_hi": 0.4241489955357142,
+         "T_orig_last0_k_n": [
+          68,
+          232
+         ],
+         "M_all_last0": 0.11781926177344082,
+         "M_all_last0_lo": 0.11201443806562852,
+         "M_all_last0_hi": 0.12383468657451098,
+         "M_all_last0_k_n": [
+          2777,
+          23570
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.12383468657451098
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.17528418650242122,
+       "g_full": 0.32006893698432315,
+       "g_over_g_full": 0.547645104688827,
+       "collapse_threshold_0.25_g_full": 0.08001723424608079,
+       "keep_alive_threshold_0.5_g_full": 0.16003446849216157,
+       "f3_label": "ALIVE",
+       "f3_reason": "rule ALIVE and g 0.1753 >= 0.5 x g_full 0.1600"
+      }
+     },
+     "F3_label": "ALIVE"
+    },
+    "E": {
+     "full": {
+      "label": "ALIVE",
+      "reason": "T_orig last-0 CI lo 0.3022 > M_all CI hi 0.1190 + 0.05",
+      "deciding": {
+       "T_orig_distinct": 268,
+       "T_orig_sessions": 132,
+       "M_all_distinct": 18893,
+       "M_all_sessions": 1161,
+       "T_orig_last0": 0.376865671641791,
+       "T_orig_last0_lo": 0.30217073818374934,
+       "T_orig_last0_hi": 0.45946233467510067,
+       "T_orig_last0_k_n": [
+        101,
+        268
+       ],
+       "M_all_last0": 0.11438098766739004,
+       "M_all_last0_lo": 0.10933773167953388,
+       "M_all_last0_hi": 0.11900727272551732,
+       "M_all_last0_k_n": [
+        2161,
+        18893
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10,
+       "M_all_hi_used": 0.11900727272551732
+      },
+      "redaction_rerun_noredact": {
+       "label": "ALIVE",
+       "T_orig": [
+        100,
+        261
+       ],
+       "M_all": [
+        1883,
+        16573
+       ]
+      },
+      "label_capped": "ALIVE",
+      "redaction_cap": "redaction rerun gives the same label: verdict stands"
+     },
+     "T_orig": {
+      "distinct_values": 268,
+      "sessions": 132,
+      "round": {
+       "last_0": {
+        "k": 101,
+        "n": 268,
+        "n_sessions": 132,
+        "rate": 0.376865671641791,
+        "lo": 0.30217073818374934,
+        "hi": 0.45946233467510067
+       },
+       "last_000": {
+        "k": 65,
+        "n": 268,
+        "n_sessions": 132,
+        "rate": 0.24253731343283583,
+        "lo": 0.17020272982737855,
+        "hi": 0.3333999999999999
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 18893,
+      "sessions": 1161,
+      "round": {
+       "last_0": {
+        "k": 2161,
+        "n": 18893,
+        "n_sessions": 1161,
+        "rate": 0.11438098766739004,
+        "lo": 0.10933773167953388,
+        "hi": 0.11900727272551732
+       },
+       "last_000": {
+        "k": 167,
+        "n": 18893,
+        "n_sessions": 1161,
+        "rate": 0.008839252633250411,
+        "lo": 0.0068095593964264305,
+        "hi": 0.01127518653974166
+       }
+      }
+     },
+     "g_full": 0.262484683974401,
+     "F3": {
+      "strict": {
+       "excluded_values": 110,
+       "remaining": {
+        "distinct_values": 158,
+        "sessions": 90,
+        "round": {
+         "last_0": {
+          "k": 29,
+          "n": 158,
+          "n_sessions": 90,
+          "rate": 0.18354430379746836,
+          "lo": 0.11827289120416751,
+          "hi": 0.2595602844295723
+         },
+         "last_000": {
+          "k": 14,
+          "n": 158,
+          "n_sessions": 90,
+          "rate": 0.08860759493670886,
+          "lo": 0.039977653631284915,
+          "hi": 0.14650106157112525
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.1835 > M_all CI hi 0.1190",
+        "deciding": {
+         "T_orig_distinct": 158,
+         "T_orig_sessions": 90,
+         "M_all_distinct": 18893,
+         "M_all_sessions": 1161,
+         "T_orig_last0": 0.18354430379746836,
+         "T_orig_last0_lo": 0.11827289120416751,
+         "T_orig_last0_hi": 0.2595602844295723,
+         "T_orig_last0_k_n": [
+          29,
+          158
+         ],
+         "M_all_last0": 0.11438098766739004,
+         "M_all_last0_lo": 0.10933773167953388,
+         "M_all_last0_hi": 0.11900727272551732,
+         "M_all_last0_k_n": [
+          2161,
+          18893
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11900727272551732
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.06916331613007833,
+       "g_full": 0.262484683974401,
+       "g_over_g_full": 0.26349467360474077,
+       "collapse_threshold_0.25_g_full": 0.06562117099360025,
+       "keep_alive_threshold_0.5_g_full": 0.1312423419872005,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.0692 vs 0.5 x g_full 0.1312: ALIVE not kept",
+       "excluded_by_param_kind": {
+        "json_number": 74,
+        "param_key_assign": 35,
+        "cli_option": 23,
+        "host_port": 9,
+        "numeric_positional_cmd": 2,
+        "sql_limit": 2,
+        "call_arg": 2
+       },
+       "excluded_by_origin_first_occurrence": {
+        "json_number": 67,
+        "args_string": 43
+       },
+       "excluded_last0": {
+        "k": 72,
+        "n": 110
+       }
+      },
+      "strict_calibration_code": {
+       "excluded_values": 101,
+       "remaining": {
+        "distinct_values": 167,
+        "sessions": 96,
+        "round": {
+         "last_0": {
+          "k": 33,
+          "n": 167,
+          "n_sessions": 96,
+          "rate": 0.19760479041916168,
+          "lo": 0.13114110376791693,
+          "hi": 0.2794140482279869
+         },
+         "last_000": {
+          "k": 16,
+          "n": 167,
+          "n_sessions": 96,
+          "rate": 0.09580838323353294,
+          "lo": 0.04214996078990518,
+          "hi": 0.16765952190932232
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.1976 > M_all CI hi 0.1190",
+        "deciding": {
+         "T_orig_distinct": 167,
+         "T_orig_sessions": 96,
+         "M_all_distinct": 18893,
+         "M_all_sessions": 1161,
+         "T_orig_last0": 0.19760479041916168,
+         "T_orig_last0_lo": 0.13114110376791693,
+         "T_orig_last0_hi": 0.2794140482279869,
+         "T_orig_last0_k_n": [
+          33,
+          167
+         ],
+         "M_all_last0": 0.11438098766739004,
+         "M_all_last0_lo": 0.10933773167953388,
+         "M_all_last0_hi": 0.11900727272551732,
+         "M_all_last0_k_n": [
+          2161,
+          18893
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11900727272551732
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.08322380275177164,
+       "g_full": 0.262484683974401,
+       "g_over_g_full": 0.3170615576179222,
+       "collapse_threshold_0.25_g_full": 0.06562117099360025,
+       "keep_alive_threshold_0.5_g_full": 0.1312423419872005,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.0832 vs 0.5 x g_full 0.1312: ALIVE not kept"
+      },
+      "first_occurrence": {
+       "excluded_values": 96,
+       "remaining": {
+        "distinct_values": 172,
+        "sessions": 99,
+        "round": {
+         "last_0": {
+          "k": 36,
+          "n": 172,
+          "n_sessions": 99,
+          "rate": 0.20930232558139536,
+          "lo": 0.13370069178687075,
+          "hi": 0.28931231380337635
+         },
+         "last_000": {
+          "k": 18,
+          "n": 172,
+          "n_sessions": 99,
+          "rate": 0.10465116279069768,
+          "lo": 0.04838062791098844,
+          "hi": 0.1785764166001596
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.2093 > M_all CI hi 0.1190",
+        "deciding": {
+         "T_orig_distinct": 172,
+         "T_orig_sessions": 99,
+         "M_all_distinct": 18893,
+         "M_all_sessions": 1161,
+         "T_orig_last0": 0.20930232558139536,
+         "T_orig_last0_lo": 0.13370069178687075,
+         "T_orig_last0_hi": 0.28931231380337635,
+         "T_orig_last0_k_n": [
+          36,
+          172
+         ],
+         "M_all_last0": 0.11438098766739004,
+         "M_all_last0_lo": 0.10933773167953388,
+         "M_all_last0_hi": 0.11900727272551732,
+         "M_all_last0_k_n": [
+          2161,
+          18893
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11900727272551732
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.09492133791400532,
+       "g_full": 0.262484683974401,
+       "g_over_g_full": 0.36162619653367123,
+       "collapse_threshold_0.25_g_full": 0.06562117099360025,
+       "keep_alive_threshold_0.5_g_full": 0.1312423419872005,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.0949 vs 0.5 x g_full 0.1312: ALIVE not kept"
+      }
+     },
+     "F3_label": "WEAK"
+    },
+    "BuE": {
+     "full": {
+      "label": "ALIVE",
+      "reason": "T_orig last-0 CI lo 0.3078 > M_all CI hi 0.1190 + 0.05",
+      "deciding": {
+       "T_orig_distinct": 488,
+       "T_orig_sessions": 236,
+       "M_all_distinct": 38692,
+       "M_all_sessions": 2312,
+       "T_orig_last0": 0.375,
+       "T_orig_last0_lo": 0.30782470115160626,
+       "T_orig_last0_hi": 0.44178383964752915,
+       "T_orig_last0_k_n": [
+        183,
+        488
+       ],
+       "M_all_last0": 0.11477824873358834,
+       "M_all_last0_lo": 0.11071765052548838,
+       "M_all_last0_hi": 0.11897434686423712,
+       "M_all_last0_k_n": [
+        4441,
+        38692
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10,
+       "M_all_hi_used": 0.11897434686423712
+      },
+      "redaction_rerun_noredact": {
+       "label": "ALIVE",
+       "T_orig": [
+        177,
+        464
+       ],
+       "M_all": [
+        3896,
+        34427
+       ]
+      },
+      "label_capped": "ALIVE",
+      "redaction_cap": "redaction rerun gives the same label: verdict stands"
+     },
+     "T_orig": {
+      "distinct_values": 488,
+      "sessions": 236,
+      "round": {
+       "last_0": {
+        "k": 183,
+        "n": 488,
+        "n_sessions": 236,
+        "rate": 0.375,
+        "lo": 0.30782470115160626,
+        "hi": 0.44178383964752915
+       },
+       "last_000": {
+        "k": 94,
+        "n": 488,
+        "n_sessions": 236,
+        "rate": 0.19262295081967212,
+        "lo": 0.13999794238683128,
+        "hi": 0.2505092695207785
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 38692,
+      "sessions": 2312,
+      "round": {
+       "last_0": {
+        "k": 4441,
+        "n": 38692,
+        "n_sessions": 2312,
+        "rate": 0.11477824873358834,
+        "lo": 0.11071765052548838,
+        "hi": 0.11897434686423712
+       },
+       "last_000": {
+        "k": 299,
+        "n": 38692,
+        "n_sessions": 2312,
+        "rate": 0.007727695647679107,
+        "lo": 0.005894354710598739,
+        "hi": 0.009870695971809312
+       }
+      }
+     },
+     "g_full": 0.26022175126641167,
+     "F3": {
+      "strict": {
+       "excluded_values": 169,
+       "remaining": {
+        "distinct_values": 319,
+        "sessions": 166,
+        "round": {
+         "last_0": {
+          "k": 75,
+          "n": 319,
+          "n_sessions": 166,
+          "rate": 0.23510971786833856,
+          "lo": 0.16205764541971437,
+          "hi": 0.31118181040871
+         },
+         "last_000": {
+          "k": 25,
+          "n": 319,
+          "n_sessions": 166,
+          "rate": 0.07836990595611286,
+          "lo": 0.03987076200067137,
+          "hi": 0.1265692848020434
+         }
+        }
+       },
+       "rule": {
+        "label": "WEAK",
+        "reason": "T_orig last-0 0.2351 > M_all CI hi 0.1190",
+        "deciding": {
+         "T_orig_distinct": 319,
+         "T_orig_sessions": 166,
+         "M_all_distinct": 38692,
+         "M_all_sessions": 2312,
+         "T_orig_last0": 0.23510971786833856,
+         "T_orig_last0_lo": 0.16205764541971437,
+         "T_orig_last0_hi": 0.31118181040871,
+         "T_orig_last0_k_n": [
+          75,
+          319
+         ],
+         "M_all_last0": 0.11477824873358834,
+         "M_all_last0_lo": 0.11071765052548838,
+         "M_all_last0_hi": 0.11897434686423712,
+         "M_all_last0_k_n": [
+          4441,
+          38692
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11897434686423712
+        },
+        "redaction_rerun_noredact": {
+         "label": "WEAK"
+        },
+        "label_capped": "WEAK",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.12033146913475022,
+       "g_full": 0.26022175126641167,
+       "g_over_g_full": 0.4624189505648066,
+       "collapse_threshold_0.25_g_full": 0.06505543781660292,
+       "keep_alive_threshold_0.5_g_full": 0.13011087563320584,
+       "f3_label": "WEAK",
+       "f3_reason": "rule WEAK; g 0.1203 vs 0.5 x g_full 0.1301: ALIVE not kept",
+       "excluded_by_param_kind": {
+        "json_number": 100,
+        "param_key_assign": 64,
+        "cli_option": 34,
+        "host_port": 21,
+        "sql_limit": 5,
+        "numeric_positional_cmd": 4,
+        "call_arg": 7
+       },
+       "excluded_by_origin_first_occurrence": {
+        "json_number": 93,
+        "args_string": 76
+       },
+       "excluded_last0": {
+        "k": 108,
+        "n": 169
+       }
+      },
+      "strict_calibration_code": {
+       "excluded_values": 156,
+       "remaining": {
+        "distinct_values": 332,
+        "sessions": 175,
+        "round": {
+         "last_0": {
+          "k": 81,
+          "n": 332,
+          "n_sessions": 175,
+          "rate": 0.24397590361445784,
+          "lo": 0.17917806729845798,
+          "hi": 0.32552753651796285
+         },
+         "last_000": {
+          "k": 28,
+          "n": 332,
+          "n_sessions": 175,
+          "rate": 0.08433734939759036,
+          "lo": 0.045839205547725935,
+          "hi": 0.13334890965732085
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1792 > M_all CI hi 0.1190 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 332,
+         "T_orig_sessions": 175,
+         "M_all_distinct": 38692,
+         "M_all_sessions": 2312,
+         "T_orig_last0": 0.24397590361445784,
+         "T_orig_last0_lo": 0.17917806729845798,
+         "T_orig_last0_hi": 0.32552753651796285,
+         "T_orig_last0_k_n": [
+          81,
+          332
+         ],
+         "M_all_last0": 0.11477824873358834,
+         "M_all_last0_lo": 0.11071765052548838,
+         "M_all_last0_hi": 0.11897434686423712,
+         "M_all_last0_k_n": [
+          4441,
+          38692
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11897434686423712
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.12919765488086948,
+       "g_full": 0.26022175126641167,
+       "g_over_g_full": 0.4964906056165866,
+       "collapse_threshold_0.25_g_full": 0.06505543781660292,
+       "keep_alive_threshold_0.5_g_full": 0.13011087563320584,
+       "f3_label": "WEAK",
+       "f3_reason": "rule ALIVE; g 0.1292 vs 0.5 x g_full 0.1301: ALIVE not kept"
+      },
+      "first_occurrence": {
+       "excluded_values": 137,
+       "remaining": {
+        "distinct_values": 351,
+        "sessions": 184,
+        "round": {
+         "last_0": {
+          "k": 87,
+          "n": 351,
+          "n_sessions": 184,
+          "rate": 0.24786324786324787,
+          "lo": 0.17557155432595573,
+          "hi": 0.33242506811989103
+         },
+         "last_000": {
+          "k": 33,
+          "n": 351,
+          "n_sessions": 184,
+          "rate": 0.09401709401709402,
+          "lo": 0.05052974461771576,
+          "hi": 0.15061339106425703
+         }
+        }
+       },
+       "rule": {
+        "label": "ALIVE",
+        "reason": "T_orig last-0 CI lo 0.1756 > M_all CI hi 0.1190 + 0.05",
+        "deciding": {
+         "T_orig_distinct": 351,
+         "T_orig_sessions": 184,
+         "M_all_distinct": 38692,
+         "M_all_sessions": 2312,
+         "T_orig_last0": 0.24786324786324787,
+         "T_orig_last0_lo": 0.17557155432595573,
+         "T_orig_last0_hi": 0.33242506811989103,
+         "T_orig_last0_k_n": [
+          87,
+          351
+         ],
+         "M_all_last0": 0.11477824873358834,
+         "M_all_last0_lo": 0.11071765052548838,
+         "M_all_last0_hi": 0.11897434686423712,
+         "M_all_last0_k_n": [
+          4441,
+          38692
+         ],
+         "margin": 0.05,
+         "min_values": 100,
+         "min_sessions": 10,
+         "M_all_hi_used": 0.11897434686423712
+        },
+        "redaction_rerun_noredact": {
+         "label": "ALIVE"
+        },
+        "label_capped": "ALIVE",
+        "redaction_cap": "redaction rerun gives the same label: verdict stands"
+       },
+       "g": 0.13308499912965954,
+       "g_full": 0.26022175126641167,
+       "g_over_g_full": 0.5114291886899525,
+       "collapse_threshold_0.25_g_full": 0.06505543781660292,
+       "keep_alive_threshold_0.5_g_full": 0.13011087563320584,
+       "f3_label": "ALIVE",
+       "f3_reason": "rule ALIVE and g 0.1331 >= 0.5 x g_full 0.1301"
+      }
+     },
+     "F3_label": "WEAK"
+    }
+   },
+   "kill_test": {
+    "by_population": {
+     "BuE": {
+      "f3_label": "WEAK",
+      "f3_reason": "rule WEAK; g 0.1203 vs 0.5 x g_full 0.1301: ALIVE not kept",
+      "g": 0.12033146913475022,
+      "g_full": 0.26022175126641167,
+      "remaining_distinct": 319,
+      "remaining_sessions": 166,
+      "excluded": 169
+     },
+     "E": {
+      "f3_label": "WEAK",
+      "f3_reason": "rule WEAK; g 0.0692 vs 0.5 x g_full 0.1312: ALIVE not kept",
+      "g": 0.06916331613007833,
+      "g_full": 0.262484683974401,
+      "remaining_distinct": 158,
+      "remaining_sessions": 90,
+      "excluded": 110
+     }
+    },
+    "testable_populations": [
+     "BuE",
+     "E"
+    ],
+    "label_used": "WEAK",
+    "result": "CAP_WEAK",
+    "variants_reported_not_deciding": {
+     "BuE": {
+      "strict_calibration_code": "WEAK",
+      "first_occurrence": "ALIVE"
+     },
+     "E": {
+      "strict_calibration_code": "WEAK",
+      "first_occurrence": "WEAK"
+     }
+    }
+   },
+   "survival": {
+    "phase_b_label": "ALIVE",
+    "E_label": "ALIVE",
+    "BuE_label_full_statistic": "ALIVE",
+    "BuE_F3_label": "WEAK",
+    "checks_in_order": [
+     {
+      "name": "AC2_truncation",
+      "effect": "pass",
+      "result": "PASS",
+      "per_statistic": {
+       "full": {
+        "ref": "ALIVE",
+        "check": "ALIVE",
+        "result": "PASS"
+       },
+       "F3": {
+        "ref": "WEAK",
+        "check": "WEAK",
+        "result": "PASS"
+       }
+      }
+     },
+     {
+      "name": "AC3_join",
+      "effect": "pass",
+      "result": "PASS",
+      "per_statistic": {
+       "full": {
+        "ref": "ALIVE",
+        "check": "ALIVE",
+        "result": "PASS"
+       },
+       "F3": {
+        "ref": "WEAK",
+        "check": "WEAK",
+        "result": "PASS"
+       }
+      }
+     },
+     {
+      "name": "AC5_sampling",
+      "effect": "pass",
+      "result": "PASS",
+      "per_statistic": {
+       "full": {
+        "ref": "ALIVE",
+        "check": "ALIVE",
+        "result": "PASS"
+       },
+       "F3": {
+        "ref": "WEAK",
+        "check": "WEAK",
+        "result": "PASS"
+       }
+      }
+     },
+     {
+      "name": "F3_ALIVE_not_kept (WEAK)",
+      "effect": "cap_weak"
+     },
+     {
+      "name": "AC4_DOMINATED",
+      "effect": "downgrade"
+     }
+    ],
+    "status": "KILLED",
+    "final_label": "DEAD",
+    "reasons": [
+     "F3_ALIVE_not_kept (WEAK)",
+     "AC4_DOMINATED"
+    ],
+    "final_label_other_order": "DEAD"
+   }
+  }
+ },
+ "deviations": [
+  {
+   "item": "F3 strict exclusion: which occurrences count",
+   "prereg_said": "value_level_rule_primary: a distinct T_orig value is EXCLUDED if ANY of its occurrences in call args in the unit is a parameter occurrence; prereg_e_calibration.cal_round (which produced R:f3_counts_A) counted only the value's UNSOURCED occurrences",
+   "what_you_did": "primary = the JSON text (every call-arg occurrence of the value in the analysed population, sourced or not); the calibration-code reading is reported as F3.strict_calibration_code, and the first-occurrence rule as F3.first_occurrence; neither variant decides",
+   "why": "PREREG_E.md header: where the file and the JSON differ the JSON wins; probe_2 set the same precedent (JSON text over calibration code)",
+   "effect_on_verdict": "see kill_tests.F3_parameter_exclusion.variants_reported_not_deciding per candidate"
+  },
+  {
+   "item": "F3 effect on the candidate label",
+   "prereg_said": "COLLAPSE = DEAD; ALIVE kept only if rule ALIVE and g >= 0.5 g_full, otherwise WEAK; below min n -> INSUFFICIENT_N and capped at WEAK",
+   "what_you_did": "F3 DEAD -> kill (KILLED); F3 WEAK -> cap_weak; F3 INSUFFICIENT_N -> cap_weak; F3 ALIVE -> pass",
+   "why": "mechanical mapping of the rule onto survival_status effects",
+   "effect_on_verdict": "as stated"
+  },
+  {
+   "item": "kill tests: which population decides",
+   "prereg_said": "every second-pass statistic runs on B u E; the replication verdict uses E alone; F3 'on B u E and on E'",
+   "what_you_did": "every kill test (F3, P2-K1) is decided on B u E; its E result is computed too and, where it is testable and lower, it is the one used (lowest testable label of B u E and E). Units without E: B",
+   "why": "fixed before any number: a kill on the fresh replication split is a kill; taking the lower label is conservative",
+   "effect_on_verdict": "see kill_tests.*.label_used and by_population"
+  },
+  {
+   "item": "redaction cap in F3",
+   "prereg_said": "F3 applies 'the Phase B round-number rule'; prereg.json probe4.verdict.caps: swechat verdict stands only if the redaction sensitivity run gives the same label, else WEAK",
+   "what_you_did": "for swechat candidates the cap is applied to the full statistic and to T_orig_noparam (the noredact rerun with the same exclusion set) before the F3 collapse rule; AC/strata recomputations use the uncapped rule against the uncapped B u E reference",
+   "why": "the cap is part of the Phase B rule for swechat; it can only lower ALIVE to WEAK",
+   "effect_on_verdict": "can only lower; see populations.*.full.redaction_cap and F3.strict.rule.redaction_cap"
+  }
+ ]
+}

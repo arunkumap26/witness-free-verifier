@@ -1,0 +1,5921 @@
+{
+ "item": "f2_floor_shift",
+ "script": "analysis/probes/phase_e_f2_floor_shift.py",
+ "run_utc": "2026-10-04T10:41:32Z",
+ "prereg": {
+  "prereg_e_json_sha256": "568d423f0e061f9a3dd14a4ae51926b3b5746a9a3dc33b421c3e632ad4bb1c08",
+  "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+  "spec_module_sha256_lf_prereg": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+  "check_frozen": "passed",
+  "phase_b_prereg_json_sha256": "3189a3260e9ed2204d80e9b8496c975e9a87e383104531304ca720a2d79806e4",
+  "phase_b_spec_module_sha_ok": true,
+  "phase_b_calibration_sha_ok": true
+ },
+ "prereg_section": "followups.F2_floor_shift (PREREG_E.md 1.6)",
+ "unit": "swechat/claude_code",
+ "population_rule": "step series of the Phase B rule on B (index within B) and on E (index within E); primary population B u E = their union; B and E reported separately; pooled-index run = sensitivity",
+ "thresholds_used": {
+  "F2": {
+   "W": 5,
+   "idle_gap_s": 300.0,
+   "hook_share": 0.5,
+   "js_calls": 20,
+   "js_distance": 0.3,
+   "parallel_share": 0.3,
+   "size_log10": 0.3010299956639812,
+   "ctrl_lo": 20,
+   "credit_diff": 0.25,
+   "credit_min_series": 3,
+   "sig_post_rho": 0.5,
+   "sig_pre_rho": 0.2,
+   "sig_n_post": 20,
+   "sig_post_r": 0.1,
+   "benign_share": 0.8,
+   "tokens_per_char": 0.25
+  },
+  "probe1_step": {
+   "step_m": 20,
+   "step_n_perm": 199,
+   "step_p": 0.01,
+   "step_D": 0.3010299956639812,
+   "step_share_unstable": 0.1
+  },
+  "G90_tokens_per_s": 65.25882747320934,
+  "covariate_text": {
+   "harness_events": "events of phase_c_changepoints.HARNESS_TYPES (definitions copied in covariate_definitions) in the window of W = 5 calls on each side of k*",
+   "version_change": "raw Claude Code entry `version` differs between the pre- and post-step segments (raw_cc_entries())",
+   "cwd_or_branch_change": "raw entry cwd or gitBranch differs between segments",
+   "permission_mode_change": "raw entry permissionMode differs between segments",
+   "idle_gap": "a wall-clock gap >= 300 s between consecutive events within the window",
+   "hook_rate_change": "share of calls with a linked hook_progress event differs by >= 0.5 between segments",
+   "tool_mix_shift": "Jensen-Shannon distance (base 2) >= 0.3 between tool_key distributions of the 20 calls before and after k*",
+   "parallelism_change": "share of calls that are not the last call of their API message differs by >= 0.3",
+   "result_size_shift": "|log10(median result bytes after / before)| >= log10 2",
+   "subagent_in_flight": "a subagent call is in flight at the step call's stamp",
+   "workspace_change": "workspace root (pc.workspace_root) of pre- and post-step read paths differs"
+  },
+  "control": "for every non-step eligible series, one split point k drawn uniformly in [20, n-20] (rng_for('F2', session, tool_key)); covariate rates at k* (step series) vs k (controls)",
+  "credited_covariate": "rate at k* minus control rate >= 0.25, and present in >= 3 step series",
+  "compromise_signature": "post-step Spearman(result bytes, latency) >= 0.5 with n_post >= 20 while the pre-step value is <= 0.2, OR post-step median r = latency / T_gen >= 0.1 (T_gen from the unit's G90); computed by compromise_signature()",
+  "classes": {
+   "BENIGN": ">= 1 credited covariate present in the window",
+   "COMPROMISE_LIKE": "signature met and no credited covariate",
+   "UNEXPLAINED": "neither"
+  },
+  "outcome_rule": "DISMISSIBLE_AS_BENIGN if BENIGN share >= 0.8 of step series and COMPROMISE_LIKE = 0; otherwise OPEN. COMPROMISE_LIKE series are listed individually (series index, factor, direction, covariate vector) for human review. No verdict changes either way (no_rescue)."
+ },
+ "inputs_sha256": {
+  "analysis/cache/swechat_B.parquet": "9e46807da7b3a2c1b408f7c786ba087585460ee5af11e8dc3ca1ae6db693826e",
+  "analysis/cache/swechat_E.parquet": "5fd742be9acfb46f2618b97450e925f7f8414868fe59db25759929348d8d551f",
+  "analysis/cache/swechat_population.parquet": "a58494f02f0b78769a81a25e1278e57c83c9434b9e80b12ac99f1ab4743594f7"
+ },
+ "extraction": {
+  "B": {
+   "pairs": 194367,
+   "qualified": 32261,
+   "qualified_positive": 31979,
+   "sessions_in_frame": 1679
+  },
+  "E": {
+   "pairs": 180046,
+   "qualified": 27978,
+   "qualified_positive": 27756,
+   "sessions_in_frame": 1545
+  }
+ },
+ "raw_scan": {
+  "transcript_scanned": 212,
+  "raw_entries_sessions": 212
+ },
+ "steps": {
+  "B": {
+   "eligible_series": 156,
+   "steps": 21,
+   "eligible_sessions": 114,
+   "sessions_with_step": 18,
+   "step_share_wilson": {
+    "k": 21,
+    "n": 156,
+    "p": 0.1346153846153846,
+    "lo": 0.08976012076172954,
+    "hi": 0.19703380522499728
+   },
+   "step_share_cluster_rate_over_sessions": {
+    "rate": 0.1346153846153846,
+    "lo": 0.08024074074074074,
+    "hi": 0.19514255108767303,
+    "n_sessions": 114,
+    "num": 21.0,
+    "den": 156.0
+   },
+   "label": "UNSTABLE",
+   "steps_by_direction": {
+    "up": 18,
+    "down": 3
+   },
+   "by_tool": {
+    "glob": {
+     "eligible": 2,
+     "steps": 1
+    },
+    "grep": {
+     "eligible": 38,
+     "steps": 3
+    },
+    "read": {
+     "eligible": 110,
+     "steps": 16
+    },
+    "taskupdate": {
+     "eligible": 2,
+     "steps": 0
+    },
+    "todo": {
+     "eligible": 4,
+     "steps": 1
+    }
+   }
+  },
+  "E": {
+   "eligible_series": 123,
+   "steps": 10,
+   "eligible_sessions": 98,
+   "sessions_with_step": 10,
+   "step_share_wilson": {
+    "k": 10,
+    "n": 123,
+    "p": 0.08130081300813008,
+    "lo": 0.04475838884502016,
+    "hi": 0.14320518146629724
+   },
+   "step_share_cluster_rate_over_sessions": {
+    "rate": 0.08130081300813008,
+    "lo": 0.03781677393403057,
+    "hi": 0.13385826771653545,
+    "n_sessions": 98,
+    "num": 10.0,
+    "den": 123.0
+   },
+   "label": "STABLE",
+   "steps_by_direction": {
+    "up": 10
+   },
+   "by_tool": {
+    "grep": {
+     "eligible": 23,
+     "steps": 1
+    },
+    "read": {
+     "eligible": 97,
+     "steps": 9
+    },
+    "taskupdate": {
+     "eligible": 2,
+     "steps": 0
+    },
+    "todo": {
+     "eligible": 1,
+     "steps": 0
+    }
+   }
+  },
+  "BuE_union_of_split_runs": {
+   "eligible_series": 279,
+   "steps": 31,
+   "eligible_sessions": 212,
+   "sessions_with_step": 28,
+   "step_share_wilson": {
+    "k": 31,
+    "n": 279,
+    "p": 0.1111111111111111,
+    "lo": 0.0793883740879516,
+    "hi": 0.15339775072537143
+   },
+   "step_share_cluster_rate_over_sessions": {
+    "rate": 0.1111111111111111,
+    "lo": 0.07167183254888455,
+    "hi": 0.15248839458413926,
+    "n_sessions": 212,
+    "num": 31.0,
+    "den": 279.0
+   },
+   "label": "UNSTABLE",
+   "steps_by_direction": {
+    "up": 28,
+    "down": 3
+   },
+   "by_tool": {
+    "glob": {
+     "eligible": 2,
+     "steps": 1
+    },
+    "grep": {
+     "eligible": 61,
+     "steps": 4
+    },
+    "read": {
+     "eligible": 207,
+     "steps": 25
+    },
+    "taskupdate": {
+     "eligible": 4,
+     "steps": 0
+    },
+    "todo": {
+     "eligible": 5,
+     "steps": 1
+    }
+   }
+  },
+  "BuE_pooled_index": {
+   "eligible_series": 279,
+   "steps": 35,
+   "eligible_sessions": 212,
+   "sessions_with_step": 30,
+   "step_share_wilson": {
+    "k": 35,
+    "n": 279,
+    "p": 0.12544802867383512,
+    "lo": 0.09159953956635114,
+    "hi": 0.16947096774233322
+   },
+   "step_share_cluster_rate_over_sessions": {
+    "rate": 0.12544802867383512,
+    "lo": 0.08242858289199166,
+    "hi": 0.16906607067287346,
+    "n_sessions": 212,
+    "num": 35.0,
+    "den": 279.0
+   },
+   "label": "UNSTABLE",
+   "steps_by_direction": {
+    "up": 30,
+    "down": 5
+   },
+   "by_tool": {
+    "glob": {
+     "eligible": 2,
+     "steps": 1
+    },
+    "grep": {
+     "eligible": 61,
+     "steps": 6
+    },
+    "read": {
+     "eligible": 207,
+     "steps": 27
+    },
+    "taskupdate": {
+     "eligible": 4,
+     "steps": 0
+    },
+    "todo": {
+     "eligible": 5,
+     "steps": 1
+    }
+   }
+  },
+  "B_reproduces_phase_b": {
+   "phase_b": [
+    21,
+    156,
+    18,
+    114
+   ],
+   "here": [
+    21,
+    156,
+    18,
+    114
+   ],
+   "match": true,
+   "series_level_match": true
+  },
+  "cross_check_a1_p1_p3": {
+   "B": {
+    "a1": [
+     21,
+     156
+    ],
+    "here": [
+     21,
+     156
+    ]
+   },
+   "E": {
+    "a1": [
+     10,
+     123
+    ],
+    "here": [
+     10,
+     123
+    ]
+   },
+   "BuE": {
+    "a1": [
+     35,
+     279
+    ],
+    "here": [
+     35,
+     279
+    ]
+   }
+  },
+  "replication_E": {
+   "label": "STABLE",
+   "step_share": {
+    "k": 10,
+    "n": 123,
+    "p": 0.08130081300813008,
+    "lo": 0.04475838884502016,
+    "hi": 0.14320518146629724
+   },
+   "rule": "the Phase B step rule (pc.change_point, p <= 0.01 and D* >= log10 2) on E alone; label STABLE/UNSTABLE by the Phase B 0.10 rule"
+  },
+  "pooled_vs_union_step_flag_differs": [
+   {
+    "session": "2026-01-20-eb4bcc15-3ff5-4d73-bac5-9bc1d786b2bb",
+    "split": "E",
+    "tool_key": "grep",
+    "n": 54,
+    "p_split_run": 0.03,
+    "p_pooled_run": 0.01,
+    "D_log10_split_run": 0.5377288050320067,
+    "D_log10_pooled_run": 0.5377288050320067,
+    "step_split_run": false,
+    "step_pooled_run": true
+   },
+   {
+    "session": "2026-01-22-0cf3db51-1c73-43bb-8d05-dc02739514a5",
+    "split": "B",
+    "tool_key": "read",
+    "n": 81,
+    "p_split_run": 0.015,
+    "p_pooled_run": 0.005,
+    "D_log10_split_run": 0.3610021102381751,
+    "D_log10_pooled_run": 0.3610021102381751,
+    "step_split_run": false,
+    "step_pooled_run": true
+   },
+   {
+    "session": "2026-01-22-375d5d79-9c13-419d-a5fd-72421f2af713",
+    "split": "E",
+    "tool_key": "read",
+    "n": 95,
+    "p_split_run": 0.01,
+    "p_pooled_run": 0.045,
+    "D_log10_split_run": 0.3378197773230104,
+    "D_log10_pooled_run": 0.3378197773230104,
+    "step_split_run": true,
+    "step_pooled_run": false
+   },
+   {
+    "session": "2026-01-23-6113e919-67d3-417b-b525-c63700228d19",
+    "split": "E",
+    "tool_key": "read",
+    "n": 90,
+    "p_split_run": 0.015,
+    "p_pooled_run": 0.01,
+    "D_log10_split_run": 0.30102999566398125,
+    "D_log10_pooled_run": 0.30102999566398125,
+    "step_split_run": false,
+    "step_pooled_run": true
+   },
+   {
+    "session": "4ddad80c-b9d6-490f-bd13-3f41ed52caf5",
+    "split": "B",
+    "tool_key": "grep",
+    "n": 141,
+    "p_split_run": 0.015,
+    "p_pooled_run": 0.01,
+    "D_log10_split_run": 0.33190318268815083,
+    "D_log10_pooled_run": 0.33190318268815083,
+    "step_split_run": false,
+    "step_pooled_run": true
+   },
+   {
+    "session": "63d8909b-820f-49f1-a229-8f5f7e106c70",
+    "split": "E",
+    "tool_key": "read",
+    "n": 103,
+    "p_split_run": 0.02,
+    "p_pooled_run": 0.01,
+    "D_log10_split_run": 0.5894745979176159,
+    "D_log10_pooled_run": 0.5894745979176159,
+    "step_split_run": false,
+    "step_pooled_run": true
+   },
+   {
+    "session": "f01db921-a255-4978-9c64-3a353600bda3",
+    "split": "E",
+    "tool_key": "read",
+    "n": 50,
+    "p_split_run": 0.01,
+    "p_pooled_run": 0.025,
+    "D_log10_split_run": 0.30102999566398125,
+    "D_log10_pooled_run": 0.30102999566398125,
+    "step_split_run": true,
+    "step_pooled_run": false
+   },
+   {
+    "session": "f6c3f00e-29d9-437b-9e28-9b3d485237fd",
+    "split": "E",
+    "tool_key": "read",
+    "n": 248,
+    "p_split_run": 0.02,
+    "p_pooled_run": 0.01,
+    "D_log10_split_run": 0.5403433005224707,
+    "D_log10_pooled_run": 0.5403433005224707,
+    "step_split_run": false,
+    "step_pooled_run": true
+   }
+  ]
+ },
+ "populations": {
+  "B": {
+   "population": "B",
+   "step_series": 21,
+   "step_sessions": 18,
+   "control_series": 135,
+   "control_sessions": 103,
+   "min_n": {
+    "rate_reportable": {
+     "den_min": 30,
+     "sessions_min": 5,
+     "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+    },
+    "step_side_reportable": false,
+    "control_side_reportable": true,
+    "credit_test_and_outcome_computed": false,
+    "rule": "prereg_e.json global.min_n -> prereg.json global.min_n: report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+   },
+   "covariates": {
+    "harness_events": {
+     "step": {
+      "k": 15,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 79,
+      "n": 135,
+      "p": 0.5851851851851851,
+      "lo": 0.5008403336567293,
+      "hi": 0.6648160690352591,
+      "sessions": 103
+     },
+     "present_in_step_series": 15,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "version_change": {
+     "step": {
+      "k": 0,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 1,
+      "n": 135,
+      "p": 0.007407407407407408,
+      "lo": 0.0013087545613434844,
+      "hi": 0.040765090741505236,
+      "sessions": 103
+     },
+     "present_in_step_series": 0,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "cwd_or_branch_change": {
+     "step": {
+      "k": 5,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 24,
+      "n": 135,
+      "p": 0.17777777777777778,
+      "lo": 0.12247545696005419,
+      "hi": 0.25091119372677173,
+      "sessions": 103
+     },
+     "present_in_step_series": 5,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "permission_mode_change": {
+     "step": {
+      "k": 0,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 10,
+      "n": 135,
+      "p": 0.07407407407407407,
+      "lo": 0.040730101413589175,
+      "hi": 0.13098788512646797,
+      "sessions": 103
+     },
+     "present_in_step_series": 0,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "idle_gap": {
+     "step": {
+      "k": 11,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 47,
+      "n": 135,
+      "p": 0.34814814814814815,
+      "lo": 0.2729969034656345,
+      "hi": 0.4317025526051686,
+      "sessions": 103
+     },
+     "present_in_step_series": 11,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "hook_rate_change": {
+     "step": {
+      "k": 0,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 5,
+      "n": 135,
+      "p": 0.037037037037037035,
+      "lo": 0.015921678957910863,
+      "hi": 0.08377178467258606,
+      "sessions": 103
+     },
+     "present_in_step_series": 0,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "tool_mix_shift": {
+     "step": {
+      "k": 17,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 93,
+      "n": 135,
+      "p": 0.6888888888888889,
+      "lo": 0.6064786653240721,
+      "hi": 0.7608464015146852,
+      "sessions": 103
+     },
+     "present_in_step_series": 17,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "parallelism_change": {
+     "step": {
+      "k": 2,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 10,
+      "n": 135,
+      "p": 0.07407407407407407,
+      "lo": 0.040730101413589175,
+      "hi": 0.13098788512646797,
+      "sessions": 103
+     },
+     "present_in_step_series": 2,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "result_size_shift": {
+     "step": {
+      "k": 7,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 60,
+      "n": 135,
+      "p": 0.4444444444444444,
+      "lo": 0.36331238690531265,
+      "hi": 0.5286508287303471,
+      "sessions": 103
+     },
+     "present_in_step_series": 7,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "subagent_in_flight": {
+     "step": {
+      "k": 10,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 79,
+      "n": 135,
+      "p": 0.5851851851851851,
+      "lo": 0.5008403336567293,
+      "hi": 0.6648160690352591,
+      "sessions": 103
+     },
+     "present_in_step_series": 10,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "workspace_change": {
+     "step": {
+      "k": 7,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 65,
+      "n": 135,
+      "p": 0.48148148148148145,
+      "lo": 0.39887943575661955,
+      "hi": 0.5651083027886004,
+      "sessions": 103
+     },
+     "present_in_step_series": 7,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    }
+   },
+   "credited_covariates": [],
+   "harness_by_type_descriptive": {
+    "compaction": {
+     "step": 0,
+     "control": 20
+    },
+    "context_clear": {
+     "step": 0,
+     "control": 0
+    },
+    "slash_command": {
+     "step": 3,
+     "control": 15
+    },
+    "skill_injection": {
+     "step": 0,
+     "control": 9
+    },
+    "model_switch": {
+     "step": 0,
+     "control": 0
+    },
+    "setting_change": {
+     "step": 0,
+     "control": 10
+    },
+    "subagent_start": {
+     "step": 11,
+     "control": 47
+    },
+    "user_turn": {
+     "step": 10,
+     "control": 62
+    },
+    "resume": {
+     "step": 0,
+     "control": 0
+    },
+    "version_change": {
+     "step": 0,
+     "control": 1
+    },
+    "api_error": {
+     "step": 0,
+     "control": 5
+    },
+    "interrupt": {
+     "step": 1,
+     "control": 14
+    },
+    "tool_timeout": {
+     "step": 0,
+     "control": 0
+    },
+    "task_notification": {
+     "step": 5,
+     "control": 7
+    },
+    "rollback": {
+     "step": 0,
+     "control": 0
+    }
+   },
+   "classes": null,
+   "classes_note": "not computed: own-population classes need the credit test, which is below min n; the split breakdown of the primary B u E classes is under classes_of_primary_BuE_raw",
+   "outcome": "INSUFFICIENT_N",
+   "outcome_deciding": {
+    "n_step_series": 21,
+    "step_sessions": 18,
+    "control_series": 135,
+    "control_sessions": 103,
+    "min_n": {
+     "den_min": 30,
+     "sessions_min": 5,
+     "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+    },
+    "label": "insufficient n",
+    "rule": "report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+   },
+   "signature_step": {
+    "met": 3,
+    "leg_rho": 0,
+    "leg_r": 3,
+    "n": 21,
+    "met_wilson": {
+     "k": 3,
+     "n": 21,
+     "sessions": 18,
+     "label": "insufficient n"
+    }
+   },
+   "signature_control_descriptive": {
+    "met": 25,
+    "leg_rho": 3,
+    "leg_r": 22,
+    "n": 135,
+    "met_wilson": {
+     "k": 25,
+     "n": 135,
+     "p": 0.18518518518518517,
+     "lo": 0.12869695822609414,
+     "hi": 0.2590945970426438,
+     "sessions": 103
+    }
+   },
+   "signature_control_note": "post hoc, not a verdict: the signature evaluated at each control's random split",
+   "classes_of_primary_BuE_raw": {
+    "note": "the step series of this split classified under the primary B u E credits (none credited); raw k/n, no rate, no CI (insufficient n)",
+    "BENIGN": {
+     "k": 0,
+     "n": 21
+    },
+    "COMPROMISE_LIKE": {
+     "k": 3,
+     "n": 21
+    },
+    "UNEXPLAINED": {
+     "k": 18,
+     "n": 21
+    },
+    "compromise_like_series": [
+     0,
+     13,
+     18
+    ],
+    "by_direction": {
+     "down": {
+      "UNEXPLAINED": 3
+     },
+     "up": {
+      "COMPROMISE_LIKE": 3,
+      "UNEXPLAINED": 15
+     }
+    }
+   }
+  },
+  "E": {
+   "population": "E",
+   "step_series": 10,
+   "step_sessions": 10,
+   "control_series": 113,
+   "control_sessions": 93,
+   "min_n": {
+    "rate_reportable": {
+     "den_min": 30,
+     "sessions_min": 5,
+     "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+    },
+    "step_side_reportable": false,
+    "control_side_reportable": true,
+    "credit_test_and_outcome_computed": false,
+    "rule": "prereg_e.json global.min_n -> prereg.json global.min_n: report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+   },
+   "covariates": {
+    "harness_events": {
+     "step": {
+      "k": 9,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 82,
+      "n": 113,
+      "p": 0.7256637168141593,
+      "lo": 0.6370013046529361,
+      "hi": 0.7994870693508433,
+      "sessions": 93
+     },
+     "present_in_step_series": 9,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "version_change": {
+     "step": {
+      "k": 1,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 1,
+      "n": 113,
+      "p": 0.008849557522123894,
+      "lo": 0.0015638358136017966,
+      "hi": 0.04843205606052523,
+      "sessions": 93
+     },
+     "present_in_step_series": 1,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "cwd_or_branch_change": {
+     "step": {
+      "k": 3,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 20,
+      "n": 113,
+      "p": 0.17699115044247787,
+      "lo": 0.11759646319919156,
+      "hi": 0.25762606028559465,
+      "sessions": 93
+     },
+     "present_in_step_series": 3,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "permission_mode_change": {
+     "step": {
+      "k": 2,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 6,
+      "n": 113,
+      "p": 0.05309734513274336,
+      "lo": 0.024559255637348558,
+      "hi": 0.11102259192379405,
+      "sessions": 93
+     },
+     "present_in_step_series": 2,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "idle_gap": {
+     "step": {
+      "k": 7,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 38,
+      "n": 113,
+      "p": 0.336283185840708,
+      "lo": 0.2558324486519233,
+      "hi": 0.42749951530611924,
+      "sessions": 93
+     },
+     "present_in_step_series": 7,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "hook_rate_change": {
+     "step": {
+      "k": 0,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 4,
+      "n": 113,
+      "p": 0.035398230088495575,
+      "lo": 0.0138499544653361,
+      "hi": 0.08749751082100028,
+      "sessions": 93
+     },
+     "present_in_step_series": 0,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "tool_mix_shift": {
+     "step": {
+      "k": 7,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 86,
+      "n": 113,
+      "p": 0.7610619469026548,
+      "lo": 0.674680392680986,
+      "hi": 0.830276745872406,
+      "sessions": 93
+     },
+     "present_in_step_series": 7,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "parallelism_change": {
+     "step": {
+      "k": 0,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 11,
+      "n": 113,
+      "p": 0.09734513274336283,
+      "lo": 0.05522791315533354,
+      "hi": 0.16593989009282467,
+      "sessions": 93
+     },
+     "present_in_step_series": 0,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "result_size_shift": {
+     "step": {
+      "k": 5,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 50,
+      "n": 113,
+      "p": 0.4424778761061947,
+      "lo": 0.3542888138118704,
+      "hi": 0.5344494437950094,
+      "sessions": 93
+     },
+     "present_in_step_series": 5,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "subagent_in_flight": {
+     "step": {
+      "k": 4,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 66,
+      "n": 113,
+      "p": 0.584070796460177,
+      "lo": 0.4918922725047336,
+      "hi": 0.6707210433005959,
+      "sessions": 93
+     },
+     "present_in_step_series": 4,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    },
+    "workspace_change": {
+     "step": {
+      "k": 5,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 47,
+      "n": 113,
+      "p": 0.415929203539823,
+      "lo": 0.329278956699404,
+      "hi": 0.5081077274952663,
+      "sessions": 93
+     },
+     "present_in_step_series": 5,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    }
+   },
+   "credited_covariates": [],
+   "harness_by_type_descriptive": {
+    "compaction": {
+     "step": 1,
+     "control": 15
+    },
+    "context_clear": {
+     "step": 0,
+     "control": 0
+    },
+    "slash_command": {
+     "step": 3,
+     "control": 12
+    },
+    "skill_injection": {
+     "step": 0,
+     "control": 5
+    },
+    "model_switch": {
+     "step": 0,
+     "control": 0
+    },
+    "setting_change": {
+     "step": 2,
+     "control": 6
+    },
+    "subagent_start": {
+     "step": 7,
+     "control": 62
+    },
+    "user_turn": {
+     "step": 8,
+     "control": 57
+    },
+    "resume": {
+     "step": 0,
+     "control": 0
+    },
+    "version_change": {
+     "step": 1,
+     "control": 1
+    },
+    "api_error": {
+     "step": 0,
+     "control": 1
+    },
+    "interrupt": {
+     "step": 3,
+     "control": 7
+    },
+    "tool_timeout": {
+     "step": 0,
+     "control": 0
+    },
+    "task_notification": {
+     "step": 4,
+     "control": 6
+    },
+    "rollback": {
+     "step": 0,
+     "control": 0
+    }
+   },
+   "classes": null,
+   "classes_note": "not computed: own-population classes need the credit test, which is below min n; the split breakdown of the primary B u E classes is under classes_of_primary_BuE_raw",
+   "outcome": "INSUFFICIENT_N",
+   "outcome_deciding": {
+    "n_step_series": 10,
+    "step_sessions": 10,
+    "control_series": 113,
+    "control_sessions": 93,
+    "min_n": {
+     "den_min": 30,
+     "sessions_min": 5,
+     "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+    },
+    "label": "insufficient n",
+    "rule": "report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+   },
+   "signature_step": {
+    "met": 0,
+    "leg_rho": 0,
+    "leg_r": 0,
+    "n": 10,
+    "met_wilson": {
+     "k": 0,
+     "n": 10,
+     "sessions": 10,
+     "label": "insufficient n"
+    }
+   },
+   "signature_control_descriptive": {
+    "met": 23,
+    "leg_rho": 5,
+    "leg_r": 18,
+    "n": 113,
+    "met_wilson": {
+     "k": 23,
+     "n": 113,
+     "p": 0.20353982300884957,
+     "lo": 0.13963231737885412,
+     "hi": 0.28694177951814154,
+     "sessions": 93
+    }
+   },
+   "signature_control_note": "post hoc, not a verdict: the signature evaluated at each control's random split",
+   "classes_of_primary_BuE_raw": {
+    "note": "the step series of this split classified under the primary B u E credits (none credited); raw k/n, no rate, no CI (insufficient n)",
+    "BENIGN": {
+     "k": 0,
+     "n": 10
+    },
+    "COMPROMISE_LIKE": {
+     "k": 0,
+     "n": 10
+    },
+    "UNEXPLAINED": {
+     "k": 10,
+     "n": 10
+    },
+    "compromise_like_series": [],
+    "by_direction": {
+     "up": {
+      "UNEXPLAINED": 10
+     }
+    }
+   }
+  },
+  "BuE": {
+   "population": "BuE (union of the B and E runs; primary)",
+   "step_series": 31,
+   "step_sessions": 28,
+   "control_series": 248,
+   "control_sessions": 196,
+   "min_n": {
+    "rate_reportable": {
+     "den_min": 30,
+     "sessions_min": 5,
+     "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+    },
+    "step_side_reportable": true,
+    "control_side_reportable": true,
+    "credit_test_and_outcome_computed": true,
+    "rule": "prereg_e.json global.min_n -> prereg.json global.min_n: report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+   },
+   "covariates": {
+    "harness_events": {
+     "step": {
+      "k": 24,
+      "n": 31,
+      "p": 0.7741935483870968,
+      "lo": 0.6018723994130262,
+      "hi": 0.8860500840550121,
+      "sessions": 28
+     },
+     "control": {
+      "k": 161,
+      "n": 248,
+      "p": 0.6491935483870968,
+      "lo": 0.5879334057652601,
+      "hi": 0.7059020844794015,
+      "sessions": 196
+     },
+     "present_in_step_series": 24,
+     "diff": 0.125,
+     "diff_session_bootstrap": {
+      "value": 0.125,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.03791978160878129,
+      "hi": 0.28249446008485
+     },
+     "credited": false
+    },
+    "version_change": {
+     "step": {
+      "k": 1,
+      "n": 31,
+      "p": 0.03225806451612903,
+      "lo": 0.00571707408694444,
+      "hi": 0.16194457176169622,
+      "sessions": 28
+     },
+     "control": {
+      "k": 2,
+      "n": 248,
+      "p": 0.008064516129032258,
+      "lo": 0.0022143279641083334,
+      "hi": 0.028922704202142196,
+      "sessions": 196
+     },
+     "present_in_step_series": 1,
+     "diff": 0.024193548387096774,
+     "diff_session_bootstrap": {
+      "value": 0.024193548387096774,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.01681028343540806,
+      "hi": 0.10003117734094269
+     },
+     "credited": false
+    },
+    "cwd_or_branch_change": {
+     "step": {
+      "k": 8,
+      "n": 31,
+      "p": 0.25806451612903225,
+      "lo": 0.1370154373686976,
+      "hi": 0.432464724277151,
+      "sessions": 28
+     },
+     "control": {
+      "k": 44,
+      "n": 248,
+      "p": 0.1774193548387097,
+      "lo": 0.13490149525325623,
+      "hi": 0.2297785258393671,
+      "sessions": 196
+     },
+     "present_in_step_series": 8,
+     "diff": 0.08064516129032256,
+     "diff_session_bootstrap": {
+      "value": 0.08064516129032256,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.08472561631642919,
+      "hi": 0.2620104148380754
+     },
+     "credited": false
+    },
+    "permission_mode_change": {
+     "step": {
+      "k": 2,
+      "n": 31,
+      "p": 0.06451612903225806,
+      "lo": 0.017874407775063147,
+      "hi": 0.20718988318746434,
+      "sessions": 28
+     },
+     "control": {
+      "k": 16,
+      "n": 248,
+      "p": 0.06451612903225806,
+      "lo": 0.040098319885016324,
+      "hi": 0.10221970859002513,
+      "sessions": 196
+     },
+     "present_in_step_series": 2,
+     "diff": 0.0,
+     "diff_session_bootstrap": {
+      "value": 0.0,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.07852054113370598,
+      "hi": 0.1019402720575699
+     },
+     "credited": false
+    },
+    "idle_gap": {
+     "step": {
+      "k": 18,
+      "n": 31,
+      "p": 0.5806451612903226,
+      "lo": 0.40765964352020967,
+      "hi": 0.7358469692645074,
+      "sessions": 28
+     },
+     "control": {
+      "k": 85,
+      "n": 248,
+      "p": 0.34274193548387094,
+      "lo": 0.2864719493525114,
+      "hi": 0.40380956093014253,
+      "sessions": 196
+     },
+     "present_in_step_series": 18,
+     "diff": 0.23790322580645168,
+     "diff_session_bootstrap": {
+      "value": 0.23790322580645168,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.047681316268272794,
+      "hi": 0.42719969063582147
+     },
+     "credited": false
+    },
+    "hook_rate_change": {
+     "step": {
+      "k": 0,
+      "n": 31,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.11025900073475385,
+      "sessions": 28
+     },
+     "control": {
+      "k": 9,
+      "n": 248,
+      "p": 0.036290322580645164,
+      "lo": 0.01920764820306371,
+      "hi": 0.0675198821175823,
+      "sessions": 196
+     },
+     "present_in_step_series": 0,
+     "diff": -0.036290322580645164,
+     "diff_session_bootstrap": {
+      "value": -0.036290322580645164,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.05933300695522993,
+      "hi": -0.015873015873015872
+     },
+     "credited": false
+    },
+    "tool_mix_shift": {
+     "step": {
+      "k": 24,
+      "n": 31,
+      "p": 0.7741935483870968,
+      "lo": 0.6018723994130262,
+      "hi": 0.8860500840550121,
+      "sessions": 28
+     },
+     "control": {
+      "k": 179,
+      "n": 248,
+      "p": 0.7217741935483871,
+      "lo": 0.6629412531710261,
+      "hi": 0.7738412323277954,
+      "sessions": 196
+     },
+     "present_in_step_series": 24,
+     "diff": 0.05241935483870963,
+     "diff_session_bootstrap": {
+      "value": 0.05241935483870963,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.13589677186791502,
+      "hi": 0.21046845824688795
+     },
+     "credited": false
+    },
+    "parallelism_change": {
+     "step": {
+      "k": 2,
+      "n": 31,
+      "p": 0.06451612903225806,
+      "lo": 0.017874407775063147,
+      "hi": 0.20718988318746434,
+      "sessions": 28
+     },
+     "control": {
+      "k": 21,
+      "n": 248,
+      "p": 0.0846774193548387,
+      "lo": 0.05604945069719733,
+      "hi": 0.1259760764595552,
+      "sessions": 196
+     },
+     "present_in_step_series": 2,
+     "diff": -0.02016129032258064,
+     "diff_session_bootstrap": {
+      "value": -0.02016129032258064,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.10318144499178981,
+      "hi": 0.09394193331561747
+     },
+     "credited": false
+    },
+    "result_size_shift": {
+     "step": {
+      "k": 12,
+      "n": 31,
+      "p": 0.3870967741935484,
+      "lo": 0.23732875351271562,
+      "hi": 0.5617619885886803,
+      "sessions": 28
+     },
+     "control": {
+      "k": 110,
+      "n": 248,
+      "p": 0.4435483870967742,
+      "lo": 0.3830447043185537,
+      "hi": 0.5057742993726555,
+      "sessions": 196
+     },
+     "present_in_step_series": 12,
+     "diff": -0.05645161290322581,
+     "diff_session_bootstrap": {
+      "value": -0.05645161290322581,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.24119651422535454,
+      "hi": 0.13941079345458351
+     },
+     "credited": false
+    },
+    "subagent_in_flight": {
+     "step": {
+      "k": 14,
+      "n": 31,
+      "p": 0.45161290322580644,
+      "lo": 0.29161482836586106,
+      "hi": 0.6222812039633085,
+      "sessions": 28
+     },
+     "control": {
+      "k": 145,
+      "n": 248,
+      "p": 0.5846774193548387,
+      "lo": 0.5225104556247641,
+      "hi": 0.6442610388384223,
+      "sessions": 196
+     },
+     "present_in_step_series": 14,
+     "diff": -0.1330645161290323,
+     "diff_session_bootstrap": {
+      "value": -0.1330645161290323,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.331544189681568,
+      "hi": 0.06696720058064007
+     },
+     "credited": false
+    },
+    "workspace_change": {
+     "step": {
+      "k": 12,
+      "n": 31,
+      "p": 0.3870967741935484,
+      "lo": 0.23732875351271562,
+      "hi": 0.5617619885886803,
+      "sessions": 28
+     },
+     "control": {
+      "k": 112,
+      "n": 248,
+      "p": 0.45161290322580644,
+      "lo": 0.39088281040970363,
+      "hi": 0.51381919275419,
+      "sessions": 196
+     },
+     "present_in_step_series": 12,
+     "diff": -0.06451612903225806,
+     "diff_session_bootstrap": {
+      "value": -0.06451612903225806,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.26314683378636866,
+      "hi": 0.14050370645351704
+     },
+     "credited": false
+    }
+   },
+   "credited_covariates": [],
+   "harness_by_type_descriptive": {
+    "compaction": {
+     "step": 1,
+     "control": 35
+    },
+    "context_clear": {
+     "step": 0,
+     "control": 0
+    },
+    "slash_command": {
+     "step": 6,
+     "control": 27
+    },
+    "skill_injection": {
+     "step": 0,
+     "control": 14
+    },
+    "model_switch": {
+     "step": 0,
+     "control": 0
+    },
+    "setting_change": {
+     "step": 2,
+     "control": 16
+    },
+    "subagent_start": {
+     "step": 18,
+     "control": 109
+    },
+    "user_turn": {
+     "step": 18,
+     "control": 119
+    },
+    "resume": {
+     "step": 0,
+     "control": 0
+    },
+    "version_change": {
+     "step": 1,
+     "control": 2
+    },
+    "api_error": {
+     "step": 0,
+     "control": 6
+    },
+    "interrupt": {
+     "step": 4,
+     "control": 21
+    },
+    "tool_timeout": {
+     "step": 0,
+     "control": 0
+    },
+    "task_notification": {
+     "step": 9,
+     "control": 13
+    },
+    "rollback": {
+     "step": 0,
+     "control": 0
+    }
+   },
+   "classes": {
+    "BENIGN": {
+     "k": 0,
+     "n": 31,
+     "p": 0.0,
+     "lo": 0.0,
+     "hi": 0.11025900073475385,
+     "sessions": 28
+    },
+    "COMPROMISE_LIKE": {
+     "k": 3,
+     "n": 31,
+     "p": 0.0967741935483871,
+     "lo": 0.03346403609464399,
+     "hi": 0.2490028999817704,
+     "sessions": 28
+    },
+    "UNEXPLAINED": {
+     "k": 28,
+     "n": 31,
+     "p": 0.9032258064516129,
+     "lo": 0.7509971000182295,
+     "hi": 0.966535963905356,
+     "sessions": 28
+    }
+   },
+   "classes_by_direction": {
+    "down": {
+     "UNEXPLAINED": 3
+    },
+    "up": {
+     "COMPROMISE_LIKE": 3,
+     "UNEXPLAINED": 25
+    }
+   },
+   "outcome": "OPEN",
+   "outcome_deciding": {
+    "BENIGN": 0,
+    "COMPROMISE_LIKE": 3,
+    "UNEXPLAINED": 28,
+    "n_step_series": 31,
+    "step_sessions": 28,
+    "benign_share": 0.0,
+    "rule": "DISMISSIBLE_AS_BENIGN if BENIGN share >= 0.8 of step series and COMPROMISE_LIKE = 0; otherwise OPEN. COMPROMISE_LIKE series are listed individually (series index, factor, direction, covariate vector) for human review. No verdict changes either way (no_rescue)."
+   },
+   "compromise_like_series": [
+    0,
+    13,
+    18
+   ],
+   "signature_step": {
+    "met": 3,
+    "leg_rho": 0,
+    "leg_r": 3,
+    "n": 31,
+    "met_wilson": {
+     "k": 3,
+     "n": 31,
+     "p": 0.0967741935483871,
+     "lo": 0.03346403609464399,
+     "hi": 0.2490028999817704,
+     "sessions": 28
+    }
+   },
+   "signature_control_descriptive": {
+    "met": 48,
+    "leg_rho": 8,
+    "leg_r": 40,
+    "n": 248,
+    "met_wilson": {
+     "k": 48,
+     "n": 248,
+     "p": 0.1935483870967742,
+     "lo": 0.14920449781567427,
+     "hi": 0.24724152222231785,
+     "sessions": 196
+    }
+   },
+   "signature_control_note": "post hoc, not a verdict: the signature evaluated at each control's random split"
+  }
+ },
+ "sensitivity_pooled_index": {
+  "population": "BuE pooled-index run (sensitivity)",
+  "step_series": 35,
+  "step_sessions": 30,
+  "control_series": 244,
+  "control_sessions": 195,
+  "min_n": {
+   "rate_reportable": {
+    "den_min": 30,
+    "sessions_min": 5,
+    "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+   },
+   "step_side_reportable": true,
+   "control_side_reportable": true,
+   "credit_test_and_outcome_computed": true,
+   "rule": "prereg_e.json global.min_n -> prereg.json global.min_n: report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+  },
+  "covariates": {
+   "harness_events": {
+    "step": {
+     "k": 28,
+     "n": 35,
+     "p": 0.8,
+     "lo": 0.6410806339053748,
+     "hi": 0.899576805540992,
+     "sessions": 30
+    },
+    "control": {
+     "k": 157,
+     "n": 244,
+     "p": 0.6434426229508197,
+     "lo": 0.5815445297741698,
+     "hi": 0.70089393092008,
+     "sessions": 195
+    },
+    "present_in_step_series": 28,
+    "diff": 0.15655737704918038,
+    "diff_session_bootstrap": {
+     "value": 0.15655737704918038,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.008162477954144574,
+     "hi": 0.31212173579109065
+    },
+    "credited": false
+   },
+   "version_change": {
+    "step": {
+     "k": 2,
+     "n": 35,
+     "p": 0.05714285714285714,
+     "lo": 0.015812829614043955,
+     "hi": 0.1860738073937003,
+     "sessions": 30
+    },
+    "control": {
+     "k": 2,
+     "n": 244,
+     "p": 0.00819672131147541,
+     "lo": 0.002250675085449823,
+     "hi": 0.029388888248550606,
+     "sessions": 195
+    },
+    "present_in_step_series": 2,
+    "diff": 0.04894613583138173,
+    "diff_session_bootstrap": {
+     "value": 0.04894613583138173,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.0159394550312805,
+     "hi": 0.13889694158913565
+    },
+    "credited": false
+   },
+   "cwd_or_branch_change": {
+    "step": {
+     "k": 11,
+     "n": 35,
+     "p": 0.3142857142857143,
+     "lo": 0.18550658059782457,
+     "hi": 0.47980071879251973,
+     "sessions": 30
+    },
+    "control": {
+     "k": 42,
+     "n": 244,
+     "p": 0.1721311475409836,
+     "lo": 0.12994120756736582,
+     "hi": 0.2244851679886345,
+     "sessions": 195
+    },
+    "present_in_step_series": 11,
+    "diff": 0.14215456674473068,
+    "diff_session_bootstrap": {
+     "value": 0.14215456674473068,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.015151515151515138,
+     "hi": 0.3251857208448117
+    },
+    "credited": false
+   },
+   "permission_mode_change": {
+    "step": {
+     "k": 2,
+     "n": 35,
+     "p": 0.05714285714285714,
+     "lo": 0.015812829614043955,
+     "hi": 0.1860738073937003,
+     "sessions": 30
+    },
+    "control": {
+     "k": 16,
+     "n": 244,
+     "p": 0.06557377049180328,
+     "lo": 0.04076225071742575,
+     "hi": 0.10385269689427465,
+     "sessions": 195
+    },
+    "present_in_step_series": 2,
+    "diff": -0.008430913348946141,
+    "diff_session_bootstrap": {
+     "value": -0.008430913348946141,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.08300537408375527,
+     "hi": 0.08014850607363513
+    },
+    "credited": false
+   },
+   "idle_gap": {
+    "step": {
+     "k": 20,
+     "n": 35,
+     "p": 0.5714285714285714,
+     "lo": 0.4085712925897337,
+     "hi": 0.7201566691832108,
+     "sessions": 30
+    },
+    "control": {
+     "k": 83,
+     "n": 244,
+     "p": 0.3401639344262295,
+     "lo": 0.2836058408896599,
+     "hi": 0.40167701719389026,
+     "sessions": 195
+    },
+    "present_in_step_series": 20,
+    "diff": 0.2312646370023419,
+    "diff_session_bootstrap": {
+     "value": 0.2312646370023419,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": 0.026809874896320834,
+     "hi": 0.4199676957722506
+    },
+    "credited": false
+   },
+   "hook_rate_change": {
+    "step": {
+     "k": 0,
+     "n": 35,
+     "p": 0.0,
+     "lo": 0.0,
+     "hi": 0.09890426758938868,
+     "sessions": 30
+    },
+    "control": {
+     "k": 9,
+     "n": 244,
+     "p": 0.036885245901639344,
+     "lo": 0.019524469066044898,
+     "hi": 0.06860278640680552,
+     "sessions": 195
+    },
+    "present_in_step_series": 0,
+    "diff": -0.036885245901639344,
+    "diff_session_bootstrap": {
+     "value": -0.036885245901639344,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.06465822630182885,
+     "hi": -0.015444015444015444
+    },
+    "credited": false
+   },
+   "tool_mix_shift": {
+    "step": {
+     "k": 26,
+     "n": 35,
+     "p": 0.7428571428571429,
+     "lo": 0.5793037572935127,
+     "hi": 0.8583713127344985,
+     "sessions": 30
+    },
+    "control": {
+     "k": 177,
+     "n": 244,
+     "p": 0.7254098360655737,
+     "lo": 0.6662409568866093,
+     "hi": 0.7775909099186405,
+     "sessions": 195
+    },
+    "present_in_step_series": 26,
+    "diff": 0.01744730679156914,
+    "diff_session_bootstrap": {
+     "value": 0.01744730679156914,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.15138360390751276,
+     "hi": 0.15760568731997301
+    },
+    "credited": false
+   },
+   "parallelism_change": {
+    "step": {
+     "k": 2,
+     "n": 35,
+     "p": 0.05714285714285714,
+     "lo": 0.015812829614043955,
+     "hi": 0.1860738073937003,
+     "sessions": 30
+    },
+    "control": {
+     "k": 20,
+     "n": 244,
+     "p": 0.08196721311475409,
+     "lo": 0.053685411633140764,
+     "hi": 0.1232082172007596,
+     "sessions": 195
+    },
+    "present_in_step_series": 2,
+    "diff": -0.02482435597189695,
+    "diff_session_bootstrap": {
+     "value": -0.02482435597189695,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.10126780657394656,
+     "hi": 0.07086272602834535
+    },
+    "credited": false
+   },
+   "result_size_shift": {
+    "step": {
+     "k": 15,
+     "n": 35,
+     "p": 0.42857142857142855,
+     "lo": 0.27984333081678914,
+     "hi": 0.5914287074102662,
+     "sessions": 30
+    },
+    "control": {
+     "k": 105,
+     "n": 244,
+     "p": 0.430327868852459,
+     "lo": 0.369755708640759,
+     "hi": 0.4930598961648911,
+     "sessions": 195
+    },
+    "present_in_step_series": 15,
+    "diff": -0.001756440281030447,
+    "diff_session_bootstrap": {
+     "value": -0.001756440281030447,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.1903598324868574,
+     "hi": 0.18143340994551152
+    },
+    "credited": false
+   },
+   "subagent_in_flight": {
+    "step": {
+     "k": 14,
+     "n": 35,
+     "p": 0.4,
+     "lo": 0.25550504933307244,
+     "hi": 0.5642758041848053,
+     "sessions": 30
+    },
+    "control": {
+     "k": 145,
+     "n": 244,
+     "p": 0.5942622950819673,
+     "lo": 0.5316500426912654,
+     "hi": 0.6539523743363846,
+     "sessions": 195
+    },
+    "present_in_step_series": 14,
+    "diff": -0.19426229508196724,
+    "diff_session_bootstrap": {
+     "value": -0.19426229508196724,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.3810525961192957,
+     "hi": 0.0008240398521613414
+    },
+    "credited": false
+   },
+   "workspace_change": {
+    "step": {
+     "k": 12,
+     "n": 35,
+     "p": 0.34285714285714286,
+     "lo": 0.20831495282688925,
+     "hi": 0.5084835312726328,
+     "sessions": 30
+    },
+    "control": {
+     "k": 113,
+     "n": 244,
+     "p": 0.46311475409836067,
+     "lo": 0.40160352162097335,
+     "hi": 0.5257694456290768,
+     "sessions": 195
+    },
+    "present_in_step_series": 12,
+    "diff": -0.12025761124121781,
+    "diff_session_bootstrap": {
+     "value": -0.12025761124121781,
+     "n_sessions": 212,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.28720908191865957,
+     "hi": 0.07663744025434358
+    },
+    "credited": false
+   }
+  },
+  "credited_covariates": [],
+  "harness_by_type_descriptive": {
+   "compaction": {
+    "step": 4,
+    "control": 33
+   },
+   "context_clear": {
+    "step": 0,
+    "control": 0
+   },
+   "slash_command": {
+    "step": 9,
+    "control": 27
+   },
+   "skill_injection": {
+    "step": 0,
+    "control": 14
+   },
+   "model_switch": {
+    "step": 1,
+    "control": 0
+   },
+   "setting_change": {
+    "step": 2,
+    "control": 16
+   },
+   "subagent_start": {
+    "step": 19,
+    "control": 107
+   },
+   "user_turn": {
+    "step": 22,
+    "control": 115
+   },
+   "resume": {
+    "step": 0,
+    "control": 0
+   },
+   "version_change": {
+    "step": 2,
+    "control": 2
+   },
+   "api_error": {
+    "step": 0,
+    "control": 6
+   },
+   "interrupt": {
+    "step": 5,
+    "control": 20
+   },
+   "tool_timeout": {
+    "step": 0,
+    "control": 0
+   },
+   "task_notification": {
+    "step": 9,
+    "control": 13
+   },
+   "rollback": {
+    "step": 0,
+    "control": 0
+   }
+  },
+  "classes": {
+   "BENIGN": {
+    "k": 0,
+    "n": 35,
+    "p": 0.0,
+    "lo": 0.0,
+    "hi": 0.09890426758938868,
+    "sessions": 30
+   },
+   "COMPROMISE_LIKE": {
+    "k": 4,
+    "n": 35,
+    "p": 0.11428571428571428,
+    "lo": 0.0453510585448975,
+    "hi": 0.2595179478812023,
+    "sessions": 30
+   },
+   "UNEXPLAINED": {
+    "k": 31,
+    "n": 35,
+    "p": 0.8857142857142857,
+    "lo": 0.7404820521187976,
+    "hi": 0.9546489414551025,
+    "sessions": 30
+   }
+  },
+  "classes_by_direction": {
+   "down": {
+    "COMPROMISE_LIKE": 1,
+    "UNEXPLAINED": 4
+   },
+   "up": {
+    "UNEXPLAINED": 27,
+    "COMPROMISE_LIKE": 3
+   }
+  },
+  "outcome": "OPEN",
+  "outcome_deciding": {
+   "BENIGN": 0,
+   "COMPROMISE_LIKE": 4,
+   "UNEXPLAINED": 31,
+   "n_step_series": 35,
+   "step_sessions": 30,
+   "benign_share": 0.0,
+   "rule": "DISMISSIBLE_AS_BENIGN if BENIGN share >= 0.8 of step series and COMPROMISE_LIKE = 0; otherwise OPEN. COMPROMISE_LIKE series are listed individually (series index, factor, direction, covariate vector) for human review. No verdict changes either way (no_rescue)."
+  },
+  "compromise_like_series": [
+   0,
+   "pooled_only:2026-01-20-eb4bcc15-3ff5-4d73-bac5-9bc1d786b2bb|grep",
+   13,
+   18
+  ],
+  "signature_step": {
+   "met": 4,
+   "leg_rho": 0,
+   "leg_r": 4,
+   "n": 35,
+   "met_wilson": {
+    "k": 4,
+    "n": 35,
+    "p": 0.11428571428571428,
+    "lo": 0.0453510585448975,
+    "hi": 0.2595179478812023,
+    "sessions": 30
+   }
+  },
+  "signature_control_descriptive": {
+   "met": 46,
+   "leg_rho": 8,
+   "leg_r": 38,
+   "n": 244,
+   "met_wilson": {
+    "k": 46,
+    "n": 244,
+    "p": 0.1885245901639344,
+    "lo": 0.14441807599730946,
+    "hi": 0.2422869807808908,
+    "sessions": 195
+   }
+  },
+  "signature_control_note": "post hoc, not a verdict: the signature evaluated at each control's random split"
+ },
+ "step_series_listing": [
+  {
+   "listing_index": 0,
+   "session": "0bc8148b-2e5a-476e-be1e-cf08b88d6fd8",
+   "split": "B",
+   "tool_key": "grep",
+   "n": 48,
+   "k": 20,
+   "k_over_n": 0.4166666666666667,
+   "D_log10": 0.4032524018793954,
+   "factor": 2.5307683930132607,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.0648024530623813,
+   "Q10_right_s": 0.16399999999999998,
+   "class_BuE": "COMPROMISE_LIKE",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": true,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.04898272330429123,
+    "post_rho": 0.2010147641966656,
+    "post_median_r": 0.12498862334507117,
+    "leg_rho": false,
+    "leg_r": true,
+    "met": true
+   },
+   "window": {
+    "k": 20,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 306142.379,
+    "session_calls_in_window": 297
+   },
+   "max_gap_s": 104549.612,
+   "js_distance": 0.5201205520268029,
+   "hook_share_pre_post": [
+    0.21602787456445993,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.10801393728222997,
+    0.3
+   ],
+   "result_bytes_median_pre5_post5": [
+    320.0,
+    317.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "task_notification",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     395.5,
+     408.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [
+     {
+      "listing_index": 1,
+      "tool_key": "read",
+      "direction": "up",
+      "step_time_diff_s": 80.63600048828125
+     }
+    ],
+    "latency_median_s_pre_post": [
+     0.1045,
+     0.1795
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 7.668
+   }
+  },
+  {
+   "listing_index": 1,
+   "session": "0bc8148b-2e5a-476e-be1e-cf08b88d6fd8",
+   "split": "B",
+   "tool_key": "read",
+   "n": 59,
+   "k": 39,
+   "k_over_n": 0.6610169491525424,
+   "D_log10": 1.4715305565629901,
+   "factor": 29.61628335527956,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.006000000000000003,
+   "Q10_right_s": 0.17769770013167746,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": false,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.14625008599152728,
+    "post_rho": -0.3852520692249812,
+    "post_median_r": 0.008986105022043474,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 39,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 167.12,
+    "session_calls_in_window": 44
+   },
+   "max_gap_s": 9.853,
+   "js_distance": 0.4160106242746754,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.25,
+    0.25
+   ],
+   "result_bytes_median_pre5_post5": [
+    9852.0,
+    5789.0
+   ],
+   "harness_types_in_window": [],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     4187.0,
+     5829.5
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.9743589743589743,
+     1.0
+    ],
+    "other_step_series_same_session": [
+     {
+      "listing_index": 0,
+      "tool_key": "grep",
+      "direction": "up",
+      "step_time_diff_s": 80.63600048828125
+     }
+    ],
+    "latency_median_s_pre_post": [
+     0.09,
+     0.1945
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 9.853
+   }
+  },
+  {
+   "listing_index": 2,
+   "session": "16dbe0ba-c447-4038-8452-2c18bd7cd4f5",
+   "split": "B",
+   "tool_key": "read",
+   "n": 144,
+   "k": 115,
+   "k_over_n": 0.7986111111111112,
+   "D_log10": 1.5486919969748454,
+   "factor": 35.37463740492659,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.007000000000000002,
+   "Q10_right_s": 0.24762246183448614,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.253191279930431,
+    "post_rho": 0.5852216748768472,
+    "post_median_r": 0.0068107953729990445,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 115,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 11.750000244140624,
+    "session_calls_in_window": 11
+   },
+   "max_gap_s": 2.365,
+   "js_distance": 0.7237872324839568,
+   "hook_share_pre_post": [
+    0.16666666666666666,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    21285.0,
+    27767.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     4058.0,
+     27992.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.015,
+     0.637
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 2.365
+   }
+  },
+  {
+   "listing_index": 3,
+   "session": "1c42689d-aaf8-483d-ba6a-0f4729af44db",
+   "split": "B",
+   "tool_key": "read",
+   "n": 130,
+   "k": 89,
+   "k_over_n": 0.6846153846153846,
+   "D_log10": 0.34242268082220617,
+   "factor": 2.1999999999999997,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.004999999999999999,
+   "Q10_right_s": 0.010999999999999998,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": false,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": false,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": 0.005847414808134455,
+    "post_rho": -0.2130447203043106,
+    "post_median_r": 0.0013860281941212604,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 89,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 191.85,
+    "session_calls_in_window": 20
+   },
+   "max_gap_s": 28.489,
+   "js_distance": 0.08734154841137151,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    3609.0,
+    4429.0
+   ],
+   "harness_types_in_window": [],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     3609.0,
+     2779.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.007,
+     0.013
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 28.489
+   }
+  },
+  {
+   "listing_index": 4,
+   "session": "24249d8a-a1ec-400c-9643-43d89830383b",
+   "split": "B",
+   "tool_key": "read",
+   "n": 119,
+   "k": 33,
+   "k_over_n": 0.2773109243697479,
+   "D_log10": 0.30102999566398125,
+   "factor": 2.0000000000000004,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.0020000000000000005,
+   "Q10_right_s": 0.004000000000000001,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": false,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": true,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": -0.1370075422536224,
+    "post_rho": -0.07949916713873043,
+    "post_median_r": 0.0004903160028620654,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 33,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 2.074000244140625,
+    "session_calls_in_window": 26
+   },
+   "max_gap_s": 1.250000244140625,
+   "js_distance": 0.42568722320724284,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.16666666666666666,
+    0.65
+   ],
+   "result_bytes_median_pre5_post5": [
+    8893.0,
+    4615.0
+   ],
+   "harness_types_in_window": [],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     4407.0,
+     3990.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.003,
+     0.006
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 3.199
+   }
+  },
+  {
+   "listing_index": 5,
+   "session": "36636388-6a2e-45ad-ac63-5d08a06fbf23",
+   "split": "B",
+   "tool_key": "grep",
+   "n": 108,
+   "k": 22,
+   "k_over_n": 0.2037037037037037,
+   "D_log10": 0.37789125343200025,
+   "factor": 2.3872134540537475,
+   "p": 0.005,
+   "direction": "down",
+   "Q10_left_s": 0.01909770763242999,
+   "Q10_right_s": 0.008000000000000004,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": true,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": -0.10302941062775627,
+    "post_rho": 0.06418018546789815,
+    "post_median_r": 0.006378589648278158,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 22,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 3491.925000244141,
+    "session_calls_in_window": 61
+   },
+   "max_gap_s": 1989.7030002441406,
+   "js_distance": 0.5712699971554557,
+   "hook_share_pre_post": [
+    0.0196078431372549,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.21568627450980393,
+    0.4
+   ],
+   "result_bytes_median_pre5_post5": [
+    1108.0,
+    482.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     210.5,
+     583.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [
+     {
+      "listing_index": 6,
+      "tool_key": "read",
+      "direction": "down",
+      "step_time_diff_s": 8.307
+     }
+    ],
+    "latency_median_s_pre_post": [
+     0.029,
+     0.014499999999999999
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 8.788
+   }
+  },
+  {
+   "listing_index": 6,
+   "session": "36636388-6a2e-45ad-ac63-5d08a06fbf23",
+   "split": "B",
+   "tool_key": "read",
+   "n": 99,
+   "k": 33,
+   "k_over_n": 0.3333333333333333,
+   "D_log10": 0.3093085326956262,
+   "factor": 2.038489752982913,
+   "p": 0.005,
+   "direction": "down",
+   "Q10_left_s": 0.010192448764914564,
+   "Q10_right_s": 0.004999999999999999,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": -0.029692206412483515,
+    "post_rho": 0.035440716177369054,
+    "post_median_r": 0.0007889643590531591,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 33,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 3680.8700002441406,
+    "session_calls_in_window": 87
+   },
+   "max_gap_s": 1989.7030002441406,
+   "js_distance": 0.7211578784674639,
+   "hook_share_pre_post": [
+    0.014492753623188406,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.14492753623188406,
+    0.3888888888888889
+   ],
+   "result_bytes_median_pre5_post5": [
+    2307.0,
+    3916.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     8260.0,
+     3043.5
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [
+     {
+      "listing_index": 5,
+      "tool_key": "grep",
+      "direction": "down",
+      "step_time_diff_s": 8.307
+     }
+    ],
+    "latency_median_s_pre_post": [
+     0.022,
+     0.008
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 7.161999755859375
+   }
+  },
+  {
+   "listing_index": 7,
+   "session": "3ee61331-fe2b-4102-bdef-078c3a278915",
+   "split": "B",
+   "tool_key": "read",
+   "n": 41,
+   "k": 20,
+   "k_over_n": 0.4878048780487805,
+   "D_log10": 1.1139433523068367,
+   "factor": 12.999999999999998,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.0020000000000000005,
+   "Q10_right_s": 0.026000000000000002,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": false,
+    "result_size_shift": true,
+    "subagent_in_flight": false,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": 0.6626293323929199,
+    "post_rho": 0.24341097970606962,
+    "post_median_r": 0.008861170349969019,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 20,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 2216.552999755859,
+    "session_calls_in_window": 30
+   },
+   "max_gap_s": 924.097,
+   "js_distance": 0.2545166829593796,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0625
+   ],
+   "result_bytes_median_pre5_post5": [
+    2842.0,
+    924.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     1090.5,
+     1141.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.018000000000000002,
+     0.035
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 77.921
+   }
+  },
+  {
+   "listing_index": 8,
+   "session": "464d1825-646a-4c1d-bdb4-0d9f5e55982a",
+   "split": "B",
+   "tool_key": "read",
+   "n": 55,
+   "k": 26,
+   "k_over_n": 0.4727272727272727,
+   "D_log10": 0.32806645380500754,
+   "factor": 2.1284647092448292,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.01296148139681572,
+   "Q10_right_s": 0.027588055732655638,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": 0.3369826310547923,
+    "post_rho": 0.48913258399352394,
+    "post_median_r": 0.008808598934655416,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 26,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 376.63,
+    "session_calls_in_window": 48
+   },
+   "max_gap_s": 30.095000244140625,
+   "js_distance": 0.6551326947770253,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    809.0,
+    1311.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     1393.5,
+     1188.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.0225,
+     0.037
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 5.389000244140625
+   }
+  },
+  {
+   "listing_index": 9,
+   "session": "4afd0061-44c7-4e37-aaac-72870a80071f",
+   "split": "B",
+   "tool_key": "read",
+   "n": 50,
+   "k": 22,
+   "k_over_n": 0.44,
+   "D_log10": 0.5307968698851,
+   "factor": 3.394664587156747,
+   "p": 0.005,
+   "direction": "down",
+   "Q10_left_s": 0.010183993761470245,
+   "Q10_right_s": 0.003000000000000001,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": -0.06048618902466565,
+    "post_rho": -0.12156806808140042,
+    "post_median_r": 0.00039481694922982206,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 22,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 289.295,
+    "session_calls_in_window": 44
+   },
+   "max_gap_s": 167.466,
+   "js_distance": 0.3655467811356847,
+   "hook_share_pre_post": [
+    0.13636363636363635,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.5909090909090909,
+    0.6818181818181818
+   ],
+   "result_bytes_median_pre5_post5": [
+    7804.0,
+    5203.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     5440.0,
+     4817.5
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.023,
+     0.0055
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 1.861999755859375
+   }
+  },
+  {
+   "listing_index": 10,
+   "session": "4ddad80c-b9d6-490f-bd13-3f41ed52caf5",
+   "split": "B",
+   "tool_key": "read",
+   "n": 145,
+   "k": 46,
+   "k_over_n": 0.31724137931034485,
+   "D_log10": 1.5339580640341968,
+   "factor": 34.19464221866648,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.0020000000000000005,
+   "Q10_right_s": 0.06838928443733297,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": false,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": false,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.4667776080449602,
+    "post_rho": -0.1180175890527895,
+    "post_median_r": 0.01886244712192321,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 46,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 87.303,
+    "session_calls_in_window": 15
+   },
+   "max_gap_s": 12.709,
+   "js_distance": 0.283512448708781,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.1111111111111111,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    2513.0,
+    2637.0
+   ],
+   "harness_types_in_window": [],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     5255.0,
+     2791.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.5,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.0635,
+     0.213
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 12.709
+   }
+  },
+  {
+   "listing_index": 11,
+   "session": "65d63295-a03f-4e20-b60e-4217deebcb05",
+   "split": "B",
+   "tool_key": "read",
+   "n": 127,
+   "k": 70,
+   "k_over_n": 0.5511811023622047,
+   "D_log10": 1.0183089887907149,
+   "factor": 10.430592739543352,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.006768387838420242,
+   "Q10_right_s": 0.0705982970458397,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": -0.1116897445199649,
+    "post_rho": 0.31696612749523173,
+    "post_median_r": 0.028853057660456666,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 70,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 263.7289997558594,
+    "session_calls_in_window": 27
+   },
+   "max_gap_s": 73.54200024414062,
+   "js_distance": 0.3093302339141484,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    818.0,
+    526.0
+   ],
+   "harness_types_in_window": [
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     1226.0,
+     766.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.039,
+     0.083
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 73.54200024414062
+   }
+  },
+  {
+   "listing_index": 12,
+   "session": "6864ff97-5db6-4c77-9d56-2e75e89488a0",
+   "split": "B",
+   "tool_key": "read",
+   "n": 53,
+   "k": 20,
+   "k_over_n": 0.37735849056603776,
+   "D_log10": 0.31352386932481124,
+   "factor": 2.0583720179295213,
+   "p": 0.01,
+   "direction": "up",
+   "Q10_left_s": 0.003886566631452295,
+   "Q10_right_s": 0.008000000000000004,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.28888907331173386,
+    "post_rho": -0.3320450917999761,
+    "post_median_r": 0.009088973185683752,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 20,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 1795.655,
+    "session_calls_in_window": 32
+   },
+   "max_gap_s": 978.967,
+   "js_distance": 0.4795115372171002,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    2051.0,
+    799.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     2119.5,
+     718.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.0075,
+     0.02
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 28.884999755859376
+   }
+  },
+  {
+   "listing_index": 13,
+   "session": "70b32664-ca54-43cb-aed0-0f6a53082a37",
+   "split": "B",
+   "tool_key": "todo",
+   "n": 251,
+   "k": 222,
+   "k_over_n": 0.8844621513944223,
+   "D_log10": 0.3279082958662207,
+   "factor": 2.1276897228787193,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.040999999999999995,
+   "Q10_right_s": 0.08723527863802749,
+   "class_BuE": "COMPROMISE_LIKE",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": true,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": null,
+    "post_rho": null,
+    "post_median_r": 0.2642982512664978,
+    "leg_rho": false,
+    "leg_r": true,
+    "met": true
+   },
+   "window": {
+    "k": 222,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 12185.769000244141,
+    "session_calls_in_window": 44
+   },
+   "max_gap_s": 8831.77799975586,
+   "js_distance": 0.3753943482093432,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    160.0,
+    160.0
+   ],
+   "harness_types_in_window": [
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     160.0,
+     160.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.13513513513513514,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.089,
+     0.162
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": true,
+    "max_gap_s": 887.9589997558594
+   }
+  },
+  {
+   "listing_index": 14,
+   "session": "72557f18-483f-4d2b-b5ad-642253d41b88",
+   "split": "B",
+   "tool_key": "read",
+   "n": 58,
+   "k": 37,
+   "k_over_n": 0.6379310344827587,
+   "D_log10": 0.42596873227228116,
+   "factor": 2.6666666666666665,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.003000000000000001,
+   "Q10_right_s": 0.008000000000000004,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": false,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.13070197485062826,
+    "post_rho": 0.06866263563236158,
+    "post_median_r": 0.0007968516201256801,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 37,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 323.109,
+    "session_calls_in_window": 30
+   },
+   "max_gap_s": 111.663,
+   "js_distance": 0.6684706818121148,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.2,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    5652.0,
+    4181.0
+   ],
+   "harness_types_in_window": [],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     3049.0,
+     4191.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.007,
+     0.012
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 111.663
+   }
+  },
+  {
+   "listing_index": 15,
+   "session": "76f33c0e-fe4b-4aeb-a862-68ba0a02545e",
+   "split": "B",
+   "tool_key": "read",
+   "n": 90,
+   "k": 21,
+   "k_over_n": 0.23333333333333334,
+   "D_log10": 0.5383909114585852,
+   "factor": 3.454545454545455,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.010999999999999998,
+   "Q10_right_s": 0.038,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": 0.0970372125426606,
+    "post_rho": 0.16855579935673787,
+    "post_median_r": 0.018858064212790532,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 21,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 1396.906,
+    "session_calls_in_window": 33
+   },
+   "max_gap_s": 643.855,
+   "js_distance": 0.43702819441464263,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    941.0,
+    579.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "task_notification"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     2339.0,
+     863.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.028,
+     0.064
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 7.312
+   }
+  },
+  {
+   "listing_index": 16,
+   "session": "935ce0d9-d394-4d48-a311-aa3527efc0ef",
+   "split": "B",
+   "tool_key": "read",
+   "n": 56,
+   "k": 20,
+   "k_over_n": 0.35714285714285715,
+   "D_log10": 0.5435750878594499,
+   "factor": 3.496029493900503,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.006000000000000003,
+   "Q10_right_s": 0.02097617696340303,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": true,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": true,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": -0.2936750318387991,
+    "post_rho": 0.039713820942196366,
+    "post_median_r": 0.0048775679355471235,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 20,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 2267.692,
+    "session_calls_in_window": 93
+   },
+   "max_gap_s": 382.006,
+   "js_distance": 0.592026136270043,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0547945205479452,
+    0.4
+   ],
+   "result_bytes_median_pre5_post5": [
+    586.0,
+    1210.0
+   ],
+   "harness_types_in_window": [
+    "slash_command",
+    "task_notification",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     1114.5,
+     1598.5
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.0165,
+     0.0275
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": true,
+    "max_gap_s": 382.006
+   }
+  },
+  {
+   "listing_index": 17,
+   "session": "a0b14aae-ccb7-458c-a45e-c8d0b1ebb97a",
+   "split": "B",
+   "tool_key": "glob",
+   "n": 47,
+   "k": 21,
+   "k_over_n": 0.44680851063829785,
+   "D_log10": 1.2085974039823877,
+   "factor": 16.165807537309508,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.006000000000000003,
+   "Q10_right_s": 0.09699484522385711,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": false,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": false,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.5283775325221534,
+    "post_rho": 0.07057211787886501,
+    "post_median_r": 0.038897023080783744,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 21,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 72.842,
+    "session_calls_in_window": 142
+   },
+   "max_gap_s": 12.338999755859374,
+   "js_distance": 0.224495624771321,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.6179775280898876,
+    0.5283018867924528
+   ],
+   "result_bytes_median_pre5_post5": [
+    631.0,
+    1030.0
+   ],
+   "harness_types_in_window": [],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     748.0,
+     742.5
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.095,
+     0.108
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 0.552
+   }
+  },
+  {
+   "listing_index": 18,
+   "session": "b026b73c-a262-441a-8fb8-9e8c7f5eec27",
+   "split": "B",
+   "tool_key": "grep",
+   "n": 94,
+   "k": 64,
+   "k_over_n": 0.6808510638297872,
+   "D_log10": 0.30356981893080237,
+   "factor": 2.011730586120478,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.09759571999943997,
+   "Q10_right_s": 0.19633629499732344,
+   "class_BuE": "COMPROMISE_LIKE",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": true,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.3491832304746314,
+    "post_rho": -0.013020978154010376,
+    "post_median_r": 0.9911555793372145,
+    "leg_rho": false,
+    "leg_r": true,
+    "met": true
+   },
+   "window": {
+    "k": 64,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 7164.3,
+    "session_calls_in_window": 79
+   },
+   "max_gap_s": 2335.892000488281,
+   "js_distance": 0.338058207714321,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    1280.0,
+    49.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "task_notification",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     132.0,
+     60.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [
+     {
+      "listing_index": 19,
+      "tool_key": "read",
+      "direction": "up",
+      "step_time_diff_s": 56814.07300024414
+     }
+    ],
+    "latency_median_s_pre_post": [
+     0.1625,
+     0.2625
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 9.922999755859376
+   }
+  },
+  {
+   "listing_index": 19,
+   "session": "b026b73c-a262-441a-8fb8-9e8c7f5eec27",
+   "split": "B",
+   "tool_key": "read",
+   "n": 190,
+   "k": 170,
+   "k_over_n": 0.8947368421052632,
+   "D_log10": 0.7320708628099486,
+   "factor": 5.395986603777349,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.025000000000000005,
+   "Q10_right_s": 0.13489966509443374,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": true,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.07431494526326275,
+    "post_rho": -0.17811447572167896,
+    "post_median_r": 0.025754447380534687,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 170,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 7605.217,
+    "session_calls_in_window": 73
+   },
+   "max_gap_s": 2947.793,
+   "js_distance": 0.6882135585613471,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    899.0,
+    2610.0
+   ],
+   "harness_types_in_window": [
+    "interrupt",
+    "slash_command",
+    "subagent_start",
+    "task_notification",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     880.0,
+     1389.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [
+     {
+      "listing_index": 18,
+      "tool_key": "grep",
+      "direction": "up",
+      "step_time_diff_s": 56814.07300024414
+     }
+    ],
+    "latency_median_s_pre_post": [
+     0.0815,
+     0.143
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 69.704
+   }
+  },
+  {
+   "listing_index": 20,
+   "session": "c330798c-ab40-490c-8805-6ed8f1747898",
+   "split": "B",
+   "tool_key": "read",
+   "n": 56,
+   "k": 34,
+   "k_over_n": 0.6071428571428571,
+   "D_log10": 0.8573324964312685,
+   "factor": 7.200000000000001,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.004999999999999999,
+   "Q10_right_s": 0.036,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.3902054566034614,
+    "post_rho": 0.16977972194102325,
+    "post_median_r": 0.009927928275959548,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 34,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 2047.4019997558594,
+    "session_calls_in_window": 34
+   },
+   "max_gap_s": 842.096,
+   "js_distance": 0.4636740370284065,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.05263157894736842,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    1342.0,
+    9042.0
+   ],
+   "harness_types_in_window": [
+    "slash_command",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     141.0,
+     1254.5
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.0275,
+     0.0445
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": true,
+    "max_gap_s": 553.1250002441407
+   }
+  },
+  {
+   "listing_index": 21,
+   "session": "0042d351-fad5-4c90-8890-a26276efc046",
+   "split": "E",
+   "tool_key": "read",
+   "n": 78,
+   "k": 58,
+   "k_over_n": 0.7435897435897436,
+   "D_log10": 0.5023471059598816,
+   "factor": 3.1794141736292048,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.004999999999999999,
+   "Q10_right_s": 0.01589707086814602,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": true,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": true,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": 0.08580693567714139,
+    "post_rho": 0.3901244151998292,
+    "post_median_r": 0.0016730965773178385,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 58,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 7317.436,
+    "session_calls_in_window": 137
+   },
+   "max_gap_s": 2287.9370002441406,
+   "js_distance": 0.32876948767062725,
+   "hook_share_pre_post": [
+    0.4146341463414634,
+    0.19791666666666666
+   ],
+   "not_last_share_pre_post": [
+    0.024390243902439025,
+    0.03125
+   ],
+   "result_bytes_median_pre5_post5": [
+    2726.0,
+    6567.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "task_notification",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     3549.0,
+     6485.5
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.9827586206896551,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.0085,
+     0.0265
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 107.68199975585938
+   }
+  },
+  {
+   "listing_index": 22,
+   "session": "2026-01-22-375d5d79-9c13-419d-a5fd-72421f2af713",
+   "split": "E",
+   "tool_key": "read",
+   "n": 95,
+   "k": 20,
+   "k_over_n": 0.21052631578947367,
+   "D_log10": 0.3378197773230104,
+   "factor": 2.176806258081808,
+   "p": 0.01,
+   "direction": "up",
+   "Q10_left_s": 0.05858724542553704,
+   "Q10_right_s": 0.1275330824860838,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": false,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.16102337139252065,
+    "post_rho": -0.19485756961978004,
+    "post_median_r": 0.044193336889306545,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 20,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 158.056,
+    "session_calls_in_window": 30
+   },
+   "max_gap_s": 9.913999755859376,
+   "js_distance": 0.4006071193725245,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    2166.0,
+    1251.0
+   ],
+   "harness_types_in_window": [],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     1588.0,
+     1296.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.095,
+     0.244
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 9.913999755859376
+   }
+  },
+  {
+   "listing_index": 23,
+   "session": "505192f5-203d-4b40-aced-37d47c9e3e66",
+   "split": "E",
+   "tool_key": "read",
+   "n": 97,
+   "k": 73,
+   "k_over_n": 0.7525773195876289,
+   "D_log10": 0.7165575106134434,
+   "factor": 5.206639521614186,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.005185686446683243,
+   "Q10_right_s": 0.027000000000000003,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": true,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": false,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": 0.11759353770790774,
+    "post_rho": -0.13439931898777047,
+    "post_median_r": 0.018527493706924074,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 73,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 3919.812,
+    "session_calls_in_window": 23
+   },
+   "max_gap_s": 1790.2590002441407,
+   "js_distance": 0.6181106947982281,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.07142857142857142,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    985.0,
+    205.0
+   ],
+   "harness_types_in_window": [
+    "interrupt",
+    "setting_change",
+    "subagent_start",
+    "task_notification",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     1287.0,
+     713.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.013,
+     0.14500000000000002
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": true,
+    "max_gap_s": 1790.2590002441407
+   }
+  },
+  {
+   "listing_index": 24,
+   "session": "56be90d2-a216-4475-9617-ff47f0050dd5",
+   "split": "E",
+   "tool_key": "read",
+   "n": 73,
+   "k": 34,
+   "k_over_n": 0.4657534246575342,
+   "D_log10": 0.5892790030352133,
+   "factor": 3.88399804857867,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.001231144413344916,
+   "Q10_right_s": 0.004781762498950186,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": true,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": true,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": true,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": -0.05850760315851069,
+    "post_rho": -0.05496401768219726,
+    "post_median_r": 0.0012452867017325574,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 34,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 63783.66600024414,
+    "session_calls_in_window": 140
+   },
+   "max_gap_s": 61680.476,
+   "js_distance": 0.6580014987158118,
+   "hook_share_pre_post": [
+    0.03333333333333333,
+    0.4
+   ],
+   "not_last_share_pre_post": [
+    0.6,
+    0.3090909090909091
+   ],
+   "result_bytes_median_pre5_post5": [
+    3995.0,
+    9016.0
+   ],
+   "harness_types_in_window": [
+    "compaction",
+    "interrupt",
+    "setting_change",
+    "slash_command",
+    "subagent_start",
+    "user_turn",
+    "version_change"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     4215.5,
+     5215.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.002,
+     0.018
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 5.093999755859375
+   }
+  },
+  {
+   "listing_index": 25,
+   "session": "63d8909b-820f-49f1-a229-8f5f7e106c70",
+   "split": "E",
+   "tool_key": "grep",
+   "n": 52,
+   "k": 32,
+   "k_over_n": 0.6153846153846154,
+   "D_log10": 0.3312608443755012,
+   "factor": 2.1441780428861374,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.011096130128934414,
+   "Q10_right_s": 0.023792078583468497,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": true,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": false,
+    "result_size_shift": true,
+    "subagent_in_flight": true,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.09034049468212896,
+    "post_rho": 0.3734135976170193,
+    "post_median_r": 0.0083632935173108,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 32,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 1070.9900002441407,
+    "session_calls_in_window": 149
+   },
+   "max_gap_s": 23.919000244140626,
+   "js_distance": 0.17498759825340746,
+   "hook_share_pre_post": [
+    0.2631578947368421,
+    0.33695652173913043
+   ],
+   "not_last_share_pre_post": [
+    0.17543859649122806,
+    0.1956521739130435
+   ],
+   "result_bytes_median_pre5_post5": [
+    16.0,
+    52.0
+   ],
+   "harness_types_in_window": [
+    "interrupt",
+    "subagent_start",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     222.0,
+     1032.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.016,
+     0.028
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 8.999
+   }
+  },
+  {
+   "listing_index": 26,
+   "session": "90374d91-e656-482e-bbe8-25de5b80e44b",
+   "split": "E",
+   "tool_key": "read",
+   "n": 102,
+   "k": 79,
+   "k_over_n": 0.7745098039215687,
+   "D_log10": 0.7394283898030733,
+   "factor": 5.488180543206987,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.008999999999999998,
+   "Q10_right_s": 0.04939362488886287,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": false,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": false,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": 0.045625600538066594,
+    "post_rho": -0.39364517238133434,
+    "post_median_r": 0.017633614511033308,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 79,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 1155.687,
+    "session_calls_in_window": 33
+   },
+   "max_gap_s": 186.059,
+   "js_distance": 0.2543790580029275,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    1802.0,
+    942.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     1167.0,
+     903.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.03,
+     0.059
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 186.059
+   }
+  },
+  {
+   "listing_index": 27,
+   "session": "a0222c4a-daa3-4657-bd6e-7499a3cf1e2a",
+   "split": "E",
+   "tool_key": "read",
+   "n": 140,
+   "k": 22,
+   "k_over_n": 0.15714285714285714,
+   "D_log10": 0.8110589223132514,
+   "factor": 6.4723042189930515,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.008094783527342471,
+   "Q10_right_s": 0.05239190157585413,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": true,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": 0.5918599023666412,
+    "post_rho": -0.19320006746255278,
+    "post_median_r": 0.020365583451960656,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 22,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 5302.112999755859,
+    "session_calls_in_window": 69
+   },
+   "max_gap_s": 1611.9880004882812,
+   "js_distance": 0.5847211164321233,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.375,
+    0.18867924528301888
+   ],
+   "result_bytes_median_pre5_post5": [
+    4883.0,
+    3247.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "task_notification",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     5027.0,
+     1082.5
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.0395,
+     0.081
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 34.272
+   }
+  },
+  {
+   "listing_index": 28,
+   "session": "f01db921-a255-4978-9c64-3a353600bda3",
+   "split": "E",
+   "tool_key": "read",
+   "n": 50,
+   "k": 21,
+   "k_over_n": 0.42,
+   "D_log10": 0.30102999566398125,
+   "factor": 2.0000000000000004,
+   "p": 0.01,
+   "direction": "up",
+   "Q10_left_s": 0.004000000000000001,
+   "Q10_right_s": 0.008000000000000004,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": false,
+    "subagent_in_flight": true,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": 0.041996784928775246,
+    "post_rho": -0.19249848507601858,
+    "post_median_r": 0.0003654037583801748,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 21,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 2127.275,
+    "session_calls_in_window": 43
+   },
+   "max_gap_s": 704.66,
+   "js_distance": 0.5725723668899728,
+   "hook_share_pre_post": [
+    0.3142857142857143,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.14285714285714285,
+    0.125
+   ],
+   "result_bytes_median_pre5_post5": [
+    6459.0,
+    9861.0
+   ],
+   "harness_types_in_window": [
+    "subagent_start",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     6857.0,
+     9237.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     1.0,
+     1.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.006,
+     0.012
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 89.25000024414062
+   }
+  },
+  {
+   "listing_index": 29,
+   "session": "f2707fb4-9582-4986-8999-f84ff5395978",
+   "split": "E",
+   "tool_key": "read",
+   "n": 60,
+   "k": 20,
+   "k_over_n": 0.3333333333333333,
+   "D_log10": 0.3249614360793971,
+   "factor": 2.113301377298051,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.014668991528143925,
+   "Q10_right_s": 0.030999999999999996,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": false,
+    "result_size_shift": false,
+    "subagent_in_flight": false,
+    "workspace_change": false
+   },
+   "signature": {
+    "pre_rho": -0.16202000710475187,
+    "post_rho": 0.2250282271887248,
+    "post_median_r": 0.01027490254891548,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 20,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 1249.604,
+    "session_calls_in_window": 39
+   },
+   "max_gap_s": 918.751,
+   "js_distance": 0.26016089667040676,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.058823529411764705
+   ],
+   "result_bytes_median_pre5_post5": [
+    605.0,
+    901.0
+   ],
+   "harness_types_in_window": [
+    "slash_command"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     716.0,
+     1111.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.025500000000000002,
+     0.0405
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": true,
+    "max_gap_s": 918.751
+   }
+  },
+  {
+   "listing_index": 30,
+   "session": "ffba864c-19e4-4410-85a8-92c0cefc49cb",
+   "split": "E",
+   "tool_key": "read",
+   "n": 51,
+   "k": 27,
+   "k_over_n": 0.5294117647058824,
+   "D_log10": 0.5528419686577808,
+   "factor": 3.5714285714285716,
+   "p": 0.005,
+   "direction": "up",
+   "Q10_left_s": 0.007000000000000002,
+   "Q10_right_s": 0.025000000000000005,
+   "class_BuE": "UNEXPLAINED",
+   "class_own_split": "INSUFFICIENT_N",
+   "covariates": {
+    "harness_events": true,
+    "version_change": false,
+    "cwd_or_branch_change": false,
+    "permission_mode_change": false,
+    "idle_gap": true,
+    "hook_rate_change": false,
+    "parallelism_change": false,
+    "tool_mix_shift": true,
+    "result_size_shift": true,
+    "subagent_in_flight": false,
+    "workspace_change": true
+   },
+   "signature": {
+    "pre_rho": -0.02903424203269093,
+    "post_rho": -0.07455883442287894,
+    "post_median_r": 0.009475000429592682,
+    "leg_rho": false,
+    "leg_r": false,
+    "met": false
+   },
+   "window": {
+    "k": 27,
+    "points_pre": 5,
+    "points_post": 5,
+    "span_s": 1955.608,
+    "session_calls_in_window": 74
+   },
+   "max_gap_s": 422.844,
+   "js_distance": 0.45950174285495504,
+   "hook_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "not_last_share_pre_post": [
+    0.0,
+    0.0
+   ],
+   "result_bytes_median_pre5_post5": [
+    1653.0,
+    736.0
+   ],
+   "harness_types_in_window": [
+    "slash_command",
+    "task_notification",
+    "user_turn"
+   ],
+   "post_hoc_not_a_verdict": {
+    "result_bytes_median_whole_segments": [
+     1747.0,
+     815.0
+    ],
+    "subagent_share_of_series_points_pre_post": [
+     0.0,
+     0.0
+    ],
+    "other_step_series_same_session": [],
+    "latency_median_s_pre_post": [
+     0.014,
+     0.0305
+    ]
+   },
+   "idle_gap_session_call_window_post_hoc": {
+    "idle_gap": false,
+    "max_gap_s": 60.072
+   }
+  }
+ ],
+ "post_hoc": {
+  "note": "post hoc, not a verdict",
+  "read_only_matched_BuE": {
+   "note": "post hoc, not a verdict: tool_key = read only",
+   "step_series": 25,
+   "step_sessions": 25,
+   "control_series": 182,
+   "control_sessions": 182,
+   "covariates": {
+    "harness_events": {
+     "step": {
+      "k": 19,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 119,
+      "n": 182,
+      "p": 0.6538461538461539,
+      "lo": 0.5821919158078939,
+      "hi": 0.7191399711323823,
+      "sessions": 182
+     }
+    },
+    "version_change": {
+     "step": {
+      "k": 1,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 1,
+      "n": 182,
+      "p": 0.005494505494505495,
+      "lo": 0.0009705495119654989,
+      "hi": 0.030462671037147296,
+      "sessions": 182
+     }
+    },
+    "cwd_or_branch_change": {
+     "step": {
+      "k": 4,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 32,
+      "n": 182,
+      "p": 0.17582417582417584,
+      "lo": 0.12738556469467535,
+      "hi": 0.2376651021097431,
+      "sessions": 182
+     }
+    },
+    "permission_mode_change": {
+     "step": {
+      "k": 2,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 12,
+      "n": 182,
+      "p": 0.06593406593406594,
+      "lo": 0.03811559898191012,
+      "hi": 0.1116980057223111,
+      "sessions": 182
+     }
+    },
+    "idle_gap": {
+     "step": {
+      "k": 14,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 62,
+      "n": 182,
+      "p": 0.34065934065934067,
+      "lo": 0.27573395124120353,
+      "hi": 0.41217230871351057,
+      "sessions": 182
+     }
+    },
+    "hook_rate_change": {
+     "step": {
+      "k": 0,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 9,
+      "n": 182,
+      "p": 0.04945054945054945,
+      "lo": 0.02623092582262255,
+      "hi": 0.09129711956656911,
+      "sessions": 182
+     }
+    },
+    "tool_mix_shift": {
+     "step": {
+      "k": 20,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 135,
+      "n": 182,
+      "p": 0.7417582417582418,
+      "lo": 0.6736367934047861,
+      "hi": 0.7998847432156476,
+      "sessions": 182
+     }
+    },
+    "parallelism_change": {
+     "step": {
+      "k": 2,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 16,
+      "n": 182,
+      "p": 0.08791208791208792,
+      "lo": 0.05483643240416924,
+      "hi": 0.13802458472009144,
+      "sessions": 182
+     }
+    },
+    "result_size_shift": {
+     "step": {
+      "k": 9,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 75,
+      "n": 182,
+      "p": 0.41208791208791207,
+      "lo": 0.3431140393083699,
+      "hi": 0.48469631101147226,
+      "sessions": 182
+     }
+    },
+    "subagent_in_flight": {
+     "step": {
+      "k": 10,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 113,
+      "n": 182,
+      "p": 0.6208791208791209,
+      "lo": 0.5485803809478401,
+      "hi": 0.6881803873623767,
+      "sessions": 182
+     }
+    },
+    "workspace_change": {
+     "step": {
+      "k": 11,
+      "n": 25,
+      "sessions": 25,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 84,
+      "n": 182,
+      "p": 0.46153846153846156,
+      "lo": 0.39065440264432183,
+      "hi": 0.5340126256206092,
+      "sessions": 182
+     }
+    }
+   }
+  },
+  "sessions_with_more_than_one_step_series": 3,
+  "step_series_in_those_sessions": 6,
+  "control_window_session_calls": {
+   "n": 248,
+   "min": 10.0,
+   "p1": {
+    "label": "insufficient n"
+   },
+   "p5": 17.35,
+   "p25": 30.0,
+   "p50": 51.0,
+   "p75": 75.5,
+   "p95": 171.6999999999996,
+   "p99": {
+    "label": "insufficient n"
+   },
+   "max": 459.0,
+   "mean": 65.10887096774194,
+   "sessions": 196
+  },
+  "step_window_session_calls": {
+   "n": 31,
+   "min": 11.0,
+   "p1": {
+    "label": "insufficient n"
+   },
+   "p5": {
+    "label": "insufficient n"
+   },
+   "p25": 30.0,
+   "p50": 44.0,
+   "p75": 76.5,
+   "p95": {
+    "label": "insufficient n"
+   },
+   "p99": {
+    "label": "insufficient n"
+   },
+   "max": 297.0,
+   "mean": 64.74193548387096,
+   "sessions": 28
+  },
+  "workspace_evaluable": {
+   "step": 29,
+   "control": 234
+  },
+  "raw_fields_present_any": {
+   "version": {
+    "step": 31,
+    "control": 248
+   },
+   "cwd": {
+    "step": 31,
+    "control": 248
+   },
+   "gitBranch": {
+    "step": 31,
+    "control": 248
+   },
+   "permissionMode": {
+    "step": 29,
+    "control": 217
+   }
+  },
+  "cwd_vs_branch_split": {
+   "step": {
+    "cwd": 6,
+    "branch": 3
+   },
+   "control": {
+    "cwd": 27,
+    "branch": 22
+   }
+  },
+  "step_Q10_left_s_quantiles": {
+   "n": 31,
+   "min": 0.001231144413344916,
+   "p1": {
+    "label": "insufficient n"
+   },
+   "p5": {
+    "label": "insufficient n"
+   },
+   "p25": 0.004999999999999999,
+   "p50": 0.007000000000000002,
+   "p75": 0.012028805762875067,
+   "p95": {
+    "label": "insufficient n"
+   },
+   "p99": {
+    "label": "insufficient n"
+   },
+   "max": 0.09759571999943997,
+   "mean": 0.015172669050235822,
+   "sessions": 28
+  },
+  "step_Q10_right_s_quantiles": {
+   "n": 31,
+   "min": 0.003000000000000001,
+   "p1": {
+    "label": "insufficient n"
+   },
+   "p5": {
+    "label": "insufficient n"
+   },
+   "p25": 0.009500000000000001,
+   "p50": 0.027588055732655638,
+   "p75": 0.0789167878419336,
+   "p95": {
+    "label": "insufficient n"
+   },
+   "p99": {
+    "label": "insufficient n"
+   },
+   "max": 0.24762246183448614,
+   "mean": 0.058197663903238765,
+   "sessions": 28
+  },
+  "idle_gap_window_reading_sensitivity": {
+   "note": "post hoc, not a verdict: idle_gap (>= 300 s) with the window read as 5 SERIES calls each side (as run, the covariate above) and as 5 SESSION calls each side (seq range [call(i - 5), call(i + 4)] around the split call i); min-n gated; raised by the independent re-derivation",
+   "BuE": {
+    "series_call_window_as_run": {
+     "step": {
+      "k": 18,
+      "n": 31,
+      "p": 0.5806451612903226,
+      "lo": 0.40765964352020967,
+      "hi": 0.7358469692645074,
+      "sessions": 28
+     },
+     "control": {
+      "k": 85,
+      "n": 248,
+      "p": 0.34274193548387094,
+      "lo": 0.2864719493525114,
+      "hi": 0.40380956093014253,
+      "sessions": 196
+     },
+     "diff": 0.23790322580645168
+    },
+    "session_call_window": {
+     "step": {
+      "k": 5,
+      "n": 31,
+      "p": 0.16129032258064516,
+      "lo": 0.07092519905439934,
+      "hi": 0.3263470272497887,
+      "sessions": 28
+     },
+     "control": {
+      "k": 20,
+      "n": 248,
+      "p": 0.08064516129032258,
+      "lo": 0.052809326414524974,
+      "hi": 0.12127470100588535,
+      "sessions": 196
+     },
+     "diff": 0.08064516129032258
+    }
+   },
+   "B": {
+    "series_call_window_as_run": {
+     "step": {
+      "k": 11,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 47,
+      "n": 135,
+      "p": 0.34814814814814815,
+      "lo": 0.2729969034656345,
+      "hi": 0.4317025526051686,
+      "sessions": 103
+     },
+     "diff": null
+    },
+    "session_call_window": {
+     "step": {
+      "k": 3,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 12,
+      "n": 135,
+      "p": 0.08888888888888889,
+      "lo": 0.05157885461025679,
+      "hi": 0.14894894109362447,
+      "sessions": 103
+     },
+     "diff": null
+    }
+   },
+   "E": {
+    "series_call_window_as_run": {
+     "step": {
+      "k": 7,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 38,
+      "n": 113,
+      "p": 0.336283185840708,
+      "lo": 0.2558324486519233,
+      "hi": 0.42749951530611924,
+      "sessions": 93
+     },
+     "diff": null
+    },
+    "session_call_window": {
+     "step": {
+      "k": 2,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 8,
+      "n": 113,
+      "p": 0.07079646017699115,
+      "lo": 0.036307273195638715,
+      "hi": 0.13350895664031015,
+      "sessions": 93
+     },
+     "diff": null
+    }
+   },
+   "pooled_index": {
+    "series_call_window_as_run": {
+     "step": {
+      "k": 20,
+      "n": 35,
+      "p": 0.5714285714285714,
+      "lo": 0.4085712925897337,
+      "hi": 0.7201566691832108,
+      "sessions": 30
+     },
+     "control": {
+      "k": 83,
+      "n": 244,
+      "p": 0.3401639344262295,
+      "lo": 0.2836058408896599,
+      "hi": 0.40167701719389026,
+      "sessions": 195
+     },
+     "diff": 0.2312646370023419
+    },
+    "session_call_window": {
+     "step": {
+      "k": 7,
+      "n": 35,
+      "p": 0.2,
+      "lo": 0.10042319445900802,
+      "hi": 0.35891936609462516,
+      "sessions": 30
+     },
+     "control": {
+      "k": 19,
+      "n": 244,
+      "p": 0.0778688524590164,
+      "lo": 0.05041476522617428,
+      "hi": 0.11840919330217611,
+      "sessions": 195
+     },
+     "diff": 0.12213114754098361
+    }
+   }
+  },
+  "steps_with_both_Q10_below_10ms": 5
+ },
+ "deviations": [
+  {
+   "item": "F2 population: seed indexing of the change-point permutation test",
+   "prereg_said": "population = Phase B floor_step_change series on swechat/claude_code B u E; replication = the Phase B step rule on E alone; prereg.json probe1.floor_step_change seeds the permutation test with SEED + i, i = index of the series in sorted (session_id, tool_key) order",
+   "what_you_did": "the primary F2 step set is the union of the Phase B run on B (index within B; reproduces the 21 of 156 the prereg names) and the replication run on E (index within E). The run on the pooled B u E list (pooled index, as phase_e_a1_p1_p3 K2 ran it) is reported as `sensitivity_pooled_index` with its own controls, credits, classes and outcome, and the series whose step flag differs are listed",
+   "why": "the permutation p of a series depends on its index in the population passed in; the pooled run re-indexes every series and flips series whose p sits near 0.01, so 'the Phase B series on B u E' has two readings",
+   "effect_on_verdict": "none on any mechanism verdict (F2 moves no verdict); the F2 outcome under both readings is in the JSON"
+  },
+  {
+   "item": "window and segments of the change covariates",
+   "prereg_said": "covariates in a window of W = 5 calls on each side of k*; version / cwd / permission / hook rate 'differ between the pre- and post-step segments'; parallelism and result size 'differ by'; tool mix over the 20 calls before and after k*",
+   "what_you_did": "window = seq range [anchor(k* - 5), anchor(k* + 4)] with anchors = the series' call seqs (the Phase C changepoints window_bounds convention whose harness definitions F2 copies); the 'segments' of every change covariate are the two halves of this window, [anchor(k* - 5), anchor(k*)) and [anchor(k*), anchor(k* + 4)]; hook share and parallelism are computed over all session calls in each half (series calls are qualified pairs, which by the filter are never hooked and always last in their message); result size over the series' own 5 points either side; tool mix over the 20 session calls before the step call and the step call plus the 19 after; raw-field covariates fire when the value in effect changes at an entry stamped inside the window's time span (anchor(k* - 5) call ts, anchor(k* + 4) call ts]. Exactly the same code runs at the control split",
+   "why": "the prereg does not say whether 'calls' are series points or session calls, nor what a 'segment' is; this is the reading under which every listed covariate is computable and localised at the step",
+   "effect_on_verdict": "none (no verdict moves); the whole-segment result-size ratio is reported post hoc per series"
+  },
+  {
+   "item": "subagent in flight",
+   "prereg_said": "a subagent call is in flight at the step call's stamp",
+   "what_you_did": "a call with tool_key subagent or workflow (the Phase C subagent_start definition), other than the step call, whose call ts <= step-call ts <= its result ts; calls without a result are not counted",
+   "why": "an unpaired subagent call has no end stamp",
+   "effect_on_verdict": "can only lower that covariate's rate, equally at steps and controls"
+  },
+  {
+   "item": "result-size log ratio with empty results",
+   "prereg_said": "|log10(median result bytes after / before)| >= log10 2",
+   "what_you_did": "medians floored at 1 byte before the ratio",
+   "why": "log10 of 0 is undefined",
+   "effect_on_verdict": "none unless a median is 0 bytes"
+  },
+  {
+   "item": "minimum n on the B-alone and E-alone F2 populations (fix; the first run did not apply it and did not log it)",
+   "prereg_said": "prereg_e.json global.min_n: 'as prereg.json global.min_n (rate >= 30 from >= 5 sessions ...). Item-specific minima below are additional, never weaker'; prereg.json global.min_n.below_min: 'report raw k/n (or n) and the label insufficient n; no rate, no CI, no verdict'",
+   "what_you_did": "the rule is applied as written to every population rate in this file. B (21 step series) and E (10 step series) are below 30 on the step side, so their step-side covariate rates, the step-minus-control differences and their bootstrap CIs, the credit test, the own-population classes and the F2 outcome are withheld (raw k/n, label 'insufficient n', outcome INSUFFICIENT_N). B u E (31 from 28 sessions) and the pooled-index sensitivity (35 from 30) are above it and unchanged. The smallest faithful substitute for the withheld B / E classes is the split breakdown of the primary B u E classes as raw counts (classes_of_primary_BuE_raw). The post hoc read-only step side (25 series) is gated the same way; population quantiles in post_hoc are gated by quantile_reportable (min, max, mean kept, as probe_1). Per-series inputs of the pre-registered per-series covariates and signature (5-point medians, series medians in the human-review listing) are single-series quantities, not population rates, and are not gated",
+   "why": "an independent re-derivation found that the first run reported rates, CIs, a credit and an outcome on 21 and 10 step series; the global minimum forbids that and item minima can only be stricter",
+   "effect_on_verdict": "F2 outcome B: OPEN -> INSUFFICIENT_N; F2 outcome E: OPEN -> INSUFFICIENT_N and the E-alone idle_gap credit (7/10 vs 38/113) is withdrawn; B u E primary outcome OPEN unchanged; no mechanism verdict moves (F2 moves none). Earlier values are kept under `corrections`"
+  }
+ ],
+ "corrections": [
+  {
+   "path": "populations.E.outcome",
+   "before": "OPEN",
+   "before_deciding": {
+    "BENIGN": 7,
+    "COMPROMISE_LIKE": 0,
+    "UNEXPLAINED": 3,
+    "n_step_series": 10,
+    "benign_share": 0.7
+   },
+   "reason": "10 step series in 10 sessions < 30 (global.min_n): no verdict",
+   "after": {
+    "outcome": "INSUFFICIENT_N",
+    "deciding": {
+     "n_step_series": 10,
+     "step_sessions": 10,
+     "control_series": 113,
+     "control_sessions": 93,
+     "min_n": {
+      "den_min": 30,
+      "sessions_min": 5,
+      "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+     },
+     "label": "insufficient n",
+     "rule": "report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "populations.E.credited_covariates",
+   "before": [
+    "idle_gap"
+   ],
+   "before_detail": {
+    "idle_gap": {
+     "step": "7/10 = 0.700 W[0.397, 0.892]",
+     "control": "38/113 = 0.336",
+     "diff": 0.36371681415929197,
+     "diff_session_bootstrap": [
+      0.032103414991346,
+      0.6413864942528735
+     ],
+     "credited": true
+    }
+   },
+   "reason": "the credit test is a difference of rates; the step-side rate is below min n, so it is not computed",
+   "after": {
+    "credited_covariates": [],
+    "idle_gap": {
+     "step": {
+      "k": 7,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 38,
+      "n": 113,
+      "p": 0.336283185840708,
+      "lo": 0.2558324486519233,
+      "hi": 0.42749951530611924,
+      "sessions": 93
+     },
+     "present_in_step_series": 7,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "populations.E.classes",
+   "before": {
+    "BENIGN": "7/10",
+    "COMPROMISE_LIKE": "0/10",
+    "UNEXPLAINED": "3/10"
+   },
+   "reason": "own-population classes need the E credit test (withheld); see populations.E.classes_of_primary_BuE_raw",
+   "after": {
+    "classes": null,
+    "classes_of_primary_BuE_raw": {
+     "note": "the step series of this split classified under the primary B u E credits (none credited); raw k/n, no rate, no CI (insufficient n)",
+     "BENIGN": {
+      "k": 0,
+      "n": 10
+     },
+     "COMPROMISE_LIKE": {
+      "k": 0,
+      "n": 10
+     },
+     "UNEXPLAINED": {
+      "k": 10,
+      "n": 10
+     },
+     "compromise_like_series": [],
+     "by_direction": {
+      "up": {
+       "UNEXPLAINED": 10
+      }
+     }
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "populations.B.outcome",
+   "before": "OPEN",
+   "before_deciding": {
+    "BENIGN": 0,
+    "COMPROMISE_LIKE": 3,
+    "UNEXPLAINED": 18,
+    "n_step_series": 21,
+    "benign_share": 0.0
+   },
+   "reason": "21 step series in 18 sessions < 30 (global.min_n): no verdict",
+   "after": {
+    "outcome": "INSUFFICIENT_N",
+    "deciding": {
+     "n_step_series": 21,
+     "step_sessions": 18,
+     "control_series": 135,
+     "control_sessions": 103,
+     "min_n": {
+      "den_min": 30,
+      "sessions_min": 5,
+      "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+     },
+     "label": "insufficient n",
+     "rule": "report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "populations.B.credited_covariates",
+   "before": [],
+   "before_detail": {
+    "closest": "idle_gap 11/21 = 0.524 vs 47/135 = 0.348, diff 0.17566137566137568, bootstrap [-0.0630433006535948, 0.3923508470965499], not credited"
+   },
+   "reason": "credit test not computed below min n (value unchanged, meaning changed: 'not tested' instead of 'none credited')",
+   "after": {
+    "credited_covariates": [],
+    "idle_gap": {
+     "step": {
+      "k": 11,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "control": {
+      "k": 47,
+      "n": 135,
+      "p": 0.34814814814814815,
+      "lo": 0.2729969034656345,
+      "hi": 0.4317025526051686,
+      "sessions": 103
+     },
+     "present_in_step_series": 11,
+     "diff": null,
+     "diff_session_bootstrap": null,
+     "credited": null,
+     "credit_test": "not computed: insufficient n (global.min_n)"
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "populations.B.classes",
+   "before": {
+    "BENIGN": "0/21",
+    "COMPROMISE_LIKE": "3/21",
+    "UNEXPLAINED": "18/21"
+   },
+   "reason": "own-population classes need the B credit test (withheld); the same raw counts are the B breakdown of the primary B u E classes (populations.B.classes_of_primary_BuE_raw)",
+   "after": {
+    "classes": null,
+    "classes_of_primary_BuE_raw": {
+     "note": "the step series of this split classified under the primary B u E credits (none credited); raw k/n, no rate, no CI (insufficient n)",
+     "BENIGN": {
+      "k": 0,
+      "n": 21
+     },
+     "COMPROMISE_LIKE": {
+      "k": 3,
+      "n": 21
+     },
+     "UNEXPLAINED": {
+      "k": 18,
+      "n": 21
+     },
+     "compromise_like_series": [
+      0,
+      13,
+      18
+     ],
+     "by_direction": {
+      "down": {
+       "UNEXPLAINED": 3
+      },
+      "up": {
+       "COMPROMISE_LIKE": 3,
+       "UNEXPLAINED": 15
+      }
+     }
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "populations.{B,E}.covariates.*.step / .diff / .diff_session_bootstrap / .credited",
+   "before": "Wilson share with CI, difference, session-bootstrap CI and credited flag on 21 (B) and 10 (E) step series",
+   "reason": "below min n: raw k/n with the label 'insufficient n' (step side); control side stays reportable",
+   "after": {
+    "B": {
+     "harness_events": {
+      "k": 15,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "version_change": {
+      "k": 0,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "cwd_or_branch_change": {
+      "k": 5,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "permission_mode_change": {
+      "k": 0,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "idle_gap": {
+      "k": 11,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "hook_rate_change": {
+      "k": 0,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "tool_mix_shift": {
+      "k": 17,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "parallelism_change": {
+      "k": 2,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "result_size_shift": {
+      "k": 7,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "subagent_in_flight": {
+      "k": 10,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     },
+     "workspace_change": {
+      "k": 7,
+      "n": 21,
+      "sessions": 18,
+      "label": "insufficient n"
+     }
+    },
+    "E": {
+     "harness_events": {
+      "k": 9,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "version_change": {
+      "k": 1,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "cwd_or_branch_change": {
+      "k": 3,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "permission_mode_change": {
+      "k": 2,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "idle_gap": {
+      "k": 7,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "hook_rate_change": {
+      "k": 0,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "tool_mix_shift": {
+      "k": 7,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "parallelism_change": {
+      "k": 0,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "result_size_shift": {
+      "k": 5,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "subagent_in_flight": {
+      "k": 4,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     },
+     "workspace_change": {
+      "k": 5,
+      "n": 10,
+      "sessions": 10,
+      "label": "insufficient n"
+     }
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "populations.{B,E}.signature_step.met_wilson",
+   "before": {
+    "B": "3/21 W[0.050, 0.346]",
+    "E": "0/10 W[0, 0.278]"
+   },
+   "reason": "below min n: raw k/n only",
+   "after": {
+    "B": {
+     "k": 3,
+     "n": 21,
+     "sessions": 18,
+     "label": "insufficient n"
+    },
+    "E": {
+     "k": 0,
+     "n": 10,
+     "sessions": 10,
+     "label": "insufficient n"
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "step_series_listing[*].class_own_split",
+   "before": "E listing 21, 23, 24, 27, 28, 29, 30 BENIGN (via the E-alone idle_gap credit), E 22, 25, 26 UNEXPLAINED; B as class_BuE",
+   "reason": "own-split classes are withheld for B and E (credit test below min n); class_BuE (primary) is unchanged",
+   "after": {
+    "0": "INSUFFICIENT_N",
+    "1": "INSUFFICIENT_N",
+    "2": "INSUFFICIENT_N",
+    "3": "INSUFFICIENT_N",
+    "4": "INSUFFICIENT_N",
+    "5": "INSUFFICIENT_N",
+    "6": "INSUFFICIENT_N",
+    "7": "INSUFFICIENT_N",
+    "8": "INSUFFICIENT_N",
+    "9": "INSUFFICIENT_N",
+    "10": "INSUFFICIENT_N",
+    "11": "INSUFFICIENT_N",
+    "12": "INSUFFICIENT_N",
+    "13": "INSUFFICIENT_N",
+    "14": "INSUFFICIENT_N",
+    "15": "INSUFFICIENT_N",
+    "16": "INSUFFICIENT_N",
+    "17": "INSUFFICIENT_N",
+    "18": "INSUFFICIENT_N",
+    "19": "INSUFFICIENT_N",
+    "20": "INSUFFICIENT_N",
+    "21": "INSUFFICIENT_N",
+    "22": "INSUFFICIENT_N",
+    "23": "INSUFFICIENT_N",
+    "24": "INSUFFICIENT_N",
+    "25": "INSUFFICIENT_N",
+    "26": "INSUFFICIENT_N",
+    "27": "INSUFFICIENT_N",
+    "28": "INSUFFICIENT_N",
+    "29": "INSUFFICIENT_N",
+    "30": "INSUFFICIENT_N"
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "post_hoc.read_only_matched_BuE.covariates.*.step",
+   "before": "Wilson shares on 25 read step series",
+   "reason": "25 < 30 (global.min_n): raw k/n only",
+   "after": {
+    "harness_events": {
+     "k": 19,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "version_change": {
+     "k": 1,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "cwd_or_branch_change": {
+     "k": 4,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "permission_mode_change": {
+     "k": 2,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "idle_gap": {
+     "k": 14,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "hook_rate_change": {
+     "k": 0,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "tool_mix_shift": {
+     "k": 20,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "parallelism_change": {
+     "k": 2,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "result_size_shift": {
+     "k": 9,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "subagent_in_flight": {
+     "k": 10,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    },
+    "workspace_change": {
+     "k": 11,
+     "n": 25,
+     "sessions": 25,
+     "label": "insufficient n"
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  },
+  {
+   "path": "post_hoc.*_quantiles / *_window_session_calls",
+   "before": "all quantiles of stats.describe reported",
+   "reason": "global.min_n.quantile_reportable: p5/p95 need 100, p1/p99 500 (from >= 5 sessions); withheld below",
+   "after": {
+    "step_window_session_calls": {
+     "n": 31,
+     "min": 11.0,
+     "p1": {
+      "label": "insufficient n"
+     },
+     "p5": {
+      "label": "insufficient n"
+     },
+     "p25": 30.0,
+     "p50": 44.0,
+     "p75": 76.5,
+     "p95": {
+      "label": "insufficient n"
+     },
+     "p99": {
+      "label": "insufficient n"
+     },
+     "max": 297.0,
+     "mean": 64.74193548387096,
+     "sessions": 28
+    },
+    "control_window_session_calls": {
+     "n": 248,
+     "min": 10.0,
+     "p1": {
+      "label": "insufficient n"
+     },
+     "p5": 17.35,
+     "p25": 30.0,
+     "p50": 51.0,
+     "p75": 75.5,
+     "p95": 171.6999999999996,
+     "p99": {
+      "label": "insufficient n"
+     },
+     "max": 459.0,
+     "mean": 65.10887096774194,
+     "sessions": 196
+    },
+    "step_Q10_left_s_quantiles": {
+     "n": 31,
+     "min": 0.001231144413344916,
+     "p1": {
+      "label": "insufficient n"
+     },
+     "p5": {
+      "label": "insufficient n"
+     },
+     "p25": 0.004999999999999999,
+     "p50": 0.007000000000000002,
+     "p75": 0.012028805762875067,
+     "p95": {
+      "label": "insufficient n"
+     },
+     "p99": {
+      "label": "insufficient n"
+     },
+     "max": 0.09759571999943997,
+     "mean": 0.015172669050235822,
+     "sessions": 28
+    },
+    "step_Q10_right_s_quantiles": {
+     "n": 31,
+     "min": 0.003000000000000001,
+     "p1": {
+      "label": "insufficient n"
+     },
+     "p5": {
+      "label": "insufficient n"
+     },
+     "p25": 0.009500000000000001,
+     "p50": 0.027588055732655638,
+     "p75": 0.0789167878419336,
+     "p95": {
+      "label": "insufficient n"
+     },
+     "p99": {
+      "label": "insufficient n"
+     },
+     "max": 0.24762246183448614,
+     "mean": 0.058197663903238765,
+     "sessions": 28
+    }
+   },
+   "previous_run_utc": "2026-10-04T08:30:10Z",
+   "found_by": "independent re-deriver (blocking: min-n gating not applied, not logged)"
+  }
+ ],
+ "verdict_effect": "none: F2 moves no mechanism verdict (prereg_e.json followups.F2_floor_shift.outcome_rule, no_rescue)",
+ "verdicts": {
+  "F2_outcome_BuE": {
+   "outcome": "OPEN",
+   "deciding": {
+    "BENIGN": 0,
+    "COMPROMISE_LIKE": 3,
+    "UNEXPLAINED": 28,
+    "n_step_series": 31,
+    "step_sessions": 28,
+    "benign_share": 0.0,
+    "rule": "DISMISSIBLE_AS_BENIGN if BENIGN share >= 0.8 of step series and COMPROMISE_LIKE = 0; otherwise OPEN. COMPROMISE_LIKE series are listed individually (series index, factor, direction, covariate vector) for human review. No verdict changes either way (no_rescue)."
+   },
+   "json_path": "populations.BuE.outcome; populations.BuE.outcome_deciding"
+  },
+  "F2_outcome_B": {
+   "outcome": "INSUFFICIENT_N",
+   "deciding": {
+    "n_step_series": 21,
+    "step_sessions": 18,
+    "control_series": 135,
+    "control_sessions": 103,
+    "min_n": {
+     "den_min": 30,
+     "sessions_min": 5,
+     "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+    },
+    "label": "insufficient n",
+    "rule": "report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+   },
+   "json_path": "populations.B.outcome; populations.B.outcome_deciding"
+  },
+  "F2_outcome_E": {
+   "outcome": "INSUFFICIENT_N",
+   "deciding": {
+    "n_step_series": 10,
+    "step_sessions": 10,
+    "control_series": 113,
+    "control_sessions": 93,
+    "min_n": {
+     "den_min": 30,
+     "sessions_min": 5,
+     "reason": "A2-2: a 2-session bootstrap is degenerate; A4 used >=10 results from >=3 sessions for proxy labels; 5 sessions is the smallest cluster count whose bootstrap has more than 100 distinct resamples (126)."
+    },
+    "label": "insufficient n",
+    "rule": "report raw k/n (or n) and the label 'insufficient n'; no rate, no CI, no verdict."
+   },
+   "json_path": "populations.E.outcome; populations.E.outcome_deciding"
+  },
+  "F2_outcome_pooled_index_sensitivity": {
+   "outcome": "OPEN",
+   "deciding": {
+    "BENIGN": 0,
+    "COMPROMISE_LIKE": 4,
+    "UNEXPLAINED": 31,
+    "n_step_series": 35,
+    "step_sessions": 30,
+    "benign_share": 0.0,
+    "rule": "DISMISSIBLE_AS_BENIGN if BENIGN share >= 0.8 of step series and COMPROMISE_LIKE = 0; otherwise OPEN. COMPROMISE_LIKE series are listed individually (series index, factor, direction, covariate vector) for human review. No verdict changes either way (no_rescue)."
+   },
+   "json_path": "sensitivity_pooled_index.outcome"
+  },
+  "E_replication_floor_label": {
+   "label": "STABLE",
+   "deciding": {
+    "k": 10,
+    "n": 123,
+    "p": 0.08130081300813008,
+    "lo": 0.04475838884502016,
+    "hi": 0.14320518146629724
+   },
+   "json_path": "steps.E.label; steps.E.step_share_wilson"
+  }
+ },
+ "verdict_cells_computed": {
+  "F2_outcomes": 4,
+  "F2_outcomes_decided": 2,
+  "F2_outcomes_insufficient_n": 2,
+  "replication_labels": 1,
+  "credit_tests": 22,
+  "credit_tests_withheld_insufficient_n": 22,
+  "multiplicity": "verdicts are descriptive per mechanism x unit x split; no family-wise correction. Every output JSON reports the number of verdict cells it computed."
+ },
+ "runtime_s": 319.4
+}

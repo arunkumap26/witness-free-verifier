@@ -1,0 +1,4144 @@
+{
+ "item": "n7_content",
+ "script_sha256_lf": "185679a26250708c9cb75be9b2572e455a82e1e5d8931d18d79de403e958706a",
+ "script_sha256_lf_at_write": "185679a26250708c9cb75be9b2572e455a82e1e5d8931d18d79de403e958706a",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "prereg_e_json_sha256": "4c77ac53eda36a4f084d01cb6b383e20d4a1c98a9a7b15cf3b5fbd3db00ebcdc",
+ "result": {
+  "unit": "swechat/gemini",
+  "split": "E",
+  "sessions": 14,
+  "rows": 1597,
+  "detector_status": {
+   "P2_KFN": [
+    "RUN",
+    "D_unit 3"
+   ],
+   "P3_ZERO": [
+    "RUN",
+    "L75 405"
+   ],
+   "N2": [
+    "NOT_TESTABLE",
+    "per-response usage not GRANULAR (G1 0.8233608025797206, median usage_out 138.5)"
+   ],
+   "N5a": [
+    "RUN",
+    ""
+   ],
+   "N5b": [
+    "RUN",
+    ""
+   ],
+   "N5c": [
+    "RUN",
+    ""
+   ],
+   "N5d": [
+    "RUN",
+    ""
+   ],
+   "N5f": [
+    "RUN",
+    ""
+   ],
+   "R2_IMAGE": [
+    "NOT_TESTABLE",
+    "no prompt IMAGE usage"
+   ],
+   "R4_DUAL": [
+    "NOT_TESTABLE",
+    "no harness structured counters (numLines) in the raw source"
+   ],
+   "R5_LEDGER": [
+    "NOT_RUN",
+    "recount implemented for the Claude Code format (F0) only; X0/O0/G0 not implemented in this item"
+   ]
+  },
+  "populations": {
+   "P2_KFN": 14,
+   "P3_ZERO": 14,
+   "N5a": 14,
+   "N5b": 14,
+   "N5c": 14,
+   "N5d": 14,
+   "N5f": 14
+  },
+  "raw_joins": {},
+  "honest_population": {
+   "P2_KFN": {
+    "population_sessions": 14,
+    "deciding_sessions": 9,
+    "flagged_sessions": 6,
+    "session_flag_rate_all": [
+     0.42857142857142855,
+     0.21380509930400526,
+     0.6740973309713064
+    ],
+    "session_flag_rate_deciding": [
+     0.6666666666666666,
+     0.35419734749908977,
+     0.879418401317257
+    ],
+    "decision_units": 55,
+    "flagged_units": 13,
+    "unit_flag_rate": {
+     "rate": 0.23636363636363636,
+     "lo": 0.12853174603174602,
+     "hi": 0.36363636363636365,
+     "n_sessions": 9,
+     "num": 13.0,
+     "den": 55.0
+    }
+   },
+   "P3_ZERO": {
+    "population_sessions": 14,
+    "deciding_sessions": 0,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.21531701192718142
+    ],
+    "session_flag_rate_deciding": [
+     null,
+     null,
+     null
+    ],
+    "decision_units": 0,
+    "flagged_units": 0,
+    "unit_flag_rate": null
+   },
+   "N5a": {
+    "population_sessions": 14,
+    "deciding_sessions": 0,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.21531701192718142
+    ],
+    "session_flag_rate_deciding": [
+     null,
+     null,
+     null
+    ],
+    "decision_units": 0,
+    "flagged_units": 0,
+    "unit_flag_rate": null,
+    "descriptive_pairs_with_redacted_key": {
+     "pairs": 0,
+     "flagged": 0
+    }
+   },
+   "N5b": {
+    "population_sessions": 14,
+    "deciding_sessions": 3,
+    "flagged_sessions": 1,
+    "session_flag_rate_all": [
+     0.07142857142857142,
+     0.012721886112291636,
+     0.3146926955395781
+    ],
+    "session_flag_rate_deciding": [
+     0.3333333333333333,
+     0.0614903152761605,
+     0.7923450448735121
+    ],
+    "decision_units": 4,
+    "flagged_units": 1,
+    "unit_flag_rate": {
+     "rate": 0.25,
+     "lo": 0.0,
+     "hi": 0.5,
+     "n_sessions": 3,
+     "num": 1.0,
+     "den": 4.0
+    }
+   },
+   "N5c": {
+    "population_sessions": 14,
+    "deciding_sessions": 0,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.21531701192718142
+    ],
+    "session_flag_rate_deciding": [
+     null,
+     null,
+     null
+    ],
+    "decision_units": 0,
+    "flagged_units": 0,
+    "unit_flag_rate": null
+   },
+   "N5d": {
+    "population_sessions": 14,
+    "deciding_sessions": 6,
+    "flagged_sessions": 5,
+    "session_flag_rate_all": [
+     0.35714285714285715,
+     0.16344490737202735,
+     0.6123599531785959
+    ],
+    "session_flag_rate_deciding": [
+     0.8333333333333334,
+     0.43649056343635395,
+     0.9699474141282697
+    ],
+    "decision_units": 8,
+    "flagged_units": 7,
+    "unit_flag_rate": {
+     "rate": 0.875,
+     "lo": 0.5696428571428572,
+     "hi": 1.0,
+     "n_sessions": 6,
+     "num": 7.0,
+     "den": 8.0
+    }
+   },
+   "N5f": {
+    "population_sessions": 14,
+    "deciding_sessions": 0,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.21531701192718142
+    ],
+    "session_flag_rate_deciding": [
+     null,
+     null,
+     null
+    ],
+    "decision_units": 0,
+    "flagged_units": 0,
+    "unit_flag_rate": null
+   }
+  },
+  "attack_eligibility": {
+   "sub_single_flip_error|-": {
+    "eligible_sessions": 7,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 7,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 7,
+     "min": 0.007724493080141615,
+     "p50": 0.01485148514851485,
+     "p90": 0.023099989659807675,
+     "max": 0.03143418467583497,
+     "mean": 0.015326362353928952
+    },
+    "seconds": 0.2
+   },
+   "sub_single_digit|-": {
+    "eligible_sessions": 12,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 12,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.4
+   },
+   "sub_matched_bytes|any": {
+    "eligible_sessions": 12,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 12,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 12,
+     "min": 0.0,
+     "p50": 0.0033386150724154227,
+     "p90": 0.025001850960648577,
+     "max": 0.041237113402061855,
+     "mean": 0.009222878435294153
+    },
+    "seconds": 0.3
+   },
+   "sub_matched_bytes|samecmd": {
+    "eligible_sessions": 9,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 9,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 9,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.03517335004177109,
+     "max": 0.03618421052631579,
+     "mean": 0.010252611314994895
+    },
+    "seconds": 0.2
+   },
+   "rewrite_consistent_k|2": {
+    "eligible_sessions": 12,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 12,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 24,
+     "min": 0.0,
+     "p50": 0.009861437032070621,
+     "p90": 0.036842131720377744,
+     "max": 0.041237113402061855,
+     "mean": 0.015474548908511881
+    },
+    "seconds": 0.4
+   },
+   "rewrite_consistent_k|5": {
+    "eligible_sessions": 11,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 11,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 55,
+     "min": 0.0,
+     "p50": 0.009873060648801129,
+     "p90": 0.0340023561775645,
+     "max": 0.04915195569401177,
+     "mean": 0.012674073410498862
+    },
+    "seconds": 0.4
+   },
+   "reorder_adjacent_pairs|-": {
+    "eligible_sessions": 12,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 12,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.3
+   },
+   "reorder_lines|-": {
+    "eligible_sessions": 12,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 12,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.3
+   },
+   "delete_pair|-": {
+    "eligible_sessions": 12,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 12,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.3
+   },
+   "delete_response|-": {
+    "eligible_sessions": 0,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 0,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.0
+   },
+   "insert_pair_consistent|-": {
+    "eligible_sessions": 12,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 12,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.3
+   },
+   "insert_pair_squeezed|-": {
+    "eligible_sessions": 12,
+    "unit_sessions": 14,
+    "tampered_sessions_attempted": 12,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.3
+   }
+  },
+  "cells": {
+   "swechat/gemini|E|P2_KFN|sub_single_flip_error|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 7,
+    "n_tampered": 7,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.8571428571428571,
+     0.48686549668097007,
+     0.9743210440510253
+    ],
+    "n_honest": 7,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.8571428571428571,
+     0.48686549668097007,
+     0.9743210440510253
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 7,
+     "num": 0.0,
+     "den": 7.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 6,
+     "share": [
+      0.0,
+      0.0,
+      0.3903430336530645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.8571428571428571,
+     "recall_ci_lo": 0.48686549668097007,
+     "fpr_ci_hi": 0.9743210440510253,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|sub_single_flip_error|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 7,
+    "n_tampered": 7,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "n_honest": 7,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 7,
+     "num": 0.0,
+     "den": 7.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 7,
+    "abstain_tampered": 7,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.35433884297520657,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|sub_single_flip_error|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 7,
+    "n_tampered": 7,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "n_honest": 7,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 7,
+     "num": 0.0,
+     "den": 7.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 7,
+    "abstain_tampered": 7,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.35433884297520657,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|sub_single_flip_error|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 7,
+    "n_tampered": 7,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "n_honest": 7,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 7,
+     "num": 0.0,
+     "den": 7.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 5,
+    "abstain_tampered": 5,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.35433884297520657,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|sub_single_flip_error|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 7,
+    "n_tampered": 7,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "n_honest": 7,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 7,
+     "num": 0.0,
+     "den": 7.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 7,
+    "abstain_tampered": 7,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.35433884297520657,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|sub_single_flip_error|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 7,
+    "n_tampered": 7,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.42857142857142855,
+     0.15821692226262685,
+     0.7495457695909742
+    ],
+    "n_honest": 7,
+    "k_honest_flagged": 3,
+    "fpr": [
+     0.42857142857142855,
+     0.15821692226262685,
+     0.7495457695909742
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 7,
+     "num": 0.0,
+     "den": 7.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 3,
+     "share": [
+      0.0,
+      0.0,
+      0.5615060804490177
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.42857142857142855,
+     "recall_ci_lo": 0.15821692226262685,
+     "fpr_ci_hi": 0.7495457695909742,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|sub_single_flip_error|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 7,
+    "n_tampered": 7,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "n_honest": 7,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.35433884297520657
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 7,
+     "num": 0.0,
+     "den": 7.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 7,
+    "abstain_tampered": 7,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.35433884297520657,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|sub_single_digit|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 6,
+     "share": [
+      0.0,
+      0.0,
+      0.3903430336530645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.5,
+     "recall_ci_lo": 0.2537781703934222,
+     "fpr_ci_hi": 0.7462218296065778,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|sub_single_digit|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|sub_single_digit|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.08333333333333333,
+     "recall_ci_lo": 0.014864709450773478,
+     "fpr_ci_hi": 0.35388592179859524,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|sub_single_digit|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|sub_single_digit|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4166666666666667,
+     "recall_ci_lo": 0.19325746190524656,
+     "fpr_ci_hi": 0.6804926643446272,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|sub_single_digit|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|sub_matched_bytes|any": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 6,
+     "share": [
+      0.0,
+      0.0,
+      0.3903430336530645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.5,
+     "recall_ci_lo": 0.2537781703934222,
+     "fpr_ci_hi": 0.7462218296065778,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|sub_matched_bytes|any": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|sub_matched_bytes|any": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|sub_matched_bytes|any": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.08333333333333333,
+     "recall_ci_lo": 0.014864709450773478,
+     "fpr_ci_hi": 0.35388592179859524,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|sub_matched_bytes|any": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|sub_matched_bytes|any": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4166666666666667,
+     "recall_ci_lo": 0.19325746190524656,
+     "fpr_ci_hi": 0.6804926643446272,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|sub_matched_bytes|any": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|sub_matched_bytes|samecmd": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 9,
+    "n_tampered": 9,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.6666666666666666,
+     0.35419734749908977,
+     0.879418401317257
+    ],
+    "n_honest": 9,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.6666666666666666,
+     0.35419734749908977,
+     0.879418401317257
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 9,
+     "num": 0.0,
+     "den": 9.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 6,
+     "share": [
+      0.0,
+      0.0,
+      0.3903430336530645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.6666666666666666,
+     "recall_ci_lo": 0.35419734749908977,
+     "fpr_ci_hi": 0.879418401317257,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|sub_matched_bytes|samecmd": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 9,
+    "n_tampered": 9,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "n_honest": 9,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 9,
+     "num": 0.0,
+     "den": 9.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2991527535509594,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|sub_matched_bytes|samecmd": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 9,
+    "n_tampered": 9,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "n_honest": 9,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 9,
+     "num": 0.0,
+     "den": 9.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2991527535509594,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|sub_matched_bytes|samecmd": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 9,
+    "n_tampered": 9,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.1111111111111111,
+     0.019890371327130535,
+     0.4350062147680601
+    ],
+    "n_honest": 9,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.1111111111111111,
+     0.019890371327130535,
+     0.4350062147680601
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 9,
+     "num": 0.0,
+     "den": 9.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.1111111111111111,
+     "recall_ci_lo": 0.019890371327130535,
+     "fpr_ci_hi": 0.4350062147680601,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|sub_matched_bytes|samecmd": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 9,
+    "n_tampered": 9,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "n_honest": 9,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 9,
+     "num": 0.0,
+     "den": 9.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2991527535509594,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|sub_matched_bytes|samecmd": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 9,
+    "n_tampered": 9,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.4444444444444444,
+     0.188775429471914,
+     0.7333526542559703
+    ],
+    "n_honest": 9,
+    "k_honest_flagged": 4,
+    "fpr": [
+     0.4444444444444444,
+     0.188775429471914,
+     0.7333526542559703
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 9,
+     "num": 0.0,
+     "den": 9.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      0.48990002040399916
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 4,
+    "abstain_tampered": 4,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4444444444444444,
+     "recall_ci_lo": 0.188775429471914,
+     "fpr_ci_hi": 0.7333526542559703,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|sub_matched_bytes|samecmd": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 9,
+    "n_tampered": 9,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "n_honest": 9,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 9,
+     "num": 0.0,
+     "den": 9.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2991527535509594,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|rewrite_consistent_k|2": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 6,
+     "share": [
+      0.0,
+      0.0,
+      0.3903430336530645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.5,
+     "recall_ci_lo": 0.2537781703934222,
+     "fpr_ci_hi": 0.7462218296065778,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|rewrite_consistent_k|2": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|rewrite_consistent_k|2": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|rewrite_consistent_k|2": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.35388592179859524,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|rewrite_consistent_k|2": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|rewrite_consistent_k|2": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4166666666666667,
+     "recall_ci_lo": 0.19325746190524656,
+     "fpr_ci_hi": 0.6804926643446272,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|rewrite_consistent_k|2": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|rewrite_consistent_k|5": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 11,
+    "n_tampered": 11,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.5454545454545454,
+     0.28008775568998817,
+     0.7872904245601196
+    ],
+    "n_honest": 11,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5454545454545454,
+     0.28008775568998817,
+     0.7872904245601196
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 11,
+     "num": 0.0,
+     "den": 11.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 6,
+     "share": [
+      0.0,
+      0.0,
+      0.3903430336530645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 2,
+    "abstain_tampered": 2,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.5454545454545454,
+     "recall_ci_lo": 0.28008775568998817,
+     "fpr_ci_hi": 0.7872904245601196,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|rewrite_consistent_k|5": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 11,
+    "n_tampered": 11,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "n_honest": 11,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 11,
+     "num": 0.0,
+     "den": 11.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 11,
+    "abstain_tampered": 11,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 2.7755575615628914e-17,
+     "fpr_ci_hi": 0.2588400172488141,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|rewrite_consistent_k|5": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 11,
+    "n_tampered": 11,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "n_honest": 11,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 11,
+     "num": 0.0,
+     "den": 11.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 11,
+    "abstain_tampered": 11,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 2.7755575615628914e-17,
+     "fpr_ci_hi": 0.2588400172488141,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|rewrite_consistent_k|5": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 11,
+    "n_tampered": 11,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "n_honest": 11,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.09090909090909091,
+     0.01623175226282597,
+     0.3773646254862038
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 11,
+     "num": 0.0,
+     "den": 11.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 8,
+    "abstain_tampered": 8,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 2.7755575615628914e-17,
+     "fpr_ci_hi": 0.3773646254862038,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|rewrite_consistent_k|5": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 11,
+    "n_tampered": 11,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "n_honest": 11,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 11,
+     "num": 0.0,
+     "den": 11.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 11,
+    "abstain_tampered": 11,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 2.7755575615628914e-17,
+     "fpr_ci_hi": 0.2588400172488141,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|rewrite_consistent_k|5": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 11,
+    "n_tampered": 11,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.45454545454545453,
+     0.21270957543988045,
+     0.7199122443100118
+    ],
+    "n_honest": 11,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.45454545454545453,
+     0.21270957543988045,
+     0.7199122443100118
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 11,
+     "num": 0.0,
+     "den": 11.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 5,
+    "abstain_tampered": 5,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.45454545454545453,
+     "recall_ci_lo": 0.21270957543988045,
+     "fpr_ci_hi": 0.7199122443100118,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|rewrite_consistent_k|5": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 11,
+    "n_tampered": 11,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "n_honest": 11,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     2.7755575615628914e-17,
+     0.2588400172488141
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 11,
+     "num": 0.0,
+     "den": 11.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 11,
+    "abstain_tampered": 11,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 2.7755575615628914e-17,
+     "fpr_ci_hi": 0.2588400172488141,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|reorder_adjacent_pairs|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 6,
+     "share": [
+      0.16666666666666666,
+      0.03005258587173032,
+      0.563509436563646
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.5,
+     "recall_ci_lo": 0.2537781703934222,
+     "fpr_ci_hi": 0.7462218296065778,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|reorder_adjacent_pairs|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|reorder_adjacent_pairs|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|reorder_adjacent_pairs|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.08333333333333333,
+     "recall_ci_lo": 0.014864709450773478,
+     "fpr_ci_hi": 0.35388592179859524,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|reorder_adjacent_pairs|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|reorder_adjacent_pairs|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4166666666666667,
+     "recall_ci_lo": 0.19325746190524656,
+     "fpr_ci_hi": 0.6804926643446272,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|reorder_adjacent_pairs|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|reorder_lines|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 6,
+     "share": [
+      0.0,
+      0.0,
+      0.3903430336530645
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.5,
+     "recall_ci_lo": 0.2537781703934222,
+     "fpr_ci_hi": 0.7462218296065778,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|reorder_lines|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|reorder_lines|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.08333333333333333,
+     "recall_ci_lo": 0.014864709450773478,
+     "fpr_ci_hi": 0.35388592179859524,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|reorder_lines|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|reorder_lines|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4166666666666667,
+     "recall_ci_lo": 0.19325746190524656,
+     "fpr_ci_hi": 0.6804926643446272,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|reorder_lines|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|delete_pair|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.5,
+     "recall_ci_lo": 0.2537781703934222,
+     "fpr_ci_hi": 0.7462218296065778,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|delete_pair|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|delete_pair|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|delete_pair|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.08333333333333333,
+     "recall_ci_lo": 0.014864709450773478,
+     "fpr_ci_hi": 0.35388592179859524,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|delete_pair|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|delete_pair|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4166666666666667,
+     "recall_ci_lo": 0.19325746190524656,
+     "fpr_ci_hi": 0.6804926643446272,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|delete_pair|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|delete_response|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|delete_response|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|delete_response|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|delete_response|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|delete_response|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|delete_response|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|delete_response|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|insert_pair_consistent|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 9,
+    "recall": [
+     0.75,
+     0.46768966087934005,
+     0.9110599603710386
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "adr": {
+     "rate": 0.25,
+     "lo": 0.0,
+     "hi": 0.5,
+     "n_sessions": 12,
+     "num": 3.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 5,
+     "n": 9,
+     "share": [
+      0.5555555555555556,
+      0.2666473457440297,
+      0.811224570528086
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 2,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.75,
+     "recall_ci_lo": 0.46768966087934005,
+     "fpr_ci_hi": 0.7462218296065778,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|insert_pair_consistent|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|insert_pair_consistent|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|insert_pair_consistent|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.08333333333333333,
+     "recall_ci_lo": 0.014864709450773478,
+     "fpr_ci_hi": 0.35388592179859524,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|insert_pair_consistent|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|insert_pair_consistent|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4166666666666667,
+     "recall_ci_lo": 0.19325746190524656,
+     "fpr_ci_hi": 0.6804926643446272,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|insert_pair_consistent|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P2_KFN|insert_pair_squeezed|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.6666666666666666,
+     0.3906175873976139,
+     0.8618821601026385
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 6,
+    "fpr": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "adr": {
+     "rate": 0.16666666666666666,
+     "lo": 0.0,
+     "hi": 0.3333333333333333,
+     "n_sessions": 12,
+     "num": 2.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 5,
+     "n": 8,
+     "share": [
+      0.625,
+      0.30573785458380187,
+      0.863158240538479
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 1,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.6666666666666666,
+     "recall_ci_lo": 0.3906175873976139,
+     "fpr_ci_hi": 0.7462218296065778,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|P3_ZERO|insert_pair_squeezed|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "union of two unvalidated-together classes",
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5a|insert_pair_squeezed|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5b|insert_pair_squeezed|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.08333333333333333,
+     0.014864709450773478,
+     0.35388592179859524
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.08333333333333333,
+     "recall_ci_lo": 0.014864709450773478,
+     "fpr_ci_hi": 0.35388592179859524,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5c|insert_pair_squeezed|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5d|insert_pair_squeezed|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 5,
+    "fpr": [
+     0.4166666666666667,
+     0.19325746190524656,
+     0.6804926643446272
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 6,
+    "abstain_tampered": 6,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.4166666666666667,
+     "recall_ci_lo": 0.19325746190524656,
+     "fpr_ci_hi": 0.6804926643446272,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   },
+   "swechat/gemini|E|N5f|insert_pair_squeezed|-": {
+    "unit": "swechat/gemini",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 12,
+    "n_tampered": 12,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "n_honest": 12,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.2425007574992425
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 12,
+     "num": 0.0,
+     "den": 12.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.2425007574992425,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "small unit (< 30 sessions per split)"
+    ]
+   }
+  },
+  "runtime_s": 4.0,
+  "limit": null
+ }
+}

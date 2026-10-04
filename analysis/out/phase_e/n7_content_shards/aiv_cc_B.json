@@ -1,0 +1,4279 @@
+{
+ "item": "n7_content",
+ "script_sha256_lf": "185679a26250708c9cb75be9b2572e455a82e1e5d8931d18d79de403e958706a",
+ "script_sha256_lf_at_write": "185679a26250708c9cb75be9b2572e455a82e1e5d8931d18d79de403e958706a",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "prereg_e_json_sha256": "568d423f0e061f9a3dd14a4ae51926b3b5746a9a3dc33b421c3e632ad4bb1c08",
+ "result": {
+  "unit": "aiv_cc",
+  "split": "B",
+  "sessions": 189,
+  "rows": 131676,
+  "detector_status": {
+   "P2_KFN": [
+    "RUN",
+    "D_unit 6; antecedents incomplete (prereg probe2)"
+   ],
+   "P3_ZERO": [
+    "RUN",
+    "L75 666"
+   ],
+   "N2": [
+    "NOT_TESTABLE",
+    "per-response usage not GRANULAR (G1 1.0, median usage_out 1.0)"
+   ],
+   "N5a": [
+    "RUN",
+    ""
+   ],
+   "N5b": [
+    "RUN",
+    ""
+   ],
+   "N5c": [
+    "RUN",
+    ""
+   ],
+   "N5d": [
+    "RUN",
+    ""
+   ],
+   "N5f": [
+    "RUN",
+    ""
+   ],
+   "R2_IMAGE": [
+    "NOT_TESTABLE",
+    "no prompt IMAGE usage"
+   ],
+   "R4_DUAL": [
+    "NOT_TESTABLE",
+    "no harness structured counters (numLines) in the raw source"
+   ],
+   "R5_LEDGER": [
+    "NOT_TESTABLE",
+    "no external usage tally"
+   ]
+  },
+  "populations": {
+   "P2_KFN": 189,
+   "P3_ZERO": 189,
+   "N5a": 189,
+   "N5b": 189,
+   "N5c": 189,
+   "N5d": 189,
+   "N5f": 189
+  },
+  "raw_joins": {},
+  "honest_population": {
+   "P2_KFN": {
+    "population_sessions": 189,
+    "deciding_sessions": 13,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.019921012893483563
+    ],
+    "session_flag_rate_deciding": [
+     0.0,
+     0.0,
+     0.22810184305529166
+    ],
+    "decision_units": 1235,
+    "flagged_units": 0,
+    "unit_flag_rate": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 13,
+     "num": 0.0,
+     "den": 1235.0
+    }
+   },
+   "P3_ZERO": {
+    "population_sessions": 189,
+    "deciding_sessions": 16,
+    "flagged_sessions": 1,
+    "session_flag_rate_all": [
+     0.005291005291005291,
+     0.0009345796874724033,
+     0.02935763941877853
+    ],
+    "session_flag_rate_deciding": [
+     0.0625,
+     0.01111905730833121,
+     0.2832926836802987
+    ],
+    "decision_units": 16,
+    "flagged_units": 1,
+    "unit_flag_rate": {
+     "rate": 0.0625,
+     "lo": 0.0,
+     "hi": 0.1875,
+     "n_sessions": 16,
+     "num": 1.0,
+     "den": 16.0
+    }
+   },
+   "N5a": {
+    "population_sessions": 189,
+    "deciding_sessions": 2,
+    "flagged_sessions": 1,
+    "session_flag_rate_all": [
+     0.005291005291005291,
+     0.0009345796874724033,
+     0.02935763941877853
+    ],
+    "session_flag_rate_deciding": [
+     0.5,
+     0.09452865480086614,
+     0.9054713451991339
+    ],
+    "decision_units": 2,
+    "flagged_units": 1,
+    "unit_flag_rate": {
+     "rate": 0.5,
+     "lo": 0.0,
+     "hi": 1.0,
+     "n_sessions": 2,
+     "num": 1.0,
+     "den": 2.0
+    },
+    "descriptive_pairs_with_redacted_key": {
+     "pairs": 0,
+     "flagged": 0
+    }
+   },
+   "N5b": {
+    "population_sessions": 189,
+    "deciding_sessions": 17,
+    "flagged_sessions": 8,
+    "session_flag_rate_all": [
+     0.042328042328042326,
+     0.021601559919614648,
+     0.08128910267600789
+    ],
+    "session_flag_rate_deciding": [
+     0.47058823529411764,
+     0.26164801196088106,
+     0.6903710268845051
+    ],
+    "decision_units": 128,
+    "flagged_units": 24,
+    "unit_flag_rate": {
+     "rate": 0.1875,
+     "lo": 0.09270231553238457,
+     "hi": 0.2931402031542368,
+     "n_sessions": 17,
+     "num": 24.0,
+     "den": 128.0
+    }
+   },
+   "N5c": {
+    "population_sessions": 189,
+    "deciding_sessions": 6,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.019921012893483563
+    ],
+    "session_flag_rate_deciding": [
+     0.0,
+     0.0,
+     0.3903430336530645
+    ],
+    "decision_units": 11,
+    "flagged_units": 0,
+    "unit_flag_rate": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 6,
+     "num": 0.0,
+     "den": 11.0
+    }
+   },
+   "N5d": {
+    "population_sessions": 189,
+    "deciding_sessions": 19,
+    "flagged_sessions": 7,
+    "session_flag_rate_all": [
+     0.037037037037037035,
+     0.01805428842936729,
+     0.07446516795348786
+    ],
+    "session_flag_rate_deciding": [
+     0.3684210526315789,
+     0.19149272376273843,
+     0.5896084250184328
+    ],
+    "decision_units": 117,
+    "flagged_units": 29,
+    "unit_flag_rate": {
+     "rate": 0.24786324786324787,
+     "lo": 0.10763157894736843,
+     "hi": 0.3980751505468846,
+     "n_sessions": 19,
+     "num": 29.0,
+     "den": 117.0
+    }
+   },
+   "N5f": {
+    "population_sessions": 189,
+    "deciding_sessions": 0,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.019921012893483563
+    ],
+    "session_flag_rate_deciding": [
+     null,
+     null,
+     null
+    ],
+    "decision_units": 0,
+    "flagged_units": 0,
+    "unit_flag_rate": null
+   }
+  },
+  "attack_eligibility": {
+   "sub_single_flip_error|-": {
+    "eligible_sessions": 27,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 27,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 27,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.004166666666666688,
+     "max": 0.017857142857142856,
+     "mean": 0.001576278659611993
+    },
+    "seconds": 5.6
+   },
+   "sub_single_digit|-": {
+    "eligible_sessions": 119,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 119,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 8.7
+   },
+   "sub_matched_bytes|any": {
+    "eligible_sessions": 119,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 119,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 119,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.0005275674543407457,
+     "max": 0.012658227848101266,
+     "mean": 0.0002912864667177709
+    },
+    "seconds": 8.5
+   },
+   "sub_matched_bytes|samecmd": {
+    "eligible_sessions": 114,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 114,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 114,
+     "min": 0.0,
+     "p50": 0.00037234409931786007,
+     "p90": 0.01290504665580585,
+     "max": 0.045937042459736455,
+     "mean": 0.0037150061120793283
+    },
+    "seconds": 9.1
+   },
+   "rewrite_consistent_k|2": {
+    "eligible_sessions": 78,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 78,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 156,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.0018421333616073163,
+     "max": 0.010876565295169947,
+     "mean": 0.0006889327184455019
+    },
+    "seconds": 8.9
+   },
+   "rewrite_consistent_k|5": {
+    "eligible_sessions": 69,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 69,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 345,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.0012293604441560321,
+     "max": 0.03876543209876543,
+     "mean": 0.0006554889385106858
+    },
+    "seconds": 11.7
+   },
+   "reorder_adjacent_pairs|-": {
+    "eligible_sessions": 78,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 78,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 8.4
+   },
+   "reorder_lines|-": {
+    "eligible_sessions": 113,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 113,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 9.3
+   },
+   "delete_pair|-": {
+    "eligible_sessions": 119,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 119,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 7.8
+   },
+   "delete_response|-": {
+    "eligible_sessions": 0,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 0,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.0
+   },
+   "insert_pair_consistent|-": {
+    "eligible_sessions": 119,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 119,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 9.7
+   },
+   "insert_pair_squeezed|-": {
+    "eligible_sessions": 117,
+    "unit_sessions": 189,
+    "tampered_sessions_attempted": 117,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 9.7
+   }
+  },
+  "cells": {
+   "aiv_cc|B|P2_KFN|sub_single_flip_error|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 27,
+    "n_tampered": 27,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "n_honest": 27,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 27,
+     "num": 0.0,
+     "den": 27.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 18,
+    "abstain_tampered": 18,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 6.938893903907228e-18,
+     "fpr_ci_hi": 0.12455903714463581,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|sub_single_flip_error|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 27,
+    "n_tampered": 27,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "n_honest": 27,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 27,
+     "num": 0.0,
+     "den": 27.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 15,
+    "abstain_tampered": 15,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 6.938893903907228e-18,
+     "fpr_ci_hi": 0.12455903714463581,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|sub_single_flip_error|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 27,
+    "n_tampered": 27,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "n_honest": 27,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 27,
+     "num": 0.0,
+     "den": 27.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 26,
+    "abstain_tampered": 26,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 6.938893903907228e-18,
+     "fpr_ci_hi": 0.12455903714463581,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|sub_single_flip_error|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 27,
+    "n_tampered": 27,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.2962962962962963,
+     0.15852853317647564,
+     0.4848103338083759
+    ],
+    "n_honest": 27,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.2962962962962963,
+     0.15852853317647564,
+     0.4848103338083759
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 27,
+     "num": 0.0,
+     "den": 27.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 8,
+     "share": [
+      0.0,
+      0.0,
+      0.3244156195108769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 12,
+    "abstain_tampered": 12,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.2962962962962963,
+     "recall_ci_lo": 0.15852853317647564,
+     "fpr_ci_hi": 0.4848103338083759,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|sub_single_flip_error|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 27,
+    "n_tampered": 27,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "n_honest": 27,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 27,
+     "num": 0.0,
+     "den": 27.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 21,
+    "abstain_tampered": 21,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 6.938893903907228e-18,
+     "fpr_ci_hi": 0.12455903714463581,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|sub_single_flip_error|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 27,
+    "n_tampered": 27,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.25925925925925924,
+     0.13170208422866778,
+     0.4467893040261568
+    ],
+    "n_honest": 27,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.25925925925925924,
+     0.13170208422866778,
+     0.4467893040261568
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 27,
+     "num": 0.0,
+     "den": 27.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 7,
+     "share": [
+      0.0,
+      0.0,
+      0.35433884297520657
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 9,
+    "abstain_tampered": 9,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.25925925925925924,
+     "recall_ci_lo": 0.13170208422866778,
+     "fpr_ci_hi": 0.4467893040261568,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|sub_single_flip_error|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 27,
+    "n_tampered": 27,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "n_honest": 27,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     6.938893903907228e-18,
+     0.12455903714463581
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 27,
+     "num": 0.0,
+     "den": 27.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 27,
+    "abstain_tampered": 27,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 6.938893903907228e-18,
+     "fpr_ci_hi": 0.12455903714463581,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|sub_single_digit|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 106,
+    "abstain_tampered": 106,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|N5a|sub_single_digit|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 117,
+    "abstain_tampered": 117,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.04606901828259955,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|sub_single_digit|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.06722689075630252,
+     0.03445533736402665,
+     0.12706649237443327
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.06722689075630252,
+     0.03445533736402665,
+     0.12706649237443327
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 8,
+     "share": [
+      0.0,
+      0.0,
+      0.3244156195108769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 102,
+    "abstain_tampered": 102,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.06722689075630252,
+     "recall_ci_lo": 0.03445533736402665,
+     "fpr_ci_hi": 0.12706649237443327,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|sub_single_digit|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 113,
+    "abstain_tampered": 113,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|sub_single_digit|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.058823529411764705,
+     0.02878294603515636,
+     0.11645775418366203
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.058823529411764705,
+     0.02878294603515636,
+     0.11645775418366203
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 7,
+     "share": [
+      0.0,
+      0.0,
+      0.35433884297520657
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 100,
+    "abstain_tampered": 100,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.058823529411764705,
+     "recall_ci_lo": 0.02878294603515636,
+     "fpr_ci_hi": 0.11645775418366203,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|sub_single_digit|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 119,
+    "abstain_tampered": 119,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|sub_matched_bytes|any": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.008403361344537815,
+     "lo": 0.0,
+     "hi": 0.025210084033613446,
+     "n_sessions": 119,
+     "num": 1.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 106,
+    "abstain_tampered": 106,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|sub_matched_bytes|any": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 103,
+    "abstain_tampered": 103,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.04606901828259955,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|sub_matched_bytes|any": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 117,
+    "abstain_tampered": 117,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.04606901828259955,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|sub_matched_bytes|any": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.06722689075630252,
+     0.03445533736402665,
+     0.12706649237443327
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.06722689075630252,
+     0.03445533736402665,
+     0.12706649237443327
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 8,
+     "share": [
+      0.0,
+      0.0,
+      0.3244156195108769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 102,
+    "abstain_tampered": 102,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.06722689075630252,
+     "recall_ci_lo": 0.03445533736402665,
+     "fpr_ci_hi": 0.12706649237443327,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|sub_matched_bytes|any": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 113,
+    "abstain_tampered": 113,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|sub_matched_bytes|any": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.058823529411764705,
+     0.02878294603515636,
+     0.11645775418366203
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.058823529411764705,
+     0.02878294603515636,
+     0.11645775418366203
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 7,
+     "share": [
+      0.0,
+      0.0,
+      0.35433884297520657
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 100,
+    "abstain_tampered": 100,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.058823529411764705,
+     "recall_ci_lo": 0.02878294603515636,
+     "fpr_ci_hi": 0.11645775418366203,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|sub_matched_bytes|any": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 119,
+    "abstain_tampered": 119,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 114,
+    "n_tampered": 114,
+    "k_tampered_flagged": 5,
+    "recall": [
+     0.043859649122807015,
+     0.01887723116129667,
+     0.0985821380258155
+    ],
+    "n_honest": 114,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03259969314741144
+    ],
+    "adr": {
+     "rate": 0.043859649122807015,
+     "lo": 0.008771929824561403,
+     "hi": 0.07894736842105263,
+     "n_sessions": 114,
+     "num": 5.0,
+     "den": 114.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      0.0,
+      0.43449149475208104
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 101,
+    "abstain_tampered": 101,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.043859649122807015,
+     "recall_ci_lo": 0.01887723116129667,
+     "fpr_ci_hi": 0.03259969314741144,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 114,
+    "n_tampered": 114,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008771929824561403,
+     0.0015501030386822767,
+     0.04802152531666931
+    ],
+    "n_honest": 114,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008771929824561403,
+     0.0015501030386822767,
+     0.04802152531666931
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 114,
+     "num": 0.0,
+     "den": 114.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 98,
+    "abstain_tampered": 98,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008771929824561403,
+     "recall_ci_lo": 0.0015501030386822767,
+     "fpr_ci_hi": 0.04802152531666931,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 114,
+    "n_tampered": 114,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008771929824561403,
+     0.0015501030386822767,
+     0.04802152531666931
+    ],
+    "n_honest": 114,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008771929824561403,
+     0.0015501030386822767,
+     0.04802152531666931
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 114,
+     "num": 0.0,
+     "den": 114.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 112,
+    "abstain_tampered": 112,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008771929824561403,
+     "recall_ci_lo": 0.0015501030386822767,
+     "fpr_ci_hi": 0.04802152531666931,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 114,
+    "n_tampered": 114,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.07017543859649122,
+     0.03598491232451978,
+     0.13239026248641286
+    ],
+    "n_honest": 114,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.07017543859649122,
+     0.03598491232451978,
+     0.13239026248641286
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 114,
+     "num": 0.0,
+     "den": 114.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 8,
+     "share": [
+      0.0,
+      0.0,
+      0.3244156195108769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 97,
+    "abstain_tampered": 97,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.07017543859649122,
+     "recall_ci_lo": 0.03598491232451978,
+     "fpr_ci_hi": 0.13239026248641286,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 114,
+    "n_tampered": 114,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.03259969314741144
+    ],
+    "n_honest": 114,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03259969314741144
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 114,
+     "num": 0.0,
+     "den": 114.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 108,
+    "abstain_tampered": 108,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.03259969314741144,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 114,
+    "n_tampered": 114,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.06140350877192982,
+     0.030058899274456374,
+     0.12134434032853611
+    ],
+    "n_honest": 114,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.06140350877192982,
+     0.030058899274456374,
+     0.12134434032853611
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 114,
+     "num": 0.0,
+     "den": 114.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 7,
+     "share": [
+      0.0,
+      0.0,
+      0.35433884297520657
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 95,
+    "abstain_tampered": 94,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.06140350877192982,
+     "recall_ci_lo": 0.030058899274456374,
+     "fpr_ci_hi": 0.12134434032853611,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 114,
+    "n_tampered": 114,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.03259969314741144
+    ],
+    "n_honest": 114,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03259969314741144
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 114,
+     "num": 0.0,
+     "den": 114.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 114,
+    "abstain_tampered": 114,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.03259969314741144,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|rewrite_consistent_k|2": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 4,
+    "recall": [
+     0.05128205128205128,
+     0.020120686846503345,
+     0.1245685665405272
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "adr": {
+     "rate": 0.05128205128205128,
+     "lo": 0.01282051282051282,
+     "hi": 0.10256410256410256,
+     "n_sessions": 78,
+     "num": 4.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 4,
+     "share": [
+      0.75,
+      0.3006360524426366,
+      0.9544139373553637
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 65,
+    "abstain_tampered": 65,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.05128205128205128,
+     "recall_ci_lo": 0.020120686846503345,
+     "fpr_ci_hi": 0.04693945377411976,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|rewrite_consistent_k|2": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.01282051282051282,
+     0.0022666733888537863,
+     0.06911023028849367
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.01282051282051282,
+     0.0022666733888537863,
+     0.06911023028849367
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 62,
+    "abstain_tampered": 62,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.01282051282051282,
+     "recall_ci_lo": 0.0022666733888537863,
+     "fpr_ci_hi": 0.06911023028849367,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|rewrite_consistent_k|2": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.01282051282051282,
+     0.0022666733888537863,
+     0.06911023028849367
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.01282051282051282,
+     0.0022666733888537863,
+     0.06911023028849367
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 76,
+    "abstain_tampered": 76,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.01282051282051282,
+     "recall_ci_lo": 0.0022666733888537863,
+     "fpr_ci_hi": 0.06911023028849367,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|rewrite_consistent_k|2": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.10256410256410256,
+     0.05289271527803498,
+     0.18954633772190638
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.10256410256410256,
+     0.05289271527803498,
+     0.18954633772190638
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 8,
+     "share": [
+      0.0,
+      0.0,
+      0.3244156195108769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 61,
+    "abstain_tampered": 61,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.10256410256410256,
+     "recall_ci_lo": 0.05289271527803498,
+     "fpr_ci_hi": 0.18954633772190638,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|rewrite_consistent_k|2": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 72,
+    "abstain_tampered": 72,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.04693945377411976,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|rewrite_consistent_k|2": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.08974358974358974,
+     0.044152447186411065,
+     0.1738491559103026
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.08974358974358974,
+     0.044152447186411065,
+     0.1738491559103026
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 7,
+     "share": [
+      0.0,
+      0.0,
+      0.35433884297520657
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 59,
+    "abstain_tampered": 59,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.08974358974358974,
+     "recall_ci_lo": 0.044152447186411065,
+     "fpr_ci_hi": 0.1738491559103026,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|rewrite_consistent_k|2": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 78,
+    "abstain_tampered": 78,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.04693945377411976,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|rewrite_consistent_k|5": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 69,
+    "n_tampered": 69,
+    "k_tampered_flagged": 6,
+    "recall": [
+     0.08695652173913043,
+     0.04046307012090733,
+     0.1770170511284886
+    ],
+    "n_honest": 69,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.05273909414400562
+    ],
+    "adr": {
+     "rate": 0.08695652173913043,
+     "lo": 0.028985507246376812,
+     "hi": 0.15942028985507245,
+     "n_sessions": 69,
+     "num": 6.0,
+     "den": 69.0
+    },
+    "localization": {
+     "k": 6,
+     "n": 6,
+     "share": [
+      1.0,
+      0.6096569663469354,
+      0.9999999999999999
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 56,
+    "abstain_tampered": 56,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.08695652173913043,
+     "recall_ci_lo": 0.04046307012090733,
+     "fpr_ci_hi": 0.05273909414400562,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|rewrite_consistent_k|5": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 69,
+    "n_tampered": 69,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.014492753623188406,
+     0.002562858644330375,
+     0.07763307335057362
+    ],
+    "n_honest": 69,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.014492753623188406,
+     0.002562858644330375,
+     0.07763307335057362
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 69,
+     "num": 0.0,
+     "den": 69.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 53,
+    "abstain_tampered": 53,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.014492753623188406,
+     "recall_ci_lo": 0.002562858644330375,
+     "fpr_ci_hi": 0.07763307335057362,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|rewrite_consistent_k|5": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 69,
+    "n_tampered": 69,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.014492753623188406,
+     0.002562858644330375,
+     0.07763307335057362
+    ],
+    "n_honest": 69,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.014492753623188406,
+     0.002562858644330375,
+     0.07763307335057362
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 69,
+     "num": 0.0,
+     "den": 69.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 67,
+    "abstain_tampered": 67,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.014492753623188406,
+     "recall_ci_lo": 0.002562858644330375,
+     "fpr_ci_hi": 0.07763307335057362,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|rewrite_consistent_k|5": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 69,
+    "n_tampered": 69,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.11594202898550725,
+     0.05993426545958408,
+     0.21245953149160868
+    ],
+    "n_honest": 69,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.11594202898550725,
+     0.05993426545958408,
+     0.21245953149160868
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 69,
+     "num": 0.0,
+     "den": 69.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 8,
+     "share": [
+      0.125,
+      0.02241690886329617,
+      0.4708948057698615
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 52,
+    "abstain_tampered": 52,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.11594202898550725,
+     "recall_ci_lo": 0.05993426545958408,
+     "fpr_ci_hi": 0.21245953149160868,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|rewrite_consistent_k|5": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 69,
+    "n_tampered": 69,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.05273909414400562
+    ],
+    "n_honest": 69,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.05273909414400562
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 69,
+     "num": 0.0,
+     "den": 69.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 63,
+    "abstain_tampered": 63,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.05273909414400562,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|rewrite_consistent_k|5": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 69,
+    "n_tampered": 69,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.11594202898550725,
+     0.05993426545958408,
+     0.21245953149160868
+    ],
+    "n_honest": 69,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.10144927536231885,
+     0.050016002571615495,
+     0.19492095652867886
+    ],
+    "adr": {
+     "rate": 0.014492753623188406,
+     "lo": 0.0,
+     "hi": 0.043478260869565216,
+     "n_sessions": 69,
+     "num": 1.0,
+     "den": 69.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 8,
+     "share": [
+      0.125,
+      0.02241690886329617,
+      0.4708948057698615
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 50,
+    "abstain_tampered": 50,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.11594202898550725,
+     "recall_ci_lo": 0.05993426545958408,
+     "fpr_ci_hi": 0.19492095652867886,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|rewrite_consistent_k|5": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 69,
+    "n_tampered": 69,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.05273909414400562
+    ],
+    "n_honest": 69,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.05273909414400562
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 69,
+     "num": 0.0,
+     "den": 69.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 69,
+    "abstain_tampered": 69,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.05273909414400562,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 3,
+    "recall": [
+     0.038461538461538464,
+     0.013165586780815211,
+     0.10708621670298764
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "adr": {
+     "rate": 0.038461538461538464,
+     "lo": 0.0,
+     "hi": 0.07692307692307693,
+     "n_sessions": 78,
+     "num": 3.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 3,
+     "share": [
+      1.0,
+      0.43849391955098227,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 65,
+    "abstain_tampered": 65,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.038461538461538464,
+     "recall_ci_lo": 0.013165586780815211,
+     "fpr_ci_hi": 0.04693945377411976,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.01282051282051282,
+     0.0022666733888537863,
+     0.06911023028849367
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.01282051282051282,
+     0.0022666733888537863,
+     0.06911023028849367
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 62,
+    "abstain_tampered": 62,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.01282051282051282,
+     "recall_ci_lo": 0.0022666733888537863,
+     "fpr_ci_hi": 0.06911023028849367,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.01282051282051282,
+     0.0022666733888537863,
+     0.06911023028849367
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.01282051282051282,
+     0.0022666733888537863,
+     0.06911023028849367
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 76,
+    "abstain_tampered": 76,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.01282051282051282,
+     "recall_ci_lo": 0.0022666733888537863,
+     "fpr_ci_hi": 0.06911023028849367,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.10256410256410256,
+     0.05289271527803498,
+     0.18954633772190638
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.10256410256410256,
+     0.05289271527803498,
+     0.18954633772190638
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 8,
+     "share": [
+      0.0,
+      0.0,
+      0.3244156195108769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 61,
+    "abstain_tampered": 61,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.10256410256410256,
+     "recall_ci_lo": 0.05289271527803498,
+     "fpr_ci_hi": 0.18954633772190638,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 72,
+    "abstain_tampered": 72,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.04693945377411976,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.08974358974358974,
+     0.044152447186411065,
+     0.1738491559103026
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.08974358974358974,
+     0.044152447186411065,
+     0.1738491559103026
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 7,
+     "share": [
+      0.0,
+      0.0,
+      0.35433884297520657
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 59,
+    "abstain_tampered": 59,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.08974358974358974,
+     "recall_ci_lo": 0.044152447186411065,
+     "fpr_ci_hi": 0.1738491559103026,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 78,
+    "n_tampered": 78,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "n_honest": 78,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.04693945377411976
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 78,
+     "num": 0.0,
+     "den": 78.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 78,
+    "abstain_tampered": 78,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.04693945377411976,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|reorder_lines|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 113,
+    "n_tampered": 113,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.03287870073672391
+    ],
+    "n_honest": 113,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03287870073672391
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 113,
+     "num": 0.0,
+     "den": 113.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 100,
+    "abstain_tampered": 100,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.03287870073672391,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|N5a|reorder_lines|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 113,
+    "n_tampered": 113,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008849557522123894,
+     0.0015638358136017966,
+     0.04843205606052523
+    ],
+    "n_honest": 113,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008849557522123894,
+     0.0015638358136017966,
+     0.04843205606052523
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 113,
+     "num": 0.0,
+     "den": 113.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 111,
+    "abstain_tampered": 111,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008849557522123894,
+     "recall_ci_lo": 0.0015638358136017966,
+     "fpr_ci_hi": 0.04843205606052523,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|reorder_lines|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 113,
+    "n_tampered": 113,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.07079646017699115,
+     0.036307273195638715,
+     0.13350895664031015
+    ],
+    "n_honest": 113,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.07079646017699115,
+     0.036307273195638715,
+     0.13350895664031015
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 113,
+     "num": 0.0,
+     "den": 113.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 8,
+     "share": [
+      0.0,
+      0.0,
+      0.3244156195108769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 96,
+    "abstain_tampered": 96,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.07079646017699115,
+     "recall_ci_lo": 0.036307273195638715,
+     "fpr_ci_hi": 0.13350895664031015,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|reorder_lines|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 113,
+    "n_tampered": 113,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.03287870073672391
+    ],
+    "n_honest": 113,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03287870073672391
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 113,
+     "num": 0.0,
+     "den": 113.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 107,
+    "abstain_tampered": 107,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.03287870073672391,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|reorder_lines|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 113,
+    "n_tampered": 113,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.061946902654867256,
+     0.030327788623800846,
+     0.12237125007474489
+    ],
+    "n_honest": 113,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.061946902654867256,
+     0.030327788623800846,
+     0.12237125007474489
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 113,
+     "num": 0.0,
+     "den": 113.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 7,
+     "share": [
+      0.0,
+      0.0,
+      0.35433884297520657
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 94,
+    "abstain_tampered": 94,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.061946902654867256,
+     "recall_ci_lo": 0.030327788623800846,
+     "fpr_ci_hi": 0.12237125007474489,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|reorder_lines|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 113,
+    "n_tampered": 113,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.03287870073672391
+    ],
+    "n_honest": 113,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03287870073672391
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 113,
+     "num": 0.0,
+     "den": 113.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 113,
+    "abstain_tampered": 113,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.03287870073672391,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|delete_pair|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.008403361344537815,
+     "lo": 0.0,
+     "hi": 0.025210084033613446,
+     "n_sessions": 119,
+     "num": 1.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 106,
+    "abstain_tampered": 106,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|delete_pair|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 103,
+    "abstain_tampered": 103,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.04606901828259955,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|delete_pair|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 117,
+    "abstain_tampered": 117,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.04606901828259955,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|delete_pair|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.06722689075630252,
+     0.03445533736402665,
+     0.12706649237443327
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.06722689075630252,
+     0.03445533736402665,
+     0.12706649237443327
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 102,
+    "abstain_tampered": 102,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.06722689075630252,
+     "recall_ci_lo": 0.03445533736402665,
+     "fpr_ci_hi": 0.12706649237443327,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|delete_pair|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 113,
+    "abstain_tampered": 113,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|delete_pair|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.058823529411764705,
+     0.02878294603515636,
+     0.11645775418366203
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.058823529411764705,
+     0.02878294603515636,
+     0.11645775418366203
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 100,
+    "abstain_tampered": 100,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.058823529411764705,
+     "recall_ci_lo": 0.02878294603515636,
+     "fpr_ci_hi": 0.11645775418366203,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|delete_pair|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 119,
+    "abstain_tampered": 119,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|delete_response|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|delete_response|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|delete_response|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|delete_response|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|delete_response|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|delete_response|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|delete_response|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|insert_pair_consistent|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 106,
+    "abstain_tampered": 103,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|insert_pair_consistent|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 103,
+    "abstain_tampered": 103,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.04606901828259955,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|insert_pair_consistent|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008403361344537815,
+     0.0014849048183694993,
+     0.04606901828259955
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 117,
+    "abstain_tampered": 117,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008403361344537815,
+     "recall_ci_lo": 0.0014849048183694993,
+     "fpr_ci_hi": 0.04606901828259955,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|insert_pair_consistent|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 9,
+    "recall": [
+     0.07563025210084033,
+     0.040296784434261525,
+     0.13750617482383995
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.06722689075630252,
+     0.03445533736402665,
+     0.12706649237443327
+    ],
+    "adr": {
+     "rate": 0.008403361344537815,
+     "lo": 0.0,
+     "hi": 0.025210084033613446,
+     "n_sessions": 119,
+     "num": 1.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 9,
+     "share": [
+      0.1111111111111111,
+      0.019890371327130535,
+      0.4350062147680601
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 102,
+    "abstain_tampered": 101,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.07563025210084033,
+     "recall_ci_lo": 0.040296784434261525,
+     "fpr_ci_hi": 0.12706649237443327,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|insert_pair_consistent|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 113,
+    "abstain_tampered": 113,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|insert_pair_consistent|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.06722689075630252,
+     0.03445533736402665,
+     0.12706649237443327
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.058823529411764705,
+     0.02878294603515636,
+     0.11645775418366203
+    ],
+    "adr": {
+     "rate": 0.008403361344537815,
+     "lo": 0.0,
+     "hi": 0.025210084033613446,
+     "n_sessions": 119,
+     "num": 1.0,
+     "den": 119.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 8,
+     "share": [
+      0.125,
+      0.02241690886329617,
+      0.4708948057698615
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 100,
+    "abstain_tampered": 99,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.06722689075630252,
+     "recall_ci_lo": 0.03445533736402665,
+     "fpr_ci_hi": 0.11645775418366203,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|insert_pair_consistent|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 119,
+    "n_tampered": 119,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "n_honest": 119,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     3.469446951953614e-18,
+     0.03127279358132749
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 119,
+     "num": 0.0,
+     "den": 119.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 119,
+    "abstain_tampered": 119,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 3.469446951953614e-18,
+     "fpr_ci_hi": 0.03127279358132749,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|P2_KFN|insert_pair_squeezed|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P2_KFN",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 117,
+    "n_tampered": 117,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.03179037682387522
+    ],
+    "n_honest": 117,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03179037682387522
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 117,
+     "num": 0.0,
+     "den": 117.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 104,
+    "abstain_tampered": 103,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.03179037682387522,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study",
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cc|B|P3_ZERO|insert_pair_squeezed|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "P3_ZERO",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 117,
+    "n_tampered": 117,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008547008547008548,
+     0.0015103146975802076,
+     0.04683065397545954
+    ],
+    "n_honest": 117,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008547008547008548,
+     0.0015103146975802076,
+     0.04683065397545954
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 117,
+     "num": 0.0,
+     "den": 117.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 101,
+    "abstain_tampered": 101,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008547008547008548,
+     "recall_ci_lo": 0.0015103146975802076,
+     "fpr_ci_hi": 0.04683065397545954,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5a|insert_pair_squeezed|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5a",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 117,
+    "n_tampered": 117,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.008547008547008548,
+     0.0015103146975802076,
+     0.04683065397545954
+    ],
+    "n_honest": 117,
+    "k_honest_flagged": 1,
+    "fpr": [
+     0.008547008547008548,
+     0.0015103146975802076,
+     0.04683065397545954
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 117,
+     "num": 0.0,
+     "den": 117.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      0.7934567085261071
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 115,
+    "abstain_tampered": 115,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.008547008547008548,
+     "recall_ci_lo": 0.0015103146975802076,
+     "fpr_ci_hi": 0.04683065397545954,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5b|insert_pair_squeezed|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5b",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 117,
+    "n_tampered": 117,
+    "k_tampered_flagged": 8,
+    "recall": [
+     0.06837606837606838,
+     0.0350512906011003,
+     0.12914382101609115
+    ],
+    "n_honest": 117,
+    "k_honest_flagged": 8,
+    "fpr": [
+     0.06837606837606838,
+     0.0350512906011003,
+     0.12914382101609115
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 117,
+     "num": 0.0,
+     "den": 117.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 8,
+     "share": [
+      0.0,
+      0.0,
+      0.3244156195108769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 100,
+    "abstain_tampered": 100,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.06837606837606838,
+     "recall_ci_lo": 0.0350512906011003,
+     "fpr_ci_hi": 0.12914382101609115,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5c|insert_pair_squeezed|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5c",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 117,
+    "n_tampered": 117,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.03179037682387522
+    ],
+    "n_honest": 117,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03179037682387522
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 117,
+     "num": 0.0,
+     "den": 117.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 111,
+    "abstain_tampered": 111,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.03179037682387522,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5d|insert_pair_squeezed|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5d",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 117,
+    "n_tampered": 117,
+    "k_tampered_flagged": 7,
+    "recall": [
+     0.05982905982905983,
+     0.029280101993339018,
+     0.1183644177746879
+    ],
+    "n_honest": 117,
+    "k_honest_flagged": 7,
+    "fpr": [
+     0.05982905982905983,
+     0.029280101993339018,
+     0.1183644177746879
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 117,
+     "num": 0.0,
+     "den": 117.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 7,
+     "share": [
+      0.0,
+      0.0,
+      0.35433884297520657
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 98,
+    "abstain_tampered": 98,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.05982905982905983,
+     "recall_ci_lo": 0.029280101993339018,
+     "fpr_ci_hi": 0.1183644177746879,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   },
+   "aiv_cc|B|N5f|insert_pair_squeezed|-": {
+    "unit": "aiv_cc",
+    "split": "B",
+    "detector": "N5f",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 117,
+    "n_tampered": 117,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.03179037682387522
+    ],
+    "n_honest": 117,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.03179037682387522
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 117,
+     "num": 0.0,
+     "den": 117.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 117,
+    "abstain_tampered": 117,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.03179037682387522,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "single-agent case study"
+    ]
+   }
+  },
+  "runtime_s": 117.3,
+  "limit": null
+ }
+}

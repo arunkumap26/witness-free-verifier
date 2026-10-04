@@ -1,0 +1,6886 @@
+{
+ "item": "n3_reaction_time",
+ "script": "analysis/probes/phase_e_n3.py",
+ "prereg_section": "prereg_e.json n3_reaction_time",
+ "prereg_e_json_sha256": "4c77ac53eda36a4f084d01cb6b383e20d4a1c98a9a7b15cf3b5fbd3db00ebcdc",
+ "spec_module_sha256": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "check_frozen": "passed",
+ "verdict_rule_text": {
+  "ALIVE": "pooled rho CI lo >= 0.30 and share(rho_s <= 0) <= 0.10 with Wilson hi <= 0.20",
+  "WEAK": "pooled rho CI lo > 0",
+  "DEAD": "otherwise"
+ },
+ "min_n": ">= 20 sessions with >= 20 gaps",
+ "detector": "session flagged if rho_s <= 0 (judgment threshold: no positive reaction to size)",
+ "gap_definition": "n3_gaps(): for each batch of results of one thread followed by the thread's next model event (assistant or call) with no user/system event in between: gap = ts(next model event) - ts(last result of the batch); bytes = total UTF-8 bytes of the batch's results; gaps <= 0 or > 600 s excluded",
+ "stated_limit": "the gap includes prefill and the next response's generation; prefill also scales with result size, so a positive rho is not by itself reading time (stated limit).",
+ "thresholds_used": {
+  "min_gaps_per_session": 20,
+  "min_sessions": 20,
+  "alive_rho_lo": 0.3,
+  "alive_share": 0.1,
+  "alive_share_hi": 0.2,
+  "G50_tok_per_s": {
+   "swechat/claude_code": 37.063563115487916,
+   "cc_local": 74.19726517754074,
+   "aiv_cc": 25.981896144590827,
+   "swechat/codex": 46.329467484364564,
+   "swechat/opencode": 33.356344860824706,
+   "swechat/gemini": 25.486854985573427
+  }
+ },
+ "seeds": {
+  "bootstrap": 20261003,
+  "positive_control": "rng_for('N3pc', session_id, 'gaps') with SEED_E=20261005"
+ },
+ "A_context_sessions_ge_20_gaps": {
+  "swechat/claude_code": {
+   "gaps": 12186,
+   "sessions_with_gaps": 125,
+   "sessions_ge_20_gaps": 96
+  },
+  "swechat/codex": {
+   "gaps": 650,
+   "sessions_with_gaps": 15,
+   "sessions_ge_20_gaps": 8
+  },
+  "swechat/opencode": {
+   "gaps": 3201,
+   "sessions_with_gaps": 25,
+   "sessions_ge_20_gaps": 12
+  },
+  "swechat/gemini": {
+   "gaps": 2270,
+   "sessions_with_gaps": 10,
+   "sessions_ge_20_gaps": 8
+  },
+  "cc_local": {
+   "gaps": 2670,
+   "sessions_with_gaps": 76,
+   "sessions_ge_20_gaps": 7
+  },
+  "aiv_cc": {
+   "gaps": 31045,
+   "sessions_with_gaps": 74,
+   "sessions_ge_20_gaps": 40
+  }
+ },
+ "A_context_source": "analysis/out/phase_e/prereg_e_calibration.json units.<unit>.latency_counts.n3",
+ "cells_computed": 14,
+ "units": {
+  "swechat/claude_code": {
+   "labels": [],
+   "sessions_in_split": {
+    "B": 1679,
+    "E": 1545
+   },
+   "has_E": true,
+   "split_meta": {
+    "B": {
+     "rows": 856891,
+     "sessions": 1679,
+     "rows_by_kind": {
+      "meta": 372603,
+      "user": 12964,
+      "assistant": 69659,
+      "call": 194652,
+      "result": 194371,
+      "system": 12642
+     },
+     "gaps": 176386,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 194371,
+     "gaps_with_truncated_result": 2179,
+     "gaps_not_join_clean": 1570,
+     "gaps_with_usage_next": 176386
+    },
+    "E": {
+     "rows": 816431,
+     "sessions": 1545,
+     "rows_by_kind": {
+      "meta": 370056,
+      "system": 10687,
+      "call": 180333,
+      "result": 180049,
+      "user": 11684,
+      "assistant": 63622
+     },
+     "gaps": 163987,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 180049,
+     "gaps_with_truncated_result": 1840,
+     "gaps_not_join_clean": 931,
+     "gaps_with_usage_next": 163987
+    }
+   },
+   "results": {
+    "B": {
+     "gaps": 176386,
+     "sessions_with_gaps": 1639,
+     "eligible_sessions": 1262,
+     "eligible_gaps": 172524,
+     "rho_s": {
+      "n_defined": 1262,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 1262,
+       "q0": -0.7361942319940745,
+       "q0.05": -0.3252313462539167,
+       "q0.25": -0.13473436916175158,
+       "q0.5": -0.004824351711573648,
+       "q0.75": 0.15723538836581108,
+       "q0.95": 0.34700948905586965,
+       "q1": 0.6217395568454952
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 640,
+      "n": 1262,
+      "share": 0.5071315372424723,
+      "lo": 0.4795680925671741,
+      "hi": 0.5346516960698875,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": -0.04295308576188464,
+      "n_sessions": 1262,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.06043513611490732,
+      "hi": -0.02497022257207495,
+      "n": 172524
+     },
+     "gap_s_quantiles": {
+      "n": 172524,
+      "n_sessions": 1262,
+      "q0": 0.001,
+      "q0.05": 0.31,
+      "q0.25": 2.228,
+      "q0.5": 3.822,
+      "q0.75": 5.919,
+      "q0.95": 15.585700000000012,
+      "q1": 560.026
+     },
+     "bytes_quantiles": {
+      "n": 172524,
+      "q0": 0.0,
+      "q0.05": 16.0,
+      "q0.25": 107.0,
+      "q0.5": 358.0,
+      "q0.75": 2111.0,
+      "q0.95": 12469.0,
+      "q1": 163595.0
+     },
+     "zero_byte_gaps": 3979,
+     "rho_pooled_all_sessions": {
+      "value": -0.041257799232773444,
+      "n_sessions": 1639,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.05655228348246685,
+      "hi": -0.02247899168636834,
+      "n": 176386
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 37.063563115487916,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 172524,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 172524,
+       "q0": 0.0,
+       "q0.05": 1.0,
+       "q0.25": 2.0,
+       "q0.5": 79.0,
+       "q0.75": 226.0,
+       "q0.95": 973.0,
+       "q1": 27907.0
+      },
+      "adjusted_gap_le_0": 58124,
+      "rho": {
+       "value": -0.007364054428012981,
+       "n_sessions": 1262,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.020025834741557454,
+       "hi": 0.005194044347547996,
+       "n": 172524
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 663,
+       "n": 1262,
+       "share": 0.5253565768621236,
+       "lo": 0.4977703641784833,
+       "hi": 0.552788884308847
+      },
+      "rho_s_quantiles": {
+       "n": 1262,
+       "q0": -0.4612546008601903,
+       "q0.05": -0.21782470843827295,
+       "q0.25": -0.07847543141718354,
+       "q0.5": -0.00595617914037333,
+       "q0.75": 0.06633402353059925,
+       "q0.95": 0.2298834732038191,
+       "q1": 0.5320473213879164
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.020483665155389325,
+       "n_sessions": 1262,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.03066856071618607,
+       "hi": -0.009641914620346217,
+       "n": 172524
+      }
+     },
+     "verdict": {
+      "label": "DEAD",
+      "rule": "pooled rho CI lo <= 0",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": -0.06043513611490732,
+        "path": "units.swechat/claude_code.results.B.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.5071315372424723,
+        "path": "units.swechat/claude_code.results.B.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.5346516960698875,
+        "path": "units.swechat/claude_code.results.B.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": -0.06043513611490732,
+      "deciding_path": "units.swechat/claude_code.results.B.rho_pooled.lo"
+     }
+    },
+    "E": {
+     "gaps": 163987,
+     "sessions_with_gaps": 1518,
+     "eligible_sessions": 1170,
+     "eligible_gaps": 160336,
+     "rho_s": {
+      "n_defined": 1170,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 1170,
+       "q0": -0.643664003409491,
+       "q0.05": -0.3350902890746702,
+       "q0.25": -0.12865454146599406,
+       "q0.5": 0.008553879886796102,
+       "q0.75": 0.16236774079400082,
+       "q0.95": 0.3702386589055433,
+       "q1": 0.73140600206671
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 565,
+      "n": 1170,
+      "share": 0.4829059829059829,
+      "lo": 0.45437495088522983,
+      "hi": 0.511548901191575,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": -0.03938750097448771,
+      "n_sessions": 1170,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.05449000379228553,
+      "hi": -0.02393028691215004,
+      "n": 160336
+     },
+     "gap_s_quantiles": {
+      "n": 160336,
+      "n_sessions": 1170,
+      "q0": 0.001,
+      "q0.05": 0.301,
+      "q0.25": 2.21,
+      "q0.5": 3.73,
+      "q0.75": 5.677,
+      "q0.95": 14.95325,
+      "q1": 594.769
+     },
+     "bytes_quantiles": {
+      "n": 160336,
+      "q0": 0.0,
+      "q0.05": 16.0,
+      "q0.25": 108.0,
+      "q0.5": 360.0,
+      "q0.75": 2097.0,
+      "q0.95": 12637.25,
+      "q1": 179039.0
+     },
+     "zero_byte_gaps": 4005,
+     "rho_pooled_all_sessions": {
+      "value": -0.03768351261507242,
+      "n_sessions": 1518,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.05357613872164702,
+      "hi": -0.0214120813221028,
+      "n": 163987
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 37.063563115487916,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 160336,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 160336,
+       "q0": 0.0,
+       "q0.05": 1.0,
+       "q0.25": 2.0,
+       "q0.5": 57.0,
+       "q0.75": 219.0,
+       "q0.95": 1005.0,
+       "q1": 33653.0
+      },
+      "adjusted_gap_le_0": 53275,
+      "rho": {
+       "value": -0.01643787168358351,
+       "n_sessions": 1170,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.0277530744571142,
+       "hi": -0.004761795030874019,
+       "n": 160336
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 568,
+       "n": 1170,
+       "share": 0.48547008547008547,
+       "lo": 0.4569260360721239,
+       "hi": 0.5141092381931602
+      },
+      "rho_s_quantiles": {
+       "n": 1170,
+       "q0": -0.4911424251759146,
+       "q0.05": -0.20696822892287814,
+       "q0.25": -0.06993426345402352,
+       "q0.5": 0.0033279244329769463,
+       "q0.75": 0.07187232624800792,
+       "q0.95": 0.21783615934937745,
+       "q1": 0.5314143199734456
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.020690306497885443,
+       "n_sessions": 1170,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.030955140006215374,
+       "hi": -0.010853220073729348,
+       "n": 160336
+      }
+     },
+     "verdict": {
+      "label": "DEAD",
+      "rule": "pooled rho CI lo <= 0",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": -0.05449000379228553,
+        "path": "units.swechat/claude_code.results.E.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.4829059829059829,
+        "path": "units.swechat/claude_code.results.E.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.511548901191575,
+        "path": "units.swechat/claude_code.results.E.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": -0.05449000379228553,
+      "deciding_path": "units.swechat/claude_code.results.E.rho_pooled.lo"
+     }
+    },
+    "BE": {
+     "gaps": 340373,
+     "sessions_with_gaps": 3157,
+     "eligible_sessions": 2432,
+     "eligible_gaps": 332860,
+     "rho_s": {
+      "n_defined": 2432,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 2432,
+       "q0": -0.7361942319940745,
+       "q0.05": -0.33298533881610864,
+       "q0.25": -0.1324271107266346,
+       "q0.5": 0.002173412373333276,
+       "q0.75": 0.15870857372611522,
+       "q0.95": 0.35390729284856876,
+       "q1": 0.73140600206671
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 1205,
+      "n": 2432,
+      "share": 0.4954769736842105,
+      "lo": 0.4756284705827927,
+      "hi": 0.5153397434422902,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": -0.0412094039994216,
+      "n_sessions": 2432,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.05240560930768314,
+      "hi": -0.029346302788131783,
+      "n": 332860
+     },
+     "gap_s_quantiles": {
+      "n": 332860,
+      "n_sessions": 2432,
+      "q0": 0.001,
+      "q0.05": 0.306,
+      "q0.25": 2.219,
+      "q0.5": 3.777,
+      "q0.75": 5.798,
+      "q0.95": 15.263049999999987,
+      "q1": 594.769
+     },
+     "bytes_quantiles": {
+      "n": 332860,
+      "q0": 0.0,
+      "q0.05": 16.0,
+      "q0.25": 108.0,
+      "q0.5": 359.0,
+      "q0.75": 2105.0,
+      "q0.95": 12545.0,
+      "q1": 179039.0
+     },
+     "zero_byte_gaps": 7984,
+     "rho_pooled_all_sessions": {
+      "value": -0.03950523436895955,
+      "n_sessions": 3157,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.05165664315638791,
+      "hi": -0.028192059102619935,
+      "n": 340373
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 37.063563115487916,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 332860,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 332860,
+       "q0": 0.0,
+       "q0.05": 1.0,
+       "q0.25": 2.0,
+       "q0.5": 72.0,
+       "q0.75": 223.0,
+       "q0.95": 988.0,
+       "q1": 33653.0
+      },
+      "adjusted_gap_le_0": 111399,
+      "rho": {
+       "value": -0.01166826458860531,
+       "n_sessions": 2432,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.020340684586171408,
+       "hi": -0.002501791844507936,
+       "n": 332860
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 1231,
+       "n": 2432,
+       "share": 0.5061677631578947,
+       "lo": 0.48630309669477234,
+       "hi": 0.5260129750892057
+      },
+      "rho_s_quantiles": {
+       "n": 2432,
+       "q0": -0.4911424251759146,
+       "q0.05": -0.21178578895574052,
+       "q0.25": -0.07453271930416097,
+       "q0.5": -0.0015905187864544246,
+       "q0.75": 0.06815746572731514,
+       "q0.95": 0.22468862138540582,
+       "q1": 0.5320473213879164
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.020558744266170263,
+       "n_sessions": 2432,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.02715758327403429,
+       "hi": -0.013313849690420963,
+       "n": 332860
+      }
+     },
+     "verdict": {
+      "label": "DEAD",
+      "rule": "pooled rho CI lo <= 0",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": -0.05240560930768314,
+        "path": "units.swechat/claude_code.results.BE.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.4954769736842105,
+        "path": "units.swechat/claude_code.results.BE.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.5153397434422902,
+        "path": "units.swechat/claude_code.results.BE.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": -0.05240560930768314,
+      "deciding_path": "units.swechat/claude_code.results.BE.rho_pooled.lo"
+     }
+    }
+   },
+   "cell_before_checks": {
+    "label": "DEAD",
+    "source_path": "units.swechat/claude_code.results.E.verdict.label",
+    "B": "DEAD",
+    "E": "DEAD",
+    "suffix": ""
+   },
+   "artifact_checks": {
+    "status": "not required: no B / E / B u E verdict reached WEAK or better (S:artifact_checks applies to N cells at WEAK or better)"
+   },
+   "cell_final": {
+    "label": "DEAD",
+    "checks_applied": [],
+    "suffix": ""
+   }
+  },
+  "swechat/codex": {
+   "labels": [],
+   "sessions_in_split": {
+    "B": 77,
+    "E": 65
+   },
+   "has_E": true,
+   "split_meta": {
+    "B": {
+     "rows": 40737,
+     "sessions": 77,
+     "rows_by_kind": {
+      "meta": 18432,
+      "system": 301,
+      "user": 405,
+      "assistant": 2071,
+      "call": 9801,
+      "result": 9727
+     },
+     "gaps": 6471,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 9727,
+     "gaps_with_truncated_result": 0,
+     "gaps_not_join_clean": 0,
+     "gaps_with_usage_next": 6471
+    },
+    "E": {
+     "rows": 29266,
+     "sessions": 65,
+     "rows_by_kind": {
+      "meta": 14942,
+      "system": 238,
+      "user": 296,
+      "assistant": 1344,
+      "call": 6230,
+      "result": 6216
+     },
+     "gaps": 4185,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 6216,
+     "gaps_with_truncated_result": 0,
+     "gaps_not_join_clean": 0,
+     "gaps_with_usage_next": 4185
+    }
+   },
+   "results": {
+    "B": {
+     "gaps": 6471,
+     "sessions_with_gaps": 63,
+     "eligible_sessions": 42,
+     "eligible_gaps": 6222,
+     "rho_s": {
+      "n_defined": 42,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 42,
+       "q0": -0.13495200451722192,
+       "q0.05": -0.015018918046908305,
+       "q0.25": 0.1424847803664389,
+       "q0.5": 0.24285395719267447,
+       "q0.75": 0.3186087687292846,
+       "q0.95": 0.49223196851632506,
+       "q1": 0.5558129114454999
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 3,
+      "n": 42,
+      "share": 0.07142857142857142,
+      "lo": 0.024589963551172864,
+      "hi": 0.19009713288525165,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": 0.1941847290504849,
+      "n_sessions": 42,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.11864344549374656,
+      "hi": 0.23738926568635454,
+      "n": 6222
+     },
+     "gap_s_quantiles": {
+      "n": 6222,
+      "n_sessions": 42,
+      "q0": 0.001,
+      "q0.05": 2.036,
+      "q0.25": 3.4255,
+      "q0.5": 5.695,
+      "q0.75": 10.11575,
+      "q0.95": 25.39244999999998,
+      "q1": 570.518
+     },
+     "bytes_quantiles": {
+      "n": 6222,
+      "q0": 7.0,
+      "q0.05": 78.05000000000001,
+      "q0.25": 214.0,
+      "q0.5": 1088.0,
+      "q0.75": 5178.75,
+      "q0.95": 25088.35,
+      "q1": 391861.0
+     },
+     "zero_byte_gaps": 0,
+     "rho_pooled_all_sessions": {
+      "value": 0.1886966938738407,
+      "n_sessions": 63,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.10623789063855961,
+      "hi": 0.22787653012754508,
+      "n": 6471
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 46.329467484364564,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 6222,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 6222,
+       "q0": 14.0,
+       "q0.05": 45.0,
+       "q0.25": 87.0,
+       "q0.5": 202.0,
+       "q0.75": 463.0,
+       "q0.95": 1389.7999999999993,
+       "q1": 13766.0
+      },
+      "adjusted_gap_le_0": 1925,
+      "rho": {
+       "value": -0.05492339098963445,
+       "n_sessions": 42,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.11895060729048622,
+       "hi": 0.03680749020569423,
+       "n": 6222
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 24,
+       "n": 42,
+       "share": 0.5714285714285714,
+       "lo": 0.4220597791187447,
+       "hi": 0.7088257048085179
+      },
+      "rho_s_quantiles": {
+       "n": 42,
+       "q0": -0.29742210743307745,
+       "q0.05": -0.2345385632395177,
+       "q0.25": -0.06345682612894009,
+       "q0.5": -0.011659738055795649,
+       "q0.75": 0.07041044403694437,
+       "q0.95": 0.25755952387764414,
+       "q1": 0.3675324675324675
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.02447046802903685,
+       "n_sessions": 42,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.06518050226712764,
+       "hi": 0.00848048579393388,
+       "n": 6222
+      }
+     },
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.11864344549374656,
+        "path": "units.swechat/codex.results.B.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": true,
+        "value": 0.07142857142857142,
+        "path": "units.swechat/codex.results.B.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": true,
+        "value": 0.19009713288525165,
+        "path": "units.swechat/codex.results.B.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.11864344549374656,
+       "pooled rho CI lo >= 0.30": 0.11864344549374656
+      },
+      "deciding_path": [
+       "units.swechat/codex.results.B.rho_pooled.lo",
+       "units.swechat/codex.results.B.rho_pooled.lo"
+      ]
+     }
+    },
+    "E": {
+     "gaps": 4185,
+     "sessions_with_gaps": 52,
+     "eligible_sessions": 37,
+     "eligible_gaps": 4023,
+     "rho_s": {
+      "n_defined": 37,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 37,
+       "q0": -0.3354644840469916,
+       "q0.05": -0.1368470860778459,
+       "q0.25": 0.07635920789426534,
+       "q0.5": 0.2013318689605515,
+       "q0.75": 0.26638655462184874,
+       "q0.95": 0.48205472993503556,
+       "q1": 0.5441558441558442
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 5,
+      "n": 37,
+      "share": 0.13513513513513514,
+      "lo": 0.059132072625076235,
+      "hi": 0.2797772747070557,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": 0.22316194968136574,
+      "n_sessions": 37,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.16434015369408142,
+      "hi": 0.27979501016584307,
+      "n": 4023
+     },
+     "gap_s_quantiles": {
+      "n": 4023,
+      "n_sessions": 37,
+      "q0": 0.001,
+      "q0.05": 1.9652,
+      "q0.25": 3.4795,
+      "q0.5": 5.638,
+      "q0.75": 9.789,
+      "q0.95": 27.636299999999988,
+      "q1": 216.241
+     },
+     "bytes_quantiles": {
+      "n": 4023,
+      "q0": 0.0,
+      "q0.05": 50.0,
+      "q0.25": 185.0,
+      "q0.5": 971.0,
+      "q0.75": 5394.0,
+      "q0.95": 28076.999999999993,
+      "q1": 804596.0
+     },
+     "zero_byte_gaps": 1,
+     "rho_pooled_all_sessions": {
+      "value": 0.2206589967521564,
+      "n_sessions": 52,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.1631834614708801,
+      "hi": 0.2778900882693396,
+      "n": 4185
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 46.329467484364564,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 4023,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 4023,
+       "q0": 20.0,
+       "q0.05": 37.0,
+       "q0.25": 94.0,
+       "q0.5": 224.0,
+       "q0.75": 478.0,
+       "q0.95": 1615.599999999995,
+       "q1": 13647.0
+      },
+      "adjusted_gap_le_0": 1456,
+      "rho": {
+       "value": -0.08507015504950334,
+       "n_sessions": 37,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.12999813403939603,
+       "hi": -0.016065962935719675,
+       "n": 4023
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 20,
+       "n": 37,
+       "share": 0.5405405405405406,
+       "lo": 0.38383779524767364,
+       "hi": 0.6896167217154228
+      },
+      "rho_s_quantiles": {
+       "n": 37,
+       "q0": -0.18500877477479372,
+       "q0.05": -0.16943257257123895,
+       "q0.25": -0.05289728682745913,
+       "q0.5": -0.009702286175816246,
+       "q0.75": 0.0822459534442739,
+       "q0.95": 0.3274177210994687,
+       "q1": 0.47611887534023684
+      },
+      "rho_pooled_permuted_context": {
+       "value": 0.029539620801412585,
+       "n_sessions": 37,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.008812610469032504,
+       "hi": 0.07747356471362829,
+       "n": 4023
+      }
+     },
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10; share(rho_s <= 0) Wilson hi <= 0.20",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.16434015369408142,
+        "path": "units.swechat/codex.results.E.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.13513513513513514,
+        "path": "units.swechat/codex.results.E.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.2797772747070557,
+        "path": "units.swechat/codex.results.E.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.16434015369408142,
+       "pooled rho CI lo >= 0.30": 0.16434015369408142,
+       "share(rho_s <= 0) <= 0.10": 0.13513513513513514,
+       "share(rho_s <= 0) Wilson hi <= 0.20": 0.2797772747070557
+      },
+      "deciding_path": [
+       "units.swechat/codex.results.E.rho_pooled.lo",
+       "units.swechat/codex.results.E.rho_pooled.lo",
+       "units.swechat/codex.results.E.share_rho_s_le_0.share",
+       "units.swechat/codex.results.E.share_rho_s_le_0.hi"
+      ]
+     }
+    },
+    "BE": {
+     "gaps": 10656,
+     "sessions_with_gaps": 115,
+     "eligible_sessions": 79,
+     "eligible_gaps": 10245,
+     "rho_s": {
+      "n_defined": 79,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 79,
+       "q0": -0.3354644840469916,
+       "q0.05": -0.07249877537862826,
+       "q0.25": 0.10624489857911382,
+       "q0.5": 0.2211637560430311,
+       "q0.75": 0.3023402190728254,
+       "q0.95": 0.4937353972917412,
+       "q1": 0.5558129114454999
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 8,
+      "n": 79,
+      "share": 0.10126582278481013,
+      "lo": 0.05221118365843358,
+      "hi": 0.1873013317927407,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": 0.20484144453181902,
+      "n_sessions": 79,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.15926817246846628,
+      "hi": 0.24336089074382697,
+      "n": 10245
+     },
+     "gap_s_quantiles": {
+      "n": 10245,
+      "n_sessions": 79,
+      "q0": 0.001,
+      "q0.05": 2.0112,
+      "q0.25": 3.444,
+      "q0.5": 5.673,
+      "q0.75": 10.007,
+      "q0.95": 26.388399999999983,
+      "q1": 570.518
+     },
+     "bytes_quantiles": {
+      "n": 10245,
+      "q0": 0.0,
+      "q0.05": 60.0,
+      "q0.25": 196.0,
+      "q0.5": 1043.0,
+      "q0.75": 5258.0,
+      "q0.95": 26061.799999999992,
+      "q1": 804596.0
+     },
+     "zero_byte_gaps": 1,
+     "rho_pooled_all_sessions": {
+      "value": 0.20053822267417457,
+      "n_sessions": 115,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.15750639193357382,
+      "hi": 0.23698572285125447,
+      "n": 10656
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 46.329467484364564,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 10245,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 10245,
+       "q0": 14.0,
+       "q0.05": 44.0,
+       "q0.25": 90.0,
+       "q0.5": 211.0,
+       "q0.75": 469.0,
+       "q0.95": 1449.0,
+       "q1": 13766.0
+      },
+      "adjusted_gap_le_0": 3381,
+      "rho": {
+       "value": -0.06386773171927872,
+       "n_sessions": 79,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.10690274334238581,
+       "hi": -0.00790324368055096,
+       "n": 10245
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 44,
+       "n": 79,
+       "share": 0.5569620253164557,
+       "lo": 0.4473171607311567,
+       "hi": 0.661323908490104
+      },
+      "rho_s_quantiles": {
+       "n": 79,
+       "q0": -0.29742210743307745,
+       "q0.05": -0.18892461101837588,
+       "q0.25": -0.06313104526333176,
+       "q0.5": -0.009879223808022305,
+       "q0.75": 0.07906079028847565,
+       "q0.95": 0.27005347593582857,
+       "q1": 0.47611887534023684
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.0027305425971201227,
+       "n_sessions": 79,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.028488313005258715,
+       "hi": 0.02952142905596916,
+       "n": 10245
+      }
+     },
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.15926817246846628,
+        "path": "units.swechat/codex.results.BE.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.10126582278481013,
+        "path": "units.swechat/codex.results.BE.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": true,
+        "value": 0.1873013317927407,
+        "path": "units.swechat/codex.results.BE.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.15926817246846628,
+       "pooled rho CI lo >= 0.30": 0.15926817246846628,
+       "share(rho_s <= 0) <= 0.10": 0.10126582278481013
+      },
+      "deciding_path": [
+       "units.swechat/codex.results.BE.rho_pooled.lo",
+       "units.swechat/codex.results.BE.rho_pooled.lo",
+       "units.swechat/codex.results.BE.share_rho_s_le_0.share"
+      ]
+     }
+    }
+   },
+   "cell_before_checks": {
+    "label": "WEAK",
+    "source_path": "units.swechat/codex.results.E.verdict.label",
+    "B": "WEAK",
+    "E": "WEAK",
+    "suffix": ""
+   },
+   "artifact_checks": {
+    "population": "B u E",
+    "base_label": "WEAK",
+    "AC2_no_truncated": {
+     "gaps_dropped": 0,
+     "label": "WEAK",
+     "eligible_sessions": 79,
+     "eligible_gaps": 10245,
+     "rho_pooled": [
+      0.20484144453181902,
+      0.15926817246846628,
+      0.24336089074382697
+     ],
+     "share_rho_s_le_0": [
+      0.10126582278481013,
+      0.05221118365843358,
+      0.1873013317927407
+     ],
+     "n_defined": 79,
+     "fail": false,
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.15926817246846628,
+        "path": "units.swechat/codex.artifact_checks.AC2_no_truncated.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.10126582278481013,
+        "path": "units.swechat/codex.artifact_checks.AC2_no_truncated.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": true,
+        "value": 0.1873013317927407,
+        "path": "units.swechat/codex.artifact_checks.AC2_no_truncated.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.15926817246846628,
+       "pooled rho CI lo >= 0.30": 0.15926817246846628,
+       "share(rho_s <= 0) <= 0.10": 0.10126582278481013
+      },
+      "deciding_path": [
+       "units.swechat/codex.artifact_checks.AC2_no_truncated.rho_pooled.lo",
+       "units.swechat/codex.artifact_checks.AC2_no_truncated.rho_pooled.lo",
+       "units.swechat/codex.artifact_checks.AC2_no_truncated.share_rho_s_le_0.share"
+      ]
+     }
+    },
+    "AC3_join_clean": {
+     "gaps_dropped": 0,
+     "label": "WEAK",
+     "eligible_sessions": 79,
+     "eligible_gaps": 10245,
+     "rho_pooled": [
+      0.20484144453181902,
+      0.15926817246846628,
+      0.24336089074382697
+     ],
+     "share_rho_s_le_0": [
+      0.10126582278481013,
+      0.05221118365843358,
+      0.1873013317927407
+     ],
+     "n_defined": 79,
+     "fail": false,
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.15926817246846628,
+        "path": "units.swechat/codex.artifact_checks.AC3_join_clean.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.10126582278481013,
+        "path": "units.swechat/codex.artifact_checks.AC3_join_clean.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": true,
+        "value": 0.1873013317927407,
+        "path": "units.swechat/codex.artifact_checks.AC3_join_clean.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.15926817246846628,
+       "pooled rho CI lo >= 0.30": 0.15926817246846628,
+       "share(rho_s <= 0) <= 0.10": 0.10126582278481013
+      },
+      "deciding_path": [
+       "units.swechat/codex.artifact_checks.AC3_join_clean.rho_pooled.lo",
+       "units.swechat/codex.artifact_checks.AC3_join_clean.rho_pooled.lo",
+       "units.swechat/codex.artifact_checks.AC3_join_clean.share_rho_s_le_0.share"
+      ]
+     }
+    },
+    "AC4_dominance": {
+     "denominator": "gaps of sessions with >= 20 gaps",
+     "kinds": {
+      "repo": {
+       "top_cluster": "dayhaysoos/nimbus",
+       "top_share_events": 0.6106393362615911,
+       "top_share_sessions": 0.5063291139240507,
+       "n_clusters": 5,
+       "dominated": true,
+       "top5": [
+        [
+         "dayhaysoos/nimbus",
+         0.6106393362615911,
+         0.5063291139240507
+        ],
+        [
+         "zchee/zmux",
+         0.24987798926305516,
+         0.2911392405063291
+        ],
+        [
+         "AI-Stats/AI-Stats",
+         0.08989751098096632,
+         0.08860759493670886
+        ],
+        [
+         "savekirk/session-bridge",
+         0.04470473401659346,
+         0.10126582278481013
+        ],
+        [
+         "zchee/spanner-manager",
+         0.004880429477794046,
+         0.012658227848101266
+        ]
+       ],
+       "cluster_dominated": true
+      },
+      "user": {
+       "top_cluster": "nan",
+       "top_share_events": 0.7763787213274769,
+       "top_share_sessions": 0.7721518987341772,
+       "n_clusters": 3,
+       "dominated": true,
+       "top5": [
+        [
+         "nan",
+         0.7763787213274769,
+         0.7721518987341772
+        ],
+        [
+         "zchee",
+         0.1789165446559297,
+         0.12658227848101267
+        ],
+        [
+         "savekirk",
+         0.04470473401659346,
+         0.10126582278481013
+        ]
+       ],
+       "cluster_dominated": true
+      },
+      "model": {
+       "top_cluster": "gpt-5.4",
+       "top_share_events": 0.8732064421669107,
+       "top_share_sessions": 0.8734177215189873,
+       "n_clusters": 3,
+       "dominated": true,
+       "top5": [
+        [
+         "gpt-5.4",
+         0.8732064421669107,
+         0.8734177215189873
+        ],
+        [
+         "gpt-5.3-codex",
+         0.1202537823328453,
+         0.10126582278481013
+        ],
+        [
+         "gpt-5.4-mini",
+         0.006539775500244022,
+         0.02531645569620253
+        ]
+       ],
+       "cluster_dominated": true
+      }
+     },
+     "top_session_share_events": 0.2900927281600781,
+     "dominated": true,
+     "leaveouts": [
+      {
+       "kind": "repo",
+       "left_out": "dayhaysoos/nimbus",
+       "label": "WEAK",
+       "eligible_sessions": 39,
+       "eligible_gaps": 3989,
+       "rho_pooled": [
+        0.2552713497106398,
+        0.18625742529701547,
+        0.31091861867475656
+       ],
+       "share_rho_s_le_0": [
+        0.05128205128205128,
+        0.014177657646399527,
+        0.1688593904563791
+       ],
+       "n_defined": 39
+      },
+      {
+       "kind": "repo",
+       "left_out": "zchee/zmux",
+       "label": "WEAK",
+       "eligible_sessions": 56,
+       "eligible_gaps": 7685,
+       "rho_pooled": [
+        0.19934055906739462,
+        0.14973325710486327,
+        0.22499068276340298
+       ],
+       "share_rho_s_le_0": [
+        0.10714285714285714,
+        0.050038674581190865,
+        0.21468686751661398
+       ],
+       "n_defined": 56
+      },
+      {
+       "kind": "repo",
+       "left_out": "AI-Stats/AI-Stats",
+       "label": "WEAK",
+       "eligible_sessions": 72,
+       "eligible_gaps": 9324,
+       "rho_pooled": [
+        0.2072589083356598,
+        0.16110043552610054,
+        0.2493754331003313
+       ],
+       "share_rho_s_le_0": [
+        0.1111111111111111,
+        0.05738751060073767,
+        0.20423144258590392
+       ],
+       "n_defined": 72
+      },
+      {
+       "kind": "repo",
+       "left_out": "savekirk/session-bridge",
+       "label": "WEAK",
+       "eligible_sessions": 71,
+       "eligible_gaps": 9787,
+       "rho_pooled": [
+        0.2030673682012409,
+        0.15504095366351256,
+        0.243436203916774
+       ],
+       "share_rho_s_le_0": [
+        0.11267605633802817,
+        0.05821202176555296,
+        0.20690256691240155
+       ],
+       "n_defined": 71
+      },
+      {
+       "kind": "repo",
+       "left_out": "zchee/spanner-manager",
+       "label": "WEAK",
+       "eligible_sessions": 78,
+       "eligible_gaps": 10195,
+       "rho_pooled": [
+        0.20374290712519547,
+        0.16069745427185805,
+        0.24307952639585081
+       ],
+       "share_rho_s_le_0": [
+        0.10256410256410256,
+        0.05289271527803498,
+        0.18954633772190638
+       ],
+       "n_defined": 78
+      },
+      {
+       "kind": "user",
+       "left_out": "nan",
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 18,
+       "eligible_gaps": 2291,
+       "rho_pooled": [
+        0.2777906996199146,
+        0.16684913378839827,
+        0.3559378739175393
+       ],
+       "share_rho_s_le_0": [
+        0.05555555555555555,
+        0.009874935830924525,
+        0.2575779980200754
+       ],
+       "n_defined": 18
+      },
+      {
+       "kind": "user",
+       "left_out": "zchee",
+       "label": "WEAK",
+       "eligible_sessions": 69,
+       "eligible_gaps": 8412,
+       "rho_pooled": [
+        0.20632020071788637,
+        0.17010501219175944,
+        0.23177079668782982
+       ],
+       "share_rho_s_le_0": [
+        0.10144927536231885,
+        0.050016002571615495,
+        0.19492095652867886
+       ],
+       "n_defined": 69
+      },
+      {
+       "kind": "user",
+       "left_out": "savekirk",
+       "label": "WEAK",
+       "eligible_sessions": 71,
+       "eligible_gaps": 9787,
+       "rho_pooled": [
+        0.2030673682012409,
+        0.15504095366351256,
+        0.243436203916774
+       ],
+       "share_rho_s_le_0": [
+        0.11267605633802817,
+        0.05821202176555296,
+        0.20690256691240155
+       ],
+       "n_defined": 71
+      },
+      {
+       "kind": "model",
+       "left_out": "gpt-5.4",
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 10,
+       "eligible_gaps": 1299,
+       "rho_pooled": [
+        0.13091731485584734,
+        0.017378417821699545,
+        0.21348275467899988
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.2775401687666166
+       ],
+       "n_defined": 10
+      },
+      {
+       "kind": "model",
+       "left_out": "gpt-5.3-codex",
+       "label": "WEAK",
+       "eligible_sessions": 71,
+       "eligible_gaps": 9013,
+       "rho_pooled": [
+        0.2116505608607774,
+        0.16448413944287316,
+        0.25458588569324303
+       ],
+       "share_rho_s_le_0": [
+        0.11267605633802817,
+        0.05821202176555296,
+        0.20690256691240155
+       ],
+       "n_defined": 71
+      },
+      {
+       "kind": "model",
+       "left_out": "gpt-5.4-mini",
+       "label": "WEAK",
+       "eligible_sessions": 77,
+       "eligible_gaps": 10178,
+       "rho_pooled": [
+        0.2077734427371276,
+        0.16469176796891402,
+        0.2484342102734766
+       ],
+       "share_rho_s_le_0": [
+        0.1038961038961039,
+        0.053592282957973164,
+        0.19184570936281223
+       ],
+       "n_defined": 77
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_1",
+       "label": "WEAK",
+       "eligible_sessions": 78,
+       "eligible_gaps": 7273,
+       "rho_pooled": [
+        0.20420887616231362,
+        0.15369546539687085,
+        0.25130952186304967
+       ],
+       "share_rho_s_le_0": [
+        0.10256410256410256,
+        0.05289271527803498,
+        0.18954633772190638
+       ],
+       "n_defined": 78
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_2",
+       "label": "WEAK",
+       "eligible_sessions": 78,
+       "eligible_gaps": 9525,
+       "rho_pooled": [
+        0.20550674982495803,
+        0.15869870239234626,
+        0.24709520274334443
+       ],
+       "share_rho_s_le_0": [
+        0.10256410256410256,
+        0.05289271527803498,
+        0.18954633772190638
+       ],
+       "n_defined": 78
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_3",
+       "label": "WEAK",
+       "eligible_sessions": 78,
+       "eligible_gaps": 9718,
+       "rho_pooled": [
+        0.20363582880748118,
+        0.15565203541457986,
+        0.24604258186495212
+       ],
+       "share_rho_s_le_0": [
+        0.10256410256410256,
+        0.05289271527803498,
+        0.18954633772190638
+       ],
+       "n_defined": 78
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_4",
+       "label": "WEAK",
+       "eligible_sessions": 78,
+       "eligible_gaps": 9849,
+       "rho_pooled": [
+        0.20613593912285078,
+        0.1599936874030753,
+        0.24954036102320148
+       ],
+       "share_rho_s_le_0": [
+        0.10256410256410256,
+        0.05289271527803498,
+        0.18954633772190638
+       ],
+       "n_defined": 78
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_5",
+       "label": "WEAK",
+       "eligible_sessions": 78,
+       "eligible_gaps": 9855,
+       "rho_pooled": [
+        0.20920942708115378,
+        0.1673496809660661,
+        0.2498791370677867
+       ],
+       "share_rho_s_le_0": [
+        0.10256410256410256,
+        0.05289271527803498,
+        0.18954633772190638
+       ],
+       "n_defined": 78
+      }
+     ],
+     "effect": "cap_weak",
+     "status": "UNTESTABLE_WITHOUT_DOMINANT"
+    },
+    "AC5_post_stratified": {
+     "label": "WEAK",
+     "eligible_sessions": 79,
+     "eligible_gaps": 10245,
+     "rho_pooled": [
+      0.19842625321798185,
+      0.14350785433959717,
+      0.23374502727520133
+     ],
+     "share_rho_s_le_0": [
+      0.19682742922179544,
+      0.030837660112454313,
+      0.43738213642499074
+     ],
+     "n_defined": 79,
+     "fail": false,
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10; share(rho_s <= 0) bootstrap hi <= 0.20",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.14350785433959717,
+        "path": "units.swechat/codex.artifact_checks.AC5_post_stratified.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.19682742922179544,
+        "path": "units.swechat/codex.artifact_checks.AC5_post_stratified.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) bootstrap hi <= 0.20",
+        "met": false,
+        "value": 0.43738213642499074,
+        "path": "units.swechat/codex.artifact_checks.AC5_post_stratified.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.14350785433959717,
+       "pooled rho CI lo >= 0.30": 0.14350785433959717,
+       "share(rho_s <= 0) <= 0.10": 0.19682742922179544,
+       "share(rho_s <= 0) bootstrap hi <= 0.20": 0.43738213642499074
+      },
+      "deciding_path": [
+       "units.swechat/codex.artifact_checks.AC5_post_stratified.rho_pooled.lo",
+       "units.swechat/codex.artifact_checks.AC5_post_stratified.rho_pooled.lo",
+       "units.swechat/codex.artifact_checks.AC5_post_stratified.share_rho_s_le_0.share",
+       "units.swechat/codex.artifact_checks.AC5_post_stratified.share_rho_s_le_0.hi"
+      ]
+     },
+     "weights": "population cell size / analysed sessions in the cell (post_strat_weights over sessions with >= 20 gaps)"
+    },
+    "AC5_shift_rho_pooled": {
+     "B_point": 0.1941847290504849,
+     "E_ci": [
+      0.16434015369408142,
+      0.27979501016584307
+     ],
+     "SHIFT": false,
+     "note": "reported, no verdict effect"
+    },
+    "AC1_parser": {
+     "population": "gaps of sessions with >= 20 gaps (the pooled statistic's events)",
+     "pool_size": 10245,
+     "audited": 30,
+     "differing": 0,
+     "differing_reasons": {},
+     "label": "PASS",
+     "rule": "FAIL if >= 2 of 30 differ in a way that changes their contribution; 1 = PARSER_NOTE",
+     "seed_parts": [
+      "N3",
+      "AC1",
+      "swechat/codex"
+     ],
+     "events": [
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 12.389,
+       "gap_raw_s": 12.389,
+       "bytes_ir": 657,
+       "bytes_raw": 657,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 4.653,
+       "gap_raw_s": 4.653,
+       "bytes_ir": 30833,
+       "bytes_raw": 30833,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 6.598,
+       "gap_raw_s": 6.598,
+       "bytes_ir": 197,
+       "bytes_raw": 197,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 3,
+       "gap_ir_s": 10.764,
+       "gap_raw_s": 10.764,
+       "bytes_ir": 10425,
+       "bytes_raw": 10425,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 16.341,
+       "gap_raw_s": 16.341,
+       "bytes_ir": 1475,
+       "bytes_raw": 1475,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 2.01,
+       "gap_raw_s": 2.01,
+       "bytes_ir": 536,
+       "bytes_raw": 536,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 7.108,
+       "gap_raw_s": 7.108,
+       "bytes_ir": 958,
+       "bytes_raw": 958,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 6.649,
+       "gap_raw_s": 6.649,
+       "bytes_ir": 120,
+       "bytes_raw": 120,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 4.763,
+       "gap_raw_s": 4.763,
+       "bytes_ir": 189,
+       "bytes_raw": 189,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 2.168,
+       "gap_raw_s": 2.168,
+       "bytes_ir": 303,
+       "bytes_raw": 303,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 61.91,
+       "gap_raw_s": 61.91,
+       "bytes_ir": 8197,
+       "bytes_raw": 8197,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 7.446,
+       "gap_raw_s": 7.446,
+       "bytes_ir": 3725,
+       "bytes_raw": 3725,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 9.185,
+       "gap_raw_s": 9.185,
+       "bytes_ir": 5884,
+       "bytes_raw": 5884,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 2,
+       "gap_ir_s": 5.183,
+       "gap_raw_s": 5.183,
+       "bytes_ir": 15072,
+       "bytes_raw": 15072,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 14.219,
+       "gap_raw_s": 14.219,
+       "bytes_ir": 8703,
+       "bytes_raw": 8703,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 2.809,
+       "gap_raw_s": 2.809,
+       "bytes_ir": 1422,
+       "bytes_raw": 1422,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 2,
+       "gap_ir_s": 4.456,
+       "gap_raw_s": 4.456,
+       "bytes_ir": 3242,
+       "bytes_raw": 3242,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 3,
+       "gap_ir_s": 22.085,
+       "gap_raw_s": 22.085,
+       "bytes_ir": 26049,
+       "bytes_raw": 26049,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 10.979,
+       "gap_raw_s": 10.979,
+       "bytes_ir": 9549,
+       "bytes_raw": 9549,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.981,
+       "gap_raw_s": 3.981,
+       "bytes_ir": 341,
+       "bytes_raw": 341,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.779,
+       "gap_raw_s": 3.779,
+       "bytes_ir": 359,
+       "bytes_raw": 359,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.786,
+       "gap_raw_s": 3.786,
+       "bytes_ir": 8641,
+       "bytes_raw": 8641,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 12.682,
+       "gap_raw_s": 12.682,
+       "bytes_ir": 6279,
+       "bytes_raw": 6279,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 3,
+       "gap_ir_s": 8.996,
+       "gap_raw_s": 8.996,
+       "bytes_ir": 70842,
+       "bytes_raw": 70842,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 2,
+       "gap_ir_s": 12.6,
+       "gap_raw_s": 12.6,
+       "bytes_ir": 2119,
+       "bytes_raw": 2119,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 2,
+       "gap_ir_s": 2.19,
+       "gap_raw_s": 2.19,
+       "bytes_ir": 3604,
+       "bytes_raw": 3604,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 4,
+       "gap_ir_s": 7.817,
+       "gap_raw_s": 7.817,
+       "bytes_ir": 26606,
+       "bytes_raw": 26606,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 8.519,
+       "gap_raw_s": 8.519,
+       "bytes_ir": 1817,
+       "bytes_raw": 1817,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.561,
+       "gap_raw_s": 3.561,
+       "bytes_ir": 1043,
+       "bytes_raw": 1043,
+       "differs": false,
+       "why": []
+      },
+      {
+       "found": 1,
+       "n_results_in_batch": 1,
+       "gap_ir_s": 5.939,
+       "gap_raw_s": 5.939,
+       "bytes_ir": 428,
+       "bytes_raw": 428,
+       "differs": false,
+       "why": []
+      }
+     ]
+    }
+   },
+   "stratification": {
+    "tool_key": {
+     "strata": {
+      "update_plan": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 3,
+       "eligible_gaps": 82,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "exec_command": {
+       "label": "WEAK",
+       "eligible_sessions": 43,
+       "eligible_gaps": 4166,
+       "rho_pooled": [
+        0.33087781079864304,
+        0.1851802356198881,
+        0.40747110907404666
+       ],
+       "share_rho_s_le_0": [
+        0.16279069767441862,
+        0.08116524502857546,
+        0.2997269533591824
+       ],
+       "n_defined": 43
+      },
+      "shell_command": {
+       "label": "WEAK",
+       "eligible_sessions": 25,
+       "eligible_gaps": 1534,
+       "rho_pooled": [
+        0.24218796735907755,
+        0.07479046309820857,
+        0.3561502436413921
+       ],
+       "share_rho_s_le_0": [
+        0.08,
+        0.02221993369109193,
+        0.24966512122957818
+       ],
+       "n_defined": 25
+      },
+      "apply_patch": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 13,
+       "eligible_gaps": 1255,
+       "rho_pooled": [
+        -0.02518770973742291,
+        -0.12639119668667875,
+        0.07619252705158497
+       ],
+       "share_rho_s_le_0": [
+        0.6153846153846154,
+        0.35522480972268555,
+        0.8229055341876319
+       ],
+       "n_defined": 13
+      },
+      "write_stdin": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 7,
+       "eligible_gaps": 1712,
+       "rho_pooled": [
+        0.26043114997986455,
+        0.07751309168468976,
+        0.3079309742716642
+       ],
+       "share_rho_s_le_0": [
+        0.14285714285714285,
+        0.02567895594897479,
+        0.51313450331903
+       ],
+       "n_defined": 7
+      },
+      "mcp__sequential_thinking__sequentialthinking": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__filesystem__read_text_file": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "spawn_agent": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "exec": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 3,
+       "eligible_gaps": 251,
+       "rho_pooled": [
+        0.27348984430603523,
+        0.044055353352372324,
+        0.31934116675380586
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.5615060804490177
+       ],
+       "n_defined": 3
+      },
+      "close_agent": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "list_agents": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "wait_agent": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 23,
+       "rho_pooled": [
+        -0.22105580017951235,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        1.0,
+        0.20654329147389294,
+        1.0
+       ],
+       "n_defined": 1
+      },
+      "wait": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 141,
+       "rho_pooled": [
+        0.5188986148872407,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      },
+      "mcp__filesystem__read_multiple_files": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_state__state_write": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 27,
+       "rho_pooled": [
+        -0.24230121629637974,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        1.0,
+        0.20654329147389294,
+        1.0
+       ],
+       "n_defined": 1
+      },
+      "mcp__zls__diagnostics": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__filesystem__write_file": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_code_intel__lsp_diagnostics": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "view_image": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_state__state_clear": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "request_user_input": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "followup_task": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__filesystem__create_directory": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__filesystem__get_file_info": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__filesystem__list_directory": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_code_intel__lsp_diagnostics_directory": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_memory__notepad_read": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_memory__project_memory_read": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__codex_apps__github_create_pull_request": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__codex_apps__github_fetch": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__codex_apps__github_search": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__filesystem__edit_file": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__filesystem__list_allowed_directories": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_code_intel__ast_grep_search": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_code_intel__lsp_document_symbols": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_memory__notepad_write_working": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_state__state_get_status": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_state__state_read": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__omx_team_run__omx_run_team_start": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__zls__definition": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__zls__hover": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      }
+     },
+     "confinement": "OK"
+    },
+    "model": {
+     "strata": {
+      "gpt-5.4": {
+       "label": "WEAK",
+       "eligible_sessions": 69,
+       "eligible_gaps": 8946,
+       "rho_pooled": [
+        0.21493963985193862,
+        0.16879931374921203,
+        0.2608021129516889
+       ],
+       "share_rho_s_le_0": [
+        0.11594202898550725,
+        0.05993426545958408,
+        0.21245953149160868
+       ],
+       "n_defined": 69
+      },
+      "gpt-5.3-codex": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 8,
+       "eligible_gaps": 1232,
+       "rho_pooled": [
+        0.15491180975391966,
+        0.057472721794972516,
+        0.24192330680306942
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.3244156195108769
+       ],
+       "n_defined": 8
+      },
+      "gpt-5.4-mini": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 2,
+       "eligible_gaps": 67,
+       "rho_pooled": [
+        0.20444772576368475,
+        0.13944309112676848,
+        0.361038961038961
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.6576280471103807
+       ],
+       "n_defined": 2
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "repo": {
+     "strata": {
+      "dayhaysoos/nimbus": {
+       "label": "WEAK",
+       "eligible_sessions": 40,
+       "eligible_gaps": 6256,
+       "rho_pooled": [
+        0.20523887527065351,
+        0.14348118890860548,
+        0.23840159002609637
+       ],
+       "share_rho_s_le_0": [
+        0.15,
+        0.07061091708507435,
+        0.2907262603902003
+       ],
+       "n_defined": 40
+      },
+      "zchee/zmux": {
+       "label": "WEAK",
+       "eligible_sessions": 23,
+       "eligible_gaps": 2560,
+       "rho_pooled": [
+        0.26745196268345095,
+        0.18362085360728214,
+        0.33006007258663395
+       ],
+       "share_rho_s_le_0": [
+        0.08695652173913043,
+        0.02417949540723341,
+        0.2679640429809402
+       ],
+       "n_defined": 23
+      },
+      "savekirk/session-bridge": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 8,
+       "eligible_gaps": 458,
+       "rho_pooled": [
+        0.1947264241319023,
+        0.12426515008434276,
+        0.2877133582884222
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.3244156195108769
+       ],
+       "n_defined": 8
+      },
+      "AI-Stats/AI-Stats": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 7,
+       "eligible_gaps": 921,
+       "rho_pooled": [
+        0.184247331845113,
+        0.051754423140978015,
+        0.2595510798339349
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.35433884297520657
+       ],
+       "n_defined": 7
+      },
+      "zchee/spanner-manager": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 50,
+       "rho_pooled": [
+        0.27309890743617965,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      },
+      "zchee/agent": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      }
+     },
+     "confinement": "OK"
+    },
+    "length_tercile": {
+     "strata": {
+      "mid": {
+       "label": "WEAK",
+       "eligible_sessions": 42,
+       "eligible_gaps": 1649,
+       "rho_pooled": [
+        0.22925038906644277,
+        0.15234457334946946,
+        0.2946058556571118
+       ],
+       "share_rho_s_le_0": [
+        0.14285714285714285,
+        0.06715875684189933,
+        0.2784138235217878
+       ],
+       "n_defined": 42
+      },
+      "short": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 7,
+       "eligible_gaps": 155,
+       "rho_pooled": [
+        0.10744084786702285,
+        -0.027420797656175888,
+        0.21173797462060787
+       ],
+       "share_rho_s_le_0": [
+        0.14285714285714285,
+        0.02567895594897479,
+        0.51313450331903
+       ],
+       "n_defined": 7
+      },
+      "long": {
+       "label": "WEAK",
+       "eligible_sessions": 30,
+       "eligible_gaps": 8441,
+       "rho_pooled": [
+        0.20388901456159922,
+        0.15489017131532176,
+        0.264377294126181
+       ],
+       "share_rho_s_le_0": [
+        0.03333333333333333,
+        0.0059084379948573795,
+        0.16670751396958874
+       ],
+       "n_defined": 30
+      }
+     },
+     "confinement": "OK"
+    },
+    "CONFINED_any_axis": false
+   },
+   "cell_final": {
+    "label": "WEAK",
+    "checks_applied": [],
+    "suffix": ""
+   }
+  },
+  "swechat/opencode": {
+   "labels": [],
+   "sessions_in_split": {
+    "B": 214,
+    "E": 193
+   },
+   "has_E": true,
+   "split_meta": {
+    "B": {
+     "rows": 29820,
+     "sessions": 214,
+     "rows_by_kind": {
+      "user": 493,
+      "meta": 12184,
+      "assistant": 650,
+      "call": 8199,
+      "result": 8195,
+      "system": 99
+     },
+     "gaps": 5819,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 8195,
+     "gaps_with_truncated_result": 901,
+     "gaps_not_join_clean": 1161,
+     "gaps_with_usage_next": 5815
+    },
+    "E": {
+     "rows": 18391,
+     "sessions": 193,
+     "rows_by_kind": {
+      "user": 291,
+      "meta": 6810,
+      "call": 5420,
+      "result": 5419,
+      "assistant": 420,
+      "system": 31
+     },
+     "gaps": 3574,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 5419,
+     "gaps_with_truncated_result": 550,
+     "gaps_not_join_clean": 879,
+     "gaps_with_usage_next": 3573
+    }
+   },
+   "results": {
+    "B": {
+     "gaps": 5819,
+     "sessions_with_gaps": 212,
+     "eligible_sessions": 49,
+     "eligible_gaps": 3915,
+     "rho_s": {
+      "n_defined": 49,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 49,
+       "q0": -0.6092378869835946,
+       "q0.05": -0.4085014344415918,
+       "q0.25": -0.17342037328241283,
+       "q0.5": -0.009483062457766223,
+       "q0.75": 0.13689357869182167,
+       "q0.95": 0.34659155410293957,
+       "q1": 0.46815979259972723
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 27,
+      "n": 49,
+      "share": 0.5510204081632653,
+      "lo": 0.41314866799678107,
+      "hi": 0.6814737507036366,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": -0.04578489923872437,
+      "n_sessions": 49,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.10764373059584034,
+      "hi": 0.018403305096798547,
+      "n": 3915
+     },
+     "gap_s_quantiles": {
+      "n": 3915,
+      "n_sessions": 49,
+      "q0": 0.001,
+      "q0.05": 0.037,
+      "q0.25": 3.524,
+      "q0.5": 5.715,
+      "q0.75": 9.298,
+      "q0.95": 22.765799999999988,
+      "q1": 151.573
+     },
+     "bytes_quantiles": {
+      "n": 3915,
+      "q0": 0.0,
+      "q0.05": 14.0,
+      "q0.25": 86.0,
+      "q0.5": 658.0,
+      "q0.75": 3020.5,
+      "q0.95": 12322.599999999997,
+      "q1": 170524.0
+     },
+     "zero_byte_gaps": 60,
+     "rho_pooled_all_sessions": {
+      "value": -0.1202001128969809,
+      "n_sessions": 212,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.15948241242064873,
+      "hi": -0.07607101915072811,
+      "n": 5819
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 33.356344860824706,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 3912,
+      "share_of_eligible_gaps": 0.9992337164750957,
+      "usage_next_quantiles": {
+       "n": 3912,
+       "q0": 0.0,
+       "q0.05": 56.0,
+       "q0.25": 97.0,
+       "q0.5": 187.0,
+       "q0.75": 387.25,
+       "q0.95": 1210.3499999999995,
+       "q1": 8447.0
+      },
+      "adjusted_gap_le_0": 2169,
+      "rho": {
+       "value": -0.1211069351645589,
+       "n_sessions": 49,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.16843146927705646,
+       "hi": -0.056787279060683864,
+       "n": 3912
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 26,
+       "n": 49,
+       "share": 0.5306122448979592,
+       "lo": 0.39380627019919845,
+       "hi": 0.6629671810210522
+      },
+      "rho_s_quantiles": {
+       "n": 49,
+       "q0": -0.37549407114624506,
+       "q0.05": -0.3079033989364058,
+       "q0.25": -0.08571428571428572,
+       "q0.5": -0.001584545720888588,
+       "q0.75": 0.11692108443873353,
+       "q0.95": 0.22449777332082835,
+       "q1": 0.4229249011857708
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.02422047632221899,
+       "n_sessions": 49,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.07471352670315533,
+       "hi": 0.02861158708788454,
+       "n": 3915
+      }
+     },
+     "verdict": {
+      "label": "DEAD",
+      "rule": "pooled rho CI lo <= 0",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": -0.10764373059584034,
+        "path": "units.swechat/opencode.results.B.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.5510204081632653,
+        "path": "units.swechat/opencode.results.B.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.6814737507036366,
+        "path": "units.swechat/opencode.results.B.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": -0.10764373059584034,
+      "deciding_path": "units.swechat/opencode.results.B.rho_pooled.lo"
+     }
+    },
+    "E": {
+     "gaps": 3574,
+     "sessions_with_gaps": 189,
+     "eligible_sessions": 34,
+     "eligible_gaps": 1749,
+     "rho_s": {
+      "n_defined": 34,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 34,
+       "q0": -0.5665915825166731,
+       "q0.05": -0.45162763617146057,
+       "q0.25": -0.24002244162934194,
+       "q0.5": -0.05424570727199718,
+       "q0.75": 0.13374982474088293,
+       "q0.95": 0.2770873264250642,
+       "q1": 0.37904621863862603
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 20,
+      "n": 34,
+      "share": 0.5882352941176471,
+      "lo": 0.42221304146519273,
+      "hi": 0.7363426221431113,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": -0.04511614635365608,
+      "n_sessions": 34,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.12270730773016793,
+      "hi": 0.014240596716304642,
+      "n": 1749
+     },
+     "gap_s_quantiles": {
+      "n": 1749,
+      "n_sessions": 34,
+      "q0": 0.001,
+      "q0.05": 0.011,
+      "q0.25": 3.149,
+      "q0.5": 5.11,
+      "q0.75": 8.485,
+      "q0.95": 27.384999999999998,
+      "q1": 123.323
+     },
+     "bytes_quantiles": {
+      "n": 1749,
+      "q0": 0.0,
+      "q0.05": 14.800000000000011,
+      "q0.25": 133.0,
+      "q0.5": 917.0,
+      "q0.75": 3975.0,
+      "q0.95": 15667.199999999993,
+      "q1": 162002.0
+     },
+     "zero_byte_gaps": 25,
+     "rho_pooled_all_sessions": {
+      "value": -0.09117820705296494,
+      "n_sessions": 189,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.127210490391493,
+      "hi": -0.04974763331360181,
+      "n": 3574
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 33.356344860824706,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 1748,
+      "share_of_eligible_gaps": 0.9994282447112636,
+      "usage_next_quantiles": {
+       "n": 1748,
+       "q0": 0.0,
+       "q0.05": 54.0,
+       "q0.25": 109.0,
+       "q0.5": 200.0,
+       "q0.75": 376.5,
+       "q0.95": 1501.3999999999978,
+       "q1": 7164.0
+      },
+      "adjusted_gap_le_0": 1078,
+      "rho": {
+       "value": -0.1720603811304164,
+       "n_sessions": 34,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.2229857221383478,
+       "hi": -0.12666393111189433,
+       "n": 1748
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 17,
+       "n": 34,
+       "share": 0.5,
+       "lo": 0.34069062628048985,
+       "hi": 0.6593093737195102
+      },
+      "rho_s_quantiles": {
+       "n": 34,
+       "q0": -0.2986572861291294,
+       "q0.05": -0.2312362523517897,
+       "q0.25": -0.07995928556569289,
+       "q0.5": -0.01141943141919325,
+       "q0.75": 0.1283093552329508,
+       "q0.95": 0.33373326050320523,
+       "q1": 0.4404693291711803
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.02647761263385561,
+       "n_sessions": 34,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.08547544796368176,
+       "hi": 0.016077634984207136,
+       "n": 1749
+      }
+     },
+     "verdict": {
+      "label": "DEAD",
+      "rule": "pooled rho CI lo <= 0",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": -0.12270730773016793,
+        "path": "units.swechat/opencode.results.E.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.5882352941176471,
+        "path": "units.swechat/opencode.results.E.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.7363426221431113,
+        "path": "units.swechat/opencode.results.E.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": -0.12270730773016793,
+      "deciding_path": "units.swechat/opencode.results.E.rho_pooled.lo"
+     }
+    },
+    "BE": {
+     "gaps": 9393,
+     "sessions_with_gaps": 401,
+     "eligible_sessions": 83,
+     "eligible_gaps": 5664,
+     "rho_s": {
+      "n_defined": 83,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 83,
+       "q0": -0.6092378869835946,
+       "q0.05": -0.4146145721796784,
+       "q0.25": -0.17620789194023917,
+       "q0.5": -0.03128199939302632,
+       "q0.75": 0.14582006672919287,
+       "q0.95": 0.34226938704098087,
+       "q1": 0.46815979259972723
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 47,
+      "n": 83,
+      "share": 0.5662650602409639,
+      "lo": 0.45905732827608065,
+      "hi": 0.6676100753645711,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": -0.04934998433102657,
+      "n_sessions": 83,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.09686609324039815,
+      "hi": -0.0014285570170366577,
+      "n": 5664
+     },
+     "gap_s_quantiles": {
+      "n": 5664,
+      "n_sessions": 83,
+      "q0": 0.001,
+      "q0.05": 0.023,
+      "q0.25": 3.40675,
+      "q0.5": 5.528499999999999,
+      "q0.75": 9.01875,
+      "q0.95": 23.643749999999958,
+      "q1": 151.573
+     },
+     "bytes_quantiles": {
+      "n": 5664,
+      "q0": 0.0,
+      "q0.05": 14.0,
+      "q0.25": 90.0,
+      "q0.5": 734.0,
+      "q0.75": 3285.5,
+      "q0.95": 13825.349999999973,
+      "q1": 170524.0
+     },
+     "zero_byte_gaps": 85,
+     "rho_pooled_all_sessions": {
+      "value": -0.11483248249337344,
+      "n_sessions": 401,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.14252746103240954,
+      "hi": -0.08274579805069784,
+      "n": 9393
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 33.356344860824706,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 5660,
+      "share_of_eligible_gaps": 0.9992937853107344,
+      "usage_next_quantiles": {
+       "n": 5660,
+       "q0": 0.0,
+       "q0.05": 56.0,
+       "q0.25": 102.0,
+       "q0.5": 191.0,
+       "q0.75": 385.0,
+       "q0.95": 1274.1000000000004,
+       "q1": 8447.0
+      },
+      "adjusted_gap_le_0": 3247,
+      "rho": {
+       "value": -0.1422822080231616,
+       "n_sessions": 83,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.18001432411396567,
+       "hi": -0.1005298457845178,
+       "n": 5660
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 43,
+       "n": 83,
+       "share": 0.5180722891566265,
+       "lo": 0.4121756969766282,
+       "hi": 0.6223699585617313
+      },
+      "rho_s_quantiles": {
+       "n": 83,
+       "q0": -0.37549407114624506,
+       "q0.05": -0.2808528013435545,
+       "q0.25": -0.08345864661654134,
+       "q0.5": -0.001584545720888588,
+       "q0.75": 0.12095761310767233,
+       "q0.95": 0.24565627912499424,
+       "q1": 0.4404693291711803
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.030301644710558278,
+       "n_sessions": 83,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.07006557607134897,
+       "hi": 0.009818956380096304,
+       "n": 5664
+      }
+     },
+     "verdict": {
+      "label": "DEAD",
+      "rule": "pooled rho CI lo <= 0",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": -0.09686609324039815,
+        "path": "units.swechat/opencode.results.BE.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.5662650602409639,
+        "path": "units.swechat/opencode.results.BE.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.6676100753645711,
+        "path": "units.swechat/opencode.results.BE.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": -0.09686609324039815,
+      "deciding_path": "units.swechat/opencode.results.BE.rho_pooled.lo"
+     }
+    }
+   },
+   "cell_before_checks": {
+    "label": "DEAD",
+    "source_path": "units.swechat/opencode.results.E.verdict.label",
+    "B": "DEAD",
+    "E": "DEAD",
+    "suffix": ""
+   },
+   "artifact_checks": {
+    "status": "not required: no B / E / B u E verdict reached WEAK or better (S:artifact_checks applies to N cells at WEAK or better)"
+   },
+   "cell_final": {
+    "label": "DEAD",
+    "checks_applied": [],
+    "suffix": ""
+   }
+  },
+  "swechat/gemini": {
+   "labels": [],
+   "sessions_in_split": {
+    "B": 22,
+    "E": 14
+   },
+   "has_E": true,
+   "split_meta": {
+    "B": {
+     "rows": 5516,
+     "sessions": 22,
+     "rows_by_kind": {
+      "user": 231,
+      "assistant": 1689,
+      "call": 1776,
+      "result": 1776,
+      "meta": 44
+     },
+     "gaps": 1692,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 1776,
+     "gaps_with_truncated_result": 501,
+     "gaps_not_join_clean": 0,
+     "gaps_with_usage_next": 1692
+    },
+    "E": {
+     "rows": 1597,
+     "sessions": 14,
+     "rows_by_kind": {
+      "user": 88,
+      "assistant": 430,
+      "call": 528,
+      "result": 528,
+      "meta": 23
+     },
+     "gaps": 471,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 528,
+     "gaps_with_truncated_result": 47,
+     "gaps_not_join_clean": 0,
+     "gaps_with_usage_next": 470
+    }
+   },
+   "results": {
+    "B": {
+     "gaps": 1692,
+     "sessions_with_gaps": 21,
+     "eligible_sessions": 13,
+     "eligible_gaps": 1667,
+     "rho_s": {
+      "n_defined": 13,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 13,
+       "q0": -0.2958276506792494,
+       "q0.05": -0.09591529278856467,
+       "q0.25": 0.1588199494415131,
+       "q0.5": 0.2093999865879761,
+       "q0.75": 0.28211593355988607,
+       "q0.95": 0.39330851693963964,
+       "q1": 0.401025641025641
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 1,
+      "n": 13,
+      "share": 0.07692307692307693,
+      "lo": 0.013710066379696323,
+      "hi": 0.3331453392824736,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": 0.08754404149971239,
+      "n_sessions": 13,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.02373712932815614,
+      "hi": 0.19891902036174727,
+      "n": 1667
+     },
+     "gap_s_quantiles": {
+      "n": 1667,
+      "n_sessions": 13,
+      "q0": 1.808,
+      "q0.05": 2.7302,
+      "q0.25": 4.214,
+      "q0.5": 6.447,
+      "q0.75": 8.7335,
+      "q0.95": 13.34679999999999,
+      "q1": 49.363
+     },
+     "bytes_quantiles": {
+      "n": 1667,
+      "q0": 2.0,
+      "q0.05": 55.900000000000034,
+      "q0.25": 425.0,
+      "q0.5": 747.0,
+      "q0.75": 1167.0,
+      "q0.95": 4777.299999999987,
+      "q1": 68351.0
+     },
+     "zero_byte_gaps": 0,
+     "rho_pooled_all_sessions": {
+      "value": 0.08696064612891996,
+      "n_sessions": 21,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.02944861607594863,
+      "hi": 0.19261719479843803,
+      "n": 1692
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 25.486854985573427,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 1667,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 1667,
+       "q0": 11.0,
+       "q0.05": 29.0,
+       "q0.25": 59.0,
+       "q0.5": 122.0,
+       "q0.75": 261.0,
+       "q0.95": 899.7999999999993,
+       "q1": 4505.0
+      },
+      "adjusted_gap_le_0": 762,
+      "rho": {
+       "value": -0.17282563307064266,
+       "n_sessions": 13,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.22493372605740516,
+       "hi": -0.08270459345980757,
+       "n": 1667
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 3,
+       "n": 13,
+       "share": 0.23076923076923078,
+       "lo": 0.08179379092465713,
+       "hi": 0.5025687399512693
+      },
+      "rho_s_quantiles": {
+       "n": 13,
+       "q0": -0.0947103644756954,
+       "q0.05": -0.0750123509184833,
+       "q0.25": 0.020067119188595304,
+       "q0.5": 0.04151617729577125,
+       "q0.75": 0.08040355477019816,
+       "q0.95": 0.1929325832154645,
+       "q1": 0.22571820745468735
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.014432581444564595,
+       "n_sessions": 13,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.09796103534512159,
+       "hi": 0.08180707444973478,
+       "n": 1667
+      }
+     },
+     "verdict": {
+      "label": "INSUFFICIENT_N",
+      "rule": "min n: >= 20 sessions with >= 20 gaps",
+      "deciding_number": 13,
+      "deciding_path": "units.swechat/gemini.results.B.eligible_sessions"
+     }
+    },
+    "E": {
+     "gaps": 471,
+     "sessions_with_gaps": 12,
+     "eligible_sessions": 9,
+     "eligible_gaps": 453,
+     "rho_s": {
+      "n_defined": 9,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 9,
+       "q0": 0.10358974358974359,
+       "q0.05": 0.13035194464289176,
+       "q0.25": 0.17341798364580335,
+       "q0.5": 0.20438367800424181,
+       "q0.75": 0.3876908704421326,
+       "q0.95": 0.41166521039738796,
+       "q1": 0.41681378209802133
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 0,
+      "n": 9,
+      "share": 0.0,
+      "lo": 0.0,
+      "hi": 0.2991527535509594,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": 0.24394709292528202,
+      "n_sessions": 9,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.08305013846356944,
+      "hi": 0.38713674553281996,
+      "n": 453
+     },
+     "gap_s_quantiles": {
+      "n": 453,
+      "n_sessions": 9,
+      "q0": 2.096,
+      "q0.05": 2.8946,
+      "q0.25": 3.876,
+      "q0.5": 5.087,
+      "q0.75": 9.509,
+      "q0.95": 15.738,
+      "q1": 370.464
+     },
+     "bytes_quantiles": {
+      "n": 453,
+      "q0": 2.0,
+      "q0.05": 41.0,
+      "q0.25": 371.0,
+      "q0.5": 922.0,
+      "q0.75": 2691.0,
+      "q0.95": 11145.399999999992,
+      "q1": 38057.0
+     },
+     "zero_byte_gaps": 0,
+     "rho_pooled_all_sessions": {
+      "value": 0.2624763486146267,
+      "n_sessions": 12,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.12360444450218806,
+      "hi": 0.4016020054278348,
+      "n": 471
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 25.486854985573427,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 452,
+      "share_of_eligible_gaps": 0.9977924944812362,
+      "usage_next_quantiles": {
+       "n": 452,
+       "q0": 10.0,
+       "q0.05": 19.0,
+       "q0.25": 48.0,
+       "q0.5": 102.0,
+       "q0.75": 231.75,
+       "q0.95": 864.45,
+       "q1": 2883.0
+      },
+      "adjusted_gap_le_0": 190,
+      "rho": {
+       "value": -0.010256609348811374,
+       "n_sessions": 9,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.15990273731784385,
+       "hi": 0.14598130927374073,
+       "n": 452
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 4,
+       "n": 9,
+       "share": 0.4444444444444444,
+       "lo": 0.188775429471914,
+       "hi": 0.7333526542559703
+      },
+      "rho_s_quantiles": {
+       "n": 9,
+       "q0": -0.24960597025085138,
+       "q0.05": -0.1965293905047692,
+       "q0.25": -0.013919095258808176,
+       "q0.5": 0.0063989525695172965,
+       "q0.75": 0.02838860335125725,
+       "q0.95": 0.15935558661484855,
+       "q1": 0.23546393858103998
+      },
+      "rho_pooled_permuted_context": {
+       "value": 0.035518592217437056,
+       "n_sessions": 9,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.0596217105755978,
+       "hi": 0.12959817479966096,
+       "n": 453
+      }
+     },
+     "verdict": {
+      "label": "INSUFFICIENT_N",
+      "rule": "min n: >= 20 sessions with >= 20 gaps",
+      "deciding_number": 9,
+      "deciding_path": "units.swechat/gemini.results.E.eligible_sessions"
+     }
+    },
+    "BE": {
+     "gaps": 2163,
+     "sessions_with_gaps": 33,
+     "eligible_sessions": 22,
+     "eligible_gaps": 2120,
+     "rho_s": {
+      "n_defined": 22,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 22,
+       "q0": -0.2958276506792494,
+       "q0.05": 0.04067111902778432,
+       "q0.25": 0.17122593057841137,
+       "q0.5": 0.20689183229610897,
+       "q0.75": 0.37335263403896124,
+       "q0.95": 0.403796517255398,
+       "q1": 0.41681378209802133
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 1,
+      "n": 22,
+      "share": 0.045454545454545456,
+      "lo": 0.008069219301147859,
+      "hi": 0.21798489499518053,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": 0.1140400403777262,
+      "n_sessions": 22,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.031380339021736266,
+      "hi": 0.21552948228454474,
+      "n": 2120
+     },
+     "gap_s_quantiles": {
+      "n": 2120,
+      "n_sessions": 22,
+      "q0": 1.808,
+      "q0.05": 2.7689500000000002,
+      "q0.25": 4.13075,
+      "q0.5": 6.227,
+      "q0.75": 8.95175,
+      "q0.95": 14.027349999999998,
+      "q1": 370.464
+     },
+     "bytes_quantiles": {
+      "n": 2120,
+      "q0": 2.0,
+      "q0.05": 54.0,
+      "q0.25": 415.5,
+      "q0.5": 750.0,
+      "q0.75": 1362.5,
+      "q0.95": 5578.4999999999945,
+      "q1": 68351.0
+     },
+     "zero_byte_gaps": 0,
+     "rho_pooled_all_sessions": {
+      "value": 0.11762415219597429,
+      "n_sessions": 33,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.03939714752958851,
+      "hi": 0.22549034721329309,
+      "n": 2163
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 25.486854985573427,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 2119,
+      "share_of_eligible_gaps": 0.9995283018867924,
+      "usage_next_quantiles": {
+       "n": 2119,
+       "q0": 10.0,
+       "q0.05": 26.0,
+       "q0.25": 56.0,
+       "q0.5": 118.0,
+       "q0.75": 258.0,
+       "q0.95": 882.0999999999999,
+       "q1": 4505.0
+      },
+      "adjusted_gap_le_0": 952,
+      "rho": {
+       "value": -0.12785993624373854,
+       "n_sessions": 22,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.1902474282534283,
+       "hi": -0.018779101687357552,
+       "n": 2119
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 7,
+       "n": 22,
+       "share": 0.3181818181818182,
+       "lo": 0.1636038735469248,
+       "hi": 0.5268177721716065
+      },
+      "rho_s_quantiles": {
+       "n": 22,
+       "q0": -0.24960597025085138,
+       "q0.05": -0.11580431306514842,
+       "q0.25": -0.010695731700516388,
+       "q0.5": 0.030799763272888657,
+       "q0.75": 0.05938486785648563,
+       "q0.95": 0.22298607210141874,
+       "q1": 0.23546393858103998
+      },
+      "rho_pooled_permuted_context": {
+       "value": -0.006261524052517373,
+       "n_sessions": 22,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.07145045945352604,
+       "hi": 0.07332155290991342,
+       "n": 2120
+      }
+     },
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) Wilson hi <= 0.20",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.031380339021736266,
+        "path": "units.swechat/gemini.results.BE.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": true,
+        "value": 0.045454545454545456,
+        "path": "units.swechat/gemini.results.BE.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.21798489499518053,
+        "path": "units.swechat/gemini.results.BE.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.031380339021736266,
+       "pooled rho CI lo >= 0.30": 0.031380339021736266,
+       "share(rho_s <= 0) Wilson hi <= 0.20": 0.21798489499518053
+      },
+      "deciding_path": [
+       "units.swechat/gemini.results.BE.rho_pooled.lo",
+       "units.swechat/gemini.results.BE.rho_pooled.lo",
+       "units.swechat/gemini.results.BE.share_rho_s_le_0.hi"
+      ]
+     }
+    }
+   },
+   "cell_before_checks": {
+    "label": "INSUFFICIENT_N",
+    "source_path": "units.swechat/gemini.results.B.verdict.label",
+    "B": "INSUFFICIENT_N",
+    "E": "INSUFFICIENT_N",
+    "suffix": " (B only; E INSUFFICIENT_N: NOT_REPLICABLE_AT_N)"
+   },
+   "artifact_checks": {
+    "population": "B u E",
+    "base_label": "WEAK",
+    "AC2_no_truncated": {
+     "gaps_dropped": 548,
+     "label": "WEAK",
+     "eligible_sessions": 22,
+     "eligible_gaps": 1572,
+     "rho_pooled": [
+      0.14340548336284487,
+      0.06276513750717158,
+      0.2530643380321619
+     ],
+     "share_rho_s_le_0": [
+      0.045454545454545456,
+      0.008069219301147859,
+      0.21798489499518053
+     ],
+     "n_defined": 22,
+     "fail": false,
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) Wilson hi <= 0.20",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.06276513750717158,
+        "path": "units.swechat/gemini.artifact_checks.AC2_no_truncated.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": true,
+        "value": 0.045454545454545456,
+        "path": "units.swechat/gemini.artifact_checks.AC2_no_truncated.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.21798489499518053,
+        "path": "units.swechat/gemini.artifact_checks.AC2_no_truncated.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.06276513750717158,
+       "pooled rho CI lo >= 0.30": 0.06276513750717158,
+       "share(rho_s <= 0) Wilson hi <= 0.20": 0.21798489499518053
+      },
+      "deciding_path": [
+       "units.swechat/gemini.artifact_checks.AC2_no_truncated.rho_pooled.lo",
+       "units.swechat/gemini.artifact_checks.AC2_no_truncated.rho_pooled.lo",
+       "units.swechat/gemini.artifact_checks.AC2_no_truncated.share_rho_s_le_0.hi"
+      ]
+     }
+    },
+    "AC3_join_clean": {
+     "gaps_dropped": 0,
+     "label": "WEAK",
+     "eligible_sessions": 22,
+     "eligible_gaps": 2120,
+     "rho_pooled": [
+      0.1140400403777262,
+      0.031380339021736266,
+      0.21552948228454474
+     ],
+     "share_rho_s_le_0": [
+      0.045454545454545456,
+      0.008069219301147859,
+      0.21798489499518053
+     ],
+     "n_defined": 22,
+     "fail": false,
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) Wilson hi <= 0.20",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.031380339021736266,
+        "path": "units.swechat/gemini.artifact_checks.AC3_join_clean.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": true,
+        "value": 0.045454545454545456,
+        "path": "units.swechat/gemini.artifact_checks.AC3_join_clean.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.21798489499518053,
+        "path": "units.swechat/gemini.artifact_checks.AC3_join_clean.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.031380339021736266,
+       "pooled rho CI lo >= 0.30": 0.031380339021736266,
+       "share(rho_s <= 0) Wilson hi <= 0.20": 0.21798489499518053
+      },
+      "deciding_path": [
+       "units.swechat/gemini.artifact_checks.AC3_join_clean.rho_pooled.lo",
+       "units.swechat/gemini.artifact_checks.AC3_join_clean.rho_pooled.lo",
+       "units.swechat/gemini.artifact_checks.AC3_join_clean.share_rho_s_le_0.hi"
+      ]
+     }
+    },
+    "AC4_dominance": {
+     "denominator": "gaps of sessions with >= 20 gaps",
+     "kinds": {
+      "repo": {
+       "top_cluster": "hirakiuc/gh-orbit",
+       "top_share_events": 0.8759433962264151,
+       "top_share_sessions": 0.8636363636363636,
+       "n_clusters": 4,
+       "dominated": true,
+       "top5": [
+        [
+         "hirakiuc/gh-orbit",
+         0.8759433962264151,
+         0.8636363636363636
+        ],
+        [
+         "Diogenesoftoronto/dellij",
+         0.06415094339622641,
+         0.045454545454545456
+        ],
+        [
+         "growerp/growerp",
+         0.04433962264150943,
+         0.045454545454545456
+        ],
+        [
+         "savekirk/session-bridge",
+         0.015566037735849057,
+         0.045454545454545456
+        ]
+       ],
+       "cluster_dominated": true
+      },
+      "user": {
+       "top_cluster": "hirakiuc",
+       "top_share_events": 0.8759433962264151,
+       "top_share_sessions": 0.8636363636363636,
+       "n_clusters": 4,
+       "dominated": true,
+       "top5": [
+        [
+         "hirakiuc",
+         0.8759433962264151,
+         0.8636363636363636
+        ],
+        [
+         "Diogenesoftoronto",
+         0.06415094339622641,
+         0.045454545454545456
+        ],
+        [
+         "hansbak",
+         0.04433962264150943,
+         0.045454545454545456
+        ],
+        [
+         "savekirk",
+         0.015566037735849057,
+         0.045454545454545456
+        ]
+       ],
+       "cluster_dominated": true
+      },
+      "model": {
+       "top_cluster": "gemini-3-flash-preview",
+       "top_share_events": 0.969811320754717,
+       "top_share_sessions": 0.9545454545454546,
+       "n_clusters": 2,
+       "dominated": true,
+       "top5": [
+        [
+         "gemini-3-flash-preview",
+         0.969811320754717,
+         0.9545454545454546
+        ],
+        [
+         "gemini-3.1-pro-preview",
+         0.03018867924528302,
+         0.045454545454545456
+        ]
+       ],
+       "cluster_dominated": true
+      }
+     },
+     "top_session_share_events": 0.3122641509433962,
+     "dominated": true,
+     "leaveouts": [
+      {
+       "kind": "repo",
+       "left_out": "hirakiuc/gh-orbit",
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 3,
+       "eligible_gaps": 263,
+       "rho_pooled": [
+        0.0629742915564439,
+        -0.08094123301702023,
+        0.26066420286197506
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.5615060804490177
+       ],
+       "n_defined": 3
+      },
+      {
+       "kind": "repo",
+       "left_out": "Diogenesoftoronto/dellij",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 1984,
+       "rho_pooled": [
+        0.11085563602395669,
+        0.008000109487357094,
+        0.21781162264043977
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "repo",
+       "left_out": "growerp/growerp",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 2026,
+       "rho_pooled": [
+        0.1489620515579757,
+        0.08940514123795389,
+        0.24059811635824452
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "repo",
+       "left_out": "savekirk/session-bridge",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 2087,
+       "rho_pooled": [
+        0.11199034583481689,
+        0.025304490847193557,
+        0.22467543096561438
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "user",
+       "left_out": "hirakiuc",
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 3,
+       "eligible_gaps": 263,
+       "rho_pooled": [
+        0.0629742915564439,
+        -0.08094123301702023,
+        0.26066420286197506
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.5615060804490177
+       ],
+       "n_defined": 3
+      },
+      {
+       "kind": "user",
+       "left_out": "Diogenesoftoronto",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 1984,
+       "rho_pooled": [
+        0.11085563602395669,
+        0.008000109487357094,
+        0.21781162264043977
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "user",
+       "left_out": "hansbak",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 2026,
+       "rho_pooled": [
+        0.1489620515579757,
+        0.08940514123795389,
+        0.24059811635824452
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "user",
+       "left_out": "savekirk",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 2087,
+       "rho_pooled": [
+        0.11199034583481689,
+        0.025304490847193557,
+        0.22467543096561438
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "model",
+       "left_out": "gemini-3-flash-preview",
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 64,
+       "rho_pooled": [
+        0.40394235284643787,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      },
+      {
+       "kind": "model",
+       "left_out": "gemini-3.1-pro-preview",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 2056,
+       "rho_pooled": [
+        0.11073138233110286,
+        0.02879146535202784,
+        0.22847202077150572
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_1",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 1458,
+       "rho_pooled": [
+        0.1005281509529059,
+        0.006777523073837092,
+        0.24294719730017283
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_2",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 1808,
+       "rho_pooled": [
+        0.13408517903423117,
+        0.056226337953645754,
+        0.24097353392493626
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_3",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 1984,
+       "rho_pooled": [
+        0.11085563602395669,
+        0.008000109487357094,
+        0.21781162264043977
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_4",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 2019,
+       "rho_pooled": [
+        0.10404974826560955,
+        0.022335781104000092,
+        0.23034369082792341
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      {
+       "kind": "session",
+       "left_out": "largest_session_rank_5",
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 2026,
+       "rho_pooled": [
+        0.1489620515579757,
+        0.08940514123795389,
+        0.24059811635824452
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      }
+     ],
+     "effect": "cap_weak",
+     "status": "UNTESTABLE_WITHOUT_DOMINANT"
+    },
+    "AC5_post_stratified": {
+     "label": "WEAK",
+     "eligible_sessions": 22,
+     "eligible_gaps": 2120,
+     "rho_pooled": [
+      0.11595147593451842,
+      0.0276355799096263,
+      0.21501290792825256
+     ],
+     "share_rho_s_le_0": [
+      0.04519774011299436,
+      0.0,
+      0.1388105680868839
+     ],
+     "n_defined": 22,
+     "fail": false,
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.0276355799096263,
+        "path": "units.swechat/gemini.artifact_checks.AC5_post_stratified.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": true,
+        "value": 0.04519774011299436,
+        "path": "units.swechat/gemini.artifact_checks.AC5_post_stratified.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) bootstrap hi <= 0.20",
+        "met": true,
+        "value": 0.1388105680868839,
+        "path": "units.swechat/gemini.artifact_checks.AC5_post_stratified.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.0276355799096263,
+       "pooled rho CI lo >= 0.30": 0.0276355799096263
+      },
+      "deciding_path": [
+       "units.swechat/gemini.artifact_checks.AC5_post_stratified.rho_pooled.lo",
+       "units.swechat/gemini.artifact_checks.AC5_post_stratified.rho_pooled.lo"
+      ]
+     },
+     "weights": "population cell size / analysed sessions in the cell (post_strat_weights over sessions with >= 20 gaps)"
+    },
+    "AC5_shift_rho_pooled": {
+     "B_point": 0.08754404149971239,
+     "E_ci": [
+      0.08305013846356944,
+      0.38713674553281996
+     ],
+     "SHIFT": false,
+     "note": "reported, no verdict effect"
+    },
+    "AC1_parser": {
+     "label": "NOT_RUN",
+     "reason": "the unit's N6 cell is not WEAK or better (cell INSUFFICIENT_N); AC1 is required for N cells at WEAK or better"
+    }
+   },
+   "stratification": {
+    "tool_key": {
+     "strata": {
+      "read": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 4,
+       "eligible_gaps": 244,
+       "rho_pooled": [
+        -0.23328233366747103,
+        -0.4210405504295189,
+        0.21981756088960572
+       ],
+       "share_rho_s_le_0": [
+        0.25,
+        0.045586062644636216,
+        0.6993639475573634
+       ],
+       "n_defined": 4
+      },
+      "shell": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 11,
+       "eligible_gaps": 636,
+       "rho_pooled": [
+        0.25289303731158824,
+        0.1561103697734104,
+        0.38602632276061555
+       ],
+       "share_rho_s_le_0": [
+        0.09090909090909091,
+        0.01623175226282597,
+        0.3773646254862038
+       ],
+       "n_defined": 11
+      },
+      "write": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 31,
+       "rho_pooled": [
+        -0.03712230050481706,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        1.0,
+        0.20654329147389294,
+        1.0
+       ],
+       "n_defined": 1
+      },
+      "edit": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 7,
+       "eligible_gaps": 513,
+       "rho_pooled": [
+        0.01041769360456395,
+        -0.18026722102683124,
+        0.1778910323417688
+       ],
+       "share_rho_s_le_0": [
+        0.42857142857142855,
+        0.15821692226262685,
+        0.7495457695909742
+       ],
+       "n_defined": 7
+      },
+      "grep_search": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "websearch": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "ls": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "glob": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "list_dir": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "get_symbols_overview": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "insert_after_symbol": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 21,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "search_for_pattern": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "activate_skill": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "cli_help": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "find_file": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "find_symbol": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 30,
+       "rho_pooled": [
+        0.23715675724289273,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      },
+      "webfetch": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "ask_user": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "codebase_investigator": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "get_current_config": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "check_onboarding_performed": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "enter_plan_mode": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "exit_plan_mode": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "generalist": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "initial_instructions": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp_dart_list_devices": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp_dart_run_tests": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp_serena_check_onboarding_performed": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp_serena_find_referencing_symbols": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp_serena_find_symbol": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp_serena_insert_after_symbol": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp_serena_list_memories": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp_serena_read_memory": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "onboarding": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "rename_symbol": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "write_todos": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "model": {
+     "strata": {
+      "gemini-3-flash-preview": {
+       "label": "WEAK",
+       "eligible_sessions": 21,
+       "eligible_gaps": 2056,
+       "rho_pooled": [
+        0.11073138233110286,
+        0.02879146535202784,
+        0.22847202077150572
+       ],
+       "share_rho_s_le_0": [
+        0.047619047619047616,
+        0.008455769471923294,
+        0.22669816586235464
+       ],
+       "n_defined": 21
+      },
+      "gemini-2.5-flash": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "gemini-3.1-pro-preview": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 64,
+       "rho_pooled": [
+        0.40394235284643787,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      },
+      "gemini-3-pro-preview": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "repo": {
+     "strata": {
+      "hirakiuc/gh-orbit": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 19,
+       "eligible_gaps": 1857,
+       "rho_pooled": [
+        0.14793792088523375,
+        0.06518066237294527,
+        0.24817550426547952
+       ],
+       "share_rho_s_le_0": [
+        0.05263157894736842,
+        0.009351752490529969,
+        0.2463921533654521
+       ],
+       "n_defined": 19
+      },
+      "entireio/cli": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "savekirk/session-bridge": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 33,
+       "rho_pooled": [
+        0.1977268956249473,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      },
+      "libfunc/rapira": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "Diogenesoftoronto/dellij": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 136,
+       "rho_pooled": [
+        0.26066420286197506,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      },
+      "Whiteknight07/AiTutor": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "growerp/growerp": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 94,
+       "rho_pooled": [
+        0.03735961247189173,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "length_tercile": {
+     "strata": {
+      "short": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 19,
+       "eligible_gaps": 1010,
+       "rho_pooled": [
+        0.14628830853527466,
+        0.049823417255902065,
+        0.2670060615349322
+       ],
+       "share_rho_s_le_0": [
+        0.05263157894736842,
+        0.009351752490529969,
+        0.2463921533654521
+       ],
+       "n_defined": 19
+      },
+      "long": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 2,
+       "eligible_gaps": 974,
+       "rho_pooled": [
+        0.2156945231901311,
+        0.2093999865879761,
+        0.23770614782901203
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.6576280471103807
+       ],
+       "n_defined": 2
+      },
+      "mid": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 136,
+       "rho_pooled": [
+        0.26066420286197506,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "CONFINED_any_axis": false
+   },
+   "cell_final": {
+    "label": "INSUFFICIENT_N",
+    "checks_applied": [],
+    "suffix": " (B only; E INSUFFICIENT_N: NOT_REPLICABLE_AT_N)"
+   }
+  },
+  "cc_local": {
+   "labels": [
+    "private: aggregates only",
+    "B only, unreplicated (no E split)"
+   ],
+   "sessions_in_split": {
+    "B": 186
+   },
+   "has_E": false,
+   "split_meta": {
+    "B": {
+     "rows": 147506,
+     "sessions": 186,
+     "rows_by_kind": {
+      "meta": 30037,
+      "system": 36962,
+      "user": 623,
+      "assistant": 6800,
+      "call": 36542,
+      "result": 36542
+     },
+     "gaps": 9230,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 36542,
+     "gaps_with_truncated_result": 201,
+     "gaps_not_join_clean": 0,
+     "gaps_with_usage_next": 9230
+    }
+   },
+   "results": {
+    "B": {
+     "gaps": 9230,
+     "sessions_with_gaps": 128,
+     "eligible_sessions": 9,
+     "eligible_gaps": 8774,
+     "rho_s": {
+      "n_defined": 9,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 9,
+       "q0": -0.45454621664834444,
+       "q0.05": -0.39473504267787235,
+       "q0.25": -0.24341025440305727,
+       "q0.5": 0.060447826657571854,
+       "q0.75": 0.16501651274516094,
+       "q0.95": 0.441273707653723,
+       "q1": 0.45976373399685255
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 4,
+      "n": 9,
+      "share": 0.4444444444444444,
+      "lo": 0.188775429471914,
+      "hi": 0.7333526542559703,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": -0.025622592399434117,
+      "n_sessions": 9,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.2560426312229201,
+      "hi": 0.34357529375669965,
+      "n": 8774
+     },
+     "gap_s_quantiles": {
+      "n": 8774,
+      "n_sessions": 9,
+      "q0": 0.001,
+      "q0.05": 0.348,
+      "q0.25": 0.826,
+      "q0.5": 2.954,
+      "q0.75": 10.98325,
+      "q0.95": 49.42660000000003,
+      "q1": 516.948
+     },
+     "bytes_quantiles": {
+      "n": 8774,
+      "q0": 0.0,
+      "q0.05": 7.0,
+      "q0.25": 211.0,
+      "q0.5": 1251.0,
+      "q0.75": 4293.5,
+      "q0.95": 16760.0,
+      "q1": 85015.0
+     },
+     "zero_byte_gaps": 39,
+     "rho_pooled_all_sessions": {
+      "value": -0.03306269674255353,
+      "n_sessions": 128,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": -0.28710707784478984,
+      "hi": 0.2836094706738269,
+      "n": 9230
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 74.19726517754074,
+      "G50_method_phase_B": "usage",
+      "gaps_with_usage": 8774,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 8774,
+       "q0": 1.0,
+       "q0.05": 3.0,
+       "q0.25": 245.0,
+       "q0.5": 668.0,
+       "q0.75": 1727.0,
+       "q0.95": 6371.750000000002,
+       "q1": 46483.0
+      },
+      "adjusted_gap_le_0": 5645,
+      "rho": {
+       "value": 0.06599626235818366,
+       "n_sessions": 9,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.05976713549010033,
+       "hi": 0.23164261127721228,
+       "n": 8774
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 6,
+       "n": 9,
+       "share": 0.6666666666666666,
+       "lo": 0.35419734749908977,
+       "hi": 0.879418401317257
+      },
+      "rho_s_quantiles": {
+       "n": 9,
+       "q0": -0.17732551411086925,
+       "q0.05": -0.12190005169743609,
+       "q0.25": -0.01658033260714066,
+       "q0.5": -0.013334247690202887,
+       "q0.75": 0.003463104270839219,
+       "q0.95": 0.07299712624580365,
+       "q1": 0.09790979756212882
+      },
+      "rho_pooled_permuted_context": {
+       "value": 0.10109973418754555,
+       "n_sessions": 9,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.09879923366901264,
+       "hi": 0.18619595775976283,
+       "n": 8774
+      }
+     },
+     "verdict": {
+      "label": "INSUFFICIENT_N",
+      "rule": "min n: >= 20 sessions with >= 20 gaps",
+      "deciding_number": 9,
+      "deciding_path": "units.cc_local.results.B.eligible_sessions"
+     }
+    }
+   },
+   "cell_before_checks": {
+    "label": "INSUFFICIENT_N",
+    "source_path": "units.cc_local.results.B.verdict.label",
+    "B": "INSUFFICIENT_N",
+    "E": null,
+    "suffix": " (B only, unreplicated)"
+   },
+   "artifact_checks": {
+    "status": "not required: no B / E / B u E verdict reached WEAK or better (S:artifact_checks applies to N cells at WEAK or better)"
+   },
+   "cell_final": {
+    "label": "INSUFFICIENT_N",
+    "checks_applied": [],
+    "suffix": " (B only, unreplicated) [private: aggregates only] [B only, unreplicated (no E split)]"
+   }
+  },
+  "aiv_cc": {
+   "labels": [
+    "single-agent case study",
+    "B only, unreplicated (no E split)"
+   ],
+   "sessions_in_split": {
+    "B": 189
+   },
+   "has_E": false,
+   "split_meta": {
+    "B": {
+     "rows": 131676,
+     "sessions": 189,
+     "rows_by_kind": {
+      "meta": 37331,
+      "user": 1,
+      "assistant": 16352,
+      "call": 38746,
+      "result": 38738,
+      "system": 508
+     },
+     "gaps": 36306,
+     "gaps_identical_to_n3_gaps": true,
+     "results": 38738,
+     "gaps_with_truncated_result": 44,
+     "gaps_not_join_clean": 0,
+     "gaps_with_usage_next": 36306
+    }
+   },
+   "results": {
+    "B": {
+     "gaps": 36306,
+     "sessions_with_gaps": 117,
+     "eligible_sessions": 57,
+     "eligible_gaps": 36132,
+     "rho_s": {
+      "n_defined": 57,
+      "n_undefined": 0,
+      "quantiles": {
+       "n": 57,
+       "q0": -0.6928897512332334,
+       "q0.05": -0.5039639490690319,
+       "q0.25": -0.2850913119408747,
+       "q0.5": 0.1774364794670418,
+       "q0.75": 0.35198517317491634,
+       "q0.95": 0.5151205285940776,
+       "q1": 0.6788094456903602
+      }
+     },
+     "share_rho_s_le_0": {
+      "k": 23,
+      "n": 57,
+      "share": 0.40350877192982454,
+      "lo": 0.28617323526539984,
+      "hi": 0.5330294155524615,
+      "ci": "wilson over sessions"
+     },
+     "rho_pooled": {
+      "value": 0.13943669262939168,
+      "n_sessions": 57,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.02902119619198191,
+      "hi": 0.22868609762805409,
+      "n": 36132
+     },
+     "gap_s_quantiles": {
+      "n": 36132,
+      "n_sessions": 57,
+      "q0": 0.01882,
+      "q0.05": 2.30751485,
+      "q0.25": 3.1574419999999996,
+      "q0.5": 3.985532,
+      "q0.75": 5.35781475,
+      "q0.95": 9.4457127,
+      "q1": 155.205241
+     },
+     "bytes_quantiles": {
+      "n": 36132,
+      "q0": 0.0,
+      "q0.05": 7.0,
+      "q0.25": 3513.0,
+      "q0.5": 3872.0,
+      "q0.75": 5200.0,
+      "q0.95": 9101.799999999988,
+      "q1": 88883.0
+     },
+     "zero_byte_gaps": 141,
+     "rho_pooled_all_sessions": {
+      "value": 0.14176896718071735,
+      "n_sessions": 117,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.034307135172088714,
+      "hi": 0.23289235598031616,
+      "n": 36306
+     },
+     "secondary_usage_adjusted": {
+      "definition": "Spearman(gap - usage_out(next response) / G50, batch bytes) over eligible-session gaps with usage",
+      "G50_tok_per_s": 25.981896144590827,
+      "G50_method_phase_B": "chars",
+      "gaps_with_usage": 36132,
+      "share_of_eligible_gaps": 1.0,
+      "usage_next_quantiles": {
+       "n": 36132,
+       "q0": 0.0,
+       "q0.05": 1.0,
+       "q0.25": 1.0,
+       "q0.5": 1.0,
+       "q0.75": 3.0,
+       "q0.95": 180.0,
+       "q1": 5081.0
+      },
+      "adjusted_gap_le_0": 3919,
+      "rho": {
+       "value": 0.1728353764408469,
+       "n_sessions": 57,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": 0.08667486053382678,
+       "hi": 0.2499742794104548,
+       "n": 36132
+      }
+     },
+     "positive_control_permutation": {
+      "definition": "within-session permutation of gaps (rng_for('N3pc', session_id, 'gaps')); detector flags a session if its permuted rho_s <= 0",
+      "recall": {
+       "k": 32,
+       "n": 57,
+       "share": 0.5614035087719298,
+       "lo": 0.43277781142939187,
+       "hi": 0.6822750471410599
+      },
+      "rho_s_quantiles": {
+       "n": 57,
+       "q0": -0.19953147701815038,
+       "q0.05": -0.1101440010956615,
+       "q0.25": -0.022490627132263057,
+       "q0.5": -0.006650666623570952,
+       "q0.75": 0.022056124956501694,
+       "q0.95": 0.19066570146905534,
+       "q1": 0.23265947183041863
+      },
+      "rho_pooled_permuted_context": {
+       "value": 0.009955972294893149,
+       "n_sessions": 57,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.02287016146214032,
+       "hi": 0.04418779854141636,
+       "n": 36132
+      }
+     },
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10; share(rho_s <= 0) Wilson hi <= 0.20",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.02902119619198191,
+        "path": "units.aiv_cc.results.B.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.40350877192982454,
+        "path": "units.aiv_cc.results.B.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.5330294155524615,
+        "path": "units.aiv_cc.results.B.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.02902119619198191,
+       "pooled rho CI lo >= 0.30": 0.02902119619198191,
+       "share(rho_s <= 0) <= 0.10": 0.40350877192982454,
+       "share(rho_s <= 0) Wilson hi <= 0.20": 0.5330294155524615
+      },
+      "deciding_path": [
+       "units.aiv_cc.results.B.rho_pooled.lo",
+       "units.aiv_cc.results.B.rho_pooled.lo",
+       "units.aiv_cc.results.B.share_rho_s_le_0.share",
+       "units.aiv_cc.results.B.share_rho_s_le_0.hi"
+      ]
+     }
+    }
+   },
+   "cell_before_checks": {
+    "label": "WEAK",
+    "source_path": "units.aiv_cc.results.B.verdict.label",
+    "B": "WEAK",
+    "E": null,
+    "suffix": " (B only, unreplicated)"
+   },
+   "artifact_checks": {
+    "population": "B",
+    "base_label": "WEAK",
+    "AC2_no_truncated": {
+     "gaps_dropped": 44,
+     "label": "WEAK",
+     "eligible_sessions": 57,
+     "eligible_gaps": 36088,
+     "rho_pooled": [
+      0.1393026433809597,
+      0.02891300491165645,
+      0.228757709549482
+     ],
+     "share_rho_s_le_0": [
+      0.40350877192982454,
+      0.28617323526539984,
+      0.5330294155524615
+     ],
+     "n_defined": 57,
+     "fail": false,
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10; share(rho_s <= 0) Wilson hi <= 0.20",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.02891300491165645,
+        "path": "units.aiv_cc.artifact_checks.AC2_no_truncated.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.40350877192982454,
+        "path": "units.aiv_cc.artifact_checks.AC2_no_truncated.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.5330294155524615,
+        "path": "units.aiv_cc.artifact_checks.AC2_no_truncated.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.02891300491165645,
+       "pooled rho CI lo >= 0.30": 0.02891300491165645,
+       "share(rho_s <= 0) <= 0.10": 0.40350877192982454,
+       "share(rho_s <= 0) Wilson hi <= 0.20": 0.5330294155524615
+      },
+      "deciding_path": [
+       "units.aiv_cc.artifact_checks.AC2_no_truncated.rho_pooled.lo",
+       "units.aiv_cc.artifact_checks.AC2_no_truncated.rho_pooled.lo",
+       "units.aiv_cc.artifact_checks.AC2_no_truncated.share_rho_s_le_0.share",
+       "units.aiv_cc.artifact_checks.AC2_no_truncated.share_rho_s_le_0.hi"
+      ]
+     }
+    },
+    "AC3_join_clean": {
+     "gaps_dropped": 0,
+     "label": "WEAK",
+     "eligible_sessions": 57,
+     "eligible_gaps": 36132,
+     "rho_pooled": [
+      0.13943669262939168,
+      0.02902119619198191,
+      0.22868609762805409
+     ],
+     "share_rho_s_le_0": [
+      0.40350877192982454,
+      0.28617323526539984,
+      0.5330294155524615
+     ],
+     "n_defined": 57,
+     "fail": false,
+     "verdict": {
+      "label": "WEAK",
+      "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10; share(rho_s <= 0) Wilson hi <= 0.20",
+      "conditions": [
+       {
+        "condition": "pooled rho CI lo >= 0.30",
+        "met": false,
+        "value": 0.02902119619198191,
+        "path": "units.aiv_cc.artifact_checks.AC3_join_clean.rho_pooled.lo"
+       },
+       {
+        "condition": "share(rho_s <= 0) <= 0.10",
+        "met": false,
+        "value": 0.40350877192982454,
+        "path": "units.aiv_cc.artifact_checks.AC3_join_clean.share_rho_s_le_0.share"
+       },
+       {
+        "condition": "share(rho_s <= 0) Wilson hi <= 0.20",
+        "met": false,
+        "value": 0.5330294155524615,
+        "path": "units.aiv_cc.artifact_checks.AC3_join_clean.share_rho_s_le_0.hi"
+       }
+      ],
+      "deciding_number": {
+       "rho_pooled_lo": 0.02902119619198191,
+       "pooled rho CI lo >= 0.30": 0.02902119619198191,
+       "share(rho_s <= 0) <= 0.10": 0.40350877192982454,
+       "share(rho_s <= 0) Wilson hi <= 0.20": 0.5330294155524615
+      },
+      "deciding_path": [
+       "units.aiv_cc.artifact_checks.AC3_join_clean.rho_pooled.lo",
+       "units.aiv_cc.artifact_checks.AC3_join_clean.rho_pooled.lo",
+       "units.aiv_cc.artifact_checks.AC3_join_clean.share_rho_s_le_0.share",
+       "units.aiv_cc.artifact_checks.AC3_join_clean.share_rho_s_le_0.hi"
+      ]
+     }
+    },
+    "AC4_dominance": {
+     "denominator": "gaps of sessions with >= 20 gaps",
+     "kinds": {
+      "repo": {
+       "top_cluster": "aiv_cc",
+       "top_share_events": 1.0,
+       "top_share_sessions": 1.0,
+       "n_clusters": 1,
+       "dominated": true,
+       "top5": [
+        [
+         "aiv_cc",
+         1.0,
+         1.0
+        ]
+       ],
+       "cluster_dominated": true,
+       "label_only": "aiv_cc is one agent (one model): always dominated, labelled only (PREREG_E 1.1)"
+      },
+      "model": {
+       "top_cluster": "claude-opus-4-5-20251101",
+       "top_share_events": 1.0,
+       "top_share_sessions": 1.0,
+       "n_clusters": 1,
+       "dominated": true,
+       "top5": [
+        [
+         "claude-opus-4-5-20251101",
+         1.0,
+         1.0
+        ]
+       ],
+       "cluster_dominated": true,
+       "label_only": "aiv_cc is one agent (one model): always dominated, labelled only (PREREG_E 1.1)"
+      }
+     },
+     "top_session_share_events": 0.06943983172810805,
+     "dominated": false,
+     "leaveouts": [],
+     "effect": "pass",
+     "status": "not dominated"
+    },
+    "AC5_post_stratified": {
+     "label": "NOT_RUN",
+     "reason": "no population table for this corpus"
+    },
+    "AC1_parser": {
+     "population": "gaps of sessions with >= 20 gaps (the pooled statistic's events)",
+     "pool_size": 36132,
+     "audited": 30,
+     "differing": 0,
+     "differing_reasons": {},
+     "label": "PASS",
+     "rule": "FAIL if >= 2 of 30 differ in a way that changes their contribution; 1 = PARSER_NOTE",
+     "seed_parts": [
+      "N3",
+      "AC1",
+      "aiv_cc"
+     ],
+     "events": [
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.660185,
+       "gap_raw_s": 3.660185,
+       "bytes_ir": 160,
+       "bytes_raw": 160,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.406754,
+       "gap_raw_s": 3.406754,
+       "bytes_ir": 3312,
+       "bytes_raw": 3312,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.413526,
+       "gap_raw_s": 3.413526,
+       "bytes_ir": 4194,
+       "bytes_raw": 4194,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 2,
+       "gap_ir_s": 2.696332,
+       "gap_raw_s": 2.696332,
+       "bytes_ir": 9636,
+       "bytes_raw": 9636,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 15.711864,
+       "gap_raw_s": 15.711864,
+       "bytes_ir": 7,
+       "bytes_raw": 7,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 9.959002,
+       "gap_raw_s": 9.959002,
+       "bytes_ir": 3272,
+       "bytes_raw": 3272,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 4,
+       "gap_ir_s": 8.787731,
+       "gap_raw_s": 8.787731,
+       "bytes_ir": 565,
+       "bytes_raw": 565,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 5.773537,
+       "gap_raw_s": 5.773537,
+       "bytes_ir": 4165,
+       "bytes_raw": 4165,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 6.416176,
+       "gap_raw_s": 6.416176,
+       "bytes_ir": 5516,
+       "bytes_raw": 5516,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.260614,
+       "gap_raw_s": 3.260614,
+       "bytes_ir": 3663,
+       "bytes_raw": 3663,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 4.56777,
+       "gap_raw_s": 4.56777,
+       "bytes_ir": 3515,
+       "bytes_raw": 3515,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.726085,
+       "gap_raw_s": 3.726085,
+       "bytes_ir": 3872,
+       "bytes_raw": 3872,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.268105,
+       "gap_raw_s": 3.268105,
+       "bytes_ir": 3716,
+       "bytes_raw": 3716,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 3.065042,
+       "gap_raw_s": 3.065042,
+       "bytes_ir": 3716,
+       "bytes_raw": 3716,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 2.565345,
+       "gap_raw_s": 2.565345,
+       "bytes_ir": 4030,
+       "bytes_raw": 4030,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 0.19791,
+       "gap_raw_s": 0.19791,
+       "bytes_ir": 4333,
+       "bytes_raw": 4333,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 2.441576,
+       "gap_raw_s": 2.441576,
+       "bytes_ir": 4805,
+       "bytes_raw": 4805,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 5.838866,
+       "gap_raw_s": 5.838866,
+       "bytes_ir": 9104,
+       "bytes_raw": 9104,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 2.409165,
+       "gap_raw_s": 2.409165,
+       "bytes_ir": 5070,
+       "bytes_raw": 5070,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 7.228123,
+       "gap_raw_s": 7.228123,
+       "bytes_ir": 8147,
+       "bytes_raw": 8147,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 4.007336,
+       "gap_raw_s": 4.007336,
+       "bytes_ir": 120,
+       "bytes_raw": 120,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 6.787714,
+       "gap_raw_s": 6.787714,
+       "bytes_ir": 4977,
+       "bytes_raw": 4977,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 2.693854,
+       "gap_raw_s": 2.693854,
+       "bytes_ir": 236,
+       "bytes_raw": 236,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 2.404716,
+       "gap_raw_s": 2.404716,
+       "bytes_ir": 4750,
+       "bytes_raw": 4750,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 7.96966,
+       "gap_raw_s": 7.96966,
+       "bytes_ir": 15618,
+       "bytes_raw": 15618,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 8.092357,
+       "gap_raw_s": 8.092357,
+       "bytes_ir": 7,
+       "bytes_raw": 7,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 5.401422,
+       "gap_raw_s": 5.401422,
+       "bytes_ir": 6078,
+       "bytes_raw": 6078,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 5.212716,
+       "gap_raw_s": 5.212716,
+       "bytes_ir": 5560,
+       "bytes_raw": 5560,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 4.277222,
+       "gap_raw_s": 4.277222,
+       "bytes_ir": 5544,
+       "bytes_raw": 5544,
+       "differs": false,
+       "why": []
+      },
+      {
+       "n_results_in_batch": 1,
+       "gap_ir_s": 5.508573,
+       "gap_raw_s": 5.508573,
+       "bytes_ir": 7448,
+       "bytes_raw": 7448,
+       "differs": false,
+       "why": []
+      }
+     ]
+    }
+   },
+   "stratification": {
+    "tool_key": {
+     "strata": {
+      "mcp__village__get_events": {
+       "label": "ALIVE",
+       "eligible_sessions": 31,
+       "eligible_gaps": 17212,
+       "rho_pooled": [
+        0.4567681662014052,
+        0.37510036117322876,
+        0.5226307317328633
+       ],
+       "share_rho_s_le_0": [
+        0.03225806451612903,
+        0.00571707408694444,
+        0.16194457176169622
+       ],
+       "n_defined": 31
+      },
+      "mcp__village__edit_memory": {
+       "label": "WEAK",
+       "eligible_sessions": 20,
+       "eligible_gaps": 928,
+       "rho_pooled": [
+        0.296425300142428,
+        0.20489383770133396,
+        0.3795795852509765
+       ],
+       "share_rho_s_le_0": [
+        0.1,
+        0.027865893984153206,
+        0.30103820641179335
+       ],
+       "n_defined": 20
+      },
+      "mcp__village__chat_message": {
+       "label": "WEAK",
+       "eligible_sessions": 20,
+       "eligible_gaps": 980,
+       "rho_pooled": [
+        0.15613850640327295,
+        0.026474944886635782,
+        0.3261139871324306
+       ],
+       "share_rho_s_le_0": [
+        0.55,
+        0.3420820083075997,
+        0.7418049791429071
+       ],
+       "n_defined": 20
+      },
+      "mcp__village__start_computer_session": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 11,
+       "eligible_gaps": 408,
+       "rho_pooled": [
+        0.361312243289188,
+        0.03553518080116226,
+        0.48174591474214695
+       ],
+       "share_rho_s_le_0": [
+        0.7272727272727273,
+        0.4343497069897537,
+        0.9025411942607853
+       ],
+       "n_defined": 11
+      },
+      "read": {
+       "label": "DEAD",
+       "eligible_sessions": 29,
+       "eligible_gaps": 2692,
+       "rho_pooled": [
+        -0.1644412173264266,
+        -0.30368903981939593,
+        -0.019474463353090932
+       ],
+       "share_rho_s_le_0": [
+        0.6470588235294118,
+        0.4129996672121182,
+        0.826905138560951
+       ],
+       "n_defined": 17
+      },
+      "shell": {
+       "label": "WEAK",
+       "eligible_sessions": 23,
+       "eligible_gaps": 4307,
+       "rho_pooled": [
+        0.24070670017818316,
+        0.17476399812767177,
+        0.3178837603462973
+       ],
+       "share_rho_s_le_0": [
+        0.17391304347826086,
+        0.06978540350612772,
+        0.37138054785295666
+       ],
+       "n_defined": 23
+      },
+      "mcp__village__computer_use": {
+       "label": "DEAD",
+       "eligible_sessions": 32,
+       "eligible_gaps": 3807,
+       "rho_pooled": [
+        0.004761328880495029,
+        -0.15329477129517738,
+        0.23116087419734582
+       ],
+       "share_rho_s_le_0": [
+        0.4838709677419355,
+        0.3196998603127883,
+        0.6515988171302683
+       ],
+       "n_defined": 31
+      },
+      "mcp__village__stop_computer_session": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 10,
+       "eligible_gaps": 338,
+       "rho_pooled": [
+        0.21246711294708193,
+        -0.08881495988077039,
+        0.43478122276432674
+       ],
+       "share_rho_s_le_0": [
+        0.3333333333333333,
+        0.12058159868274293,
+        0.6458026525009102
+       ],
+       "n_defined": 9
+      },
+      "mcp__village__bash": {
+       "label": "WEAK",
+       "eligible_sessions": 23,
+       "eligible_gaps": 2394,
+       "rho_pooled": [
+        0.33005071277076015,
+        0.2181202909196856,
+        0.42174208725993406
+       ],
+       "share_rho_s_le_0": [
+        0.08695652173913043,
+        0.02417949540723341,
+        0.2679640429809402
+       ],
+       "n_defined": 23
+      },
+      "mcp__village__get_pixel_coordinates": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 7,
+       "eligible_gaps": 233,
+       "rho_pooled": [
+        0.02645600542634986,
+        -0.3185687263011571,
+        0.3220394845533744
+       ],
+       "share_rho_s_le_0": [
+        0.42857142857142855,
+        0.15821692226262685,
+        0.7495457695909742
+       ],
+       "n_defined": 7
+      },
+      "mcp__village__search_history": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 1,
+       "eligible_gaps": 67,
+       "rho_pooled": [
+        0.3549799962264251,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        0.0,
+        0.0,
+        0.7934567085261071
+       ],
+       "n_defined": 1
+      },
+      "todo": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 3,
+       "eligible_gaps": 105,
+       "rho_pooled": [
+        -0.18795041556627576,
+        -0.44738569211112467,
+        0.08352728211181139
+       ],
+       "share_rho_s_le_0": [
+        0.5,
+        0.09452865480086614,
+        0.9054713451991339
+       ],
+       "n_defined": 2
+      },
+      "edit": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 4,
+       "eligible_gaps": 222,
+       "rho_pooled": [
+        0.38333121991241814,
+        0.07546054108888799,
+        0.48632442946548476
+       ],
+       "share_rho_s_le_0": [
+        0.3333333333333333,
+        0.0614903152761605,
+        0.7923450448735121
+       ],
+       "n_defined": 3
+      },
+      "grep": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 3,
+       "eligible_gaps": 117,
+       "rho_pooled": [
+        0.3050918589430765,
+        -0.048954776353355364,
+        0.5235451529770857
+       ],
+       "share_rho_s_le_0": [
+        0.3333333333333333,
+        0.0614903152761605,
+        0.7923450448735121
+       ],
+       "n_defined": 3
+      },
+      "write": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 4,
+       "eligible_gaps": 135,
+       "rho_pooled": [
+        0.18704232674189195,
+        -0.104024558725252,
+        0.5017668878358695
+       ],
+       "share_rho_s_le_0": [
+        0.5,
+        0.15003570882017148,
+        0.8499642911798285
+       ],
+       "n_defined": 4
+      },
+      "glob": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "webfetch": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__village__move_to_room": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mcp__village__request_google_sign_in": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "websearch": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      }
+     },
+     "confinement": "OK"
+    },
+    "model": {
+     "strata": {
+      "claude-opus-4-5-20251101": {
+       "label": "WEAK",
+       "eligible_sessions": 57,
+       "eligible_gaps": 36132,
+       "rho_pooled": [
+        0.13943669262939168,
+        0.02902119619198191,
+        0.22868609762805409
+       ],
+       "share_rho_s_le_0": [
+        0.40350877192982454,
+        0.28617323526539984,
+        0.5330294155524615
+       ],
+       "n_defined": 57
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "repo": {
+     "strata": {
+      "aiv_cc": {
+       "label": "WEAK",
+       "eligible_sessions": 57,
+       "eligible_gaps": 36132,
+       "rho_pooled": [
+        0.13943669262939168,
+        0.02902119619198191,
+        0.22868609762805409
+       ],
+       "share_rho_s_le_0": [
+        0.40350877192982454,
+        0.28617323526539984,
+        0.5330294155524615
+       ],
+       "n_defined": 57
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "length_tercile": {
+     "strata": {
+      "short": {
+       "label": "INSUFFICIENT_N",
+       "eligible_sessions": 0,
+       "eligible_gaps": 0,
+       "rho_pooled": [
+        null,
+        null,
+        null
+       ],
+       "share_rho_s_le_0": [
+        null,
+        null,
+        null
+       ],
+       "n_defined": 0
+      },
+      "mid": {
+       "label": "DEAD",
+       "eligible_sessions": 21,
+       "eligible_gaps": 1912,
+       "rho_pooled": [
+        -0.08365832005485482,
+        -0.2564014831407151,
+        0.11083839296636452
+       ],
+       "share_rho_s_le_0": [
+        0.47619047619047616,
+        0.28343712296762946,
+        0.6763078209973324
+       ],
+       "n_defined": 21
+      },
+      "long": {
+       "label": "WEAK",
+       "eligible_sessions": 36,
+       "eligible_gaps": 34220,
+       "rho_pooled": [
+        0.15369851058741485,
+        0.04499373326002968,
+        0.2405749960709919
+       ],
+       "share_rho_s_le_0": [
+        0.3611111111111111,
+        0.2247538679218132,
+        0.5242521960916802
+       ],
+       "n_defined": 36
+      }
+     },
+     "confinement": "CONFINED"
+    },
+    "CONFINED_any_axis": true
+   },
+   "cell_final": {
+    "label": "DEAD",
+    "checks_applied": [
+     {
+      "name": "CONFINED",
+      "effect": "downgrade"
+     }
+    ],
+    "suffix": " (B only, unreplicated) [single-agent case study] [B only, unreplicated (no E split)]"
+   }
+  },
+  "swechat/copilot": {
+   "cell_final": {
+    "label": "NOT_TESTABLE(no event stamps usable: 0 copilot sessions in swechat B (prereg.json population_B); not in S:n3_reaction_time.units)"
+   },
+   "sessions_in_split": {
+    "B": 0,
+    "E": 0
+   }
+  },
+  "swechat/cursor": {
+   "cell_final": {
+    "label": "NOT_TESTABLE(no results (field gate A: pairs 0))"
+   },
+   "sessions_in_split": {
+    "B": 8,
+    "E": 7
+   }
+  },
+  "swechat/simple_text": {
+   "cell_final": {
+    "label": "NOT_TESTABLE(no calls or results (field gate A: pairs 0))"
+   },
+   "sessions_in_split": {
+    "B": 0,
+    "E": 0
+   }
+  },
+  "aiv_cu": {
+   "cell_final": {
+    "label": "NOT_TESTABLE(row-insert / shared-turn stamps)"
+   }
+  },
+  "whowhen": {
+   "cell_final": {
+    "label": "NOT_TESTABLE(no stamps)"
+   }
+  }
+ },
+ "deviations": [
+  {
+   "item": "output file names",
+   "prereg_said": "prereg_e.json outputs: 'N1-N5': phase_e_n<k>.py -> n<k>.json",
+   "what_you_did": "followed the pre-registration: analysis/probes/phase_e_n3.py -> analysis/out/phase_e/n3.json (and phase_e_n2.py -> n2.json); the orchestrator's item key 'n2_n3' names the joint notes file analysis/notes/phase_e_n2_n3.md",
+   "why": "the pre-registration is the output contract",
+   "effect_on_verdict": "none"
+  },
+  {
+   "item": "population of the pooled Spearman",
+   "prereg_said": "per session rho_s for sessions with >= 20 gaps; pooled rho with a session-bootstrap CI; min n >= 20 sessions with >= 20 gaps",
+   "what_you_did": "the verdict's pooled rho is computed over the gaps of the sessions with >= 20 gaps (the same sessions as rho_s and the min n). The pooled rho over every gap of every session is reported as context (rho_pooled_all_sessions), not used by the verdict",
+   "why": "the prereg does not say which gaps enter the pooled rho; the min-n population is the smallest faithful reading",
+   "effect_on_verdict": "none expected; both are reported"
+  },
+  {
+   "item": "sessions with an undefined rho_s",
+   "prereg_said": "rho_s = Spearman(gap, bytes) for sessions with >= 20 gaps; share(rho_s <= 0) (Wilson)",
+   "what_you_did": "a session with >= 20 gaps whose gaps or batch bytes are all equal has no Spearman (prereg_e_common.spearman returns None). It counts towards the min n (it has >= 20 gaps), abstains from the share and the positive control, and is counted in rho_s.n_undefined",
+   "why": "no rank correlation exists for a constant vector",
+   "effect_on_verdict": "counts reported per block"
+  },
+  {
+   "item": "positive-control seed key",
+   "prereg_said": "positive controls rng_for('<item>pc', session_id, key)",
+   "what_you_did": "rng_for('N3pc', session_id, 'gaps'): one permutation of the session's gap vector (bytes kept in place); recall = share of sessions with permuted rho_s <= 0 (Wilson). The pooled permuted rho is reported as context (between-session structure survives a within-session permutation)",
+   "why": "N3 has one gap vector per session, so the key is constant",
+   "effect_on_verdict": "none (recall is not in the verdict rule)"
+  },
+  {
+   "item": "secondary: next response's usage_out",
+   "prereg_said": "secondary: gap minus usage_out(next response) / G50 where usage exists",
+   "what_you_did": "usage_out of the next model event's response = max usage_out over the session's rows with that api_msg_id (prereg_e_common.response_table's rule); Codex (no api_msg_id): the first meta row with usage_out after the next model event in the session (the token_count that closes the response, response_table's rule). G50 = prereg.json resolved.probe1.generation_rate.<unit>.G50 (output tokens per second, Phase B A split). aiv_cc usage_out is a streaming partial (resolved.n2.aiv_cc G2 median 1.0), so its secondary is computed literally and labelled",
+   "why": "the prereg names the quantity, not the join",
+   "effect_on_verdict": "none (secondary, no verdict)"
+  },
+  {
+   "item": "verdict rule gaps",
+   "prereg_said": "ALIVE / WEAK / DEAD rules of S:n3_reaction_time.verdict",
+   "what_you_did": "INSUFFICIENT_N below 20 sessions with >= 20 gaps; INCONCLUSIVE when the pooled CI has < 900 valid bootstrap draws (prereg.json global.ci_methods). Rule order: ALIVE, WEAK, DEAD",
+   "why": "the rules presuppose a reportable CI",
+   "effect_on_verdict": "see results"
+  },
+  {
+   "item": "B u E pooled verdicts and when the artifact checks run",
+   "prereg_said": "N6 fill rule: the cell is the E verdict where E exists and is not INSUFFICIENT_N, else the B verdict 'B only'; artifact checks on B u E for any N cell at WEAK or better",
+   "what_you_did": "B, E and B u E are computed. AC2-AC5 and the strata run on B u E (B for units without E) whenever B, E or B u E reaches WEAK or better (the N1 script's practice); AC1 runs when the cell itself is WEAK or better. The pooled label is never the cell",
+   "why": "smallest faithful reading; reporting more cannot raise a cell",
+   "effect_on_verdict": "none on the cells"
+  },
+  {
+   "item": "artifact-check event definitions for a gap",
+   "prereg_said": "AC2: drop every event whose result text matches truncated_result(); AC3: recompute on join_clean_mask() pairs",
+   "what_you_did": "an N3 event is a gap whose batch holds one or more results. AC2 drops a gap if any result of its batch is truncated_result(text, extra); AC3 drops a gap if any result of its batch is not the result side of a join_clean_mask() pair (copied call ids over the corpus's B and E caches). rho_s and eligibility are recomputed after the drop",
+   "why": "batch bytes are a sum over results, so a partial drop would change the statistic's input",
+   "effect_on_verdict": "see artifact_checks"
+  },
+  {
+   "item": "AC4 / AC5 / strata details",
+   "prereg_said": "AC4 over the statistic's denominator events; AC5 post-stratified recompute; strata on four axes",
+   "what_you_did": "AC4 denominator events = gaps of sessions with >= 20 gaps; leave-outs recompute every quantity on all sessions outside the left-out cluster; aiv_cc's single agent/model is labelled only. AC5: pooled rho as a weighted Spearman (weighted mid-ranks, weighted Pearson; the N1 script's implementation, copied) and share(rho_s <= 0) as weighted_cluster_rate (one event per session), whose bootstrap hi replaces the Wilson hi. Strata: tool_key of the call answered by the batch's last stamped result (cc_local through private_key), modal model, repo cluster, length tercile of paired calls per session at the A cuts; a stratum is reportable at >= 20 sessions with >= 20 gaps inside the stratum",
+   "why": "smallest faithful reading",
+   "effect_on_verdict": "see artifact_checks"
+  }
+ ],
+ "summary_raw": {
+  "swechat/claude_code": {
+   "cell": "DEAD",
+   "cell_before_checks": "DEAD",
+   "suffix": "",
+   "B": {
+    "label": "DEAD",
+    "eligible_sessions": 1262,
+    "eligible_gaps": 172524,
+    "rho_pooled": [
+     -0.04295308576188464,
+     -0.06043513611490732,
+     -0.02497022257207495
+    ],
+    "share_rho_s_le_0": [
+     0.5071315372424723,
+     0.4795680925671741,
+     0.5346516960698875
+    ],
+    "n_defined": 1262,
+    "rule": "pooled rho CI lo <= 0",
+    "recall_permutation": 0.5253565768621236,
+    "rho_secondary_usage_adjusted": -0.007364054428012981,
+    "path": "units.swechat/claude_code.results.B"
+   },
+   "E": {
+    "label": "DEAD",
+    "eligible_sessions": 1170,
+    "eligible_gaps": 160336,
+    "rho_pooled": [
+     -0.03938750097448771,
+     -0.05449000379228553,
+     -0.02393028691215004
+    ],
+    "share_rho_s_le_0": [
+     0.4829059829059829,
+     0.45437495088522983,
+     0.511548901191575
+    ],
+    "n_defined": 1170,
+    "rule": "pooled rho CI lo <= 0",
+    "recall_permutation": 0.48547008547008547,
+    "rho_secondary_usage_adjusted": -0.01643787168358351,
+    "path": "units.swechat/claude_code.results.E"
+   },
+   "BE": {
+    "label": "DEAD",
+    "eligible_sessions": 2432,
+    "eligible_gaps": 332860,
+    "rho_pooled": [
+     -0.0412094039994216,
+     -0.05240560930768314,
+     -0.029346302788131783
+    ],
+    "share_rho_s_le_0": [
+     0.4954769736842105,
+     0.4756284705827927,
+     0.5153397434422902
+    ],
+    "n_defined": 2432,
+    "rule": "pooled rho CI lo <= 0",
+    "recall_permutation": 0.5061677631578947,
+    "rho_secondary_usage_adjusted": -0.01166826458860531,
+    "path": "units.swechat/claude_code.results.BE"
+   }
+  },
+  "swechat/codex": {
+   "cell": "WEAK",
+   "cell_before_checks": "WEAK",
+   "suffix": "",
+   "B": {
+    "label": "WEAK",
+    "eligible_sessions": 42,
+    "eligible_gaps": 6222,
+    "rho_pooled": [
+     0.1941847290504849,
+     0.11864344549374656,
+     0.23738926568635454
+    ],
+    "share_rho_s_le_0": [
+     0.07142857142857142,
+     0.024589963551172864,
+     0.19009713288525165
+    ],
+    "n_defined": 42,
+    "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30",
+    "recall_permutation": 0.5714285714285714,
+    "rho_secondary_usage_adjusted": -0.05492339098963445,
+    "path": "units.swechat/codex.results.B"
+   },
+   "E": {
+    "label": "WEAK",
+    "eligible_sessions": 37,
+    "eligible_gaps": 4023,
+    "rho_pooled": [
+     0.22316194968136574,
+     0.16434015369408142,
+     0.27979501016584307
+    ],
+    "share_rho_s_le_0": [
+     0.13513513513513514,
+     0.059132072625076235,
+     0.2797772747070557
+    ],
+    "n_defined": 37,
+    "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10; share(rho_s <= 0) Wilson hi <= 0.20",
+    "recall_permutation": 0.5405405405405406,
+    "rho_secondary_usage_adjusted": -0.08507015504950334,
+    "path": "units.swechat/codex.results.E"
+   },
+   "BE": {
+    "label": "WEAK",
+    "eligible_sessions": 79,
+    "eligible_gaps": 10245,
+    "rho_pooled": [
+     0.20484144453181902,
+     0.15926817246846628,
+     0.24336089074382697
+    ],
+    "share_rho_s_le_0": [
+     0.10126582278481013,
+     0.05221118365843358,
+     0.1873013317927407
+    ],
+    "n_defined": 79,
+    "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10",
+    "recall_permutation": 0.5569620253164557,
+    "rho_secondary_usage_adjusted": -0.06386773171927872,
+    "path": "units.swechat/codex.results.BE"
+   }
+  },
+  "swechat/opencode": {
+   "cell": "DEAD",
+   "cell_before_checks": "DEAD",
+   "suffix": "",
+   "B": {
+    "label": "DEAD",
+    "eligible_sessions": 49,
+    "eligible_gaps": 3915,
+    "rho_pooled": [
+     -0.04578489923872437,
+     -0.10764373059584034,
+     0.018403305096798547
+    ],
+    "share_rho_s_le_0": [
+     0.5510204081632653,
+     0.41314866799678107,
+     0.6814737507036366
+    ],
+    "n_defined": 49,
+    "rule": "pooled rho CI lo <= 0",
+    "recall_permutation": 0.5306122448979592,
+    "rho_secondary_usage_adjusted": -0.1211069351645589,
+    "path": "units.swechat/opencode.results.B"
+   },
+   "E": {
+    "label": "DEAD",
+    "eligible_sessions": 34,
+    "eligible_gaps": 1749,
+    "rho_pooled": [
+     -0.04511614635365608,
+     -0.12270730773016793,
+     0.014240596716304642
+    ],
+    "share_rho_s_le_0": [
+     0.5882352941176471,
+     0.42221304146519273,
+     0.7363426221431113
+    ],
+    "n_defined": 34,
+    "rule": "pooled rho CI lo <= 0",
+    "recall_permutation": 0.5,
+    "rho_secondary_usage_adjusted": -0.1720603811304164,
+    "path": "units.swechat/opencode.results.E"
+   },
+   "BE": {
+    "label": "DEAD",
+    "eligible_sessions": 83,
+    "eligible_gaps": 5664,
+    "rho_pooled": [
+     -0.04934998433102657,
+     -0.09686609324039815,
+     -0.0014285570170366577
+    ],
+    "share_rho_s_le_0": [
+     0.5662650602409639,
+     0.45905732827608065,
+     0.6676100753645711
+    ],
+    "n_defined": 83,
+    "rule": "pooled rho CI lo <= 0",
+    "recall_permutation": 0.5180722891566265,
+    "rho_secondary_usage_adjusted": -0.1422822080231616,
+    "path": "units.swechat/opencode.results.BE"
+   }
+  },
+  "swechat/gemini": {
+   "cell": "INSUFFICIENT_N",
+   "cell_before_checks": "INSUFFICIENT_N",
+   "suffix": " (B only; E INSUFFICIENT_N: NOT_REPLICABLE_AT_N)",
+   "B": {
+    "label": "INSUFFICIENT_N",
+    "eligible_sessions": 13,
+    "eligible_gaps": 1667,
+    "rho_pooled": [
+     0.08754404149971239,
+     -0.02373712932815614,
+     0.19891902036174727
+    ],
+    "share_rho_s_le_0": [
+     0.07692307692307693,
+     0.013710066379696323,
+     0.3331453392824736
+    ],
+    "n_defined": 13,
+    "rule": "min n: >= 20 sessions with >= 20 gaps",
+    "recall_permutation": 0.23076923076923078,
+    "rho_secondary_usage_adjusted": -0.17282563307064266,
+    "path": "units.swechat/gemini.results.B"
+   },
+   "E": {
+    "label": "INSUFFICIENT_N",
+    "eligible_sessions": 9,
+    "eligible_gaps": 453,
+    "rho_pooled": [
+     0.24394709292528202,
+     0.08305013846356944,
+     0.38713674553281996
+    ],
+    "share_rho_s_le_0": [
+     0.0,
+     0.0,
+     0.2991527535509594
+    ],
+    "n_defined": 9,
+    "rule": "min n: >= 20 sessions with >= 20 gaps",
+    "recall_permutation": 0.4444444444444444,
+    "rho_secondary_usage_adjusted": -0.010256609348811374,
+    "path": "units.swechat/gemini.results.E"
+   },
+   "BE": {
+    "label": "WEAK",
+    "eligible_sessions": 22,
+    "eligible_gaps": 2120,
+    "rho_pooled": [
+     0.1140400403777262,
+     0.031380339021736266,
+     0.21552948228454474
+    ],
+    "share_rho_s_le_0": [
+     0.045454545454545456,
+     0.008069219301147859,
+     0.21798489499518053
+    ],
+    "n_defined": 22,
+    "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) Wilson hi <= 0.20",
+    "recall_permutation": 0.3181818181818182,
+    "rho_secondary_usage_adjusted": -0.12785993624373854,
+    "path": "units.swechat/gemini.results.BE"
+   }
+  },
+  "cc_local": {
+   "cell": "INSUFFICIENT_N",
+   "cell_before_checks": "INSUFFICIENT_N",
+   "suffix": " (B only, unreplicated) [private: aggregates only] [B only, unreplicated (no E split)]",
+   "B": {
+    "label": "INSUFFICIENT_N",
+    "eligible_sessions": 9,
+    "eligible_gaps": 8774,
+    "rho_pooled": [
+     -0.025622592399434117,
+     -0.2560426312229201,
+     0.34357529375669965
+    ],
+    "share_rho_s_le_0": [
+     0.4444444444444444,
+     0.188775429471914,
+     0.7333526542559703
+    ],
+    "n_defined": 9,
+    "rule": "min n: >= 20 sessions with >= 20 gaps",
+    "recall_permutation": 0.6666666666666666,
+    "rho_secondary_usage_adjusted": 0.06599626235818366,
+    "path": "units.cc_local.results.B"
+   }
+  },
+  "aiv_cc": {
+   "cell": "DEAD",
+   "cell_before_checks": "WEAK",
+   "suffix": " (B only, unreplicated) [single-agent case study] [B only, unreplicated (no E split)]",
+   "B": {
+    "label": "WEAK",
+    "eligible_sessions": 57,
+    "eligible_gaps": 36132,
+    "rho_pooled": [
+     0.13943669262939168,
+     0.02902119619198191,
+     0.22868609762805409
+    ],
+    "share_rho_s_le_0": [
+     0.40350877192982454,
+     0.28617323526539984,
+     0.5330294155524615
+    ],
+    "n_defined": 57,
+    "rule": "pooled rho CI lo > 0; ALIVE condition(s) failing: pooled rho CI lo >= 0.30; share(rho_s <= 0) <= 0.10; share(rho_s <= 0) Wilson hi <= 0.20",
+    "recall_permutation": 0.5614035087719298,
+    "rho_secondary_usage_adjusted": 0.1728353764408469,
+    "path": "units.aiv_cc.results.B"
+   }
+  }
+ },
+ "opened_files": [
+  "C:/Swarms/data/ai-village/claude_code_messages.jsonl.gz (light index of the audited SDK sessions' rows)",
+  "C:/Swarms/data/swe-chat-pinned/transcripts/<session_id>.jsonl (18 audited sessions)",
+  "analysis/cache/aiv_cc_B.parquet",
+  "analysis/cache/cc_local_B.parquet",
+  "analysis/cache/swechat_B.parquet",
+  "analysis/cache/swechat_E.parquet",
+  "analysis/cache/swechat_population.parquet",
+  "analysis/prereg.json",
+  "analysis/out/phase_e/prereg_e_calibration.json",
+  "C:/Swarms/data/swe-chat-pinned/sessions.parquet (metadata: repo_id, user_id)"
+ ],
+ "runtime_s": 794.1
+}

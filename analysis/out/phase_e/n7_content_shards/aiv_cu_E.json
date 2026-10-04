@@ -1,0 +1,5255 @@
+{
+ "item": "n7_content",
+ "script_sha256_lf": "185679a26250708c9cb75be9b2572e455a82e1e5d8931d18d79de403e958706a",
+ "script_sha256_lf_at_write": "185679a26250708c9cb75be9b2572e455a82e1e5d8931d18d79de403e958706a",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "prereg_e_json_sha256": "568d423f0e061f9a3dd14a4ae51926b3b5746a9a3dc33b421c3e632ad4bb1c08",
+ "result": {
+  "unit": "aiv_cu",
+  "split": "E",
+  "sessions": 2000,
+  "rows": 158746,
+  "detector_status": {
+   "P2_KFN": [
+    "RUN",
+    "D_unit 6; antecedents incomplete (prereg probe2)"
+   ],
+   "P3_ZERO": [
+    "RUN",
+    "L75 40"
+   ],
+   "N2": [
+    "RUN",
+    "GRANULAR strata only: anthropic-fable, anthropic-haiku, anthropic-opus, anthropic-sonnet, gemini-flash, gemini-pro"
+   ],
+   "N5a": [
+    "RUN",
+    ""
+   ],
+   "N5b": [
+    "RUN",
+    ""
+   ],
+   "N5c": [
+    "RUN",
+    ""
+   ],
+   "N5d": [
+    "RUN",
+    ""
+   ],
+   "N5f": [
+    "RUN",
+    ""
+   ],
+   "R2_IMAGE": [
+    "RUN",
+    "Gemini strata"
+   ],
+   "R4_DUAL": [
+    "NOT_TESTABLE",
+    "no harness structured counters (numLines) in the raw source"
+   ],
+   "R5_LEDGER": [
+    "NOT_TESTABLE",
+    "no external usage tally"
+   ]
+  },
+  "populations": {
+   "P2_KFN": 2000,
+   "P3_ZERO": 2000,
+   "N2": 1129,
+   "N5a": 2000,
+   "N5b": 2000,
+   "N5c": 2000,
+   "N5d": 2000,
+   "N5f": 2000,
+   "R2_IMAGE": 403
+  },
+  "raw_joins": {},
+  "honest_population": {
+   "P2_KFN": {
+    "population_sessions": 2000,
+    "deciding_sessions": 0,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.0019171176005129348
+    ],
+    "session_flag_rate_deciding": [
+     null,
+     null,
+     null
+    ],
+    "decision_units": 0,
+    "flagged_units": 0,
+    "unit_flag_rate": null
+   },
+   "P3_ZERO": {
+    "population_sessions": 2000,
+    "deciding_sessions": 980,
+    "flagged_sessions": 670,
+    "session_flag_rate_all": [
+     0.335,
+     0.31464784757140807,
+     0.35598480123676124
+    ],
+    "session_flag_rate_deciding": [
+     0.6836734693877551,
+     0.6538880982020799,
+     0.7120244633322158
+    ],
+    "decision_units": 980,
+    "flagged_units": 670,
+    "unit_flag_rate": {
+     "rate": 0.6836734693877551,
+     "lo": 0.6551020408163265,
+     "hi": 0.7122448979591837,
+     "n_sessions": 980,
+     "num": 670.0,
+     "den": 980.0
+    }
+   },
+   "N2": {
+    "population_sessions": 1129,
+    "deciding_sessions": 508,
+    "flagged_sessions": 64,
+    "session_flag_rate_all": [
+     0.0566873339238264,
+     0.04464089039469182,
+     0.07174042893538927
+    ],
+    "session_flag_rate_deciding": [
+     0.12598425196850394,
+     0.09990678246994848,
+     0.15767603221334414
+    ],
+    "decision_units": 3260,
+    "flagged_units": 115,
+    "unit_flag_rate": {
+     "rate": 0.0352760736196319,
+     "lo": 0.025336030409896553,
+     "hi": 0.04670530492898914,
+     "n_sessions": 508,
+     "num": 115.0,
+     "den": 3260.0
+    }
+   },
+   "N5a": {
+    "population_sessions": 2000,
+    "deciding_sessions": 3,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.0019171176005129348
+    ],
+    "session_flag_rate_deciding": [
+     0.0,
+     0.0,
+     0.5615060804490177
+    ],
+    "decision_units": 3,
+    "flagged_units": 0,
+    "unit_flag_rate": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 3,
+     "num": 0.0,
+     "den": 3.0
+    },
+    "descriptive_pairs_with_redacted_key": {
+     "pairs": 0,
+     "flagged": 0
+    }
+   },
+   "N5b": {
+    "population_sessions": 2000,
+    "deciding_sessions": 353,
+    "flagged_sessions": 118,
+    "session_flag_rate_all": [
+     0.059,
+     0.04949406075003941,
+     0.070196836973613
+    ],
+    "session_flag_rate_deciding": [
+     0.3342776203966006,
+     0.28708305750744073,
+     0.38504037204785785
+    ],
+    "decision_units": 911,
+    "flagged_units": 171,
+    "unit_flag_rate": {
+     "rate": 0.1877058177826564,
+     "lo": 0.15535729014540992,
+     "hi": 0.22015892018693922,
+     "n_sessions": 353,
+     "num": 171.0,
+     "den": 911.0
+    }
+   },
+   "N5c": {
+    "population_sessions": 2000,
+    "deciding_sessions": 0,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.0019171176005129348
+    ],
+    "session_flag_rate_deciding": [
+     null,
+     null,
+     null
+    ],
+    "decision_units": 0,
+    "flagged_units": 0,
+    "unit_flag_rate": null
+   },
+   "N5d": {
+    "population_sessions": 2000,
+    "deciding_sessions": 486,
+    "flagged_sessions": 309,
+    "session_flag_rate_all": [
+     0.1545,
+     0.13932344626650145,
+     0.171001281995453
+    ],
+    "session_flag_rate_deciding": [
+     0.6358024691358025,
+     0.5921095830242123,
+     0.6773652839531944
+    ],
+    "decision_units": 1700,
+    "flagged_units": 1111,
+    "unit_flag_rate": {
+     "rate": 0.6535294117647059,
+     "lo": 0.6085444410762444,
+     "hi": 0.6948252200195961,
+     "n_sessions": 486,
+     "num": 1111.0,
+     "den": 1700.0
+    }
+   },
+   "N5f": {
+    "population_sessions": 2000,
+    "deciding_sessions": 0,
+    "flagged_sessions": 0,
+    "session_flag_rate_all": [
+     0.0,
+     0.0,
+     0.0019171176005129348
+    ],
+    "session_flag_rate_deciding": [
+     null,
+     null,
+     null
+    ],
+    "decision_units": 0,
+    "flagged_units": 0,
+    "unit_flag_rate": null
+   },
+   "R2_IMAGE": {
+    "population_sessions": 403,
+    "deciding_sessions": 400,
+    "flagged_sessions": 18,
+    "session_flag_rate_all": [
+     0.04466501240694789,
+     0.028436543814203553,
+     0.06949247819337875
+    ],
+    "session_flag_rate_deciding": [
+     0.045,
+     0.028651223384090457,
+     0.07000527956161895
+    ],
+    "decision_units": 13429,
+    "flagged_units": 18,
+    "unit_flag_rate": {
+     "rate": 0.0013403827537419018,
+     "lo": 0.0008039952010446374,
+     "hi": 0.0019485693472421702,
+     "n_sessions": 400,
+     "num": 18.0,
+     "den": 13429.0
+    }
+   }
+  },
+  "attack_eligibility": {
+   "sub_single_flip_error|-": {
+    "eligible_sessions": 240,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 240,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 240,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.0,
+     "max": 0.01259360108917631,
+     "mean": 0.0001425058227423511
+    },
+    "seconds": 20.2
+   },
+   "sub_single_digit|-": {
+    "eligible_sessions": 1552,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 724,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 57.0
+   },
+   "sub_matched_bytes|any": {
+    "eligible_sessions": 1734,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 721,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 721,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.0,
+     "max": 0.048500319081046586,
+     "mean": 0.0002353382928792277
+    },
+    "seconds": 62.7
+   },
+   "sub_matched_bytes|samecmd": {
+    "eligible_sessions": 855,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 684,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 684,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.00015797239822933063,
+     "max": 0.04560260586319218,
+     "mean": 0.0022061338716236585
+    },
+    "seconds": 59.6
+   },
+   "rewrite_consistent_k|2": {
+    "eligible_sessions": 1279,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 743,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 1486,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.00011364308809681413,
+     "max": 0.031420765027322405,
+     "mean": 0.00016215636260624293
+    },
+    "seconds": 75.3
+   },
+   "rewrite_consistent_k|5": {
+    "eligible_sessions": 884,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 670,
+    "inject_failures": {},
+    "donor_rel_byte_diff": {
+     "n": 3350,
+     "min": 0.0,
+     "p50": 0.0,
+     "p90": 0.000244784060982348,
+     "max": 0.04126532399299475,
+     "mean": 0.00018368718902663525
+    },
+    "seconds": 82.5
+   },
+   "reorder_adjacent_pairs|-": {
+    "eligible_sessions": 1945,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 706,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 73.7
+   },
+   "reorder_lines|-": {
+    "eligible_sessions": 1159,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 736,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 71.8
+   },
+   "delete_pair|-": {
+    "eligible_sessions": 1984,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 930,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 67.6
+   },
+   "delete_response|-": {
+    "eligible_sessions": 0,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 0,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 0.5
+   },
+   "insert_pair_consistent|-": {
+    "eligible_sessions": 1984,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 930,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 107.5
+   },
+   "insert_pair_squeezed|-": {
+    "eligible_sessions": 1969,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 930,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 115.9
+   },
+   "inline_fabrication|tau": {
+    "eligible_sessions": 876,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 646,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 56.1
+   },
+   "image_relabel_gui|-": {
+    "eligible_sessions": 1276,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 325,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 5.3
+   },
+   "image_insert_screenshot|-": {
+    "eligible_sessions": 1984,
+    "unit_sessions": 2000,
+    "tampered_sessions_attempted": 794,
+    "inject_failures": {},
+    "donor_rel_byte_diff": null,
+    "seconds": 29.9
+   }
+  },
+  "cells": {
+   "aiv_cu|E|P2_KFN|sub_single_flip_error|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 240,
+    "n_tampered": 240,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "n_honest": 240,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 240,
+     "num": 0.0,
+     "den": 240.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 240,
+    "abstain_tampered": 240,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.015754489799935698,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|sub_single_flip_error|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 240,
+    "n_tampered": 240,
+    "k_tampered_flagged": 37,
+    "recall": [
+     0.15416666666666667,
+     0.11396358955150779,
+     0.20526659922678106
+    ],
+    "n_honest": 240,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "adr": {
+     "rate": 0.15416666666666667,
+     "lo": 0.1125,
+     "hi": 0.2,
+     "n_sessions": 240,
+     "num": 37.0,
+     "den": 240.0
+    },
+    "localization": {
+     "k": 37,
+     "n": 37,
+     "share": [
+      1.0,
+      0.9059390425448564,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 113,
+    "abstain_tampered": 113,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.15416666666666667,
+     "recall_ci_lo": 0.11396358955150779,
+     "fpr_ci_hi": 0.015754489799935698,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|sub_single_flip_error|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 104,
+    "n_tampered": 104,
+    "k_tampered_flagged": 10,
+    "recall": [
+     0.09615384615384616,
+     0.05306939630901405,
+     0.1680104096285833
+    ],
+    "n_honest": 104,
+    "k_honest_flagged": 10,
+    "fpr": [
+     0.09615384615384616,
+     0.05306939630901405,
+     0.1680104096285833
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 104,
+     "num": 0.0,
+     "den": 104.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 10,
+     "share": [
+      0.0,
+      0.0,
+      0.2775401687666166
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 8,
+    "abstain_tampered": 8,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.09615384615384616,
+     "recall_ci_lo": 0.05306939630901405,
+     "fpr_ci_hi": 0.1680104096285833,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|sub_single_flip_error|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 240,
+    "n_tampered": 240,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "n_honest": 240,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 240,
+     "num": 0.0,
+     "den": 240.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 240,
+    "abstain_tampered": 240,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.015754489799935698,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|sub_single_flip_error|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 240,
+    "n_tampered": 240,
+    "k_tampered_flagged": 33,
+    "recall": [
+     0.1375,
+     0.09961054871463783,
+     0.1868114563903156
+    ],
+    "n_honest": 240,
+    "k_honest_flagged": 35,
+    "fpr": [
+     0.14583333333333334,
+     0.1067632269727411,
+     0.19606286996888
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 240,
+     "num": 0.0,
+     "den": 240.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 33,
+     "share": [
+      0.0,
+      0.0,
+      0.10427343003561192
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 150,
+    "abstain_tampered": 151,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.1375,
+     "recall_ci_lo": 0.09961054871463783,
+     "fpr_ci_hi": 0.19606286996888,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|sub_single_flip_error|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 240,
+    "n_tampered": 240,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "n_honest": 240,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 240,
+     "num": 0.0,
+     "den": 240.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 240,
+    "abstain_tampered": 240,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.015754489799935698,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|sub_single_flip_error|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 240,
+    "n_tampered": 240,
+    "k_tampered_flagged": 82,
+    "recall": [
+     0.3416666666666667,
+     0.28458018698925336,
+     0.40374206811405955
+    ],
+    "n_honest": 240,
+    "k_honest_flagged": 82,
+    "fpr": [
+     0.3416666666666667,
+     0.28458018698925336,
+     0.40374206811405955
+    ],
+    "adr": {
+     "rate": 0.0125,
+     "lo": 0.0,
+     "hi": 0.029166666666666667,
+     "n_sessions": 240,
+     "num": 3.0,
+     "den": 240.0
+    },
+    "localization": {
+     "k": 5,
+     "n": 82,
+     "share": [
+      0.06097560975609756,
+      0.02632356690332186,
+      0.13492226262455276
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 108,
+    "abstain_tampered": 107,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.3416666666666667,
+     "recall_ci_lo": 0.28458018698925336,
+     "fpr_ci_hi": 0.40374206811405955,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|sub_single_flip_error|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "sub_single_flip_error",
+    "param": "-",
+    "sample_sessions": 240,
+    "n_tampered": 240,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "n_honest": 240,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.015754489799935698
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 240,
+     "num": 0.0,
+     "den": 240.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 240,
+    "abstain_tampered": 240,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.015754489799935698,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|sub_single_digit|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|N2|sub_single_digit|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 41,
+    "recall": [
+     0.082,
+     0.06101875732494105,
+     0.10935542376689417
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 41,
+    "fpr": [
+     0.082,
+     0.06101875732494105,
+     0.10935542376689417
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 41,
+     "share": [
+      0.07317073170731707,
+      0.025197373252564145,
+      0.19427740017211292
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 190,
+    "abstain_tampered": 190,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.082,
+     "recall_ci_lo": 0.06101875732494105,
+     "fpr_ci_hi": 0.10935542376689417,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|sub_single_digit|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 498,
+    "abstain_tampered": 498,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|sub_single_digit|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 38,
+    "recall": [
+     0.076,
+     0.05586871073410857,
+     0.10259696578009747
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 38,
+    "fpr": [
+     0.076,
+     0.05586871073410857,
+     0.10259696578009747
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 38,
+     "share": [
+      0.05263157894736842,
+      0.014553902448536798,
+      0.17285766881068843
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 381,
+    "abstain_tampered": 381,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.076,
+     "recall_ci_lo": 0.05586871073410857,
+     "fpr_ci_hi": 0.10259696578009747,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|sub_single_digit|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|sub_single_digit|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 102,
+    "recall": [
+     0.204,
+     0.17099770962966332,
+     0.24151606454063146
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 102,
+    "fpr": [
+     0.204,
+     0.17099770962966332,
+     0.24151606454063146
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 16,
+     "n": 102,
+     "share": [
+      0.1568627450980392,
+      0.09892204793074443,
+      0.23971228866280675
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 337,
+    "abstain_tampered": 337,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.204,
+     "recall_ci_lo": 0.17099770962966332,
+     "fpr_ci_hi": 0.24151606454063146,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|sub_single_digit|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "sub_single_digit",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|sub_matched_bytes|any": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|sub_matched_bytes|any": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 142,
+    "recall": [
+     0.284,
+     0.24623711212056168,
+     0.32505672308478845
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 142,
+    "fpr": [
+     0.284,
+     0.24623711212056168,
+     0.32505672308478845
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 142,
+     "n": 142,
+     "share": [
+      1.0,
+      0.9736590931531194,
+      0.9999999999999999
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 266,
+    "abstain_tampered": 266,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.284,
+     "recall_ci_lo": 0.24623711212056168,
+     "fpr_ci_hi": 0.32505672308478845,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|sub_matched_bytes|any": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 36,
+    "recall": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 36,
+    "fpr": [
+     0.072,
+     0.05245772605354006,
+     0.09806894740891321
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 5,
+     "n": 36,
+     "share": [
+      0.1388888888888889,
+      0.060817253631150966,
+      0.2865985128039319
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 227,
+    "abstain_tampered": 227,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.072,
+     "recall_ci_lo": 0.05245772605354006,
+     "fpr_ci_hi": 0.09806894740891321,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|sub_matched_bytes|any": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 498,
+    "abstain_tampered": 498,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|sub_matched_bytes|any": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 34,
+    "recall": [
+     0.068,
+     0.04906621332682857,
+     0.09352145708387197
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 34,
+    "fpr": [
+     0.068,
+     0.04906621332682857,
+     0.09352145708387197
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 34,
+     "share": [
+      0.029411764705882353,
+      0.00521077192559663,
+      0.1491590221634482
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 394,
+    "abstain_tampered": 397,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.068,
+     "recall_ci_lo": 0.04906621332682857,
+     "fpr_ci_hi": 0.09352145708387197,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|sub_matched_bytes|any": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|sub_matched_bytes|any": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 107,
+    "recall": [
+     0.214,
+     0.18030242285453799,
+     0.25205885894513874
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 94,
+    "fpr": [
+     0.188,
+     0.1561794242435824,
+     0.22457833771970132
+    ],
+    "adr": {
+     "rate": 0.028,
+     "lo": 0.014,
+     "hi": 0.044,
+     "n_sessions": 500,
+     "num": 14.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 19,
+     "n": 107,
+     "share": [
+      0.17757009345794392,
+      0.11672859553461687,
+      0.26076144430602055
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 350,
+    "abstain_tampered": 340,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.214,
+     "recall_ci_lo": 0.18030242285453799,
+     "fpr_ci_hi": 0.22457833771970132,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|sub_matched_bytes|any": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "sub_matched_bytes",
+    "param": "any",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 179,
+    "recall": [
+     0.358,
+     0.3172068787655445,
+     0.400958512897232
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 178,
+    "fpr": [
+     0.356,
+     0.31527383687422356,
+     0.39892205326267655
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 179,
+     "n": 179,
+     "share": [
+      1.0,
+      0.9789894641044491,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 228,
+    "abstain_tampered": 228,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.358,
+     "recall_ci_lo": 0.3172068787655445,
+     "fpr_ci_hi": 0.39892205326267655,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 457,
+    "n_tampered": 457,
+    "k_tampered_flagged": 24,
+    "recall": [
+     0.0525164113785558,
+     0.03554149667485057,
+     0.07695181990073635
+    ],
+    "n_honest": 457,
+    "k_honest_flagged": 24,
+    "fpr": [
+     0.0525164113785558,
+     0.03554149667485057,
+     0.07695181990073635
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 457,
+     "num": 0.0,
+     "den": 457.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 24,
+     "share": [
+      0.0,
+      0.0,
+      0.13798057582897535
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 230,
+    "abstain_tampered": 230,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0525164113785558,
+     "recall_ci_lo": 0.03554149667485057,
+     "fpr_ci_hi": 0.07695181990073635,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 498,
+    "abstain_tampered": 498,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 25,
+    "recall": [
+     0.05,
+     0.03409350665098192,
+     0.07276865002683111
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 25,
+    "fpr": [
+     0.05,
+     0.03409350665098192,
+     0.07276865002683111
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 25,
+     "share": [
+      0.0,
+      0.0,
+      0.13319649395317873
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 405,
+    "abstain_tampered": 405,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.05,
+     "recall_ci_lo": 0.03409350665098192,
+     "fpr_ci_hi": 0.07276865002683111,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 69,
+    "recall": [
+     0.138,
+     0.11051755348949738,
+     0.17100267032687666
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 69,
+    "fpr": [
+     0.138,
+     0.11051755348949738,
+     0.17100267032687666
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 6,
+     "n": 69,
+     "share": [
+      0.08695652173913043,
+      0.04046307012090733,
+      0.1770170511284886
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 374,
+    "abstain_tampered": 374,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.138,
+     "recall_ci_lo": 0.11051755348949738,
+     "fpr_ci_hi": 0.17100267032687666,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|sub_matched_bytes|samecmd": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "sub_matched_bytes",
+    "param": "samecmd",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|rewrite_consistent_k|2": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|rewrite_consistent_k|2": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 117,
+    "recall": [
+     0.234,
+     0.19900409539602293,
+     0.27305220166241767
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 117,
+    "fpr": [
+     0.234,
+     0.19900409539602293,
+     0.27305220166241767
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 117,
+     "n": 117,
+     "share": [
+      1.0,
+      0.9682096231761248,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 259,
+    "abstain_tampered": 259,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.234,
+     "recall_ci_lo": 0.19900409539602293,
+     "fpr_ci_hi": 0.27305220166241767,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|rewrite_consistent_k|2": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 53,
+    "recall": [
+     0.106,
+     0.08195666053446124,
+     0.1360515388678906
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 53,
+    "fpr": [
+     0.106,
+     0.08195666053446124,
+     0.1360515388678906
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 8,
+     "n": 53,
+     "share": [
+      0.1509433962264151,
+      0.07852324257781651,
+      0.2705450454365954
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 126,
+    "abstain_tampered": 126,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.106,
+     "recall_ci_lo": 0.08195666053446124,
+     "fpr_ci_hi": 0.1360515388678906,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|rewrite_consistent_k|2": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.002,
+     0.000353127309584542,
+     0.011240992747195207
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 498,
+    "abstain_tampered": 498,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.002,
+     "recall_ci_lo": 0.000353127309584542,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|rewrite_consistent_k|2": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 42,
+    "recall": [
+     0.084,
+     0.06274379952220428,
+     0.11159988309550732
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 43,
+    "fpr": [
+     0.086,
+     0.06447280005130328,
+     0.11384038409228468
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 3,
+     "n": 42,
+     "share": [
+      0.07142857142857142,
+      0.024589963551172864,
+      0.19009713288525165
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 362,
+    "abstain_tampered": 372,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.084,
+     "recall_ci_lo": 0.06274379952220428,
+     "fpr_ci_hi": 0.11384038409228468,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|rewrite_consistent_k|2": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|rewrite_consistent_k|2": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 142,
+    "recall": [
+     0.284,
+     0.24623711212056168,
+     0.32505672308478845
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 122,
+    "fpr": [
+     0.244,
+     0.20839823999994375,
+     0.2835055646878788
+    ],
+    "adr": {
+     "rate": 0.05,
+     "lo": 0.032,
+     "hi": 0.07,
+     "n_sessions": 500,
+     "num": 25.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 35,
+     "n": 142,
+     "share": [
+      0.24647887323943662,
+      0.18289438465770036,
+      0.3234193145886052
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 308,
+    "abstain_tampered": 294,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.284,
+     "recall_ci_lo": 0.24623711212056168,
+     "fpr_ci_hi": 0.2835055646878788,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|rewrite_consistent_k|2": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "rewrite_consistent_k",
+    "param": "2",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|rewrite_consistent_k|5": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|rewrite_consistent_k|5": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 112,
+    "recall": [
+     0.224,
+     0.18963838082995066,
+     0.262570408599108
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 108,
+    "fpr": [
+     0.216,
+     0.18216716501825247,
+     0.2541636183073006
+    ],
+    "adr": {
+     "rate": 0.008,
+     "lo": 0.002,
+     "hi": 0.016,
+     "n_sessions": 500,
+     "num": 4.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 112,
+     "n": 112,
+     "share": [
+      1.0,
+      0.9668374746205164,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 250,
+    "abstain_tampered": 250,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.224,
+     "recall_ci_lo": 0.18963838082995066,
+     "fpr_ci_hi": 0.2541636183073006,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|rewrite_consistent_k|5": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 424,
+    "n_tampered": 424,
+    "k_tampered_flagged": 59,
+    "recall": [
+     0.1391509433962264,
+     0.10943533302517273,
+     0.175346698455637
+    ],
+    "n_honest": 424,
+    "k_honest_flagged": 60,
+    "fpr": [
+     0.14150943396226415,
+     0.1115443926386723,
+     0.1779122660873609
+    ],
+    "adr": {
+     "rate": 0.0023584905660377358,
+     "lo": 0.0,
+     "hi": 0.007075471698113208,
+     "n_sessions": 424,
+     "num": 1.0,
+     "den": 424.0
+    },
+    "localization": {
+     "k": 13,
+     "n": 59,
+     "share": [
+      0.22033898305084745,
+      0.13354072524323754,
+      0.34132942446650893
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 40,
+    "abstain_tampered": 40,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.1391509433962264,
+     "recall_ci_lo": 0.10943533302517273,
+     "fpr_ci_hi": 0.1779122660873609,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|rewrite_consistent_k|5": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 499,
+    "abstain_tampered": 499,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|rewrite_consistent_k|5": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 62,
+    "recall": [
+     0.124,
+     0.09794566312958619,
+     0.15578805000565316
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 61,
+    "fpr": [
+     0.122,
+     0.0961588543796491,
+     0.15360535722971383
+    ],
+    "adr": {
+     "rate": 0.008,
+     "lo": 0.002,
+     "hi": 0.016,
+     "n_sessions": 500,
+     "num": 4.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 7,
+     "n": 62,
+     "share": [
+      0.11290322580645161,
+      0.05577792691334926,
+      0.21519969209955447
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 326,
+    "abstain_tampered": 340,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.124,
+     "recall_ci_lo": 0.09794566312958619,
+     "fpr_ci_hi": 0.15360535722971383,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|rewrite_consistent_k|5": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|rewrite_consistent_k|5": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 221,
+    "recall": [
+     0.442,
+     0.39907517838464235,
+     0.4858092773649425
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 169,
+    "fpr": [
+     0.338,
+     0.2979123151908617,
+     0.38055806121315106
+    ],
+    "adr": {
+     "rate": 0.12,
+     "lo": 0.092,
+     "hi": 0.148,
+     "n_sessions": 500,
+     "num": 60.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 93,
+     "n": 221,
+     "share": [
+      0.42081447963800905,
+      0.35762172266876924,
+      0.48671313351442824
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 246,
+    "abstain_tampered": 213,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.442,
+     "recall_ci_lo": 0.39907517838464235,
+     "fpr_ci_hi": 0.38055806121315106,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|rewrite_consistent_k|5": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "rewrite_consistent_k",
+    "param": "5",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 165,
+    "recall": [
+     0.33,
+     0.2902171971743252,
+     0.372375173126182
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 165,
+    "fpr": [
+     0.33,
+     0.2902171971743252,
+     0.372375173126182
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 165,
+     "n": 165,
+     "share": [
+      1.0,
+      0.9772473134582946,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 257,
+    "abstain_tampered": 257,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.33,
+     "recall_ci_lo": 0.2902171971743252,
+     "fpr_ci_hi": 0.372375173126182,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 37,
+    "recall": [
+     0.074,
+     0.05416087387750307,
+     0.10033530111082659
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 30,
+    "fpr": [
+     0.06,
+     0.042348086000950205,
+     0.08436157830624476
+    ],
+    "adr": {
+     "rate": 0.016,
+     "lo": 0.006,
+     "hi": 0.028,
+     "n_sessions": 500,
+     "num": 8.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 12,
+     "n": 37,
+     "share": [
+      0.32432432432432434,
+      0.19633077820815478,
+      0.48536631495176064
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 269,
+    "abstain_tampered": 269,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.074,
+     "recall_ci_lo": 0.05416087387750307,
+     "fpr_ci_hi": 0.08436157830624476,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 499,
+    "abstain_tampered": 499,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 26,
+    "recall": [
+     0.052,
+     0.03573001990962654,
+     0.07510163829406287
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 26,
+    "fpr": [
+     0.052,
+     0.03573001990962654,
+     0.07510163829406287
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 26,
+     "share": [
+      0.038461538461538464,
+      0.0068218089769898765,
+      0.18893176991958405
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 411,
+    "abstain_tampered": 411,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.052,
+     "recall_ci_lo": 0.03573001990962654,
+     "fpr_ci_hi": 0.07510163829406287,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 87,
+    "recall": [
+     0.174,
+     0.14328895399220098,
+     0.20968229728994797
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 87,
+    "fpr": [
+     0.174,
+     0.14328895399220098,
+     0.20968229728994797
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 19,
+     "n": 87,
+     "share": [
+      0.21839080459770116,
+      0.14450701870548616,
+      0.31609253039976964
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 366,
+    "abstain_tampered": 366,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.174,
+     "recall_ci_lo": 0.14328895399220098,
+     "fpr_ci_hi": 0.20968229728994797,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|reorder_adjacent_pairs|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "reorder_adjacent_pairs",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|reorder_lines|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|N2|reorder_lines|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 58,
+    "recall": [
+     0.116,
+     0.09081324505614743,
+     0.14704246197558635
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 58,
+    "fpr": [
+     0.116,
+     0.09081324505614743,
+     0.14704246197558635
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 6,
+     "n": 58,
+     "share": [
+      0.10344827586206896,
+      0.04828075015859154,
+      0.20788338531008968
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 71,
+    "abstain_tampered": 71,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.116,
+     "recall_ci_lo": 0.09081324505614743,
+     "fpr_ci_hi": 0.14704246197558635,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|reorder_lines|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 1,
+    "recall": [
+     0.002,
+     0.000353127309584542,
+     0.011240992747195207
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.008,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 1,
+     "n": 1,
+     "share": [
+      1.0,
+      0.20654329147389294,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 498,
+    "abstain_tampered": 498,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.002,
+     "recall_ci_lo": 0.000353127309584542,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|reorder_lines|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 61,
+    "recall": [
+     0.122,
+     0.0961588543796491,
+     0.15360535722971383
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 49,
+    "fpr": [
+     0.098,
+     0.07492354740061163,
+     0.1272066458982347
+    ],
+    "adr": {
+     "rate": 0.024,
+     "lo": 0.012,
+     "hi": 0.038,
+     "n_sessions": 500,
+     "num": 12.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 21,
+     "n": 61,
+     "share": [
+      0.3442622950819672,
+      0.23747339039863208,
+      0.4695048457954161
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 343,
+    "abstain_tampered": 343,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.122,
+     "recall_ci_lo": 0.0961588543796491,
+     "fpr_ci_hi": 0.1272066458982347,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|reorder_lines|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|reorder_lines|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 141,
+    "recall": [
+     0.282,
+     0.24433577544329282,
+     0.32298855823618094
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 141,
+    "fpr": [
+     0.282,
+     0.24433577544329282,
+     0.32298855823618094
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 25,
+     "n": 141,
+     "share": [
+      0.1773049645390071,
+      0.12307779859865453,
+      0.24864966091573915
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 279,
+    "abstain_tampered": 279,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.282,
+     "recall_ci_lo": 0.24433577544329282,
+     "fpr_ci_hi": 0.32298855823618094,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|reorder_lines|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "reorder_lines",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 44,
+    "recall": [
+     0.088,
+     0.06620563711739778,
+     0.11607704855206659
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 165,
+    "fpr": [
+     0.33,
+     0.2902171971743252,
+     0.372375173126182
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 261,
+    "abstain_tampered": 428,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.088,
+     "recall_ci_lo": 0.06620563711739778,
+     "fpr_ci_hi": 0.372375173126182,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 29,
+    "recall": [
+     0.058,
+     0.040683464783922846,
+     0.08205669799739573
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 30,
+    "fpr": [
+     0.06,
+     0.042348086000950205,
+     0.08436157830624476
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 272,
+    "abstain_tampered": 277,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.058,
+     "recall_ci_lo": 0.040683464783922846,
+     "fpr_ci_hi": 0.08436157830624476,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 499,
+    "abstain_tampered": 499,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 25,
+    "recall": [
+     0.05,
+     0.03409350665098192,
+     0.07276865002683111
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 26,
+    "fpr": [
+     0.052,
+     0.03573001990962654,
+     0.07510163829406287
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 412,
+    "abstain_tampered": 414,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.05,
+     "recall_ci_lo": 0.03409350665098192,
+     "fpr_ci_hi": 0.07510163829406287,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 84,
+    "recall": [
+     0.168,
+     0.13778772464256234,
+     0.20327502206195752
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 85,
+    "fpr": [
+     0.17,
+     0.13961985448969885,
+     0.2054123937406974
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 369,
+    "abstain_tampered": 372,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.168,
+     "recall_ci_lo": 0.13778772464256234,
+     "fpr_ci_hi": 0.2054123937406974,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|R2_IMAGE|delete_pair|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "R2_IMAGE",
+    "attack": "delete_pair",
+    "param": "-",
+    "sample_sessions": 403,
+    "n_tampered": 403,
+    "k_tampered_flagged": 70,
+    "recall": [
+     0.17369727047146402,
+     0.13983596977791998,
+     0.21372079531198238
+    ],
+    "n_honest": 403,
+    "k_honest_flagged": 18,
+    "fpr": [
+     0.04466501240694789,
+     0.028436543814203553,
+     0.06949247819337875
+    ],
+    "adr": {
+     "rate": 0.12903225806451613,
+     "lo": 0.10173697270471464,
+     "hi": 0.16129032258064516,
+     "n_sessions": 403,
+     "num": 52.0,
+     "den": 403.0
+    },
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.17369727047146402,
+     "recall_ci_lo": 0.13983596977791998,
+     "fpr_ci_hi": 0.06949247819337875,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|R2_IMAGE|delete_response|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "R2_IMAGE",
+    "attack": "delete_response",
+    "param": "-",
+    "sample_sessions": 0,
+    "n_tampered": 0,
+    "k_tampered_flagged": 0,
+    "recall": [
+     null,
+     null,
+     null
+    ],
+    "n_honest": 0,
+    "k_honest_flagged": 0,
+    "fpr": [
+     null,
+     null,
+     null
+    ],
+    "adr": null,
+    "localization": null,
+    "localization_unavailable": null,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "INSUFFICIENT_N",
+    "deciding_number": {
+     "recall_point": null,
+     "recall_ci_lo": null,
+     "fpr_ci_hi": null,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 171,
+    "recall": [
+     0.342,
+     0.3017647943001571,
+     0.3846445851556084
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 165,
+    "fpr": [
+     0.33,
+     0.2902171971743252,
+     0.372375173126182
+    ],
+    "adr": {
+     "rate": 0.024,
+     "lo": 0.011950000000000002,
+     "hi": 0.038,
+     "n_sessions": 500,
+     "num": 12.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 171,
+     "n": 171,
+     "share": [
+      1.0,
+      0.978028112302793,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 261,
+    "abstain_tampered": 241,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.342,
+     "recall_ci_lo": 0.3017647943001571,
+     "fpr_ci_hi": 0.372375173126182,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 30,
+    "recall": [
+     0.06,
+     0.042348086000950205,
+     0.08436157830624476
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 30,
+    "fpr": [
+     0.06,
+     0.042348086000950205,
+     0.08436157830624476
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 30,
+     "share": [
+      0.0,
+      0.0,
+      0.113517091390478
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 272,
+    "abstain_tampered": 272,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.06,
+     "recall_ci_lo": 0.042348086000950205,
+     "fpr_ci_hi": 0.08436157830624476,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 499,
+    "abstain_tampered": 499,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 27,
+    "recall": [
+     0.054,
+     0.03737409848513375,
+     0.07742706124443205
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 26,
+    "fpr": [
+     0.052,
+     0.03573001990962654,
+     0.07510163829406287
+    ],
+    "adr": {
+     "rate": 0.002,
+     "lo": 0.0,
+     "hi": 0.006,
+     "n_sessions": 500,
+     "num": 1.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 2,
+     "n": 27,
+     "share": [
+      0.07407407407407407,
+      0.020554221697383523,
+      0.2336997729073062
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 412,
+    "abstain_tampered": 406,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.054,
+     "recall_ci_lo": 0.03737409848513375,
+     "fpr_ci_hi": 0.07510163829406287,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 95,
+    "recall": [
+     0.19,
+     0.15802683592828387,
+     0.22670042756087622
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 85,
+    "fpr": [
+     0.17,
+     0.13961985448969885,
+     0.2054123937406974
+    ],
+    "adr": {
+     "rate": 0.02,
+     "lo": 0.01,
+     "hi": 0.034,
+     "n_sessions": 500,
+     "num": 10.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 12,
+     "n": 95,
+     "share": [
+      0.12631578947368421,
+      0.07375581468316135,
+      0.2079231544958079
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 369,
+    "abstain_tampered": 355,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.19,
+     "recall_ci_lo": 0.15802683592828387,
+     "fpr_ci_hi": 0.2054123937406974,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|R2_IMAGE|insert_pair_consistent|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "R2_IMAGE",
+    "attack": "insert_pair_consistent",
+    "param": "-",
+    "sample_sessions": 403,
+    "n_tampered": 403,
+    "k_tampered_flagged": 101,
+    "recall": [
+     0.2506203473945409,
+     0.2107976549737855,
+     0.295152572338269
+    ],
+    "n_honest": 403,
+    "k_honest_flagged": 18,
+    "fpr": [
+     0.04466501240694789,
+     0.028436543814203553,
+     0.06949247819337875
+    ],
+    "adr": {
+     "rate": 0.20595533498759305,
+     "lo": 0.1687344913151365,
+     "hi": 0.24813895781637718,
+     "n_sessions": 403,
+     "num": 83.0,
+     "den": 403.0
+    },
+    "localization": {
+     "k": 89,
+     "n": 101,
+     "share": [
+      0.8811881188118812,
+      0.8037278011033379,
+      0.9307134893767769
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.2506203473945409,
+     "recall_ci_lo": 0.2107976549737855,
+     "fpr_ci_hi": 0.06949247819337875,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 174,
+    "recall": [
+     0.348,
+     0.3075495849826609,
+     0.3907682990507337
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 165,
+    "fpr": [
+     0.33,
+     0.2902171971743252,
+     0.372375173126182
+    ],
+    "adr": {
+     "rate": 0.024,
+     "lo": 0.012,
+     "hi": 0.038,
+     "n_sessions": 500,
+     "num": 12.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 174,
+     "n": 174,
+     "share": [
+      1.0,
+      0.97839875484701,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 260,
+    "abstain_tampered": 240,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.348,
+     "recall_ci_lo": 0.3075495849826609,
+     "fpr_ci_hi": 0.372375173126182,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N2|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 30,
+    "recall": [
+     0.06,
+     0.042348086000950205,
+     0.08436157830624476
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 30,
+    "fpr": [
+     0.06,
+     0.042348086000950205,
+     0.08436157830624476
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 30,
+     "share": [
+      0.0,
+      0.0,
+      0.113517091390478
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 271,
+    "abstain_tampered": 271,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.06,
+     "recall_ci_lo": 0.042348086000950205,
+     "fpr_ci_hi": 0.08436157830624476,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5a|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 499,
+    "abstain_tampered": 499,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5b|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5b",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 26,
+    "recall": [
+     0.052,
+     0.03573001990962654,
+     0.07510163829406287
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 26,
+    "fpr": [
+     0.052,
+     0.03573001990962654,
+     0.07510163829406287
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 26,
+     "share": [
+      0.0,
+      0.0,
+      0.12873304380462175
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 411,
+    "abstain_tampered": 407,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.052,
+     "recall_ci_lo": 0.03573001990962654,
+     "fpr_ci_hi": 0.07510163829406287,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5c|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5c",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5d|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5d",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 94,
+    "recall": [
+     0.188,
+     0.1561794242435824,
+     0.22457833771970132
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 85,
+    "fpr": [
+     0.17,
+     0.13961985448969885,
+     0.2054123937406974
+    ],
+    "adr": {
+     "rate": 0.018,
+     "lo": 0.008,
+     "hi": 0.03,
+     "n_sessions": 500,
+     "num": 9.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 9,
+     "n": 94,
+     "share": [
+      0.09574468085106383,
+      0.05119138083044319,
+      0.17204290806098949
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 368,
+    "abstain_tampered": 357,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.188,
+     "recall_ci_lo": 0.1561794242435824,
+     "fpr_ci_hi": 0.2054123937406974,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|R2_IMAGE|insert_pair_squeezed|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "R2_IMAGE",
+    "attack": "insert_pair_squeezed",
+    "param": "-",
+    "sample_sessions": 403,
+    "n_tampered": 403,
+    "k_tampered_flagged": 116,
+    "recall": [
+     0.2878411910669975,
+     0.24580341016262414,
+     0.33388558919240735
+    ],
+    "n_honest": 403,
+    "k_honest_flagged": 18,
+    "fpr": [
+     0.04466501240694789,
+     0.028436543814203553,
+     0.06949247819337875
+    ],
+    "adr": {
+     "rate": 0.24317617866004962,
+     "lo": 0.20099255583126552,
+     "hi": 0.2853598014888337,
+     "n_sessions": 403,
+     "num": 98.0,
+     "den": 403.0
+    },
+    "localization": {
+     "k": 104,
+     "n": 116,
+     "share": [
+      0.896551724137931,
+      0.8278521079405644,
+      0.9398278963317418
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.2878411910669975,
+     "recall_ci_lo": 0.24580341016262414,
+     "fpr_ci_hi": 0.06949247819337875,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N2|inline_fabrication|tau": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N2",
+    "attack": "inline_fabrication",
+    "param": "tau",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 115,
+    "recall": [
+     0.23,
+     0.19525432702175258,
+     0.2688629669849352
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 38,
+    "fpr": [
+     0.076,
+     0.05586871073410857,
+     0.10259696578009747
+    ],
+    "adr": {
+     "rate": 0.154,
+     "lo": 0.12,
+     "hi": 0.182,
+     "n_sessions": 500,
+     "num": 77.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 94,
+     "n": 115,
+     "share": [
+      0.8173913043478261,
+      0.7369158490326673,
+      0.877347169977511
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 212,
+    "abstain_tampered": 212,
+    "label": "PARTIAL",
+    "deciding_number": {
+     "recall_point": 0.23,
+     "recall_ci_lo": 0.19525432702175258,
+     "fpr_ci_hi": 0.10259696578009747,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|R2_IMAGE|inline_fabrication|tau": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "R2_IMAGE",
+    "attack": "inline_fabrication",
+    "param": "tau",
+    "sample_sessions": 325,
+    "n_tampered": 325,
+    "k_tampered_flagged": 16,
+    "recall": [
+     0.04923076923076923,
+     0.030527160153552297,
+     0.07846634918346587
+    ],
+    "n_honest": 325,
+    "k_honest_flagged": 16,
+    "fpr": [
+     0.04923076923076923,
+     0.030527160153552297,
+     0.07846634918346587
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 325,
+     "num": 0.0,
+     "den": 325.0
+    },
+    "localization": {
+     "k": 0,
+     "n": 16,
+     "share": [
+      0.0,
+      0.0,
+      0.19361341827271994
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 0,
+    "abstain_tampered": 0,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.04923076923076923,
+     "recall_ci_lo": 0.030527160153552297,
+     "fpr_ci_hi": 0.07846634918346587,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|R2_IMAGE|image_relabel_gui|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "R2_IMAGE",
+    "attack": "image_relabel_gui",
+    "param": "-",
+    "sample_sessions": 325,
+    "n_tampered": 325,
+    "k_tampered_flagged": 305,
+    "recall": [
+     0.9384615384615385,
+     0.906864771355253,
+     0.959813897037067
+    ],
+    "n_honest": 325,
+    "k_honest_flagged": 18,
+    "fpr": [
+     0.055384615384615386,
+     0.035316897063617465,
+     0.08584052340873152
+    ],
+    "adr": {
+     "rate": 0.8892307692307693,
+     "lo": 0.8492307692307692,
+     "hi": 0.9230769230769231,
+     "n_sessions": 325,
+     "num": 289.0,
+     "den": 325.0
+    },
+    "localization": {
+     "k": 305,
+     "n": 305,
+     "share": [
+      1.0,
+      0.9875612611772506,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "DETECTS",
+    "deciding_number": {
+     "recall_point": 0.9384615384615385,
+     "recall_ci_lo": 0.906864771355253,
+     "fpr_ci_hi": 0.08584052340873152,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|P2_KFN|image_insert_screenshot|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P2_KFN",
+    "attack": "image_insert_screenshot",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "antecedents incomplete"
+    ]
+   },
+   "aiv_cu|E|P3_ZERO|image_insert_screenshot|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "P3_ZERO",
+    "attack": "image_insert_screenshot",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 177,
+    "recall": [
+     0.354,
+     0.31334158354314207,
+     0.39688480506788165
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 165,
+    "fpr": [
+     0.33,
+     0.2902171971743252,
+     0.372375173126182
+    ],
+    "adr": {
+     "rate": 0.024,
+     "lo": 0.011950000000000002,
+     "hi": 0.038,
+     "n_sessions": 500,
+     "num": 12.0,
+     "den": 500.0
+    },
+    "localization": {
+     "k": 177,
+     "n": 177,
+     "share": [
+      1.0,
+      0.9787571001362518,
+      1.0
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 261,
+    "abstain_tampered": 241,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.354,
+     "recall_ci_lo": 0.31334158354314207,
+     "fpr_ci_hi": 0.372375173126182,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": [
+     "proxy error definition"
+    ]
+   },
+   "aiv_cu|E|N5a|image_insert_screenshot|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5a",
+    "attack": "image_insert_screenshot",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 499,
+    "abstain_tampered": 499,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|N5f|image_insert_screenshot|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "N5f",
+    "attack": "image_insert_screenshot",
+    "param": "-",
+    "sample_sessions": 500,
+    "n_tampered": 500,
+    "k_tampered_flagged": 0,
+    "recall": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "n_honest": 500,
+    "k_honest_flagged": 0,
+    "fpr": [
+     0.0,
+     0.0,
+     0.007624618530903363
+    ],
+    "adr": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 500,
+     "num": 0.0,
+     "den": 500.0
+    },
+    "localization": null,
+    "localization_unavailable": 0,
+    "abstain_honest": 500,
+    "abstain_tampered": 500,
+    "label": "BLIND",
+    "deciding_number": {
+     "recall_point": 0.0,
+     "recall_ci_lo": 0.0,
+     "fpr_ci_hi": 0.007624618530903363,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   },
+   "aiv_cu|E|R2_IMAGE|image_insert_screenshot|-": {
+    "unit": "aiv_cu",
+    "split": "E",
+    "detector": "R2_IMAGE",
+    "attack": "image_insert_screenshot",
+    "param": "-",
+    "sample_sessions": 403,
+    "n_tampered": 403,
+    "k_tampered_flagged": 231,
+    "recall": [
+     0.5732009925558312,
+     0.5244420786354828,
+     0.6205775063823719
+    ],
+    "n_honest": 403,
+    "k_honest_flagged": 18,
+    "fpr": [
+     0.04466501240694789,
+     0.028436543814203553,
+     0.06949247819337875
+    ],
+    "adr": {
+     "rate": 0.5285359801488834,
+     "lo": 0.47642679900744417,
+     "hi": 0.575682382133995,
+     "n_sessions": 403,
+     "num": 213.0,
+     "den": 403.0
+    },
+    "localization": {
+     "k": 220,
+     "n": 231,
+     "share": [
+      0.9523809523809523,
+      0.9167560876165634,
+      0.9732054864827443
+     ]
+    },
+    "localization_unavailable": 0,
+    "abstain_honest": 3,
+    "abstain_tampered": 3,
+    "label": "DETECTS",
+    "deciding_number": {
+     "recall_point": 0.5732009925558312,
+     "recall_ci_lo": 0.5244420786354828,
+     "fpr_ci_hi": 0.06949247819337875,
+     "rule": "DETECTS if recall >= 0.5 and recall CI lo > FPR CI hi; PARTIAL if recall CI lo > FPR CI hi; BLIND otherwise; INSUFFICIENT_N < 30"
+    },
+    "labels": []
+   }
+  },
+  "runtime_s": 1029.7,
+  "limit": null
+ }
+}
