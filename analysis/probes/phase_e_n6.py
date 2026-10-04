@@ -19,6 +19,8 @@ Fill rule (S:n6_transfer_grid.fill_rule), applied per (row, column) in this orde
     suffix 'B only (Phase B run)'; units with E that no Phase E item re-ran: NOT_RUN(not re-run on E) with the Phase B
     verdict beside it, never in it.
  3. Labels. aiv_cc 'single-agent'; cc_local 'private'.
+ 4. Resolutions. Every orchestrator resolution in analysis/out/phase_e/newcorp_resolutions.json is applied to its
+    cell after steps 1-3; the label before it is kept as label_before_resolution (label_precheck is not touched).
 R1: f1_bracket.json left the R1 verdict PENDING_N7 (n7 output absent when it ran). This script applies the
 pre-registered proposal rule (S:a1.proposal_rules) to f1's honest leg / kill rule / artifact-check ceiling and the
 R1_BRACKET cells of n7_timing.json (deviation logged).
@@ -67,6 +69,7 @@ INPUT_PATHS = {
     "n4_n5cg": "analysis/out/phase_e/n4_n5cg.json", "n5_battery": "analysis/out/phase_e/n5_battery.json",
     "n7_timing": "analysis/out/phase_e/n7_timing.json", "n7_content": "analysis/out/phase_e/n7_content.json",
     "r2_r3": "analysis/out/phase_e/r2_r3.json", "r4_r5": "analysis/out/phase_e/r4_r5.json",
+    "resolutions": "analysis/out/phase_e/newcorp_resolutions.json",
 }
 TRACK_B_FILES = {  # Track B corpora with a B/E measurement (prereg_e.json change_log extensions + newcorp_register.json)
     "agentcap": "analysis/out/phase_e/newcorp_measure_agentcap.json",
@@ -846,6 +849,32 @@ def build_grid(ctx):
     return grid
 
 
+def apply_resolutions(ctx, grid):
+    """Apply every orchestrator resolution in newcorp_resolutions.json to its cell (after the fill, before counting).
+    The label the fill produced is kept beside it as label_before_resolution; label_precheck is not touched (a
+    resolution caps the after-checks label). A resolution whose label_before does not match the cell is an error."""
+    src = INPUT_PATHS["resolutions"]
+    applied = []
+    for i, r in enumerate(ctx.D["resolutions"]["resolutions"]):
+        cols = [r["unit"]] if r.get("unit") else ([u for c, u in ctx.tb_units if c == r["corpus"]] or
+                                                  ([r["corpus"]] if r["corpus"] in ctx.units_b else []))
+        assert cols, f"resolution {i}: no column for corpus {r['corpus']!r}"
+        for col in cols:
+            c = grid[r["cell"]][col]
+            assert c["base"] == base_of(r["label_before"]), \
+                f"resolution {i}: cell {r['cell']}/{col} is {c['label']!r}, expected {r['label_before']!r}"
+            c["label_before_resolution"] = c["label"]
+            c["label"] = r["label_after"]
+            c["base"] = base_of(r["label_after"])
+            c["suffix"] = (c["suffix"] + " [orchestrator resolution: " + r["label_before"].split(" ")[0] + " -> " +
+                           r["label_after"] + "]").strip()
+            c["resolution"] = {"source": f"{src} resolutions[{i}]", "rule": r["rule"],
+                               "numbers_unchanged": r.get("numbers_unchanged")}
+            applied.append({"row": r["cell"], "column": col, "label_before_resolution": c["label_before_resolution"],
+                            "label": c["label"], "source": f"{src} resolutions[{i}]"})
+    return applied
+
+
 # ============================================================================================================ transfer
 def transfer_block(grid, rows, cols, key="base", stratum=None, override=None):
     out = {}
@@ -1270,6 +1299,7 @@ def main():
     pj, D, TB, H = load_inputs()
     ctx = Ctx(pj, D, TB)
     grid = build_grid(ctx)
+    resolutions_applied = apply_resolutions(ctx, grid)
     cols_loaded = ctx.units_b + [u for _, u in ctx.tb_units]
     kinds = update_kinds(ctx, grid)
 
@@ -1375,6 +1405,15 @@ def main():
                          "which the items also found absent from E) plus each item's own B / E field checks (an item's "
                          "NOT_TESTABLE stands)",
          "why": "assembly only", "effect_on_verdict": "none known; listed in field_gate.B_recheck"},
+        {"item": "orchestrator resolutions applied",
+         "prereg_said": "fill_rule 2: the cell carries the label after the pre-registered artifact checks",
+         "what_you_did": "every resolution in analysis/out/phase_e/newcorp_resolutions.json is applied to its cell "
+                         "after the fill; the filled label is kept beside it as label_before_resolution and "
+                         "label_precheck is unchanged (resolutions_applied lists each)",
+         "why": "the resolution records a verifier finding on a Track B after-checks label (AC4 under change_log D2) "
+                "that the measurement workflow had no stage to fix; its numbers are unchanged",
+         "effect_on_verdict": "; ".join(f"{a['row']} {a['column']}: {a['label_before_resolution']} -> {a['label']}"
+                                        for a in resolutions_applied) or "none"},
     ]
     G = {
         "item": "n6_transfer_grid",
@@ -1401,6 +1440,7 @@ def main():
         "track_b_decisions": {k: ctx.decisions.get(k) for k in ("D1_calibration_unit_proxy", "D6_blindness",
                                                                 "D7_not_loaded")},
         "cells": grid,
+        "resolutions_applied": resolutions_applied,
         "update_kind_counts": kinds,
         "transfer": {"primary": prim, "phase_b_units_only": pbo, "precheck_labels": pre,
                      "n2_aiv_cu_best_stratum": best, "n2_aiv_cu_worst_stratum": worst,

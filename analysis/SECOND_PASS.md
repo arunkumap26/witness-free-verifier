@@ -765,11 +765,11 @@ and `phase_e_n7_content.md`. Only headline cells are shown here.
 
   The same 10 result when only replication-split cells are counted.
 
-**Transfer.** 87 of the 396 loaded N6 cells are decided: ALIVE 8, WEAK 40, DEAD 39. 1 of 218 decided pairs fails to
+**Transfer.** 87 of the 396 loaded N6 cells are decided: ALIVE 7, WEAK 41, DEAD 39 (after the tbench2 R1 resolution ALIVE -> WEAK recorded in `analysis/out/phase_e/newcorp_resolutions.json` and applied by `phase_e_n6.py`; before it: ALIVE 8, WEAK 40). 1 of 218 decided pairs fails to
 transfer: Probe 3a, cc_local DEAD against swechat/claude_code ALIVE. The checks matter: before the artifact checks and
 kill tests the same cells held 19 ALIVE (`n6_grid.json transfer`).
-The 8 ALIVE cells are not equally checked; `analysis/TRANSFER_MATRIX.md` lists the caveats per cell (Probe 4b
-tbench2 received no artifact check; R1 tbench2 is one submission with AC4 recorded as label only; AC5 was NOT_RUN on
+The 7 ALIVE cells are not equally checked; `analysis/TRANSFER_MATRIX.md` lists the caveats per cell (Probe 4b
+tbench2 received no artifact check; R1 tbench2, one submission, is now WEAK by the AC4 cap; AC5 was NOT_RUN on
 every Track B corpus and on aiv_cc; R5 is E not blind; N1 aiv_cc is a single-agent case study on B only).
 
 ---

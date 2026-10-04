@@ -7,7 +7,7 @@ Built by `python -m analysis.probes.phase_e_n6` (`analysis/probes/phase_e_n6.py`
 - **Fill rule.** Field gate first; then the E verdict where the unit has E (B where E is INSUFFICIENT_N or absent). Probes 1–4: an A1 candidate's final label where one exists, the Phase B verdict for units without E ('B only (Phase B run)'), and NOT_RUN where the unit has E but no Phase E item re-ran it (the Phase B verdict is beside it in the JSON, never in it). R1 is composed here from f1_bracket.json and n7_timing.json (see deviations in the JSON).
 - **Every positive in this grid is a synthetic tamper or an honest-baseline rate.** No corpus contains a known real fabricated tool result.
 - **aiv_cc is a single-agent case study** (one agent, one SDK session) in every cell and count below. **cc_local is private**: aggregates and labels only.
-- **Not every cell received the same checks (AUDIT NOTE).** A missing ↓ does not mean a cell passed every check. (a) Probe 1–4 cells on the Track B corpora carry the Phase B rule label only: no artifact check and no A1 kill test (F3, K1–K3) was run on them, while the swechat and cc_local cells of the same rows were lowered by those checks; Probe 4b tbench2 ALIVE is such a cell (`newcorp_measure_tbench2.json` `checks` has no P4 entry; its F3 block is context only). (b) AC5 was NOT_RUN on every Track B cell and on aiv_cc (no population table). (c) R1 tbench2 ALIVE is one submission (one agent, one model; stratum WozCode__Claude-Opus-4.6), and its AC4 was recorded as label only (`checks.R1.AC4_dominance`: one stratum by construction). The prereg names that label-only reading for aiv_cc only; read as for cc_local R1 (one cluster, empty leave-out, UNTESTABLE_WITHOUT_DOMINANT, cap WEAK), this cell would be WEAK. The cell is left as its source file has it.
+- **Not every cell received the same checks (AUDIT NOTE).** A missing ↓ does not mean a cell passed every check. (a) Probe 1–4 cells on the Track B corpora carry the Phase B rule label only: no artifact check and no A1 kill test (F3, K1–K3) was run on them, while the swechat and cc_local cells of the same rows were lowered by those checks; Probe 4b tbench2 ALIVE is such a cell (`newcorp_measure_tbench2.json` `checks` has no P4 entry; its F3 block is context only). (b) AC5 was NOT_RUN on every Track B cell and on aiv_cc (no population table). (c) R1 tbench2 is one submission (one agent, one model; stratum WozCode__Claude-Opus-4.6). Its measurement group recorded AC4 as label only (`checks.R1.AC4_dominance`: one stratum by construction) and the after-checks label ALIVE; the prereg names that label-only reading for aiv_cc only. The orchestrator resolution in `analysis/out/phase_e/newcorp_resolutions.json` (change_log D2 + survival rule) applies the cc_local R1 reading (one cluster, empty leave-out, UNTESTABLE_WITHOUT_DOMINANT, cap WEAK): the cell is WEAK↓ with its numbers unchanged, and the pre-resolution label ALIVE is kept as `label_before_resolution` in `n6_grid.json` `cells.R1_bracket['tbench2']`.
 
 ## Grid
 
@@ -19,7 +19,7 @@ Built by `python -m analysis.probes.phase_e_n6` (`analysis/probes/phase_e_n6.py`
 | Probe 3b: retry reaction to failure | n/r | n/r | n/r | n/r | n/t | n/t | n/t | WEAKᴮ | DEADᴮ | n/r | DEADᴮ | DEAD | n/t | n/t | DEAD | ins-n | ins-n | n/t |
 | Probe 4a: hex digit uniformity | n/r | n/r | n/r | n/r | n/t | n/t | n/t | ins-nᴮ | ins-nᴮ | n/r | ins-nᴮ | ins-n | ins-n | ins-n | ins-n | ins-n | ins-n | ins-n |
 | Probe 4b: round numbers | WEAK↓ | n/r | n/r | n/r | n/t | n/t | n/t | WEAKᴮ↓ | ins-nᴮ | n/r | ins-nᴮ | ins-n | ins-n | ins-n | ins-n | ins-n | ins-n | ALIVE |
-| R1: request-id clock bracket | ALIVE | n/t | n/t | n/t | n/t | n/t | n/t | WEAKᴮ↓ | n/t | n/t | n/t | n/t* | n/t* | n/t* | WEAK*↓ | n/t* | ins-n* | ALIVE* |
+| R1: request-id clock bracket | ALIVE | n/t | n/t | n/t | n/t | n/t | n/t | WEAKᴮ↓ | n/t | n/t | n/t | n/t* | n/t* | n/t* | WEAK*↓ | n/t* | ins-n* | WEAK*↓ |
 | R2: image-token ledger | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t | DEAD↓ | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t |
 | R3: git execution window | WEAK* | ins-nᴮ* | ins-nᴮ* | ins-nᴮ* | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t | n/t |
 | R4: harness dual-rendering recount | WEAK* | n/t | n/t | n/t | n/t | n/t | n/t | WEAKᴮ | n/t | n/t | n/t | n/t | n/t | n/t | ins-n | n/t | ins-n | WEAK |
@@ -50,7 +50,7 @@ Rule (prereg): a mechanism TRANSFERS between two testable units if both cells ar
 | Probe 3b: retry reaction to failure | 12 | 5 | 0 | 1 | 4 | 2 | 5 | 6 | 10 | 0 | 0 | 4 | 6 | no failing pair; not every pair transfers |
 | Probe 4a: hex digit uniformity | 15 | 0 | 0 | 0 | 0 | 10 | 5 | 3 | 0 | 0 | 0 | 0 | 0 | no decided pair |
 | Probe 4b: round numbers | 15 | 3 | 1 | 2 | 0 | 8 | 4 | 3 | 3 | 3 | 0 | 0 | 0 | TRANSFERS in every decided pair |
-| R1: request-id clock bracket | 5 | 4 | 2 | 2 | 0 | 1 | 0 | 13 | 6 | 6 | 0 | 0 | 0 | TRANSFERS in every decided pair |
+| R1: request-id clock bracket | 5 | 4 | 1 | 3 | 0 | 1 | 0 | 13 | 6 | 6 | 0 | 0 | 0 | TRANSFERS in every decided pair |
 | R2: image-token ledger | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 17 | 0 | 0 | 0 | 0 | 0 | no decided pair |
 | R3: git execution window | 4 | 1 | 0 | 1 | 0 | 3 | 0 | 14 | 0 | 0 | 0 | 0 | 0 | no decided pair |
 | R4: harness dual-rendering recount | 5 | 3 | 0 | 3 | 0 | 2 | 0 | 13 | 3 | 3 | 0 | 0 | 0 | TRANSFERS in every decided pair |
@@ -67,12 +67,12 @@ Rule (prereg): a mechanism TRANSFERS between two testable units if both cells ar
 | N5f: error-message fidelity | 7 | 0 | 0 | 0 | 0 | 7 | 0 | 11 | 0 | 0 | 0 | 0 | 0 | no decided pair |
 | N5g: cold-start signature | 12 | 7 | 0 | 3 | 4 | 5 | 0 | 6 | 21 | 3 | 0 | 12 | 6 | no failing pair; not every pair transfers |
 
-**Totals over the grid** (22 mechanisms × 18 loaded columns = 396 cells): testable 224, decided 87 (ALIVE 8, WEAK 40, DEAD 39), INSUFFICIENT_N 110, INCONCLUSIVE 0, NOT_RUN 26, NOT_TESTABLE 172, per-stratum 1. Decided pairs 218: TRANSFER 90, FAIL TO TRANSFER 1, WEAK–DEAD 66, DEAD–DEAD 61.
+**Totals over the grid** (22 mechanisms × 18 loaded columns = 396 cells): testable 224, decided 87 (ALIVE 7, WEAK 41, DEAD 39), INSUFFICIENT_N 110, INCONCLUSIVE 0, NOT_RUN 26, NOT_TESTABLE 172, per-stratum 1. Decided pairs 218: TRANSFER 90, FAIL TO TRANSFER 1, WEAK–DEAD 66, DEAD–DEAD 61.
 
 - Mechanisms with at least one decided pair: 16 of 22.
 - Mechanisms that FAIL TO TRANSFER in at least one pair: 1.
 - Mechanisms whose every decided pair TRANSFERS: 6.
-- Mechanisms ALIVE in ≥ 2 units: 2; ≥ WEAK in ≥ 2 units: 11; no cell ≥ WEAK anywhere: 7.
+- Mechanisms ALIVE in two or more units: 1; ≥ WEAK in two or more units: 11; no cell ≥ WEAK anywhere: 7.
 
 ### Failing pairs (one ALIVE, one DEAD)
 
@@ -96,9 +96,9 @@ Rule (prereg): a mechanism TRANSFERS between two testable units if both cells ar
 
 - **The 11 Phase B units only (Track B columns left out).** decided 57 (ALIVE 5, WEAK 26, DEAD 26); decided pairs 75: TRANSFER 24, FAIL 1; mechanisms with a failing pair 1.
 - **Labels before artifact checks / kill tests (the rule's own E-or-B verdict).** decided 87 (ALIVE 19, WEAK 35, DEAD 33); decided pairs 218: TRANSFER 106, FAIL 1; mechanisms with a failing pair 1.
-- **N2 aiv_cu read as its best stratum (ALIVE).** decided 88 (ALIVE 9, WEAK 40, DEAD 39); decided pairs 228: TRANSFER 100, FAIL 1; mechanisms with a failing pair 1.
-- **N2 aiv_cu read as its worst stratum (DEAD).** decided 88 (ALIVE 8, WEAK 40, DEAD 40); decided pairs 228: TRANSFER 90, FAIL 2; mechanisms with a failing pair 2.
-- **Probe 2 subagent stratum in place of the main thread.** decided 85 (ALIVE 8, WEAK 42, DEAD 35); decided pairs 207: TRANSFER 93, FAIL 1; mechanisms with a failing pair 1.
+- **N2 aiv_cu read as its best stratum (ALIVE).** decided 88 (ALIVE 8, WEAK 41, DEAD 39); decided pairs 228: TRANSFER 100, FAIL 1; mechanisms with a failing pair 1.
+- **N2 aiv_cu read as its worst stratum (DEAD).** decided 88 (ALIVE 7, WEAK 41, DEAD 40); decided pairs 228: TRANSFER 90, FAIL 2; mechanisms with a failing pair 2.
+- **Probe 2 subagent stratum in place of the main thread.** decided 85 (ALIVE 7, WEAK 43, DEAD 35); decided pairs 207: TRANSFER 93, FAIL 1; mechanisms with a failing pair 1.
 
 ## Per-column counts
 
@@ -121,7 +121,7 @@ Rule (prereg): a mechanism TRANSFERS between two testable units if both cells ar
 | pub_cc_hf | 0 | 4 | 3 | 12 | 0 | 0 | 3 | 0 |
 | pub_codex | 0 | 1 | 0 | 13 | 0 | 0 | 8 | 0 |
 | pub_trace_commons | 0 | 0 | 0 | 19 | 0 | 0 | 3 | 0 |
-| tbench2 | 2 | 4 | 6 | 2 | 0 | 0 | 8 | 0 |
+| tbench2 | 1 | 5 | 6 | 2 | 0 | 0 | 8 | 0 |
 
 ## Where nothing is decided, plainly
 
@@ -132,7 +132,7 @@ Rule (prereg): a mechanism TRANSFERS between two testable units if both cells ar
 
 ## INTERPRETATION (not data)
 
-A failure to transfer needs an ALIVE cell opposite a DEAD one, and ALIVE cells are rare (8 of 87 decided cells), so only 1 of 218 decided pairs fails to transfer (Probe 3a: zero-error tail: cc_local DEAD vs swechat/claude_code ALIVE). 90 pairs transfer (both >= WEAK), 45 of them from N2: token accounting alone; the other 127 are WEAK–DEAD (66) or DEAD–DEAD (61), which the pre-registered statement counts as neither. 1 of 22 mechanisms fails to transfer in at least one pair, 2 are ALIVE in two or more units, and 7 have no cell at WEAK or better anywhere. The artifact checks and kill tests matter: before them the same cells hold 19 ALIVE, after them 8. Most of the grid cannot be decided at all: 172 NOT_TESTABLE, 26 NOT_RUN and 110 INSUFFICIENT_N of 396 loaded cells. Read strictly, the grid does not show widespread failure to transfer; it shows that strong signals are confined to one or two units per mechanism and that most mechanism × corpus cells are undecidable or at most WEAK. ALIVE cells (8): Probe 3a: zero-error tail in swechat/claude_code (honest baseline only; no positive control); Probe 4b: round numbers in tbench2 (honest-baseline rate; Phase B rule only, no artifact check or kill test); R1: request-id clock bracket in swechat/claude_code; R1: request-id clock bracket in tbench2 (NOT_BLIND, D6; one submission; AC4 label only and AC5 not run, see the audit note above); R5: usage-ledger reconciliation in swechat/claude_code (E not blind); N1: conditional duration model in swechat/claude_code; N1: conditional duration model in aiv_cc (single-agent case study, B only, unreplicated; AC5 not run); N2: token accounting in agentcap/opencode (AC5 not run). The two mechanisms ALIVE in two or more units (R1, N1) each reach that count only through a caveated cell (R1 tbench2, N1 aiv_cc).
+A failure to transfer needs an ALIVE cell opposite a DEAD one, and ALIVE cells are rare (7 of 87 decided cells), so only 1 of 218 decided pairs fails to transfer (Probe 3a: zero-error tail: cc_local DEAD vs swechat/claude_code ALIVE). 90 pairs transfer (both >= WEAK), 45 of them from N2: token accounting alone; the other 127 are WEAK–DEAD (66) or DEAD–DEAD (61), which the pre-registered statement counts as neither. 1 of 22 mechanisms fails to transfer in at least one pair, 1 is ALIVE in two or more units, and 7 have no cell at WEAK or better anywhere. The artifact checks and kill tests matter: before them the same cells hold 19 ALIVE, after them 7. Most of the grid cannot be decided at all: 172 NOT_TESTABLE, 26 NOT_RUN and 110 INSUFFICIENT_N of 396 loaded cells. Read strictly, the grid does not show widespread failure to transfer; it shows that strong signals are confined to one or two units per mechanism and that most mechanism × corpus cells are undecidable or at most WEAK. ALIVE cells (7): Probe 3a: zero-error tail in swechat/claude_code (honest baseline only; no positive control); Probe 4b: round numbers in tbench2 (honest-baseline rate; Phase B rule only, no artifact check or kill test); R1: request-id clock bracket in swechat/claude_code; R5: usage-ledger reconciliation in swechat/claude_code (E not blind); N1: conditional duration model in swechat/claude_code; N1: conditional duration model in aiv_cc (single-agent case study, B only, unreplicated; AC5 not run); N2: token accounting in agentcap/opencode (AC5 not run). The one mechanism ALIVE in two or more units (N1) reaches that count only through a caveated cell (N1 aiv_cc). R1 tbench2, ALIVE before the orchestrator resolution, is WEAK after it (AC4 cap; see the audit note above), so R1 is ALIVE in swechat/claude_code only.
 
 ## Sources
 
@@ -155,6 +155,7 @@ A failure to transfer needs an ALIVE cell opposite a DEAD one, and ALIVE cells a
 - `analysis/out/phase_e/newcorp_measure_pub_codex.json` sha256 `0ef8ff1980d0f49e…`
 - `analysis/out/phase_e/newcorp_measure_pub_trace_commons.json` sha256 `6115363ff575cc87…`
 - `analysis/out/phase_e/newcorp_measure_tbench2.json` sha256 `b2c6237101df0d1f…`
+- `analysis/out/phase_e/newcorp_resolutions.json` sha256 `5008f509dec292e2…`
 - `analysis/out/phase_e/r2_r3.json` sha256 `5b5c3305bd3d9338…`
 - `analysis/out/phase_e/r4_r5.json` sha256 `d3e02c6902407fdf…`
 - `analysis/out/probe_1.json` sha256 `76efcb0d897dd743…`

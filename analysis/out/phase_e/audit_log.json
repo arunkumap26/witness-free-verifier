@@ -65,7 +65,531 @@
   {"id": "DT2", "doc": "analysis/DECISION_TABLE.md (Phase E section)", "where": "last column of the ALIVE rows Probe 4b | tbench2, R1 | tbench2, N1 | aiv_cc, N2 | agentcap/opencode", "category": "overclaim corrected", "problem": "The templated text 'Passed its rule and every artifact check here' was false for these four: Probe 4b tbench2 had no artifact check; R1 tbench2 had AC4 label only and AC5 not run; N1 aiv_cc and N2 agentcap/opencode had AC5 not run.", "fix": "Each row now states which checks ran (and, for R1 tbench2, that the cc_local reading of AC4 would make it WEAK).", "evidence": "newcorp_measure_tbench2.json checks; n1.json units.aiv_cc.artifact_checks.AC5_post_stratified.label = NOT_RUN; newcorp_measure_agentcap.json cells['N2']['agentcap/opencode'].artifact_checks (AC1 30/30 no difference, AC4 leave-outs all ALIVE, AC5_sampling NOT_RUN)"},
   {"id": "DT3", "doc": "analysis/DECISION_TABLE.md (Phase E section)", "where": "row 'Probe 3a: zero-error tail | swechat/claude_code'", "category": "baseline-only label", "problem": "The ALIVE row did not say P3a has no positive control.", "fix": "Added: honest baseline only; ALIVE says the error-free share of long honest sessions is stable, not that a fabricated session would be error-free.", "evidence": "SECOND_PASS section 2.5 plain statement; a1_p1_p3.json"},
   {"id": "DT4", "doc": "analysis/DECISION_TABLE.md (Phase E section)", "where": "section intro paragraph", "category": "overclaim guarded; labels", "problem": "'label after the pre-registered artifact checks / kill tests' implied every cell was checked.", "fix": "Now 'where they were run', with an AUDIT NOTE on Track B Probe 1-4 cells and AC5; added the aiv_cc single-agent and cc_local private rules.", "evidence": "as TM4"},
-  {"id": "DT5", "doc": "analysis/DECISION_TABLE.md (Phase E section)", "where": "'Phase E strongest finding and transfer', sentence 1", "category": "labels (E not blind, NOT_BLIND, single-agent)", "problem": "The 8 ALIVE cells were listed without R5 '(E not blind)', R1 tbench2 NOT_BLIND / one submission, N1 aiv_cc single-agent / B only, or the missing checks.", "fix": "Bracketed labels added per cell, plus: only R1, R5, N1 and P3a in swechat/claude_code passed the full applicable check battery on that unit.", "evidence": "as TM5"}
+  {"id": "DT5", "doc": "analysis/DECISION_TABLE.md (Phase E section)", "where": "'Phase E strongest finding and transfer', sentence 1", "category": "labels (E not blind, NOT_BLIND, single-agent)", "problem": "The 8 ALIVE cells were listed without R5 '(E not blind)', R1 tbench2 NOT_BLIND / one submission, N1 aiv_cc single-agent / B only, or the missing checks.", "fix": "Bracketed labels added per cell, plus: only R1, R5, N1 and P3a in swechat/claude_code passed the full applicable check battery on that unit.", "evidence": "as TM5"},
+ {
+  "id": "RES1",
+  "added_by": "Phase E wrap-up session (after the audit): applies analysis/out/phase_e/newcorp_resolutions.json; closes findings_not_fixed F1",
+  "doc": "analysis/out/phase_e/n6_grid.json (regenerated); analysis/TRANSFER_MATRIX.md; analysis/DECISION_TABLE.md (Phase E section only); analysis/out/phase_e/fig_data.json, fig_transfer_matrix.png, fig_n7_recall.png (regenerated)",
+  "where": "n6_grid.json cells.R1_bracket['tbench2'] and every count derived from it",
+  "category": "orchestrator resolution applied (verdict-relevant)",
+  "problem": "newcorp_resolutions.json resolutions[0] relabels tbench2 R1_bracket ALIVE -> WEAK (change_log D2 + survival rule: one-stratum R1 population, AC4 UNTESTABLE_WITHOUT_DOMINANT, cap WEAK; numbers unchanged), but phase_e_n6.py did not read that file, so n6_grid.json and both generated documents still showed ALIVE (F1).",
+  "fix": "analysis/probes/phase_e_n6.py: newcorp_resolutions.json added to INPUT_PATHS (sha256 recorded in inputs_sha256) and a new apply_resolutions() applies every resolution after the fill and before counting; the filled label is kept as label_before_resolution, label_precheck is untouched (the cap is an artifact-check cap, so the cell shows the down mark), a suffix '[orchestrator resolution: ALIVE -> WEAK]' and a 'resolution' block (source, rule) are added, a mismatching label_before raises; new top-level resolutions_applied and a deviation 'orchestrator resolutions applied'. Before patching, the unpatched script was re-run and reproduced the committed n6_grid.json exactly (runtime_s aside). After patching, n6_grid.json differs only in that cell, the R1 row / tbench2 column / totals counts of the primary, n2 best/worst and p2-subagent readings, inputs_sha256, opened_files, deviations and interpretation text. The generator's markdown was NOT kept (it would overwrite the TM*/DT* audit fixes, F4): its before/after diff was hand-applied to the audited documents (grid cell ALIVE* -> WEAK*↓, R1 transfer row, totals, ALIVE-in-two-or-more-units, three sensitivity lines, tbench2 per-column row, interpretation paragraph, Sources line; DECISION_TABLE R1 tbench2 row status and INTERPRETATION, and sentence 1 of the strongest-finding paragraph). TM4/DT2/DT5 audit text that said the cell 'would be WEAK' / 'left as the source file has it' now states the applied cap. One wording change beyond the generator: TRANSFER_MATRIX 'ALIVE in ≥ 2 units' / '≥ WEAK in ≥ 2 units' now read 'two or more units', because the threshold 2 no longer coincides with a count in the cited path (rows_alive_in_ge2_units is now 1). phase_e_figures.py re-run (it reads n6_grid.json): fig_data.json changed only in transfer_matrix.cells[6][17] (R1 x tbench2).",
+  "counts_before_after": {
+   "source": "analysis/out/phase_e/n6_grid.json transfer.primary.totals (before: the committed file, commit ed2c1d4)",
+   "ALIVE_cells": [
+    8,
+    7
+   ],
+   "WEAK_cells": [
+    40,
+    41
+   ],
+   "DEAD_cells": [
+    39,
+    39
+   ],
+   "decided_cells": [
+    87,
+    87
+   ],
+   "decided_pairs": [
+    218,
+    218
+   ],
+   "transfer_pairs": [
+    90,
+    90
+   ],
+   "failing_pairs": [
+    1,
+    1
+   ],
+   "weak_dead_pairs": [
+    66,
+    66
+   ],
+   "rows_alive_in_ge2_units": [
+    2,
+    1
+   ],
+   "rows_ge_weak_in_ge2_units": [
+    11,
+    11
+   ],
+   "R1_row_ALIVE_WEAK": [
+    [
+     2,
+     2
+    ],
+    [
+     1,
+     3
+    ]
+   ],
+   "tbench2_column_ALIVE_WEAK": [
+    [
+     2,
+     4
+    ],
+    [
+     1,
+     5
+    ]
+   ],
+   "precheck_labels_reading": "unchanged (ALIVE 19): the resolution lowers the after-checks label only",
+   "phase_b_units_only_reading": "unchanged (tbench2 is a Track B column)",
+   "n2_aiv_cu_best_stratum_ALIVE": [
+    9,
+    8
+   ],
+   "n2_aiv_cu_worst_stratum_ALIVE": [
+    8,
+    7
+   ],
+   "p2_subagent_stratum_ALIVE": [
+    8,
+    7
+   ]
+  },
+  "checks": {
+   "A0_part_of_DECISION_TABLE": "byte-identical (everything before '\r\n## Phase E update', 82755 bytes, compared with the pre-change file)",
+   "line_endings": "TRANSFER_MATRIX.md and DECISION_TABLE.md still CRLF only",
+   "generator_number_check": "every number in TRANSFER_MATRIX.md and the DECISION_TABLE Phase E section occurs in the new n6_grid.json (phase_e_n6 json_tokens/check_numbers: 0 missing in each)",
+   "trace_rerun": {
+    "n_numbers": 3511,
+    "by_status": {
+     "found": 3511
+    },
+    "n_for_review": 57,
+    "per_doc_for_review": {
+     "SECOND_PASS": 45,
+     "TRANSFER_MATRIX": 3,
+     "DECISION_TABLE_phase_e": 9
+    },
+    "TRANSFER_MATRIX_and_DECISION_TABLE_for_review": "the same lines and numbers as the hand-reviewed set above (TM 39 '22', 39 '8', 43 '18'; DT 696 '24', 702-709 '22'); none is from this change",
+    "rate_arith_inconsistent": 0,
+    "ci_order_inconsistent": 0,
+    "fraction_pairs_not_in_one_record": 0,
+    "generator_inputs_changed_since_generation": [
+     {
+      "generator": "analysis/out/phase_e/second_pass.json",
+      "input": "analysis/out/phase_e/n6_grid.json",
+      "status": "CHANGED"
+     },
+     {
+      "generator": "analysis/out/phase_e/second_pass.json",
+      "input": "analysis/out/phase_e/fig_data.json",
+      "status": "CHANGED"
+     }
+    ],
+    "docs_sha256": {
+     "analysis/TRANSFER_MATRIX.md": "8a0624bd81b0d394d5c256bd24663876cbc7c88e509cc77d7db98bc154b4a7ff",
+     "analysis/DECISION_TABLE.md": "6e3f9db1857b3c42e830f134f1297340959372b12c9ee5201a6580be7f92b400"
+    }
+   }
+  },
+  "not_fixed": "analysis/SECOND_PASS.md is now stale where it copies grid counts (outside this change's scope): line 768 'ALIVE 8, WEAK 40' (now ALIVE 7, WEAK 41) and lines 771-772 'The 8 ALIVE cells ... R1 tbench2 is one submission with AC4 recorded as label only' (R1 tbench2 is now WEAK after the AC4 cap). trace.json flags it: second_pass.json recorded the sha256 of n6_grid.json and fig_data.json, both changed. The number trace still marks '8' and '40' found (both occur elsewhere in the primary set), so only the input-hash check catches the stale count; re-running phase_e_second_pass would rewrite second_pass.json and overwrite the SP* fixes (as F5).",
+  "constraint_note": "Unlike the audit fixes above, this entry changes a data file (n6_grid.json, through its generator) and the generator script; that is what the resolution required. No prereg file, newcorp_measure_*.json or newcorp_resolutions.json was edited."
+ },
+ {
+  "id": "MB1",
+  "added_by": "Phase E wrap-up: audit of analysis/MORNING_BRIEF.md (Track C3), after RES1. The brief was edited in place; nothing was appended to it.",
+  "doc": "analysis/MORNING_BRIEF.md",
+  "category": "brief audit: number traceability, PHASE_E_PROMPT.md C3 conformance, honesty",
+  "trace": {
+   "script": "analysis/probes/phase_e_trace_brief.py (new): reads analysis/probes/phase_e_trace.py, substitutes five definitions (each must match exactly once) and executes it; every extraction, matching, chance, co-location, citation and mechanical-check rule is the unchanged phase_e_trace.py code",
+   "output": "analysis/out/phase_e/trace_brief.json",
+   "deviations_from_phase_e_trace": [
+    {
+     "what": "documents",
+     "before": "SECOND_PASS.md, TRANSFER_MATRIX.md, DECISION_TABLE.md (Phase E section)",
+     "after": "MORNING_BRIEF.md (whole file), no default cited file",
+     "reason": "the brief names its sources per section"
+    },
+    {
+     "what": "primary set exclusions",
+     "before": "phase_e/track_b/** excluded (another workflow was writing it)",
+     "after": "track_b included; phase_e/figures/, phase_e/demo/, phase_e/scaffold_check.json and trace_brief.json excluded",
+     "reason": "track_b is committed (93532fb) and is the source of brief sections 4-5; figures/demo/scaffold_check belong to the still-running Track C scaffold and may copy brief numbers"
+    },
+    {
+     "what": "secondary set",
+     "before": "prereg files, PREREG_E.md, notes/phase_e_*.md, track_b JSON",
+     "after": "prereg files, PREREG_E.md, notes/phase_e_*.md, plus PRIOR_ART.md, CORPUS_INVENTORY.md, DESIGN.md, SECOND_PASS.md, DECISION_TABLE.md, TRANSFER_MATRIX.md, FINDINGS.md",
+     "reason": "the brief copies from these write-ups; a number found only there is traced to a write-up, and the manual review below names the analysis/out file behind it"
+    }
+   ],
+   "before_edits": {
+    "n_numbers": 274,
+    "by_status": {
+     "found": 274
+    },
+    "by_trace_class": {
+     "colocated": 190,
+     "chance_level": 84
+    },
+    "in_cited_path": {
+     "True": 122,
+     "False": 67,
+     "None": 85
+    },
+    "n_for_review": 59,
+    "rate_arith_inconsistent": 0,
+    "ci_order_inconsistent": 0,
+    "fraction_pairs_not_in_one_record": 0,
+    "docs_sha256": "1e2b5fcfe236ba1d27561ffb94f0d1dd6335a6fa60a6180fbc1ad7b72ad2b1b2"
+   },
+   "after_edits": {
+    "n_numbers": 290,
+    "by_status": {
+     "found": 290
+    },
+    "by_trace_class": {
+     "chance_level": 90,
+     "colocated": 200
+    },
+    "in_cited_path": {
+     "False": 70,
+     "True": 135,
+     "None": 85
+    },
+    "n_for_review": 61,
+    "rate_arith": {
+     "n": 13,
+     "inconsistent": 0
+    },
+    "ci_order": {
+     "n": 7,
+     "inconsistent": 0
+    },
+    "fraction_pairs": {
+     "n": 41,
+     "not_in_one_record": 0
+    },
+    "unresolved_references": 55,
+    "unresolved_references_note": "all are names the resolver cannot open by design: audit outputs excluded from the primary set (trace.json, audit_log.json, trace_brief.json), the absent scaffold_check.json, a .png, and bare identifiers (check names, IR field names) that are not JSON paths",
+    "generator_inputs_changed_since_generation": "second_pass.json inputs n6_grid.json and fig_data.json CHANGED (the RES1 relabel); the brief already flags SECOND_PASS.md section 6 as stale (caveat 4, decision 14)",
+    "docs_sha256": "800267bf82fc79a7230d2661e079cde3a86e0481ac7a623638e0c6acba73086d"
+   }
+  },
+  "manual_review_of_untraced": {
+   "rule": "every number the trace marks for_review (chance_level or not_found, and not inside a cited JSON path) was checked by hand against the named file and path; every number in found_but_not_in_cited_path (70, mostly section 3, whose source line names several files) was also checked by value",
+   "n_for_review": 61,
+   "n_resolved": 61,
+   "n_unresolved": 0,
+   "resolved_to_analysis_out": [
+    {
+     "lines": "7",
+     "numbers": "517 rows, 270 sessions",
+     "source": "track_b/B2a_provider_id_facts/split_exposure.json rows_by_split.H, sessions_by_split.H"
+    },
+    {
+     "lines": "7",
+     "numbers": "42 B, 15 E, 14 H",
+     "source": "newcorp_split_incident_agentcap.json B_ids (42), E_ids (15), n_H (14)"
+    },
+    {
+     "lines": "18",
+     "numbers": "3,236; 1,275",
+     "source": "n7_timing.json n_verdict_cells; n7_content.json verdict_cells_computed"
+    },
+    {
+     "lines": "19",
+     "numbers": "12 items; 2 fixed",
+     "source": "track_a_workflow_result.json items (12); items[].fixed true for f2_floor_shift and n4_n5cg"
+    },
+    {
+     "lines": "21",
+     "numbers": "103",
+     "source": "track_b/B_citation_skeptic.json coverage_summary.citations_opened_by_skeptic"
+    },
+    {
+     "lines": "22, 116, 119",
+     "numbers": "6 loaded, 8 not loaded",
+     "source": "n6_grid.json columns_loaded (6 new corpora among the 18), n_columns_not_loaded 8; newcorp_build_workflow_result.json"
+    },
+    {
+     "lines": "27-28",
+     "numbers": "176, 22, 8, 26, 24",
+     "source": "n6_grid.json n_cells_not_loaded, n_rows, n_columns_not_loaded, transfer.primary.totals.n_NOT_RUN, update_kind_counts.not_rerun_phase_b_stands"
+    },
+    {
+     "lines": "59",
+     "numbers": "488/500 vs 3/500",
+     "source": "n7_timing.json cells['swechat/claude_code|E|R1_BRACKET|time_response_early|30'].recall.k, .fpr.k"
+    },
+    {
+     "lines": "77-78",
+     "numbers": "2/976; 0/2,998; 44/807 = 0.0545",
+     "source": "r2_r3.json verdicts[6].deciding_number and R3.units['swechat/claude_code'].verdict_blocks.BuE; r4_r5.json R4.units['swechat/claude_code'].verdict_blocks.BuE.sessions_decided; r2_r3.json R2.verdict_blocks.BuE.session_rate"
+    },
+    {
+     "lines": "78",
+     "numbers": "g 0.071 <= 0.075",
+     "source": "a1_p2_p4_f3.json candidates['P4round/swechat/* (pooled)'].artifact_checks.AC4_dominance.leave_outs[7].detail.g, .collapse_threshold_0.25_g_full"
+    },
+    {
+     "lines": "79",
+     "numbers": "0.933; 0.9988",
+     "source": "a1_p2_p4_f3.json candidates['P2/swechat/opencode/subagent'].artifact_checks.AC4_dominance.kinds.repo.S_deep.top_share_events (0.9335); f1_bracket.json r1.cc_local.artifact_checks.AC4_dominance.by_cluster.repo.top_share_streams (0.99882)"
+    },
+    {
+     "lines": "81",
+     "numbers": "F1: 3,676; 10; 3,588 = 0.9761; 0.9750; 3 of 10; 0 of 11; 11/3,325 = 0.00331 [0.00145, 0.00551]; B 5, E 3; B 1, E 6",
+     "source": "f1_bracket.json step0 (streams_own, honest_inconsistent, back_30s.flagged/share/reference_share); f1_effective_fp['swechat/claude_code'].B.honest (7 of 3,671) and .E.honest.rate_by_session; units['swechat/claude_code|E'].honest.inconsistent_streams (11); units[*].posthoc_mechanisms.counts out_of_order_result, client_behind_server"
+    },
+    {
+     "lines": "82",
+     "numbers": "F2: 21/156 = 0.135; 10/123 = 0.081; 31/279; 0/31 W[0, 0.110]; 28/31; 3/31; 48/248 = 0.194",
+     "source": "f2_floor_shift.json steps.B/E.step_share_wilson; populations.BuE outcome classes; populations.BuE.signature_control_descriptive.met_wilson"
+    },
+    {
+     "lines": "83",
+     "numbers": "F3: 0.464, 0.338, 0.5",
+     "source": "f3_round.json candidates['P4round/swechat/claude_code'].populations.BuE/E.F3.strict.g_over_g_full; rule.verdict ('g >= 0.5 x g_full')"
+    },
+    {
+     "lines": "86",
+     "numbers": "roughly 300 opened sources",
+     "source": "PRIOR_ART.md 'How to read it' (a search bound stated by Track B, not a measurement)"
+    },
+    {
+     "lines": "91",
+     "numbers": "0 of 25 systems",
+     "source": "track_b/B2c_systems.json answer.bottom_line ('Of 25 systems examined')"
+    },
+    {
+     "lines": "93",
+     "numbers": "10 ms floor",
+     "source": "PRIOR_ART.md B1d row (crewAI PR #3388); track_b/B1d_agent_eval.json"
+    },
+    {
+     "lines": "105-116",
+     "numbers": "corpus N 11,329 / 163 / 27 / 804 / 86 / 46; request-id counts and distinct ids; 1 of 25 submissions; 19,281; 0.063",
+     "source": "newcorp_build_workflow_result.json built[*].corpora[].N; track_b/b4.json REQUEST_ID_COLUMN_FIRST; track_b/corpus_inventory.json request_id_totals, request_id_scan_new_public_cc, registry; CORPUS_INVENTORY.md section 1.1"
+    },
+    {
+     "lines": "119",
+     "numbers": "14 corpora, 14.958 GB, 10.042 GB, 25 GB cap",
+     "source": "track_b/corpus_inventory.json registry.n_acquired, disk.total_GB, disk.headroom_to_total_cap_GB, disk.cap_total_GB"
+    },
+    {
+     "lines": "128",
+     "numbers": "219/3,842 = 0.057",
+     "source": "n1.json units['swechat/claude_code'].results.BE.shell.positive_control.detector_flag_on_tampered_diagnostic"
+    },
+    {
+     "lines": "137-138",
+     "numbers": "779/46,138 = 0.0169; 237/1,492 = 0.159; 374/500 vs 4/500; 10/1,520",
+     "source": "n2.json units['swechat/claude_code'].groups['swechat/claude_code'].results.E.honest_flag_rate, .session_level_honest_flag_share; n7_content.json cells['swechat/claude_code|E|R5_LEDGER|inline_fabrication|tau']; r4_r5.json R5 verdict blocks"
+    },
+    {
+     "lines": "144-145",
+     "numbers": "3-4.5 h; 1-2 h; 7.5-12 h; 14-21.5 h; 22-44 h; $0",
+     "source": "track_b/B6.json (P0 micro-pilot, H1); track_b/B7.json hours_estimate; track_b/corpus_inventory.json loaders; CORPUS_INVENTORY.md sections 3-4"
+    },
+    {
+     "lines": "146",
+     "numbers": "446 files; 1 sk-ant-api03- value; 1 bearer token",
+     "source": "track_b/B5b_aider_tbench_metr.json sensitive_data_warning; CORPUS_INVENTORY.md section 2.4 (track_b/corpus_skeptic/context_probe.json; B6 H9)"
+    },
+    {
+     "lines": "149",
+     "numbers": "3,664.7 MB; 1.66 GB; 248.5 GB; 12.05 GB; 56.7 GB",
+     "source": "track_b/corpus_inventory.json derived_sums.B5d_priority_A_not_downloaded_MB.sum_MB; B5b_aider_tbench_metr.json; B5c_web_os_agents.json; B5a_sweagent_openhands.json; B5d_hf_search.json"
+    },
+    {
+     "lines": "150",
+     "numbers": "0.154 GB; 1.070 GB",
+     "source": "track_b/corpus_inventory.json disk.per_dir['openhands-evaluation-outputs'].part_GB, disk.per_dir['terminal-bench-2-leaderboard'].git_GB (1,070,068,963 B)"
+    },
+    {
+     "lines": "152, 155, 157",
+     "numbers": "14; 0.159; 7/41",
+     "source": "newcorp_split_incident_agentcap.json n_H; n2.json (as line 137); n6_grid.json transfer.primary.totals n_ALIVE, n_WEAK"
+    }
+   ],
+   "not_measurements": [
+    {
+     "lines": "1",
+     "text": "20",
+     "what": "the 20-minute reading budget from PHASE_E_PROMPT.md C3"
+    },
+    {
+     "lines": "90, 98",
+     "text": "2008, 2018",
+     "what": "citation years"
+    },
+    {
+     "lines": "90, 104",
+     "text": "2",
+     "what": "section references (section 2; sections 0-2)"
+    },
+    {
+     "lines": "115-116",
+     "text": "2.0, 4.0, 3",
+     "what": "licence names (Apache-2.0, CC BY 4.0, BSD-3)"
+    },
+    {
+     "lines": "148",
+     "text": "80/20",
+     "what": "quoted from SCOPE.md section 4 (C:/Swarms/SCOPE.md line 79), the plan being deviated from"
+    },
+    {
+     "lines": "9",
+     "text": "8, 40",
+     "what": "the stale SECOND_PASS.md section 6 counts, quoted as stale"
+    }
+   ]
+  },
+  "edits": [
+   {
+    "where": "line 3 (header)",
+    "problem": "no pointer to the audit",
+    "fix": "added the audit time and the trace / audit-log file names",
+    "category": "traceability"
+   },
+   {
+    "where": "caveat 4",
+    "problem": "named 3 of the working-tree files that carry the tbench2 relabel",
+    "fix": "also names phase_e_n6.py, fig_data.json and fig_transfer_matrix.png (git status: modified)",
+    "category": "accuracy"
+   },
+   {
+    "where": "section 1, F1/F2/F3 row",
+    "problem": "'F2's first run was withdrawn ... then re-run' overstated it: the correction relabelled the B-alone and E-alone outcomes INSUFFICIENT_N and withdrew the E idle_gap credit; the B∪E outcome (OPEN) did not change",
+    "fix": "reworded to what f2_floor_shift.json corrections[] records",
+    "category": "accuracy",
+    "evidence": "f2_floor_shift.json corrections[0..3] (found_by: independent re-deriver)"
+   },
+   {
+    "where": "section 1, verification row",
+    "problem": "'all 12 reproduced' hid a coverage gap: one n7_timing verify entry (R3_GIT, N1, codex/gemini cells) has reproduced = false because those cells were not re-derived",
+    "fix": "now 'every re-derived cell reproduced', naming the cells that were not re-derived",
+    "category": "overclaim corrected",
+    "evidence": "track_a_workflow_result.json items[key = n7_timing].verify[18] (reproduced false, severity none)"
+   },
+   {
+    "where": "section 1, C2 row",
+    "problem": "stated as at 07:55",
+    "fix": "state at audit time (08:05 CDT): scaffold_check.json still absent; analysis/out/phase_e/figures/ and demo/ also on disk, uncommitted, unchecked",
+    "category": "currency"
+   },
+   {
+    "where": "section 1, failed list",
+    "problem": "'176 N6 cells are NOT_RUN' conflated not-loaded cells with the NOT_RUN label (26 loaded cells, section 2 totals)",
+    "fix": "176 = 22 rows x 8 not-loaded corpora, separate from the 26 NOT_RUN cells",
+    "category": "accuracy",
+    "evidence": "n6_grid.json n_cells_not_loaded, n_rows, n_columns_not_loaded, transfer.primary.totals.n_NOT_RUN"
+   },
+   {
+    "where": "section 2 grid",
+    "problem": "rows P2, P3b and P4a were silently left out; they hold 6 + 4 DEAD cells (nulls) and no ALIVE cell",
+    "fix": "added the three rows, transcribed from n6_grid.json cells (every original row was re-checked cell by cell and matched)",
+    "category": "nulls as prominent as hits"
+   },
+   {
+    "where": "section 2, N5 and per-stratum note",
+    "problem": "N5e (WEAK) and N5f (INSUFFICIENT_N) in sw/CC were not mentioned; the content of the N2 aiv_cu 'S' cell (ALIVE in 3 strata, not counted in the 7) was not stated",
+    "fix": "one sentence added",
+    "category": "completeness",
+    "evidence": "n6_grid.json cells.N5e_size / N5f_error_fidelity['swechat/claude_code'], cells.N2.aiv_cu.label"
+   },
+   {
+    "where": "section 2, ALIVE table, P4b tbench2 caveat",
+    "problem": "F3 (which capped P4 at WEAK in sw/CC and cc_local) was not mentioned for tbench2",
+    "fix": "added: F3 run as context only, still ALIVE",
+    "category": "completeness",
+    "evidence": "newcorp_measure_tbench2.json cells.P4b_round.F3_context_label; detail.P4.E.F3_context"
+   },
+   {
+    "where": "section 2 totals",
+    "problem": "'90 transfer' reads as strong; the rule needs only both cells >= WEAK, and 45 of the 90 pairs are N2",
+    "fix": "qualifier added",
+    "category": "overclaim guarded",
+    "evidence": "n6_grid.json transfer.primary.totals.top_transfer_row_pairs (45, N2); TRANSFER_MATRIX.md rule"
+   },
+   {
+    "where": "section 3, F3 bullet",
+    "problem": "'halves the gap' is loose for E (0.338)",
+    "fix": "'leaves less than half the gap'",
+    "category": "accuracy"
+   },
+   {
+    "where": "section 3, N7 bullet",
+    "problem": "'No content detector reaches DETECTS against any attack', without SECOND_PASS's definition, reads as if no n7_content detector does; n7_content.json has 12 DETECTS cells (R5_LEDGER 4, N2 4, R2_IMAGE 4)",
+    "fix": "named the content detectors (P2_KFN, P3_ZERO, N5a-f) and the three detectors that do reach DETECTS",
+    "category": "accuracy",
+    "evidence": "n7_content.json label_counts.DETECTS = 12; SECOND_PASS.md section 6, N7 paragraph"
+   },
+   {
+    "where": "section 6 line 4 and the build-first table",
+    "problem": "'the only shipped check with in-scope power' dropped DESIGN.md's qualifier: R5_LEDGER also hits inline_fabrication (374/500 vs 4/500 on E), which DA13 classes as an edit artifact; and N2's power is only PARTIAL in sw/CC",
+    "fix": "'the only shipped check whose in-scope power is not an edit artifact (DA13) ... PARTIAL in sw/CC'; the ledger_tally row now states its inline_fabrication hit and why it is not credited",
+    "category": "overclaim corrected",
+    "evidence": "DESIGN.md Summary 3 and DA13; n7_content.json cells['swechat/claude_code|E|R5_LEDGER|inline_fabrication|tau']"
+   },
+   {
+    "where": "section 6 line 6",
+    "problem": "'N1 ... with no per-call power' overstated it: DESIGN 7.1.6 gives a weak per-call rate",
+    "fix": "'per call it flags 219/3,842 = 0.057 of synthetic tampered shell calls'; n1.json added to the section's sources",
+    "category": "accuracy",
+    "evidence": "n1.json units['swechat/claude_code'].results.BE.shell.positive_control.detector_flag_on_tampered_diagnostic"
+   },
+   {
+    "where": "section 6 line 8",
+    "problem": "'Request ids are undocumented, so id_bracket runs on 5 of 21 corpora' gave the wrong cause: coverage is bounded by which corpora carry ids, not by documentation",
+    "fix": "split into the coverage fact and the undocumented-layout consequence (DA20)",
+    "category": "accuracy",
+    "evidence": "track_b/corpus_inventory.json registry.n_carriers 5, n_corpora_held 21; DESIGN.md Summary 6"
+   },
+   {
+    "where": "section 7, decision 7",
+    "problem": "recommended 'Delete both' under data/ without naming CLAUDE.md non-negotiable 5",
+    "fix": "'only on an explicit human yes', rule cited",
+    "category": "human decision made explicit"
+   },
+   {
+    "where": "section 7, new row 16",
+    "problem": "DESIGN open items 3 (turn-contract fields), 4 (fpr_cap / CLEAN_CAP rule) and 8 (SWE-chat HF gate terms before publishing a tampered demo session) were missing from the human-decision list",
+    "fix": "one row added; its recommendation is marked [I]",
+    "category": "human decisions explicit",
+    "evidence": "DESIGN.md 'Open items for the morning' 3, 4, 8"
+   }
+  ],
+  "c3_conformance": {
+   "sections": "all 7 present, in the C3 order (1 ran/finished/failed; 2 decision table; 3 survived/died; 4 prior art; 5 corpus inventory; 6 design in ten lines + build-first table; 7 human decisions)",
+   "decision_shaped": "yes: tables with status, deciding number, n and caveat; section 7 is question -> recommended default -> source",
+   "short": "159 lines, about 3,700 words (mostly tables); no narrative of the night",
+   "B1_B2_first": "yes: B2 method, application and fact rows, then B1(a), B1(b), then B3",
+   "request_id_column_highlighted": "yes: bold column header, bold YES values, coverage numbers in the cell",
+   "downloads_and_field_audit": "yes: 14 downloaded, all 14 passed, 2 only weakly per the skeptic",
+   "human_decisions": "explicit: request-id corpus generation (1), dataset publication (2), plus 14 more, each with a recommended default and a source"
+  },
+  "honesty_checks": {
+   "synthetic_positives_caveat": "present (caveat 1; section 6 line 7; build-first numbers say 'synthetic')",
+   "not_blind_caveats": "present (caveat 2 a-d; ALIVE table caveat column; R5 rows)",
+   "nulls_vs_hits": "DEAD cells shown in the grid (now including P2/P3b/P4a), the killed list, 10 of 21 attack types walking through, F2 OPEN, and the 19 -> 7 ALIVE drop after checks",
+   "novelty": "no claim beyond PRIOR_ART.md verdicts: B2 application NOVEL and B3.11 'NOVEL as the grid' are copied with the search bound ('roughly 300 opened sources'); R2/R3/N5 items stay UNVERIFIED; P2-P4 have no verdict",
+   "against_SECOND_PASS": "every survival and kill statement in section 3 matches second_pass.json counts and rows; ALIVE 3 in A1 terms (R1, R5, P3a), all sw/CC"
+  },
+  "checked_no_change": [
+   "section 2 grid: all 12 original rows matched n6_grid.json cells cell by cell; the three swechat columns left out are NOT_TESTABLE in every row",
+   "section 2 totals: 396 = 7+41+39+110+172+26+1; 218 = 90+1+127; 19 ALIVE before checks (transfer.precheck_labels.totals)",
+   "ALIVE table: every deciding number and n matches n6_grid.json cells[*].deciding_number / .n and the source item JSON",
+   "section 3: survival counts (second_pass.json counts) and every killed / downgraded number",
+   "section 4: verdict rows against the PRIOR_ART.md verdict table and section 1.2 (req_ UUIDv7 inferred from data; msg_ format change 2026-07-06)",
+   "section 5: table and bullets against CORPUS_INVENTORY.md sections 0-1 and track_b/corpus_inventory.json",
+   "section 7: sources (CORPUS_INVENTORY.md, DESIGN.md open items, SCOPE.md section 4 text, analysis/README.md rule 8)",
+   "DESIGN open item 0 'done': the 13 item JSONs plus second_pass.json and n6_grid.json are in ed2c1d4; the 14 unchanged ones match DESIGN Appendix A sha prefixes on disk; n6_grid.json differs by the RES1 relabel (caveat 4)"
+  ],
+  "not_fixed": [
+   "The trace's citation resolver reads only .json names, so the numbers of sections 4, 5 and 7 (which cite PRIOR_ART.md, CORPUS_INVENTORY.md and DESIGN.md) have in_cited_path None and most are chance_level by the trace's rule; each was traced by hand above to a committed track_b/*.json or phase_e/*.json file.",
+   "SECOND_PASS.md section 6 still says 'ALIVE 8, WEAK 40' (outside this audit's scope; the brief flags it in caveat 4 and decision 14).",
+   "Track C scaffold outputs (verifier/, tests/, eval/attacks.py, eval/metrics.py, eval/run_eval.py, analysis/out/phase_e/figures/, demo/, scaffold_check.json) were neither read for numbers nor edited; another workflow owns them."
+  ],
+  "constraint_note": "Only analysis/MORNING_BRIEF.md was edited. New files: analysis/probes/phase_e_trace_brief.py and analysis/out/phase_e/trace_brief.json. This entry was appended to fixes[]. No data file, prereg file, generator or other write-up was changed. Nothing was committed."
+ }
  ],
  "findings_not_fixed": [
   {"id": "F1", "severity": "verdict-relevant; needs the orchestrator", "finding": "R1 tbench2 ALIVE rests on AC4 'label only'. Its R1 population is one stratum (one agent, one model; checks.R1.AC4_dominance.stratum_clusters = 1). prereg_e.json artifact_checks.AC4_dominance names the label-only reading for aiv_cc only; read as written (a cluster holding > 0.25 is dominated; a leave-out below min n gives UNTESTABLE_WITHOUT_DOMINANT and caps at WEAK), as it was for cc_local R1, the cell is WEAK. The builder's deviation entry 'R1 population' says the cells describe one submission but does not log an effect on the verdict.", "consequence_if_applied": "ALIVE cells in the grid 8 -> 7; R1 would no longer be ALIVE in >= 2 units. Not applied here: the label lives in newcorp_measure_tbench2.json and n6_grid.json (data files), and an auditor does not re-decide verdicts. The documents now state it."},

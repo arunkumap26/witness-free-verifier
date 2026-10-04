@@ -3830,9 +3830,9 @@
     "update_kind": "new_column"
    },
    "tbench2": {
-    "label": "ALIVE",
-    "base": "ALIVE",
-    "suffix": "[NOT_BLIND (D6)] [population: stratum WozCode__Claude-Opus-4.6]",
+    "label": "WEAK",
+    "base": "WEAK",
+    "suffix": "[NOT_BLIND (D6)] [population: stratum WozCode__Claude-Opus-4.6] [orchestrator resolution: ALIVE -> WEAK]",
     "fill_rule_step": "item_cell (Track B corpus measurement)",
     "source": "analysis/out/phase_e/newcorp_measure_tbench2.json cells['R1_bracket'] (detail.R1.E.verdict)",
     "label_E": "ALIVE",
@@ -3842,6 +3842,12 @@
     "deciding_number": "honest_stream_rate 0; honest_bar_hi 0.04475; back_30s_lo 0.9176; n7_single_types_DETECTS [id_splice_foreign|random, id_swap_adjacent|-, time_response_early|10, time_response_early|30, time_response_early|300, time_response_early|60, time_result_late|10, time_result_late|30, time_result_late|300, time_result_late|5, time_result_late|60]; other_types_clearing [id_splice_foreign|random, id_swap_adjacent|-, insert_pair_consistent|-, insert_pair_squeezed|-, time_result_late|10, time_result_late|30, time_result_late|300, time_result_late|5, time_result_late|60]; CI [0, 0]",
     "n": "82 from 79 s",
     "base_precheck": "ALIVE",
+    "label_before_resolution": "ALIVE",
+    "resolution": {
+     "source": "analysis/out/phase_e/newcorp_resolutions.json resolutions[0]",
+     "rule": "prereg_e.json change_log decision D2 (AC4 dominance cluster = corpus stratum for new corpora) + survival_rule: the R1 population is the single WozCode__Claude-Opus-4.6 stratum, so the stratum leave-out is untestable (UNTESTABLE_WITHOUT_DOMINANT), which caps the label at WEAK. Same reading the pubcc and agentcap_codex groups applied.",
+     "numbers_unchanged": "all R1 numbers reproduce (verifier 20/20); only the post-check label changes"
+    },
     "update_kind": "new_column"
    },
    "openhands_eval": {
@@ -10353,6 +10359,15 @@
    }
   }
  },
+ "resolutions_applied": [
+  {
+   "row": "R1_bracket",
+   "column": "tbench2",
+   "label_before_resolution": "ALIVE",
+   "label": "WEAK",
+   "source": "analysis/out/phase_e/newcorp_resolutions.json resolutions[0]"
+  }
+ ],
  "update_kind_counts": {
   "remeasured_same_label": 3,
   "not_rerun_phase_b_stands": 24,
@@ -10735,8 +10750,8 @@
      "columns": 18,
      "testable_field_gate": 5,
      "decided": 4,
-     "n_ALIVE": 2,
-     "n_WEAK": 2,
+     "n_ALIVE": 1,
+     "n_WEAK": 3,
      "n_DEAD": 0,
      "n_INSUFFICIENT_N": 1,
      "n_INCONCLUSIVE": 0,
@@ -10745,12 +10760,12 @@
      "n_PER_STRATUM": 0,
      "cells_by_label": {
       "ALIVE": [
-       "swechat/claude_code",
-       "tbench2"
+       "swechat/claude_code"
       ],
       "WEAK": [
        "cc_local",
-       "pub_cc_hf"
+       "pub_cc_hf",
+       "tbench2"
       ],
       "INSUFFICIENT_N": [
        "pub_trace_commons"
@@ -11818,8 +11833,8 @@
     "dead_dead_pairs": 61,
     "decided": 87,
     "testable_field_gate": 224,
-    "n_ALIVE": 8,
-    "n_WEAK": 40,
+    "n_ALIVE": 7,
+    "n_WEAK": 41,
     "n_DEAD": 39,
     "n_INSUFFICIENT_N": 110,
     "n_INCONCLUSIVE": 0,
@@ -11830,7 +11845,7 @@
     "rows_with_failing_pair": 1,
     "rows_with_decided_pair": 16,
     "rows_all_decided_pairs_transfer": 6,
-    "rows_alive_in_ge2_units": 2,
+    "rows_alive_in_ge2_units": 1,
     "rows_ge_weak_in_ge2_units": 11,
     "rows_no_cell_ge_weak": 7,
     "cells": 396,
@@ -14812,8 +14827,8 @@
      "columns": 18,
      "testable_field_gate": 5,
      "decided": 4,
-     "n_ALIVE": 2,
-     "n_WEAK": 2,
+     "n_ALIVE": 1,
+     "n_WEAK": 3,
      "n_DEAD": 0,
      "n_INSUFFICIENT_N": 1,
      "n_INCONCLUSIVE": 0,
@@ -14822,12 +14837,12 @@
      "n_PER_STRATUM": 0,
      "cells_by_label": {
       "ALIVE": [
-       "swechat/claude_code",
-       "tbench2"
+       "swechat/claude_code"
       ],
       "WEAK": [
        "cc_local",
-       "pub_cc_hf"
+       "pub_cc_hf",
+       "tbench2"
       ],
       "INSUFFICIENT_N": [
        "pub_trace_commons"
@@ -15933,8 +15948,8 @@
     "dead_dead_pairs": 61,
     "decided": 88,
     "testable_field_gate": 224,
-    "n_ALIVE": 9,
-    "n_WEAK": 40,
+    "n_ALIVE": 8,
+    "n_WEAK": 41,
     "n_DEAD": 39,
     "n_INSUFFICIENT_N": 110,
     "n_INCONCLUSIVE": 0,
@@ -15945,7 +15960,7 @@
     "rows_with_failing_pair": 1,
     "rows_with_decided_pair": 16,
     "rows_all_decided_pairs_transfer": 6,
-    "rows_alive_in_ge2_units": 3,
+    "rows_alive_in_ge2_units": 2,
     "rows_ge_weak_in_ge2_units": 11,
     "rows_no_cell_ge_weak": 7,
     "cells": 396,
@@ -16333,8 +16348,8 @@
      "columns": 18,
      "testable_field_gate": 5,
      "decided": 4,
-     "n_ALIVE": 2,
-     "n_WEAK": 2,
+     "n_ALIVE": 1,
+     "n_WEAK": 3,
      "n_DEAD": 0,
      "n_INSUFFICIENT_N": 1,
      "n_INCONCLUSIVE": 0,
@@ -16343,12 +16358,12 @@
      "n_PER_STRATUM": 0,
      "cells_by_label": {
       "ALIVE": [
-       "swechat/claude_code",
-       "tbench2"
+       "swechat/claude_code"
       ],
       "WEAK": [
        "cc_local",
-       "pub_cc_hf"
+       "pub_cc_hf",
+       "tbench2"
       ],
       "INSUFFICIENT_N": [
        "pub_trace_commons"
@@ -17421,8 +17436,8 @@
     "dead_dead_pairs": 61,
     "decided": 88,
     "testable_field_gate": 224,
-    "n_ALIVE": 8,
-    "n_WEAK": 40,
+    "n_ALIVE": 7,
+    "n_WEAK": 41,
     "n_DEAD": 40,
     "n_INSUFFICIENT_N": 110,
     "n_INCONCLUSIVE": 0,
@@ -17433,7 +17448,7 @@
     "rows_with_failing_pair": 2,
     "rows_with_decided_pair": 16,
     "rows_all_decided_pairs_transfer": 5,
-    "rows_alive_in_ge2_units": 2,
+    "rows_alive_in_ge2_units": 1,
     "rows_ge_weak_in_ge2_units": 11,
     "rows_no_cell_ge_weak": 7,
     "cells": 396,
@@ -17839,8 +17854,8 @@
      "columns": 18,
      "testable_field_gate": 5,
      "decided": 4,
-     "n_ALIVE": 2,
-     "n_WEAK": 2,
+     "n_ALIVE": 1,
+     "n_WEAK": 3,
      "n_DEAD": 0,
      "n_INSUFFICIENT_N": 1,
      "n_INCONCLUSIVE": 0,
@@ -17849,12 +17864,12 @@
      "n_PER_STRATUM": 0,
      "cells_by_label": {
       "ALIVE": [
-       "swechat/claude_code",
-       "tbench2"
+       "swechat/claude_code"
       ],
       "WEAK": [
        "cc_local",
-       "pub_cc_hf"
+       "pub_cc_hf",
+       "tbench2"
       ],
       "INSUFFICIENT_N": [
        "pub_trace_commons"
@@ -18922,8 +18937,8 @@
     "dead_dead_pairs": 47,
     "decided": 85,
     "testable_field_gate": 224,
-    "n_ALIVE": 8,
-    "n_WEAK": 42,
+    "n_ALIVE": 7,
+    "n_WEAK": 43,
     "n_DEAD": 35,
     "n_INSUFFICIENT_N": 114,
     "n_INCONCLUSIVE": 0,
@@ -18934,7 +18949,7 @@
     "rows_with_failing_pair": 1,
     "rows_with_decided_pair": 16,
     "rows_all_decided_pairs_transfer": 6,
-    "rows_alive_in_ge2_units": 2,
+    "rows_alive_in_ge2_units": 1,
     "rows_ge_weak_in_ge2_units": 12,
     "rows_no_cell_ge_weak": 7,
     "cells": 396,
@@ -19215,8 +19230,8 @@
    "PER_STRATUM": 0
   },
   "tbench2": {
-   "ALIVE": 2,
-   "WEAK": 4,
+   "ALIVE": 1,
+   "WEAK": 5,
    "DEAD": 6,
    "INSUFFICIENT_N": 2,
    "INCONCLUSIVE": 0,
@@ -19302,6 +19317,13 @@
    "what_you_did": "no cache was opened: the B re-check is prereg.json population_B (units with 0 B sessions, which the items also found absent from E) plus each item's own B / E field checks (an item's NOT_TESTABLE stands)",
    "why": "assembly only",
    "effect_on_verdict": "none known; listed in field_gate.B_recheck"
+  },
+  {
+   "item": "orchestrator resolutions applied",
+   "prereg_said": "fill_rule 2: the cell carries the label after the pre-registered artifact checks",
+   "what_you_did": "every resolution in analysis/out/phase_e/newcorp_resolutions.json is applied to its cell after the fill; the filled label is kept beside it as label_before_resolution and label_precheck is unchanged (resolutions_applied lists each)",
+   "why": "the resolution records a verifier finding on a Track B after-checks label (AC4 under change_log D2) that the measurement workflow had no stage to fix; its numbers are unchanged",
+   "effect_on_verdict": "R1_bracket tbench2: ALIVE -> WEAK"
   }
  ],
  "inputs_sha256": {
@@ -19326,6 +19348,7 @@
   "analysis/out/phase_e/n7_content.json": "5c677a8138f24097de49ecbab0d7ff2dbe94a2a666a3aac96b326ef31b74252f",
   "analysis/out/phase_e/r2_r3.json": "5b5c3305bd3d9338bff5217f0b5dc2a944d9ae253ea9a2c780017c0183f3d865",
   "analysis/out/phase_e/r4_r5.json": "d3e02c6902407fdfb87c8f157a7eb5183c4eac4639d91f827f93dc15a998a77c",
+  "analysis/out/phase_e/newcorp_resolutions.json": "5008f509dec292e27d88b8c5603f1700bad35fb0f5b6b31e270b0421955a6a83",
   "analysis/out/phase_e/newcorp_measure_agentcap.json": "40816aef748decb0b55cefe1fe69666a287dcf4ba77ee51fcff77122b3619b62",
   "analysis/out/phase_e/newcorp_measure_glm_tb21.json": "bad548187187d371243fec4dc89256f7aec3fcca19f1e48e0a13c434551ad243",
   "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json": "3679fade2533921648f43c8e90f58ffe0af348e06c3e6750183829856f5d6752",
@@ -19354,6 +19377,7 @@
   "analysis/out/phase_e/newcorp_measure_pub_codex.json",
   "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json",
   "analysis/out/phase_e/newcorp_measure_tbench2.json",
+  "analysis/out/phase_e/newcorp_resolutions.json",
   "analysis/out/phase_e/r2_r3.json",
   "analysis/out/phase_e/r4_r5.json",
   "analysis/out/probe_1.json",
@@ -19364,7 +19388,7 @@
   "analysis/prereg_e.json",
   "analysis/probes/prereg_e_common.py (sha256_lf)"
  ],
- "interpretation_transfer_md": "A failure to transfer needs an ALIVE cell opposite a DEAD one, and ALIVE cells are rare (8 of 87 decided cells), so only 1 of 218 decided pairs fails to transfer (Probe 3a: zero-error tail: cc_local DEAD vs swechat/claude_code ALIVE). 90 pairs transfer (both >= WEAK), 45 of them from N2: token accounting alone; the other 127 are WEAK–DEAD (66) or DEAD–DEAD (61), which the pre-registered statement counts as neither. 1 of 22 mechanisms fails to transfer in at least one pair, 2 are ALIVE in two or more units, and 7 have no cell at WEAK or better anywhere. The artifact checks and kill tests matter: before them the same cells hold 19 ALIVE, after them 8. Most of the grid cannot be decided at all: 172 NOT_TESTABLE, 26 NOT_RUN and 110 INSUFFICIENT_N of 396 loaded cells. Read strictly, the grid does not show widespread failure to transfer; it shows that strong signals are confined to one or two units per mechanism and that most mechanism × corpus cells are undecidable or at most WEAK. ALIVE cells (8): Probe 3a: zero-error tail in swechat/claude_code; Probe 4b: round numbers in tbench2; R1: request-id clock bracket in swechat/claude_code; R1: request-id clock bracket in tbench2; R5: usage-ledger reconciliation in swechat/claude_code; N1: conditional duration model in swechat/claude_code; N1: conditional duration model in aiv_cc; N2: token accounting in agentcap/opencode.",
- "interpretation_decision_md": "1. Phase E leaves 8 ALIVE cells in the 22 × 18 loaded grid (Probe 3a: zero-error tail in swechat/claude_code; Probe 4b: round numbers in tbench2; R1: request-id clock bracket in swechat/claude_code; R1: request-id clock bracket in tbench2; R5: usage-ledger reconciliation in swechat/claude_code; N1: conditional duration model in swechat/claude_code; N1: conditional duration model in aiv_cc; N2: token accounting in agentcap/opencode); none is a detection of a real fabrication (recall comes from synthetic tampering, and Probes 3a and 4b are honest-baseline rates). 2. Under the pre-registered transfer statement 1 of 218 decided pairs fails to transfer (Probe 3a: zero-error tail: cc_local DEAD vs swechat/claude_code ALIVE), 90 transfer and 127 are WEAK–DEAD or DEAD–DEAD, so the strict claim that signals do not transfer is not supported; what the grid supports is that ALIVE signals stay inside one or two units per mechanism. 3. Coverage still bounds everything: 172 of 396 loaded cells are NOT_TESTABLE, 26 NOT_RUN and 110 INSUFFICIENT_N, and the 8 acquired-but-not-loaded corpora add 176 NOT_RUN cells.",
+ "interpretation_transfer_md": "A failure to transfer needs an ALIVE cell opposite a DEAD one, and ALIVE cells are rare (7 of 87 decided cells), so only 1 of 218 decided pairs fails to transfer (Probe 3a: zero-error tail: cc_local DEAD vs swechat/claude_code ALIVE). 90 pairs transfer (both >= WEAK), 45 of them from N2: token accounting alone; the other 127 are WEAK–DEAD (66) or DEAD–DEAD (61), which the pre-registered statement counts as neither. 1 of 22 mechanisms fails to transfer in at least one pair, 1 are ALIVE in two or more units, and 7 have no cell at WEAK or better anywhere. The artifact checks and kill tests matter: before them the same cells hold 19 ALIVE, after them 7. Most of the grid cannot be decided at all: 172 NOT_TESTABLE, 26 NOT_RUN and 110 INSUFFICIENT_N of 396 loaded cells. Read strictly, the grid does not show widespread failure to transfer; it shows that strong signals are confined to one or two units per mechanism and that most mechanism × corpus cells are undecidable or at most WEAK. ALIVE cells (7): Probe 3a: zero-error tail in swechat/claude_code; Probe 4b: round numbers in tbench2; R1: request-id clock bracket in swechat/claude_code; R5: usage-ledger reconciliation in swechat/claude_code; N1: conditional duration model in swechat/claude_code; N1: conditional duration model in aiv_cc; N2: token accounting in agentcap/opencode.",
+ "interpretation_decision_md": "1. Phase E leaves 7 ALIVE cells in the 22 × 18 loaded grid (Probe 3a: zero-error tail in swechat/claude_code; Probe 4b: round numbers in tbench2; R1: request-id clock bracket in swechat/claude_code; R5: usage-ledger reconciliation in swechat/claude_code; N1: conditional duration model in swechat/claude_code; N1: conditional duration model in aiv_cc; N2: token accounting in agentcap/opencode); none is a detection of a real fabrication (recall comes from synthetic tampering, and Probes 3a and 4b are honest-baseline rates). 2. Under the pre-registered transfer statement 1 of 218 decided pairs fails to transfer (Probe 3a: zero-error tail: cc_local DEAD vs swechat/claude_code ALIVE), 90 transfer and 127 are WEAK–DEAD or DEAD–DEAD, so the strict claim that signals do not transfer is not supported; what the grid supports is that ALIVE signals stay inside one or two units per mechanism. 3. Coverage still bounds everything: 172 of 396 loaded cells are NOT_TESTABLE, 26 NOT_RUN and 110 INSUFFICIENT_N, and the 8 acquired-but-not-loaded corpora add 176 NOT_RUN cells.",
  "runtime_s": 0.15
 }
