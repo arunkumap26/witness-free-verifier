@@ -1,5 +1,7 @@
 # DESIGN: witness-free verification of agent tool-log results (plan of record for the build)
 
+> **Status update (orchestrator, after the critic pass):** the Track A item JSONs, `second_pass.json` and `n6_grid.json` this file cites are now committed (ed2c1d4, f829639), so the G0 precondition on uncommitted sources is met. This file is committed (2baebcf). The scaffold built to it is committed (5f837b6); its layout deviations from §2.1 (API in `verifier/__init__.py`, a single `verifier/session.py` module, figures in `verifier/figures.py`) are listed in `analysis/out/phase_e/scaffold_check.json`.
+
 Status: **plan of record for the 2026-10-04 build**, written 06:40–07:15 CDT for Track C (`analysis/PHASE_E_PROMPT.md`,
 C1). Not committed. It starts from `analysis/DESIGN_ARCH_DRAFT.md` (critic-reviewed), keeps its architecture, decisions
 DA1–DA12, interfaces, schema, eval design, CLI and demo surface, and fills every `TODO-TRACK-A` placeholder from the

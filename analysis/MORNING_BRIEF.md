@@ -21,7 +21,7 @@ Written 2026-10-04, about 07:55 CDT (Track C3); audited about 08:10 CDT (number 
 | Track B: B1–B3 prior art, B4 audit, B5 acquisition, B6, B7 | done. The citation skeptic re-opened 103 citations | `PRIOR_ART.md`, `CORPUS_INVENTORY.md`, `track_b/*.json` |
 | New-corpus build + measurement | **6 loaded** (tbench2, agentcap, pub_cc_hf, pub_trace_commons, pub_codex, glm_tb21). **8 not loaded** (time budget): openhands_eval, tracelab-uw, cli-pi-hf, miniswe, sweagent-combo2, osworld, webarena-infinity, openhands-feedback | `newcorp_build_workflow_result.json`, `newcorp_measure_*.json` |
 | C1 `DESIGN.md` | done; critic-reviewed; committed 2baebcf | `DESIGN.md` |
-| C2 scaffold | **still running at audit time (about 08:05 CDT).** `scaffold_check.json` does not exist. `verifier/`, `tests/`, `eval/attacks.py`, `eval/metrics.py`, `eval/run_eval.py` and `analysis/out/phase_e/{figures,demo}/` are on disk, uncommitted and unchecked | — |
+| C2 scaffold | **Done, committed in 5f837b6.** Reference check only (ENABLED_CHECKS empty). Tests: 115 ran, OK with 1 slow test skipped (`scaffold_check.json` `tests`). `eval/run_eval.py --seeds 0 1 2`: one JSON line, exit 0, deterministic across 5 runs; 363.57 s on the first run (dev-pack build 304.29 s), then cached (`scaffold_check.json` `eval.runs`). CLI verdicts match between the IR cache and raw transcripts. Not yet built: `eval/heldout.py`, `verifier/render/demo.py`, the `eval/core.py` wiring (`scaffold_check.json`, integrator problems) | `scaffold_check.json` |
 
 **Failed or not done (coverage gaps, not nulls):**
 - 176 N6 cells (22 rows × 8 corpora) are empty because their corpora were not loaded. They are separate from the 26 loaded cells labelled NOT_RUN.
