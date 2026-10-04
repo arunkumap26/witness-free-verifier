@@ -1,0 +1,1283 @@
+{
+ "source": "workflow wf_ffb7d95c-52f (probe-phase-b): probe results + independent re-derivation + prereg compliance audit, verbatim",
+ "probes": [
+  {
+   "probe": 1,
+   "res": {
+    "probe": "probe_1 latency physics (Phase B, split B; prereg 3df8d28)",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\probe_1.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\probe_1.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_b\\probe_1.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\probe_1.md"
+    ],
+    "prereg_sha_ok": true,
+    "units": [
+     {
+      "unit": "swechat/claude_code",
+      "verdict": "WEAK",
+      "deciding_number": "Floor-stability downgrade: 21 of 156 eligible session x tool series show a floor step = 0.135, Wilson [0.090, 0.197], in 114 sessions. That is above 0.10, so the floor is UNSTABLE and ALIVE drops to WEAK. Before the downgrade both labels were ALIVE. fp_share was 72/20,937 = 0.0034 [0.0025, 0.0044] over 1,042 sessions. AUC was 0.987 [0.980, 0.993], with 3,812 G pairs from 903 sessions and 20,937 W pairs.",
+      "json_path": "analysis/out/probe_1.json#verdicts['swechat/claude_code']; units['swechat/claude_code'].floor_step_change; .separability"
+     },
+     {
+      "unit": "swechat/opencode",
+      "verdict": "ALIVE",
+      "deciding_number": "fp_share is 7/4,419 = 0.0016 [0, 0.0033] over 208 sessions. AUC is 0.999 [0.998, 1.000], with 127 G pairs from 12 sessions. The floor is STABLE (0 steps in 15 series). Floor transfer holds for 3 of 3 tested tools.",
+      "json_path": "analysis/out/probe_1.json#verdicts['swechat/opencode']"
+     },
+     {
+      "unit": "cc_local",
+      "verdict": "ALIVE",
+      "deciding_number": "fp_share is 1/1,019 = 0.0010 [0, 0.0033] over 112 sessions. AUC is 0.919 [0.881, 0.971], with 153 G pairs from 12 sessions. The floor is STABLE (0 steps in 5 series). Floor transfer holds for 2 of 2 tested tools. Aggregates only.",
+      "json_path": "analysis/out/probe_1.json#verdicts['cc_local']"
+     },
+     {
+      "unit": "aiv_cc (single-agent case study)",
+      "verdict": "WEAK",
+      "deciding_number": "fp_share is 241/3,217 = 0.075 [0.040, 0.119] over 43 runs. That is above 0.05, so WEAK. All 241 exceedances are shell (Bash). AUC is 0.865 [0.762, 0.922], which is ALIVE, with 178 G pairs from 25 runs. The floor is STABLE (8 steps in 134 series = 0.060). 156 of the 189 B runs share an SDK session with an A run.",
+      "json_path": "analysis/out/probe_1.json#verdicts['aiv_cc']"
+     },
+     {
+      "unit": "swechat/codex",
+      "verdict": "WEAK",
+      "deciding_number": "fp_share is 270/4,329 = 0.062 [0.026, 0.118] over 57 sessions, so WEAK. The exceedances are shell_command 183/1,227 and exec_command 87/2,927. AUC is INSUFFICIENT_N because no generation-bound tool exists (G = 0).",
+      "json_path": "analysis/out/probe_1.json#verdicts['swechat/codex']"
+     },
+     {
+      "unit": "swechat/gemini (small n)",
+      "verdict": "WEAK",
+      "deciding_number": "fp_share is 0/295 over 16 sessions; with the per-event Wilson upper bound of 0.0129 it is ALIVE. AUC is INSUFFICIENT_N: there are 13 G pairs from 5 sessions, below the minimum of 30. So the result is fp ALIVE without a positive control, which the rule labels WEAK.",
+      "json_path": "analysis/out/probe_1.json#verdicts['swechat/gemini']"
+     },
+     {
+      "unit": "aiv_cu",
+      "verdict": "NOT_TESTABLE",
+      "deciding_number": "Killed in A1. The A1 rule fails on B again: 59,956 of 59,956 pairs share a stamp, in 1,979 sessions.",
+      "json_path": "analysis/out/probe_1.json#not_testable.aiv_cu"
+     },
+     {
+      "unit": "whowhen",
+      "verdict": "NOT_TESTABLE",
+      "deciding_number": "Killed in A1. On B, 0 of 535 pairs carry stamps (111 B sessions).",
+      "json_path": "analysis/out/probe_1.json#not_testable.whowhen"
+     },
+     {
+      "unit": "swechat/cursor",
+      "verdict": "NOT_TESTABLE",
+      "deciding_number": "Killed in A1. On B there are 0 pairs and no stamps (8 B sessions).",
+      "json_path": "analysis/out/probe_1.json#not_testable['swechat/cursor']"
+     },
+     {
+      "unit": "swechat/copilot",
+      "verdict": "NOT_TESTABLE",
+      "deciding_number": "0 B sessions.",
+      "json_path": "analysis/out/probe_1.json#not_testable['swechat/copilot']"
+     },
+     {
+      "unit": "swechat/simple_text",
+      "verdict": "NOT_TESTABLE",
+      "deciding_number": "0 B sessions.",
+      "json_path": "analysis/out/probe_1.json#not_testable['swechat/simple_text']"
+     }
+    ],
+    "kills_fired": [
+     "No kill fired in any of the 6 testable units. All six pass the A1 rule on B: the largest identical-stamp share is gemini at 0.0051, and the largest whole-second share is cc_local at 0.0012 (86/73,084). No reportable work-bound tool_key is FLAT; the smallest work-bound IQR(log10) is cc_local grep at 0.078, against a threshold of 0.05.",
+     "The A1 kill rule fires again on B for units that were already NOT_TESTABLE: aiv_cu has a shared call/result stamp in 59,956/59,956 pairs; whowhen has no stamps (0 of 535 pairs); cursor has no pairs. This is descriptive only; their verdict stays NOT_TESTABLE.",
+     "Two tools are FLAT, both outside the work-bound set, so no kill follows: opencode todo and cc_local toolsearch, each with an IQR of 0.002 s."
+    ],
+    "deviations": [
+     "{item: output path, prereg_said: analysis/out/phase_b/<probe>.json, what_you_did: wrote analysis/out/probe_1.json (the task's path) and a byte-identical copy at analysis/out/phase_b/probe_1.json, why: task names probe_1.json; copy keeps the prereg contract, effect_on_verdict: none}",
+     "{item: zero deltas, prereg_said: negatives excluded from log-scale stats; zeros not addressed, what_you_did: all per-tool stats, FLAT, transfer, step change and the W set use qualified pairs with delta_s > 0, exactly as the A floors were computed (prereg_calibration Q); n_zero and n_negative reported per tool, transfer also reported with them included, why: like-for-like with the A p5, effect_on_verdict: none (a zero delta has r=0<1, so including zeros could only lower fp_share)}",
+     "{item: change-point seed index, prereg_said: SEED + i over sorted (session_id, tool_key) series, what_you_did: i indexes the eligible series (n>=40) only, why: the text does not say whether ineligible series count, effect_on_verdict: none; the only boundary step in swechat CC (p=0.01) gives 20/156 = 0.128 without it, still UNSTABLE (sensitivity_steps_at_p_boundary)}",
+     "{item: floor transfer min sessions, prereg_said: B n >= 100, what_you_did: also required >= 5 sessions (global rate min-n), why: global rule, effect_on_verdict: none (untested_only_by_session_rule is empty in every unit)}",
+     "{item: FLAT kill with no reportable work-bound tool, prereg_said: DEAD if every reportable work-bound tool_key is FLAT, what_you_did: the kill requires at least one reportable work-bound tool_key, why: avoids a vacuous truth, effect_on_verdict: none (every testable unit has at least one)}",
+     "{item: nested human-marker exclusion for G subagent pairs, prereg_said: exclude subagent pairs with nested rejection or human-interactive events, what_you_did: applied in swechat CC and cc_local only, as the calibration did on A; for OpenCode (child threads in separate sessions) reported a cross-session upper-bound check, why: same code as the A-side G counts, effect_on_verdict: none (OpenCode: 0 rejection markers and 0 human-interactive calls in 8,352 subagent-thread rows)}"
+    ],
+    "nulls": [
+     "swechat/codex has no generation-bound positive control (G = 0), so its AUC cannot be tested.",
+     "swechat/gemini has a G set of 13 pairs from 5 sessions, below the minimum of 30, so its AUC is INSUFFICIENT_N.",
+     "Shell, edit and write latencies in the Claude Code formats (swechat CC, cc_local) and in OpenCode/Gemini were not tested, because the filter excludes human waits. The ALIVE results for CC-format units and OpenCode cover only read/glob/grep/ls.",
+     "Where shell is testable, it fails the budget. aiv_cc shell has r >= 1 in 241/2,785 eligible pairs; codex shell_command in 183/1,227 and exec_command in 87/2,927. Long-running commands with little output are honestly slower than generating their output, so latency cannot separate them.",
+     "Results shorter than the T_gen = 1 s threshold (189 to 377 characters, depending on unit) cannot be tested by construction. In swechat CC only 20,937 of 26,639 work-bound pairs are eligible; in aiv_cc only 3,217 of 7,423.",
+     "aiv_cu, whowhen and cursor remain dead on B, and copilot and simple_text have no B sessions."
+    ],
+    "surprises": [
+     "The swechat CC latency floor is UNSTABLE within sessions. 21 of 156 series in 18 sessions step by at least 2x: 18 go up and 3 go down. The median step factor is 3.39 and the largest 35.4; 6 steps are at least 10x. In the largest steps the read floor (Q10) moves from 0.002–0.007 s to 0.07–0.25 s. The cause is not identified.",
+     "The positive control is weaker than the AUCs suggest. Many 'generation-bound' tools have median r below 1: CC webfetch 0.976, CC websearch 0.676, aiv_cc search_history 0.720, and cc_local workflow and subagent about 0.007. The AUCs are high mainly because the work-bound set is extremely low (median log10 r of -2.44 in CC, -3.53 in OpenCode, -2.76 in cc_local).",
+     "Codex exec_command has a p1 latency of 0.267 s, against 0.050 s for shell_command. This looks like a harness yield wait rather than work, but that is an inference. Separately, the Codex filter as pre-registered admits request_user_input (19 qualified pairs); it is outside the work-bound set, so it does not affect the verdict.",
+     "Floor transfer flags a quantisation artifact in CC taskupdate: its A p5 equals the 1 ms stamp resolution, so 0 of 2,570 B pairs can fall below it, and it is labelled FLOOR_SHIFT by construction. Also, the CC read floor is lower on B than on A: 2,153/17,543 = 0.123 [0.105, 0.144] of B pairs fall below the A p5 of 0.006 s.",
+     "The floors differ by harness. Reads sit in single-digit milliseconds in CC (p1 0.002), OpenCode (p1 0.001) and cc_local (p1 0.004). Gemini read (p5 0.054) and every aiv_cc tool sit near 50 ms; the lowest aiv_cc minimum is 0.0476 s (computer_use).",
+     "All 8 aiv_cc floor steps occur in runs of a single SDK session (run ids beginning 0a15c7c2).",
+     "Result size relates to latency in opposite ways for the two sets. Spearman rho of result bytes vs latency is positive for generation-bound tools: 0.496 [0.421, 0.570] in CC, 0.695 in cc_local, 0.751 in aiv_cc. For eligible work-bound pairs it is about zero or negative (CC -0.013), which matches the physical hypothesis.",
+     "1,163 swechat CC and 1,082 cc_local webfetch/websearch pairs lack a tool-reported duration and were excluded from G, as the prereg requires."
+    ],
+    "could_not_measure": [
+     "The miss rate against real fabrication could not be measured, because there are no fabricated pairs. In addition, G90 is the fast end of response rates (the 90th percentile), so a fabricator generating faster than G90, or using a faster model, could land at r < 1.",
+     "The cause of the mid-session floor steps in swechat CC. Candidates are an unlogged hook, a filesystem change, or a client change; none is visible in the IR.",
+     "Shell, edit and write latencies in the Claude Code formats. permissionMode is not in the IR, so human waits cannot be separated from work.",
+     "The AUC for codex (no generation-bound tool) and for gemini (G below the minimum n).",
+     "Any latency at all for aiv_cu (shared stamps) or whowhen (no stamps).",
+     "This probe addresses only a model that fabricates a result inline. A replaced execution layer emits results at program speed (r << 1) and cannot be detected by this mechanism. That caveat is stated in the notes."
+    ]
+   },
+   "rederive": {
+    "probe": "Probe 1 (latency physics): an independent re-derivation on split B under prereg 3df8d28. Before running, I checked that sha256 of prereg_common.py is bb50f690…6947, which equals provenance.spec_module_sha256. My own code is in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad: p1_load.py, p1_analyze.py and cp_diag.py, with outputs in res_*.json. It imports prereg_common only for tool_key, private_key, tool_class, jl and change_point; the filter, G latency, separability, AUC bootstrap, FLAT test, floor transfer and verdict are my own code, written from PREREG.md, prereg.json and the calibration's A-side definitions. I read probe_1.py and probe_1.json only after I had my numbers. Every deciding number reproduces to the printed digit, and so does every unit verdict (ALIVE: opencode, cc_local. WEAK: swechat CC by downgrade, aiv_cc, codex, gemini. NOT_TESTABLE: aiv_cu, whowhen, cursor, copilot, simple_text). The joins, denominators, session counts, CI methods, the zero-count Wilson rule and the min-n gates all match the prereg. No blocking issue. Two minor misstatements in the summary text: it calls cc_local the largest whole-second share (gemini's is larger), and it calls the eligible-W Spearman 'about zero or negative' (cc_local's is +0.164 with a CI that excludes 0). The JSON is correct in both cases.",
+    "checks": [
+     {
+      "unit": "swechat/claude_code",
+      "reproduced": true,
+      "my_numbers": "A1 on B: identical stamps 897/194,366 = 0.0046; whole-second stamps 389/388,732 = 0.0010. ALIVE. 32,261 of 194,367 pairs qualify (removed: class 104,619; not last call 33,301; hook 24,175; marker 10). fp = 72/20,937 = 0.00344 [0.00247, 0.00441] over 1,042 sessions (read 20/16,265, grep 25/3,799, glob 27/873): fp ALIVE. AUC = 0.9870 [0.9799, 0.9927], 1,000 valid draws. G eligible = 3,812 pairs from 903 sessions (subagent 3,319, webfetch 335, websearch 158); 1,163 webfetch/websearch pairs lacked a duration and were excluded. auc ALIVE. No W tool is FLAT (smallest IQR(log10) is glob at 0.766). Floor steps: 21/156 = 0.135, Wilson [0.090, 0.197], over 114 eligible sessions, with steps in 18 sessions; 18 up and 3 down; factors 2.0 to 35.4, six of them at least 10x. That is UNSTABLE, so ALIVE drops to WEAK. Sensitivity: indexing seeds over all series gives 23/156 = 0.147; testing W tools only gives 20/150 = 0.133; both still UNSTABLE. Floor transfer: read is FLOOR_SHIFT at 2,153/17,543 = 0.123 [0.105, 0.144]; taskupdate is FLOOR_SHIFT at 0/2,570, because its A p5 equals the 1 ms stamp; glob 0.088 [0.059, 0.118] and grep 0.095 [0.068, 0.126] TRANSFER. 2 of 4 is not a majority, so no transfer downgrade.",
+      "problem": "No discrepancy. Diagnostic for the notes, not affecting the verdict: k* is never the largest wall-clock gap in its series (0/21), so session resumes do not explain the steps. Only 1/21 steps coincides with a change in the main/subagent mix, and only 1/21 has disjoint agent_id sets on either side of k*. 11/21 step series are main-thread only and 9/21 are subagent only. The cause remains unidentified, as the probe says, but resume gaps and thread mixing are ruled out as the general explanation.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/opencode",
+      "reproduced": true,
+      "my_numbers": "A1: identical stamps 37/8,194 = 0.0045. fp = 7/4,419 = 0.00158 [0, 0.00330] over 208 sessions: ALIVE. AUC = 0.99916 [0.99819, 0.99989]; G = 127 pairs from 12 sessions (subagent 116, websearch 11): ALIVE. Floor steps 0/15 series in 10 sessions: STABLE (Wilson hi 0.204). Transfer: 3 of 3 TRANSFER (glob 0.103 [0.074, 0.138], grep 0.051 [0.030, 0.078], read 0.026 [0.018, 0.035]). No W tool is FLAT; todo is FLAT (IQR 0.002 s) but is not in W. Verdict ALIVE.",
+      "problem": "None. A caveat the prereg allows: STABLE rests on 15 series, and the prereg sets no minimum n for the floor label. G is 91% subagent pairs from 12 sessions.",
+      "severity": "none"
+     },
+     {
+      "unit": "cc_local",
+      "reproduced": true,
+      "my_numbers": "A1: whole-second stamps 86/73,084 = 0.00118; identical stamps 1/36,542. fp = 1/1,019 = 0.00098 [0, 0.00332] over 112 sessions: ALIVE. AUC = 0.9186 [0.8809, 0.9714]; G = 153 pairs from 12 sessions (webfetch 47, websearch 53, workflow 47, subagent 6); 1,082 pairs excluded for having no duration: ALIVE. Floor steps 0/5 series: STABLE. Transfer: glob 15/459 = 0.033 [0.015, 0.055] and read 48/1,302 = 0.037 [0.008, 0.126], both TRANSFER. Smallest W IQR(log10) is grep at 0.078, so not FLAT; toolsearch is FLAT (IQR 0.002 s) but is not in W. Verdict ALIVE (aggregates only).",
+      "problem": "None in the reproduction. Two caveats, both prereg-as-written and noted by the probe. First, 53 of the 153 G pairs (workflow and subagent) have median r of 0.007 and 0.006, so they are not generation-bound in practice; the positive control is partly invalid. Second, STABLE rests on 5 series (Wilson hi of 0/5 is 0.43).",
+      "severity": "none"
+     },
+     {
+      "unit": "aiv_cc (single-agent case study)",
+      "reproduced": true,
+      "my_numbers": "A1: 0 identical and 0 whole-second stamps. fp = 241/3,217 = 0.0749 [0.0404, 0.1191] over 43 runs; all 241 are shell (241/2,785): WEAK. AUC = 0.8649 [0.7624, 0.9218]; G = 178 pairs from 25 runs (search_history 160, webfetch 14, websearch 4): ALIVE. Floor steps 8/134 = 0.060 over 46 runs: STABLE. Transfer 14 of 14 TRANSFER. Eligible W is 3,217 of 7,423 pairs. B runs sharing an SDK session with an A run: 156/189 (35 distinct SDK sessions; 155 runs come from 0a15c7c2). Verdict WEAK.",
+      "problem": "None. The AUC CI lo of 0.762 sits only 0.012 above the 0.75 cut, but the fp label already decides WEAK.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/codex",
+      "reproduced": true,
+      "my_numbers": "A1: identical stamps 1/9,727; whole-second 20/19,454. 6,518 pairs qualify (removed: class 1,885; marker or declined or running 818; policy 506). fp = 270/4,329 = 0.0624 [0.0256, 0.1177] over 57 sessions (shell_command 183/1,227, exec_command 87/2,927, others 0): WEAK. G = 0, so AUC is INSUFFICIENT_N. Floor 0/33: STABLE. Transfer: shell_command 18/1,631 = 0.011 [0.0008, 0.033] TRANSFERS. exec_command p1 is 0.267 s against shell_command p1 0.0503 s; request_user_input has 19 qualified pairs. Verdict WEAK.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/gemini (small n)",
+      "reproduced": true,
+      "my_numbers": "A1: identical stamps 9/1,776 = 0.0051; whole-second 8/3,552 = 0.00225; 5 negative deltas among all pairs. fp = 0/295 over 16 sessions; with the per-event Wilson hi of 0.01285 in place of the bootstrap hi, fp is ALIVE. G eligible = 13 pairs from 5 sessions (24 usable before the T_gen cut), below the minimum of 30, so AUC is INSUFFICIENT_N. Verdict WEAK. The unit has 22 B sessions, so the 'small n' label applies. Floor 0/4: STABLE. Read p5 is 0.054 (n 303).",
+      "problem": "The summary's kills_fired text says the largest whole-second share is cc_local at 0.0012 (86/73,084). Gemini's 8/3,552 = 0.00225 is larger, and probe_1.json itself records 0.00225 for gemini. This is a descriptive misstatement only; both values are far below the 0.5 kill threshold.",
+      "severity": "minor"
+     },
+     {
+      "unit": "aiv_cu",
+      "reproduced": true,
+      "my_numbers": "A1 on B: identical stamps 59,956/59,956 pairs over 1,979 sessions; whole-second 0/119,912. Killed again; NOT_TESTABLE.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "whowhen",
+      "reproduced": true,
+      "my_numbers": "0 of 535 pairs have stamps (the pairs come from 95 sessions; 111 B sessions in the population). Killed again; NOT_TESTABLE.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/cursor; copilot; simple_text",
+      "reproduced": true,
+      "my_numbers": "cursor: 164 calls, 0 results, 0 pairs, 8 B sessions; NOT_TESTABLE. B format counts: claude_code 1,679, opencode 214, codex 77, gemini 22, cursor 8, copilot 0, simple_text 0.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "summary claim: Spearman(result bytes, latency)",
+      "reproduced": false,
+      "my_numbers": "G eligible: CC 0.496, cc_local 0.695, aiv_cc 0.751, all matching. W eligible: CC -0.013 and aiv_cc -0.209, but cc_local +0.164; the probe JSON has [0.076, 0.292] for it.",
+      "problem": "The summary says that for eligible work-bound pairs rho 'is about zero or negative'. In cc_local it is positive and its CI excludes 0. The JSON is correct; the wording overgeneralises.",
+      "severity": "minor"
+     }
+    ]
+   },
+   "audit": {
+    "probe": "probe_1 latency physics (Phase B, split B, prereg 3df8d28): process-compliance audit of analysis/probes/probe_1.py, analysis/out/probe_1.json (byte-identical to analysis/out/phase_b/probe_1.json) and analysis/notes/probe_1.md. No blocking violations. All 6 testable verdicts follow mechanically from the JSON numbers under the prereg rule. There are 4 minor findings: a one-sided deviation-effect analysis, descriptive quantiles and STABLE labels reported below the global min-n, one interpretive sentence the JSON contradicts, and a scope caveat for OpenCode that the notes leave out.",
+    "findings": [
+     {
+      "rule": "1. prereg_common.py sha256 equals provenance; prereg files unchanged",
+      "ok": true,
+      "severity": "none",
+      "detail": "sha256 of analysis/probes/prereg_common.py on disk is bb50f690...f6947. That equals prereg.json provenance.spec_module_sha256, and also the CRLF-converted blob at 3df8d28 (core.autocrlf=true). `git diff --stat 3df8d28 -- analysis/prereg.json analysis/PREREG.md analysis/probes/prereg_common.py` is empty, and git status shows those files clean. The on-disk prereg.json differs from the committed blob only by CRLF: `git hash-object` gives 49c5b355, which equals `git rev-parse 3df8d28:analysis/prereg.json`, and the diff with CRs stripped is empty. The script hard-stops on a sha mismatch (probe_1.py:822-833). It also checks prereg_calibration.py against provenance.calibration_script_sha256 (dd186a7d, ok). The recorded result is probe_1.json#prereg.spec_module_sha_ok=true, with calibration_script_sha_ok=true and prereg_json_sha256=3189a326. Outputs are timestamped 22:55, after the prereg commit at 22:27."
+     },
+     {
+      "rule": "2. Every threshold in probe_1.py comes from prereg.json",
+      "ok": true,
+      "severity": "none",
+      "detail": "The verdict thresholds sit in TH (probe_1.py:77-91) and are asserted against prereg.json text at start-up (probe_1.py:108-124). These are T_gen>=1.0, tokens/char 0.25, W 100/10, G 30/5, fp 0.05/0.10/0.20, AUC 0.85/0.75/0.70, FLAT 30/5, 2x resolution and 0.05, transfer band [0.025,0.10] with B n>=100, step m=20, 199 perms, p<=0.01, D>=log10 2, share 0.10, 900 valid draws, seed and n_boot. Stamp resolutions, A floors (resolved.probe1.floors) and G90 (resolved.probe1.generation_rate) are read from prereg.json (lines 85-86, 442, 542). Some literals are hard-coded but match the prereg text and are not asserted: the A1 0.5 (from phase_a.json gate_rules.A1_latency_kill_rule, which prereg.json probe1.b_recheck_of_A1_kill_rule references; line 283), r>=1 (line 636), Spearman 30/5 (line 193), and the aiv_cc 0.1 s floor-bound count (line 276). The 0.01 'mixed' cut (line 89) is descriptive and comes from the A1 rule text. No threshold was derived from B. The notes' claim that each threshold is asserted at start-up (notes:8-10) is slightly overstated, but no value deviates."
+     },
+     {
+      "rule": "3. Verdicts follow the prereg verdict rule mechanically",
+      "ok": true,
+      "severity": "none",
+      "detail": "I re-applied prereg.json probe1.verdict and separability.labels to the stored JSON numbers. This includes the zero-count Wilson rule, the strict-majority FLOOR_SHIFT test and the UNSTABLE downgrade. It reproduces every stored verdict. CC: fp ALIVE (0.0034, hi 0.0044) and auc ALIVE (0.987, lo 0.980), then downgraded to WEAK by UNSTABLE 21/156=0.135; transfer 2/4 is not a majority. OpenCode: ALIVE. cc_local: ALIVE (AUC lo 0.881). aiv_cc: fp WEAK (0.075) with auc ALIVE (0.865, lo 0.762), so WEAK. Codex: fp WEAK (0.062) with auc INSUFFICIENT_N (G=0), so WEAK. Gemini: fp ALIVE on 0/295 with Wilson hi 0.0129, auc INSUFFICIENT_N (G 13 from 5 s), so WEAK. Gemini also carries 'small n' (22 B sessions) and aiv_cc 'single-agent case study' (probe_1.json#verdicts.*.labels; code probe_1.py:690-732). aiv_cu, whowhen, cursor, copilot and simple_text are NOT_TESTABLE as the prereg's units_not_testable says. Copilot and simple_text are hard-coded to 0 B sessions; a check of swechat_B against swechat_population confirms 0."
+     },
+     {
+      "rule": "4. Every deviation logged with before/after/reason; none is a post-hoc threshold change",
+      "ok": true,
+      "severity": "minor",
+      "detail": "probe_1.json#deviations has 6 entries, each with item, prereg_said, what_you_did, why and effect_on_verdict (probe_1.py:768-814). None changes a threshold. The output path, the 5-session floor on transfer (untested_only_by_session_rule empty in every unit) and the no-vacuous FLAT kill are fine. The OpenCode nested-G check bounds the effect at 0 (separability.G_nested_exclusion_crosscheck: 0 markers and 0 human_interactive calls in 8,352 rows). Gaps: (a) The change-point seed deviation's effect analysis looks only at steps that could vanish (sensitivity_steps_at_p_boundary). It does not look at non-steps with D>=log10 2 and p slightly above 0.01, which could become steps under the other convention. I checked the stored series. cc_local and gemini have 0 such series, OpenCode has at most 1 of 15, codex would need 4 of 5 candidates with p from 0.03 to 0.385, and aiv_cc would need 6 more of 10 with p from 0.025 to 0.69. No label can plausibly flip, but the logged evidence is one-sided. (b) The zero-delta deviation argues 'no effect' only for fp_share. The JSON's share_below_A_p5_incl_zero_neg shows no transfer label changes, and the W-tool zero counts are too small to move FLAT, so the conclusion holds but is under-documented. (c) An unlogged interpretation: the floor-step label is assigned without the global rate min-n (see rule 8)."
+     },
+     {
+      "rule": "5. Kill criteria applied; line of work stopped where they fired",
+      "ok": true,
+      "severity": "none",
+      "detail": "The A1 kill rule was re-applied to B for every unit (probe_1.py:287-324, same whole-second and identical-stamp definitions as phase_a_a1.py:268-357). All 6 testable units pass. The largest identical-stamp share is gemini at 9/1,776=0.0051 and the largest whole-second share is cc_local at 86/73,084, with no mixed_flag. The FLAT kill (probe_1.py:425-439) did not fire: every unit has at least 1 reportable W key, none of which is FLAT, and the smallest is cc_local grep with iqr_log10 0.078 (n 56). The only FLAT keys (OpenCode todo, cc_local toolsearch) are outside W. For units killed in A1 (aiv_cu 59,956/59,956 shared stamps; whowhen 0/535 stamped; cursor 0 pairs) the B recheck is recorded as descriptive only (probe_1.json#not_testable.*.a1_recheck_B_descriptive) and no further analysis was run, so the line of work stopped correctly."
+     },
+     {
+      "rule": "6. Every number in notes/probe_1.md appears in probe_1.json",
+      "ok": true,
+      "severity": "none",
+      "detail": "I checked the tables in sections 1-7 against their JSON paths. These were the verdict table, a1_recheck_B shares and CIs, the qualified_by_tool min/p1/p5/p50/p95 with CIs for 14 unit x tool rows, class p1s, all 11 Spearman rows, transfer shares, step table, by-tool and direction counts, factor min/median/max, the Q10 left/right ranges, the separability table (G90/G50, chars for T_gen=1 s, W all/eligible/sessions, median log10 r with CIs, G per-tool median r and r>=1 counts), W r>=1 by tool, G exclusions, the aiv_cc split overlap (156/189, 155), verdict_cells, and the aiv_cc minimum 0.0476 s (computer_use). All match. No number in the notes is missing from the JSON."
+     },
+     {
+      "rule": "7. Nulls reported as prominently as hits",
+      "ok": true,
+      "severity": "minor",
+      "detail": "The nulls are present and not buried. The verdict table (notes:24-33) shows INSUFFICIENT_N AUCs and NOT_TESTABLE rows. There is a nulls list (notes:234-240). The untested shell/edit/write latencies, the T_gen coverage gap, the unmeasured miss rate and the weak positive control all appear in section 8. Three minor issues: (a) notes:197-198 say only that 'the ALIVE verdicts for CC formats cover only read-type tools'. OpenCode, the other ALIVE unit, is equally restricted to auto_read (prereg allowed_classes), and the notes never say so; the verdict table carries no scope caveat. (b) The STABLE labels for OpenCode (0/15) and cc_local (0/5) back the two ALIVE verdicts but rest on series counts below min-n (Wilson hi 0.20 and 0.43); the notes present them as stability rather than as absence of evidence. (c) notes:221-222 sit B read FLOOR_SHIFT next to 'the prereg's downgrade ... is applied as written'. That can be read as attributing the CC downgrade to FLOOR_SHIFT, when it comes from UNSTABLE (section 1 states it correctly)."
+     },
+     {
+      "rule": "7b. Interpretation consistent with the JSON (no overclaim)",
+      "ok": false,
+      "severity": "minor",
+      "detail": "notes:189-191 (section 8, marked interpretation) say 'In W it is flat or negative', which is 'the physical signature the hypothesis predicts'. The JSON contradicts this in places. cc_local separability.W_spearman_bytes_latency gives rho=0.164 [0.076, 0.292], positive with a CI that excludes 0, and the notes do not cite it. swechat CC qualified_by_tool.read.spearman_bytes_latency gives 0.121 [0.076, 0.165], and OpenCode read gives 0.106 [0.044, 0.163]. The notes' own table row 'cc_local auto_read 0.365 [-0.002, 0.614]' (notes:102) is also not flat or negative. The probe's result 'surprises' repeats this as 'about zero or negative (CC -0.013)'. No verdict depends on it, but it overstates support for the hypothesis."
+     },
+     {
+      "rule": "8. n and CIs present; min-n respected",
+      "ok": true,
+      "severity": "minor",
+      "detail": "Every verdict input carries n, sessions and a CI, and respects min-n: W>=100/10 and G>=30/5 (probe_1.py:607-609), rates via rate_from_mask with 30/5 and Wilson for zero counts (149-169), quantiles withheld below 30/100/500 from >=5 sessions via reportable() (142-146; e.g. gemini read p1 is labelled INSUFFICIENT_N), Spearman >=30/5, and the AUC CI only when >=900 valid draws. Log histograms are present per tool and class. Minor violations in descriptive outputs: (a) separability.G_eligible_by_tool.*.median_r is reported without a CI and below n=30: aiv_cc webfetch n 14 and websearch n 4, cc_local subagent n 6, gemini websearch n 13, OpenCode websearch n 11 (probe_1.py:631-632). These are quoted in the notes' section 7 table (notes:146-153), and 'cc_local ... subagent about 0.007' at notes:203 rests on n=6. (b) G_latency_s.p50 for gemini (n 13) and W_r_quantiles.p99 for gemini (n 295, below 500) have no CIs (probe_1.py:615, 633). (c) step_factor_quantiles.p50 is computed over 21 steps (probe_1.py:520-524) and quoted as 'median of 3.39' (notes:135). (d) The floor-step label STABLE is assigned to cc_local (5 series, 4 s), gemini (4, 4) and OpenCode (15, 10). Those are below global.min_n.rate_reportable (>=30 from >=5), which prescribes INSUFFICIENT_N, and the probe does not log this as a deviation (probe_1.py:503-511). None of these changes a verdict, since INSUFFICIENT_N is not UNSTABLE and would not trigger a downgrade."
+     },
+     {
+      "rule": "9. No Phase C reads; no A-split thresholds recomputed on B",
+      "ok": true,
+      "severity": "none",
+      "detail": "probe_1.py reads only these inputs: <corpus>_B.parquet with the needed COLS, swechat_population.parquet, aiv_cc_A.parquet session_id only (lines 755-764; the overlap count global.aiv_cc_rule requires), and phase_a.json gate_rules.A1_latency_kill_rule text (line 283; referenced by prereg.json). None of probe_1.py, prereg_calibration.py or phase_a_a1.py references analysis/out/phase_c or Phase C notes, and the notes cite no Phase C material. A floors, G90/G50 and stamp resolutions come from prereg.json resolved. The B floors are computed only as the prereg-mandated descriptive honest floor and transfer input, never as thresholds. Caveat: I can audit only the artifacts, not which files the probe agent opened."
+     },
+     {
+      "rule": "10. cc_local aggregate-only; aiv_cc labelled single-agent",
+      "ok": true,
+      "severity": "none",
+      "detail": "I scanned the cc_local subtree of probe_1.json. It has no UUID-like strings, no text, commands or paths. Tool keys are only PUBLIC_CC_TOOLS, 'mcp__*' or 'other_tool' (via private_key in prereg_calibration.p1_qualified). Session ids in the step series are anonymised to s032, s046 and so on (probe_1.py:328-331, 483). The notes report cc_local as aggregates only (notes:20). aiv_cc carries 'single-agent case study' in probe_1.json#verdicts.aiv_cc.labels (probe_1.py:726-727), in the notes header (notes:17-18, with the 156/189 SDK-session overlap) and in the verdict table (notes:29)."
+     }
+    ]
+   },
+   "fixed": false
+  },
+  {
+   "probe": 2,
+   "res": {
+    "probe": "probe_2 knowledge precedence (Phase B, split B). Script analysis/probes/probe_2.py imports every definition from prereg_common.py (sha256 bb50f690... matches provenance.spec_module_sha256) and parses every threshold from prereg.json (sha256 3189a326...). Runtime about 85 s. On split A it reproduces the calibration's extraction counts and depth histograms exactly. No unit is ALIVE. In Claude Code the honest baseline for deep first-try reads is 0.144 (main thread) and 0.077 (subagents), against a 0.05 budget. For paths in general the baseline is buried: 0.19 to 0.81 unsourced.",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\probe_2.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\probe_2.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_b\\probe_2.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\probe_2.md"
+    ],
+    "prereg_sha_ok": true,
+    "units": [
+     {
+      "unit": "swechat/claude_code (main)",
+      "verdict": "WEAK",
+      "deciding_number": "S_deep = 0.144 [0.125, 0.163] (671/4,655 deep first-try successful accesses, D=6, 586 sessions). Sessions with at least one: 231/586 = 0.394 [0.355, 0.434]. Instrument check passed. All 3 pre-registered sensitivity variants also give WEAK.",
+      "json_path": "analysis/out/probe_2.json:units.swechat/claude_code.strata.main.verdict"
+     },
+     {
+      "unit": "swechat/claude_code (subagent stratum)",
+      "verdict": "WEAK",
+      "deciding_number": "S_deep = 0.077 [0.062, 0.091] (525/6,850, 296 sessions). The point estimate is above 0.05, so not ALIVE. The parent prompt sources 0.263 of deep accesses.",
+      "json_path": "analysis/out/probe_2.json:units.swechat/claude_code.strata.sub.verdict"
+     },
+     {
+      "unit": "swechat/opencode (subagent stratum, child sessions)",
+      "verdict": "WEAK",
+      "deciding_number": "S_deep = 0.073 [0.020, 0.150] (16/219, 53 sessions)",
+      "json_path": "analysis/out/probe_2.json:units.swechat/opencode.strata.sub.verdict"
+     },
+     {
+      "unit": "swechat/opencode (main)",
+      "verdict": "DEAD",
+      "deciding_number": "S_deep below min n (18/201, 11 sessions < 20). Fallback S_path_any = 0.309 [0.229, 0.394] (237/767, 36 sessions) > 0.20.",
+      "json_path": "analysis/out/probe_2.json:units.swechat/opencode.strata.main.verdict"
+     },
+     {
+      "unit": "swechat/codex (main)",
+      "verdict": "DEAD",
+      "deciding_number": "S_deep below min n (27/156, 11 sessions). Fallback S_path_any = 0.311 [0.213, 0.429] (343/1,103, 24 sessions). Labelled small n.",
+      "json_path": "analysis/out/probe_2.json:units.swechat/codex.strata.main.verdict"
+     },
+     {
+      "unit": "swechat/codex (subagent stratum)",
+      "verdict": "WEAK",
+      "deciding_number": "0 deep accesses. Fallback S_path_any = 0.131 [0.099, 0.163] (104/795, 36 sessions), capped at WEAK (the cap is not binding).",
+      "json_path": "analysis/out/probe_2.json:units.swechat/codex.strata.sub.verdict"
+     },
+     {
+      "unit": "cc_local (main, aggregates only)",
+      "verdict": "DEAD",
+      "deciding_number": "S_deep below min n (31/90, 17 sessions). Fallback S_path_any = 0.592 [0.445, 0.653] (1,669/2,820, 173 sessions).",
+      "json_path": "analysis/out/probe_2.json:units.cc_local.strata.main.verdict"
+     },
+     {
+      "unit": "cc_local (subagent stratum)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "S_deep 12 accesses from 2 sessions. S_path_any has 14,975 first mentions but only 6 sessions (675 subagent threads in 6 sessions).",
+      "json_path": "analysis/out/probe_2.json:units.cc_local.strata.sub.verdict"
+     },
+     {
+      "unit": "aiv_cc (main) - single-agent case study",
+      "verdict": "WEAK",
+      "deciding_number": "S_deep = 0/1,235 (per-event Wilson hi 0.0031), but from only 13 sessions (< 20). Fallback S_path_any = 0.192 [0.081, 0.351] (710/3,689, 53 sessions), capped at WEAK. 156/189 B runs share an SDK session with an A run, so this case is not held out.",
+      "json_path": "analysis/out/probe_2.json:units.aiv_cc.strata.main.verdict"
+     },
+     {
+      "unit": "aiv_cu (main)",
+      "verdict": "INCONCLUSIVE",
+      "deciding_number": "No structured access tools, so no S_deep. Fallback S_path_any = 0.807 [0.788, 0.824] (9,597/11,889, 1,130 sessions) would be DEAD; it becomes INCONCLUSIVE because antecedents are incomplete. First-try success is a proxy.",
+      "json_path": "analysis/out/probe_2.json:units.aiv_cu.strata.main.verdict"
+     },
+     {
+      "unit": "swechat/gemini (main)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "S_deep 55/127 from 13 sessions. S_path_any 158/302 from 19 sessions. Both are below the 20-session minimum.",
+      "json_path": "analysis/out/probe_2.json:units.swechat/gemini.strata.main.verdict"
+     },
+     {
+      "unit": "swechat/cursor (main)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "No tool results, so first-try success is 0/23. S_path_any 34/38 from 3 sessions.",
+      "json_path": "analysis/out/probe_2.json:units.swechat/cursor.strata.main.verdict"
+     },
+     {
+      "unit": "whowhen (main)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "0 access calls. 18/27 first-mention paths unsourced, from 15 sessions (of 111).",
+      "json_path": "analysis/out/probe_2.json:units.whowhen.strata.main.verdict"
+     },
+     {
+      "unit": "subagent stratum of aiv_cc, aiv_cu, swechat/gemini, swechat/cursor, whowhen",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "n = 0: no subagent threads with calls in these units",
+      "json_path": "analysis/out/probe_2.json:verdicts.<unit>.sub"
+     },
+     {
+      "unit": "swechat/copilot, swechat/simple_text (both strata)",
+      "verdict": "NOT_TESTABLE",
+      "deciding_number": "0 B sessions / no tool calls (prereg probe2.units.not_testable)",
+      "json_path": "analysis/out/probe_2.json:verdicts.swechat/copilot"
+     }
+    ],
+    "kills_fired": [
+     "Honest baseline defeats the mechanism (DEAD, S_path_any fallback > 0.20) in three cells: swechat/codex main (0.311), swechat/opencode main (0.309) and cc_local main (0.592). Work stopped there. These cells were decided by the fallback statistic because S_deep had fewer than 20 sessions. They are not a direct test of the deep-access mechanism.",
+     "aiv_cu main would be DEAD (0.807), but the antecedents-incomplete rule makes it INCONCLUSIVE.",
+     "The instrument-check cap did NOT fire: swechat CC main S_symbol_ref = 0.027 [0.022, 0.031], 1,242/46,836, 1,274 sessions, which is <= 0.10."
+    ],
+    "deviations": [
+     "{item: output path, prereg_said: data_rules.output_contract -> analysis/out/phase_b/<probe>.json, what_you_did: wrote analysis/out/probe_2.json (the task's path) plus a byte-identical copy at analysis/out/phase_b/probe_2.json, why: the task and the prereg name different paths, effect_on_verdict: none}",
+     "{item: drive-letter path keys, prereg_said: lowercase drive paths but match antecedent text case-sensitively, what_you_did: match drive-letter keys against ASCII-lowercased antecedent text and report the literal variant next to it, why: as written, any Windows path containing an uppercase letter could never be sourced (prereg bug), effect_on_verdict: none; matters in cc_local only (S_path_any 0.592 vs 0.694 literal; S_deep 0.344 vs 0.567 literal); swechat CC S_deep 0.144 vs 0.145}",
+     "{item: identifiers containing REDACTED, prereg_said: only redacted paths are excluded, what_you_did: also excluded symbol/env/cfg references containing REDACTED, why: after the antecedent redaction mask they cannot match by construction, effect_on_verdict: none (3 distinct env_var in swechat CC main; instrument check unchanged)}",
+     "{item: enumeration directory argument, prereg_said: the extraction rule is unspecified for shell commands, what_you_did: glob/ls/grep use the structured path keys; enum_shell uses non-option tokens after the program word up to ; & |; '.' or no token means no directory argument, why: underspecified, effect_on_verdict: none observed; enumeration-only sourcing is 0.025 of swechat CC main paths}",
+     "{item: Codex sub-agent nested prompt, prereg_said: parent_prompt is defined for CC/OpenCode only, what_you_did: Codex inter-agent envelope rows (assistant-kind JSON with author/recipient) in sub-agent threads count as parent_prompt, why: they are received text, not the agent's own, effect_on_verdict: codex subagent cell only (0 deep accesses; decided by S_path_any 0.131)}",
+     "{item: workspace root for child sessions with no main thread, prereg_said: root comes from the session main thread, what_you_did: OpenCode/Codex child sessions use their own thread's access paths, why: otherwise every absolute path is depth_unknown by construction, effect_on_verdict: opencode/codex subagent strata only}",
+     "{item: access population, prereg_said: first access by an access tool (the A calibration counted first mentions that are accesses), what_you_did: verdict follows the prereg text; calibration population reported as a variant, why: the JSON text wins, effect_on_verdict: none (same labels; swechat CC main 0.157, sub 0.076)}",
+     "{item: first-try success and CC permission/interrupt markers, prereg_said: not an error under the unit's primary definition, what_you_did: applied literally; a variant excluding those accesses is reported, why: literal rule kept, effect_on_verdict: none (671/4,655 either way)}",
+     "{item: post-hoc descriptive additions (disclosure), prereg_said: not pre-registered, what_you_did: after the first B output, added S_path_any excluding creation targets and an unsourced-trace diagnostic (basename seen earlier / key in own earlier args), why: to show whether creation targets drive the fallback and what honest unsourced references look like, effect_on_verdict: none; no verdict reads them; the DEAD fallback cells stay > 0.20 without creation targets (codex 0.300, opencode 0.219, cc_local 0.514)}"
+    ],
+    "nulls": [
+     "No unit or stratum reached ALIVE, including the instrument-validated swechat CC (main 0.144, sub 0.077).",
+     "aiv_cc (single-agent case study): S_deep = 0/1,235 (Wilson hi 0.0031); 0/13 sessions have any. This agent never makes an unsourced deep read, but the 13 sessions are below the 20-session verdict minimum.",
+     "Subagent stratum is testable in only 3 scaffolds (swechat CC, opencode, codex). The other 5 units have no subagent threads with calls. cc_local's 675 subagent threads sit in 6 sessions.",
+     "gemini, cursor and whowhen are INSUFFICIENT_N. whowhen has 27 first-mention paths in 111 sessions and 0 access calls. cursor has no tool results.",
+     "copilot and simple_text are NOT_TESTABLE (0 B sessions)."
+    ],
+    "surprises": [
+     "The general path baseline is buried. 0.192 (aiv_cc) to 0.807 (aiv_cu) of honest first-mention paths are unsourced; swechat CC main is 0.289 [0.276, 0.300]. Shell-text paths are worse than tool-argument paths (0.364 vs 0.252 in swechat CC).",
+     "Edit old_string symbols are the quietest channel in CC formats: 0.027 (swechat CC main), 0.011 (CC subagent), 0.050 (codex), 0.028 (aiv_cc). They are high in Gemini (0.397) and cc_local (0.421, 12 sessions).",
+     "Depth does not concentrate the anomaly. In swechat CC main, depth 1 is the most unsourced (0.368); depths 2-10 sit flat between 0.103 and 0.175.",
+     "Post-hoc trace of 671 unsourced deep reads in swechat CC main: 0.523 have the basename visible earlier (path composition the last-two-components key cannot credit), 0.113 appear in the agent's own earlier args, and 0.410 leave no trace.",
+     "The prereg lowercases drive-letter paths but matches case-sensitively, so Windows paths with uppercase letters could never be sourced. This is fixed and logged; it moves cc_local S_deep from 0.567 (literal) to 0.344.",
+     "S_path_any (the fallback statistic) includes creation targets such as Write file_path, which are unsourced by construction (CC main creation 0.690). Excluding them does not rescue any DEAD cell.",
+     "Unsourced rates rise at both ends of a thread in swechat CC main: 0.352 at the first call, 0.403 at calls 500+.",
+     "aiv_cc: only 125 of 189 B runs have non-meta events, and 123 have calls. The other runs are meta-only or assistant-only."
+    ],
+    "could_not_measure": [
+     "S_deep at the verdict minimum (>= 20 sessions) for codex main (11 s), opencode main (11 s), gemini (13 s), cc_local main (17 s) and aiv_cc (13 s), even though deep-access counts reach 90-1,235.",
+     "aiv_cu: no structured file-access tools, so S_deep is undefined and there are no edit old_string symbols. First-try success there is only a stderr proxy.",
+     "cursor: no tool results, so there are no result antecedents and no first-try success.",
+     "Antecedents outside the IR: CLAUDE.md, the system prompt, cwd, prior or resumed sessions and Gemini-masked results. 'Unsourced' is an upper bound everywhere; aiv_cc, aiv_cu and cursor are formally antecedent-incomplete.",
+     "Depth for most cc_local subagent accesses: 1,573 of 1,952 are depth_unknown under the pre-registered root rule.",
+     "Separability against actual fabricated references: there is no positive-control (fabricating) data. Only the honest baseline is measured, so the deviation size a fabricator would produce is unknown."
+    ]
+   },
+   "rederive": {
+    "probe": "Independent re-derivation of PROBE 2 (knowledge precedence) on split B.\n\nMethod:\n- Wrote my own implementation: C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\rederive_p2.py.\n- It imports only the frozen helpers from prereg_common, whose sha256 bb50f690... matches prereg.json provenance. It takes D_unit, the thresholds and min-n from prereg.json.\n- I read probe_2.py only after I had my numbers, and then only the loader and verdict functions.\n- Validation on split A: my extraction reproduces prereg_calibration.json exactly in all 9 units. That covers first-mention paths and accesses (main and sub), symbol_ref counts, the 59 redacted paths, every depth histogram and the root counts.\n- Supporting scripts in the same scratchpad: enum_trace.py, json_decode_variant.py, dup_check.py. Outputs: mine_A.json, mine_B.json, plus per-unit .pkl files.\n\nResult on B:\n- All 22 verdict cells match probe_2.json. So do every deciding statistic, k/n, session count and bootstrap CI, to full precision, plus the instrument check: 1,242/46,836 = 0.027 [0.022, 0.031], 1,274 sessions.\n- Also reproduced: the deviation variants (literal case, calibration population, no creation targets, excluding permission/interrupt markers), the 156/189 aiv_cc SDK overlap, 675 cc_local subagent threads in 6 sessions, and free vs structured 0.364 vs 0.252.\n- Verdict mechanics checked in probe_2.py:\n  - min-n gating comes before the fallback (S_deep needs >=100 accesses from >=20 sessions; S_path_any >=200 from >=20 sessions);\n  - when k=0 the verdict uses the per-event Wilson upper bound;\n  - the fallback is capped at WEAK;\n  - DEAD becomes INCONCLUSIVE in the antecedents-incomplete units;\n  - aiv_cu and instrument caps, and the single-agent and small-n labels, are applied.\n- Joins are on (session_id, call_id), first call and first result by seq. Rates use stats.cluster_rate clustered by IR session_id. Session shares use Wilson: 231/586 = 0.394 [0.355, 0.434].\n\nAdditional checks:\n- Cross-session duplication in Claude Code B is negligible: 9 sessions share call_ids. Dropping them gives S_deep 0.141.\n- Disclosure: I grepped analysis/notes/probe_2.md once for the string \"125\", which showed 3 unrelated lines. I read no other notes and nothing in phase_c.\n\nNo blocking issues. Four minor ones:\n1. aiv_cc's WEAK verdict is fragile (details in its unit check).\n2. opencode sub's deciding number depends on a logged deviation. Under the strict root rule it is 0.098 instead of 0.073, still WEAK.\n3. codex sub without the envelope deviation is 0.138, still WEAK.\n4. Wording: \"125 of 189 aiv_cc runs have non-meta events\" should read \"have user/system/call/result events\". 155 runs have some non-meta event; 30 have only assistant and meta rows.",
+    "checks": [
+     {
+      "unit": "swechat/claude_code main (WEAK)",
+      "reproduced": true,
+      "my_numbers": "S_deep 0.144 [0.125, 0.163], 671/4,655 deep first-try successful accesses, 586 sessions, D=6. Sessions with >=1: 231/586 = 0.394 [0.355, 0.434] (Wilson). Literal case 0.145 (673/4,655). Calibration population 0.157 (628/3,994). Excluding permission/interrupt markers 0.144 (all 4,655 are class ok). Dropping the 9 sessions with shared call_ids: 0.141. S_path_any 0.289 [0.276, 0.300], 8,222/28,483, 1,612 sessions.",
+      "problem": "none. Exact match. WEAK holds under every variant, and the whole CI lies inside (0.05, 0.20].",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/claude_code subagent stratum (WEAK)",
+      "reproduced": true,
+      "my_numbers": "S_deep 0.077 [0.062, 0.091], 525/6,850, 296 sessions. Sessions with >=1: 115/296. Literal case 0.077 (529/6,850). Calibration population 0.076 (497/6,569). S_path_any 0.179 [0.164, 0.197], 5,141/28,670, 641 sessions. S_symbol_ref 0.011 (90/8,341).",
+      "problem": "none. Exact match. The point estimate is above 0.05, so ALIVE is not reachable.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/opencode subagent stratum (WEAK)",
+      "reproduced": true,
+      "my_numbers": "With the probe's deviation (root from the child session's own thread): S_deep 0.073 [0.020, 0.150], 16/219, 53 sessions. Strict prereg (root from the session's main thread, which child sessions lack): all 2,177 first accesses are depth_unknown, so S_deep has n=0. The fallback is S_path_any 0.098 [0.084, 0.112], 244/2,498, 176 sessions, which gives WEAK.",
+      "problem": "The deciding number depends on a logged deviation: 0.073 (deviation) vs 0.098 (strict fallback). The verdict is WEAK either way. Each child session is its own resampling cluster and children cannot be linked to their parent in the IR, so the CI may be too narrow. This does not affect the verdict, which rests on the point estimate being above 0.05.",
+      "severity": "minor"
+     },
+     {
+      "unit": "swechat/codex subagent stratum (WEAK)",
+      "reproduced": true,
+      "my_numbers": "S_deep has n=0: 29 first accesses, none deep under either root rule. S_path_any 0.131 [0.099, 0.163], 104/795, 36 sessions, with Codex envelope rows as parent_prompt (the deviation). Strict prereg (assistant rows never a source): 0.138 [0.105, 0.173], 110/795, 36 sessions. Literal case 0.138.",
+      "problem": "The deviation moves the deciding number by 0.007. WEAK either way, and the cap is not binding.",
+      "severity": "minor"
+     },
+     {
+      "unit": "aiv_cc main (WEAK, single-agent case study)",
+      "reproduced": true,
+      "my_numbers": "S_deep 0/1,235 from 13 runs (Wilson event hi 0.0031), below the 20-session minimum. Fallback S_path_any 0.192 [0.081, 0.351], 710/3,689, 53 runs, giving WEAK. Without shell-enumeration sourcing: 0.205 (756/3,689), which would be DEAD and so INCONCLUSIVE. First-token-only shell directory rule: 0.192 (identical). JSON-decoded village results: 0.189 (696/3,689). Without creation targets: 0.098 (322/3,291). 388 of the 710 unsourced paths are Write/create targets. One run (r158) contributes 276/277 unsourced, 39% of the numerator. B runs sharing an SDK session with A: 156/189.",
+      "problem": "The verdict follows the rule, but it is fragile in three ways. (1) The point estimate is 0.008 below the 0.20 WEAK/DEAD line, and the CI spans [0.081, 0.351]. (2) The margin comes from 46 paths sourced only through prereg-mandated shell enumeration (ls/find). The underspecified directory-argument rule is not decisive (two choices agree), but the deviation entry's 'none observed / 0.025 of swechat CC' understates how much the enumeration route matters here. (3) The pre-registered norm_text maps '\\' to '/', so JSON-escaped village-bash output (1,705 results) cannot match listed basenames. This is a small upward bias (0.192 vs 0.189 decoded). Separately, the summary says '125 of 189 B runs have non-meta events'. 125 is the count with user/system/call/result rows; 155 runs have some non-meta event (30 are assistant+meta only). The note should state the fragility.",
+      "severity": "minor"
+     },
+     {
+      "unit": "aiv_cu main (largest unit by sessions; INCONCLUSIVE)",
+      "reproduced": true,
+      "my_numbers": "No structured access tools, so S_deep is undefined. S_path_any 0.807 [0.788, 0.824], 9,597/11,889, 1,130 sessions. DEAD becomes INCONCLUSIVE (antecedents incomplete).",
+      "problem": "none. Exact match. The cap order is correct: the WEAK cap does not apply to INCONCLUSIVE.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/opencode main (large unit; DEAD)",
+      "reproduced": true,
+      "my_numbers": "S_deep 18/201 from 11 sessions, below the minimum. Fallback S_path_any 0.309 [0.229, 0.394], 237/767, 36 sessions, giving DEAD. Without creation targets: 0.219 [0.168, 0.274], 146/668. Structured paths 0.304; free paths 0.371.",
+      "problem": "none. Exact match. DEAD survives dropping creation targets (0.219 > 0.20), though only just.",
+      "severity": "none"
+     },
+     {
+      "unit": "cc_local main (large unit; DEAD, aggregates only)",
+      "reproduced": true,
+      "my_numbers": "S_deep 31/90 from 17 sessions, below the minimum (literal case 51/90). Fallback S_path_any 0.592 [0.445, 0.653], 1,669/2,820, 173 sessions, giving DEAD. Literal case 0.694 [0.618, 0.737]. Without creation targets: 0.514.",
+      "problem": "none. Exact match. The drive-letter case deviation changes the value but not the verdict.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/codex main (DEAD, small n)",
+      "reproduced": true,
+      "my_numbers": "S_deep 27/156 from 11 sessions, below the minimum. Fallback S_path_any 0.311 [0.213, 0.429], 343/1,103, 24 sessions, giving DEAD with the small-n label. Literal case 0.318. Without creation targets: 0.300.",
+      "problem": "none",
+      "severity": "none"
+     },
+     {
+      "unit": "instrument check (swechat CC main S_symbol_ref)",
+      "reproduced": true,
+      "my_numbers": "0.027 [0.022, 0.031], 1,242/46,836, 1,274 sessions, which is <= 0.10, so the check passes and no cap applies.",
+      "problem": "none",
+      "severity": "none"
+     },
+     {
+      "unit": "INSUFFICIENT_N / NOT_TESTABLE cells (gemini, cursor, whowhen, cc_local sub, and the remaining subagent strata)",
+      "reproduced": true,
+      "my_numbers": "gemini: S_deep 55/127 from 13 sessions; S_path_any 158/302 from 19 sessions. cursor: first-try success 0/23; S_path_any 34/38 from 3 sessions. whowhen: 0 access calls; S_path_any 18/27 from 15 sessions. cc_local sub: S_deep 12 accesses from 2 sessions; S_path_any 14,975 from 6 sessions (675 threads with calls). aiv_cc, aiv_cu, gemini, cursor and whowhen have no subagent rows. copilot and simple_text have 0 B sessions.",
+      "problem": "none. The min-n gating is applied correctly.",
+      "severity": "none"
+     }
+    ]
+   },
+   "audit": {
+    "probe": "probe_2 knowledge precedence (Phase B, split B): pre-registration compliance audit of analysis/probes/probe_2.py, analysis/out/probe_2.json (byte-identical to analysis/out/phase_b/probe_2.json) and analysis/notes/probe_2.md. I found no blocking violation. All 18 testable verdict cells match an independent re-application of the prereg verdict rule to the JSON statistics, and the 4 NOT_TESTABLE cells come from the prereg list. The minor issues are: deviation effects not quantified for 2 of the 9 deviations; the analyst's sensitivity variants called \"pre-registered\"; a post-hoc recomputation on cells after their kill fired; 43 rates/CIs in the JSON below the global min-n floor; one interpretive claim the JSON contradicts; and a few unlabelled aiv_cc mentions in the notes.",
+    "findings": [
+     {
+      "rule": "(1) prereg_common.py sha256 equals prereg.json provenance, and the prereg files are unchanged",
+      "ok": true,
+      "severity": "none",
+      "detail": "sha256(analysis/probes/prereg_common.py) = bb50f6902f89...6947, which equals prereg.json provenance.spec_module_sha256. `git diff --stat 3df8d28 -- analysis/prereg.json analysis/PREREG.md analysis/probes/prereg_common.py` is empty, and so is the working-tree diff. prereg.json change_log is []. The check is enforced at runtime: probe_2.py:985-989 calls sys.exit(2) on a mismatch. probe_2.json records prereg_json_sha256 = 3189a326...806e4, which matches the file on disk, and spec_module_sha256_ok = true. git status shows no tracked file under analysis/lib, loaders or prereg modified."
+     },
+     {
+      "rule": "(2) every threshold in probe_2.py comes from prereg.json",
+      "ok": true,
+      "severity": "none",
+      "detail": "T_ALIVE, T_ALIVE_HI, T_WEAK and T_DEAD are regex-parsed from probe2.verdict.per_unit_main_thread (probe_2.py:66-69). The min-n values 100/20/200/20 come from probe2.statistics.min_n (:71-73) and the instrument threshold 0.10 from statistics.instrument_check (:75-76). The typed values appear only in assert cross-checks (:70, :74, :77). D_unit is read from resolved.probe2.depth_threshold (:58-59), and rate/quantile min-n from global.min_n (:62-63). The JSON echoes all of these in thresholds_from_prereg. The only typed constant is SMALL_N_SESSIONS = 30 (:78), which is asserted against the text '< 30 B sessions' (:79). The other literals (per-session >= 10, ORDINAL_BINS, 10 histogram bins, per_decade=4) feed descriptive blocks only."
+     },
+     {
+      "rule": "(3) verdicts follow the prereg verdict rule mechanically",
+      "ok": true,
+      "severity": "none",
+      "detail": "verdict() (probe_2.py:807-852) implements the rule. S_deep decides if it has >= 100 accesses from >= 20 sessions. Otherwise S_path_any decides (>= 200 from >= 20 sessions), with ALIVE demoted to WEAK. ALIVE needs rate <= 0.05 and hi <= 0.10, using the per-event Wilson hi when k = 0 (global zero_count rule, :791-796). WEAK is <= 0.20, DEAD > 0.20. The caps are: aiv_cu ALIVE -> WEAK, instrument failure -> WEAK, and antecedents_incomplete DEAD -> INCONCLUSIVE. I re-applied the rule to units.<u>.strata.<s>.deep_first_try.S_deep and units.<u>.strata.<s>.S_path_any: 18/18 testable cells match verdicts.<u>.<s>, plus 4 NOT_TESTABLE cells from probe2.units.not_testable, for n_verdict_cells = 22. 'Capped at WEAK' is read as an upper bound on goodness, so DEAD stays DEAD. That matches how the prereg uses 'cap' in the instrument check and PREREG.md section 5. The instrument check passed: 1,242/46,836 = 0.027 [0.022, 0.031], 1,274 s."
+     },
+     {
+      "rule": "(4) every deviation logged with before/after/reason; none is a post-hoc threshold change",
+      "ok": false,
+      "severity": "minor",
+      "detail": "All 9 deviations in probe_2.json 'deviations' have item, prereg_said, what_you_did, why and effect_on_verdict. None changes a threshold. Three deviations (drive-letter case, access population, permission/interrupt) have literal variants in units.<u>.strata.<s>.verdict.sensitivity, all verdict-identical; cc_local main literal S_path_any is 0.694, still DEAD. Gaps: (a) 'Codex sub-agent nested prompt' says only 'see its verdict cell', and notes section 6.5 dismisses it because the cell has '0 deep accesses'. But that cell is decided by S_path_any, which the envelope source does change. From the JSON the literal value is at most (104+17)/795 = 0.152 (units.swechat/codex.strata.sub.classes.path.sourced_by.parent_prompt k = 17), still WEAK, but no before/after is reported. (b) 'workspace root for child sessions' has no before/after at all. It underlies the swechat/opencode sub S_deep verdict (WEAK, 16/219, 53 s, depth_unknown = 0). Under the literal rule, absolute child paths would most likely be depth_unknown, the cell would fall back to S_path_any 0.098 (2,498 paths, 176 s), and the verdict would still be WEAK. That is my inference; the variant was not computed. (c) Wrong pointer: three effect_on_verdict entries cite units.<unit>.strata.<s>.verdict_sensitivity.<variant>, but the JSON key is units.<unit>.strata.<s>.verdict.sensitivity.<variant>. The post-hoc additions are disclosed as post hoc, and the code never feeds them to a verdict (:931-938, :886-894)."
+     },
+     {
+      "rule": "(5) kill criteria applied and that line of work stopped",
+      "ok": false,
+      "severity": "minor",
+      "detail": "DEAD (honest baseline defeats the mechanism) is recorded in verdicts for swechat/codex main (0.311), swechat/opencode main (0.309) and cc_local main (0.592), all decided by the S_path_any fallback. aiv_cu DEAD becomes INCONCLUSIVE per probe2.units.antecedents_incomplete_rule. However, after the first B output the agent added a post-hoc recomputation of the killed statistic without creation targets for the DEAD cells: units.<u>.strata.main.post_hoc_descriptive.S_path_any_excluding_creation_targets = codex 0.300, opencode 0.219, cc_local 0.514. Notes section 6.9 then reports that 'The three DEAD fallback cells stay above 0.20 without creation targets.' This is disclosed, verdict-neutral, and confirms the kill. Still, it is continued work on killed cells, which contradicts the summary's 'Work stopped there' and README rule 6."
+     },
+     {
+      "rule": "(6) every number in analysis/notes/probe_2.md appears in analysis/out/probe_2.json",
+      "ok": true,
+      "severity": "none",
+      "detail": "An automated scan of every numeric token in the notes against all JSON values (3- and 4-decimal and integer forms) left only the threshold literals 0.05/0.10/0.20 unmatched (notes lines 16, 43, 167, 179, 209). Those are in thresholds_from_prereg as 0.05/0.1/0.2. I spot-checked about 60 numbers at their cited JSON paths: verdict table, class baselines, by_field, sourced_by, lag quantiles, per-session histogram, by_call_ordinal, depth table, CC subagent, aiv_cc null, aiv_cc_rule 156/189 and 35, redacted_ref 3, the calibration-population variant 0.157/0.076, post-hoc 0.255/0.300/0.219/0.514/0.098/0.807, and the trace 0.523/0.113/0.410. All match."
+     },
+     {
+      "rule": "(6b) interpretive claims and provenance labels supported by the JSON and prereg",
+      "ok": false,
+      "severity": "minor",
+      "detail": "(a) Notes line 37 says 'Every pre-registered sensitivity run gives the same label', and the agent summary says 'All 3 pre-registered sensitivity variants'. These variants (first_mention_access_only, excluding_permission_interrupt, literal_case) are not in prereg.json probe2 or PREREG.md section 2. grep finds 'sensitivity' only in probe4's redaction_sensitivity. The agent defined them alongside its deviations, so their provenance is misstated. (b) Notes line 182 says subagents are cleaner (0.073 in OpenCode child sessions) 'because their nested prompt names the files'. For OpenCode the JSON contradicts this: units.swechat/opencode.strata.sub.deep_first_try.deep_sourced_by.parent_prompt = 6/219 = 0.027, against result = 203/219 = 0.927. The claim holds only for CC subagents (parent_prompt 0.263). (c) Notes line 189 makes an unmeasured qualitative claim ('seen in examples, not measured here') about Gemini editing its own write_file output. It is labelled as unmeasured but has no backing in the JSON."
+     },
+     {
+      "rule": "(7) nulls reported as prominently as hits",
+      "ok": false,
+      "severity": "minor",
+      "detail": "Mostly compliant. DEAD, INSUFFICIENT_N and NOT_TESTABLE cells sit in the same verdict table as the WEAK cells. 'No unit is ALIVE' follows the table directly, and section 5 is a dedicated nulls section. One asymmetry: section 4 lists the below-min S_deep cells as 'reported but not interpreted', with k/n only: codex 27/156, opencode 18/201, gemini 55/127, cc_local 31/90, all unfavourable at 0.09-0.43. Meanwhile aiv_cc's below-min S_deep (0/1,235, 13 s < 20) is interpreted in section 7 as showing 'the honest floor can be zero for a disciplined single agent'. It is caveated (single agent, 13 sessions), but the favourable below-min cell is interpreted and the unfavourable ones are not."
+     },
+     {
+      "rule": "(8) n and CIs present; min-n respected",
+      "ok": false,
+      "severity": "minor",
+      "detail": "Every verdict cell carries k, n, n_sessions, CI and hi_used. The verdict min-n (100/20 and 200/20) is respected. But global.min_n.below_min says to report raw k/n with 'insufficient n' and 'no rate, no CI'. probe_2.py calls crate(..., min_den=1, min_sess=1) at lines 876, 883, 892-894, 913, 925-930 and 936, which writes rates and bootstrap CIs below the 30-from-5-sessions floor. There are 43 such dicts in the JSON, for example units.swechat/cursor.strata.main.S_path_any 34/38, 3 s -> 0.895 [0.727, 1.0]; units.whowhen.strata.main.S_path_any 18/27 -> 0.667 [0.25, 0.875]; units.cc_local.strata.sub.deep_first_try.S_deep 0/12, 2 s -> [0, 0]; units.cc_local.strata.sub.variants.literal_case 1/12, 2 s -> 0.083 [0, 0.091]. These 2-3-cluster bootstraps are the degenerate case A2-2 warned about. No verdict reads them, and the notes show k/n only for these cells. Also, a few note values are given without their CI, although the CI is in the JSON: section 6.2 cc_local 0.592 vs 0.694 and 0.344 vs 0.567, and section 6.9 aiv_cu 0.807."
+     },
+     {
+      "rule": "(9) no read of analysis/out/phase_c or Phase C notes; no A-split thresholds recomputed on B",
+      "ok": true,
+      "severity": "none",
+      "detail": "probe_2.py has no reference to phase_c or analysis/notes. It reads *_B.parquet, swechat_population.parquet and aiv_cc_A.parquet session_ids only; the last is required by global.aiv_cc_rule (aiv_cc_overlap, :966-974). D_unit is taken from resolved.probe2.depth_threshold and not recomputed; B depth quantiles are descriptive. The split-A debug mode is forced to write outside analysis/out (:990-993); its output is scratchpad p2_A_full.json at 22:41. The shared scratchpad holds Phase C observation dumps (p2.txt, p2b.txt, 22:46), but they contain nothing about knowledge precedence and match the concurrent Phase C proposals commit a6317dd (22:51). I cannot attribute them to the probe agent, and no Phase C content appears in probe_2.md. I cannot verify the agent's transcript-level claim that it read no Phase C file."
+     },
+     {
+      "rule": "(10) cc_local aggregate-only; aiv_cc labelled single-agent",
+      "ok": false,
+      "severity": "minor",
+      "detail": "cc_local is compliant. units.cc_local contains only fixed vocabulary keys, tool names mapped by pc.private_key (public set plus 'other_tool') and generic note strings, with no paths, text or commands. DEBUG hooks are disabled for cc_local (:601, :668). aiv_cc is mostly compliant: verdicts.aiv_cc.main.labels and units.aiv_cc.labels say 'single-agent case study', and the overlap is reported (156/189 B runs share an SDK session with A; 35 distinct). The notes table and sections 3, 5 and 7 label it. But several notes mentions carry no label: line 62-63 ('In aiv_cc the split is 0.131 ... 0.482'), line 73 ('In aiv_cc that share is 0.724'), line 164 ('aiv_cc: 0.098') and line 174 ('0.192 (aiv_cc)'). The agent summary's 'surprises' entry also has '0.192 (aiv_cc)' unlabelled. The task asks for the label everywhere."
+     }
+    ]
+   },
+   "fixed": false
+  },
+  {
+   "probe": 3,
+   "res": {
+    "probe": "Probe 3: environment pushback (surprise rate). The script ran on split B under prereg.json sha256 3189a326... and prereg_common.py sha256 bb50f690..., which matches provenance.spec_module_sha256. It computed 16 verdict cells mechanically. Script: C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\probe_3.py. Raw JSON: C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\probe_3.json. Interpretation notes: C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\probe_3.md. Headline: the zero-error-long-session flag is ALIVE only in swechat/claude_code. There, 9 of 413 sessions with at least 134 calls are error-free (0.022, Wilson [0.012, 0.041]), and 0 of 224 sessions with at least 220 calls are. The flag is DEAD in cc_local and aiv_cu, and too few long sessions exist to judge it in codex, opencode, gemini and aiv_cc. Retry-after-failure is at best WEAK in every unit: the effect's CI lower bound never reaches 0.10.",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\probe_3.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\probe_3.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\probe_3.md"
+    ],
+    "prereg_sha_ok": true,
+    "units": [
+     {
+      "unit": "swechat/claude_code : zero_error_tail",
+      "verdict": "ALIVE",
+      "deciding_number": "Z = 9/413 long sessions (L75 = 134 calls) error-free = 0.0218, Wilson [0.0115, 0.0409]; 1,649 sessions with paired calls. At L90: 0/224, Wilson hi 0.0169. E0 = 0.00091, Z/E0 = 24.0.",
+      "json_path": "analysis/out/probe_3.json#units.swechat/claude_code.verdict.zero_error_tail"
+     },
+     {
+      "unit": "swechat/claude_code : reaction",
+      "verdict": "WEAK",
+      "deciding_number": "Effect R_fail - R_ok = 0.1063 [0.0908, 0.1214], 1,649 sessions. R_fail = 1,435/7,414 = 0.194 (1,132 sessions); R_ok = 15,942/182,652 = 0.087. The CI lower bound is below 0.10.",
+      "json_path": "analysis/out/probe_3.json#units.swechat/claude_code.verdict.reaction"
+     },
+     {
+      "unit": "cc_local : zero_error_tail",
+      "verdict": "DEAD",
+      "deciding_number": "Z = 15/36 = 0.417, Wilson [0.271, 0.578], L75 = 20 calls, 174 sessions. E0 = 0.304. At L90: 0/14.",
+      "json_path": "analysis/out/probe_3.json#units.cc_local.verdict.zero_error_tail"
+     },
+     {
+      "unit": "cc_local : reaction",
+      "verdict": "WEAK",
+      "deciding_number": "Effect = 0.1177 [0.0380, 0.1908], 174 sessions. R_fail = 251/1,095 (28 sessions); R_ok = 3,820/34,267.",
+      "json_path": "analysis/out/probe_3.json#units.cc_local.verdict.reaction"
+     },
+     {
+      "unit": "aiv_cc (single-agent case study) : zero_error_tail",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "n_long = 16, below the minimum of 20 (L75 = 666 calls). Z = 1/16 = 0.0625, Wilson [0.011, 0.283]. 119 runs have paired calls.",
+      "json_path": "analysis/out/probe_3.json#units.aiv_cc.verdict.zero_error_tail"
+     },
+     {
+      "unit": "aiv_cc (single-agent case study) : reaction",
+      "verdict": "DEAD",
+      "deciding_number": "Effect = -0.2303 [-0.3430, -0.0774], 119 runs. R_fail = 81/773 = 0.105 (50 runs); R_ok = 12,681/37,848 = 0.335, inflated by get_events polling.",
+      "json_path": "analysis/out/probe_3.json#units.aiv_cc.verdict.reaction"
+     },
+     {
+      "unit": "swechat/codex : zero_error_tail",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "n_long = 11, below the minimum of 20 (L75 = 120 calls). Z = 0/11, Wilson hi 0.259. 63 sessions.",
+      "json_path": "analysis/out/probe_3.json#units.swechat/codex.verdict.zero_error_tail"
+     },
+     {
+      "unit": "swechat/codex : reaction",
+      "verdict": "DEAD",
+      "deciding_number": "Effect = 0.0380 [-0.0412, 0.1826], 63 sessions. R_fail = 119/544 (40 sessions); R_ok = 1,649/9,122.",
+      "json_path": "analysis/out/probe_3.json#units.swechat/codex.verdict.reaction"
+     },
+     {
+      "unit": "swechat/opencode : zero_error_tail",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "n_long = 7, below the minimum of 20 (L75 = 185 calls; the projection was 59.9). Z = 0/7, Wilson hi 0.354. 213 sessions.",
+      "json_path": "analysis/out/probe_3.json#units.swechat/opencode.verdict.zero_error_tail"
+     },
+     {
+      "unit": "swechat/opencode : reaction",
+      "verdict": "WEAK",
+      "deciding_number": "Effect = 0.1008 [0.0299, 0.2055], 213 sessions. R_fail = 54/287 (67 sessions); R_ok = 672/7,697.",
+      "json_path": "analysis/out/probe_3.json#units.swechat/opencode.verdict.reaction"
+     },
+     {
+      "unit": "swechat/gemini (union; small n) : zero_error_tail",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "n_long = 1 (L75 = 405 calls), Z = 0/1. 21 sessions.",
+      "json_path": "analysis/out/probe_3.json#units.swechat/gemini.verdict.zero_error_tail"
+     },
+     {
+      "unit": "swechat/gemini (union; small n) : reaction",
+      "verdict": "DEAD",
+      "deciding_number": "Effect = 0.0150 [-0.0214, 0.0768], 21 sessions. R_fail = 11/252 (13 sessions); R_ok = 43/1,503.",
+      "json_path": "analysis/out/probe_3.json#units.swechat/gemini.verdict.reaction"
+     },
+     {
+      "unit": "aiv_cu (proxy, capped at WEAK) : zero_error_tail",
+      "verdict": "DEAD",
+      "deciding_number": "Z = 678/988 = 0.686, Wilson [0.657, 0.714], L75 = 40 calls, 1,979 sessions. E0 = 0.414. Of the 678 zero-error long sessions, 352 have no shell call, which is the only place the proxy can fire.",
+      "json_path": "analysis/out/probe_3.json#units.aiv_cu.verdict.zero_error_tail"
+     },
+     {
+      "unit": "aiv_cu (proxy, capped at WEAK) : reaction",
+      "verdict": "WEAK",
+      "deciding_number": "Effect = 0.0335 [0.0087, 0.0577], 1,979 sessions. R_fail = 190/1,263 (550 sessions); R_ok = 6,632/56,714.",
+      "json_path": "analysis/out/probe_3.json#units.aiv_cu.verdict.reaction"
+     },
+     {
+      "unit": "whowhen/Algorithm-Generated : zero_error_tail",
+      "verdict": "WEAK",
+      "deciding_number": "Z = 7/27 = 0.259, Wilson [0.132, 0.447], L75 = 3 code_exec calls, 62 sessions. ALIVE was impossible because n_long < 30 and Z > 0.10.",
+      "json_path": "analysis/out/probe_3.json#units.whowhen/Algorithm-Generated.verdict.zero_error_tail"
+     },
+     {
+      "unit": "whowhen/Algorithm-Generated : reaction",
+      "verdict": "DEAD",
+      "deciding_number": "Effect = 0.0995 [-0.0827, 0.2764], 62 sessions. R_fail = 21/41 (32 sessions); R_ok = 26/63.",
+      "json_path": "analysis/out/probe_3.json#units.whowhen/Algorithm-Generated.verdict.reaction"
+     },
+     {
+      "unit": "swechat/cursor",
+      "verdict": "DEAD",
+      "deciding_number": "Pre-registered DEAD (no results). 164 calls and 0 results in B.",
+      "json_path": "analysis/out/probe_3.json#not_run.swechat/cursor"
+     },
+     {
+      "unit": "whowhen/Hand-Crafted",
+      "verdict": "DEAD",
+      "deciding_number": "Pre-registered DEAD (no failure signal). 386 paired calls in 33 sessions.",
+      "json_path": "analysis/out/probe_3.json#not_run.whowhen/Hand-Crafted"
+     },
+     {
+      "unit": "swechat/simple_text",
+      "verdict": "DEAD",
+      "deciding_number": "Listed DEAD in prereg.json probe3.units.dead. It has 0 B sessions.",
+      "json_path": "analysis/out/probe_3.json#not_run.swechat/simple_text"
+     },
+     {
+      "unit": "swechat/copilot",
+      "verdict": "NOT_TESTABLE",
+      "deciding_number": "0 B sessions.",
+      "json_path": "analysis/out/probe_3.json#not_run.swechat/copilot"
+     }
+    ],
+    "kills_fired": [
+     "cc_local zero_error_tail: DEAD, Z = 0.417 > 0.30. Work on this line stopped for cc_local.",
+     "aiv_cu zero_error_tail: DEAD, Z = 0.686 > 0.30 (proxy errors). Work on this line stopped for aiv_cu.",
+     "aiv_cc reaction: DEAD, effect CI lo -0.343 <= 0. Work on this line stopped. A post-hoc tool-stratified effect (0.048) is reported as description only and does not revive the verdict.",
+     "swechat/codex reaction: DEAD, effect CI lo -0.041 <= 0.",
+     "swechat/gemini reaction: DEAD, effect CI lo -0.021 <= 0.",
+     "whowhen/Algorithm-Generated reaction: DEAD, effect CI lo -0.083 <= 0.",
+     "DEAD before any measurement, as pre-registered: swechat/cursor (no results), swechat/simple_text (no calls, 0 B sessions), whowhen/Hand-Crafted (no failure signal)."
+    ],
+    "deviations": [
+     "{item: output path, prereg_said: 'data_rules.output_contract: write analysis/out/phase_b/<probe>.json', what_you_did: 'wrote analysis/out/probe_3.json and kept the content contract (raw counts, prereg sha256 copied in, verdicts under verdicts)', why: 'the task specification names analysis/out/probe_3.json', effect_on_verdict: none}",
+     "{item: Gemini per-call rate vs E0, prereg_said: 'the two Gemini classes are never pooled into one rate and the union is only a session indicator; E0 uses p = the pooled per-call primary rate', what_you_did: 'reported per-call rates per class; reported the union per-call rate once, labelled, and used it only as p in E0 and in the labelled union early/late row', why: 'E0 needs a per-call p for the indicator that decides the verdict', effect_on_verdict: 'none (E0 is reported, not part of the verdict rule)'}",
+     "{item: swechat/simple_text status, prereg_said: 'prereg.json probe3.units.dead lists it as DEAD; PREREG.md section 0 says 0 B sessions -> NOT_TESTABLE', what_you_did: 'recorded DEAD, following prereg.json', why: 'the JSON wins where the two differ', effect_on_verdict: 'label only; no number is computed for it'}",
+     "{item: retry successor set, prereg_said: 'consecutive calls (c_i, c_{i+1}) of the same thread by seq, where c_i has a paired result', what_you_did: 'let c_{i+1} range over all deduplicated calls of the thread, paired or not; the A feasibility count in prereg_calibration.py used paired calls only; pairs with an unpaired successor are reported (e.g. 264 of 190,637 in swechat CC)', why: 'literal SPEC text', effect_on_verdict: 'none expected'}"
+    ],
+    "nulls": [
+     "cc_local zero-error tail is DEAD: 15/36 long sessions (at least 20 calls) are error-free. The pre-registered L75 of 20 calls is short, and these sessions are glob/read-heavy. Counting permission denials, which the prereg keeps apart, 0/36 long sessions are free of native error flags.",
+     "aiv_cu zero-error tail is DEAD: 678/988 long sessions are error-free. The stderr proxy can fire only on shell calls. Among long sessions with at least one shell call, Z = 326/630 = 0.517 (descriptive). Z by stratum ranges from 0.406 (compat-chat) to 1.0 (openai-chat, 18/18).",
+     "Retry reaction reaches no ALIVE anywhere. The best result is swechat CC at 0.106 [0.091, 0.121]. In swechat CC, R_fail = 0.194, so most honest failures are not followed by a retry. Retries of an immediately preceding failed call are at most 1.23% of successor calls in every CLI unit (codex 0.0123; CC 0.0075).",
+     "Reaction is DEAD in aiv_cc (negative effect), codex, gemini and whowhen AG.",
+     "Too few long sessions to judge the zero-error tail (INSUFFICIENT_N): codex (11), opencode (7), gemini (1) and aiv_cc (16). Every one of them has Z at or near 0 (0/11, 0/7, 0/1, 1/16), but none is interpretable at the pre-registered n.",
+     "Early versus late error rate is stable in swechat CC (-0.0024 [-0.0056, 0.0009]), codex, gemini, cc_local and aiv_cc. Errors early but none late is common in honest CC sessions: 227 of 1,308."
+    ],
+    "surprises": [
+     "opencode B sessions are far shorter than A: calls per session p50 22, p75 30, against the A-derived L75 of 185. That left 7 long sessions against a pre-registered projection of 59.9. aiv_cc gave 16 long sessions against a projection of 30.2.",
+     "aiv_cc R_ok is 0.335 because polling counts as a retry under the prereg rule. mcp__village__get_events has 11,716 'retries' out of 18,150 successful calls. Exact repeats are 9,561 of the 12,681 R_ok retries. This makes the reaction effect negative (-0.230). A post-hoc tool-stratified effect is +0.048 [0.021, 0.091]. Codex write_stdin polls similarly supply 925 of the 1,649 R_ok retries.",
+     "The single error-free long aiv_cc run has 1,771 calls, 97.6% of them get_events polls, and no shell call.",
+     "swechat CC errors are clumped: Z/E0 = 24.0 at L75. Even so, the zero-error share falls to 10/254 at 128-255 calls and to 0 in every bin from 256 calls up. The 9 honest error-free long CC sessions sit near the cut (136-204 calls), are lighter on shell (0.207 vs 0.323 of calls) and heavier on edits.",
+     "Error rate rises within opencode sessions (late - early = 0.0173 [0.0044, 0.0325]; errors late but none early in 43 of 135 sessions). It falls within aiv_cu sessions (-0.0070 [-0.0096, -0.0040]; first decile 0.0367, last 0.0148).",
+     "aiv_cc split overlap: 156 of 189 B runs share an sdk_session_id with an A run. B has 35 distinct SDK sessions and A has 20.",
+     "cc_local permission denials (334 results in 111 sessions) far outnumber the sessions with any primary error (30/174)."
+    ],
+    "could_not_measure": [
+     "aiv_cu error precision and recall: the error signal is an unvalidated stderr proxy, so aiv_cu verdicts are capped at WEAK and the zero-error tail partly reflects the proxy's shell-only coverage.",
+     "whowhen Hand-Crafted: there is no failure signal, so it is DEAD by prereg.",
+     "whowhen AG early versus late: 0 sessions have at least 20 calls (the maximum is 5).",
+     "swechat/cursor: no tool results exist, so no error rate. swechat/copilot and simple_text: 0 B sessions.",
+     "What the swechat CC 'unmarked' class (native error with no text marker, 1,754 results) consists of: it is counted as primary per the prereg, and its content was not inspected.",
+     "Gemini zero-error tail and early/late beyond small n: 21 sessions and 1 long session. The two error classes were never validated together.",
+     "Whether the zero-error flag survives an adversary who fabricates plausible errors: this is outside what honest-baseline data can measure."
+    ]
+   },
+   "rederive": {
+    "probe": "Probe 3 (pushback / surprise rate) reproduces in full. I wrote my own code (scratchpad p3_rederive.py, p3_checks.py, p3_pad.py) and imported only prereg_common. I read B caches only, and read probe_3.py only after I had my numbers. On-disk prereg_common.py sha256 bb50f690... equals prereg.json provenance.spec_module_sha256, and prereg.json sha256 is 3189a326.... Every count behind every verdict matches the probe exactly: Z numerators and denominators, n_long, E0, R_fail and R_ok k/n with session counts, effect point estimates, and early/late differences with CIs. Effect CIs first differed at the third decimal. The cause is the resampling population: the probe resamples all sessions with paired calls, while I first resampled only sessions that contribute a c_i. With the probe's population (same default_rng(SEED).integers scheme) I reproduce its CIs to four decimals. No verdict changes under any variant I tried: successor restricted to paired calls; permission/interrupt rows left in R_ok; aiv_cc village-bash rows taken out of R_ok; either resampling population. The verdict code applies the prereg rules as written: zero-error ALIVE needs Z <= 0.10, Wilson hi <= 0.20 and n_long >= 30; WEAK needs Z <= 0.30; fewer than 20 long sessions is INSUFFICIENT_N; reaction ALIVE needs CI lo >= 0.10 and WEAK needs CI lo > 0; reaction min-n is 30 failed c_i from 10 sessions plus 30 ok; aiv_cu is capped at WEAK. I found no blocking problem. Files: C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\p3_rederive.json and p3_checks.json.",
+    "checks": [
+     {
+      "unit": "swechat/claude_code : zero_error_tail (ALIVE)",
+      "reproduced": true,
+      "my_numbers": "1,649 sessions with paired calls, 194,367 paired calls, p = 0.03832. L75 = 134: n_long = 413, Z = 9/413 = 0.0218, Wilson [0.0115, 0.0409], E0 = 0.000908, Z/E0 = 24.0. L90 = 220: 0/224, Wilson hi 0.0169. Verdict ALIVE (Z <= 0.10, hi <= 0.20, n_long >= 30).",
+      "problem": "None. Robustness: B sessions sharing call_ids (forks) are rare. 1,250 of 194,652 calls have a call_id that also appears in another B session. Only 3 long sessions share at least 50% of their call_ids. Greedy dedupe of near-duplicate long sessions keeps 411, with Z = 9/411 and Wilson hi 0.041. 2 long sessions have at least 50% of call_ids also in split A. The 9 zero-error sessions have 136-204 calls. By bin: 10/254 at 128-255 calls, 0 in every bin from 256 calls up. Both match the probe's claims.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/claude_code : reaction (WEAK)",
+      "reproduced": true,
+      "my_numbers": "R_fail = 1,435/7,414 = 0.1936 (1,132 sessions); R_ok = 15,942/182,652 = 0.0873; effect 0.1063. CI over the 1,638 contributing sessions: [0.0912, 0.1213]. CI over all 1,649 paired sessions (probe's population): [0.0908, 0.1214], exactly as reported. Successor restricted to paired calls: 0.1059 [0.0904, 0.1204]. Permission/interrupt rows kept in R_ok: 0.1061 [0.0910, 0.1210]. Apart rows: interrupt 542 (69 retries), permission 29 (6). Retries after failure as a share of successor pairs: 1,435/190,637 = 0.0075.",
+      "problem": "None. CI lo stays below 0.10 under every variant, so WEAK is stable.",
+      "severity": "none"
+     },
+     {
+      "unit": "cc_local : reaction (WEAK)",
+      "reproduced": true,
+      "my_numbers": "R_fail = 251/1,095 (28 sessions); R_ok = 3,820/34,267; effect 0.1177. CI over 139 contributing sessions: [0.0301, 0.1808]. Over all 174 sessions: [0.0380, 0.1908], matching the probe. Permission rows (325) kept in R_ok: 0.1186 [0.034, 0.182].",
+      "problem": "None. Min-n is met (1,095 failed c_i from 28 sessions). Note that cc_local has one session of 16,765 calls, so R_ok is dominated by a few huge sessions. The cluster bootstrap accounts for this.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/opencode : reaction (WEAK)",
+      "reproduced": true,
+      "my_numbers": "R_fail = 54/287 (67 sessions); R_ok = 672/7,697; effect 0.1008. CI over 211 contributing sessions: [0.0324, 0.2038]. Over 213 sessions: [0.0299, 0.2055], matching the probe.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "aiv_cu (proxy) : reaction (WEAK, capped)",
+      "reproduced": true,
+      "my_numbers": "R_fail = 190/1,263 (550 sessions); R_ok = 6,632/56,714; effect 0.0335. CI over 1,944 contributing sessions: [0.0096, 0.0592]. Over 1,979 sessions: [0.0087, 0.0577], matching the probe.",
+      "problem": "None. CI lo > 0 gives WEAK; the WEAK cap would apply in any case.",
+      "severity": "none"
+     },
+     {
+      "unit": "aiv_cu (proxy) : zero_error_tail (DEAD; largest unit)",
+      "reproduced": true,
+      "my_numbers": "1,979 sessions, 59,956 paired calls, p = 0.02148. L75 = 40: Z = 678/988 = 0.686, Wilson [0.657, 0.714], E0 = 0.414. L90 = 41: 178/292. Zero-error long sessions with no shell call: 352. Among long sessions with at least one shell call: 326/630 = 0.517. Z by stratum runs from compat-chat 56/138 = 0.406 to openai-chat 18/18. Early/late: -0.0070 [-0.0096, -0.0040]; first decile 0.0367, last decile 0.0148.",
+      "problem": "None. DEAD because Z > 0.30.",
+      "severity": "none"
+     },
+     {
+      "unit": "whowhen/Algorithm-Generated : zero_error_tail (WEAK)",
+      "reproduced": true,
+      "my_numbers": "62 sessions, 149 paired code_exec calls (all with exit codes; 54 nonzero), p = 0.362. L75 = 3: Z = 7/27 = 0.259, Wilson [0.132, 0.447], E0 = 0.211. L90 = 4: 3/12.",
+      "problem": "The verdict follows the rule mechanically (n_long >= 20 and Z <= 0.30), and n_long < 30 rules out ALIVE. However, Z/E0 = 1.23 and the observed zero-error share is what independent errors would predict for 3-call 'long' sessions. This WEAK therefore shows no excess clumping or friction signal. That is a point for interpretation, not a rule violation.",
+      "severity": "minor"
+     },
+     {
+      "unit": "whowhen/Algorithm-Generated : reaction (DEAD)",
+      "reproduced": true,
+      "my_numbers": "R_fail = 21/41 (32 sessions); R_ok = 26/63; effect 0.0995. CI over 47 contributing sessions: [-0.085, 0.285]; probe [-0.0827, 0.2764] over 62 sessions. Successor restricted to paired calls: 0.063 [-0.167, 0.281].",
+      "problem": "None. CI lo <= 0 in every variant.",
+      "severity": "none"
+     },
+     {
+      "unit": "cc_local : zero_error_tail (DEAD)",
+      "reproduced": true,
+      "my_numbers": "174 sessions, 36,542 paired calls, p = 0.0302. L75 = 20: Z = 15/36 = 0.417, Wilson [0.271, 0.578], E0 = 0.304. L90: 0/14. Counting permission/interrupt flags too, 0/36 long sessions are free of native error flags. Permission denials: 334 results in 111 sessions. Sessions with any primary error: 30/174.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "aiv_cc (single-agent case study) : zero_error_tail INSUFFICIENT_N, reaction DEAD",
+      "reproduced": true,
+      "my_numbers": "119 runs with paired calls. n_long = 16 < 20; Z = 1/16, Wilson [0.011, 0.283]. The single zero-error long run has 1,771 calls, 97.6% of them get_events, and 0 shell calls. Reaction: R_fail = 81/773 (50 runs), R_ok = 12,681/37,848 (9,561 exact repeats), effect -0.2303 [-0.343, -0.083]. get_events supplies 11,716 of 18,150 ok retries. Village-bash rows removed from R_ok: -0.2304. Split overlap: 156/189 B runs share an SDK session with A; B has 35 SDK sessions, A has 20.",
+      "problem": "None. The single-agent label is present in the verdicts.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/codex, swechat/gemini, swechat/opencode : zero_error_tail INSUFFICIENT_N; codex and gemini reaction DEAD",
+      "reproduced": true,
+      "my_numbers": "codex: n_long 11, 0/11, Wilson hi 0.259; reaction 119/544 (40 sessions) vs 1,649/9,122, effect 0.0380 [-0.041, 0.183]; write_stdin supplies 925 of 1,649 ok retries. gemini (union): n_long 1; reaction 11/252 (13 sessions) vs 43/1,503, effect 0.0150 [-0.026, 0.075]. opencode: n_long 7 (B calls per session p50 22, p75 30), 0/7, Wilson hi 0.354; early/late +0.0173 [0.0044, 0.0325]; errors late but none early in 43/135 sessions.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "early/late (descriptive, all units)",
+      "reproduced": true,
+      "my_numbers": "CC -0.0024 [-0.0056, 0.0009], with errors early but none late in 227/1,308. cc_local +0.0019 [-0.0038, 0.0121]. aiv_cc +0.0008 [-0.0077, 0.0105]. codex +0.0010 [-0.0146, 0.0165]. gemini union +0.073 [-0.024, 0.136]. These match the probe's reported values and its stable/rises/falls labels.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "method: CI population, gating, deviations",
+      "reproduced": true,
+      "my_numbers": "16 verdict cells. Pre-registered DEAD/NOT_TESTABLE cells: cursor (164 calls, 0 paired), whowhen HC (386 paired, no signal), simple_text and copilot (0 B sessions). cc_local outputs use private_key names only (mcp__*, other_tool).",
+      "problem": "The probe's reaction bootstrap resamples all sessions with paired calls, including sessions that contribute no c_i. That is a legitimate reading of 'session resampling' and moves the CI bounds by at most 0.008. The logged deviations do not affect any verdict: the successor set includes unpaired calls, village-bash rows stay inside R_ok, simple_text is DEAD per the JSON, and the output path is analysis/out/probe_3.json. Trivial: the shell share of calls in error-bearing long CC sessions computes to 0.3225; the probe states 0.323.",
+      "severity": "none"
+     }
+    ]
+   },
+   "audit": {
+    "probe": "Probe 3 (environment pushback) pre-registration compliance audit. Files audited: C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\probe_3.py, C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\probe_3.json and C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\probe_3.md, checked against analysis/prereg.json, PREREG.md and prereg_common.py. Overall: no blocking violations. The prereg hashes match and the prereg files are unchanged since 3df8d28. All 16 verdict cells match when recomputed from the numbers stored in the JSON, and no threshold was derived from B. There are minor issues in four areas: (a) the deviation log is incomplete and in one place inaccurate (it says unpaired successors are 'a fraction of a percent', but whowhen AG has 20 of 104); (b) intervals and quantiles are reported for cells below the minimum n, and some INSUFFICIENT_N cells are interpreted; (c) the interpretation softens some nulls (cc_local, codex, aiv_cu) and uses an alternate error definition that was not pre-registered and is described imprecisely in the notes; (d) the aiv_cc single-agent label is missing from several notes tables.",
+    "findings": [
+     {
+      "rule": "(1) prereg_common.py sha256 equals prereg.json provenance; prereg files unchanged",
+      "ok": true,
+      "severity": "none",
+      "detail": "sha256(analysis/probes/prereg_common.py) = bb50f6902f89...6947, which equals prereg.json provenance.spec_module_sha256. sha256(prereg.json) = 3189a3260e9e...06e4, which equals probe_3.json#prereg_json_sha256. `git diff --stat 3df8d28 -- analysis/prereg.json analysis/PREREG.md analysis/probes/prereg_common.py` is empty, and `git diff HEAD` on analysis/lib and prereg_calibration.py is also empty. The script refuses to run on a hash mismatch (probe_3.py:681-684), and the JSON records spec_module_sha256.match = true. The script was last modified at 22:40:19 local, before run_utc 2026-10-04T03:40:24Z (22:40:24 local), so the JSON reflects the final script."
+     },
+     {
+      "rule": "(2) every threshold in probe_3.py comes from prereg.json",
+      "ok": true,
+      "severity": "none",
+      "detail": "L75 and L90 are read from PRE['resolved']['probe3']['long_session'] (probe_3.py:578). Rate and quantile reportability minimums are read from PRE['global']['min_n'] (probe_3.py:67, 103). The verdict thresholds are hard-coded literals: 20 / 0.10 / 0.20 / 30 / 0.30 (probe_3.py:538-548) and 30 / 10 / 30 / 0.10 / 0 (probe_3.py:557-568). So are Jaccard 0.5 (probe_3.py:386), the early/late cut of 20 calls (probe_3.py:648) and 900 valid draws (probe_3.py:95). Each matches the prose in prereg.json (probe3.verdict, min_n, retry, early_late and global.ci_methods) exactly; prereg.json stores these rules as prose, so the script transcribes rather than parses them. thresholds_used copies the prose into the JSON. No threshold is derived from B. The remaining literals (RATE_BINS, S_index_count_min=10, the describe() quantile lists) feed descriptive output only."
+     },
+     {
+      "rule": "(3) verdicts follow the prereg verdict rule mechanically",
+      "ok": true,
+      "severity": "none",
+      "detail": "I recomputed all 16 cells from the stored numbers (units.<u>.zero_error_tail.L75 and units.<u>.retry) using prereg.json probe3.verdict and min_n. All 16 match probe_3.json#verdicts. Every L used equals resolved.probe3.long_session. The aiv_cu WEAK cap is implemented for both cells; no aiv_cu cell reached ALIVE, so it never bound. The aiv_cc single-agent, Gemini union and 'small n' labels are attached in units.<u>.verdict.labels. A deciding number is stored for every cell, and verdict_cells_computed = 16. The pre-registered DEAD and NOT_TESTABLE units are recorded from prereg.json probe3.units."
+     },
+     {
+      "rule": "(4) every deviation logged with before/after/reason; none is a post-hoc threshold change",
+      "ok": false,
+      "severity": "minor",
+      "detail": "Four deviations are logged with prereg_said, what_you_did, why and effect (probe_3.py:769-796 and probe_3.json#deviations). None changes a threshold. Problems: (a) The retry-successor deviation gives its effect as 'none expected (unpaired calls are a fraction of a percent)'. That is false for whowhen/AG: units.whowhen/Algorithm-Generated.retry.successor_pairs_next_unpaired = 20 of 104 (19%). Every AG B call is code_exec (180 calls, 149 paired), so these unpaired successors share the tool_key and can count as retries. The paired-only reading that the A calibration used could therefore move the AG reaction cell (DEAD, CI lo -0.083, only 41 failed c_i), and no sensitivity run was done. The verdict stands under the literal prereg text, but the effect claim is wrong. (b) The Gemini deviation says the union per-call rate is 'reported once'. It also appears in error_rate_per_call.primary, per_class.union, per_session_error_rate.all_sessions and early_late.union. (c) Some departures are not logged at all: Wilson CIs and quantiles reported below the minimum n (see rule 8); the cc_local sensitivity_raw_tool_key_comparison groups by raw tool keys, although SPEC tool_key requires private_key() 'before any grouping' (only an aggregate count is output); the aiv_cc_A.parquet session_id read (probe_3.py:740), which global.aiv_cc_rule requires and notes line 9 discloses, but which is outside data_rules.phase_b_input; and c_i with permission or interrupt results are left out of R_ok, a reasonable reading of classes_apart (571 of 190,637 pairs in swechat CC). The output-path deviation is logged, though analysis/out/phase_b/ exists and holds sibling probe outputs."
+     },
+     {
+      "rule": "(5) kill criteria applied and the line of work stopped where they fired",
+      "ok": false,
+      "severity": "minor",
+      "detail": "The kills were applied mechanically and recorded: the zero-error tail for cc_local (Z 0.417) and aiv_cu (Z 0.686); reaction for aiv_cc, codex, gemini and whowhen AG (CI lo <= 0); and the pre-registered DEADs. Notes §1 lists them and states that no threshold changed. Description continued on killed lines, though: post_hoc_tool_stratified_effect (probe_3.py:275-315, labelled POST HOC) is quoted for aiv_cc after its DEAD (+0.048); retry.rows_apart.R_ok_excluding_village_bash_proxy recomputes the aiv_cc effect; for cc_local, zero_error_tail.any_native_flag_incl_permission_interrupt_L75 (0/36) is an alternate error definition. That last one carries no post-hoc label in the JSON and is missing from the post-hoc list in notes §7. For aiv_cu, the shell-restricted Z (326/630) and the strata are reported. None of these changes a verdict, and the notes say so."
+     },
+     {
+      "rule": "(6) every number in notes/probe_3.md appears in probe_3.json",
+      "ok": false,
+      "severity": "minor",
+      "detail": "An automated scan found a JSON value for every numeric token apart from section numbers, bin edges and percentages restated from JSON shares. A table-by-table check matched every row in §2.1-§2.4, §3.1-§3.3 and §4. Imprecisions: (a) Notes lines 129 and 270, and the summary's null, say 'Counting permission denials, 0/36 long sessions are free of native flags'. The JSON figure (zero_error_tail.any_native_flag_incl_permission_interrupt_L75 = 0/36) also counts cc_interrupt_reject (16 results in 5 sessions), and no permission-only figure is in the JSON. (b) Line 291 says 'the codex DEAD come[s] largely from polling tools'. No JSON number supports a codex-specific effect without polling; the only codex post-hoc number, post_hoc_tool_stratified_effect, is -0.015 [-0.155, 0.165]. (c) The aiv_cu stratum table (lines 138-145) shows 6 of 10 strata without saying so. It omits anthropic-claude-code 4/6, anthropic-fable 14/17, anthropic-haiku 58/72 and gemini-flash 42/64. The 0.406-1.0 range claim is correct. (d) Line 290 says 'under 1.3% of all calls'. The JSON denominator is successor pairs; the per-paired-call variant is also under 1.3%."
+     },
+     {
+      "rule": "(7) nulls reported as prominently as hits",
+      "ok": false,
+      "severity": "minor",
+      "detail": "The verdict table gives DEAD and INSUFFICIENT_N cells the same space as the hit, the kills are listed in §1, and the headline says the flag is ALIVE only in swechat CC and reaction is at best WEAK. Three interpretation passages soften nulls, however. §5.2 heads 'cc_local is DEAD on the pre-registered cut' and adds 'The DEAD verdict reflects the threshold the prereg fixed. It is not evidence that long cc_local sessions are friction-free.' That leans on the alternate 0/36 definition, which was not pre-registered, and on L90 0/14, which is below the minimum n. §5.3 says 'the proxy probably explains much of it' for aiv_cu. §5.6 attributes the codex DEAD to polling without a supporting number. Separately, §5.5 interprets INSUFFICIENT_N cells: 'codex (0/11), opencode (0/7), gemini (0/1) and aiv_cc (1/16) all point the same way as swechat CC'. The summary's nulls repeat this ('Every one of them has Z at or near 0'), but global.verdict_vocabulary says INSUFFICIENT_N is 'reported, not interpreted'. No verdict was altered."
+     },
+     {
+      "rule": "(8) n and CIs present, min-n respected",
+      "ok": false,
+      "severity": "minor",
+      "detail": "n, session counts and CIs are present throughout, and the verdict minimums are respected: n_long >= 20 (>= 30 for ALIVE); retry >= 30 failed c_i from >= 10 sessions and >= 30 non-failed; >= 900 valid draws. Reporting below the minimum breaks global.min_n.below_min ('report raw k/n ... no rate, no CI') in three ways. First, zero_tail() (probe_3.py:205) always emits a Wilson share, lo and hi, so the INSUFFICIENT_N cells carry CIs in the JSON and in notes table 2.3: aiv_cc [0.011, 0.283] with Z/E0 8.0e8, codex [0, 0.259], opencode [0, 0.354], gemini [0, 0.793]. Second, stats.describe quantiles carry no label below the quantile minimum, and notes table 2.2 prints p50-p90 for codex long (n=11) and whowhen AG long (n=27), and p90 for cc_local long (n=36) and aiv_cc (n=57), although the JSON's own quantile_cis mark these 'insufficient n'. Third, the aiv_cu stratum openai-chat Z = 1.0 rests on n_long 18 and has no label. No verdict is affected."
+     },
+     {
+      "rule": "(9) no read of Phase C outputs or notes; no A-split thresholds recomputed on B",
+      "ok": true,
+      "severity": "none",
+      "detail": "probe_3.py reads only <corpus>_B.parquet through pc.load_split, plus swechat_population.parquet through pc.unit_frames and pc.swechat_formats. The one A read is the aiv_cc_A.parquet session_id column (probe_3.py:740), for the overlap count that global.aiv_cc_rule requires; no threshold uses it. No code path touches analysis/out/phase_c or analysis/notes, apart from the notes the probe writes itself. L75 and L90 come from prereg resolved; B call-count quantiles (for example opencode p75 = 30) are reported only as description. Notes line 11 states that nothing from Phase C was read. The probe agent's interactive file reads outside the script could not be audited."
+     },
+     {
+      "rule": "(10) cc_local outputs aggregate-only; aiv_cc labelled single-agent",
+      "ok": false,
+      "severity": "minor",
+      "detail": "cc_local is clean. All 19 tool keys in units.cc_local (per_tool_key, retry.per_tool_key_counts, the zero_error_long_profile top keys) are in PUBLIC_CC_TOOLS or are 'mcp__*' / 'other_tool'. The subtree's only strings are verdict and rule labels: no session ids, text, commands or paths. The notes give only counts and shares for cc_local. aiv_cc carries 'single-agent case study' in units.aiv_cc.verdict.labels, in probe_3.json#verdicts, in the notes verdict table and in §7 Limits. It is missing from the aiv_cc rows of notes tables 2.1-2.4 and 3.1-3.3, and from §5.6 ('The aiv_cc DEAD ...'), which falls short of the 'label it everywhere' instruction."
+     }
+    ]
+   },
+   "fixed": false
+  },
+  {
+   "probe": 4,
+   "res": {
+    "probe": "Probe 4: entropy / incidental detail. Separability of model-typed hex, large integers and timestamps from machine-produced values in honest logs, on split B.",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\probe_4.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\probe_4.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_b\\probe_4.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\probe_4.md"
+    ],
+    "prereg_sha_ok": true,
+    "units": [
+     {
+      "unit": "swechat/claude_code (hex, primary)",
+      "verdict": "WEAK",
+      "deciding_number": "T_orig w_adj 0.110 [0.041, 0.232]; 1,868 symbols, 161 tokens, 71 sessions. Control M_git: w_adj 0.002, CI hi 0.016 (139,967 symbols, 978 s). CI lo is above the control hi, but the point is below the 0.15 ALIVE size. The redaction rerun also gives WEAK (0.134, 1,752 symbols).",
+      "json_path": "units.swechat/claude_code.verdicts.hex_primary"
+     },
+     {
+      "unit": "swechat/claude_code (round numbers, secondary)",
+      "verdict": "ALIVE",
+      "deciding_number": "T_orig last-0 share 0.423 [0.334, 0.520] (127/300, 130 s) vs M_all 0.116 [0.110, 0.122] (2,365/20,419, 1,141 s); ALIVE needs CI lo > M_all hi + 0.05. The redaction rerun also gives ALIVE. Post hoc: the class is dominated by timeout parameters (120000 x3,769).",
+      "json_path": "units.swechat/claude_code.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "swechat/codex (hex)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 64 symbols (1 token, 1 s), below N_min 1,131",
+      "json_path": "units.swechat/codex.verdicts.hex_primary"
+     },
+     {
+      "unit": "swechat/codex (round)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 31 distinct values from 13 s (needs 100 / 10); raw 29/31 end in 0",
+      "json_path": "units.swechat/codex.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "swechat/opencode (hex)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 47 symbols (2 tokens, 2 s), below N_min 1,131; the prereg projected 1,369.6",
+      "json_path": "units.swechat/opencode.verdicts.hex_primary"
+     },
+     {
+      "unit": "swechat/opencode (round)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 23 values, 11 s",
+      "json_path": "units.swechat/opencode.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "swechat/gemini (hex; small n)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 0 symbols. The control M_all, w_adj 0.166 [0.101, 0.458], would fail the instrument check.",
+      "json_path": "units.swechat/gemini.verdicts.hex_primary"
+     },
+     {
+      "unit": "swechat/gemini (round; small n)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 1 value",
+      "json_path": "units.swechat/gemini.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "swechat/cursor (hex; small n; control missing)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "0 results, so T_orig and the control both have 0 symbols",
+      "json_path": "units.swechat/cursor.verdicts.hex_primary"
+     },
+     {
+      "unit": "swechat/cursor (round)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 8 values, 3 s; no M_all",
+      "json_path": "units.swechat/cursor.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "cc_local (hex)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 175 symbols (22 tokens, 10 s)",
+      "json_path": "units.cc_local.verdicts.hex_primary"
+     },
+     {
+      "unit": "cc_local (round)",
+      "verdict": "ALIVE",
+      "deciding_number": "T_orig last-0 0.648 [0.435, 0.786] (221/341, 14 s) vs M_all 0.121 [0.110, 0.130] (2,243/18,550, 28 s)",
+      "json_path": "units.cc_local.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "aiv_cc (hex; single-agent case study)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 137 symbols (18 tokens, 6 runs)",
+      "json_path": "units.aiv_cc.verdicts.hex_primary"
+     },
+     {
+      "unit": "aiv_cc (round; single-agent case study)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 42 values, 14 runs",
+      "json_path": "units.aiv_cc.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "aiv_cu (hex)",
+      "verdict": "WEAK",
+      "deciding_number": "T_orig w_adj 0.093 [0.043, 0.216]; 10,997 symbols, 1,142 tokens, 192 s. Control M_git: CI hi 0.034 (45,281 symbols, 630 s).",
+      "json_path": "units.aiv_cu.verdicts.hex_primary"
+     },
+     {
+      "unit": "aiv_cu (round)",
+      "verdict": "WEAK",
+      "deciding_number": "T_orig last-0 0.191 [0.133, 0.293] (740/3,866, 294 s) vs M_all 0.128 [0.113, 0.152] (3,000/23,506, 801 s). CI lo 0.133 does not exceed 0.152 + 0.05.",
+      "json_path": "units.aiv_cu.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "whowhen (hex)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 32 symbols (1 token). The control M_all, CI hi 0.177, would fail the instrument check.",
+      "json_path": "units.whowhen.verdicts.hex_primary"
+     },
+     {
+      "unit": "whowhen (round)",
+      "verdict": "INSUFFICIENT_N",
+      "deciding_number": "T_orig 9 values, 6 s",
+      "json_path": "units.whowhen.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "swechat/copilot, swechat/simple_text",
+      "verdict": "NOT_TESTABLE",
+      "deciding_number": "0 B sessions",
+      "json_path": "units.swechat/copilot.verdicts"
+     },
+     {
+      "unit": "swechat/* pooled (hex)",
+      "verdict": "WEAK",
+      "deciding_number": "T_orig w_adj 0.105 [0.052, 0.220] (1,972 symbols, 73 s) vs M_git hi 0.015. Pooled label; never replaces a unit verdict.",
+      "json_path": "pooled.swechat/*.verdicts.hex_primary"
+     },
+     {
+      "unit": "swechat/* pooled (round)",
+      "verdict": "ALIVE",
+      "deciding_number": "T_orig last-0 0.438 [0.353, 0.531] (141/322, 145 s) vs M_all 0.118 [0.112, 0.124]",
+      "json_path": "pooled.swechat/*.verdicts.round_numbers_secondary"
+     },
+     {
+      "unit": "public/* pooled (hex)",
+      "verdict": "WEAK",
+      "deciding_number": "T_orig w_adj 0.083 [0.046, 0.169] (13,131 symbols, 272 s) vs M_git hi 0.013",
+      "json_path": "pooled.public/*.verdicts.hex_primary"
+     },
+     {
+      "unit": "public/* pooled (round)",
+      "verdict": "WEAK",
+      "deciding_number": "T_orig last-0 0.203 [0.146, 0.298] (844/4,148, 430 s) vs M_all 0.120 [0.112, 0.129]",
+      "json_path": "pooled.public/*.verdicts.round_numbers_secondary"
+     }
+    ],
+    "kills_fired": [
+     "None fired. No reachable control failed the instrument check (CI hi <= 0.15). Two cells would have failed it, but in both T_orig fell below N_min first, which comes earlier in the rule order: swechat/gemini M_all (CI hi 0.458) and whowhen M_all (CI hi 0.177)."
+    ],
+    "deviations": [
+     "{item: output path, prereg_said: 'analysis/out/phase_b/<probe>.json', what_you_did: 'the script writes byte-identical analysis/out/probe_4.json (the task path) and analysis/out/phase_b/probe_4.json (named like the sibling probe_1/probe_2 files)', why: 'the task and the prereg name different paths', effect_on_verdict: none}",
+     "{item: epoch exclusion for JSON-number args, prereg_said: 'large_int ... excluding epoch_s / epoch_ms matches' (the calibration code used large_int.fullmatch without that exclusion), what_you_did: 'used pc.large_ints, which follows the SPEC, for JSON numbers too', why: 'the SPEC is the definition', effect_on_verdict: '100 epoch-shaped JSON numbers excluded in swechat/claude_code, 0 elsewhere and 0 in A (counts.json_number_epoch_excluded). If all 100 had been distinct T_orig values with none ending in 0, the CC round point would be about 0.318, still far above the ALIVE line. No label could change.'}",
+     "{item: reading of the redaction rerun, prereg_said: 'repeat the T_orig and control tests on events whose text has no REDACTED at all', what_you_did: 'event = the strings scanned for it (result text+stderr, raw call args, assistant/user/system text); sourcing antecedents keep the full record (primary); also reported a strict variant that drops REDACTED events from the antecedents', why: 'the text does not say whether antecedents are filtered', effect_on_verdict: 'none; both variants give the same labels in every cell'}",
+     "{item: redaction cap semantics and scope, prereg_said: 'swechat: verdict stands only if the redaction sensitivity run gives the same label, else WEAK', what_you_did: 'applied literally (any differing label gives WEAK), to both the hex and round-number verdicts, and to the pooled swechat/* and public/* cells (both contain swechat)', why: 'the caps line sits under both verdicts; the pooled scope is ambiguous', effect_on_verdict: 'none; no label differed'}",
+     "{item: statistics for classes below N_min, prereg_said: 'probe4.statistics: per unit x class chi2, p, w_adj with CI' vs 'global.min_n.below_min: report raw k/n ... no rate, no CI, no verdict', what_you_did: 'below N_min: raw 16-symbol counts only, no chi2 or w_adj', why: 'the global min-n rule and the task instruction not to claim results at small n', effect_on_verdict: 'none (those cells are INSUFFICIENT_N by rule)'}",
+     "{item: exploratory measures, prereg_said: 'not pre-registered', what_you_did: 'added durations with an all-zero fraction, ls-style mtimes at :00 and N-bytes ending 00 (requested by the task); written before any B number; labelled exploratory_not_preregistered', why: 'task requirement', effect_on_verdict: 'none; no verdict uses them'}",
+     "{item: post-hoc descriptive breakdown, prereg_said: 'n/a', what_you_did: 'after the first full run produced the verdicts, added the origin (JSON number vs arg string) and the tool of first occurrence for the integer classes, plus public-only top values; run-to-run JSON diff shows only added keys', why: 'to show what the round T_orig integers are', effect_on_verdict: 'none'}",
+     "{item: swechat/cursor, prereg_said: 'control_missing (no results)', what_you_did: 'verdict computed mechanically as INSUFFICIENT_N (control 0 symbols < N_min), with the control_missing label attached', why: 'the vocabulary has no separate label for this', effect_on_verdict: 'none'}",
+     "{item: cc_local privacy, prereg_said: 'aggregates only', what_you_did: 'removed min/max/quantiles of integer values for cc_local; no token or value examples; tool names via private_key', why: 'quantiles would expose individual values', effect_on_verdict: none}"
+    ],
+    "nulls": [
+     "Hex is INSUFFICIENT_N in 7 of 9 testable units: codex 64 symbols, opencode 47, gemini 0, cursor 0, cc_local 175, aiv_cc 137, whowhen 32, against N_min 1,131. Models type almost no unsourced hex: 170/194,652 = 0.00087 [0.00062, 0.00116] of swechat CC calls, 0.0093 of aiv_cu calls, at most 0.0034 in any swechat format.",
+     "The hex digit test never reaches ALIVE. Where testable, model-originated w_adj is 0.083 to 0.110, below the pre-registered 0.15.",
+     "The surface is thin. Only 0.150 [0.143, 0.158] of the 194,371 swechat CC tool results carry any hex, large integer or timestamp, and 0.072 carry hex. A hex-bearing result has p50 2 tokens (p95 13), so no per-result digit test is possible against the 1,131-symbol minimum. The share carrying any such field is 0.160 in aiv_cu, 0.224 in cc_local and 0.246 in opencode. aiv_cc (0.825) is the exception, driven by harness event timestamps.",
+     "Round numbers are INSUFFICIENT_N in codex, opencode, gemini, cursor, aiv_cc and whowhen.",
+     "Exploratory: model-typed durations show no excess of all-zero fractions. In swechat CC, T_orig 0.031 [0.000, 0.086] (65 values) against 0.078 expected, and A_orig 0.038 against 0.062. Machine durations are the ones rounder than uniform: M_all 0.067 against 0.027.",
+     "Exploratory: ls-style mtimes at :00 in machine output sit at about the uniform rate (CC 0.014, aiv_cu 0.014, against 0.017). Model-typed mtimes and byte counts are too rare to test (4 and 14 values in CC T_orig)."
+    ],
+    "surprises": [
+     "The round-number ALIVE verdicts (swechat CC, cc_local, swechat/*) mostly measure model-chosen parameters, not invented measurements. The top CC T_orig integers are tool timeouts (120000 x3,769; 30000 x2,325; 60000 x2,127). JSON-number T_orig values end in 0 at 0.961 (49/51); values inside arg strings end in 0 at 0.313 [0.213, 0.427] (249 values, 112 s), still above M_all 0.116. All of this is post hoc and descriptive.",
+     "Model-typed ISO timestamps sit on the minute far more often than machine stamps (seconds == 00): swechat CC T_orig 0.842 [0.767, 0.911] (260 values, 90 s) vs M_all 0.030 [0.023, 0.039]; aiv_cu 0.680 vs 0.048. This is pre-registered but carries no verdict. It is the cleanest machine/model separation of any field here.",
+     "The feasibility projection was off in both directions. swechat CC T_orig was projected at 931.3 symbols and came in at 1,868; opencode was projected at 1,369.6 and came in at 47; aiv_cu was projected at 26,800 and came in at 10,997.",
+     "Machine M_all hex is not uniform everywhere: gemini w_adj 0.166 [0.101, 0.458], whowhen 0.118 [0.096, 0.177]. M_git is uniform wherever it is large (CC CI hi 0.016 on 139,967 symbols).",
+     "T_orig mixes invented placeholders (abc1234 x12, abcd1234 x5, aaa1111 x5 in CC) with real values recalled from outside the record. For example, aiv_cu has e3b0c442, the prefix of sha256(''), and repeated 8-digit identifiers. This dilutes the measured non-uniformity, so w_adj is a lower bound for invented hex. In aiv_cu, '0' is over-represented in T_orig: 908 observed vs 679.0 expected.",
+     "Excluding REDACTED events raises T_orig w_adj a little (CC 0.110 to 0.134). That is the direction of the prereg's concern that redaction biases what survives toward lower entropy. No label changed.",
+     "aiv_cc: 34 of 189 B runs have no model-visible events (155 do). 156 of 189 B runs share an SDK session with an A run (35 distinct SDK sessions in B)."
+    ],
+    "could_not_measure": [
+     "Whether a fabricated tool result (fake byte count, PID, duration, hash) would carry the signature. There is no fabricated positive control; this probe only measures how far the honest baseline separates model-typed from machine values.",
+     "A per-result hex detector. Hex-bearing results carry about 2 tokens, and the digit test needs 1,131 symbols.",
+     "Truly invented vs recalled values. 'Unsourced' is an upper bound on 'invented', because the record has no system prompt or memory for aiv_cu, earlier runs are absent for aiv_cc, and compaction content is missing in CC. Prefix-sourcing also only sees earlier tokens of lengths 7/8/32/40/64.",
+     "Round-number verdicts for codex, opencode, gemini, cursor, aiv_cc and whowhen (below 100 values / 10 sessions).",
+     "Model-typed ls mtimes and byte counts (fewer than 30 values in every unit)."
+    ]
+   },
+   "rederive": {
+    "probe": "Probe 4 (entropy / incidental detail), split B, re-derived independently. The prereg sha256 of analysis/probes/prereg_common.py matches prereg.json (bb50f690...). My own extraction is C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\p4_rederive.py, the verdicts are in p4_analyze.py, and the intermediate state is in p4_store.pkl and p4_res.pkl in the same folder. From prereg_common I imported only the frozen definitions: hex_tokens, git_hashes, large_ints, hex_counts, w_adj_from_counts and RX. I wrote everything else myself: the git-call detection, the per-session walk and antecedent sets, the T/A copy-vs-orig split with the prefix rule, the per-class first-occurrence dedupe, the redaction variants, the pooling, the bootstrap and the verdict logic. I read probe_4.py only after I had my numbers.\n\nI re-ran every unit, not only the ALIVE/WEAK ones and the three largest. Every verdict reproduces. Every deciding point estimate and every n reproduces exactly, except one denominator off by one (cc_local, explained below). The only other differences are small CI shifts in the two pooled cells.\n\nI also checked the shared definitions independently:\n- N_min = 1,131 is correct: power is 0.7998 at 1,130 and 0.8003 at 1,131.\n- p_digit(L) matches a Monte Carlo of uniform hex conditioned on at least one digit and one letter, to 4 decimals for every length.\n- On uniform length-8 tokens of about 1,864 symbols, null w_adj has p95 0.074 and p99 0.090, and 0 of 500 draws reach 0.110. So the swechat CC T_orig excess is real but below the 0.15 ALIVE size, which matches WEAK.\n\nThe rule order (INSUFFICIENT_N before the instrument DEAD) and the literal swechat redaction cap are both applied as the prereg is written. \"No kill fired\" is correct. The gemini and whowhen controls would fail the instrument check (CI hi 0.458 and 0.177), but their T_orig is far below N_min, and that rule comes first.\n\nThe census nulls reproduce exactly:\n- swechat CC: 29,231/194,371 = 0.150 [0.143, 0.158] of results carry any hex, large integer or timestamp; 0.072 carry hex; 170/194,652 calls = 0.00087 [0.00062, 0.00116] carry unsourced (T_orig) hex.\n- aiv_cu: 0.160 of results; 560/59,956 = 0.0093 of calls.\n- cc_local 0.224, opencode 0.246, aiv_cc 0.825.\n\nThe timestamp surprise (model-typed ISO times on :00 seconds) also reproduces: swechat CC T_orig 219/260 = 0.842 [0.767, 0.911] (90 s) against M_all 0.030 [0.023, 0.039]; aiv_cu 0.680 against 0.048.\n\nThe A-split counts in implementation_check_A match the calibration. So the opencode drop from the projected 1,370 symbols to 47 is real data lumpiness: the A count was 6 tokens from 4 sessions.",
+    "checks": [
+     {
+      "unit": "swechat/claude_code hex (primary) WEAK",
+      "reproduced": true,
+      "my_numbers": "T_orig w_adj 0.11029 [0.04100, 0.23236], chi2 37.72, 1,868 symbols, 161 tokens, 71 s. Control M_git w_adj 0.00201, CI hi 0.01634 (139,967 symbols, 978 s); M_all hi 0.0174. 0.110 > h 0.016 but < 0.15, so WEAK. Identical to the probe to every printed digit.",
+      "problem": "None. Verdict and deciding number match the prereg rule.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/claude_code hex redaction rerun (cap check)",
+      "reproduced": true,
+      "my_numbers": "noR (antecedents kept): T_orig 0.13382 [0.08725, 0.24600], 1,752 symbols, 146 tokens, 69 s; M_git hi 0.01622 (136,691 symbols, 973 s) gives WEAK. Strict variant: 0.11493 [0.07771, 0.20623], 2,433 symbols, 94 s, also WEAK. Same label, so the cap leaves WEAK in place.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/claude_code round numbers (secondary) ALIVE",
+      "reproduced": true,
+      "my_numbers": "T_orig last-0 127/300 = 0.42333 [0.33440, 0.52044], 130 s, against M_all 2,365/20,419 = 0.11582 [0.10972, 0.12238], 1,141 s. CI lo 0.334 > 0.122 + 0.05 = 0.172, so ALIVE. The noR rerun gives 121/277 = 0.437 [0.346, 0.532] vs M_all hi 0.119, also ALIVE; the strict rerun gives 130/347 = 0.375 [0.297, 0.471], also ALIVE. JSON epoch exclusion: 100 occurrences excluded (matches the probe), only 3 distinct values; keeping them gives 127/303 = 0.419 [0.326, 0.508], still ALIVE.",
+      "problem": "Mechanically correct. Caution for the write-up: the class is dominated by model-chosen parameters such as timeouts, not by invented measurements; the probe already flags this as post hoc. Under my alternative split (values that appear inside arg strings), the share is still 94/265 = 0.355 [0.255, 0.457], above the 0.172 ALIVE line. So the label does not hinge on the JSON-number timeouts, but read it as 'model-chosen numbers are round'. The probe's 'value inside arg strings' split (0.313 [0.213, 0.427], 249 values) uses the origin of the first occurrence. Mine assigns a value to every origin it appears in, so the numbers differ slightly. Both are descriptive, and the conclusion is the same.",
+      "severity": "minor"
+     },
+     {
+      "unit": "cc_local round numbers ALIVE",
+      "reproduced": true,
+      "my_numbers": "T_orig last-0 221/340 = 0.650 [0.435, 0.786], 14 s, against M_all 2,243/18,550 = 0.1209 [0.1100, 0.1301], 28 s. CI lo 0.435 > 0.171, so ALIVE; meets the 100 values / 10 sessions minimum.",
+      "problem": "Off by one in the denominator: I get 340, the probe 341. Cause: the probe runs pc.large_ints (finditer) on JSON-number strings, so a negative number like -NNNNN yields NNNNN. My fullmatch drops it. cc_local has 69 negative large JSON-number occurrences, and one distinct value lands in T_orig. Both readings are defensible, since the large_int lookbehind admits '-'. Effect is 0.648 vs 0.650, with no verdict change.",
+      "severity": "none"
+     },
+     {
+      "unit": "aiv_cu hex WEAK",
+      "reproduced": true,
+      "my_numbers": "T_orig w_adj 0.09274 [0.04335, 0.21595], 10,997 symbols, 1,142 tokens, 192 s. Control M_git w_adj 0.0167, hi 0.03378 (45,281 symbols, 630 s). 0.093 > 0.034 but < 0.15, so WEAK. Exact match.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "aiv_cu round numbers WEAK",
+      "reproduced": true,
+      "my_numbers": "T_orig 740/3,866 = 0.19141 [0.13335, 0.29270], 294 s, against M_all 3,000/23,506 = 0.12763 [0.11258, 0.15228], 801 s. CI lo 0.133 < 0.152 + 0.05 (no ALIVE); point 0.191 > 0.152, so WEAK. Exact match.",
+      "problem": "None.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/* pooled hex WEAK",
+      "reproduced": true,
+      "my_numbers": "T_orig w_adj 0.10485 [0.0560, 0.2270], 1,972 symbols, 163 tokens, 73 s. M_git w_adj 0.0037, hi 0.0158 (156,783 symbols, 1,179 s), so WEAK. noR gives 0.126 and strict 0.110, both WEAK. Probe CI: [0.0519, 0.2205]; control hi 0.0154.",
+      "problem": "The point, n and verdict match. The CI differs slightly because the probe keys pooled sessions as 'unit|sid', which changes the sorted session order the seeded bootstrap draws from. The same holds for the control hi. Either order is valid under the prereg, and the label cannot change: ALIVE needs a point of at least 0.15.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/* pooled round ALIVE",
+      "reproduced": true,
+      "my_numbers": "T_orig 141/322 = 0.4379 [0.3525, 0.5314], 145 s, against M_all 2,777/23,570 = 0.1178 [0.1116, 0.1243], 1,239 s, so ALIVE. noR gives 135/299 = 0.452 [0.365, 0.548], also ALIVE. Exact match.",
+      "problem": "Same interpretive caution as swechat CC: it is dominated by CC (130 of 145 sessions) and by model-chosen parameters.",
+      "severity": "none"
+     },
+     {
+      "unit": "public/* pooled hex WEAK",
+      "reproduced": true,
+      "my_numbers": "T_orig w_adj 0.08324 [0.0449, 0.1713], 13,131 symbols, 1,323 tokens, 272 s. M_git hi 0.0137 (207,246 symbols, 1,828 s), so WEAK. Probe CI: [0.0458, 0.1693]; control hi 0.0134.",
+      "problem": "The CI differs only through pooled session-key ordering; the point, n and verdict are identical.",
+      "severity": "none"
+     },
+     {
+      "unit": "public/* pooled round WEAK",
+      "reproduced": true,
+      "my_numbers": "T_orig 844/4,148 = 0.2035 [0.1486, 0.2911], 430 s, against M_all 5,581/46,594 = 0.1198 [0.1125, 0.1293], 2,108 s. CI lo < 0.179 (no ALIVE); point > 0.129, so WEAK. Probe: 0.203 [0.146, 0.298].",
+      "problem": "Only the CI differs, again from session ordering in the pooled bootstrap. Verdict unchanged.",
+      "severity": "none"
+     },
+     {
+      "unit": "swechat/opencode (largest by B sessions after CC and aiv_cu) hex and round",
+      "reproduced": true,
+      "my_numbers": "T_orig hex 47 symbols, 2 tokens, 2 s, below N_min 1,131, so INSUFFICIENT_N. Control M_git 8,804 symbols, hi 0.067 (would pass). Round T_orig 23 values from 11 s, below 100, so INSUFFICIENT_N (16/23 end in 0; M_all 91/286 = 0.318).",
+      "problem": "None. The A-split T_orig was 160 symbols from just 6 tokens in 4 sessions, so the 1,370-symbol projection was driven by a few long tokens. The B shortfall is real.",
+      "severity": "none"
+     },
+     {
+      "unit": "aiv_cc (largest by events; single-agent case study) hex and round",
+      "reproduced": true,
+      "my_numbers": "T_orig hex 137 symbols, 18 tokens, 6 runs, so INSUFFICIENT_N. M_git 6,004 symbols, hi 0.102. Round T_orig 42 values from 14 runs, so INSUFFICIENT_N (26/42). M_all 284/2,597 = 0.109.",
+      "problem": "None. The 'single-agent case study' label is present in the JSON.",
+      "severity": "none"
+     },
+     {
+      "unit": "other INSUFFICIENT_N cells (codex, gemini, cursor, whowhen, cc_local hex)",
+      "reproduced": true,
+      "my_numbers": "codex T_orig 64 symbols (1 token, 1 s); round 29/31 values from 13 s. gemini T_orig 0 symbols; M_all control 2,160 symbols, w 0.166, hi 0.458; round 1 value. cursor: 0 results; round 8 values, 3 s. whowhen T_orig 32 symbols (1 token); M_all hi 0.177; round 9 values, 6 s. cc_local hex T_orig 175 symbols (22 tokens, 10 s); M_all control hi 0.132 (36,906 symbols, 20 s).",
+      "problem": "None. The rule order puts INSUFFICIENT_N before the instrument DEAD, so the gemini and whowhen control failures are correctly reported as would-fail only.",
+      "severity": "none"
+     },
+     {
+      "unit": "census and surface nulls (swechat CC, aiv_cu, cc_local, opencode, aiv_cc)",
+      "reproduced": true,
+      "my_numbers": "Results with any field (hex, large int or timestamp), and hex only:\n- swechat CC: 29,231/194,371 = 0.1504 [0.1428, 0.1583]; hex 0.0718; calls with T_orig hex 170/194,652 = 0.00087 [0.00062, 0.00116].\n- aiv_cu: 0.1597 [0.150, 0.170]; hex 0.0888; calls with T_orig hex 560/59,956 = 0.0093.\n- cc_local: 0.224; hex 0.0198.\n- opencode: 0.246; calls with T_orig hex 0.0034.\n- aiv_cc: 0.825.",
+      "problem": "None. Every headline census number matches.",
+      "severity": "none"
+     },
+     {
+      "unit": "ISO timestamp seconds==00 (pre-registered, no verdict)",
+      "reproduced": true,
+      "my_numbers": "swechat CC T_orig 219/260 = 0.842 [0.767, 0.911] (90 s) against M_all 1,411/47,359 = 0.030 [0.023, 0.039] (612 s). aiv_cu T_orig 268/394 = 0.680 [0.388, 0.894] (58 s) against M_all 354/7,331 = 0.048.",
+      "problem": "None. Note that the aiv_cu T_orig CI is wide [0.39, 0.89]; the swechat CC separation is the solid one.",
+      "severity": "none"
+     },
+     {
+      "unit": "T_orig sourcing completeness (all hex verdicts)",
+      "reproduced": true,
+      "my_numbers": "Not a number check. Antecedents are the result, user and system text in the IR only.",
+      "problem": "'Unsourced' is an upper bound. The Claude Code system prompt (for example gitStatus recent-commit hashes) and other out-of-record context are not in the IR. So some T_orig hex is copied machine hex, which pulls T_orig w_adj toward the control. The bias points toward DEAD, so the WEAK labels are, if anything, conservative. This is a limitation to state in the notes, not a computational error.",
+      "severity": "minor"
+     }
+    ]
+   },
+   "audit": {
+    "probe": "Probe 4: entropy / incidental detail. Pre-registration compliance audit of analysis/probes/probe_4.py, analysis/out/probe_4.json (byte-identical to out/phase_b/probe_4.json) and analysis/notes/probe_4.md. No blocking findings. All 26 verdict cells re-derive exactly from the stored numbers. Minor issues: undeclared quantile handling, two imprecise statements in the notes, one interpretation that overreaches, and some missing labels.",
+    "findings": [
+     {
+      "rule": "(1) prereg_common.py sha256 equals prereg.json provenance; prereg files unchanged since 3df8d28",
+      "ok": true,
+      "severity": "none",
+      "detail": "On-disk sha256 of analysis/probes/prereg_common.py is bb50f6902f89c34c293e3c2e4b76841a929c1210b153b6255aecfd88e7ff6947, equal to prereg.json provenance.spec_module_sha256. `git diff --stat 3df8d28 -- analysis/prereg.json analysis/PREREG.md analysis/probes/prereg_common.py` is empty, and `git status` shows no changes to those files, analysis/lib, analysis/loaders or analysis/cache. prereg_calibration.py also matches provenance.calibration_script_sha256 (dd186a7d...); it is checked because the script imports its digit_test_ci. The script exits on any mismatch (probe_4.py:87-98) and records spec_sha_ok/calibration_sha_ok=true in provenance. Every logged run (scratchpad probe4_run{1..5}.log) prints 'prereg OK'."
+     },
+     {
+      "rule": "(2) every threshold used in probe_4.py comes from prereg.json",
+      "ok": true,
+      "severity": "none",
+      "detail": "Read from prereg.json: N_min (probe_4.py:104, resolved.probe4.N_min.value=1131, asserted equal to pc.n_min_power() at :123); instrument ceiling 0.15, ALIVE w 0.15, round margin 0.05, and the round minimums of 100 values and 10 sessions (all regex-parsed from probe4.hex.instrument_check and probe4.verdict text at :105-109); rate minimums 30 and 5 (global.min_n, :110-111). Seed and n_boot are asserted equal to the prereg (:99). thresholds_used is identical in all 5 run JSONs. Hard-coded literals, all equal to the prereg or verdict-neutral: small_n_sessions=30 (:113, prereg '< 30 B sessions'); the uniform expectations 1/60, 0.1 and 0.001 in ts_class_row (:513, :522, :525), which match prereg timestamps.round_metrics and feed no verdict; prefix lengths (7,8,32,40) at :252, which equal HEX_LENGTHS without 64 and reproduce the calibration counts exactly (implementation_check_A.mismatches=[]); and descriptive-only top-15 and length-7/8 example filters."
+     },
+     {
+      "rule": "(3) verdicts follow the prereg verdict rule mechanically",
+      "ok": true,
+      "severity": "none",
+      "detail": "I re-applied prereg.json probe4.verdict independently to the stored numbers for every unit and pooled cell, both verdicts, and all three variants (main, noredact, noredact_strict). All 26 stored verdicts (verdict_table, n_verdict_cells=26) match. The rule order in hex_verdict (probe_4.py:581-595) is T_orig<N_min, then control<N_min, then instrument, then ALIVE, WEAK, DEAD, as the prereg sets it. Spot checks: swechat/claude_code hex WEAK (T_orig w 0.1103 > M_git hi 0.0163, w < 0.15); round ALIVE (lo 0.3344 > 0.1224+0.05); aiv_cu round WEAK (lo 0.1333 < 0.1523+0.05, point 0.1914 > 0.1523); cc_local round ALIVE (lo 0.4346 > 0.1301+0.05, 341 values/14 s). The redaction cap left every label unchanged (units/pooled.*.verdicts.*.redaction_cap = 'same label: verdict stands'). The deciding numbers are stored under verdicts.*.deciding."
+     },
+     {
+      "rule": "(4) every deviation logged with before/after/reason; none is a post-hoc threshold change",
+      "ok": false,
+      "severity": "minor",
+      "detail": "All 9 logged deviations carry item, prereg_said, what_you_did, why and effect_on_verdict. No threshold changed after results existed. The run history in the scratchpad (probe_4_run1..4.json plus final) shows 0 changed values across runs: run1->2 added 812 keys (post_hoc_descriptive, examples_descriptive_ints), run2->3 added 163 (prereg_reference), run3->4 removed 165 (the cc_local int quantiles, for privacy), run4->final identical. thresholds_used and verdict_table are identical in every run. The exploratory section and counts.json_number_epoch_excluded already exist in run1, which supports the claim that they were fixed before any verdict existed. The epoch-exclusion bound holds: 127/400 = 0.3175. Three items were not logged as deviations: (a) an extra branch at probe_4.py:586-587 returns INSUFFICIENT_N when the control's w_adj CI is not reportable. The prereg has no such clause; it never fired (n_valid_boot=1000 everywhere). (b) Quantiles use stats.describe, not the prereg's stats.cluster_quantile, and have no min-n gate (see rule 8). (c) Split A is opened for the count-only implementation check (probe_4.py:762-796). The notes disclose this in section 0, but it is not in the deviation list. None can change a verdict."
+     },
+     {
+      "rule": "(5) kill criteria applied; line of work stopped where they fired",
+      "ok": true,
+      "severity": "none",
+      "detail": "Probe 4's kill criterion is DEAD (instrument). No reachable control failed it. The controls used have CI hi of: CC M_git 0.0163, codex 0.0667, opencode 0.0669, aiv_cc 0.1016, aiv_cu 0.0338, cc_local M_all 0.1316, swechat/* 0.0154 and public/* 0.0134. The redaction-rerun controls have hi 0.016 and 0.014. Two controls would have failed: swechat/gemini M_all, w 0.166 [0.1013, 0.4585], and whowhen M_all, w 0.118 [0.0961, 0.1774]. In both, T_orig falls below N_min first (0 and 32 symbols), which the prereg rule order puts ahead of the instrument check. Both latent failures are reported in notes section 0 and in section 8, item 7. Nothing needed stopping."
+     },
+     {
+      "rule": "(6) every number in analysis/notes/probe_4.md appears in analysis/out/probe_4.json",
+      "ok": false,
+      "severity": "minor",
+      "detail": "I swept every numeric token in the notes against all JSON values, with rounding tolerance, and checked about 150 values by hand at their JSON paths. Every number is present. The sweep's only misses were tokenizer artifacts, which I confirmed by hand: k/n denominators after '/', and 1,369.6 at prereg_reference.feasibility_projection_p4. The one exception is the bootstrap seed 20261003, a prereg constant asserted at :99. Two statements are inaccurate even though their numbers are present. (a) Notes line 268 says machine output is rounder than uniform with 'M_all last-0 0.109–0.318'. That range omits whowhen at 0.105 [0.061, 0.164] (units.whowhen.ints.main.M_all.round.last_0), whose CI contains 0.1. (b) The run summary says 'the class is dominated by timeout parameters (120000 x3,769)', and notes line 195 says the ALIVE round verdicts 'mostly measure that models choose round parameters'. Both use occurrence counts (examples_descriptive_ints, occurrence-weighted), but the verdict statistic counts distinct values, so 120000 counts once out of 300. In that distinct-value class, JSON-number parameters are 51/300 values and 49/127 of the last-0 values. The arg-string subset alone gives 78/249 = 0.313 [0.213, 0.427] (post_hoc_descriptive.ints_T_by_origin.T_orig.args_string), whose CI lo is above M_all hi + 0.05 = 0.172. So the JSON does not support 'mostly parameters'. Both statements are marked interpretation or post hoc, and no verdict depends on them."
+     },
+     {
+      "rule": "(7) nulls reported as prominently as hits",
+      "ok": true,
+      "severity": "minor",
+      "detail": "Nulls have their own section (notes section 8, seven items). INSUFFICIENT_N rows use the same bold format as hits in the section 1 tables. Section 2 calls the scarcity of model-typed hex 'itself the main finding for the hex mechanism'. Section 9 opens with 'Hex entropy (primary): mostly a null'. The exploratory duration null is stated in bold. Where anything is softened, it is the round-number hit, not a null (see rule 6b). One nit: section 8, item 1 says 'INSUFFICIENT_N in 7 of 9 testable units' and counts swechat/cursor. prereg.json probe4.units.testable lists 8 units and puts cursor under control_missing, so per the prereg it is 6 of 8 testable units, plus cursor with its control missing. This does not change the substance of the null."
+     },
+     {
+      "rule": "(8) n and CIs present; min-n respected",
+      "ok": false,
+      "severity": "minor",
+      "detail": "The min-n rules that feed verdicts are respected. The N_min=1,131 gate guards every digit test (probe_4.py:461-466); classes below it get raw counts only. The round gate of 100 values / 10 sessions is applied to T_orig and M_all (:607-611). Rates are gated at n>=30 from >=5 sessions with the label 'insufficient n' (:429-431). Zero counts carry per-event and per-session Wilson upper bounds (:433-435). k, n and n_sessions sit on every rate cell, and n_sessions on every digit test. The violation: distribution quantiles come from stats.describe (:488 int value quantiles; :690-694 per-result census), which has no min-n gate, no session count and no CI. The JSON holds 353 quantile entries below global.min_n.quantile_reportable (p50 needs n>=30, p5/p95 >=100, p1/p99 >=500). Examples are swechat/claude_code.ints.main.T_orig.quantiles p1/p99 at n=300 and swechat/gemini.census.hex_tokens_per_result.given_any p5/p95 at n=96. Prereg global.ci_methods.quantile requires stats.cluster_quantile. None of these feeds a verdict, and the notes quote only p50/p95 for classes with n>=725. Per-tool output is rates only, with no per-tool quantiles, although the task asked for them."
+     },
+     {
+      "rule": "(9) no read of analysis/out/phase_c or Phase C notes; no A-split thresholds recomputed on B",
+      "ok": true,
+      "severity": "none",
+      "detail": "probe_4.py reads only prereg.json, out/phase_a/prereg_calibration.json, *_A.parquet (count check and the aiv_cc session overlap), *_B.parquet and swechat_population.parquet. Nothing reads phase_c or notes/ (grep finds only the docstring's output path). The notes cite no Phase C material. No threshold is derived from B. The A pass runs with counts_only=True and compares only counts already in prereg_calibration.json; it computes no digit test and no round share. I can audit only the code and outputs, not the probe agent's interactive file reads."
+     },
+     {
+      "rule": "(10) cc_local outputs aggregate-only; aiv_cc labelled single-agent case study",
+      "ok": false,
+      "severity": "minor",
+      "detail": "cc_local: units.cc_local has no examples_descriptive or examples_descriptive_ints (popped at probe_4.py:852-854) and no int quantiles (removed at :698-701). Every tool key in its census, hex_by_tool and post_hoc maps is in PUBLIC_CC_TOOLS or is mcp__*, other_tool or None. It contains no value-like strings and is excluded from both pooled cells (pooled.*.members). aiv_cc: units.aiv_cc.labels and both verdict label lists carry 'single-agent case study'. aiv_cc_rule reports 189 B runs, 35 SDK sessions and 156 runs sharing a session with A. public/* carries the label 'contains aiv_cc (single-agent case study)', and the notes hex table, section 1 Caps and section 9 say it. Gaps: the aiv_cc rows of the notes round-number table (line 66), census table (line 92) and timestamp table (line 212) lack the label, against the instruction to label it everywhere. Housekeeping: the intermediate scratchpad files probe_4_run1..3.json still contain cc_local integer-value quantiles (min/max). They are outside the repo, but they are individual private values persisted on disk."
+     }
+    ]
+   },
+   "fixed": false
+  }
+ ]
+}
