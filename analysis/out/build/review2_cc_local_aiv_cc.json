@@ -1,0 +1,1347 @@
+{
+ "what": "RE-VERIFICATION after attachment fix: adversarial review of load_cc_local / load_aiv_cc; aggregates only (cc_local private)",
+ "scripts": "reviewer throwaway scripts in the session scratchpad (rv_*.py), independent re-parsers; not committed",
+ "previous_blocking_issue_attachments": {
+  "status": "fixed",
+  "raw_vs_ir_by_uuid_all_attachments": {
+   "raw_unique_attachment_uuids": 41347,
+   "raw_attachment_lines_without_uuid": 0,
+   "uuid_copies_disagree_on_expected": 0,
+   "ir_attachment_rows": 41347,
+   "ir_attachment_uuids_not_in_raw": 0,
+   "old_version_kind:meta": 198,
+   "old_version_kind:system": 16960,
+   "qc:prompt:meta:null": 1,
+   "qc:prompt:user:text": 13,
+   "qc:task-notification:system:text": 664,
+   "qc_tasknote_first_status:<none>": 169,
+   "qc_tasknote_first_status:completed": 470,
+   "qc_tasknote_first_status:failed": 24,
+   "qc_tasknote_first_status:killed": 1,
+   "qc_tasknote_status_equal": 664,
+   "rule_kind_match": 24189,
+   "rule_text_match": 24189
+  },
+  "previously_flagged_types_by_split_kind_after_fix": {
+   "A:system:null": 6,
+   "A:system:text": 105,
+   "A:user:text": 2,
+   "B:meta:null": 1,
+   "B:meta_visibility:not_rendered_in_rendering_version:queued_command": 1,
+   "B:system:null": 146,
+   "B:system:text": 1170,
+   "B:user:text": 11
+  },
+  "user_entry_task_notifications": {
+   "events": 436,
+   "kinds": {
+    "system": 436
+   },
+   "status_equal_to_text": 436,
+   "first:<none>": 272,
+   "first:stopped": 18,
+   "first:completed": 143,
+   "first:failed": 3,
+   "ir_texts_containing_tag": 436,
+   "containing_tag_without_statuses_key": 0
+  },
+  "ir_attachment_totals": {
+   "events": 41347,
+   "kind": {
+    "system": 39330,
+    "meta": 2004,
+    "user": 13
+   },
+   "visibility": {
+    "type_rendered_in_newer_versions": 15910,
+    "old_only_type_assumed_visible": 1053,
+    "rendered": 22380,
+    "not_rendered_in_rendering_version": 1806,
+    "type_never_rendered": 198
+   },
+   "text_present": 38656,
+   "text_null": 2691,
+   "meta_text_null": 2004,
+   "visible_text_null": 687
+  },
+  "visible_attachment_events_text_null_by_type": {
+   "deferred_tools_delta": 250,
+   "auto_mode": 230,
+   "task_reminder": 105,
+   "edited_text_file": 47,
+   "ultra_effort_enter": 40,
+   "compact_file_reference": 7,
+   "budget_usd": 3,
+   "workflow_keyword_request": 3,
+   "ultra_effort_exit": 2
+  },
+  "queued_prompt_left_meta": {
+   "events": 1,
+   "prompt_block_types": "image,text",
+   "has_rendered": false
+  },
+  "double_delivery_reproduced": {
+   "found": 4,
+   "tested": 35911,
+   "too_short": 646
+  }
+ },
+ "cc_local_reparse_vs_A_cache": [
+  {
+   "target_index": 0,
+   "is_lowest5": true,
+   "family_size": 3,
+   "root_is_session_id": true,
+   "files": {
+    "main": 3,
+    "sub": 7,
+    "journal": 1
+   },
+   "ir_rows": 1374,
+   "expected_rows_raw": 1374,
+   "ir_kinds": {
+    "call": 394,
+    "result": 394,
+    "system": 260,
+    "assistant": 180,
+    "meta": 127,
+    "user": 19
+   },
+   "calls_ir_vs_raw": [
+    394,
+    394
+   ],
+   "results_ir_vs_raw": [
+    394,
+    394
+   ],
+   "call_id_set_equal": true,
+   "result_id_set_equal": true,
+   "assistant_ir_vs_raw": [
+    180,
+    180
+   ],
+   "user_ir_vs_raw_nonatt": [
+    19,
+    19
+   ],
+   "first_ts_equal": true,
+   "last_ts_equal": true,
+   "seq_first_ts_is_min": true,
+   "seq_last_ts_is_max": true,
+   "seq_ts_inversions": 0,
+   "ts_kind": {
+    "event": 1360,
+    "none": 14
+   },
+   "ts_null_kind_not_none": 0,
+   "ts_present_kind_not_event": 0,
+   "ir_events_with_uuid": 1270,
+   "ts_mismatch_vs_raw_uuid": 0,
+   "ir_uuid_not_in_raw": 0,
+   "ir_ts_null_with_uuid": 0,
+   "journal_rows_ir": 14,
+   "journal_rows_raw": 14,
+   "journal_rows_with_ts": 0,
+   "usage_check": {
+    "checked": 574
+   },
+   "native_error_check": {
+    "match": 394
+   },
+   "exit_code_filled": 0,
+   "result_text_compare": [
+    {
+     "raw_len": 11,
+     "ir_len": 11,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 11394,
+     "ir_len": 11394,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 0,
+     "ir_len": 0,
+     "byte_equal": true,
+     "content_is_list": true
+    }
+   ],
+   "attachments": {
+    "old_version:agent_listing_delta:system:text": 1,
+    "old_version:auto_mode:system:null": 1,
+    "old_version:date_change:system:text": 1,
+    "old_version:deferred_tools_delta:system:null": 3,
+    "old_version:deferred_tools_delta:system:text": 9,
+    "old_version:mcp_instructions_delta:system:text": 1,
+    "old_version:queued_command:system:text": 15,
+    "old_version:skill_listing:system:text": 8,
+    "old_version:total_tokens_reminder:system:text": 190,
+    "old_version:ultra_effort_enter:system:null": 4,
+    "old_version_payload_equal": 213,
+    "tasknote_events": 15,
+    "tasknote_failed_or_killed": 1,
+    "tasknote_kind_system": 15,
+    "tasknote_status_equal": 15,
+    "tasknote_text_present": 15,
+    "type:agent_listing_delta": 1,
+    "type:auto_mode": 1,
+    "type:date_change": 1,
+    "type:deferred_tools_delta": 12,
+    "type:mcp_instructions_delta": 1,
+    "type:queued_command": 15,
+    "type:skill_listing": 8,
+    "type:total_tokens_reminder": 190,
+    "type:ultra_effort_enter": 4
+   },
+   "ir_meta_attachment_rows": 0
+  },
+  {
+   "target_index": 1,
+   "is_lowest5": true,
+   "family_size": 1,
+   "root_is_session_id": true,
+   "files": {
+    "main": 1
+   },
+   "ir_rows": 66,
+   "expected_rows_raw": 66,
+   "ir_kinds": {
+    "system": 21,
+    "call": 18,
+    "result": 18,
+    "meta": 5,
+    "assistant": 3,
+    "user": 1
+   },
+   "calls_ir_vs_raw": [
+    18,
+    18
+   ],
+   "results_ir_vs_raw": [
+    18,
+    18
+   ],
+   "call_id_set_equal": true,
+   "result_id_set_equal": true,
+   "assistant_ir_vs_raw": [
+    3,
+    3
+   ],
+   "user_ir_vs_raw_nonatt": [
+    1,
+    1
+   ],
+   "first_ts_equal": true,
+   "last_ts_equal": true,
+   "seq_first_ts_is_min": true,
+   "seq_last_ts_is_max": true,
+   "seq_ts_inversions": 0,
+   "ts_kind": {
+    "event": 66
+   },
+   "ts_null_kind_not_none": 0,
+   "ts_present_kind_not_event": 0,
+   "ir_events_with_uuid": 64,
+   "ts_mismatch_vs_raw_uuid": 0,
+   "ir_uuid_not_in_raw": 0,
+   "ir_ts_null_with_uuid": 0,
+   "journal_rows_ir": 0,
+   "journal_rows_raw": 0,
+   "journal_rows_with_ts": 0,
+   "usage_check": {
+    "checked": 21
+   },
+   "native_error_check": {
+    "match": 18
+   },
+   "exit_code_filled": 0,
+   "result_text_compare": [
+    {
+     "raw_len": 14,
+     "ir_len": 14,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 9839,
+     "ir_len": 9839,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 1124,
+     "ir_len": 1124,
+     "byte_equal": true,
+     "content_is_list": false
+    }
+   ],
+   "attachments": {
+    "kind_match": 23,
+    "text_match": 23,
+    "type:agent_listing_delta": 1,
+    "type:date": 1,
+    "type:deferred_tools_delta": 1,
+    "type:environment": 1,
+    "type:instructions": 1,
+    "type:mcp_instructions_delta": 1,
+    "type:model": 1,
+    "type:prompt_snapshot": 2,
+    "type:remote_session_change": 1,
+    "type:session_context": 1,
+    "type:skill_listing": 1,
+    "type:total_tokens_reminder": 11
+   },
+   "ir_meta_attachment_rows": 2
+  },
+  {
+   "target_index": 2,
+   "is_lowest5": true,
+   "family_size": 1,
+   "root_is_session_id": true,
+   "files": {
+    "main": 1
+   },
+   "ir_rows": 54,
+   "expected_rows_raw": 54,
+   "ir_kinds": {
+    "system": 18,
+    "call": 14,
+    "result": 14,
+    "meta": 5,
+    "assistant": 2,
+    "user": 1
+   },
+   "calls_ir_vs_raw": [
+    14,
+    14
+   ],
+   "results_ir_vs_raw": [
+    14,
+    14
+   ],
+   "call_id_set_equal": true,
+   "result_id_set_equal": true,
+   "assistant_ir_vs_raw": [
+    2,
+    2
+   ],
+   "user_ir_vs_raw_nonatt": [
+    1,
+    1
+   ],
+   "first_ts_equal": true,
+   "last_ts_equal": true,
+   "seq_first_ts_is_min": true,
+   "seq_last_ts_is_max": true,
+   "seq_ts_inversions": 0,
+   "ts_kind": {
+    "event": 54
+   },
+   "ts_null_kind_not_none": 0,
+   "ts_present_kind_not_event": 0,
+   "ir_events_with_uuid": 52,
+   "ts_mismatch_vs_raw_uuid": 0,
+   "ir_uuid_not_in_raw": 0,
+   "ir_ts_null_with_uuid": 0,
+   "journal_rows_ir": 0,
+   "journal_rows_raw": 0,
+   "journal_rows_with_ts": 0,
+   "usage_check": {
+    "checked": 16
+   },
+   "native_error_check": {
+    "match": 14
+   },
+   "exit_code_filled": 0,
+   "result_text_compare": [
+    {
+     "raw_len": 14,
+     "ir_len": 14,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 9838,
+     "ir_len": 9838,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 1143,
+     "ir_len": 1143,
+     "byte_equal": true,
+     "content_is_list": false
+    }
+   ],
+   "attachments": {
+    "kind_match": 20,
+    "text_match": 20,
+    "type:agent_listing_delta": 1,
+    "type:date": 1,
+    "type:deferred_tools_delta": 1,
+    "type:environment": 1,
+    "type:instructions": 1,
+    "type:mcp_instructions_delta": 1,
+    "type:model": 1,
+    "type:prompt_snapshot": 2,
+    "type:remote_session_change": 1,
+    "type:session_context": 1,
+    "type:skill_listing": 1,
+    "type:total_tokens_reminder": 8
+   },
+   "ir_meta_attachment_rows": 2
+  },
+  {
+   "target_index": 3,
+   "is_lowest5": true,
+   "family_size": 1,
+   "root_is_session_id": true,
+   "files": {
+    "main": 1
+   },
+   "ir_rows": 68,
+   "expected_rows_raw": 68,
+   "ir_kinds": {
+    "system": 21,
+    "call": 18,
+    "result": 18,
+    "meta": 7,
+    "assistant": 3,
+    "user": 1
+   },
+   "calls_ir_vs_raw": [
+    18,
+    18
+   ],
+   "results_ir_vs_raw": [
+    18,
+    18
+   ],
+   "call_id_set_equal": true,
+   "result_id_set_equal": true,
+   "assistant_ir_vs_raw": [
+    3,
+    3
+   ],
+   "user_ir_vs_raw_nonatt": [
+    1,
+    1
+   ],
+   "first_ts_equal": true,
+   "last_ts_equal": true,
+   "seq_first_ts_is_min": true,
+   "seq_last_ts_is_max": true,
+   "seq_ts_inversions": 0,
+   "ts_kind": {
+    "event": 68
+   },
+   "ts_null_kind_not_none": 0,
+   "ts_present_kind_not_event": 0,
+   "ir_events_with_uuid": 66,
+   "ts_mismatch_vs_raw_uuid": 0,
+   "ir_uuid_not_in_raw": 0,
+   "ir_ts_null_with_uuid": 0,
+   "journal_rows_ir": 0,
+   "journal_rows_raw": 0,
+   "journal_rows_with_ts": 0,
+   "usage_check": {
+    "checked": 21
+   },
+   "native_error_check": {
+    "match": 18
+   },
+   "exit_code_filled": 0,
+   "result_text_compare": [
+    {
+     "raw_len": 140,
+     "ir_len": 140,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 11802,
+     "ir_len": 11802,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 0,
+     "ir_len": 0,
+     "byte_equal": true,
+     "content_is_list": true
+    }
+   ],
+   "attachments": {
+    "kind_match": 25,
+    "text_match": 25,
+    "type:agent_listing_delta": 1,
+    "type:date": 1,
+    "type:deferred_tools_delta": 1,
+    "type:deferred_tools_record": 2,
+    "type:environment": 1,
+    "type:instructions": 1,
+    "type:mcp_instructions_delta": 1,
+    "type:model": 1,
+    "type:prompt_snapshot": 2,
+    "type:remote_session_change": 1,
+    "type:session_context": 1,
+    "type:skill_listing": 1,
+    "type:total_tokens_reminder": 11
+   },
+   "ir_meta_attachment_rows": 4
+  },
+  {
+   "target_index": 4,
+   "is_lowest5": true,
+   "family_size": 1,
+   "root_is_session_id": true,
+   "files": {
+    "main": 1
+   },
+   "ir_rows": 8,
+   "expected_rows_raw": 8,
+   "ir_kinds": {
+    "system": 4,
+    "meta": 2,
+    "user": 1,
+    "assistant": 1
+   },
+   "calls_ir_vs_raw": [
+    0,
+    0
+   ],
+   "results_ir_vs_raw": [
+    0,
+    0
+   ],
+   "call_id_set_equal": true,
+   "result_id_set_equal": true,
+   "assistant_ir_vs_raw": [
+    1,
+    1
+   ],
+   "user_ir_vs_raw_nonatt": [
+    1,
+    1
+   ],
+   "first_ts_equal": true,
+   "last_ts_equal": true,
+   "seq_first_ts_is_min": true,
+   "seq_last_ts_is_max": true,
+   "seq_ts_inversions": 0,
+   "ts_kind": {
+    "event": 8
+   },
+   "ts_null_kind_not_none": 0,
+   "ts_present_kind_not_event": 0,
+   "ir_events_with_uuid": 6,
+   "ts_mismatch_vs_raw_uuid": 0,
+   "ir_uuid_not_in_raw": 0,
+   "ir_ts_null_with_uuid": 0,
+   "journal_rows_ir": 0,
+   "journal_rows_raw": 0,
+   "journal_rows_with_ts": 0,
+   "usage_check": {
+    "checked": 1
+   },
+   "native_error_check": {},
+   "exit_code_filled": 0,
+   "result_text_compare": [],
+   "attachments": {
+    "old_version:agent_listing_delta:system:text": 1,
+    "old_version:deferred_tools_delta:system:text": 1,
+    "old_version:mcp_instructions_delta:system:text": 1,
+    "old_version:skill_listing:system:text": 1,
+    "old_version_payload_equal": 1,
+    "type:agent_listing_delta": 1,
+    "type:deferred_tools_delta": 1,
+    "type:mcp_instructions_delta": 1,
+    "type:skill_listing": 1
+   },
+   "ir_meta_attachment_rows": 0
+  },
+  {
+   "target_index": 23,
+   "is_lowest5": false,
+   "family_size": 1,
+   "root_is_session_id": true,
+   "files": {
+    "main": 1,
+    "sub": 70,
+    "journal": 8
+   },
+   "ir_rows": 6356,
+   "expected_rows_raw": 6356,
+   "ir_kinds": {
+    "call": 2322,
+    "result": 2322,
+    "system": 581,
+    "assistant": 568,
+    "meta": 526,
+    "user": 37
+   },
+   "calls_ir_vs_raw": [
+    2322,
+    2322
+   ],
+   "results_ir_vs_raw": [
+    2322,
+    2322
+   ],
+   "call_id_set_equal": true,
+   "result_id_set_equal": true,
+   "assistant_ir_vs_raw": [
+    568,
+    568
+   ],
+   "user_ir_vs_raw_nonatt": [
+    37,
+    37
+   ],
+   "first_ts_equal": true,
+   "last_ts_equal": true,
+   "seq_first_ts_is_min": true,
+   "seq_last_ts_is_max": true,
+   "seq_ts_inversions": 0,
+   "ts_kind": {
+    "event": 6222,
+    "none": 134
+   },
+   "ts_null_kind_not_none": 0,
+   "ts_present_kind_not_event": 0,
+   "ir_events_with_uuid": 5874,
+   "ts_mismatch_vs_raw_uuid": 0,
+   "ir_uuid_not_in_raw": 0,
+   "ir_ts_null_with_uuid": 0,
+   "journal_rows_ir": 134,
+   "journal_rows_raw": 134,
+   "journal_rows_with_ts": 0,
+   "usage_check": {
+    "checked": 2890
+   },
+   "native_error_check": {
+    "match": 2322
+   },
+   "exit_code_filled": 0,
+   "result_text_compare": [
+    {
+     "raw_len": 2,
+     "ir_len": 2,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 32162,
+     "ir_len": 32162,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 0,
+     "ir_len": 0,
+     "byte_equal": true,
+     "content_is_list": true
+    }
+   ],
+   "attachments": {
+    "old_version:agent_listing_delta:system:text": 1,
+    "old_version:auto_mode:system:null": 1,
+    "old_version:command_permissions:meta:null": 1,
+    "old_version:date_change:system:text": 1,
+    "old_version:deferred_tools_delta:system:text": 72,
+    "old_version:edited_text_file:system:text": 14,
+    "old_version:file:system:text": 1,
+    "old_version:hook_additional_context:system:text": 2,
+    "old_version:mcp_instructions_delta:system:text": 1,
+    "old_version:nested_memory:system:text": 1,
+    "old_version:queued_command:system:text": 3,
+    "old_version:skill_listing:system:text": 71,
+    "old_version:total_tokens_reminder:system:text": 321,
+    "old_version:ultra_effort_enter:system:null": 4,
+    "old_version_payload_equal": 412,
+    "tasknote_events": 3,
+    "tasknote_kind_system": 3,
+    "tasknote_status_equal": 3,
+    "tasknote_text_present": 3,
+    "type:agent_listing_delta": 1,
+    "type:auto_mode": 1,
+    "type:command_permissions": 1,
+    "type:date_change": 1,
+    "type:deferred_tools_delta": 72,
+    "type:edited_text_file": 14,
+    "type:file": 1,
+    "type:hook_additional_context": 2,
+    "type:mcp_instructions_delta": 1,
+    "type:nested_memory": 1,
+    "type:queued_command": 3,
+    "type:skill_listing": 71,
+    "type:total_tokens_reminder": 321,
+    "type:ultra_effort_enter": 4
+   },
+   "ir_meta_attachment_rows": 1
+  },
+  {
+   "target_index": 18,
+   "is_lowest5": false,
+   "family_size": 2,
+   "root_is_session_id": true,
+   "files": {
+    "main": 2
+   },
+   "ir_rows": 908,
+   "expected_rows_raw": 908,
+   "ir_kinds": {
+    "system": 273,
+    "call": 233,
+    "result": 233,
+    "assistant": 119,
+    "meta": 42,
+    "user": 8
+   },
+   "calls_ir_vs_raw": [
+    233,
+    233
+   ],
+   "results_ir_vs_raw": [
+    233,
+    233
+   ],
+   "call_id_set_equal": true,
+   "result_id_set_equal": true,
+   "assistant_ir_vs_raw": [
+    119,
+    119
+   ],
+   "user_ir_vs_raw_nonatt": [
+    8,
+    8
+   ],
+   "first_ts_equal": true,
+   "last_ts_equal": true,
+   "seq_first_ts_is_min": true,
+   "seq_last_ts_is_max": true,
+   "seq_ts_inversions": 0,
+   "ts_kind": {
+    "event": 908
+   },
+   "ts_null_kind_not_none": 0,
+   "ts_present_kind_not_event": 0,
+   "ir_events_with_uuid": 872,
+   "ts_mismatch_vs_raw_uuid": 0,
+   "ir_uuid_not_in_raw": 0,
+   "ir_ts_null_with_uuid": 0,
+   "journal_rows_ir": 0,
+   "journal_rows_raw": 0,
+   "journal_rows_with_ts": 0,
+   "usage_check": {
+    "checked": 352
+   },
+   "native_error_check": {
+    "match": 233
+   },
+   "exit_code_filled": 0,
+   "result_text_compare": [
+    {
+     "raw_len": 10,
+     "ir_len": 10,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 8467,
+     "ir_len": 8467,
+     "byte_equal": true,
+     "content_is_list": false
+    },
+    {
+     "raw_len": 83,
+     "ir_len": 83,
+     "byte_equal": true,
+     "content_is_list": true
+    }
+   ],
+   "attachments": {
+    "old_version:agent_listing_delta:system:text": 1,
+    "old_version:auto_mode:system:null": 1,
+    "old_version:deferred_tools_delta:system:null": 2,
+    "old_version:deferred_tools_delta:system:text": 2,
+    "old_version:edited_text_file:system:text": 19,
+    "old_version:hook_additional_context:system:text": 1,
+    "old_version:mcp_instructions_delta:system:text": 1,
+    "old_version:queued_command:system:text": 9,
+    "old_version:skill_listing:system:text": 1,
+    "old_version:total_tokens_reminder:system:text": 235,
+    "old_version_payload_equal": 265,
+    "tasknote_events": 9,
+    "tasknote_kind_system": 9,
+    "tasknote_status_equal": 9,
+    "tasknote_text_present": 9,
+    "type:agent_listing_delta": 1,
+    "type:auto_mode": 1,
+    "type:deferred_tools_delta": 4,
+    "type:edited_text_file": 19,
+    "type:hook_additional_context": 1,
+    "type:mcp_instructions_delta": 1,
+    "type:queued_command": 9,
+    "type:skill_listing": 1,
+    "type:total_tokens_reminder": 235
+   },
+   "ir_meta_attachment_rows": 0
+  }
+ ],
+ "cc_local_corpus_numbers_reproduced": {
+  "recon_raw": {
+   "files": 1172,
+   "lines": 210465,
+   "tool_use_blocks": 46333,
+   "tool_result_blocks": 46332,
+   "tool_use_ids_unique": 41707,
+   "tool_result_ids_unique": 41706,
+   "results_without_call": 0,
+   "calls_without_result": 1,
+   "paired_both_ts": 41706,
+   "paired_identical_ts": 1,
+   "paired_negative": 0
+  },
+  "ir_rows": {
+   "A": 17762,
+   "B": 125313,
+   "full": 143075
+  },
+  "ir_kinds": {
+   "A": {
+    "call": 5165,
+    "result": 5164,
+    "system": 3960,
+    "assistant": 1624,
+    "meta": 1594,
+    "user": 255
+   },
+   "B": {
+    "system": 36962,
+    "call": 36542,
+    "result": 36542,
+    "meta": 7844,
+    "assistant": 6800,
+    "user": 623
+   },
+   "full": {
+    "call": 41707,
+    "result": 41706,
+    "system": 40922,
+    "meta": 9438,
+    "assistant": 8424,
+    "user": 878
+   }
+  },
+  "sessions": {
+   "A": 123,
+   "B": 186,
+   "overlap": 0
+  },
+  "ts_frac_digits": {
+   "3": 141578
+  },
+  "ts_null": 1497,
+  "tie_groups": 5161,
+  "seq_ts_inversions": 0,
+  "pairing": {
+   "paired": 41706,
+   "calls_without_result": 1,
+   "results_without_call": 0,
+   "result_before_call": 0,
+   "dup_calls": 0,
+   "dup_results": 0
+  },
+  "native_error": {
+   "results": 41706,
+   "filled": 30581,
+   "true": 1803
+  },
+  "exit_code_filled": 0,
+  "subagent": {
+   "events": 96455,
+   "share": 0.6741569107111655,
+   "calls": 31355,
+   "call_share": 0.7517922650873954,
+   "sessions": 10,
+   "agent_ids": 773
+  },
+  "usage_within_api_msg_id": {
+   "api_msg_ids_multi_event": 11220,
+   "differing_in_or_cache": 0,
+   "differing_out": 4886
+  }
+ },
+ "aiv_cc_reparse_vs_A_cache": {
+  "lowest5_and_longest": [
+   {
+    "session_index_in_sorted_A": 0,
+    "raw_rows": 3,
+    "ir_rows": 3,
+    "expected_ir_rows": 3,
+    "calls_ir_vs_raw": [
+     0,
+     0
+    ],
+    "results_ir_vs_raw": [
+     0,
+     0
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": true,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": true,
+    "ts_kind": {
+     "row_insert": 3
+    },
+    "checks": {
+     "checked": 1
+    },
+    "exit_code_filled": 0,
+    "result_text_compare": []
+   },
+   {
+    "session_index_in_sorted_A": 1,
+    "raw_rows": 3,
+    "ir_rows": 3,
+    "expected_ir_rows": 3,
+    "calls_ir_vs_raw": [
+     0,
+     0
+    ],
+    "results_ir_vs_raw": [
+     0,
+     0
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": true,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": true,
+    "ts_kind": {
+     "row_insert": 3
+    },
+    "checks": {
+     "checked": 1
+    },
+    "exit_code_filled": 0,
+    "result_text_compare": []
+   },
+   {
+    "session_index_in_sorted_A": 2,
+    "raw_rows": 3,
+    "ir_rows": 3,
+    "expected_ir_rows": 3,
+    "calls_ir_vs_raw": [
+     0,
+     0
+    ],
+    "results_ir_vs_raw": [
+     0,
+     0
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": true,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": true,
+    "ts_kind": {
+     "row_insert": 3
+    },
+    "checks": {
+     "checked": 1
+    },
+    "exit_code_filled": 0,
+    "result_text_compare": []
+   },
+   {
+    "session_index_in_sorted_A": 3,
+    "raw_rows": 1,
+    "ir_rows": 1,
+    "expected_ir_rows": 1,
+    "calls_ir_vs_raw": [
+     0,
+     0
+    ],
+    "results_ir_vs_raw": [
+     0,
+     0
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": true,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": true,
+    "ts_kind": {
+     "row_insert": 1
+    },
+    "checks": {},
+    "exit_code_filled": 0,
+    "result_text_compare": []
+   },
+   {
+    "session_index_in_sorted_A": 4,
+    "raw_rows": 1,
+    "ir_rows": 1,
+    "expected_ir_rows": 1,
+    "calls_ir_vs_raw": [
+     0,
+     0
+    ],
+    "results_ir_vs_raw": [
+     0,
+     0
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": true,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": true,
+    "ts_kind": {
+     "row_insert": 1
+    },
+    "checks": {},
+    "exit_code_filled": 0,
+    "result_text_compare": []
+   },
+   {
+    "session_index_in_sorted_A": 75,
+    "raw_rows": 9265,
+    "ir_rows": 6639,
+    "expected_ir_rows": 6639,
+    "calls_ir_vs_raw": [
+     2791,
+     2791
+    ],
+    "results_ir_vs_raw": [
+     2791,
+     2791
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": true,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": true,
+    "ts_kind": {
+     "row_insert": 6639
+    },
+    "checks": {
+     "checked": 3714,
+     "ne_match": 2791
+    },
+    "exit_code_filled": 0,
+    "result_text_compare": [
+     {
+      "raw_len": 1,
+      "ir_len": 1,
+      "byte_equal": true,
+      "content_is_list": false
+     },
+     {
+      "raw_len": 32427,
+      "ir_len": 32427,
+      "byte_equal": true,
+      "content_is_list": true
+     },
+     {
+      "raw_len": 7,
+      "ir_len": 7,
+      "byte_equal": true,
+      "content_is_list": true
+     }
+    ]
+   }
+  ],
+  "extra_long_sessions": [
+   {
+    "session_index_in_sorted_A": 87,
+    "raw_rows": 7566,
+    "ir_rows": 5666,
+    "expected_ir_rows": 5666,
+    "calls_ir_vs_raw": [
+     2304,
+     2304
+    ],
+    "results_ir_vs_raw": [
+     2304,
+     2304
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": true,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": true,
+    "ts_kind": {
+     "row_insert": 5666
+    },
+    "checks": {
+     "checked": 3260,
+     "ne_match": 2304
+    },
+    "exit_code_filled": 0,
+    "result_text_compare": [
+     {
+      "raw_len": 3,
+      "ir_len": 3,
+      "byte_equal": true,
+      "content_is_list": false
+     },
+     {
+      "raw_len": 26234,
+      "ir_len": 26234,
+      "byte_equal": true,
+      "content_is_list": true
+     },
+     {
+      "raw_len": 4538,
+      "ir_len": 4538,
+      "byte_equal": true,
+      "content_is_list": true
+     }
+    ]
+   },
+   {
+    "session_index_in_sorted_A": 76,
+    "raw_rows": 7970,
+    "ir_rows": 5648,
+    "expected_ir_rows": 5648,
+    "calls_ir_vs_raw": [
+     2351,
+     2351
+    ],
+    "results_ir_vs_raw": [
+     2351,
+     2351
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": false,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": false,
+    "ts_kind": {
+     "row_insert": 5648
+    },
+    "last_raw_row_type": "assistant:None",
+    "last_ir_event_kind": "system",
+    "checks": {
+     "checked": 3180,
+     "ne_match": 2351
+    },
+    "exit_code_filled": 0,
+    "result_text_compare": [
+     {
+      "raw_len": 7,
+      "ir_len": 7,
+      "byte_equal": true,
+      "content_is_list": true
+     },
+     {
+      "raw_len": 36594,
+      "ir_len": 36594,
+      "byte_equal": true,
+      "content_is_list": true
+     },
+     {
+      "raw_len": 7,
+      "ir_len": 7,
+      "byte_equal": true,
+      "content_is_list": true
+     }
+    ]
+   },
+   {
+    "session_index_in_sorted_A": 5,
+    "raw_rows": 4261,
+    "ir_rows": 3068,
+    "expected_ir_rows": 3068,
+    "calls_ir_vs_raw": [
+     1272,
+     1272
+    ],
+    "results_ir_vs_raw": [
+     1272,
+     1272
+    ],
+    "call_id_set_equal": true,
+    "result_id_set_equal": true,
+    "first_ts_equal": true,
+    "last_ts_equal": false,
+    "ir_min_ts_equal_raw_min": true,
+    "ir_max_ts_equal_raw_max": false,
+    "ts_kind": {
+     "row_insert": 3068
+    },
+    "last_raw_row_type": "assistant:None",
+    "last_ir_event_kind": "result",
+    "checks": {
+     "checked": 1731,
+     "ne_match": 1272
+    },
+    "exit_code_filled": 0,
+    "result_text_compare": [
+     {
+      "raw_len": 7,
+      "ir_len": 7,
+      "byte_equal": true,
+      "content_is_list": true
+     },
+     {
+      "raw_len": 16048,
+      "ir_len": 16048,
+      "byte_equal": true,
+      "content_is_list": true
+     },
+     {
+      "raw_len": 7,
+      "ir_len": 7,
+      "byte_equal": true,
+      "content_is_list": true
+     }
+    ]
+   }
+  ]
+ },
+ "aiv_cc_corpus_numbers_reproduced": {
+  "raw_totals": {
+   "rows": 244820,
+   "tool_use_blocks": 72225,
+   "tool_result_blocks": 72213,
+   "tool_use_ids": 72225,
+   "tool_result_ids": 72213,
+   "results_without_call": 0,
+   "calls_without_result": 12,
+   "sdk_session_ids": 53,
+   "largest_sdk_share": 0.9995466056694714
+  },
+  "independent_segmentation": {
+   "sessions": 314,
+   "created_at_tie_groups_parsed": 0
+  },
+  "ir": {
+   "A_rows": 83046,
+   "B_rows": 96224,
+   "A_sessions": 125,
+   "B_sessions": 189,
+   "overlap": 0,
+   "ir_sessions_equal_independent": true,
+   "native_error_results": 72213,
+   "native_error_filled": 11655,
+   "native_error_true": 1317,
+   "exit_code_filled": 0,
+   "ts_kind": {
+    "row_insert": 179270
+   },
+   "ts_null": 0
+  },
+  "usage_within_api_msg_id": {
+   "multi": 32474,
+   "differing_in_or_cache": 0,
+   "differing_out": 4773
+  }
+ },
+ "thinking_only_api_messages_absent_from_ir": {
+  "aiv_cc": {
+   "assistant_msg_ids": 65571,
+   "msg_ids_only_thinking_rows": 21,
+   "msg_ids_in_ir": 65550,
+   "raw_msg_ids_missing_from_ir": 21
+  },
+  "cc_local": {
+   "assistant_msg_ids": 35391,
+   "msg_ids_only_thinking_entries": 25,
+   "raw_msg_ids_missing_from_ir": 25
+  },
+  "aiv_cc_assistant_rows_with_only_thinking_blocks": 65550,
+  "aiv_cc_note": "equals build loader_counters rows_without_event:assistant:None; 2 of 3 extra long A sessions end on such a row, so IR max ts < raw last created_at"
+ },
+ "samples": {
+  "independent_population_redraw_in_file_order": {
+   "cc_local": {
+    "population": 309,
+    "redraw_A_equal": false,
+    "redraw_B_equal": false,
+    "saved_A": 123,
+    "saved_B": 186,
+    "disjoint": true,
+    "alloc_A_sum": 123,
+    "alloc_B_sum": 186,
+    "pop_by_cell_equal": true,
+    "A_equals_floor_40pct": true,
+    "cache_A_sessions_equal_sample": true,
+    "cache_B_sessions_equal_sample": true,
+    "strata": {
+     "proj03": 5,
+     "proj04": 3,
+     "proj05": 1,
+     "proj02": 24,
+     "proj01": 275,
+     "other": 1
+    }
+   },
+   "aiv_cc": {
+    "population": 314,
+    "redraw_A_equal": false,
+    "redraw_B_equal": false,
+    "saved_A": 125,
+    "saved_B": 189,
+    "disjoint": true,
+    "alloc_A_sum": 125,
+    "alloc_B_sum": 189,
+    "pop_by_cell_equal": true,
+    "A_equals_floor_40pct": true,
+    "cache_A_sessions_equal_sample": true,
+    "cache_B_sessions_equal_sample": true,
+    "strata": {
+     "2026-01": 49,
+     "2026-02": 183,
+     "2026-03": 82
+    }
+   }
+  },
+  "independent_population_redraw_in_loader_order": {
+   "cc_local": {
+    "population": 309,
+    "redraw_A_equal": true,
+    "redraw_B_equal": true
+   },
+   "aiv_cc": {
+    "population": 314,
+    "redraw_A_equal": true,
+    "redraw_B_equal": true
+   }
+  }
+ },
+ "rebuild_into_scratch_byte_identical": {
+  "cc_local": [
+   "cc_local_A.parquet",
+   "cc_local_B.parquet",
+   "samples/cc_local.json",
+   "cc_local_build.json"
+  ],
+  "aiv_cc": [
+   "aiv_cc_A.parquet",
+   "aiv_cc_B.parquet",
+   "samples/aiv_cc.json",
+   "aiv_cc_build.json"
+  ],
+  "cache_md5_equal_fix_check_after": true
+ },
+ "checked_sessions": {
+  "cc_local": 7,
+  "aiv_cc": 9
+ }
+}

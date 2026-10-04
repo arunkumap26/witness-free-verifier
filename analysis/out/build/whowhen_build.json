@@ -1,0 +1,308 @@
+{
+ "corpus": "whowhen",
+ "source": "C:/Swarms/data\\who-and-when\\Who&When",
+ "population_sessions": 184,
+ "full_population_validate": {
+  "rows": 4371,
+  "sessions": 184,
+  "assistant": 2359,
+  "call": 968,
+  "result": 888,
+  "system": 98,
+  "user": 58
+ },
+ "sample": {
+  "seed": 20261003,
+  "rule": "A=min(200,40%); B=up to 2000 from remainder; stratum x length tercile; floor 5 per cell",
+  "A_n": 73,
+  "B_n": 111,
+  "A_by_split": {
+   "Algorithm-Generated": 48,
+   "Hand-Crafted": 25
+  },
+  "B_by_split": {
+   "Algorithm-Generated": 78,
+   "Hand-Crafted": 33
+  },
+  "not_in_A_or_B": 0,
+  "length_ties_split_across_terciles": {
+   "Algorithm-Generated|len=10": {
+    "mid": 61,
+    "long": 9
+   }
+  }
+ },
+ "cache": {
+  "A": {
+   "rows": 1733,
+   "validate": {
+    "rows": 1733,
+    "sessions": 73,
+    "assistant": 938,
+    "call": 373,
+    "result": 353,
+    "system": 44,
+    "user": 25
+   }
+  },
+  "B": {
+   "rows": 2638,
+   "validate": {
+    "rows": 2638,
+    "sessions": 111,
+    "assistant": 1421,
+    "call": 595,
+    "result": 535,
+    "system": 54,
+    "user": 33
+   }
+  }
+ },
+ "per_split": {
+  "Algorithm-Generated": {
+   "sessions": 126,
+   "messages": 1099,
+   "events": 1378,
+   "events_by_kind": {
+    "assistant": 796,
+    "call": 279,
+    "result": 236,
+    "system": 67
+   },
+   "calls": 279,
+   "results": 236,
+   "calls_paired": 236,
+   "unpaired_calls": 43,
+   "unpaired_results": 0,
+   "duplicate_call_ids": 0,
+   "results_sharing_a_call_id": 0,
+   "calls_by_tool": {
+    "code_exec": 279
+   },
+   "results_by_tool": {
+    "code_exec": 236
+   },
+   "native_error_true": 90,
+   "exit_code_histogram": {
+    "0": 146,
+    "1": 87,
+    "124": 1,
+    "127": 1,
+    "6": 1
+   },
+   "mistake_step_landing": {
+    "call": 70,
+    "narration": 54,
+    "result": 2
+   },
+   "mistake_step_landing_kinds": {
+    "assistant+call": 70,
+    "assistant": 54,
+    "result": 2
+   },
+   "mistake_step_landing_by_agent_vs_speaker": {
+    "call|match": 69,
+    "narration|match": 54,
+    "result|mismatch": 2,
+    "call|mismatch": 1
+   },
+   "agent_vs_speaker": {
+    "match": 123,
+    "mismatch": 3
+   },
+   "is_correct": {
+    "False": 126
+   },
+   "is_correct_src_key": {
+    "is_correct": 126
+   },
+   "mistake_step_eq_0": 20,
+   "mistake_step_eq_last": 1,
+   "label_optional_keys_present": {
+    "level": 126,
+    "labels": 1
+   },
+   "history_len": {
+    "min": 5,
+    "max": 10
+   },
+   "observations": {
+    "ag_backticks_without_extractable_block": 8,
+    "ag_block_lang:None": 19,
+    "ag_block_lang:plaintext": 1,
+    "ag_block_lang:python": 294,
+    "ag_block_lang:sh": 30,
+    "ag_call_mixed_langs": 19,
+    "ag_call_n_blocks:1": 235,
+    "ag_call_n_blocks:2": 33,
+    "ag_call_n_blocks:3": 4,
+    "ag_call_n_blocks:4": 4,
+    "ag_call_n_blocks:5": 3,
+    "ag_call_unexecuted:history_end": 12,
+    "ag_call_unexecuted:next_speaker_not_terminal": 31,
+    "ag_empty_expert_message": 2,
+    "ag_exit_code_word_mismatch": 0,
+    "ag_expert_text_contains_exitcode": 8,
+    "ag_history_len_eq_10": 70,
+    "ag_result_without_call": 0,
+    "ag_speaker_name_not_expert": 2,
+    "ag_task_prompt_contains_exitcode": 8,
+    "ag_task_prompt_with_call": 26,
+    "ag_terminal_no_code": 67,
+    "ag_terminal_other": 0,
+    "messages": 1099,
+    "role:expert:assistant": 368,
+    "role:expert:user": 428,
+    "role:terminal:user": 303,
+    "sessions": 126
+   }
+  },
+  "Hand-Crafted": {
+   "sessions": 58,
+   "messages": 2993,
+   "events": 2993,
+   "events_by_kind": {
+    "user": 58,
+    "assistant": 1563,
+    "call": 689,
+    "result": 652,
+    "system": 31
+   },
+   "calls": 689,
+   "results": 652,
+   "calls_paired": 652,
+   "unpaired_calls": 37,
+   "unpaired_results": 0,
+   "duplicate_call_ids": 0,
+   "results_sharing_a_call_id": 0,
+   "calls_by_tool": {
+    "websurfer": 602,
+    "subagent": 41,
+    "filesurfer": 36,
+    "computerterminal": 10
+   },
+   "results_by_tool": {
+    "websurfer": 568,
+    "subagent": 39,
+    "filesurfer": 35,
+    "computerterminal": 10
+   },
+   "native_error_true": 0,
+   "exit_code_histogram": {
+    "0": 8,
+    "none": 644
+   },
+   "mistake_step_landing": {
+    "result": 39,
+    "narration": 13,
+    "call": 6
+   },
+   "mistake_step_landing_kinds": {
+    "result": 39,
+    "assistant": 13,
+    "call": 6
+   },
+   "mistake_step_landing_by_agent_vs_speaker": {
+    "result|match": 35,
+    "narration|match": 13,
+    "result|case_insensitive_match": 2,
+    "call|match": 5,
+    "call|mismatch": 1,
+    "result|mismatch": 2
+   },
+   "agent_vs_speaker": {
+    "match": 53,
+    "case_insensitive_match": 2,
+    "mismatch": 3
+   },
+   "is_correct": {
+    "False": 58
+   },
+   "is_correct_src_key": {
+    "is_corrected": 58
+   },
+   "mistake_step_eq_0": 0,
+   "mistake_step_eq_last": 7,
+   "label_optional_keys_present": {
+    "mistake_type": 4,
+    "level": 30
+   },
+   "history_len": {
+    "min": 5,
+    "max": 130
+   },
+   "observations": {
+    "hc_call_result_gap:1": 58,
+    "hc_call_result_gap:2": 594,
+    "hc_call_unanswered:history_end": 5,
+    "hc_call_unanswered:superseded": 32,
+    "hc_filesurfer_error": 2,
+    "hc_human_not_first": 0,
+    "hc_log_leak:FileSurfer:final_answer": 2,
+    "hc_log_leak:FileSurfer:publish_error": 2,
+    "hc_log_leak:FileSurfer:run_trailer": 2,
+    "hc_log_leak:FileSurfer:traceback": 2,
+    "hc_log_leak:FileSurfer:warning": 8,
+    "hc_log_leak:Orchestrator (->):warning": 1,
+    "hc_log_leak:Orchestrator (termination condition):final_answer": 31,
+    "hc_log_leak:Orchestrator (termination condition):run_trailer": 31,
+    "hc_log_leak:Orchestrator (termination condition):warning": 14,
+    "hc_log_leak:Orchestrator (thought):final_answer": 4,
+    "hc_log_leak:Orchestrator (thought):publish_error": 4,
+    "hc_log_leak:Orchestrator (thought):run_trailer": 4,
+    "hc_log_leak:Orchestrator (thought):traceback": 4,
+    "hc_log_leak:Orchestrator (thought):warning": 128,
+    "hc_log_leak:WebSurfer:final_answer": 19,
+    "hc_log_leak:WebSurfer:publish_error": 20,
+    "hc_log_leak:WebSurfer:run_trailer": 20,
+    "hc_log_leak:WebSurfer:traceback": 22,
+    "hc_log_leak:WebSurfer:warning": 14,
+    "hc_messages_with_log_leak": 191,
+    "hc_other_orchestrator_role": 0,
+    "hc_result_without_call": 0,
+    "hc_terminal_no_code": 2,
+    "hc_terminal_unparsed": 0,
+    "hc_thought_kind:ledger": 758,
+    "hc_thought_kind:new_plan": 47,
+    "hc_thought_kind:next_speaker": 631,
+    "hc_thought_kind:plan": 58,
+    "hc_thought_kind:replan_exceeded": 3,
+    "hc_thought_kind:replan_notice": 48,
+    "hc_thought_kind:request_satisfied": 18,
+    "messages": 2993,
+    "role:Assistant": 39,
+    "role:ComputerTerminal": 10,
+    "role:FileSurfer": 35,
+    "role:Orchestrator (-> Assistant)": 41,
+    "role:Orchestrator (-> ComputerTerminal)": 10,
+    "role:Orchestrator (-> FileSurfer)": 36,
+    "role:Orchestrator (-> WebSurfer)": 602,
+    "role:Orchestrator (termination condition)": 31,
+    "role:Orchestrator (thought)": 1563,
+    "role:WebSurfer": 568,
+    "role:human": 58,
+    "sessions": 58
+   }
+  }
+ },
+ "parquet_crosscheck": {
+  "Algorithm-Generated": {
+   "parquet_present": true,
+   "parquet_rows": 126,
+   "json_files": 126,
+   "json_question_ids_distinct": 126,
+   "parquet_question_ids_distinct": 126,
+   "question_ids_in_both": 126,
+   "json_records_with_identical_parquet_history": 126
+  },
+  "Hand-Crafted": {
+   "parquet_present": true,
+   "parquet_rows": 58,
+   "json_files": 58,
+   "json_question_ids_distinct": 58,
+   "parquet_question_ids_distinct": 58,
+   "question_ids_in_both": 58,
+   "json_records_with_identical_parquet_history": 58
+  }
+ }
+}

@@ -16,12 +16,17 @@ Design rules
     bash_progress / mcp_progress / hook_progress -> one `meta` event with the timers in extra.
     normalizedMessages is ignored (it duplicates data.message history).
   - Duplicate entries (same uuid) are emitted once.
+  - attachment entries (timestamped) -> one event via lib/cc_attach.attachment_event: kind system/user when the model saw
+    them, meta otherwise (extra.visibility, extra.text_source).
+  - An assistant entry with only thinking blocks (Claude Code writes one entry per content block, so every thinking block
+    is such an entry) -> one meta event carrying its usage, api_msg_id and extra {entry_type: assistant_thinking_only,
+    thinking_chars}. Its thinking chars also still go to the next assistant/call event's extra.thinking_chars.
 """
 import json
 from .ir import iso, j, normalize_tool, error_marker
 
 USER_SYSTEM_PREFIXES = ("<local-command", "<command-name>", "<command-message>", "<system-reminder>", "Caveat:",
-                        "<task-notification>", "This session is being continued")
+                        "<task-notification>", "This session is being continued", "[SYSTEM NOTIFICATION")
 
 
 def _text_of(content):
@@ -93,6 +98,10 @@ class Parser:
             extra = {k: entry.get(k) for k in ("subtype", "level", "durationMs", "compactMetadata", "compact_metadata", "status") if k in entry}
             self._emit(entry, ts, kind="meta", text=entry.get("content") if isinstance(entry.get("content"), str) else None,
                        extra=j({"entry_type": "system", **extra}) if sub or extra else j({"entry_type": "system"}))
+        elif t == "attachment" and ts:  # model-visible reminders/snippets/queued prompts; rule in lib/cc_attach.py
+            from .cc_attach import attachment_event  # lazy: cc_attach imports this module
+            kind, text, ex, _ = attachment_event(entry, bool(entry.get("_nested")))
+            self._emit(entry, ts, kind=kind, text=text, extra=j(ex))
         elif t == "result":  # Agent SDK end-of-run row
             keep = {k: entry.get(k) for k in ("subtype", "is_error", "num_turns", "duration_ms", "duration_api_ms", "total_cost_usd", "stop_reason")}
             self._emit(entry, ts, kind="meta", extra=j({"entry_type": "result", **keep}))
@@ -124,6 +133,9 @@ class Parser:
         if role == "assistant":
             base = {"api_msg_id": msg.get("id"), "model": msg.get("model"), **_usage(msg)}
             blocks = content if isinstance(content, list) else [{"type": "text", "text": content or ""}]
+            if blocks and all(isinstance(b, dict) and b.get("type") in ("thinking", "redacted_thinking") for b in blocks):
+                tc = sum(len(b.get("thinking") or "") for b in blocks)
+                self._emit(entry, ts, kind="meta", extra=j({"entry_type": "assistant_thinking_only", "thinking_chars": tc}), **base)
             for b in blocks:
                 if not isinstance(b, dict):
                     continue

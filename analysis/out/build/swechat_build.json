@@ -1,0 +1,1774 @@
+{
+ "corpus": "swechat",
+ "snapshot": "SALT-NLP/SWE-chat@f66cca95",
+ "loader_version": "2",
+ "source": {
+  "sessions": "sessions.parquet",
+  "events": "transcripts/<session_id>.jsonl"
+ },
+ "population": {
+  "sessions_parquet_rows": 5851,
+  "sessions_parquet_distinct_ids": 5851,
+  "transcript_files": 5850,
+  "sessions_with_transcript": 5850,
+  "sessions_without_transcript": [
+   [
+    "bce82ae2-ddd8-4ee3-ae55-afeb35efbd13",
+    "Claude Code"
+   ]
+  ],
+  "files_without_session_row": [],
+  "label_counts_raw": {
+   "Claude Code": 4852,
+   "OpenCode": 623,
+   "Codex": 213,
+   "Gemini CLI": 59,
+   "unknown": 52,
+   "Agent": 24,
+   "Cursor": 19,
+   "Roger Roger Agent": 4,
+   "Copilot CLI": 2,
+   "Vogon Agent": 1,
+   "opencode": 1,
+   "claude-code": 1
+  },
+  "label_aliases": {
+   "opencode": "OpenCode",
+   "claude-code": "Claude Code",
+   "claude code": "Claude Code"
+  },
+  "labels_folded_to_other": [
+   "Copilot CLI",
+   "Roger Roger Agent",
+   "Vogon Agent"
+  ],
+  "stratum_counts": {
+   "Claude Code": 4852,
+   "OpenCode": 624,
+   "Codex": 213,
+   "Gemini CLI": 59,
+   "unknown": 52,
+   "Agent": 24,
+   "Cursor": 19,
+   "other": 7
+  }
+ },
+ "label_x_format": {
+  "Agent": {
+   "claude_code": 24
+  },
+  "Claude Code": {
+   "claude_code": 4847,
+   "cursor": 4
+  },
+  "Codex": {
+   "codex": 213
+  },
+  "Copilot CLI": {
+   "copilot": 2
+  },
+  "Cursor": {
+   "cursor": 19
+  },
+  "Gemini CLI": {
+   "claude_code": 3,
+   "gemini": 56
+  },
+  "OpenCode": {
+   "opencode": 623
+  },
+  "Roger Roger Agent": {
+   "claude_code": 1,
+   "simple_text": 3
+  },
+  "Vogon Agent": {
+   "simple_text": 1
+  },
+  "claude-code": {
+   "claude_code": 1
+  },
+  "opencode": {
+   "opencode": 1
+  },
+  "unknown": {
+   "claude_code": 49,
+   "gemini": 3
+  }
+ },
+ "format_counts_population": {
+  "claude_code": 4925,
+  "opencode": 624,
+  "codex": 213,
+  "gemini": 59,
+  "cursor": 23,
+  "simple_text": 4,
+  "copilot": 2
+ },
+ "stratum_x_format": {
+  "Agent": {
+   "claude_code": 24
+  },
+  "Claude Code": {
+   "claude_code": 4848,
+   "cursor": 4
+  },
+  "Codex": {
+   "codex": 213
+  },
+  "Cursor": {
+   "cursor": 19
+  },
+  "Gemini CLI": {
+   "claude_code": 3,
+   "gemini": 56
+  },
+  "OpenCode": {
+   "opencode": 624
+  },
+  "other": {
+   "claude_code": 1,
+   "copilot": 2,
+   "simple_text": 4
+  },
+  "unknown": {
+   "claude_code": 49,
+   "gemini": 3
+  }
+ },
+ "full_population_pass": {
+  "mode": "all files",
+  "files": 5850,
+  "wall_seconds": 25.2,
+  "processes": 8,
+  "by_format": {
+   "claude_code": {
+    "files": 4925,
+    "parse": {
+     "bytes": 9546488027,
+     "lines": 2991527,
+     "lines_salvaged": 15,
+     "objects_from_salvaged_lines": 29,
+     "files_with_zero_events": 1,
+     "bad_lines": 10,
+     "files_with_bad_lines": 5,
+     "cc_fixture_entries": 2
+    },
+    "calls": 584802,
+    "results": 583958,
+    "events": 2570003,
+    "kinds": {
+     "meta": 1123722,
+     "user": 38032,
+     "assistant": 202969,
+     "call": 584802,
+     "result": 583958,
+     "system": 36520
+    },
+    "calls_subagent": 177128,
+    "calls_nested_subagent": 176501,
+    "calls_sidechain_toplevel": 627,
+    "calls_session_subagent": 0,
+    "results_without_call": 16,
+    "calls_without_result": 861,
+    "synthetic_call_ids": 0,
+    "duplicate_call_ids": 16,
+    "ts_backward_steps": 124103,
+    "events_with_ts": 2569992,
+    "calls_by_tool_top40": {
+     "Bash -> shell": 184331,
+     "Read -> read": 167331,
+     "Edit -> edit": 84906,
+     "Grep -> grep": 54945,
+     "Glob -> glob": 18077,
+     "TaskUpdate -> taskupdate": 14857,
+     "Write -> write": 13808,
+     "Agent -> subagent": 7699,
+     "TaskCreate -> taskcreate": 7268,
+     "Task -> subagent": 3788,
+     "ToolSearch -> toolsearch": 3626,
+     "WebFetch -> webfetch": 2887,
+     "TodoWrite -> todo": 2662,
+     "TaskOutput -> taskoutput": 2008,
+     "AskUserQuestion -> askuserquestion": 1824,
+     "WebSearch -> websearch": 1823,
+     "Skill -> skill": 1730,
+     "ExitPlanMode -> exitplanmode": 1109,
+     "SendMessage -> sendmessage": 745,
+     "mcp__plugin_context-mode_context-mode__execute -> mcp__plugin_context-mode_context-mode__execute": 650,
+     "mcp__conductor__GetWorkspaceDiff -> mcp__conductor__getworkspacediff": 558,
+     "mcp__plugin_context-mode_context-mode__execute_file -> mcp__plugin_context-mode_context-mode__execute_file": 530,
+     "mcp__claude-in-chrome__computer -> mcp__claude-in-chrome__computer": 445,
+     "mcp__playwright__browser_click -> mcp__playwright__browser_click": 308,
+     "mcp__plugin_context-mode_context-mode__batch_execute -> mcp__plugin_context-mode_context-mode__batch_execute": 296,
+     "TaskList -> tasklist": 294,
+     "EnterPlanMode -> enterplanmode": 286,
+     "mcp__browser__playwright -> mcp__browser__playwright": 229,
+     "mcp__claude_ai_MCPHub__ha_addon-ha_get_state -> mcp__claude_ai_mcphub__ha_addon-ha_get_state": 204,
+     "mcp__plugin_context-mode_context-mode__search -> mcp__plugin_context-mode_context-mode__search": 175,
+     "TaskStop -> taskstop": 151,
+     "MultiEdit -> edit": 134,
+     "mcp__sequential-thinking__sequentialthinking -> mcp__sequential-thinking__sequentialthinking": 131,
+     "mcp__playwright__browser_wait_for -> mcp__playwright__browser_wait_for": 123,
+     "mcp__graph-memory__search_nodes -> mcp__graph-memory__search_nodes": 118,
+     "mcp__playwright__browser_navigate -> mcp__playwright__browser_navigate": 117,
+     "TeamDelete -> teamdelete": 112,
+     "TeamCreate -> teamcreate": 107,
+     "mcp__plugin_context-mode_context-mode__fetch_and_index -> mcp__plugin_context-mode_context-mode__fetch_and_index": 106,
+     "mcp__claude-in-chrome__navigate -> mcp__claude-in-chrome__navigate": 101
+    },
+    "distinct_tool_raw": 451
+   },
+   "codex": {
+    "files": 213,
+    "parse": {
+     "bytes": 263851734,
+     "lines": 109937,
+     "codex_event_user_message_texts": 915,
+     "codex_response_developer_message_as_system": 268,
+     "codex_response_user_message_as_system": 514,
+     "codex_response_user_message_as_user": 999,
+     "codex_token_count_new_total": 15491,
+     "codex_exec_end_joined_to_own_output": 12085,
+     "codex_exec_order_noheader_end_written_before_output": 4961,
+     "codex_exec_exit_attached_to_own_output": 10845,
+     "codex_token_count_repeat_of_previous_total": 615,
+     "codex_exec_order_exited_end_written_after_output": 5383,
+     "codex_exec_order_exited_end_after_output_with_response_item_between": 2214,
+     "codex_exec_own_output_header_exited": 5866,
+     "codex_exec_order_noheader_end_written_after_output": 18,
+     "codex_exec_order_running_end_written_after_output": 1235,
+     "codex_exec_order_running_end_after_output_with_response_item_between": 917,
+     "codex_exec_output_running_exit_deferred": 1240,
+     "codex_exec_order_exited_end_written_before_output": 483,
+     "codex_exec_exit_attached_to_write_stdin_output": 1145,
+     "codex_exec_order_noheader_end_after_output_with_response_item_between": 7,
+     "codex_exec_command_end_without_call": 1791,
+     "codex_token_count_repeat_total_but_last_differs": 84,
+     "codex_token_count_repeat_total_but_last_differs_last_in_out_zero": 84,
+     "codex_write_stdin_output_running": 1157,
+     "codex_exec_exit_never_shown_to_model": 95,
+     "codex_exec_exit_never_shown_to_model_nonzero": 45,
+     "codex_write_stdin_output_exited_without_exec_end": 123,
+     "session_level_subagent_sessions": 112,
+     "codex_web_search_end_without_call": 109,
+     "codex_exec_order_running_end_written_before_output": 5,
+     "codex_mcp_tool_call_end_without_call": 110,
+     "codex_collab_agent_spawn_end_without_call": 44,
+     "codex_collab_waiting_end_without_call": 30,
+     "codex_patch_apply_end_without_call": 23,
+     "codex_collab_close_end_without_call": 36,
+     "codex_collab_agent_interaction_end_without_call": 19
+    },
+    "calls": 21902,
+    "results": 21771,
+    "events": 96463,
+    "kinds": {
+     "meta": 46362,
+     "system": 782,
+     "user": 999,
+     "assistant": 4647,
+     "call": 21902,
+     "result": 21771
+    },
+    "calls_subagent": 2824,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 2824,
+    "results_without_call": 0,
+    "calls_without_result": 131,
+    "synthetic_call_ids": 29,
+    "duplicate_call_ids": 0,
+    "ts_backward_steps": 0,
+    "events_with_ts": 96463,
+    "calls_by_tool_top40": {
+     "exec_command -> shell": 9366,
+     "shell_command -> shell": 5553,
+     "write_stdin -> shell": 2447,
+     "apply_patch -> edit": 1959,
+     "update_plan -> update_plan": 443,
+     "exec -> exec": 394,
+     "wait -> wait": 237,
+     "mcp__filesystem__read_text_file -> mcp__filesystem__read_text_file": 205,
+     "mcp__sequential_thinking__sequentialthinking -> mcp__sequential_thinking__sequentialthinking": 182,
+     "web_search_call -> websearch": 127,
+     "wait_agent -> wait_agent": 119,
+     "spawn_agent -> spawn_agent": 107,
+     "mcp__omx_state__state_write -> mcp__omx_state__state_write": 106,
+     "mcp__zls__diagnostics -> mcp__zls__diagnostics": 104,
+     "close_agent -> close_agent": 69,
+     "mcp__filesystem__write_file -> mcp__filesystem__write_file": 52,
+     "mcp__filesystem__read_multiple_files -> mcp__filesystem__read_multiple_files": 49,
+     "list_agents -> list_agents": 40,
+     "mcp__omx_code_intel__lsp_diagnostics -> mcp__omx_code_intel__lsp_diagnostics": 40,
+     "get_file_problems -> get_file_problems": 37,
+     "mcp__omx_state__state_clear -> mcp__omx_state__state_clear": 30,
+     "request_user_input -> request_user_input": 29,
+     "mcp__codex_apps__github_search -> mcp__codex_apps__github_search": 28,
+     "mcp__filesystem__list_directory -> mcp__filesystem__list_directory": 22,
+     "mcp__codex_apps__github_fetch -> mcp__codex_apps__github_fetch": 22,
+     "mcp__filesystem__create_directory -> mcp__filesystem__create_directory": 18,
+     "mcp__filesystem__search_files -> mcp__filesystem__search_files": 16,
+     "mcp__omx_memory__notepad_read -> mcp__omx_memory__notepad_read": 16,
+     "followup_task -> followup_task": 12,
+     "mcp__omx_code_intel__ast_grep_search -> mcp__omx_code_intel__ast_grep_search": 12,
+     "view_image -> view_image": 11,
+     "mcp__omx_memory__project_memory_read -> mcp__omx_memory__project_memory_read": 9,
+     "mcp__zls__definition -> mcp__zls__definition": 5,
+     "mcp__omx_state__state_read -> mcp__omx_state__state_read": 5,
+     "mcp__omx_state__state_get_status -> mcp__omx_state__state_get_status": 4,
+     "mcp__filesystem__get_file_info -> mcp__filesystem__get_file_info": 4,
+     "mcp__omx_code_intel__lsp_diagnostics_directory -> mcp__omx_code_intel__lsp_diagnostics_directory": 4,
+     "mcp__filesystem__list_allowed_directories -> mcp__filesystem__list_allowed_directories": 3,
+     "mcp__zls__hover -> mcp__zls__hover": 3,
+     "mcp__omx_memory__notepad_write_working -> mcp__omx_memory__notepad_write_working": 3
+    },
+    "distinct_tool_raw": 48
+   },
+   "copilot": {
+    "files": 2,
+    "parse": {
+     "bytes": 4956444,
+     "lines": 2070
+    },
+    "calls": 266,
+    "results": 265,
+    "events": 2250,
+    "kinds": {
+     "meta": 1607,
+     "user": 10,
+     "call": 266,
+     "result": 265,
+     "assistant": 98,
+     "system": 4
+    },
+    "calls_subagent": 0,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 0,
+    "results_without_call": 0,
+    "calls_without_result": 1,
+    "synthetic_call_ids": 0,
+    "duplicate_call_ids": 0,
+    "ts_backward_steps": 0,
+    "events_with_ts": 2250,
+    "calls_by_tool_top40": {
+     "bash -> shell": 97,
+     "report_intent -> report_intent": 64,
+     "view -> read": 58,
+     "edit -> edit": 18,
+     "create -> create": 7,
+     "sql -> sql": 5,
+     "ask_user -> ask_user": 4,
+     "read_bash -> read_bash": 4,
+     "write_bash -> write_bash": 4,
+     "apply_patch -> edit": 1,
+     "stop_bash -> stop_bash": 1,
+     "show_file -> show_file": 1,
+     "exit_plan_mode -> exit_plan_mode": 1,
+     "task_complete -> task_complete": 1
+    },
+    "distinct_tool_raw": 14
+   },
+   "cursor": {
+    "files": 23,
+    "parse": {
+     "bytes": 3212023,
+     "lines": 1213
+    },
+    "calls": 619,
+    "results": 0,
+    "events": 1632,
+    "kinds": {
+     "user": 195,
+     "assistant": 818,
+     "call": 619
+    },
+    "calls_subagent": 0,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 0,
+    "results_without_call": 0,
+    "calls_without_result": 619,
+    "synthetic_call_ids": 619,
+    "duplicate_call_ids": 0,
+    "ts_backward_steps": 0,
+    "events_with_ts": 0,
+    "calls_by_tool_top40": {
+     "Read -> read": 141,
+     "Shell -> shell": 121,
+     "StrReplace -> strreplace": 95,
+     "TodoWrite -> todo": 72,
+     "ReadFile -> readfile": 38,
+     "Grep -> grep": 19,
+     "ApplyPatch -> applypatch": 12,
+     "serena-find_symbol -> serena-find_symbol": 12,
+     "Subagent -> subagent": 11,
+     "ReadLints -> readlints": 11,
+     "CreatePlan -> createplan": 9,
+     "Write -> write": 9,
+     "Task -> subagent": 9,
+     "serena-replace_regex -> serena-replace_regex": 9,
+     "WebSearch -> websearch": 8,
+     "serena-get_symbols_overview -> serena-get_symbols_overview": 8,
+     "Glob -> glob": 6,
+     "WebFetch -> webfetch": 5,
+     "Await -> await": 4,
+     "serena-read_file -> serena-read_file": 3,
+     "serena-find_referencing_symbols -> serena-find_referencing_symbols": 3,
+     "AskQuestion -> askquestion": 2,
+     "serena-think_about_collected_information -> serena-think_about_collected_information": 2,
+     "serena-switch_modes -> serena-switch_modes": 2,
+     "rg -> rg": 1,
+     "serena-activate_project -> serena-activate_project": 1,
+     "serena-list_dir -> serena-list_dir": 1,
+     "serena-search_for_pattern -> serena-search_for_pattern": 1,
+     "serena-think_about_task_adherence -> serena-think_about_task_adherence": 1,
+     "serena-think_about_whether_you_are_done -> serena-think_about_whether_you_are_done": 1,
+     "mcp_Ref_ref_search_documentation -> mcp_ref_ref_search_documentation": 1,
+     "mcp_Ref_ref_read -> mcp_ref_ref_read": 1
+    },
+    "distinct_tool_raw": 32
+   },
+   "gemini": {
+    "files": 59,
+    "parse": {
+     "bytes": 108742777,
+     "messages": 6414,
+     "document": {
+      "ok": 59
+     }
+    },
+    "calls": 5246,
+    "results": 4759,
+    "events": 15953,
+    "kinds": {
+     "user": 608,
+     "assistant": 5198,
+     "call": 5246,
+     "result": 4759,
+     "meta": 142
+    },
+    "calls_subagent": 0,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 0,
+    "results_without_call": 0,
+    "calls_without_result": 486,
+    "synthetic_call_ids": 0,
+    "duplicate_call_ids": 1,
+    "ts_backward_steps": 134,
+    "events_with_ts": 14925,
+    "calls_by_tool_top40": {
+     "run_shell_command -> shell": 1901,
+     "replace -> edit": 1355,
+     "read_file -> read": 907,
+     "write_file -> write": 560,
+     "grep_search -> grep_search": 97,
+     "google_web_search -> websearch": 74,
+     "insert_after_symbol -> insert_after_symbol": 57,
+     "find_symbol -> find_symbol": 53,
+     "list_directory -> ls": 50,
+     "get_symbols_overview -> get_symbols_overview": 29,
+     "list_dir -> list_dir": 18,
+     "ask_user -> ask_user": 17,
+     "glob -> glob": 16,
+     "web_fetch -> webfetch": 11,
+     "cli_help -> cli_help": 9,
+     "activate_skill -> activate_skill": 9,
+     "mcp_serena_find_symbol -> mcp_serena_find_symbol": 9,
+     "mcp_serena_replace_symbol_body -> mcp_serena_replace_symbol_body": 8,
+     "search_for_pattern -> search_for_pattern": 6,
+     "generalist -> generalist": 6,
+     "find_file -> find_file": 5,
+     "get_current_config -> get_current_config": 5,
+     "write_memory -> write_memory": 5,
+     "mcp_serena_get_symbols_overview -> mcp_serena_get_symbols_overview": 4,
+     "check_onboarding_performed -> check_onboarding_performed": 4,
+     "mcp_serena_insert_after_symbol -> mcp_serena_insert_after_symbol": 3,
+     "mcp_serena_find_referencing_symbols -> mcp_serena_find_referencing_symbols": 3,
+     "codebase_investigator -> codebase_investigator": 2,
+     "enter_plan_mode -> enter_plan_mode": 2,
+     "exit_plan_mode -> exit_plan_mode": 2,
+     "mcp_serena_list_memories -> mcp_serena_list_memories": 2,
+     "activate_project -> activate_project": 2,
+     "mcp_serena_check_onboarding_performed -> mcp_serena_check_onboarding_performed": 2,
+     "mcp_serena_read_memory -> mcp_serena_read_memory": 2,
+     "onboarding -> onboarding": 2,
+     "initial_instructions -> initial_instructions": 2,
+     "write_todos -> write_todos": 2,
+     "rename_symbol -> rename_symbol": 1,
+     "mcp_dart_run_tests -> mcp_dart_run_tests": 1,
+     "mcp_dart_list_devices -> mcp_dart_list_devices": 1
+    },
+    "distinct_tool_raw": 42
+   },
+   "opencode": {
+    "files": 624,
+    "parse": {
+     "bytes": 459227336,
+     "messages": 17147,
+     "document": {
+      "ok": 623,
+      "salvaged": 1
+     },
+     "opencode_results_completed_with_nonzero_exit": 651,
+     "session_level_subagent_sessions": 511,
+     "opencode_call_ids_redacted_or_missing": 6366,
+     "redacted_message_ids": 2196,
+     "opencode_step_finish_synthetic_api_msg_id": 1933,
+     "salvage_stopped": 1,
+     "salvaged_messages": 213
+    },
+    "calls": 22619,
+    "results": 22613,
+    "events": 81520,
+    "kinds": {
+     "user": 1397,
+     "meta": 32706,
+     "assistant": 1939,
+     "call": 22619,
+     "result": 22613,
+     "system": 246
+    },
+    "calls_subagent": 12386,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 12386,
+    "results_without_call": 0,
+    "calls_without_result": 6,
+    "synthetic_call_ids": 6366,
+    "duplicate_call_ids": 0,
+    "ts_backward_steps": 6662,
+    "events_with_ts": 48848,
+    "calls_by_tool_top40": {
+     "read -> read": 10583,
+     "bash -> shell": 5349,
+     "grep -> grep": 2340,
+     "apply_patch -> edit": 1964,
+     "glob -> glob": 1411,
+     "task -> subagent": 287,
+     "todowrite -> todo": 248,
+     "edit -> edit": 176,
+     "webfetch -> webfetch": 106,
+     "write -> write": 59,
+     "websearch -> websearch": 27,
+     "skill -> skill": 21,
+     "codesearch -> codesearch": 17,
+     "question -> question": 16,
+     "tavily_tavily-search -> tavily_tavily-search": 8,
+     "github_search_code -> github_search_code": 3,
+     "zai-mcp-server_analyze_image -> zai-mcp-server_analyze_image": 2,
+     "MiniMax_understand_image -> minimax_understand_image": 1,
+     "Write -> write": 1
+    },
+    "distinct_tool_raw": 19
+   },
+   "simple_text": {
+    "files": 4,
+    "parse": {
+     "bytes": 2213,
+     "lines": 20
+    },
+    "calls": 0,
+    "results": 0,
+    "events": 20,
+    "kinds": {
+     "user": 10,
+     "assistant": 10
+    },
+    "calls_subagent": 0,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 0,
+    "results_without_call": 0,
+    "calls_without_result": 0,
+    "synthetic_call_ids": 0,
+    "duplicate_call_ids": 0,
+    "ts_backward_steps": 0,
+    "events_with_ts": 20,
+    "calls_by_tool_top40": {},
+    "distinct_tool_raw": 0
+   }
+  },
+  "totals": {
+   "events": 2767841,
+   "calls": 635454,
+   "results": 633366,
+   "calls_subagent": 192338,
+   "calls_nested_subagent": 176501,
+   "calls_sidechain_toplevel": 627,
+   "calls_session_subagent": 15210,
+   "results_without_call": 16,
+   "calls_without_result": 2104
+  },
+  "parser_exceptions": [],
+  "document_parse_not_ok": [
+   [
+    "ses_3353a8139ffeLXvY9MIuOitgt6",
+    "opencode",
+    "salvaged",
+    213
+   ]
+  ],
+  "cross_session_links": {
+   "opencode_child_to_task_call": 305,
+   "codex_thread_to_spawn_call": 123
+  },
+  "length_by_format": {
+   "claude_code": {
+    "sum": 2991527,
+    "median": 255.0,
+    "max": 138005
+   },
+   "codex": {
+    "sum": 109937,
+    "median": 129.0,
+    "max": 20752
+   },
+   "copilot": {
+    "sum": 2070,
+    "median": 1035.0,
+    "max": 1069
+   },
+   "cursor": {
+    "sum": 1213,
+    "median": 22.0,
+    "max": 443
+   },
+   "gemini": {
+    "sum": 6414,
+    "median": 43.0,
+    "max": 786
+   },
+   "opencode": {
+    "sum": 17147,
+    "median": 12.0,
+    "max": 911
+   },
+   "simple_text": {
+    "sum": 20,
+    "median": 4.0,
+    "max": 10
+   }
+  }
+ },
+ "redaction_markers_raw_files": {
+  "claude_code": {
+   "bracket_plain": 2978,
+   "bare_in_blob": 37032,
+   "bare_other": 289648,
+   "total_substring": 352987,
+   "bracket_typed_colon": 22510,
+   "angle_plain": 17,
+   "bracket_typed_underscore": 594,
+   "trufflehog": 208
+  },
+  "cursor": {
+   "bare_in_blob": 2,
+   "bare_other": 7,
+   "total_substring": 33,
+   "bracket_plain": 24
+  },
+  "codex": {
+   "bare_in_blob": 51546,
+   "bare_other": 14633,
+   "total_substring": 67728,
+   "bracket_typed_colon": 1086,
+   "bracket_typed_underscore": 88,
+   "bracket_plain": 375
+  },
+  "gemini": {
+   "bare_in_blob": 8004,
+   "bare_other": 10610,
+   "total_substring": 18881,
+   "angle_plain": 263,
+   "bracket_plain": 4
+  },
+  "simple_text": {},
+  "copilot": {
+   "bare_in_blob": 2803,
+   "bare_other": 1,
+   "total_substring": 2804
+  },
+  "opencode": {
+   "bare_in_blob": 73972,
+   "bare_other": 50314,
+   "total_substring": 129070,
+   "bracket_typed_colon": 819,
+   "bracket_typed_underscore": 1253,
+   "bracket_plain": 2710,
+   "angle_plain": 2
+  }
+ },
+ "sample": {
+  "seed": 20261003,
+  "population_sessions": 5850,
+  "A": 200,
+  "B": 2000,
+  "rule": "A=min(200,40%); B=up to 2000 from remainder; stratum x length tercile; floor 5 per cell",
+  "file": "analysis/cache/samples/swechat.json",
+  "A_by_stratum": {
+   "Claude Code": 97,
+   "OpenCode": 25,
+   "Codex": 19,
+   "Gemini CLI": 16,
+   "unknown": 15,
+   "Agent": 14,
+   "Cursor": 7,
+   "other": 7
+  },
+  "B_by_stratum": {
+   "Claude Code": 1648,
+   "OpenCode": 214,
+   "Codex": 77,
+   "Gemini CLI": 23,
+   "unknown": 22,
+   "Agent": 9,
+   "Cursor": 7
+  },
+  "A_by_format": {
+   "claude_code": 128,
+   "opencode": 25,
+   "codex": 19,
+   "gemini": 15,
+   "cursor": 7,
+   "simple_text": 4,
+   "copilot": 2
+  },
+  "B_by_format": {
+   "claude_code": 1679,
+   "opencode": 214,
+   "codex": 77,
+   "gemini": 22,
+   "cursor": 8
+  }
+ },
+ "caches": {
+  "A": {
+   "path": "analysis/cache/swechat_A.parquet",
+   "rows": 90069,
+   "sessions": 200,
+   "sessions_in_sample": 200,
+   "sessions_with_zero_events": [],
+   "row_groups": 1,
+   "bytes": 21678804,
+   "validate_kind_counts": {
+    "meta": 35560,
+    "call": 21749,
+    "result": 21025,
+    "assistant": 9043,
+    "user": 1805,
+    "system": 887
+   }
+  },
+  "B": {
+   "path": "analysis/cache/swechat_B.parquet",
+   "rows": 933268,
+   "sessions": 2000,
+   "sessions_in_sample": 2000,
+   "sessions_with_zero_events": [],
+   "row_groups": 4,
+   "bytes": 215216982,
+   "validate_kind_counts": {
+    "meta": 403263,
+    "call": 214592,
+    "result": 214069,
+    "assistant": 74185,
+    "user": 14117,
+    "system": 13042
+   }
+  }
+ },
+ "per_format_AB": {
+  "claude_code": {
+   "files": 1807,
+   "parse": {
+    "bytes": 3458384474,
+    "lines": 1093125,
+    "bad_lines": 2,
+    "files_with_bad_lines": 2,
+    "lines_salvaged": 5,
+    "objects_from_salvaged_lines": 10,
+    "cc_fixture_entries": 2
+   },
+   "summary": {
+    "events": 914393,
+    "kinds": {
+     "meta": 396437,
+     "system": 13378,
+     "user": 13939,
+     "assistant": 74404,
+     "call": 208272,
+     "result": 207963
+    },
+    "calls": 208272,
+    "results": 207963,
+    "calls_without_result": 316,
+    "results_without_call": 7,
+    "duplicate_call_ids": 0,
+    "synthetic_call_ids": 0,
+    "call_or_result_ids_containing_REDACTED": 0,
+    "calls_subagent": 60910,
+    "calls_nested_subagent": 60608,
+    "calls_sidechain_toplevel": 302,
+    "calls_session_subagent": 0,
+    "events_subagent": 124409,
+    "ts_kind": {
+     "event": 914382,
+     "none": 11
+    },
+    "frac_digits": {
+     "3": 914382
+    },
+    "ts_backward_steps": 43088,
+    "events_with_ts": 914382,
+    "native_error_results": {
+     "false": 60804,
+     "null": 138402,
+     "true": 8757
+    },
+    "exit_code_results_nonnull": 0,
+    "redaction_ir": {
+     "bare_in_blob": 2066,
+     "bare_other": 26986,
+     "total_substring": 32452,
+     "bracket_typed_colon": 2803,
+     "bracket_plain": 426,
+     "trufflehog": 39,
+     "bracket_typed_underscore": 120,
+     "angle_plain": 12
+    },
+    "usage_rows": 314639,
+    "usage_rows_api_msg_id_null": 0,
+    "usage_rows_api_msg_id_synthetic": 0,
+    "usage_distinct_api_msg_ids": 169175,
+    "usage_in_sum_all_rows": 25774864,
+    "usage_in_sum_dedup_api_msg_id": 7426470,
+    "usage_repeat_rows_flagged": 0,
+    "results_exit_code_nonzero": 0,
+    "results_exit_code_nonzero_native_true": 0,
+    "results_native_true": 8757,
+    "shell_results": 65215,
+    "shell_results_native_true": 4383,
+    "shell_results_exit_code_nonnull": 0,
+    "gemini_shell_results_text_exit_nonzero": 0,
+    "gemini_shell_results_text_exit_nonzero_native_true": 0,
+    "subagent_share_events": 0.13605637838434897,
+    "subagent_share_calls": 0.2924540984865944,
+    "nested_subagent_share_calls": 0.29100407159867864
+   },
+   "calls_by_tool_top40": {
+    "Bash -> shell": 65341,
+    "Read -> read": 59344,
+    "Edit -> edit": 30681,
+    "Grep -> grep": 20413,
+    "Glob -> glob": 6339,
+    "TaskUpdate -> taskupdate": 5017,
+    "Write -> write": 4796,
+    "Agent -> subagent": 2705,
+    "TaskCreate -> taskcreate": 2462,
+    "TodoWrite -> todo": 1441,
+    "Task -> subagent": 1282,
+    "ToolSearch -> toolsearch": 1276,
+    "WebFetch -> webfetch": 996,
+    "WebSearch -> websearch": 757,
+    "TaskOutput -> taskoutput": 642,
+    "AskUserQuestion -> askuserquestion": 622,
+    "Skill -> skill": 589,
+    "ExitPlanMode -> exitplanmode": 399,
+    "mcp__claude-in-chrome__computer -> mcp__claude-in-chrome__computer": 289,
+    "mcp__plugin_context-mode_context-mode__execute -> mcp__plugin_context-mode_context-mode__execute": 272,
+    "mcp__plugin_context-mode_context-mode__execute_file -> mcp__plugin_context-mode_context-mode__execute_file": 227,
+    "SendMessage -> sendmessage": 167,
+    "mcp__plugin_context-mode_context-mode__batch_execute -> mcp__plugin_context-mode_context-mode__batch_execute": 116,
+    "mcp__conductor__GetWorkspaceDiff -> mcp__conductor__getworkspacediff": 106,
+    "TaskList -> tasklist": 104,
+    "EnterPlanMode -> enterplanmode": 95,
+    "mcp__acp__Read -> mcp__acp__read": 80,
+    "mcp__claude-in-chrome__navigate -> mcp__claude-in-chrome__navigate": 66,
+    "mcp__acp__Edit -> mcp__acp__edit": 64,
+    "mcp__plugin_context-mode_context-mode__search -> mcp__plugin_context-mode_context-mode__search": 57,
+    "MultiEdit -> edit": 51,
+    "mcp__graph-memory__search_nodes -> mcp__graph-memory__search_nodes": 48,
+    "mcp__sequential-thinking__sequentialthinking -> mcp__sequential-thinking__sequentialthinking": 48,
+    "mcp__claude-in-chrome__javascript_tool -> mcp__claude-in-chrome__javascript_tool": 44,
+    "mcp__Claude_in_Chrome__computer -> mcp__claude_in_chrome__computer": 42,
+    "mcp__pencil__batch_design -> mcp__pencil__batch_design": 41,
+    "mcp__serena__get_symbols_overview -> mcp__serena__get_symbols_overview": 33,
+    "TaskStop -> taskstop": 32,
+    "mcp__claude-in-chrome__tabs_context_mcp -> mcp__claude-in-chrome__tabs_context_mcp": 30,
+    "mcp__acp__Bash -> shell": 29
+   },
+   "distinct_tool_raw": 261
+  },
+  "cursor": {
+   "files": 15,
+   "parse": {
+    "bytes": 3010652,
+    "lines": 967
+   },
+   "summary": {
+    "events": 1220,
+    "kinds": {
+     "user": 167,
+     "assistant": 683,
+     "call": 370
+    },
+    "calls": 370,
+    "results": 0,
+    "calls_without_result": 370,
+    "results_without_call": 0,
+    "duplicate_call_ids": 0,
+    "synthetic_call_ids": 370,
+    "call_or_result_ids_containing_REDACTED": 0,
+    "calls_subagent": 0,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 0,
+    "events_subagent": 0,
+    "ts_kind": {
+     "none": 1220
+    },
+    "frac_digits": {},
+    "ts_backward_steps": 0,
+    "events_with_ts": 0,
+    "native_error_results": {},
+    "exit_code_results_nonnull": 0,
+    "redaction_ir": {
+     "bare_in_blob": 0,
+     "bare_other": 6,
+     "total_substring": 6
+    },
+    "usage_rows": 0,
+    "usage_rows_api_msg_id_null": 0,
+    "usage_rows_api_msg_id_synthetic": 0,
+    "usage_distinct_api_msg_ids": 0,
+    "usage_in_sum_all_rows": 0,
+    "usage_in_sum_dedup_api_msg_id": 0,
+    "usage_repeat_rows_flagged": 0,
+    "results_exit_code_nonzero": 0,
+    "results_exit_code_nonzero_native_true": 0,
+    "results_native_true": 0,
+    "shell_results": 0,
+    "shell_results_native_true": 0,
+    "shell_results_exit_code_nonnull": 0,
+    "gemini_shell_results_text_exit_nonzero": 0,
+    "gemini_shell_results_text_exit_nonzero_native_true": 0,
+    "subagent_share_events": 0.0,
+    "subagent_share_calls": 0.0,
+    "nested_subagent_share_calls": 0.0
+   },
+   "calls_by_tool_top40": {
+    "Read -> read": 105,
+    "StrReplace -> strreplace": 79,
+    "TodoWrite -> todo": 56,
+    "Shell -> shell": 36,
+    "serena-find_symbol -> serena-find_symbol": 12,
+    "Grep -> grep": 11,
+    "Task -> subagent": 9,
+    "serena-replace_regex -> serena-replace_regex": 9,
+    "serena-get_symbols_overview -> serena-get_symbols_overview": 8,
+    "CreatePlan -> createplan": 6,
+    "WebSearch -> websearch": 5,
+    "Write -> write": 5,
+    "ReadLints -> readlints": 5,
+    "WebFetch -> webfetch": 4,
+    "Glob -> glob": 3,
+    "serena-read_file -> serena-read_file": 3,
+    "serena-find_referencing_symbols -> serena-find_referencing_symbols": 3,
+    "serena-think_about_collected_information -> serena-think_about_collected_information": 2,
+    "serena-switch_modes -> serena-switch_modes": 2,
+    "AskQuestion -> askquestion": 1,
+    "serena-activate_project -> serena-activate_project": 1,
+    "serena-list_dir -> serena-list_dir": 1,
+    "serena-search_for_pattern -> serena-search_for_pattern": 1,
+    "serena-think_about_task_adherence -> serena-think_about_task_adherence": 1,
+    "serena-think_about_whether_you_are_done -> serena-think_about_whether_you_are_done": 1,
+    "Await -> await": 1
+   },
+   "distinct_tool_raw": 26
+  },
+  "codex": {
+   "files": 96,
+   "parse": {
+    "bytes": 124314026,
+    "lines": 52411,
+    "codex_event_user_message_texts": 405,
+    "codex_response_developer_message_as_system": 114,
+    "codex_response_user_message_as_system": 233,
+    "codex_response_user_message_as_user": 447,
+    "codex_token_count_new_total": 7611,
+    "codex_exec_end_joined_to_own_output": 5571,
+    "codex_exec_order_noheader_end_written_before_output": 2101,
+    "codex_exec_exit_attached_to_own_output": 4764,
+    "session_level_subagent_sessions": 52,
+    "codex_token_count_repeat_of_previous_total": 265,
+    "codex_web_search_end_without_call": 60,
+    "codex_token_count_repeat_total_but_last_differs": 43,
+    "codex_token_count_repeat_total_but_last_differs_last_in_out_zero": 43,
+    "codex_exec_order_exited_end_written_before_output": 192,
+    "codex_exec_own_output_header_exited": 2660,
+    "codex_exec_order_running_end_written_after_output": 805,
+    "codex_exec_order_running_end_after_output_with_response_item_between": 583,
+    "codex_exec_output_running_exit_deferred": 807,
+    "codex_write_stdin_output_running": 893,
+    "codex_exec_exit_attached_to_write_stdin_output": 737,
+    "codex_exec_exit_never_shown_to_model": 70,
+    "codex_exec_exit_never_shown_to_model_nonzero": 33,
+    "codex_exec_order_exited_end_written_after_output": 2468,
+    "codex_exec_order_exited_end_after_output_with_response_item_between": 989,
+    "codex_write_stdin_output_exited_without_exec_end": 82,
+    "codex_exec_order_running_end_written_before_output": 2,
+    "codex_exec_order_noheader_end_written_after_output": 3,
+    "codex_exec_order_noheader_end_after_output_with_response_item_between": 1,
+    "codex_mcp_tool_call_end_without_call": 16,
+    "codex_exec_command_end_without_call": 36,
+    "codex_collab_agent_spawn_end_without_call": 6,
+    "codex_collab_waiting_end_without_call": 5,
+    "codex_patch_apply_end_without_call": 4,
+    "codex_collab_close_end_without_call": 5
+   },
+   "summary": {
+    "events": 45602,
+    "kinds": {
+     "meta": 20746,
+     "system": 347,
+     "user": 447,
+     "assistant": 2292,
+     "call": 10923,
+     "result": 10847
+    },
+    "calls": 10923,
+    "results": 10847,
+    "calls_without_result": 76,
+    "results_without_call": 0,
+    "duplicate_call_ids": 0,
+    "synthetic_call_ids": 24,
+    "call_or_result_ids_containing_REDACTED": 0,
+    "calls_subagent": 1447,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 1447,
+    "events_subagent": 4901,
+    "ts_kind": {
+     "event": 45602
+    },
+    "frac_digits": {
+     "3": 45602
+    },
+    "ts_backward_steps": 0,
+    "events_with_ts": 45602,
+    "native_error_results": {
+     "null": 4076,
+     "false": 6273,
+     "true": 498
+    },
+    "exit_code_results_nonnull": 5501,
+    "redaction_ir": {
+     "bare_in_blob": 761,
+     "bare_other": 346,
+     "total_substring": 1511,
+     "bracket_typed_colon": 260,
+     "bracket_typed_underscore": 28,
+     "bracket_plain": 116
+    },
+    "usage_rows": 7611,
+    "usage_rows_api_msg_id_null": 0,
+    "usage_rows_api_msg_id_synthetic": 7611,
+    "usage_distinct_api_msg_ids": 7611,
+    "usage_in_sum_all_rows": 1155950298,
+    "usage_in_sum_dedup_api_msg_id": 1155950298,
+    "usage_repeat_rows_flagged": 265,
+    "results_exit_code_nonzero": 486,
+    "results_exit_code_nonzero_native_true": 486,
+    "results_native_true": 498,
+    "shell_results": 8956,
+    "shell_results_native_true": 486,
+    "shell_results_exit_code_nonnull": 5501,
+    "gemini_shell_results_text_exit_nonzero": 0,
+    "gemini_shell_results_text_exit_nonzero_native_true": 0,
+    "subagent_share_events": 0.10747335643173545,
+    "subagent_share_calls": 0.13247276389270346,
+    "nested_subagent_share_calls": 0.0
+   },
+   "calls_by_tool_top40": {
+    "exec_command -> shell": 4835,
+    "shell_command -> shell": 2396,
+    "write_stdin -> shell": 1727,
+    "apply_patch -> edit": 820,
+    "update_plan -> update_plan": 228,
+    "mcp__filesystem__read_text_file -> mcp__filesystem__read_text_file": 138,
+    "mcp__sequential_thinking__sequentialthinking -> mcp__sequential_thinking__sequentialthinking": 123,
+    "web_search_call -> websearch": 74,
+    "wait_agent -> wait_agent": 64,
+    "spawn_agent -> spawn_agent": 62,
+    "mcp__omx_state__state_write -> mcp__omx_state__state_write": 59,
+    "exec -> exec": 55,
+    "mcp__filesystem__write_file -> mcp__filesystem__write_file": 51,
+    "mcp__zls__diagnostics -> mcp__zls__diagnostics": 50,
+    "mcp__filesystem__read_multiple_files -> mcp__filesystem__read_multiple_files": 36,
+    "close_agent -> close_agent": 36,
+    "mcp__omx_code_intel__lsp_diagnostics -> mcp__omx_code_intel__lsp_diagnostics": 25,
+    "list_agents -> list_agents": 23,
+    "request_user_input -> request_user_input": 19,
+    "mcp__omx_memory__notepad_read -> mcp__omx_memory__notepad_read": 14,
+    "mcp__filesystem__list_directory -> mcp__filesystem__list_directory": 11,
+    "mcp__filesystem__create_directory -> mcp__filesystem__create_directory": 11,
+    "view_image -> view_image": 9,
+    "mcp__filesystem__search_files -> mcp__filesystem__search_files": 8,
+    "mcp__omx_state__state_clear -> mcp__omx_state__state_clear": 8,
+    "wait -> wait": 8,
+    "mcp__omx_memory__project_memory_read -> mcp__omx_memory__project_memory_read": 6,
+    "mcp__omx_state__state_read -> mcp__omx_state__state_read": 5,
+    "mcp__filesystem__get_file_info -> mcp__filesystem__get_file_info": 4,
+    "followup_task -> followup_task": 4,
+    "mcp__omx_state__state_get_status -> mcp__omx_state__state_get_status": 3,
+    "mcp__omx_code_intel__lsp_diagnostics_directory -> mcp__omx_code_intel__lsp_diagnostics_directory": 2,
+    "mcp__filesystem__list_allowed_directories -> mcp__filesystem__list_allowed_directories": 2,
+    "mcp__zls__definition -> mcp__zls__definition": 2,
+    "mcp__omx_code_intel__lsp_servers -> mcp__omx_code_intel__lsp_servers": 1,
+    "mcp__omx_code_intel__ast_grep_search -> mcp__omx_code_intel__ast_grep_search": 1,
+    "mcp__omx_team_run__omx_run_team_start -> mcp__omx_team_run__omx_run_team_start": 1,
+    "mcp__omx_team_run__omx_run_team_status -> mcp__omx_team_run__omx_run_team_status": 1,
+    "mcp__omx_code_intel__lsp_document_symbols -> mcp__omx_code_intel__lsp_document_symbols": 1
+   },
+   "distinct_tool_raw": 39
+  },
+  "gemini": {
+   "files": 37,
+   "parse": {
+    "bytes": 101483214,
+    "messages": 5538,
+    "document": {
+     "ok": 37
+    }
+   },
+   "summary": {
+    "events": 13872,
+    "kinds": {
+     "user": 488,
+     "assistant": 4612,
+     "call": 4576,
+     "result": 4089,
+     "meta": 107
+    },
+    "calls": 4576,
+    "results": 4089,
+    "calls_without_result": 486,
+    "results_without_call": 0,
+    "duplicate_call_ids": 1,
+    "synthetic_call_ids": 0,
+    "call_or_result_ids_containing_REDACTED": 2,
+    "calls_subagent": 0,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 0,
+    "events_subagent": 0,
+    "ts_kind": {
+     "event": 12844,
+     "none": 1028
+    },
+    "frac_digits": {
+     "3": 12844
+    },
+    "ts_backward_steps": 77,
+    "events_with_ts": 12844,
+    "native_error_results": {
+     "false": 3858,
+     "true": 231
+    },
+    "exit_code_results_nonnull": 0,
+    "redaction_ir": {
+     "bare_in_blob": 379,
+     "bare_other": 76,
+     "total_substring": 489,
+     "angle_plain": 32,
+     "bracket_plain": 2
+    },
+    "usage_rows": 8183,
+    "usage_rows_api_msg_id_null": 0,
+    "usage_rows_api_msg_id_synthetic": 0,
+    "usage_distinct_api_msg_ids": 4419,
+    "usage_in_sum_all_rows": 1761777219,
+    "usage_in_sum_dedup_api_msg_id": 950337861,
+    "usage_repeat_rows_flagged": 0,
+    "results_exit_code_nonzero": 0,
+    "results_exit_code_nonzero_native_true": 0,
+    "results_native_true": 231,
+    "shell_results": 1419,
+    "shell_results_native_true": 26,
+    "shell_results_exit_code_nonnull": 0,
+    "gemini_shell_results_text_exit_nonzero": 445,
+    "gemini_shell_results_text_exit_nonzero_native_true": 0,
+    "subagent_share_events": 0.0,
+    "subagent_share_calls": 0.0,
+    "nested_subagent_share_calls": 0.0
+   },
+   "calls_by_tool_top40": {
+    "run_shell_command -> shell": 1629,
+    "replace -> edit": 1253,
+    "read_file -> read": 801,
+    "write_file -> write": 510,
+    "grep_search -> grep_search": 69,
+    "insert_after_symbol -> insert_after_symbol": 56,
+    "google_web_search -> websearch": 53,
+    "find_symbol -> find_symbol": 49,
+    "list_directory -> ls": 38,
+    "get_symbols_overview -> get_symbols_overview": 15,
+    "ask_user -> ask_user": 12,
+    "glob -> glob": 12,
+    "list_dir -> list_dir": 11,
+    "web_fetch -> webfetch": 9,
+    "mcp_serena_replace_symbol_body -> mcp_serena_replace_symbol_body": 8,
+    "cli_help -> cli_help": 8,
+    "write_memory -> write_memory": 5,
+    "generalist -> generalist": 5,
+    "search_for_pattern -> search_for_pattern": 4,
+    "mcp_serena_get_symbols_overview -> mcp_serena_get_symbols_overview": 3,
+    "enter_plan_mode -> enter_plan_mode": 2,
+    "exit_plan_mode -> exit_plan_mode": 2,
+    "activate_skill -> activate_skill": 2,
+    "mcp_serena_read_memory -> mcp_serena_read_memory": 2,
+    "write_todos -> write_todos": 2,
+    "check_onboarding_performed -> check_onboarding_performed": 1,
+    "initial_instructions -> initial_instructions": 1,
+    "onboarding -> onboarding": 1,
+    "mcp_serena_find_symbol -> mcp_serena_find_symbol": 1,
+    "mcp_serena_find_referencing_symbols -> mcp_serena_find_referencing_symbols": 1,
+    "mcp_serena_insert_before_symbol -> mcp_serena_insert_before_symbol": 1,
+    "mcp_serena_insert_after_symbol -> mcp_serena_insert_after_symbol": 1,
+    "find_file -> find_file": 1,
+    "get_current_config -> get_current_config": 1,
+    "codebase_investigator -> codebase_investigator": 1,
+    "rename_symbol -> rename_symbol": 1,
+    "mcp_dart_run_tests -> mcp_dart_run_tests": 1,
+    "mcp_dart_list_devices -> mcp_dart_list_devices": 1,
+    "mcp_serena_check_onboarding_performed -> mcp_serena_check_onboarding_performed": 1,
+    "mcp_serena_list_memories -> mcp_serena_list_memories": 1
+   },
+   "distinct_tool_raw": 41
+  },
+  "simple_text": {
+   "files": 4,
+   "parse": {
+    "bytes": 2213,
+    "lines": 20
+   },
+   "summary": {
+    "events": 20,
+    "kinds": {
+     "user": 10,
+     "assistant": 10
+    },
+    "calls": 0,
+    "results": 0,
+    "calls_without_result": 0,
+    "results_without_call": 0,
+    "duplicate_call_ids": 0,
+    "synthetic_call_ids": 0,
+    "call_or_result_ids_containing_REDACTED": 0,
+    "calls_subagent": 0,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 0,
+    "events_subagent": 0,
+    "ts_kind": {
+     "event": 20
+    },
+    "frac_digits": {
+     "0": 20
+    },
+    "ts_backward_steps": 0,
+    "events_with_ts": 20,
+    "native_error_results": {},
+    "exit_code_results_nonnull": 0,
+    "redaction_ir": {},
+    "usage_rows": 0,
+    "usage_rows_api_msg_id_null": 0,
+    "usage_rows_api_msg_id_synthetic": 0,
+    "usage_distinct_api_msg_ids": 0,
+    "usage_in_sum_all_rows": 0,
+    "usage_in_sum_dedup_api_msg_id": 0,
+    "usage_repeat_rows_flagged": 0,
+    "results_exit_code_nonzero": 0,
+    "results_exit_code_nonzero_native_true": 0,
+    "results_native_true": 0,
+    "shell_results": 0,
+    "shell_results_native_true": 0,
+    "shell_results_exit_code_nonnull": 0,
+    "gemini_shell_results_text_exit_nonzero": 0,
+    "gemini_shell_results_text_exit_nonzero_native_true": 0,
+    "subagent_share_events": 0.0,
+    "subagent_share_calls": null,
+    "nested_subagent_share_calls": null
+   },
+   "calls_by_tool_top40": {},
+   "distinct_tool_raw": 0
+  },
+  "copilot": {
+   "files": 2,
+   "parse": {
+    "bytes": 4956444,
+    "lines": 2070
+   },
+   "summary": {
+    "events": 2250,
+    "kinds": {
+     "meta": 1607,
+     "user": 10,
+     "call": 266,
+     "result": 265,
+     "assistant": 98,
+     "system": 4
+    },
+    "calls": 266,
+    "results": 265,
+    "calls_without_result": 1,
+    "results_without_call": 0,
+    "duplicate_call_ids": 0,
+    "synthetic_call_ids": 0,
+    "call_or_result_ids_containing_REDACTED": 0,
+    "calls_subagent": 0,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 0,
+    "events_subagent": 0,
+    "ts_kind": {
+     "event": 2250
+    },
+    "frac_digits": {
+     "3": 2250
+    },
+    "ts_backward_steps": 0,
+    "events_with_ts": 2250,
+    "native_error_results": {
+     "false": 257,
+     "true": 8
+    },
+    "exit_code_results_nonnull": 0,
+    "redaction_ir": {
+     "bare_in_blob": 1,
+     "bare_other": 0,
+     "total_substring": 1
+    },
+    "usage_rows": 364,
+    "usage_rows_api_msg_id_null": 0,
+    "usage_rows_api_msg_id_synthetic": 0,
+    "usage_distinct_api_msg_ids": 184,
+    "usage_in_sum_all_rows": 0,
+    "usage_in_sum_dedup_api_msg_id": 0,
+    "usage_repeat_rows_flagged": 0,
+    "results_exit_code_nonzero": 0,
+    "results_exit_code_nonzero_native_true": 0,
+    "results_native_true": 8,
+    "shell_results": 97,
+    "shell_results_native_true": 1,
+    "shell_results_exit_code_nonnull": 0,
+    "gemini_shell_results_text_exit_nonzero": 0,
+    "gemini_shell_results_text_exit_nonzero_native_true": 0,
+    "subagent_share_events": 0.0,
+    "subagent_share_calls": 0.0,
+    "nested_subagent_share_calls": 0.0
+   },
+   "calls_by_tool_top40": {
+    "bash -> shell": 97,
+    "report_intent -> report_intent": 64,
+    "view -> read": 58,
+    "edit -> edit": 18,
+    "create -> create": 7,
+    "sql -> sql": 5,
+    "ask_user -> ask_user": 4,
+    "read_bash -> read_bash": 4,
+    "write_bash -> write_bash": 4,
+    "apply_patch -> edit": 1,
+    "stop_bash -> stop_bash": 1,
+    "show_file -> show_file": 1,
+    "exit_plan_mode -> exit_plan_mode": 1,
+    "task_complete -> task_complete": 1
+   },
+   "distinct_tool_raw": 14
+  },
+  "opencode": {
+   "files": 239,
+   "parse": {
+    "bytes": 267561891,
+    "messages": 10390,
+    "opencode_results_completed_with_nonzero_exit": 415,
+    "document": {
+     "ok": 238,
+     "salvaged": 1
+    },
+    "opencode_call_ids_redacted_or_missing": 3306,
+    "redacted_message_ids": 1315,
+    "opencode_step_finish_synthetic_api_msg_id": 1125,
+    "session_level_subagent_sessions": 190,
+    "salvage_stopped": 1,
+    "salvaged_messages": 213
+   },
+   "summary": {
+    "events": 45980,
+    "kinds": {
+     "user": 861,
+     "meta": 19926,
+     "call": 11934,
+     "result": 11930,
+     "assistant": 1129,
+     "system": 200
+    },
+    "calls": 11934,
+    "results": 11930,
+    "calls_without_result": 4,
+    "results_without_call": 0,
+    "duplicate_call_ids": 0,
+    "synthetic_call_ids": 3306,
+    "call_or_result_ids_containing_REDACTED": 0,
+    "calls_subagent": 4509,
+    "calls_nested_subagent": 0,
+    "calls_sidechain_toplevel": 0,
+    "calls_session_subagent": 4509,
+    "events_subagent": 13782,
+    "ts_kind": {
+     "event": 26077,
+     "none": 19903
+    },
+    "frac_digits": {
+     "3": 26077
+    },
+    "ts_backward_steps": 2754,
+    "events_with_ts": 26077,
+    "native_error_results": {
+     "false": 11426,
+     "true": 504
+    },
+    "exit_code_results_nonnull": 2985,
+    "redaction_ir": {
+     "bare_in_blob": 928,
+     "bare_other": 691,
+     "total_substring": 2554,
+     "bracket_typed_colon": 153,
+     "bracket_plain": 555,
+     "bracket_typed_underscore": 227
+    },
+    "usage_rows": 8961,
+    "usage_rows_api_msg_id_null": 0,
+    "usage_rows_api_msg_id_synthetic": 1125,
+    "usage_distinct_api_msg_ids": 8961,
+    "usage_in_sum_all_rows": 120530837,
+    "usage_in_sum_dedup_api_msg_id": 120530837,
+    "usage_repeat_rows_flagged": 0,
+    "results_exit_code_nonzero": 415,
+    "results_exit_code_nonzero_native_true": 415,
+    "results_native_true": 504,
+    "shell_results": 2999,
+    "shell_results_native_true": 416,
+    "shell_results_exit_code_nonnull": 2985,
+    "gemini_shell_results_text_exit_nonzero": 0,
+    "gemini_shell_results_text_exit_nonzero_native_true": 0,
+    "subagent_share_events": 0.2997390169638973,
+    "subagent_share_calls": 0.3778280542986425,
+    "nested_subagent_share_calls": 0.0
+   },
+   "calls_by_tool_top40": {
+    "read -> read": 4852,
+    "bash -> shell": 3003,
+    "apply_patch -> edit": 1674,
+    "grep -> grep": 1231,
+    "glob -> glob": 613,
+    "task -> subagent": 242,
+    "todowrite -> todo": 118,
+    "edit -> edit": 69,
+    "webfetch -> webfetch": 48,
+    "write -> write": 37,
+    "websearch -> websearch": 19,
+    "codesearch -> codesearch": 11,
+    "skill -> skill": 9,
+    "question -> question": 6,
+    "MiniMax_understand_image -> minimax_understand_image": 1,
+    "Write -> write": 1
+   },
+   "distinct_tool_raw": 16
+  }
+ },
+ "crosscheck_conversations": {
+  "definition": "table = rows with role=='tool_use' in conversations.parquet; raw = IR calls excluding calls nested inside another call's progress stream (CC agent_progress: is_subagent with parent_call_id). Top-level isSidechain entries and session-level subagent sessions (OpenCode child, Codex sub-agent rollout) count, since the table holds them as tool_use rows/sessions.",
+  "sampled_sessions": 2200,
+  "sessions_absent_from_table": [
+   "04e3c5f5-8d23-48c7-984f-2a5853e15bcc",
+   "06c96f70-5293-40f9-af81-a96b0e63ad55",
+   "09f23ef4-22ce-4132-81cc-b73279426124",
+   "0b5e18b7-24c6-4b94-a85d-f4266212910d",
+   "0dd1b3ae-3f77-5552-9cbe-eedc6c506f19",
+   "0f248a49-2992-4c92-b89a-08385f95ca13",
+   "12d5a5e4-bf3a-474d-848e-bf08c06727bc",
+   "2090fe4d-b77e-4a34-9796-f0242db12c8e",
+   "2467a967-8bb3-4074-bc5e-fb1c5c147557",
+   "31566263-b8da-4c4d-88be-01efe50acf51",
+   "3904bd23-f571-4ee8-9d68-e2cf50ab0c44",
+   "405ea8de-f9d3-4792-8194-5de6d7580f44",
+   "47a8efd1-1bdb-4821-9a7c-28c8194f36ca",
+   "4a3844fe-e6ac-4c83-ab75-54d8777629ff",
+   "4d291cc7-5979-492a-9eba-c9c717b12af8",
+   "55e87f1c-7dd5-43bb-b7af-370d64afd512",
+   "5a6feadb-9c94-4af1-94b3-ef5cbec4ced0",
+   "5d4cf987-571b-4ca1-9242-56cbdc3d6176",
+   "635f2c4f-0f18-4652-bf0a-072a726071cc",
+   "694b149a-ca85-44bc-bf47-48fa3ffbcafa",
+   "6a04b6ad-abc7-4e7f-9b91-b84b4e341ff4",
+   "8a1e1550-97cc-45c4-85f2-40538d20a7c2",
+   "914f3c63-152a-4f25-9f4e-367c43140554",
+   "970c70a7-5c8e-4fd8-a146-707379eae099",
+   "97b2f44e-fa5b-487f-9be8-565936acee52",
+   "9a8fc489-0a9c-4d79-af5b-53ce3c6abb49",
+   "a36a3f68-3b57-4317-8ee5-909c3697d781",
+   "a94376cf-5325-4648-90c6-51e3be5a51c4",
+   "aa51915e-fbb7-4b01-9a17-eb7c1399398a",
+   "ac5c9013-3197-4d9e-9d60-457bba41097f",
+   "bd53a7eb-a03c-4c1b-848c-82cce131b5c7",
+   "bdcdbe2e-9020-48ad-8a2b-183250ab1295",
+   "cdb14b05-cceb-4354-a9d8-8c9182ece8bf",
+   "cec4c710-5817-491a-8796-15b1e62cce15",
+   "d01dbdd7-ff84-481a-90e1-6bd5af20ef8e",
+   "d9393025-3c10-4d9b-83e9-5c06b6c06f1b",
+   "e1360192-5182-40fb-85b5-5d9e6f6e28bd",
+   "eb218ccf-39fe-4ae6-874b-c71a62af0913",
+   "f72cbff6-c498-4aef-a2ba-f551cdb78ecb",
+   "f89896c1-0bab-41a7-93be-a30cee2fa5c6",
+   "ff6d7de8-8956-473a-af4a-8e9c8daa31c1"
+  ],
+  "by_format": {
+   "claude_code": {
+    "sessions": 1807,
+    "sessions_in_table": 1801,
+    "table_tool_use_rows": 120355,
+    "raw_calls": 147664,
+    "table_rows_in_present_sessions": 120355,
+    "raw_calls_in_present_sessions": 147483,
+    "sessions_equal": 212,
+    "sessions_raw_more": 1587,
+    "sessions_raw_fewer": 2,
+    "raw_minus_table_where_raw_more": 27142,
+    "raw_synthetic_ids_skipped": 0,
+    "table_REDACTED_ids_skipped": 0,
+    "table_duplicate_id_rows": 28,
+    "table_ids_not_in_raw": 0,
+    "raw_ids_not_in_table": 27156,
+    "table_minus_raw_where_raw_fewer": 14
+   },
+   "codex": {
+    "sessions": 96,
+    "sessions_in_table": 96,
+    "table_tool_use_rows": 0,
+    "raw_calls": 10923,
+    "table_rows_in_present_sessions": 0,
+    "raw_calls_in_present_sessions": 10923,
+    "sessions_equal": 18,
+    "sessions_raw_more": 78,
+    "sessions_raw_fewer": 0,
+    "raw_minus_table_where_raw_more": 10923,
+    "raw_synthetic_ids_skipped": 24,
+    "table_REDACTED_ids_skipped": 0,
+    "table_duplicate_id_rows": 0,
+    "table_ids_not_in_raw": 0,
+    "raw_ids_not_in_table": 10899
+   },
+   "copilot": {
+    "sessions": 2,
+    "sessions_in_table": 1,
+    "table_tool_use_rows": 0,
+    "raw_calls": 266,
+    "table_rows_in_present_sessions": 0,
+    "raw_calls_in_present_sessions": 122,
+    "sessions_equal": 0,
+    "sessions_raw_more": 1,
+    "sessions_raw_fewer": 0,
+    "raw_minus_table_where_raw_more": 122,
+    "raw_synthetic_ids_skipped": 0,
+    "table_REDACTED_ids_skipped": 0,
+    "table_duplicate_id_rows": 0,
+    "table_ids_not_in_raw": 0,
+    "raw_ids_not_in_table": 122
+   },
+   "cursor": {
+    "sessions": 15,
+    "sessions_in_table": 15,
+    "table_tool_use_rows": 0,
+    "raw_calls": 370,
+    "table_rows_in_present_sessions": 0,
+    "raw_calls_in_present_sessions": 370,
+    "sessions_equal": 10,
+    "sessions_raw_more": 5,
+    "sessions_raw_fewer": 0,
+    "raw_synthetic_ids_skipped": 370,
+    "table_REDACTED_ids_skipped": 0,
+    "table_duplicate_id_rows": 0,
+    "table_ids_not_in_raw": 0,
+    "raw_ids_not_in_table": 0,
+    "raw_minus_table_where_raw_more": 370
+   },
+   "gemini": {
+    "sessions": 37,
+    "sessions_in_table": 7,
+    "table_tool_use_rows": 497,
+    "raw_calls": 4576,
+    "table_rows_in_present_sessions": 497,
+    "raw_calls_in_present_sessions": 497,
+    "sessions_equal": 7,
+    "sessions_raw_more": 0,
+    "sessions_raw_fewer": 0,
+    "raw_synthetic_ids_skipped": 0,
+    "table_REDACTED_ids_skipped": 2,
+    "table_duplicate_id_rows": 0,
+    "table_ids_not_in_raw": 0,
+    "raw_ids_not_in_table": 1
+   },
+   "opencode": {
+    "sessions": 239,
+    "sessions_in_table": 239,
+    "table_tool_use_rows": 12166,
+    "raw_calls": 11934,
+    "table_rows_in_present_sessions": 12166,
+    "raw_calls_in_present_sessions": 11934,
+    "sessions_equal": 238,
+    "sessions_raw_more": 0,
+    "sessions_raw_fewer": 1,
+    "raw_synthetic_ids_skipped": 3306,
+    "table_REDACTED_ids_skipped": 3376,
+    "table_duplicate_id_rows": 0,
+    "table_ids_not_in_raw": 162,
+    "raw_ids_not_in_table": 0,
+    "table_minus_raw_where_raw_fewer": 232
+   },
+   "simple_text": {
+    "sessions": 4,
+    "sessions_in_table": 0,
+    "table_tool_use_rows": 0,
+    "raw_calls": 0
+   }
+  },
+  "totals": {
+   "sessions": 2200,
+   "sessions_in_table": 2159,
+   "table_tool_use_rows": 133018,
+   "raw_calls": 175733,
+   "table_rows_in_present_sessions": 133018,
+   "raw_calls_in_present_sessions": 171329,
+   "sessions_equal": 485,
+   "sessions_raw_more": 1671,
+   "sessions_raw_fewer": 3,
+   "raw_minus_table_where_raw_more": 38557,
+   "raw_synthetic_ids_skipped": 3700,
+   "table_REDACTED_ids_skipped": 3378,
+   "table_duplicate_id_rows": 28,
+   "table_ids_not_in_raw": 162,
+   "raw_ids_not_in_table": 38178,
+   "table_minus_raw_where_raw_fewer": 246
+  }
+ },
+ "review_fix_checks": {
+  "source": "analysis/cache/swechat_A.parquet + swechat_B.parquet",
+  "codex_running_output_exit_attribution": {
+   "codex_results": 10847,
+   "native_true": 498,
+   "results_text_contains_process_running": 1794,
+   "of_which_exit_code_set": 0,
+   "of_which_native_true": 0,
+   "results_header_process_running": 1794,
+   "of_which_header_running_exit_code_set": 0,
+   "of_which_header_running_native_nonnull": 0,
+   "write_stdin_results": 1726,
+   "write_stdin_text_contains_process_exited": 819,
+   "write_stdin_header_exited": 819,
+   "write_stdin_native_nonnull": 737,
+   "write_stdin_native_true": 140,
+   "write_stdin_exit_code_set": 737,
+   "write_stdin_header_exited_exit_code_set": 737,
+   "write_stdin_header_exit_eq_exit_code": 737
+  },
+  "error_flag_vs_exit": {
+   "claude_code": {
+    "shell_results": 65215,
+    "native_error_true": 4383,
+    "text_exit_code_nonzero": 3473,
+    "of_which_native_true": 3473
+   },
+   "codex": {
+    "shell_results": 8956,
+    "native_error_true": 486,
+    "exit_code_nonzero": 486,
+    "of_which_native_true": 486
+   },
+   "opencode": {
+    "shell_results": 2999,
+    "native_error_true": 416,
+    "exit_code_nonzero": 415,
+    "of_which_native_true": 415
+   },
+   "opencode_all_results": {
+    "native_true": 504,
+    "native_true_or_exit_nonzero": 504,
+    "exit_nonzero_native_false": 0,
+    "sessions_with_exit_nonzero_native_false": 0
+   }
+  },
+  "usage_rows": {
+   "claude_code": {
+    "rows": 314639,
+    "api_msg_id_null": 0,
+    "api_msg_id_synthetic": 0,
+    "usage_in_sum": 25774864,
+    "usage_in_sum_null_id": 0,
+    "usage_in_sum_dedup_session_and_id": 7426470,
+    "usage_in_sum_dedup_id_global": 7417340,
+    "usage_in_sum_groupby_id_first": 7417340
+   },
+   "codex": {
+    "rows": 7611,
+    "api_msg_id_null": 0,
+    "api_msg_id_synthetic": 7611,
+    "usage_in_sum": 1155950298,
+    "usage_in_sum_null_id": 0,
+    "usage_in_sum_dedup_session_and_id": 1155950298,
+    "usage_in_sum_dedup_id_global": 1155950298,
+    "usage_in_sum_groupby_id_first": 1155950298
+   },
+   "gemini": {
+    "rows": 8183,
+    "api_msg_id_null": 0,
+    "api_msg_id_synthetic": 0,
+    "usage_in_sum": 1761777219,
+    "usage_in_sum_null_id": 0,
+    "usage_in_sum_dedup_session_and_id": 950337861,
+    "usage_in_sum_dedup_id_global": 950337861,
+    "usage_in_sum_groupby_id_first": 950337861
+   },
+   "opencode": {
+    "rows": 8961,
+    "api_msg_id_null": 0,
+    "api_msg_id_synthetic": 1125,
+    "usage_in_sum": 120530837,
+    "usage_in_sum_null_id": 0,
+    "usage_in_sum_dedup_session_and_id": 120530837,
+    "usage_in_sum_dedup_id_global": 120530837,
+    "usage_in_sum_groupby_id_first": 120530837
+   }
+  },
+  "codex_token_count_repeats": {
+   "rows_with_info": 7876,
+   "new_total_rows": 7611,
+   "new_total_api_msg_id_null": 0,
+   "rows_without_info": 47,
+   "rows_without_info_usage_nonnull": 0,
+   "repeat_of_previous_total": 265,
+   "repeat_usage_in_nonnull": 0,
+   "repeat_usage_in_sum": 0,
+   "repeat_flagged": 265
+  }
+ },
+ "format_notes": {
+  "claude_code_files_with_zero_events": 1,
+  "opencode_files_with_message_id_REDACTED": 457,
+  "opencode_message_ids_REDACTED": 2196,
+  "claude_code_files_with_tool_use_or_tool_result_entry_types": 1
+ },
+ "wall_seconds_total": 46.1
+}

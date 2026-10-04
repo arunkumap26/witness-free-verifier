@@ -1,0 +1,2535 @@
+{
+ "corpus": "cc_local",
+ "privacy": "aggregates only; strata are aliases (proj01..proj05 by session count, other); MCP tools collapsed to mcp__*",
+ "session_unit": "family of resume-chained main files + their subagent/workflow JSONL",
+ "population": {
+  "sessions": 309,
+  "orphan_subagent_dirs": 0,
+  "sessions_with_subagent_files": 10,
+  "sessions_with_workflow_journals": 7,
+  "sessions_by_stratum": {
+   "proj01": 275,
+   "proj02": 24,
+   "proj03": 5,
+   "proj04": 3,
+   "proj05": 1,
+   "other": 1
+  },
+  "project_dirs": 6,
+  "sessions_in_A_or_B": 309,
+  "sessions_not_sampled": 0,
+  "length_lines": {
+   "count": 309.0,
+   "mean": 681.1165048543689,
+   "std": 5533.24735030247,
+   "min": 9.0,
+   "25%": 37.0,
+   "50%": 72.0,
+   "75%": 95.0,
+   "max": 84326.0
+  }
+ },
+ "non_jsonl_files": {
+  "tool_results_txt": 406,
+  "workflow_run_json": 65,
+  "subagent_meta_json": 773
+ },
+ "recon_reproduction": {
+  "recon_file": "analysis/out/recon/cc_local.txt",
+  "expected": {
+   "files": 1172,
+   "lines": 210465,
+   "tool_use_blocks": 46333,
+   "tool_result_blocks": 46332,
+   "paired_both_ts": 41706,
+   "paired_identical_ts": 1,
+   "paired_ms_multiples": 41706,
+   "paired_negative_delta": 0
+  },
+  "raw_scan": {
+   "files": 1172,
+   "lines": 210465,
+   "tool_use_blocks": 46333,
+   "tool_result_blocks": 46332,
+   "tool_use_ids_unique": 41707,
+   "tool_result_ids_unique": 41706,
+   "results_without_call": 0,
+   "calls_without_result": 1,
+   "paired_both_ts": 41706,
+   "paired_identical_ts": 1,
+   "paired_ms_multiples": 41706,
+   "paired_negative_delta": 0
+  }
+ },
+ "fork_families": {
+  "uuids_in_multiple_main_files": 14466,
+  "families_with_multiple_files": 8,
+  "files_in_multi_file_families": 31,
+  "family_size_histogram": {
+   "1": 301,
+   "2": 4,
+   "3": 2,
+   "4": 1,
+   "13": 1
+  },
+  "multi_file_families_spanning_project_dirs": 0,
+  "sessions_after_merge": 309,
+  "file_sets_before_merge": 332,
+  "copy_events_dropped_uuid": 22463,
+  "copy_events_dropped_hash": 724,
+  "member_switches": 267,
+  "uuids_in_more_than_one_session_after_merge": 0
+ },
+ "attachments": {
+  "rule": "see load_cc_local docstring, ENTRY -> IR MAPPING / ATTACHMENT entries",
+  "render_min_version": "2.1.266",
+  "raw_entries_copies_included": {
+   "by_type_visibility_rendered": {
+    "total_tokens_reminder": {
+     "type_rendered_in_newer_versions|no_rendered": 16657,
+     "rendered|with_rendered": 15933
+    },
+    "deferred_tools_delta": {
+     "rendered|with_rendered": 1111,
+     "type_rendered_in_newer_versions|no_rendered": 844
+    },
+    "prompt_snapshot": {
+     "not_rendered_in_rendering_version|no_rendered": 1207
+    },
+    "batching_reminder_sent": {
+     "old_only_type_assumed_visible|no_rendered": 1174
+    },
+    "skill_listing": {
+     "rendered|with_rendered": 602,
+     "type_rendered_in_newer_versions|no_rendered": 513
+    },
+    "mcp_instructions_delta": {
+     "rendered|with_rendered": 714,
+     "type_rendered_in_newer_versions|no_rendered": 292
+    },
+    "queued_command": {
+     "rendered|with_rendered": 548,
+     "type_rendered_in_newer_versions|no_rendered": 419,
+     "not_rendered_in_rendering_version|no_rendered": 1
+    },
+    "remote_session_change": {
+     "rendered|with_rendered": 625,
+     "type_rendered_in_newer_versions|no_rendered": 239
+    },
+    "environment": {
+     "rendered|with_rendered": 778
+    },
+    "edited_text_file": {
+     "type_rendered_in_newer_versions|no_rendered": 520,
+     "rendered|with_rendered": 211
+    },
+    "date": {
+     "rendered|with_rendered": 628
+    },
+    "auto_mode": {
+     "rendered|with_rendered": 366,
+     "type_rendered_in_newer_versions|no_rendered": 249
+    },
+    "instructions": {
+     "rendered|with_rendered": 607
+    },
+    "model": {
+     "rendered|with_rendered": 603
+    },
+    "session_context": {
+     "rendered|with_rendered": 602
+    },
+    "structured_output": {
+     "not_rendered_in_rendering_version|no_rendered": 290,
+     "type_never_rendered|no_rendered": 187
+    },
+    "agent_listing_delta": {
+     "rendered|with_rendered": 270,
+     "type_rendered_in_newer_versions|no_rendered": 78
+    },
+    "deferred_tools_record": {
+     "not_rendered_in_rendering_version|no_rendered": 248
+    },
+    "hook_additional_context": {
+     "type_rendered_in_newer_versions|no_rendered": 101,
+     "rendered|with_rendered": 44
+    },
+    "task_reminder": {
+     "old_only_type_assumed_visible|no_rendered": 105
+    },
+    "ultra_effort_enter": {
+     "type_rendered_in_newer_versions|no_rendered": 80,
+     "rendered|with_rendered": 23
+    },
+    "file": {
+     "type_rendered_in_newer_versions|no_rendered": 68,
+     "rendered|with_rendered": 20
+    },
+    "silent_turn_reminder": {
+     "type_rendered_in_newer_versions|no_rendered": 57,
+     "rendered|with_rendered": 25
+    },
+    "credential_org": {
+     "not_rendered_in_rendering_version|no_rendered": 79
+    },
+    "read_truncation_notice": {
+     "type_rendered_in_newer_versions|no_rendered": 34,
+     "rendered|with_rendered": 4
+    },
+    "date_change": {
+     "old_only_type_assumed_visible|no_rendered": 32
+    },
+    "compact_file_reference": {
+     "type_rendered_in_newer_versions|no_rendered": 17,
+     "rendered|with_rendered": 6
+    },
+    "command_permissions": {
+     "type_never_rendered|no_rendered": 18
+    },
+    "nested_memory": {
+     "type_rendered_in_newer_versions|no_rendered": 13,
+     "rendered|with_rendered": 1
+    },
+    "workflow_keyword_request": {
+     "type_rendered_in_newer_versions|no_rendered": 8,
+     "rendered|with_rendered": 1
+    },
+    "ultra_effort_exit": {
+     "old_only_type_assumed_visible|no_rendered": 5
+    },
+    "budget_usd": {
+     "old_only_type_assumed_visible|no_rendered": 3
+    },
+    "inlined_image_paths": {
+     "rendered|with_rendered": 2
+    },
+    "task_status": {
+     "rendered|with_rendered": 2
+    },
+    "invoked_skills": {
+     "rendered|with_rendered": 1
+    }
+   },
+   "rendered_types_with_rendered_below_min_version": 0,
+   "hidden_types_with_rendered": 0,
+   "unknown_type_entries": 0
+  },
+  "payload_field_vs_rendered": {
+   "agent_listing_delta.addedLines": {
+    "contained": 270
+   },
+   "date.date": {
+    "contained": 628
+   },
+   "deferred_tools_delta.addedLines": {
+    "contained": 755,
+    "payload_empty": 346,
+    "all_lines_contained": 10
+   },
+   "edited_text_file.snippet": {
+    "contained": 188,
+    "payload_empty": 23
+   },
+   "file.content.file.content": {
+    "all_lines_contained": 20
+   },
+   "hook_additional_context.content": {
+    "contained": 44
+   },
+   "instructions.files[].content": {
+    "contained": 606,
+    "all_lines_contained": 1
+   },
+   "mcp_instructions_delta.addedBlocks": {
+    "contained": 713,
+    "payload_empty": 1
+   },
+   "model.text": {
+    "contained": 603
+   },
+   "nested_memory.content.content": {
+    "contained": 1
+   },
+   "queued_command.prompt": {
+    "contained": 548
+   },
+   "read_truncation_notice.banner": {
+    "contained": 4
+   },
+   "remote_session_change.commit+pr": {
+    "all_lines_contained": 625
+   },
+   "silent_turn_reminder.text": {
+    "contained": 25
+   },
+   "skill_listing.content": {
+    "contained": 602
+   },
+   "total_tokens_reminder.text": {
+    "contained": 15933
+   }
+  },
+  "double_delivery_check_ir": {
+   "method": "whitespace-normalized payload of a visible attachment event found as a substring of the session's Parser-derived user/system texts; payloads < 20 chars not tested",
+   "by_type": {
+    "agent_listing_delta": {
+     "not_found": 324
+    },
+    "batching_reminder_sent": {
+     "not_found": 922
+    },
+    "date": {
+     "too_short": 621
+    },
+    "date_change": {
+     "too_short": 21
+    },
+    "deferred_tools_delta": {
+     "not_found": 1279
+    },
+    "edited_text_file": {
+     "not_found": 442,
+     "too_short": 4
+    },
+    "file": {
+     "not_found": 33
+    },
+    "hook_additional_context": {
+     "not_found": 100
+    },
+    "instructions": {
+     "not_found": 601
+    },
+    "mcp_instructions_delta": {
+     "not_found": 981
+    },
+    "model": {
+     "not_found": 598
+    },
+    "nested_memory": {
+     "not_found": 9
+    },
+    "queued_command": {
+     "not_found": 673,
+     "found": 4
+    },
+    "read_truncation_notice": {
+     "not_found": 37
+    },
+    "remote_session_change": {
+     "not_found": 847
+    },
+    "silent_turn_reminder": {
+     "not_found": 52
+    },
+    "skill_listing": {
+     "not_found": 1094
+    },
+    "total_tokens_reminder": {
+     "not_found": 27915
+    }
+   },
+   "found_total": 4,
+   "tested_total": 35911
+  },
+  "full_corpus_ir": {
+   "attachment_events": 41347,
+   "by_kind": {
+    "system": 39330,
+    "meta": 2004,
+    "user": 13
+   },
+   "by_visibility": {
+    "rendered": 22380,
+    "type_rendered_in_newer_versions": 15910,
+    "not_rendered_in_rendering_version": 1806,
+    "old_only_type_assumed_visible": 1053,
+    "type_never_rendered": 198
+   },
+   "by_text_source": {
+    "rendered": 22370,
+    "payload:text": 14036,
+    "(meta: none)": 2004,
+    "unavailable": 687,
+    "payload:addedLines": 581,
+    "payload:content": 552,
+    "payload:snippet": 294,
+    "payload:addedBlocks": 273,
+    "payload:prompt": 238,
+    "payload:commit+pr": 229,
+    "payload:banner": 33,
+    "payload:newDate": 21,
+    "payload:content.file.content": 21,
+    "payload:content.content": 8
+   },
+   "by_text": {
+    "present": 38656,
+    "null": 2691
+   },
+   "by_queued_command_mode_x_kind": {
+    "task-notification|system": 664,
+    "prompt|user": 13,
+    "prompt|meta": 1
+   },
+   "sessions_with_visible_attachment_events": 309,
+   "task_notifications": {
+    "attachment_queued_command": {
+     "kind": {
+      "system": 664
+     },
+     "first_status": {
+      "completed": 470,
+      "<no status tag>": 169,
+      "failed": 24,
+      "killed": 1
+     },
+     "text": {
+      "present": 664
+     },
+     "multi": {
+      "events_with_failed_or_killed_status": 25
+     }
+    },
+    "user_entry_text": {
+     "kind": {
+      "system": 436
+     },
+     "first_status": {
+      "<no status tag>": 272,
+      "completed": 143,
+      "stopped": 18,
+      "failed": 3
+     },
+     "text": {
+      "present": 436
+     },
+     "multi": {
+      "events_with_failed_or_killed_status": 3
+     }
+    }
+   },
+   "by_attachment_type": {
+    "total_tokens_reminder": {
+     "kind": {
+      "system": 27915
+     },
+     "visibility": {
+      "rendered": 14828,
+      "type_rendered_in_newer_versions": 13087
+     },
+     "text_source": {
+      "rendered": 14828,
+      "payload:text": 13087
+     },
+     "text": {
+      "present": 27915
+     }
+    },
+    "deferred_tools_delta": {
+     "kind": {
+      "system": 1873
+     },
+     "visibility": {
+      "rendered": 1101,
+      "type_rendered_in_newer_versions": 772
+     },
+     "text_source": {
+      "rendered": 1101,
+      "payload:addedLines": 522,
+      "unavailable": 250
+     },
+     "text": {
+      "present": 1623,
+      "null": 250
+     }
+    },
+    "prompt_snapshot": {
+     "kind": {
+      "meta": 1197
+     },
+     "visibility": {
+      "not_rendered_in_rendering_version": 1197
+     },
+     "text_source": {
+      "(meta: none)": 1197
+     },
+     "text": {
+      "null": 1197
+     }
+    },
+    "skill_listing": {
+     "kind": {
+      "system": 1094
+     },
+     "visibility": {
+      "rendered": 598,
+      "type_rendered_in_newer_versions": 496
+     },
+     "text_source": {
+      "rendered": 598,
+      "payload:content": 496
+     },
+     "text": {
+      "present": 1094
+     }
+    },
+    "mcp_instructions_delta": {
+     "kind": {
+      "system": 982
+     },
+     "visibility": {
+      "rendered": 709,
+      "type_rendered_in_newer_versions": 273
+     },
+     "text_source": {
+      "rendered": 709,
+      "payload:addedBlocks": 273
+     },
+     "text": {
+      "present": 982
+     }
+    },
+    "batching_reminder_sent": {
+     "kind": {
+      "system": 922
+     },
+     "visibility": {
+      "old_only_type_assumed_visible": 922
+     },
+     "text_source": {
+      "payload:text": 922
+     },
+     "text": {
+      "present": 922
+     }
+    },
+    "remote_session_change": {
+     "kind": {
+      "system": 847
+     },
+     "visibility": {
+      "rendered": 618,
+      "type_rendered_in_newer_versions": 229
+     },
+     "text_source": {
+      "rendered": 618,
+      "payload:commit+pr": 229
+     },
+     "text": {
+      "present": 847
+     }
+    },
+    "environment": {
+     "kind": {
+      "system": 747
+     },
+     "visibility": {
+      "rendered": 747
+     },
+     "text_source": {
+      "rendered": 747
+     },
+     "text": {
+      "present": 747
+     }
+    },
+    "queued_command": {
+     "kind": {
+      "system": 664,
+      "user": 13,
+      "meta": 1
+     },
+     "visibility": {
+      "rendered": 449,
+      "type_rendered_in_newer_versions": 228,
+      "not_rendered_in_rendering_version": 1
+     },
+     "text_source": {
+      "rendered": 439,
+      "payload:prompt": 238,
+      "(meta: none)": 1
+     },
+     "text": {
+      "present": 677,
+      "null": 1
+     }
+    },
+    "date": {
+     "kind": {
+      "system": 621
+     },
+     "visibility": {
+      "rendered": 621
+     },
+     "text_source": {
+      "rendered": 621
+     },
+     "text": {
+      "present": 621
+     }
+    },
+    "instructions": {
+     "kind": {
+      "system": 601
+     },
+     "visibility": {
+      "rendered": 601
+     },
+     "text_source": {
+      "rendered": 601
+     },
+     "text": {
+      "present": 601
+     }
+    },
+    "model": {
+     "kind": {
+      "system": 598
+     },
+     "visibility": {
+      "rendered": 598
+     },
+     "text_source": {
+      "rendered": 598
+     },
+     "text": {
+      "present": 598
+     }
+    },
+    "session_context": {
+     "kind": {
+      "system": 597
+     },
+     "visibility": {
+      "rendered": 597
+     },
+     "text_source": {
+      "rendered": 597
+     },
+     "text": {
+      "present": 597
+     }
+    },
+    "auto_mode": {
+     "kind": {
+      "system": 591
+     },
+     "visibility": {
+      "rendered": 361,
+      "type_rendered_in_newer_versions": 230
+     },
+     "text_source": {
+      "rendered": 361,
+      "unavailable": 230
+     },
+     "text": {
+      "present": 361,
+      "null": 230
+     }
+    },
+    "edited_text_file": {
+     "kind": {
+      "system": 516
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 341,
+      "rendered": 175
+     },
+     "text_source": {
+      "payload:snippet": 294,
+      "rendered": 175,
+      "unavailable": 47
+     },
+     "text": {
+      "present": 469,
+      "null": 47
+     }
+    },
+    "structured_output": {
+     "kind": {
+      "meta": 477
+     },
+     "visibility": {
+      "not_rendered_in_rendering_version": 290,
+      "type_never_rendered": 187
+     },
+     "text_source": {
+      "(meta: none)": 477
+     },
+     "text": {
+      "null": 477
+     }
+    },
+    "agent_listing_delta": {
+     "kind": {
+      "system": 324
+     },
+     "visibility": {
+      "rendered": 265,
+      "type_rendered_in_newer_versions": 59
+     },
+     "text_source": {
+      "rendered": 265,
+      "payload:addedLines": 59
+     },
+     "text": {
+      "present": 324
+     }
+    },
+    "deferred_tools_record": {
+     "kind": {
+      "meta": 239
+     },
+     "visibility": {
+      "not_rendered_in_rendering_version": 239
+     },
+     "text_source": {
+      "(meta: none)": 239
+     },
+     "text": {
+      "null": 239
+     }
+    },
+    "task_reminder": {
+     "kind": {
+      "system": 105
+     },
+     "visibility": {
+      "old_only_type_assumed_visible": 105
+     },
+     "text_source": {
+      "unavailable": 105
+     },
+     "text": {
+      "null": 105
+     }
+    },
+    "hook_additional_context": {
+     "kind": {
+      "system": 100
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 56,
+      "rendered": 44
+     },
+     "text_source": {
+      "payload:content": 56,
+      "rendered": 44
+     },
+     "text": {
+      "present": 100
+     }
+    },
+    "credential_org": {
+     "kind": {
+      "meta": 79
+     },
+     "visibility": {
+      "not_rendered_in_rendering_version": 79
+     },
+     "text_source": {
+      "(meta: none)": 79
+     },
+     "text": {
+      "null": 79
+     }
+    },
+    "ultra_effort_enter": {
+     "kind": {
+      "system": 57
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 40,
+      "rendered": 17
+     },
+     "text_source": {
+      "unavailable": 40,
+      "rendered": 17
+     },
+     "text": {
+      "null": 40,
+      "present": 17
+     }
+    },
+    "silent_turn_reminder": {
+     "kind": {
+      "system": 52
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 27,
+      "rendered": 25
+     },
+     "text_source": {
+      "payload:text": 27,
+      "rendered": 25
+     },
+     "text": {
+      "present": 52
+     }
+    },
+    "read_truncation_notice": {
+     "kind": {
+      "system": 37
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 33,
+      "rendered": 4
+     },
+     "text_source": {
+      "payload:banner": 33,
+      "rendered": 4
+     },
+     "text": {
+      "present": 37
+     }
+    },
+    "file": {
+     "kind": {
+      "system": 33
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 21,
+      "rendered": 12
+     },
+     "text_source": {
+      "payload:content.file.content": 21,
+      "rendered": 12
+     },
+     "text": {
+      "present": 33
+     }
+    },
+    "date_change": {
+     "kind": {
+      "system": 21
+     },
+     "visibility": {
+      "old_only_type_assumed_visible": 21
+     },
+     "text_source": {
+      "payload:newDate": 21
+     },
+     "text": {
+      "present": 21
+     }
+    },
+    "command_permissions": {
+     "kind": {
+      "meta": 11
+     },
+     "visibility": {
+      "type_never_rendered": 11
+     },
+     "text_source": {
+      "(meta: none)": 11
+     },
+     "text": {
+      "null": 11
+     }
+    },
+    "compact_file_reference": {
+     "kind": {
+      "system": 11
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 7,
+      "rendered": 4
+     },
+     "text_source": {
+      "unavailable": 7,
+      "rendered": 4
+     },
+     "text": {
+      "null": 7,
+      "present": 4
+     }
+    },
+    "nested_memory": {
+     "kind": {
+      "system": 9
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 8,
+      "rendered": 1
+     },
+     "text_source": {
+      "payload:content.content": 8,
+      "rendered": 1
+     },
+     "text": {
+      "present": 9
+     }
+    },
+    "workflow_keyword_request": {
+     "kind": {
+      "system": 4
+     },
+     "visibility": {
+      "type_rendered_in_newer_versions": 3,
+      "rendered": 1
+     },
+     "text_source": {
+      "unavailable": 3,
+      "rendered": 1
+     },
+     "text": {
+      "null": 3,
+      "present": 1
+     }
+    },
+    "budget_usd": {
+     "kind": {
+      "system": 3
+     },
+     "visibility": {
+      "old_only_type_assumed_visible": 3
+     },
+     "text_source": {
+      "unavailable": 3
+     },
+     "text": {
+      "null": 3
+     }
+    },
+    "ultra_effort_exit": {
+     "kind": {
+      "system": 2
+     },
+     "visibility": {
+      "old_only_type_assumed_visible": 2
+     },
+     "text_source": {
+      "unavailable": 2
+     },
+     "text": {
+      "null": 2
+     }
+    },
+    "inlined_image_paths": {
+     "kind": {
+      "system": 2
+     },
+     "visibility": {
+      "rendered": 2
+     },
+     "text_source": {
+      "rendered": 2
+     },
+     "text": {
+      "present": 2
+     }
+    },
+    "invoked_skills": {
+     "kind": {
+      "system": 1
+     },
+     "visibility": {
+      "rendered": 1
+     },
+     "text_source": {
+      "rendered": 1
+     },
+     "text": {
+      "present": 1
+     }
+    },
+    "task_status": {
+     "kind": {
+      "system": 1
+     },
+     "visibility": {
+      "rendered": 1
+     },
+     "text_source": {
+      "rendered": 1
+     },
+     "text": {
+      "present": 1
+     }
+    }
+   }
+  }
+ },
+ "loader_counters": {
+  "bad_json_lines": 0,
+  "dropped_untimestamped:agent-name": 661,
+  "dropped_untimestamped:ai-title": 1639,
+  "dropped_untimestamped:artifact-autoreact-ledger": 194,
+  "dropped_untimestamped:artifact-comment-monitor": 95,
+  "dropped_untimestamped:atis-latch": 3710,
+  "dropped_untimestamped:bridge-session": 2605,
+  "dropped_untimestamped:cost-state": 113,
+  "dropped_untimestamped:custom-title": 3236,
+  "dropped_untimestamped:file-history-snapshot": 538,
+  "dropped_untimestamped:last-prompt": 4235,
+  "dropped_untimestamped:mode": 1533,
+  "files_journal": 67,
+  "files_main": 332,
+  "files_subagent": 11,
+  "files_wf_agent": 762,
+  "files_with_ts_inversion_main": 254,
+  "files_with_ts_inversion_subagent": 2,
+  "files_with_ts_inversion_wf_agent": 104,
+  "journal_sort_ts_source:agent_first_event": 762,
+  "journal_sort_ts_source:agent_last_event": 714,
+  "journal_sort_ts_source:workflow_first_event": 21,
+  "journal_type:failed": 32,
+  "journal_type:launched": 21,
+  "journal_type:result": 682,
+  "journal_type:started": 762,
+  "lines_journal": 1497,
+  "lines_main": 94923,
+  "lines_subagent": 2381,
+  "lines_wf_agent": 111664,
+  "loader_emitted:attachment:meta": 2030,
+  "loader_emitted:attachment:system": 45217,
+  "loader_emitted:attachment:user": 18,
+  "loader_emitted:file-history-delta:meta": 263,
+  "loader_emitted:frame-link:meta": 618,
+  "loader_emitted:queue-operation:meta": 4712,
+  "subagent_files_parent_call_found": 11,
+  "subagent_files_parent_call_missing": 0,
+  "ts_inversions_adjacent_main": 2206,
+  "ts_inversions_adjacent_subagent": 10,
+  "ts_inversions_adjacent_wf_agent": 277,
+  "ts_lines_over_1h_below_running_max_main": 18393,
+  "user_entry_task_notification_events_copies_included:system": 878,
+  "wf_agent_files_parent_call_found": 762,
+  "wf_agent_files_parent_call_missing": 0
+ },
+ "full_corpus_ir": {
+  "rows": 168728,
+  "sessions": 309,
+  "events_by_kind": {
+   "call": 41707,
+   "result": 41706,
+   "system": 40922,
+   "meta": 35091,
+   "assistant": 8424,
+   "user": 878
+  },
+  "ts_kind": {
+   "event": 167231,
+   "none": 1497
+  },
+  "ts_fill": {
+   "with_ts": 167231,
+   "without_ts": 1497
+  },
+  "ts_fractional_digits": {
+   "3": 167231
+  },
+  "ts_ties": {
+   "tie_groups": 5585,
+   "events_in_tie_groups": 16478,
+   "largest_tie_group": 40
+  },
+  "adjacent_ts_inversions_in_seq_order": 0,
+  "pairing": {
+   "call_events": 41707,
+   "result_events": 41706,
+   "call_ids_unique": 41707,
+   "result_ids_unique": 41706,
+   "duplicate_call_events_same_session_id": 0,
+   "duplicate_result_events_same_session_id": 0,
+   "result_events_null_call_id": 0,
+   "paired": 41706,
+   "paired_result_seq_before_call_seq": 0,
+   "calls_without_result": 1,
+   "results_without_call_in_session": 0,
+   "results_without_call_but_call_id_elsewhere_in_frame": 0,
+   "paired_both_ts": 41706,
+   "paired_identical_ts": 1,
+   "paired_negative_delta": 0,
+   "delta_seconds": {
+    "n": 41706,
+    "min": 0.0,
+    "p1": 0.003,
+    "p5": 0.007,
+    "p25": 0.083,
+    "p50": 0.143,
+    "p75": 0.835,
+    "p95": 17.72625,
+    "p99": 121.06499999999983,
+    "max": 7452.842,
+    "mean": 6.965823166930419
+   }
+  },
+  "native_error": {
+   "results": 41706,
+   "filled": 30581,
+   "true": 1803,
+   "false": 28778,
+   "fill_rate": 0.7332518102910852
+  },
+  "exit_code_filled": 0,
+  "stderr_filled_results": 5117,
+  "usage_fill": {
+   "assistant": {
+    "n": 8424,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "usage_cache_read": 1.0,
+    "usage_cache_create": 1.0,
+    "api_msg_id": 1.0,
+    "request_id": 0.9988129154795822,
+    "model": 1.0,
+    "api_msg_ids_unique": 8424
+   },
+   "call": {
+    "n": 41707,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "usage_cache_read": 1.0,
+    "usage_cache_create": 1.0,
+    "api_msg_id": 1.0,
+    "request_id": 1.0,
+    "model": 1.0,
+    "api_msg_ids_unique": 34095
+   }
+  },
+  "result_error_marker": {
+   "None": 40166,
+   "cc_exit_code": 865,
+   "cc_permission_denied": 507,
+   "cc_tool_use_error": 143,
+   "cc_interrupt_reject": 25
+  },
+  "extra_key_fill_by_kind": {
+   "meta": {
+    "entry_type": {
+     "present": 35091,
+     "fill_rate": 1.0
+    },
+    "thinking_chars": {
+     "present": 25653,
+     "fill_rate": 0.7310421475592032
+    },
+    "family_member": {
+     "present": 7086,
+     "fill_rate": 0.20193211934684108
+    },
+    "operation": {
+     "present": 4126,
+     "fill_rate": 0.11758000626941381
+    },
+    "attachment_type": {
+     "present": 2004,
+     "fill_rate": 0.05710866034025819
+    },
+    "visibility": {
+     "present": 2004,
+     "fill_rate": 0.05710866034025819
+    },
+    "journal_type": {
+     "present": 1497,
+     "fill_rate": 0.042660511242198856
+    },
+    "result_type": {
+     "present": 1497,
+     "fill_rate": 0.042660511242198856
+    },
+    "sort_ts": {
+     "present": 1497,
+     "fill_rate": 0.042660511242198856
+    },
+    "sort_ts_source": {
+     "present": 1497,
+     "fill_rate": 0.042660511242198856
+    },
+    "subtype": {
+     "present": 1068,
+     "fill_rate": 0.030435154313071727
+    },
+    "level": {
+     "present": 1068,
+     "fill_rate": 0.030435154313071727
+    },
+    "toolUseID": {
+     "present": 477,
+     "fill_rate": 0.013593229033085406
+    },
+    "compactMetadata": {
+     "present": 8,
+     "fill_rate": 0.00022797868399304666
+    },
+    "command_mode": {
+     "present": 1,
+     "fill_rate": 2.8497335499130832e-05
+    }
+   },
+   "system": {
+    "entry_type": {
+     "present": 39330,
+     "fill_rate": 0.9610967205903915
+    },
+    "attachment_type": {
+     "present": 39330,
+     "fill_rate": 0.9610967205903915
+    },
+    "visibility": {
+     "present": 39330,
+     "fill_rate": 0.9610967205903915
+    },
+    "text_source": {
+     "present": 39330,
+     "fill_rate": 0.9610967205903915
+    },
+    "family_member": {
+     "present": 6339,
+     "fill_rate": 0.1549044523728068
+    },
+    "notification_statuses": {
+     "present": 1100,
+     "fill_rate": 0.02688040662724207
+    },
+    "nested_prompt": {
+     "present": 1085,
+     "fill_rate": 0.02651385562777968
+    },
+    "rendered_role": {
+     "present": 776,
+     "fill_rate": 0.018962905038854404
+    },
+    "command_mode": {
+     "present": 664,
+     "fill_rate": 0.016225990909535214
+    },
+    "rendered_in_human_turn_variant": {
+     "present": 439,
+     "fill_rate": 0.010727725917599336
+    },
+    "toolUseID": {
+     "present": 137,
+     "fill_rate": 0.0033478324617565126
+    },
+    "hookEvent": {
+     "present": 100,
+     "fill_rate": 0.002443673329749279
+    }
+   },
+   "result": {
+    "marker": {
+     "present": 41706,
+     "fill_rate": 1.0
+    },
+    "interrupted": {
+     "present": 5117,
+     "fill_rate": 0.12269217858341726
+    },
+    "noOutputExpected": {
+     "present": 5117,
+     "fill_rate": 0.12269217858341726
+    },
+    "family_member": {
+     "present": 4638,
+     "fill_rate": 0.11120702057257949
+    },
+    "numFiles": {
+     "present": 1337,
+     "fill_rate": 0.03205773749580396
+    },
+    "durationMs": {
+     "present": 1312,
+     "fill_rate": 0.031458303361626624
+    },
+    "truncated": {
+     "present": 1231,
+     "fill_rate": 0.029516136766892055
+    },
+    "backgroundTaskId": {
+     "present": 312,
+     "fill_rate": 0.007480937994533161
+    },
+    "bytes": {
+     "present": 81,
+     "fill_rate": 0.0019421665947345706
+    },
+    "code": {
+     "present": 81,
+     "fill_rate": 0.0019421665947345706
+    },
+    "durationSeconds": {
+     "present": 68,
+     "fill_rate": 0.0016304608449623555
+    },
+    "timedOutAfterMs": {
+     "present": 55,
+     "fill_rate": 0.0013187550951901405
+    },
+    "persistedOutputSize": {
+     "present": 34,
+     "fill_rate": 0.0008152304224811778
+    },
+    "returnCodeInterpretation": {
+     "present": 20,
+     "fill_rate": 0.0004795473073418693
+    }
+   },
+   "assistant": {
+    "family_member": {
+     "present": 2557,
+     "fill_rate": 0.3035375118708452
+    },
+    "thinking_chars": {
+     "present": 768,
+     "fill_rate": 0.09116809116809117
+    }
+   },
+   "call": {
+    "family_member": {
+     "present": 4638,
+     "fill_rate": 0.11120435418514878
+    },
+    "thinking_chars": {
+     "present": 1960,
+     "fill_rate": 0.0469945093149831
+    }
+   },
+   "user": {
+    "family_member": {
+     "present": 393,
+     "fill_rate": 0.44760820045558086
+    },
+    "entry_type": {
+     "present": 13,
+     "fill_rate": 0.014806378132118452
+    },
+    "attachment_type": {
+     "present": 13,
+     "fill_rate": 0.014806378132118452
+    },
+    "visibility": {
+     "present": 13,
+     "fill_rate": 0.014806378132118452
+    },
+    "command_mode": {
+     "present": 13,
+     "fill_rate": 0.014806378132118452
+    },
+    "text_source": {
+     "present": 13,
+     "fill_rate": 0.014806378132118452
+    }
+   }
+  },
+  "meta_entry_types": {
+   "assistant_thinking_only:None": 25653,
+   "queue-operation:None": 4126,
+   "attachment:prompt_snapshot": 1197,
+   "system:stop_hook_summary": 1048,
+   "workflow_journal:started": 762,
+   "workflow_journal:result": 682,
+   "frame-link:None": 480,
+   "attachment:structured_output": 477,
+   "file-history-delta:None": 263,
+   "attachment:deferred_tools_record": 239,
+   "attachment:credential_org": 79,
+   "workflow_journal:failed": 32,
+   "workflow_journal:launched": 21,
+   "attachment:command_permissions": 11,
+   "system:api_error": 11,
+   "system:compact_boundary": 8,
+   "attachment:queued_command": 1,
+   "system:informational": 1
+  },
+  "timer_keys_in_extra": {
+   "result": {
+    "durationMs": {
+     "present": 1312,
+     "of": 41706,
+     "fill_rate": 0.031458303361626624
+    },
+    "durationSeconds": {
+     "present": 68,
+     "of": 41706,
+     "fill_rate": 0.0016304608449623555
+    },
+    "timedOutAfterMs": {
+     "present": 55,
+     "of": 41706,
+     "fill_rate": 0.0013187550951901405
+    }
+   },
+   "meta": {
+    "compactMetadata.durationMs": {
+     "present": 8,
+     "of": 35091,
+     "fill_rate": 0.00022797868399304666
+    }
+   }
+  },
+  "timer_keys_by_result_tool": {
+   "glob": {
+    "durationMs": {
+     "present": 1231,
+     "of": 1241,
+     "fill_rate": 0.991941982272361
+    }
+   },
+   "webfetch": {
+    "durationMs": {
+     "present": 81,
+     "of": 949,
+     "fill_rate": 0.08535300316122234
+    }
+   },
+   "websearch": {
+    "durationSeconds": {
+     "present": 68,
+     "of": 492,
+     "fill_rate": 0.13821138211382114
+    }
+   },
+   "shell": {
+    "timedOutAfterMs": {
+     "present": 55,
+     "of": 30185,
+     "fill_rate": 0.0018220970680801723
+    }
+   }
+  },
+  "subagent": {
+   "timing_vs_parent": {
+    "subagent_events_with_parent_call_id": 115542,
+    "with_ts": 114045,
+    "parent_call_in_same_session": 115542,
+    "parent_result_in_same_session": 115542,
+    "ts_before_parent_call": 0,
+    "ts_after_parent_result": 113950,
+    "by_parent_tool": {
+     "Agent": {
+      "events_with_ts": 2381,
+      "ts_after_parent_result": 2325
+     },
+     "Workflow": {
+      "events_with_ts": 111664,
+      "ts_after_parent_result": 111625
+     }
+    }
+   },
+   "events": 115542,
+   "event_share": 0.6847826086956522,
+   "calls": 31355,
+   "call_share": 0.7517922650873954,
+   "sessions_with_subagent_events": 10,
+   "subagent_events_parent_call_id_filled": 115542,
+   "subagent_events_agent_id_filled": 115521,
+   "distinct_agent_ids": 773
+  },
+  "results_by_tool_top": {
+   "shell": 30185,
+   "read": 2688,
+   "write": 1628,
+   "edit": 1613,
+   "mcp__*": 1437,
+   "glob": 1241,
+   "webfetch": 949,
+   "structuredoutput": 683,
+   "websearch": 492,
+   "toolsearch": 254,
+   "grep": 150,
+   "taskstop": 82,
+   "workflow": 78,
+   "monitor": 74,
+   "senduserfile": 50,
+   "artifact": 35,
+   "taskoutput": 29,
+   "askuserquestion": 11,
+   "skill": 11,
+   "subagent": 11,
+   "schedulewakeup": 1,
+   "croncreate": 1,
+   "crondelete": 1,
+   "listagents": 1,
+   "readnotifications": 1
+  },
+  "events_per_session": {
+   "n": 309,
+   "min": 7.0,
+   "p1": 8.0,
+   "p5": 8.0,
+   "p25": 25.0,
+   "p50": 57.0,
+   "p75": 77.0,
+   "p95": 536.7999999999988,
+   "p99": 7835.600000000075,
+   "max": 64101.0,
+   "mean": 546.0453074433657
+  }
+ },
+ "splits": {
+  "A": {
+   "sessions_in_sample": 123,
+   "sessions_with_zero_events": 0,
+   "validate": {
+    "rows": 21222,
+    "sessions": 123,
+    "call": 5165,
+    "result": 5164,
+    "meta": 5054,
+    "system": 3960,
+    "assistant": 1624,
+    "user": 255
+   },
+   "rows": 21222,
+   "sessions": 123,
+   "events_by_kind": {
+    "call": 5165,
+    "result": 5164,
+    "meta": 5054,
+    "system": 3960,
+    "assistant": 1624,
+    "user": 255
+   },
+   "ts_kind": {
+    "event": 21074,
+    "none": 148
+   },
+   "ts_fill": {
+    "with_ts": 21074,
+    "without_ts": 148
+   },
+   "ts_fractional_digits": {
+    "3": 21074
+   },
+   "ts_ties": {
+    "tie_groups": 916,
+    "events_in_tie_groups": 2609,
+    "largest_tie_group": 9
+   },
+   "adjacent_ts_inversions_in_seq_order": 0,
+   "pairing": {
+    "call_events": 5165,
+    "result_events": 5164,
+    "call_ids_unique": 5165,
+    "result_ids_unique": 5164,
+    "duplicate_call_events_same_session_id": 0,
+    "duplicate_result_events_same_session_id": 0,
+    "result_events_null_call_id": 0,
+    "paired": 5164,
+    "paired_result_seq_before_call_seq": 0,
+    "calls_without_result": 1,
+    "results_without_call_in_session": 0,
+    "results_without_call_but_call_id_elsewhere_in_frame": 0,
+    "paired_both_ts": 5164,
+    "paired_identical_ts": 0,
+    "paired_negative_delta": 0,
+    "delta_seconds": {
+     "n": 5164,
+     "min": 0.001,
+     "p1": 0.002,
+     "p5": 0.007,
+     "p25": 0.046,
+     "p50": 0.247,
+     "p75": 1.7934999999999999,
+     "p95": 25.259499999999985,
+     "p99": 120.11437,
+     "max": 600.089,
+     "mean": 6.080733927188226
+    }
+   },
+   "native_error": {
+    "results": 5164,
+    "filled": 3359,
+    "true": 349,
+    "false": 3010,
+    "fill_rate": 0.6504647560030984
+   },
+   "exit_code_filled": 0,
+   "stderr_filled_results": 1230,
+   "usage_fill": {
+    "assistant": {
+     "n": 1624,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 0.9956896551724138,
+     "model": 1.0,
+     "api_msg_ids_unique": 1624
+    },
+    "call": {
+     "n": 5165,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 1.0,
+     "model": 1.0,
+     "api_msg_ids_unique": 4036
+    }
+   },
+   "result_error_marker": {
+    "None": 4833,
+    "cc_permission_denied": 173,
+    "cc_exit_code": 135,
+    "cc_tool_use_error": 14,
+    "cc_interrupt_reject": 9
+   },
+   "extra_key_fill_by_kind": {
+    "meta": {
+     "entry_type": {
+      "present": 5054,
+      "fill_rate": 1.0
+     },
+     "thinking_chars": {
+      "present": 3460,
+      "fill_rate": 0.6846062524732884
+     },
+     "operation": {
+      "present": 757,
+      "fill_rate": 0.14978235061337555
+     },
+     "family_member": {
+      "present": 412,
+      "fill_rate": 0.0815195884447962
+     },
+     "attachment_type": {
+      "present": 295,
+      "fill_rate": 0.05836960823110408
+     },
+     "visibility": {
+      "present": 295,
+      "fill_rate": 0.05836960823110408
+     },
+     "subtype": {
+      "present": 218,
+      "fill_rate": 0.043134151167392165
+     },
+     "level": {
+      "present": 218,
+      "fill_rate": 0.043134151167392165
+     },
+     "journal_type": {
+      "present": 148,
+      "fill_rate": 0.02928373565492679
+     },
+     "result_type": {
+      "present": 148,
+      "fill_rate": 0.02928373565492679
+     },
+     "sort_ts": {
+      "present": 148,
+      "fill_rate": 0.02928373565492679
+     },
+     "sort_ts_source": {
+      "present": 148,
+      "fill_rate": 0.02928373565492679
+     }
+    },
+    "system": {
+     "entry_type": {
+      "present": 3814,
+      "fill_rate": 0.9631313131313132
+     },
+     "attachment_type": {
+      "present": 3814,
+      "fill_rate": 0.9631313131313132
+     },
+     "visibility": {
+      "present": 3814,
+      "fill_rate": 0.9631313131313132
+     },
+     "text_source": {
+      "present": 3814,
+      "fill_rate": 0.9631313131313132
+     },
+     "family_member": {
+      "present": 512,
+      "fill_rate": 0.1292929292929293
+     },
+     "rendered_role": {
+      "present": 397,
+      "fill_rate": 0.10025252525252525
+     },
+     "nested_prompt": {
+      "present": 87,
+      "fill_rate": 0.02196969696969697
+     },
+     "notification_statuses": {
+      "present": 71,
+      "fill_rate": 0.01792929292929293
+     },
+     "command_mode": {
+      "present": 40,
+      "fill_rate": 0.010101010101010102
+     },
+     "toolUseID": {
+      "present": 23,
+      "fill_rate": 0.005808080808080808
+     },
+     "hookEvent": {
+      "present": 23,
+      "fill_rate": 0.005808080808080808
+     },
+     "rendered_in_human_turn_variant": {
+      "present": 10,
+      "fill_rate": 0.0025252525252525255
+     }
+    },
+    "user": {
+     "family_member": {
+      "present": 27,
+      "fill_rate": 0.10588235294117647
+     },
+     "entry_type": {
+      "present": 2,
+      "fill_rate": 0.00784313725490196
+     },
+     "attachment_type": {
+      "present": 2,
+      "fill_rate": 0.00784313725490196
+     },
+     "visibility": {
+      "present": 2,
+      "fill_rate": 0.00784313725490196
+     },
+     "command_mode": {
+      "present": 2,
+      "fill_rate": 0.00784313725490196
+     },
+     "text_source": {
+      "present": 2,
+      "fill_rate": 0.00784313725490196
+     }
+    },
+    "assistant": {
+     "thinking_chars": {
+      "present": 260,
+      "fill_rate": 0.16009852216748768
+     },
+     "family_member": {
+      "present": 233,
+      "fill_rate": 0.1434729064039409
+     }
+    },
+    "call": {
+     "thinking_chars": {
+      "present": 440,
+      "fill_rate": 0.08518877057115198
+     },
+     "family_member": {
+      "present": 401,
+      "fill_rate": 0.0776379477250726
+     }
+    },
+    "result": {
+     "marker": {
+      "present": 5164,
+      "fill_rate": 1.0
+     },
+     "interrupted": {
+      "present": 1230,
+      "fill_rate": 0.23818745158791635
+     },
+     "noOutputExpected": {
+      "present": 1230,
+      "fill_rate": 0.23818745158791635
+     },
+     "numFiles": {
+      "present": 476,
+      "fill_rate": 0.09217660728117738
+     },
+     "durationMs": {
+      "present": 447,
+      "fill_rate": 0.08656080557707203
+     },
+     "truncated": {
+      "present": 427,
+      "fill_rate": 0.0826878388845856
+     },
+     "family_member": {
+      "present": 401,
+      "fill_rate": 0.07765298218435321
+     },
+     "backgroundTaskId": {
+      "present": 46,
+      "fill_rate": 0.008907823392718823
+     },
+     "bytes": {
+      "present": 20,
+      "fill_rate": 0.0038729666924864447
+     },
+     "code": {
+      "present": 20,
+      "fill_rate": 0.0038729666924864447
+     },
+     "durationSeconds": {
+      "present": 15,
+      "fill_rate": 0.0029047250193648335
+     },
+     "persistedOutputSize": {
+      "present": 8,
+      "fill_rate": 0.001549186676994578
+     },
+     "timedOutAfterMs": {
+      "present": 5,
+      "fill_rate": 0.0009682416731216112
+     },
+     "returnCodeInterpretation": {
+      "present": 5,
+      "fill_rate": 0.0009682416731216112
+     }
+    }
+   },
+   "meta_entry_types": {
+    "assistant_thinking_only:None": 3460,
+    "queue-operation:None": 757,
+    "system:stop_hook_summary": 214,
+    "attachment:prompt_snapshot": 197,
+    "frame-link:None": 111,
+    "workflow_journal:started": 77,
+    "workflow_journal:result": 70,
+    "attachment:deferred_tools_record": 65,
+    "file-history-delta:None": 65,
+    "attachment:credential_org": 31,
+    "system:api_error": 4,
+    "attachment:command_permissions": 2,
+    "workflow_journal:failed": 1
+   },
+   "timer_keys_in_extra": {
+    "result": {
+     "durationMs": {
+      "present": 447,
+      "of": 5164,
+      "fill_rate": 0.08656080557707203
+     },
+     "durationSeconds": {
+      "present": 15,
+      "of": 5164,
+      "fill_rate": 0.0029047250193648335
+     },
+     "timedOutAfterMs": {
+      "present": 5,
+      "of": 5164,
+      "fill_rate": 0.0009682416731216112
+     }
+    }
+   },
+   "timer_keys_by_result_tool": {
+    "glob": {
+     "durationMs": {
+      "present": 427,
+      "of": 427,
+      "fill_rate": 1.0
+     }
+    },
+    "webfetch": {
+     "durationMs": {
+      "present": 20,
+      "of": 215,
+      "fill_rate": 0.09302325581395349
+     }
+    },
+    "websearch": {
+     "durationSeconds": {
+      "present": 15,
+      "of": 29,
+      "fill_rate": 0.5172413793103449
+     }
+    },
+    "shell": {
+     "timedOutAfterMs": {
+      "present": 5,
+      "of": 3312,
+      "fill_rate": 0.0015096618357487923
+     }
+    }
+   },
+   "subagent": {
+    "timing_vs_parent": {
+     "subagent_events_with_parent_call_id": 7285,
+     "with_ts": 7137,
+     "parent_call_in_same_session": 7285,
+     "parent_result_in_same_session": 7285,
+     "ts_before_parent_call": 0,
+     "ts_after_parent_result": 7121,
+     "by_parent_tool": {
+      "Agent": {
+       "events_with_ts": 282,
+       "ts_after_parent_result": 266
+      },
+      "Workflow": {
+       "events_with_ts": 6855,
+       "ts_after_parent_result": 6855
+      }
+     }
+    },
+    "events": 7285,
+    "event_share": 0.34327584582037507,
+    "calls": 2325,
+    "call_share": 0.45014520813165537,
+    "sessions_with_subagent_events": 4,
+    "subagent_events_parent_call_id_filled": 7285,
+    "subagent_events_agent_id_filled": 7285,
+    "distinct_agent_ids": 81
+   },
+   "results_by_tool_top": {
+    "shell": 3312,
+    "glob": 427,
+    "mcp__*": 299,
+    "read": 274,
+    "webfetch": 215,
+    "write": 202,
+    "edit": 156,
+    "structuredoutput": 64,
+    "grep": 58,
+    "toolsearch": 54,
+    "websearch": 29,
+    "taskstop": 15,
+    "taskoutput": 11,
+    "monitor": 11,
+    "workflow": 10,
+    "senduserfile": 9,
+    "askuserquestion": 5,
+    "artifact": 4,
+    "subagent": 4,
+    "skill": 2,
+    "croncreate": 1,
+    "crondelete": 1,
+    "readnotifications": 1
+   },
+   "events_per_session": {
+    "n": 123,
+    "min": 8.0,
+    "p1": 8.0,
+    "p5": 8.0,
+    "p25": 24.0,
+    "p50": 56.0,
+    "p75": 77.0,
+    "p95": 507.7999999999992,
+    "p99": 1543.0400000000004,
+    "max": 8212.0,
+    "mean": 172.53658536585365
+   },
+   "attachments": {
+    "attachment_events": 4111,
+    "by_kind": {
+     "system": 3814,
+     "meta": 295,
+     "user": 2
+    },
+    "by_visibility": {
+     "rendered": 2397,
+     "type_rendered_in_newer_versions": 1408,
+     "not_rendered_in_rendering_version": 293,
+     "old_only_type_assumed_visible": 11,
+     "type_never_rendered": 2
+    },
+    "by_text_source": {
+     "rendered": 2395,
+     "payload:text": 1033,
+     "(meta: none)": 295,
+     "payload:addedLines": 146,
+     "payload:content": 111,
+     "payload:snippet": 33,
+     "payload:prompt": 32,
+     "unavailable": 31,
+     "payload:addedBlocks": 30,
+     "payload:newDate": 2,
+     "payload:content.file.content": 1,
+     "payload:content.content": 1,
+     "payload:commit+pr": 1
+    },
+    "by_text": {
+     "present": 3785,
+     "null": 326
+    },
+    "by_queued_command_mode_x_kind": {
+     "task-notification|system": 40,
+     "prompt|user": 2
+    },
+    "sessions_with_visible_attachment_events": 123,
+    "task_notifications": {
+     "attachment_queued_command": {
+      "kind": {
+       "system": 40
+      },
+      "first_status": {
+       "completed": 32,
+       "<no status tag>": 6,
+       "failed": 2
+      },
+      "text": {
+       "present": 40
+      },
+      "multi": {
+       "events_with_failed_or_killed_status": 2
+      }
+     },
+     "user_entry_text": {
+      "kind": {
+       "system": 31
+      },
+      "first_status": {
+       "<no status tag>": 17,
+       "completed": 11,
+       "stopped": 2,
+       "failed": 1
+      },
+      "text": {
+       "present": 31
+      },
+      "multi": {
+       "events_with_failed_or_killed_status": 1
+      }
+     }
+    }
+   }
+  },
+  "B": {
+   "sessions_in_sample": 186,
+   "sessions_with_zero_events": 0,
+   "validate": {
+    "rows": 147506,
+    "sessions": 186,
+    "system": 36962,
+    "call": 36542,
+    "result": 36542,
+    "meta": 30037,
+    "assistant": 6800,
+    "user": 623
+   },
+   "rows": 147506,
+   "sessions": 186,
+   "events_by_kind": {
+    "system": 36962,
+    "call": 36542,
+    "result": 36542,
+    "meta": 30037,
+    "assistant": 6800,
+    "user": 623
+   },
+   "ts_kind": {
+    "event": 146157,
+    "none": 1349
+   },
+   "ts_fill": {
+    "with_ts": 146157,
+    "without_ts": 1349
+   },
+   "ts_fractional_digits": {
+    "3": 146157
+   },
+   "ts_ties": {
+    "tie_groups": 4669,
+    "events_in_tie_groups": 13869,
+    "largest_tie_group": 40
+   },
+   "adjacent_ts_inversions_in_seq_order": 0,
+   "pairing": {
+    "call_events": 36542,
+    "result_events": 36542,
+    "call_ids_unique": 36542,
+    "result_ids_unique": 36542,
+    "duplicate_call_events_same_session_id": 0,
+    "duplicate_result_events_same_session_id": 0,
+    "result_events_null_call_id": 0,
+    "paired": 36542,
+    "paired_result_seq_before_call_seq": 0,
+    "calls_without_result": 0,
+    "results_without_call_in_session": 0,
+    "results_without_call_but_call_id_elsewhere_in_frame": 0,
+    "paired_both_ts": 36542,
+    "paired_identical_ts": 1,
+    "paired_negative_delta": 0,
+    "delta_seconds": {
+     "n": 36542,
+     "min": 0.0,
+     "p1": 0.003,
+     "p5": 0.006,
+     "p25": 0.085,
+     "p50": 0.138,
+     "p75": 0.772,
+     "p95": 16.572849999999992,
+     "p99": 140.14465999999695,
+     "max": 7452.842,
+     "mean": 7.090901182201302
+    }
+   },
+   "native_error": {
+    "results": 36542,
+    "filled": 27222,
+    "true": 1454,
+    "false": 25768,
+    "fill_rate": 0.7449510152701002
+   },
+   "exit_code_filled": 0,
+   "stderr_filled_results": 3887,
+   "usage_fill": {
+    "assistant": {
+     "n": 6800,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 0.9995588235294117,
+     "model": 1.0,
+     "api_msg_ids_unique": 6800
+    },
+    "call": {
+     "n": 36542,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 1.0,
+     "model": 1.0,
+     "api_msg_ids_unique": 30059
+    }
+   },
+   "result_error_marker": {
+    "None": 35333,
+    "cc_exit_code": 730,
+    "cc_permission_denied": 334,
+    "cc_tool_use_error": 129,
+    "cc_interrupt_reject": 16
+   },
+   "extra_key_fill_by_kind": {
+    "meta": {
+     "entry_type": {
+      "present": 30037,
+      "fill_rate": 1.0
+     },
+     "thinking_chars": {
+      "present": 22193,
+      "fill_rate": 0.738855411658954
+     },
+     "family_member": {
+      "present": 6674,
+      "fill_rate": 0.22219262909078802
+     },
+     "operation": {
+      "present": 3369,
+      "fill_rate": 0.112161667277025
+     },
+     "attachment_type": {
+      "present": 1709,
+      "fill_rate": 0.056896494323667474
+     },
+     "visibility": {
+      "present": 1709,
+      "fill_rate": 0.056896494323667474
+     },
+     "journal_type": {
+      "present": 1349,
+      "fill_rate": 0.04491127609281886
+     },
+     "result_type": {
+      "present": 1349,
+      "fill_rate": 0.04491127609281886
+     },
+     "sort_ts": {
+      "present": 1349,
+      "fill_rate": 0.04491127609281886
+     },
+     "sort_ts_source": {
+      "present": 1349,
+      "fill_rate": 0.04491127609281886
+     },
+     "subtype": {
+      "present": 850,
+      "fill_rate": 0.02829843193394813
+     },
+     "level": {
+      "present": 850,
+      "fill_rate": 0.02829843193394813
+     },
+     "toolUseID": {
+      "present": 477,
+      "fill_rate": 0.01588041415587442
+     },
+     "compactMetadata": {
+      "present": 8,
+      "fill_rate": 0.00026633818290774713
+     },
+     "command_mode": {
+      "present": 1,
+      "fill_rate": 3.329227286346839e-05
+     }
+    },
+    "system": {
+     "entry_type": {
+      "present": 35516,
+      "fill_rate": 0.9608787403279043
+     },
+     "attachment_type": {
+      "present": 35516,
+      "fill_rate": 0.9608787403279043
+     },
+     "visibility": {
+      "present": 35516,
+      "fill_rate": 0.9608787403279043
+     },
+     "text_source": {
+      "present": 35516,
+      "fill_rate": 0.9608787403279043
+     },
+     "family_member": {
+      "present": 5827,
+      "fill_rate": 0.15764839564958605
+     },
+     "notification_statuses": {
+      "present": 1029,
+      "fill_rate": 0.027839402629727828
+     },
+     "nested_prompt": {
+      "present": 998,
+      "fill_rate": 0.02700070342513933
+     },
+     "command_mode": {
+      "present": 624,
+      "fill_rate": 0.016882203343974892
+     },
+     "rendered_in_human_turn_variant": {
+      "present": 429,
+      "fill_rate": 0.01160651479898274
+     },
+     "rendered_role": {
+      "present": 379,
+      "fill_rate": 0.010253774146420648
+     },
+     "toolUseID": {
+      "present": 114,
+      "fill_rate": 0.003084248687841567
+     },
+     "hookEvent": {
+      "present": 77,
+      "fill_rate": 0.00208322060494562
+     }
+    },
+    "result": {
+     "marker": {
+      "present": 36542,
+      "fill_rate": 1.0
+     },
+     "family_member": {
+      "present": 4237,
+      "fill_rate": 0.11594877127688687
+     },
+     "interrupted": {
+      "present": 3887,
+      "fill_rate": 0.10637075146406874
+     },
+     "noOutputExpected": {
+      "present": 3887,
+      "fill_rate": 0.10637075146406874
+     },
+     "durationMs": {
+      "present": 865,
+      "fill_rate": 0.02367139182310766
+     },
+     "numFiles": {
+      "present": 861,
+      "fill_rate": 0.023561928739532594
+     },
+     "truncated": {
+      "present": 804,
+      "fill_rate": 0.022002079798587926
+     },
+     "backgroundTaskId": {
+      "present": 266,
+      "fill_rate": 0.0072792950577417765
+     },
+     "bytes": {
+      "present": 61,
+      "fill_rate": 0.0016693120245197307
+     },
+     "code": {
+      "present": 61,
+      "fill_rate": 0.0016693120245197307
+     },
+     "durationSeconds": {
+      "present": 53,
+      "fill_rate": 0.0014503858573696022
+     },
+     "timedOutAfterMs": {
+      "present": 50,
+      "fill_rate": 0.0013682885446883038
+     },
+     "persistedOutputSize": {
+      "present": 26,
+      "fill_rate": 0.000711510043237918
+     },
+     "returnCodeInterpretation": {
+      "present": 15,
+      "fill_rate": 0.00041048656340649117
+     }
+    },
+    "assistant": {
+     "family_member": {
+      "present": 2324,
+      "fill_rate": 0.3417647058823529
+     },
+     "thinking_chars": {
+      "present": 508,
+      "fill_rate": 0.07470588235294118
+     }
+    },
+    "call": {
+     "family_member": {
+      "present": 4237,
+      "fill_rate": 0.11594877127688687
+     },
+     "thinking_chars": {
+      "present": 1520,
+      "fill_rate": 0.04159597175852444
+     }
+    },
+    "user": {
+     "family_member": {
+      "present": 366,
+      "fill_rate": 0.5874799357945425
+     },
+     "entry_type": {
+      "present": 11,
+      "fill_rate": 0.01765650080256822
+     },
+     "attachment_type": {
+      "present": 11,
+      "fill_rate": 0.01765650080256822
+     },
+     "visibility": {
+      "present": 11,
+      "fill_rate": 0.01765650080256822
+     },
+     "command_mode": {
+      "present": 11,
+      "fill_rate": 0.01765650080256822
+     },
+     "text_source": {
+      "present": 11,
+      "fill_rate": 0.01765650080256822
+     }
+    }
+   },
+   "meta_entry_types": {
+    "assistant_thinking_only:None": 22193,
+    "queue-operation:None": 3369,
+    "attachment:prompt_snapshot": 1000,
+    "system:stop_hook_summary": 834,
+    "workflow_journal:started": 685,
+    "workflow_journal:result": 612,
+    "attachment:structured_output": 477,
+    "frame-link:None": 369,
+    "file-history-delta:None": 198,
+    "attachment:deferred_tools_record": 174,
+    "attachment:credential_org": 48,
+    "workflow_journal:failed": 31,
+    "workflow_journal:launched": 21,
+    "attachment:command_permissions": 9,
+    "system:compact_boundary": 8,
+    "system:api_error": 7,
+    "system:informational": 1,
+    "attachment:queued_command": 1
+   },
+   "timer_keys_in_extra": {
+    "result": {
+     "durationMs": {
+      "present": 865,
+      "of": 36542,
+      "fill_rate": 0.02367139182310766
+     },
+     "durationSeconds": {
+      "present": 53,
+      "of": 36542,
+      "fill_rate": 0.0014503858573696022
+     },
+     "timedOutAfterMs": {
+      "present": 50,
+      "of": 36542,
+      "fill_rate": 0.0013682885446883038
+     }
+    },
+    "meta": {
+     "compactMetadata.durationMs": {
+      "present": 8,
+      "of": 30037,
+      "fill_rate": 0.00026633818290774713
+     }
+    }
+   },
+   "timer_keys_by_result_tool": {
+    "glob": {
+     "durationMs": {
+      "present": 804,
+      "of": 814,
+      "fill_rate": 0.9877149877149877
+     }
+    },
+    "webfetch": {
+     "durationMs": {
+      "present": 61,
+      "of": 734,
+      "fill_rate": 0.08310626702997276
+     }
+    },
+    "websearch": {
+     "durationSeconds": {
+      "present": 53,
+      "of": 463,
+      "fill_rate": 0.11447084233261338
+     }
+    },
+    "shell": {
+     "timedOutAfterMs": {
+      "present": 50,
+      "of": 26873,
+      "fill_rate": 0.0018606035798012874
+     }
+    }
+   },
+   "subagent": {
+    "timing_vs_parent": {
+     "subagent_events_with_parent_call_id": 108257,
+     "with_ts": 106908,
+     "parent_call_in_same_session": 108257,
+     "parent_result_in_same_session": 108257,
+     "ts_before_parent_call": 0,
+     "ts_after_parent_result": 106829,
+     "by_parent_tool": {
+      "Agent": {
+       "events_with_ts": 2099,
+       "ts_after_parent_result": 2059
+      },
+      "Workflow": {
+       "events_with_ts": 104809,
+       "ts_after_parent_result": 104770
+      }
+     }
+    },
+    "events": 108257,
+    "event_share": 0.7339159085054168,
+    "calls": 29030,
+    "call_share": 0.7944283290460292,
+    "sessions_with_subagent_events": 6,
+    "subagent_events_parent_call_id_filled": 108257,
+    "subagent_events_agent_id_filled": 108236,
+    "distinct_agent_ids": 692
+   },
+   "results_by_tool_top": {
+    "shell": 26873,
+    "read": 2414,
+    "edit": 1457,
+    "write": 1426,
+    "mcp__*": 1138,
+    "glob": 814,
+    "webfetch": 734,
+    "structuredoutput": 619,
+    "websearch": 463,
+    "toolsearch": 200,
+    "grep": 92,
+    "workflow": 68,
+    "taskstop": 67,
+    "monitor": 63,
+    "senduserfile": 41,
+    "artifact": 31,
+    "taskoutput": 18,
+    "skill": 9,
+    "subagent": 7,
+    "askuserquestion": 6,
+    "listagents": 1,
+    "schedulewakeup": 1
+   },
+   "events_per_session": {
+    "n": 186,
+    "min": 7.0,
+    "p1": 7.85,
+    "p5": 8.25,
+    "p25": 25.25,
+    "p50": 58.5,
+    "p75": 74.75,
+    "p95": 656.75,
+    "p99": 28796.250000000022,
+    "max": 64101.0,
+    "mean": 793.0430107526881
+   },
+   "attachments": {
+    "attachment_events": 37236,
+    "by_kind": {
+     "system": 35516,
+     "meta": 1709,
+     "user": 11
+    },
+    "by_visibility": {
+     "rendered": 19983,
+     "type_rendered_in_newer_versions": 14502,
+     "not_rendered_in_rendering_version": 1513,
+     "old_only_type_assumed_visible": 1042,
+     "type_never_rendered": 196
+    },
+    "by_text_source": {
+     "rendered": 19975,
+     "payload:text": 13003,
+     "(meta: none)": 1709,
+     "unavailable": 656,
+     "payload:content": 441,
+     "payload:addedLines": 435,
+     "payload:snippet": 261,
+     "payload:addedBlocks": 243,
+     "payload:commit+pr": 228,
+     "payload:prompt": 206,
+     "payload:banner": 33,
+     "payload:content.file.content": 20,
+     "payload:newDate": 19,
+     "payload:content.content": 7
+    },
+    "by_text": {
+     "present": 34871,
+     "null": 2365
+    },
+    "by_queued_command_mode_x_kind": {
+     "task-notification|system": 624,
+     "prompt|user": 11,
+     "prompt|meta": 1
+    },
+    "sessions_with_visible_attachment_events": 186,
+    "task_notifications": {
+     "attachment_queued_command": {
+      "kind": {
+       "system": 624
+      },
+      "first_status": {
+       "completed": 438,
+       "<no status tag>": 163,
+       "failed": 22,
+       "killed": 1
+      },
+      "text": {
+       "present": 624
+      },
+      "multi": {
+       "events_with_failed_or_killed_status": 23
+      }
+     },
+     "user_entry_text": {
+      "kind": {
+       "system": 405
+      },
+      "first_status": {
+       "<no status tag>": 255,
+       "completed": 132,
+       "stopped": 16,
+       "failed": 2
+      },
+      "text": {
+       "present": 405
+      },
+      "multi": {
+       "events_with_failed_or_killed_status": 2
+      }
+     }
+    }
+   }
+  }
+ },
+ "cache_rows": {
+  "A": 21222,
+  "B": 147506
+ }
+}

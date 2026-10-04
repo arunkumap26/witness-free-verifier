@@ -39,6 +39,10 @@ COLUMNS = {
     "exit_code": "Int64",       # harness-recorded exit code when the source has a field for it (not parsed from text)
     "usage_in": "Int64",        # API usage on assistant/call events: input_tokens
     "usage_out": "Int64",       # output_tokens (beware streaming partial values; keep raw)
+    # USAGE DEDUPE: several events of one API response share api_msg_id and carry copies of its usage (some formats put
+    # usage on one row only). To get one usage per API call: keep rows with usage_in not null, then dedupe on
+    # (session_id, api_msg_id) - NOT on api_msg_id alone: resumed/forked Claude Code sessions copy history, so one id can
+    # appear in several sessions. Take max(usage_out) across the response's rows (streaming partials are smaller).
     "usage_cache_read": "Int64",
     "usage_cache_create": "Int64",
     "api_msg_id": "str",        # provider message id (msg_..., resp_..., Gemini responseId); blocks of one API response share it
@@ -52,7 +56,8 @@ COLUMNS = {
     "extra": "str",             # JSON object with corpus-specific fields (durationMs, elapsed timers, server-timing, ...)
 }
 
-SHELL_TOOLS = {"bash", "shell", "run_shell_command", "exec_command", "local_shell", "terminal", "mcp__village__bash"}
+SHELL_TOOLS = {"bash", "shell", "run_shell_command", "exec_command", "local_shell", "terminal", "mcp__village__bash",
+               "write_stdin", "shell_command"}  # write_stdin: Codex unified-exec poll; deferred exits land on it (tool_raw keeps it apart)
 
 
 def normalize_tool(name):
@@ -113,7 +118,11 @@ ERROR_MARKERS = [
     ("cc_permission_denied", re.compile(r"^(Permission to use \S+ (?:with command .* )?has been denied|.*requested permissions to .* but you haven't granted it)", re.S)),
     ("cc_interrupt_reject", re.compile(r"^\[Request interrupted|^The user doesn't want to proceed with this tool use|^User rejected")),
     ("whowhen_exitcode_nonzero", re.compile(r"^exitcode: (?!0\b)(\d+)")),
+    # the two below are searched anywhere in the text (harness templates that are not at the start)
+    ("gemini_exit_code_nonzero", re.compile(r"(?m)^Exit Code: (?!0\b)(\d+)")),
+    ("magentic_exit_code_nonzero", re.compile(r"exited with Unix exit code: (?!0\b)(\d+)")),
 ]
+SEARCH_MARKERS = {"gemini_exit_code_nonzero", "magentic_exit_code_nonzero"}
 
 
 def error_marker(text):
@@ -121,7 +130,7 @@ def error_marker(text):
     if not text:
         return None
     for name, rx in ERROR_MARKERS:
-        if rx.match(text):
+        if (rx.search(text) if name in SEARCH_MARKERS else rx.match(text)):
             return name
     return None
 

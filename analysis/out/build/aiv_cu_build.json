@@ -1,0 +1,1756 @@
+{
+ "corpus": "aiv_cu",
+ "built_at": "2026-10-03T20:22:59",
+ "loader": "analysis/loaders/load_aiv_cu.py",
+ "inputs": {
+  "C:\\Swarms\\data\\ai-village\\computer_use_turns.jsonl.gz": 2475319119,
+  "C:\\Swarms\\data\\ai-village\\computer_use_sessions.jsonl.gz": 40080397,
+  "C:\\Swarms\\data\\ai-village\\agents.jsonl.gz": 5280
+ },
+ "throughput": {
+  "benchmark_first_50k_single_process": {
+   "lines": 50000,
+   "decompressed_bytes": 166194564,
+   "read_s": 0.455,
+   "parse_s": 0.821,
+   "lines_per_s": 39183.2,
+   "mb_per_s": 130.24,
+   "projected_single_process_s_all_rows": 64.1
+  },
+  "pass1": {
+   "mode": "main process gunzips 64 MB blocks; spawn pool of 12 parses",
+   "wall_s": 25.6,
+   "rows": 2510487,
+   "decompressed_bytes": 8320640815,
+   "rows_per_s": 97881.7,
+   "mb_per_s": 324.41,
+   "bad_json_lines": 0
+  },
+  "pass2": {
+   "mode": "single process line scan, fixed-offset session_id",
+   "wall_s": 22.0,
+   "rows_scanned": 2510487,
+   "decompressed_bytes": 8320640815,
+   "rows_per_s": 114202.3,
+   "mb_per_s": 378.51,
+   "prefix_fallbacks": 0,
+   "rows_kept": 70393,
+   "sessions_found": 2200
+  }
+ },
+ "population": {
+  "turn_rows": 2510487,
+  "sessions_with_turns": 78114,
+  "sessions_table_rows": 78362,
+  "sessions_table_rows_without_turns": 248,
+  "turn_sessions_missing_from_sessions_table": 0,
+  "model_shape": {
+   "claude-3-5-sonnet-20241022": "anthropic",
+   "claude-3-7-sonnet-20250219": "anthropic",
+   "claude-code::claude-opus-4-5-20251101": "anthropic-sdk",
+   "claude-fable-5": "anthropic",
+   "claude-fable-5-1": "anthropic",
+   "claude-haiku-4-5-20251001": "anthropic",
+   "claude-opus-4-1-20250805": "anthropic",
+   "claude-opus-4-20250514": "anthropic",
+   "claude-opus-4-5-20251101": "anthropic",
+   "claude-opus-4-6": "anthropic",
+   "claude-opus-4-7": "anthropic",
+   "claude-opus-4-8": "anthropic",
+   "claude-opus-5": "anthropic",
+   "claude-sonnet-4-5-20250929": "anthropic",
+   "claude-sonnet-4-6": "anthropic",
+   "claude-sonnet-5": "anthropic",
+   "deepseek-reasoner": "openai-chat",
+   "deepseek/deepseek-v4-pro": "openai-chat",
+   "gemini-2.5-pro": "gemini",
+   "gemini-3-pro-preview": "gemini",
+   "gemini-3.1-pro-preview": "gemini",
+   "gemini-3.5-flash": "gemini",
+   "gemini-3.8-flash": "gemini",
+   "gpt-4.1-2025-04-14": "openai-chat",
+   "gpt-4o-2024-08-06": "openai-chat",
+   "gpt-5-2025-08-07": "openai-responses",
+   "gpt-5.1-2025-11-13": "openai-responses",
+   "gpt-5.2-2025-12-11": "openai-responses",
+   "gpt-5.4-2026-03-05": "openai-responses",
+   "gpt-5.5": "openai-responses",
+   "gpt-5.6-luna": "openai-responses",
+   "gpt-5.6-sol": "openai-responses",
+   "gpt-5.6-terra": "openai-responses",
+   "gpt-6-astra": "openai-responses",
+   "grok-4-0709": "openai-chat",
+   "grok-4.5": "openai-chat",
+   "kimi-k2.6": "openai-chat",
+   "kimi-k3": "openai-chat",
+   "meta/muse-spark-1.3": "openai-chat",
+   "o1-2024-12-17": "openai-chat",
+   "o3-2025-04-16": "openai-chat",
+   "o4-mini-2025-04-16": "openai-chat",
+   "tinker://363427a9-ee15-55e7-a2cd-8368f216760e:train:0/sampler_weights/kimi-leader-v7-aug-64": "openai-chat",
+   "z-ai/glm-5.2": "openai-chat",
+   "z-ai/glm-5.3-flash": "openai-chat"
+  },
+  "row_id_duplicates": 0,
+  "line_prefix_ok": {
+   "k": 2510487,
+   "n": 2510487,
+   "frac": 1.0
+  },
+  "turns_by_shape": {
+   "anthropic": 907506,
+   "openai-responses": 586287,
+   "gemini": 560264,
+   "openai-chat": 428684,
+   "empty-list": 16046,
+   "anthropic-sdk": 11679,
+   "empty-dict": 21
+  },
+  "turns_by_row_model": {
+   "<none>": 1046801,
+   "gemini-2.5-pro": 194116,
+   "claude-haiku-4-5-20251001": 167157,
+   "claude-opus-4-5-20251101": 151502,
+   "gemini-3.1-pro-preview": 145266,
+   "claude-sonnet-4-5-20250929": 117308,
+   "gemini-3.5-flash": 101046,
+   "claude-3-7-sonnet-20250219": 95137,
+   "claude-sonnet-4-6": 72804,
+   "claude-opus-4-6": 67655,
+   "claude-sonnet-5": 60742,
+   "claude-opus-4-8": 49403,
+   "gemini-2.5-pro-preview-06-05": 45953,
+   "gemini-3-pro-preview": 36472,
+   "claude-fable-5": 31783,
+   "claude-opus-4-7": 30397,
+   "claude-opus-5": 22990,
+   "claude-opus-4-1-20250805": 21206,
+   "claude-opus-4-20250514": 19973,
+   "gemini-3.8-flash": 13368,
+   "models/gemini-2.5-pro-preview-05-06": 6638,
+   "claude-3-5-sonnet-20241022": 6245,
+   "claude-fable-5-1": 4883,
+   "gemini-2.5-pro-preview-03-25": 1622,
+   "gemini-2.5-pro-exp-03-25": 20
+  },
+  "turns_by_model_string": {
+   "claude-3-5-sonnet-20241022": 6245,
+   "claude-3-7-sonnet-20250219": 95137,
+   "claude-code::claude-opus-4-5-20251101": 11700,
+   "claude-fable-5": 31783,
+   "claude-fable-5-1": 4883,
+   "claude-haiku-4-5-20251001": 167157,
+   "claude-opus-4-1-20250805": 21206,
+   "claude-opus-4-20250514": 19973,
+   "claude-opus-4-5-20251101": 139823,
+   "claude-opus-4-6": 67655,
+   "claude-opus-4-7": 30397,
+   "claude-opus-4-8": 49403,
+   "claude-opus-5": 22990,
+   "claude-sonnet-4-5-20250929": 117308,
+   "claude-sonnet-4-6": 72804,
+   "claude-sonnet-5": 60742,
+   "deepseek-reasoner": 132565,
+   "deepseek/deepseek-v4-pro": 48464,
+   "gemini-2.5-pro": 255818,
+   "gemini-3-pro-preview": 37561,
+   "gemini-3.1-pro-preview": 149212,
+   "gemini-3.5-flash": 103897,
+   "gemini-3.8-flash": 13776,
+   "gpt-4.1-2025-04-14": 3496,
+   "gpt-4o-2024-08-06": 1966,
+   "gpt-5-2025-08-07": 124920,
+   "gpt-5.1-2025-11-13": 134745,
+   "gpt-5.2-2025-12-11": 131786,
+   "gpt-5.4-2026-03-05": 107855,
+   "gpt-5.5": 59692,
+   "gpt-5.6-luna": 7587,
+   "gpt-5.6-sol": 27379,
+   "gpt-5.6-terra": 7132,
+   "gpt-6-astra": 1237,
+   "grok-4-0709": 13764,
+   "grok-4.5": 26633,
+   "kimi-k2.6": 62572,
+   "kimi-k3": 8377,
+   "meta/muse-spark-1.3": 1812,
+   "o1-2024-12-17": 2251,
+   "o3-2025-04-16": 67353,
+   "o4-mini-2025-04-16": 247,
+   "tinker://363427a9-ee15-55e7-a2cd-8368f216760e:train:0/sampler_weights/kimi-leader-v7-aug-64": 1884,
+   "z-ai/glm-5.2": 50288,
+   "z-ai/glm-5.3-flash": 7012
+  },
+  "turns_by_month": {
+   "2025-04": 23724,
+   "2025-05": 19855,
+   "2025-06": 25933,
+   "2025-07": 34162,
+   "2025-08": 41556,
+   "2025-09": 48144,
+   "2025-10": 47890,
+   "2025-11": 67779,
+   "2025-12": 103201,
+   "2026-01": 94111,
+   "2026-02": 124611,
+   "2026-03": 162261,
+   "2026-04": 152617,
+   "2026-05": 164951,
+   "2026-06": 254366,
+   "2026-07": 502628,
+   "2026-08": 409439,
+   "2026-09": 233259
+  },
+  "sessions_by_stratum": {
+   "openai-responses": 19708,
+   "gemini-pro": 12486,
+   "anthropic-opus": 11613,
+   "anthropic-sonnet": 10806,
+   "compat-chat": 10664,
+   "anthropic-haiku": 4416,
+   "gemini-flash": 3259,
+   "openai-chat": 3000,
+   "anthropic-fable": 1300,
+   "anthropic-claude-code": 862
+  },
+  "turns_by_stratum": {
+   "anthropic-claude-code": 11700,
+   "anthropic-fable": 36666,
+   "anthropic-haiku": 167157,
+   "anthropic-opus": 351447,
+   "anthropic-sonnet": 352236,
+   "compat-chat": 353371,
+   "gemini-flash": 117673,
+   "gemini-pro": 442591,
+   "openai-chat": 75313,
+   "openai-responses": 602333
+  },
+  "sessions_by_shape": {
+   "anthropic": 28135,
+   "openai-responses": 19619,
+   "gemini": 15745,
+   "openai-chat": 13664,
+   "anthropic-sdk": 856,
+   "empty-list": 89,
+   "empty-dict": 6
+  },
+  "session_n_turns": {
+   "n": 78114,
+   "min": 1.0,
+   "p1": 2.0,
+   "p5": 5.0,
+   "p25": 23.0,
+   "p50": 41.0,
+   "p75": 41.0,
+   "p95": 42.0,
+   "p99": 44.86999999999534,
+   "max": 326.0,
+   "mean": 32.138758737230205
+  },
+  "actions": {
+   "bash": 979076,
+   "left_click": 368447,
+   "key": 236938,
+   "scroll": 171247,
+   "type": 161483,
+   "get_pixel_coords_of_element": 150503,
+   "send_message_back_to_chat": 100354,
+   "none": 80428,
+   "mouse_move": 74236,
+   "screenshot": 57885,
+   "wait": 48211,
+   "pause": 39838,
+   "search_history": 10148,
+   "triple_click": 7029,
+   "double_click": 6977,
+   "left_click_drag": 4193,
+   "right_click": 3278,
+   "restart": 2433,
+   "middle_click": 2054,
+   "view_clipboard": 1727,
+   "move_to_room": 1006,
+   "hold_key": 937,
+   "request_Google_sign_in": 619,
+   "empty": 467,
+   "request_approval_for_unsolicited_outreach": 353,
+   "left_mouse_down": 142,
+   "request_human_helper": 136,
+   "other:coordinate,text": 121,
+   "cursor_position": 121,
+   "left_mouse_up": 63,
+   "cancel_request_for_human_helper": 37
+  },
+  "synthetic_turns_by_rule": {
+   "zero_msg_id": 28185,
+   "empty_responses_list": 16046,
+   "gemini_bare_call": 15763,
+   "zero_call_id": 6300
+  },
+  "synthetic_turns_by_action": {
+   "mouse_move": 66294
+  },
+  "sessions_with_synthetic_turn": 66172,
+  "sessions_only_synthetic": 346,
+  "fill_by_action_class_non_synthetic": {
+   "talk_only": {
+    "rows": 80428,
+    "output_non_null": {
+     "k": 0,
+     "n": 80428,
+     "frac": 0.0
+    },
+    "output_non_empty": {
+     "k": 0,
+     "n": 80428,
+     "frac": 0.0
+    },
+    "error_non_null": {
+     "k": 0,
+     "n": 80428,
+     "frac": 0.0
+    },
+    "error_non_empty": {
+     "k": 0,
+     "n": 80428,
+     "frac": 0.0
+    },
+    "system_non_null": {
+     "k": 0,
+     "n": 80428,
+     "frac": 0.0
+    }
+   },
+   "shell": {
+    "rows": 981509,
+    "output_non_null": {
+     "k": 817448,
+     "n": 981509,
+     "frac": 0.832848
+    },
+    "output_non_empty": {
+     "k": 817448,
+     "n": 981509,
+     "frac": 0.832848
+    },
+    "error_non_null": {
+     "k": 138031,
+     "n": 981509,
+     "frac": 0.140631
+    },
+    "error_non_empty": {
+     "k": 138031,
+     "n": 981509,
+     "frac": 0.140631
+    },
+    "system_non_null": {
+     "k": 0,
+     "n": 981509,
+     "frac": 0.0
+    }
+   },
+   "gui": {
+    "rows": 1076947,
+    "output_non_null": {
+     "k": 112,
+     "n": 1076947,
+     "frac": 0.000104
+    },
+    "output_non_empty": {
+     "k": 112,
+     "n": 1076947,
+     "frac": 0.000104
+    },
+    "error_non_null": {
+     "k": 8151,
+     "n": 1076947,
+     "frac": 0.007569
+    },
+    "error_non_empty": {
+     "k": 8151,
+     "n": 1076947,
+     "frac": 0.007569
+    },
+    "system_non_null": {
+     "k": 0,
+     "n": 1076947,
+     "frac": 0.0
+    }
+   },
+   "other": {
+    "rows": 305309,
+    "output_non_null": {
+     "k": 303852,
+     "n": 305309,
+     "frac": 0.995228
+    },
+    "output_non_empty": {
+     "k": 303851,
+     "n": 305309,
+     "frac": 0.995225
+    },
+    "error_non_null": {
+     "k": 5818,
+     "n": 305309,
+     "frac": 0.019056
+    },
+    "error_non_empty": {
+     "k": 5818,
+     "n": 305309,
+     "frac": 0.019056
+    },
+    "system_non_null": {
+     "k": 0,
+     "n": 305309,
+     "frac": 0.0
+    }
+   }
+  },
+  "fields_by_shape_non_synthetic": {
+   "anthropic": {
+    "rows_non_synthetic": 879321,
+    "usage": {
+     "k": 879321,
+     "n": 879321,
+     "frac": 1.0
+    },
+    "server_timing": {
+     "k": 0,
+     "n": 879321,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 879321,
+     "frac": 0.0
+    },
+    "row_model": {
+     "k": 879321,
+     "n": 879321,
+     "frac": 1.0
+    },
+    "api_msg_id": {
+     "k": 879321,
+     "n": 879321,
+     "frac": 1.0
+    },
+    "provider_call_id_on_action_rows": {
+     "k": 866293,
+     "n": 866293,
+     "frac": 1.0
+    }
+   },
+   "anthropic-sdk": {
+    "rows_non_synthetic": 11679,
+    "usage": {
+     "k": 11679,
+     "n": 11679,
+     "frac": 1.0
+    },
+    "server_timing": {
+     "k": 0,
+     "n": 11679,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 11679,
+     "frac": 0.0
+    },
+    "row_model": {
+     "k": 11679,
+     "n": 11679,
+     "frac": 1.0
+    },
+    "api_msg_id": {
+     "k": 11679,
+     "n": 11679,
+     "frac": 1.0
+    },
+    "provider_call_id_on_action_rows": {
+     "k": 0,
+     "n": 11679,
+     "frac": 0.0
+    }
+   },
+   "empty-dict": {
+    "rows_non_synthetic": 21,
+    "usage": {
+     "k": 0,
+     "n": 21,
+     "frac": 0.0
+    },
+    "server_timing": {
+     "k": 0,
+     "n": 21,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 21,
+     "frac": 0.0
+    },
+    "row_model": {
+     "k": 0,
+     "n": 21,
+     "frac": 0.0
+    },
+    "api_msg_id": {
+     "k": 0,
+     "n": 21,
+     "frac": 0.0
+    },
+    "provider_call_id_on_action_rows": {
+     "k": 0,
+     "n": 21,
+     "frac": 0.0
+    }
+   },
+   "empty-list": {
+    "rows_non_synthetic": 0,
+    "usage": {
+     "k": 0,
+     "n": 0,
+     "frac": null
+    },
+    "server_timing": {
+     "k": 0,
+     "n": 0,
+     "frac": null
+    },
+    "http_date": {
+     "k": 0,
+     "n": 0,
+     "frac": null
+    },
+    "row_model": {
+     "k": 0,
+     "n": 0,
+     "frac": null
+    },
+    "api_msg_id": {
+     "k": 0,
+     "n": 0,
+     "frac": null
+    },
+    "provider_call_id_on_action_rows": {
+     "k": 0,
+     "n": 0,
+     "frac": null
+    }
+   },
+   "gemini": {
+    "rows_non_synthetic": 544501,
+    "usage": {
+     "k": 544501,
+     "n": 544501,
+     "frac": 1.0
+    },
+    "server_timing": {
+     "k": 473955,
+     "n": 544501,
+     "frac": 0.870439
+    },
+    "http_date": {
+     "k": 473955,
+     "n": 544501,
+     "frac": 0.870439
+    },
+    "row_model": {
+     "k": 544501,
+     "n": 544501,
+     "frac": 1.0
+    },
+    "api_msg_id": {
+     "k": 473955,
+     "n": 544501,
+     "frac": 0.870439
+    },
+    "provider_call_id_on_action_rows": {
+     "k": 258121,
+     "n": 543337,
+     "frac": 0.475066
+    }
+   },
+   "openai-chat": {
+    "rows_non_synthetic": 422384,
+    "usage": {
+     "k": 0,
+     "n": 422384,
+     "frac": 0.0
+    },
+    "server_timing": {
+     "k": 0,
+     "n": 422384,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 422384,
+     "frac": 0.0
+    },
+    "row_model": {
+     "k": 0,
+     "n": 422384,
+     "frac": 0.0
+    },
+    "api_msg_id": {
+     "k": 0,
+     "n": 422384,
+     "frac": 0.0
+    },
+    "provider_call_id_on_action_rows": {
+     "k": 414395,
+     "n": 414420,
+     "frac": 0.99994
+    }
+   },
+   "openai-responses": {
+    "rows_non_synthetic": 586287,
+    "usage": {
+     "k": 0,
+     "n": 586287,
+     "frac": 0.0
+    },
+    "server_timing": {
+     "k": 0,
+     "n": 586287,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 586287,
+     "frac": 0.0
+    },
+    "row_model": {
+     "k": 0,
+     "n": 586287,
+     "frac": 0.0
+    },
+    "api_msg_id": {
+     "k": 586287,
+     "n": 586287,
+     "frac": 1.0
+    },
+    "provider_call_id_on_action_rows": {
+     "k": 528015,
+     "n": 528015,
+     "frac": 1.0
+    }
+   }
+  },
+  "zero_provider_call_ids": {
+   "rows": 34485,
+   "by_shape": {
+    "anthropic": 28185,
+    "openai-chat": 6300
+   }
+  },
+  "talk_only_rows_with_tool_calls_in_message": 1514,
+  "rows_sharing_message_id_within_session_by_shape": {
+   "anthropic-sdk": 548,
+   "anthropic": 12
+  },
+  "gemini_server_timing_fill_by_month_non_synthetic": {
+   "2025-04": {
+    "k": 0,
+    "n": 1199,
+    "frac": 0.0
+   },
+   "2025-05": {
+    "k": 0,
+    "n": 4420,
+    "frac": 0.0
+   },
+   "2025-06": {
+    "k": 0,
+    "n": 5573,
+    "frac": 0.0
+   },
+   "2025-07": {
+    "k": 0,
+    "n": 9113,
+    "frac": 0.0
+   },
+   "2025-08": {
+    "k": 0,
+    "n": 8832,
+    "frac": 0.0
+   },
+   "2025-09": {
+    "k": 0,
+    "n": 7845,
+    "frac": 0.0
+   },
+   "2025-10": {
+    "k": 0,
+    "n": 6424,
+    "frac": 0.0
+   },
+   "2025-11": {
+    "k": 0,
+    "n": 12801,
+    "frac": 0.0
+   },
+   "2025-12": {
+    "k": 9031,
+    "n": 23370,
+    "frac": 0.386436
+   },
+   "2026-01": {
+    "k": 20161,
+    "n": 20161,
+    "frac": 1.0
+   },
+   "2026-02": {
+    "k": 23739,
+    "n": 23739,
+    "frac": 1.0
+   },
+   "2026-03": {
+    "k": 31366,
+    "n": 31366,
+    "frac": 1.0
+   },
+   "2026-04": {
+    "k": 29419,
+    "n": 29419,
+    "frac": 1.0
+   },
+   "2026-05": {
+    "k": 31621,
+    "n": 31621,
+    "frac": 1.0
+   },
+   "2026-06": {
+    "k": 65987,
+    "n": 65987,
+    "frac": 1.0
+   },
+   "2026-07": {
+    "k": 113510,
+    "n": 113510,
+    "frac": 1.0
+   },
+   "2026-08": {
+    "k": 91817,
+    "n": 91817,
+    "frac": 1.0
+   },
+   "2026-09": {
+    "k": 57304,
+    "n": 57304,
+    "frac": 1.0
+   }
+  },
+  "row_level_match_how": {
+   "action_exact": 1065699,
+   "command": 973552,
+   "name": 361734,
+   "no_action": 80428,
+   "none": 27752,
+   "action": 740,
+   "single": 582
+  },
+  "rows_with_reasoning_text": {
+   "k": 1514939,
+   "n": 2444193,
+   "frac": 0.619812
+  },
+  "rows_with_encrypted_reasoning": {
+   "k": 183768,
+   "n": 2444193,
+   "frac": 0.075186
+  },
+  "screenshot_is_redacted": {
+   "False": 2496291,
+   "True": 14196
+  },
+  "updated_minus_created_seconds_all_rows": {
+   "n": 2510487,
+   "min": 0.0,
+   "p1": 1e-06,
+   "p5": 2e-06,
+   "p25": 2e-06,
+   "p50": 2e-06,
+   "p75": 3e-06,
+   "p95": 3e-06,
+   "p99": 4e-06,
+   "max": 427020.7729,
+   "mean": 2.242552474633806
+  },
+  "updated_minus_created_over_1s": {
+   "k": 733,
+   "n": 2510487,
+   "frac": 0.000292
+  },
+  "updated_minus_created_over_1s_by_redaction_flag": {
+   "False": 598,
+   "True": 135
+  },
+  "created_at_fractional_digits": {
+   "6": 2260098,
+   "5": 225361,
+   "4": 22470,
+   "3": 2332,
+   "2": 205,
+   "1": 18,
+   "0": 3
+  }
+ },
+ "population_anthropic_sdk": {
+  "rows": 11679,
+  "sessions": 856,
+  "talk_only_rows": 0,
+  "rows_with_usage": 11679,
+  "rows_text_id_ne_thinking_id": 3845,
+  "ids_differ_prompt_tokens_larger": {
+   "thinking": 3838,
+   "text": 7
+  },
+  "ids_differ_cache_read_larger": {
+   "thinking": 3835,
+   "text": 7,
+   "equal": 3
+  },
+  "ids_differ_acting_message": {
+   "thinkingMessage": 3844,
+   "textMessage": 1
+  },
+  "rule": {
+   "same_id": 7834,
+   "history": 3027,
+   "prompt_tokens": 818
+  },
+  "history_overrides_of_row_local_pick": 6,
+  "pre_fix_key_rows_repeating_earlier_text_id": 3317,
+  "pre_fix_key_of_which_new_thinking_id": 3014,
+  "rows_repeating_earlier_acting_id": 304
+ },
+ "sample": {
+  "seed": 20261003,
+  "rule": "A=min(200,40%); B=up to 2000 from remainder; stratum x length tercile; floor 5 per cell",
+  "population_sessions": 78114,
+  "A_n": 200,
+  "B_n": 2000,
+  "alloc_A": {
+   "anthropic-claude-code|long": 5,
+   "anthropic-claude-code|mid": 5,
+   "anthropic-claude-code|short": 6,
+   "anthropic-fable|long": 5,
+   "anthropic-fable|mid": 5,
+   "anthropic-fable|short": 5,
+   "anthropic-haiku|long": 6,
+   "anthropic-haiku|mid": 6,
+   "anthropic-haiku|short": 5,
+   "anthropic-opus|long": 8,
+   "anthropic-opus|mid": 7,
+   "anthropic-opus|short": 8,
+   "anthropic-sonnet|long": 8,
+   "anthropic-sonnet|mid": 7,
+   "anthropic-sonnet|short": 7,
+   "compat-chat|long": 7,
+   "compat-chat|mid": 8,
+   "compat-chat|short": 7,
+   "gemini-flash|long": 6,
+   "gemini-flash|mid": 6,
+   "gemini-flash|short": 5,
+   "gemini-pro|long": 8,
+   "gemini-pro|mid": 8,
+   "gemini-pro|short": 7,
+   "openai-chat|long": 5,
+   "openai-chat|mid": 6,
+   "openai-chat|short": 6,
+   "openai-responses|long": 9,
+   "openai-responses|mid": 9,
+   "openai-responses|short": 10
+  },
+  "alloc_B": {
+   "anthropic-claude-code|long": 6,
+   "anthropic-claude-code|mid": 6,
+   "anthropic-claude-code|short": 23,
+   "anthropic-fable|long": 13,
+   "anthropic-fable|mid": 15,
+   "anthropic-fable|short": 16,
+   "anthropic-haiku|long": 54,
+   "anthropic-haiku|mid": 47,
+   "anthropic-haiku|short": 18,
+   "anthropic-opus|long": 97,
+   "anthropic-opus|mid": 82,
+   "anthropic-opus|short": 112,
+   "anthropic-sonnet|long": 99,
+   "anthropic-sonnet|mid": 88,
+   "anthropic-sonnet|short": 85,
+   "compat-chat|long": 88,
+   "compat-chat|mid": 97,
+   "compat-chat|short": 83,
+   "gemini-flash|long": 38,
+   "gemini-flash|mid": 33,
+   "gemini-flash|short": 21,
+   "gemini-pro|long": 123,
+   "gemini-pro|mid": 113,
+   "gemini-pro|short": 76,
+   "openai-chat|long": 14,
+   "openai-chat|mid": 22,
+   "openai-chat|short": 49,
+   "openai-responses|long": 135,
+   "openai-responses|mid": 163,
+   "openai-responses|short": 184
+  }
+ },
+ "splits": {
+  "A": {
+   "validate": {
+    "rows": 16085,
+    "sessions": 200,
+    "call": 6107,
+    "result": 6107,
+    "assistant": 3708,
+    "system": 163
+   },
+   "sessions": 200,
+   "sessions_requested": 200,
+   "events_by_kind": {
+    "call": 6107,
+    "result": 6107,
+    "assistant": 3708,
+    "system": 163
+   },
+   "events_by_stratum": {
+    "gemini-pro": 2023,
+    "anthropic-opus": 2016,
+    "anthropic-sonnet": 2005,
+    "openai-responses": 1833,
+    "compat-chat": 1710,
+    "anthropic-claude-code": 1637,
+    "anthropic-haiku": 1556,
+    "gemini-flash": 1251,
+    "anthropic-fable": 1083,
+    "openai-chat": 971
+   },
+   "sessions_by_stratum": {
+    "openai-responses": 28,
+    "gemini-pro": 23,
+    "anthropic-opus": 23,
+    "compat-chat": 22,
+    "anthropic-sonnet": 22,
+    "openai-chat": 17,
+    "gemini-flash": 17,
+    "anthropic-haiku": 17,
+    "anthropic-claude-code": 16,
+    "anthropic-fable": 15
+   },
+   "turn_rows": 6455,
+   "rows_by_shape": {
+    "openai-chat": 1226,
+    "anthropic": 2461,
+    "empty-list": 21,
+    "openai-responses": 840,
+    "gemini": 1320,
+    "anthropic-sdk": 586,
+    "empty-dict": 1
+   },
+   "synthetic_rows_by_rule": {
+    "zero_call_id": 25,
+    "zero_msg_id": 77,
+    "empty_responses_list": 21,
+    "gemini_bare_call": 40
+   },
+   "talk_only_rows": 185,
+   "empty_text_assistant_events": 7,
+   "talk_only_rows_with_output": 0,
+   "calls_by_tool": {
+    "gui": 3065,
+    "shell": 2229,
+    "get_pixel_coords_of_element": 420,
+    "send_message_back_to_chat": 216,
+    "pause": 144,
+    "search_history": 17,
+    "view_clipboard": 7,
+    "request_approval_for_unsolicited_outreach": 3,
+    "request_google_sign_in": 3,
+    "move_to_room": 2,
+    "request_human_helper": 1
+   },
+   "calls_by_tool_raw": {
+    "bash": 2229,
+    "computer": 1403,
+    "use_computer": 1263,
+    "get_pixel_coords_of_element": 420,
+    "send_message_to_chat": 216,
+    "pause": 144,
+    "left_click": 113,
+    "wait": 76,
+    "computer_call": 62,
+    "scroll": 50,
+    "key": 38,
+    "screenshot": 35,
+    "type": 22,
+    "search_history": 17,
+    "view_clipboard": 7,
+    "triple_click": 3,
+    "request_approval_for_unsolicited_outreach": 3,
+    "move_to_room": 2,
+    "request_google_sign_in": 2,
+    "request_Google_sign_in": 1,
+    "request_human_helper": 1
+   },
+   "shell_share_of_calls": {
+    "k": 2229,
+    "n": 6107,
+    "frac": 0.364991
+   },
+   "shell_calls_with_command": {
+    "k": 2219,
+    "n": 2229,
+    "frac": 0.995514
+   },
+   "results": {
+    "n": 6107,
+    "output_non_null": {
+     "k": 2714,
+     "n": 6107,
+     "frac": 0.444408
+    },
+    "output_non_empty": {
+     "k": 2714,
+     "n": 6107,
+     "frac": 0.444408
+    },
+    "stderr_non_null": {
+     "k": 277,
+     "n": 6107,
+     "frac": 0.045358
+    },
+    "stderr_non_empty": {
+     "k": 277,
+     "n": 6107,
+     "frac": 0.045358
+    }
+   },
+   "results_shell": {
+    "n": 2229,
+    "output_non_empty": {
+     "k": 1904,
+     "n": 2229,
+     "frac": 0.854195
+    },
+    "stderr_non_empty": {
+     "k": 253,
+     "n": 2229,
+     "frac": 0.113504
+    }
+   },
+   "usage_fill_by_shape_first_row_of_message": {
+    "anthropic": {
+     "k": 2384,
+     "n": 2384,
+     "frac": 1.0
+    },
+    "anthropic-sdk": {
+     "k": 561,
+     "n": 562,
+     "frac": 0.998221
+    },
+    "gemini": {
+     "k": 1280,
+     "n": 1280,
+     "frac": 1.0
+    },
+    "openai-chat": {
+     "k": 0,
+     "n": 1183,
+     "frac": 0.0
+    },
+    "openai-responses": {
+     "k": 0,
+     "n": 840,
+     "frac": 0.0
+    }
+   },
+   "usage_fill_by_row_shape_all_non_synthetic_rows": {
+    "anthropic": {
+     "k": 2384,
+     "n": 2384,
+     "frac": 1.0
+    },
+    "anthropic-sdk": {
+     "k": 561,
+     "n": 586,
+     "frac": 0.957338
+    },
+    "empty-dict": {
+     "k": 0,
+     "n": 1,
+     "frac": 0.0
+    },
+    "gemini": {
+     "k": 1280,
+     "n": 1280,
+     "frac": 1.0
+    },
+    "openai-chat": {
+     "k": 0,
+     "n": 1201,
+     "frac": 0.0
+    },
+    "openai-responses": {
+     "k": 0,
+     "n": 840,
+     "frac": 0.0
+    }
+   },
+   "usage_events_sharing_session_api_msg_id": 0,
+   "usage_events_with_null_api_msg_id": 119,
+   "anthropic_sdk": {
+    "rows": 586,
+    "rule": {
+     "prompt_tokens": 59,
+     "same_id": 429,
+     "history": 98
+    },
+    "rows_text_id_ne_thinking_id": 157,
+    "rows_text_id_ne_thinking_id_by_acting_message": {
+     "thinkingMessage": 157
+    },
+    "history_overrides_of_row_local_pick": 0,
+    "rows_with_new_text_msg_id": 463,
+    "rows_with_new_thinking_msg_id": 561,
+    "pre_fix_key_rows_repeating_earlier_text_id": 123,
+    "pre_fix_key_of_which_new_thinking_id": 98,
+    "dup_message_rows_acting_id_repeated": 25,
+    "call_events": 586,
+    "call_events_with_usage": {
+     "k": 561,
+     "n": 586,
+     "frac": 0.957338
+    },
+    "call_events_distinct_api_msg_id": 561,
+    "non_acting_text_message_usage_on_text_event": 59,
+    "new_non_acting_message_usage_in_extra_only": 0,
+    "messages_with_reasoning_attached": 561
+   },
+   "timing_fill_by_shape_first_row_of_message": {
+    "anthropic": {
+     "server_timing_dur": {
+      "k": 0,
+      "n": 2384,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 2384,
+      "frac": 0.0
+     }
+    },
+    "anthropic-sdk": {
+     "server_timing_dur": {
+      "k": 0,
+      "n": 562,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 562,
+      "frac": 0.0
+     }
+    },
+    "gemini": {
+     "server_timing_dur": {
+      "k": 1161,
+      "n": 1280,
+      "frac": 0.907031
+     },
+     "http_date": {
+      "k": 1161,
+      "n": 1280,
+      "frac": 0.907031
+     }
+    },
+    "openai-chat": {
+     "server_timing_dur": {
+      "k": 0,
+      "n": 1183,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 1183,
+      "frac": 0.0
+     }
+    },
+    "openai-responses": {
+     "server_timing_dur": {
+      "k": 0,
+      "n": 840,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 840,
+      "frac": 0.0
+     }
+    }
+   },
+   "call_id_source": {
+    "call_id_provider": 5071,
+    "no_provider_call": 1036
+   },
+   "call_match": {
+    "name": 873,
+    "action_exact": 2664,
+    "command": 1981,
+    "none": 587,
+    "action": 2
+   },
+   "dup_message_rows": 43,
+   "dup_message_rows_by_shape": {
+    "openai-chat": 18,
+    "anthropic-sdk": 25
+   },
+   "unexecuted_calls": 4,
+   "unexecuted_calls_by_shape": {
+    "gemini": 3,
+    "anthropic": 1
+   },
+   "unexecuted_calls_on_talk_only_turns": 1,
+   "unexecuted_calls_on_action_turns": 3,
+   "calls_whose_action_has_no_name_by_tool": {},
+   "call_stop_reason_when_action_empty": {},
+   "created_at_ties": {
+    "tie_groups": 0,
+    "rows_in_ties": 0,
+    "tie_groups_within_one_message": 0,
+    "tie_break": "(created_at, executed-call index within the shared message, row id)"
+   },
+   "call_ids_duplicated_within_session": 0,
+   "calls_without_result": 0,
+   "results_without_call": 0,
+   "ts_null": 0,
+   "assistant_text_chars": {
+    "n": 3708,
+    "min": 0.0,
+    "p1": 5.0,
+    "p5": 41.0,
+    "p25": 81.0,
+    "p50": 128.0,
+    "p75": 199.0,
+    "p95": 439.0,
+    "p99": 1012.7899999999995,
+    "max": 10884.0,
+    "mean": 178.1569579288026
+   },
+   "assistant_text_containing_thinking_tag": {
+    "k": 0,
+    "n": 3708,
+    "frac": 0.0
+   },
+   "usage_in_on_events": {
+    "k": 4284,
+    "n": 16085,
+    "frac": 0.266335
+   },
+   "created_minus_http_date_seconds": {
+    "n": 1161,
+    "min": 0.15147,
+    "p1": 0.2426384,
+    "p5": 0.578792,
+    "p25": 2.086297,
+    "p50": 4.488902,
+    "p75": 5.634392,
+    "p95": 11.938733,
+    "p99": 34.370756600000014,
+    "max": 301.37427,
+    "mean": 6.057896418604651
+   },
+   "server_timing_dur_ms": {
+    "n": 1161,
+    "min": 1282.0,
+    "p1": 1890.6,
+    "p5": 2358.0,
+    "p25": 3447.0,
+    "p50": 4675.0,
+    "p75": 6590.0,
+    "p95": 11516.0,
+    "p99": 22031.20000000001,
+    "max": 93908.0,
+    "mean": 5656.311800172265
+   },
+   "result_updated_minus_created_seconds": {
+    "n": 6107,
+    "min": 1e-06,
+    "p1": 1e-06,
+    "p5": 2e-06,
+    "p25": 2e-06,
+    "p50": 2e-06,
+    "p75": 3e-06,
+    "p95": 3e-06,
+    "p99": 5e-06,
+    "max": 135.982189,
+    "mean": 0.03658822646143768
+   },
+   "call_events_vs_pass1_index": {
+    "api_msg_id_equal": {
+     "k": 6107,
+     "n": 6107,
+     "frac": 1.0
+    },
+    "api_msg_id_differs_by_shape": {},
+    "usage_in_out_equal_where_call_has_usage": {
+     "k": 4196,
+     "n": 4196,
+     "frac": 1.0
+    }
+   },
+   "anthropic_sdk_raw_check": {
+    "sessions": 16,
+    "rows": 586,
+    "sessions_reasoning_chars_equal": 16,
+    "reasoning_chars_raw": 156539,
+    "reasoning_chars_ir": 156539,
+    "calls_ids_differ": 157,
+    "calls_ids_differ_api_eq_thinking_id": 157,
+    "calls_ids_differ_api_eq_text_id": 0,
+    "calls_with_usage": 561,
+    "calls_usage_equal_raw_message": 561,
+    "raw_distinct_message_ids": 620,
+    "raw_ids_with_usage_on_an_event": 620,
+    "usage_events_api_msg_id_not_in_raw": 0,
+    "usage_events_repeating_an_api_msg_id": 0
+   }
+  },
+  "B": {
+   "validate": {
+    "rows": 158111,
+    "sessions": 2000,
+    "call": 59956,
+    "result": 59956,
+    "assistant": 36509,
+    "system": 1690
+   },
+   "sessions": 2000,
+   "sessions_requested": 2000,
+   "events_by_kind": {
+    "call": 59956,
+    "result": 59956,
+    "assistant": 36509,
+    "system": 1690
+   },
+   "events_by_stratum": {
+    "openai-responses": 31403,
+    "gemini-pro": 28926,
+    "anthropic-opus": 24266,
+    "anthropic-sonnet": 24258,
+    "compat-chat": 21257,
+    "anthropic-haiku": 10945,
+    "gemini-flash": 7503,
+    "openai-chat": 4273,
+    "anthropic-fable": 2912,
+    "anthropic-claude-code": 2368
+   },
+   "sessions_by_stratum": {
+    "openai-responses": 482,
+    "gemini-pro": 312,
+    "anthropic-opus": 291,
+    "anthropic-sonnet": 272,
+    "compat-chat": 268,
+    "anthropic-haiku": 119,
+    "gemini-flash": 92,
+    "openai-chat": 85,
+    "anthropic-fable": 44,
+    "anthropic-claude-code": 35
+   },
+   "turn_rows": 63938,
+   "rows_by_shape": {
+    "anthropic": 23276,
+    "openai-chat": 10966,
+    "gemini": 14396,
+    "openai-responses": 14038,
+    "empty-list": 387,
+    "anthropic-sdk": 873,
+    "empty-dict": 2
+   },
+   "synthetic_rows_by_rule": {
+    "zero_msg_id": 741,
+    "gemini_bare_call": 404,
+    "zero_call_id": 158,
+    "empty_responses_list": 387
+   },
+   "talk_only_rows": 2292,
+   "empty_text_assistant_events": 76,
+   "talk_only_rows_with_output": 0,
+   "calls_by_tool": {
+    "gui": 26983,
+    "shell": 24698,
+    "get_pixel_coords_of_element": 4044,
+    "send_message_back_to_chat": 2615,
+    "pause": 1224,
+    "search_history": 292,
+    "view_clipboard": 40,
+    "move_to_room": 29,
+    "request_google_sign_in": 18,
+    "request_approval_for_unsolicited_outreach": 8,
+    "request_human_helper": 4,
+    "cancel_request_for_human_helper": 1
+   },
+   "calls_by_tool_raw": {
+    "bash": 24698,
+    "use_computer": 13122,
+    "computer": 12075,
+    "get_pixel_coords_of_element": 4044,
+    "send_message_to_chat": 2615,
+    "pause": 1224,
+    "computer_call": 1164,
+    "search_history": 292,
+    "wait": 143,
+    "left_click": 136,
+    "screenshot": 97,
+    "key": 89,
+    "scroll": 89,
+    "type": 57,
+    "view_clipboard": 40,
+    "move_to_room": 29,
+    "request_google_sign_in": 16,
+    "triple_click": 11,
+    "request_approval_for_unsolicited_outreach": 8,
+    "request_human_helper": 4,
+    "request_Google_sign_in": 2,
+    "cancel_request_for_human_helper": 1
+   },
+   "shell_share_of_calls": {
+    "k": 24698,
+    "n": 59956,
+    "frac": 0.411935
+   },
+   "shell_calls_with_command": {
+    "k": 24604,
+    "n": 24698,
+    "frac": 0.996194
+   },
+   "results": {
+    "n": 59956,
+    "output_non_null": {
+     "k": 28963,
+     "n": 59956,
+     "frac": 0.483071
+    },
+    "output_non_empty": {
+     "k": 28963,
+     "n": 59956,
+     "frac": 0.483071
+    },
+    "stderr_non_null": {
+     "k": 3768,
+     "n": 59956,
+     "frac": 0.062846
+    },
+    "stderr_non_empty": {
+     "k": 3768,
+     "n": 59956,
+     "frac": 0.062846
+    }
+   },
+   "results_shell": {
+    "n": 24698,
+    "output_non_empty": {
+     "k": 20704,
+     "n": 24698,
+     "frac": 0.838287
+    },
+    "stderr_non_empty": {
+     "k": 3463,
+     "n": 24698,
+     "frac": 0.140214
+    }
+   },
+   "usage_fill_by_shape_first_row_of_message": {
+    "anthropic": {
+     "k": 22535,
+     "n": 22535,
+     "frac": 1.0
+    },
+    "anthropic-sdk": {
+     "k": 853,
+     "n": 855,
+     "frac": 0.997661
+    },
+    "gemini": {
+     "k": 13992,
+     "n": 13992,
+     "frac": 1.0
+    },
+    "openai-chat": {
+     "k": 0,
+     "n": 10789,
+     "frac": 0.0
+    },
+    "openai-responses": {
+     "k": 0,
+     "n": 14038,
+     "frac": 0.0
+    }
+   },
+   "usage_fill_by_row_shape_all_non_synthetic_rows": {
+    "anthropic": {
+     "k": 22535,
+     "n": 22535,
+     "frac": 1.0
+    },
+    "anthropic-sdk": {
+     "k": 853,
+     "n": 873,
+     "frac": 0.97709
+    },
+    "empty-dict": {
+     "k": 0,
+     "n": 2,
+     "frac": 0.0
+    },
+    "gemini": {
+     "k": 13992,
+     "n": 13992,
+     "frac": 1.0
+    },
+    "openai-chat": {
+     "k": 0,
+     "n": 10808,
+     "frac": 0.0
+    },
+    "openai-responses": {
+     "k": 0,
+     "n": 14038,
+     "frac": 0.0
+    }
+   },
+   "usage_events_sharing_session_api_msg_id": 0,
+   "usage_events_with_null_api_msg_id": 1700,
+   "anthropic_sdk": {
+    "rows": 873,
+    "rule": {
+     "prompt_tokens": 43,
+     "same_id": 593,
+     "history": 237
+    },
+    "rows_text_id_ne_thinking_id": 280,
+    "rows_text_id_ne_thinking_id_by_acting_message": {
+     "thinkingMessage": 280
+    },
+    "history_overrides_of_row_local_pick": 2,
+    "rows_with_new_text_msg_id": 616,
+    "rows_with_new_thinking_msg_id": 853,
+    "pre_fix_key_rows_repeating_earlier_text_id": 255,
+    "pre_fix_key_of_which_new_thinking_id": 236,
+    "dup_message_rows_acting_id_repeated": 20,
+    "call_events": 873,
+    "call_events_with_usage": {
+     "k": 853,
+     "n": 873,
+     "frac": 0.97709
+    },
+    "call_events_distinct_api_msg_id": 853,
+    "non_acting_text_message_usage_on_text_event": 43,
+    "new_non_acting_message_usage_in_extra_only": 0,
+    "messages_with_reasoning_attached": 853
+   },
+   "timing_fill_by_shape_first_row_of_message": {
+    "anthropic": {
+     "server_timing_dur": {
+      "k": 0,
+      "n": 22535,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 22535,
+      "frac": 0.0
+     }
+    },
+    "anthropic-sdk": {
+     "server_timing_dur": {
+      "k": 0,
+      "n": 855,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 855,
+      "frac": 0.0
+     }
+    },
+    "gemini": {
+     "server_timing_dur": {
+      "k": 12292,
+      "n": 13992,
+      "frac": 0.878502
+     },
+     "http_date": {
+      "k": 12292,
+      "n": 13992,
+      "frac": 0.878502
+     }
+    },
+    "openai-chat": {
+     "server_timing_dur": {
+      "k": 0,
+      "n": 10789,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 10789,
+      "frac": 0.0
+     }
+    },
+    "openai-responses": {
+     "server_timing_dur": {
+      "k": 0,
+      "n": 14038,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 14038,
+      "frac": 0.0
+     }
+    }
+   },
+   "call_id_source": {
+    "call_id_provider": 51577,
+    "no_provider_call": 8377,
+    "duplicate_in_session": 2
+   },
+   "call_match": {
+    "action_exact": 25134,
+    "command": 24371,
+    "name": 9499,
+    "single": 19,
+    "action": 58,
+    "none": 875
+   },
+   "dup_message_rows": 39,
+   "dup_message_rows_by_shape": {
+    "openai-chat": 19,
+    "anthropic-sdk": 20
+   },
+   "unexecuted_calls": 499,
+   "unexecuted_calls_by_shape": {
+    "gemini": 492,
+    "openai-responses": 1,
+    "anthropic": 5,
+    "openai-chat": 1
+   },
+   "unexecuted_calls_on_talk_only_turns": 174,
+   "unexecuted_calls_on_action_turns": 325,
+   "calls_whose_action_has_no_name_by_tool": {
+    "gui": 5,
+    "shell": 14
+   },
+   "call_stop_reason_when_action_empty": {
+    "max_tokens": 14
+   },
+   "created_at_ties": {
+    "tie_groups": 0,
+    "rows_in_ties": 0,
+    "tie_groups_within_one_message": 0,
+    "tie_break": "(created_at, executed-call index within the shared message, row id)"
+   },
+   "call_ids_duplicated_within_session": 0,
+   "calls_without_result": 0,
+   "results_without_call": 0,
+   "ts_null": 0,
+   "assistant_text_chars": {
+    "n": 36509,
+    "min": 0.0,
+    "p1": 12.0,
+    "p5": 44.0,
+    "p25": 84.0,
+    "p50": 132.0,
+    "p75": 206.0,
+    "p95": 477.59999999999854,
+    "p99": 1090.0,
+    "max": 11255.0,
+    "mean": 188.53860691884194
+   },
+   "assistant_text_containing_thinking_tag": {
+    "k": 43,
+    "n": 36509,
+    "frac": 0.001178
+   },
+   "usage_in_on_events": {
+    "k": 37423,
+    "n": 158111,
+    "frac": 0.236688
+   },
+   "created_minus_http_date_seconds": {
+    "n": 12292,
+    "min": 0.078186,
+    "p1": 0.22570149,
+    "p5": 0.46490665,
+    "p25": 1.4344177500000002,
+    "p50": 4.527207499999999,
+    "p75": 5.98165625,
+    "p95": 17.12917249999977,
+    "p99": 55.77851869000012,
+    "max": 311.71189,
+    "mean": 6.786366476976895
+   },
+   "server_timing_dur_ms": {
+    "n": 12292,
+    "min": 1028.0,
+    "p1": 2067.82,
+    "p5": 2559.1000000000004,
+    "p25": 3758.0,
+    "p50": 5092.5,
+    "p75": 7178.0,
+    "p95": 12242.249999999995,
+    "p99": 24523.370000000014,
+    "max": 172244.0,
+    "mean": 6196.143996095021
+   },
+   "result_updated_minus_created_seconds": {
+    "n": 59956,
+    "min": 0.0,
+    "p1": 1e-06,
+    "p5": 2e-06,
+    "p25": 2e-06,
+    "p50": 2e-06,
+    "p75": 3e-06,
+    "p95": 3e-06,
+    "p99": 5e-06,
+    "max": 12864.124161,
+    "mean": 0.23316234091667232
+   },
+   "call_events_vs_pass1_index": {
+    "api_msg_id_equal": {
+     "k": 59956,
+     "n": 59956,
+     "frac": 1.0
+    },
+    "api_msg_id_differs_by_shape": {},
+    "usage_in_out_equal_where_call_has_usage": {
+     "k": 36815,
+     "n": 36815,
+     "frac": 1.0
+    }
+   },
+   "anthropic_sdk_raw_check": {
+    "sessions": 35,
+    "rows": 873,
+    "sessions_reasoning_chars_equal": 35,
+    "reasoning_chars_raw": 230840,
+    "reasoning_chars_ir": 230840,
+    "calls_ids_differ": 280,
+    "calls_ids_differ_api_eq_thinking_id": 280,
+    "calls_ids_differ_api_eq_text_id": 0,
+    "calls_with_usage": 853,
+    "calls_usage_equal_raw_message": 853,
+    "raw_distinct_message_ids": 896,
+    "raw_ids_with_usage_on_an_event": 896,
+    "usage_events_api_msg_id_not_in_raw": 0,
+    "usage_events_repeating_an_api_msg_id": 0
+   }
+  }
+ },
+ "pass1_unhandled_message_items": {},
+ "pass1_row_top_level_keys": {
+  "agent_action,agent_messages,created_at,error,has_redaction_been_overruled,id,output,screenshot_is_redacted,session_id,system,updated_at": 2510487
+ }
+}

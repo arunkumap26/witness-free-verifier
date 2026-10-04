@@ -1,0 +1,89 @@
+{
+ "what": "pre-fix vs post-fix cc_local IR caches (attachment visibility fix); counts only",
+ "inputs_md5": {
+  "A": {
+   "before": "58dc9aa86a19e40bbc95f467953fced0",
+   "after": "f4f6b740c050d496801c9e4d1518dc22"
+  },
+  "B": {
+   "before": "80ee7c0f0bff072a908b6511e2755e6e",
+   "after": "d77b1d59ddd195a384d41aace43cba27"
+  }
+ },
+ "splits": {
+  "A": {
+   "rows_before": 17762,
+   "rows_after": 17762,
+   "rows_unmatched_on_session_seq": 0,
+   "rows_differing_in_other_columns": 0,
+   "kind_transitions": {
+    "meta->system": 3814,
+    "meta->user": 2
+   },
+   "kind_changed_rows_not_attachment": 0,
+   "text_changed_rows": 3785,
+   "text_changed_rows_not_attachment": 0,
+   "text_changed_rows_old_text_not_null": 0,
+   "extra_changed_rows": 4142,
+   "extra_changed_rows_other_than_added_keys": 0,
+   "extra_changed_rows_by_source": {
+    "attachment": 4111,
+    "user_entry_task_notification": 31,
+    "other": 0
+   },
+   "kinds_before": {
+    "meta": 5410,
+    "call": 5165,
+    "result": 5164,
+    "assistant": 1624,
+    "user": 253,
+    "system": 146
+   },
+   "kinds_after": {
+    "call": 5165,
+    "result": 5164,
+    "system": 3960,
+    "assistant": 1624,
+    "meta": 1594,
+    "user": 255
+   }
+  },
+  "B": {
+   "rows_before": 125313,
+   "rows_after": 125313,
+   "rows_unmatched_on_session_seq": 0,
+   "rows_differing_in_other_columns": 0,
+   "kind_transitions": {
+    "meta->system": 35516,
+    "meta->user": 11
+   },
+   "kind_changed_rows_not_attachment": 0,
+   "text_changed_rows": 34871,
+   "text_changed_rows_not_attachment": 0,
+   "text_changed_rows_old_text_not_null": 0,
+   "extra_changed_rows": 37641,
+   "extra_changed_rows_other_than_added_keys": 0,
+   "extra_changed_rows_by_source": {
+    "attachment": 37236,
+    "user_entry_task_notification": 405,
+    "other": 0
+   },
+   "kinds_before": {
+    "meta": 43371,
+    "call": 36542,
+    "result": 36542,
+    "assistant": 6800,
+    "system": 1446,
+    "user": 612
+   },
+   "kinds_after": {
+    "system": 36962,
+    "call": 36542,
+    "result": 36542,
+    "meta": 7844,
+    "assistant": 6800,
+    "user": 623
+   }
+  }
+ }
+}
