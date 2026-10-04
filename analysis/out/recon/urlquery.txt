@@ -1,0 +1,30 @@
+## catalog
+rows 38160 distinct report_id 38160 columns ['report_id', 'report_url', 'report_date_utc', 'timestamp_precision', 'disposition', 'confidence', 'broad_class', 'why_included', 'caveat']
+timestamp_precision {'second': 38160}
+disposition {'included': 37649, 'review_required': 432, 'background': 79}
+broad_class x confidence
+ confidence      none  significant  suggestive
+broad_class                                  
+custom_program     0         6464           0
+indirection       44            3        4521
+source_request   467            0       26661
+date range 2023-09-22T16:47:10+00:00 2026-09-20T05:25:48+00:00
+reports by month {'2023-09': 1, '2023-10': 1, '2023-11': 111, '2023-12': 1, '2024-01': 40, '2024-02': 2, '2024-03': 1, '2024-04': 1, '2024-05': 4, '2024-06': 1, '2024-08': 2, '2024-09': 2, '2024-10': 4, '2024-12': 4, '2025-01': 1, '2025-02': 1, '2025-03': 2, '2025-04': 8, '2025-05': 1, '2025-06': 13, '2025-07': 5, '2025-08': 3, '2025-09': 12, '2025-10': 27, '2025-11': 149, '2025-12': 53, '2026-01': 35, '2026-02': 237, '2026-03': 120, '2026-04': 3840, '2026-05': 20237, '2026-06': 13165, '2026-07': 39, '2026-08': 9, '2026-09': 28}
+source assignments 37649 top sources {'UNCTAD': 19319, 'Thrill Data': 5100, 'AIHW': 4844, 'Woodlands House School': 2417, 'Mapillary': 1080, 'GBBC': 773, 'MAX budget documents': 597, 'Maryland school report cards': 546, 'Drivelah': 542, 'SEC county data': 455, 'UNM digital library': 427, 'IHME': 375, 'Data for India': 302, 'Thai NSO': 222, 'Source not identified': 183}
+methods 52 by broad_class {'source_request': 44, 'custom_program': 3, 'indirection': 2, None: 3}
+content fields present: none (no report JSON, request URLs, bodies or screenshots; README says links + metadata only)
+reports sharing an exact second-precision timestamp with >=1 other report: 9810
+
+## overlap with collusion-wiki revisions
+revisions mentioning urlquery.net 2 report ids cited 2 of which in catalog 2
+revisions mentioning httpbin.org/base64 17 pages 6 time range 2026-05-27T12:45:02Z 2026-06-18T20:25:08Z
+revisions mentioning >=1 catalog source marker: 6101 of 14591 (markers from 31 method entries)
+  by method label (a revision can count under several): {'SEC county statistics': 2944, 'DataUSA proxy references': 2707, 'USAspending': 294, 'MAX budget documents': 215, 'MAX exact PDF Q2': 165, 'MAX exact PDF Q3': 163, 'IHME proxy references': 147, 'US Census API': 95, 'Clark economics newsletter': 72, 'AIHW proxy references': 44, 'UNCTAD proxy references': 2}
+
+## footprint in tool-call corpora (substring counts)
+swe-chat-pinned transcripts: files 5850; files containing {'urlquery.net': 0, 'httpbin.org/base64': 0}
+claude-code-local jsonl: files 1172; files containing {'urlquery.net': 0, 'httpbin.org/base64': 0}
+ai-village claude_code_messages: rows containing {}
+ai-village events: rows containing {}
+ai-village chat_messages: rows containing {}
+ai-village computer_use_turns: rows containing {}
