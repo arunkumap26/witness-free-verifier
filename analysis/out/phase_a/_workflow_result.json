@@ -1,0 +1,1022 @@
+{
+ "measured": [
+  {
+   "key": "a1",
+   "per_corpus": [
+    {
+     "corpus": "swechat/claude_code",
+     "answer": "Stamps are milliseconds (57,496/57,496 stamps have 3 digits; the last digit is uniform). 13,589 pairs over 126 sessions. Identical call/result stamps: 37 (0.272% [0.128, 0.484]). Whole-second stamps: 0.096% [0.062, 0.131]. Negative deltas: 0. Delta p50 0.101 s [0.069, 0.142], p95 30.1 s, max 78,675.7 s (a subagent call). Main-thread p50 0.133 s (n 9,679); subagent p50 0.048 s (n 3,910, 52 sessions). Human waits are clearly present: 13.2% [6.8, 21.7] of Edit/Write calls take more than 2 s; 34/126 sessions (27.0% [20.0, 35.3]) contain a user tool rejection, which arrives p50 23.4 s after the call; 15.0% [7.2, 26.9] of long shell commands start more than 2 s after the call (bash_progress offset). All 3,178 PreToolUse hook stamps fall inside the call-to-result window.",
+     "decisive_number": "identical stamps 0.272% [0.128, 0.484] of 13,589 pairs; whole-second stamps 0.096%",
+     "json_path": "verdicts['swechat/format=claude_code']; groups['swechat/format=claude_code']; claude_code_human_wait.swechat_claude_code",
+     "verdict": "ALIVE"
+    },
+    {
+     "corpus": "swechat/codex",
+     "answer": "Millisecond stamps. 1,120 pairs over 15 sessions; 0 identical, 0 negative. Delta p50 0.197 s [0.164, 0.357]. For exec_command, delta minus the harness duration_s is p50 0.0775 s and is never negative (184/184). The tool_raw values behave differently: shell_command p50 0.176 s, exec_command 0.711 s; 12 results came back while the process was still running; wait_agent and diagnostics calls show fixed-wait floors at 3, 10, 15 and 30 s.",
+     "decisive_number": "0/1,120 identical; whole-second stamps 0.089% [0, 0.224]",
+     "json_path": "verdicts['swechat/format=codex']; format_semantics_checks.codex",
+     "verdict": "ALIVE"
+    },
+    {
+     "corpus": "swechat/opencode",
+     "answer": "Millisecond stamps; call/result stamps are the tool part's time.start and time.end. 3,735 pairs over 25 sessions. 14 identical (0.375% [0.073, 0.723]), 0 negative. Delta p50 0.022 s [0.017, 0.024] (read p50 0.004 s, todo 0.001 s). Subagent p50 0.006 s (n 333, 14 sessions). Whether permission prompts fall inside time.start/time.end could not be determined.",
+     "decisive_number": "identical stamps 0.375% [0.073, 0.723]; whole-second stamps 0.054%",
+     "json_path": "verdicts['swechat/format=opencode']",
+     "verdict": "ALIVE"
+    },
+    {
+     "corpus": "swechat/gemini",
+     "answer": "Millisecond stamps. 2,313 pairs but only 10 sessions; 0 identical. 6 negative deltas (all shell; 0.26% [0, 0.44]; min -0.022 s). Delta p1 0.058 s; edit and write are never below 0.064 s. So the call stamp, which is the message stamp, is not exactly the moment the call was emitted. Delta p50 0.335 s. 486 calls in one session have neither a stamp nor a result.",
+     "decisive_number": "0/2,313 identical; whole-second stamps 0.151% [0.092, 0.251]",
+     "json_path": "verdicts['swechat/format=gemini']",
+     "verdict": "ALIVE"
+    },
+    {
+     "corpus": "swechat/copilot",
+     "answer": "Millisecond stamps. 265 pairs from only 2 sessions; 0 identical. tool.execution_start minus the call stamp is at most 0.003 s. Delta p50 0.582 s. Too few sessions for a baseline.",
+     "decisive_number": "0/265 identical; 0/530 whole-second stamps (n = 2 sessions)",
+     "json_path": "verdicts['swechat/format=copilot']",
+     "verdict": "ALIVE"
+    },
+    {
+     "corpus": "swechat/cursor",
+     "answer": "No timestamps at all (ts_kind none). 206 calls and no results in the source.",
+     "decisive_number": "0 stamped pairs",
+     "json_path": "verdicts['swechat/format=cursor']",
+     "verdict": "KILLED"
+    },
+    {
+     "corpus": "swechat/simple_text",
+     "answer": "No tool calls. 20/20 stamps are whole-second.",
+     "decisive_number": "0 pairs; 20/20 whole-second stamps",
+     "json_path": "verdicts['swechat/format=simple_text']",
+     "verdict": "KILLED"
+    },
+    {
+     "corpus": "cc_local",
+     "answer": "Millisecond event stamps. 5,164 pairs over 107 sessions; 0 identical, 0 negative. Delta p50 0.247 s [0.102, 0.351]. Where the tool reports its own duration, the stamps bracket it tightly: Glob delta minus durationMs p50 0.010 s, never negative (427/427). No sign of human waits on edits: 0/358 Edit/Write calls exceed 2 s (max 0.09 s). The 173 permission denials (67/107 sessions, 62.6% [53.2, 71.2]) are automatic (p50 7 ms, max 37 ms). There are no hook_progress events. Shell calls cannot be split into execution time and waiting (26.1% exceed 2 s).",
+     "decisive_number": "0/5,164 identical; whole-second stamps 0.058% [0.023, 0.116]",
+     "json_path": "verdicts.cc_local; claude_code_human_wait.cc_local",
+     "verdict": "ALIVE"
+    },
+    {
+     "corpus": "aiv_cc",
+     "answer": "Microsecond database row-insert stamps (the last digit is uniform, chi2 p 0.89). 33,475 pairs over 77 sessions; 0 identical, 0 negative; 33,001 distinct delta values. Insert time tracks event time and is not batched: 0 of 113,019 consecutive-row gaps are under 1 ms, and the smallest gap is 18.2 ms. Run spans match the SDK's own duration_ms (82 runs, p50 difference -3.7 ms). However, every call-to-result delta has a floor of about 50 ms that does not depend on the tool: TodoWrite p1 is 0.0516 s against 0.001 s in swechat; read p1 0.0582 s against 0.002 s; the overall minimum is 0.046 s. Glob delta minus its reported durationMs is p50 0.049 s. All 125 runs use bypassPermissions, so there are no human waits. A separate trap: a call that is not the last tool_use block of its message absorbs the generation time of the later blocks (Write p50 15.5 s for non-last blocks vs 0.089 s for last blocks). The parent_uuid check could not be done: parent_uuid is null on all 113,144 rows.",
+     "decisive_number": "0/33,475 identical; 0/66,950 whole-second stamps; delta min 0.046 s (~50 ms floor on every tool)",
+     "json_path": "verdicts.aiv_cc; aiv_cc_insert_time",
+     "verdict": "ALIVE"
+    },
+    {
+     "corpus": "aiv_cu",
+     "answer": "Call and result share one stamp in 6,107/6,107 pairs (199 sessions), in all 10 strata. Weaker quantities remain. The inter-turn gap is p50 14.06 s [13.26, 14.92] (n 6,255). For Gemini only (1,161 gaps, 35 sessions), the gap minus server timing is p50 6.36 s and is never negative. created_at minus the HTTP Date header is p50 4.49 s, but the Date header is whole-second, so that per-action proxy is also dead under the kill rule. updated_at is within 1 ms of created_at in 6,104/6,107 rows and adds nothing.",
+     "decisive_number": "6,107/6,107 pairs with identical call/result stamps (100% [100, 100])",
+     "json_path": "verdicts.aiv_cu; aiv_cu_shared_turn",
+     "verdict": "KILLED"
+    },
+    {
+     "corpus": "whowhen",
+     "answer": "No timestamps anywhere: 0 of 353 pairs have a stamp (ts_kind none on all 1,733 rows).",
+     "decisive_number": "0/353 stamped pairs",
+     "json_path": "verdicts.whowhen",
+     "verdict": "KILLED"
+    }
+   ],
+   "surprises": [
+    "aiv_cc: every tool's call-to-result delta has a floor of about 50 ms, the same for TodoWrite and Bash. Inserts are never closer than 18.2 ms apart, and none are batched (0 of 113,019 gaps under 1 ms). The floor is an additive offset that also appears against tool-reported durations (Glob +49 ms); it does not coarsen the resolution.",
+    "aiv_cc: a call that is not the last tool_use block of its API message absorbs the generation time of the later blocks (Write p50 15.5 s vs 0.089 s). In the CLI corpora the opposite holds: the result usually arrives before the last block is stamped (cc_local shell 87.2%, swechat reads 80.7%), so tool execution streams in the CLI but not in this SDK version.",
+    "swechat Claude Code: 27% of sessions contain a 'user doesn't want to proceed' rejection, arriving p50 23.4 s after the call. That is a direct measure of a human answering a permission prompt.",
+    "cc_local: 173 permission denials in 62.6% of sessions are automatic (p50 7 ms). The same marker means machine denial in cc_local and human interaction in swechat.",
+    "swechat WebFetch delta exceeds its own reported durationMs by p50 1.68 s (p95 88.6 s); in cc_local the excess is 0.004 s. This is consistent with per-domain permission prompts.",
+    "Gemini (swechat) has 6 negative deltas and a p1 floor of 58 ms, so its message-level call stamp is not the moment the call was emitted.",
+    "aiv_cu's last-digit uniformity test gives a spurious p = 0.009 when the shared stamp is counted twice; on distinct stamps p = 0.28."
+   ],
+   "verify": {
+    "question": "A1, the latency gate: timestamp granularity and meaning. Pair each call with its first result on (session_id, call_id) and take delta = result ts minus call ts. Report stamp and delta resolution per corpus, per swechat format and per is_subagent. Check event time against insert time (aiv_cc, aiv_cu) and look for human waits in the Claude Code corpora. Kill rule: whole-second stamps, or one stamp shared by a call and its result, mean latency analysis is dead for that unit. This re-derivation used my own scripts in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad (rd_a1.py, rd_swe.py, rd_swe2.py, rd_aivcc.py, rd_aivcu.py, rd_hw.py, rd_hw2.py, rd_bp.py, rd_bp2.py, rd_cc2.py, rd_last.py, rd_ccsub.py). They read only the *_A.parquet caches and swechat_population.parquet, and parse timestamps with my own integer-microsecond parser, which agrees with ir.parse_ts to 0.0 s on every pair. Nothing was written into analysis/.",
+    "checks": [
+     {
+      "corpus": "swechat/claude_code",
+      "reproduced": true,
+      "my_numbers": "57,496/57,496 stamps have 3 fractional digits. Last digit uniform on 49,496 distinct stamps (chi2 p 0.78). 13,620 calls, 13,589 pairs over 126 sessions, all stamped. Identical stamps 37/13,589 = 0.272% [0.128, 0.484]. Whole-second stamps 26/27,178 = 0.096% [0.062, 0.131]. Negative 0. Delta min 0, p1 0.002, p5 0.006, p50 0.101 [0.069, 0.142], p95 30.12, max 78,675.683 s. Main thread: 9,679 pairs, 126 sessions, p50 0.133 [0.091, 0.183]. Subagent: 3,910 pairs, 52 sessions, p50 0.0475 [0.033, 0.0945], identical 11 (0.281%). Human-wait checks: Edit/Write over 2 s 296/2,235 = 13.2% [6.8, 21.7] (115 sessions). cc_interrupt_reject on 59 results in 34/126 sessions (Wilson 27.0% [20.0, 35.3]), p50 23.388 s, min 0.164. PreToolUse hooks: 3,182 total, 3,178 linked, 3,178/3,178 inside the call-to-result window.",
+      "problem": "The decisive numbers and the ALIVE verdict reproduce exactly. The problems are in the human-wait evidence, not in the verdict:\n- The 34 sessions with a 'rejection' count all cc_interrupt_reject results. 1 of the 59 is a '[Request interrupted' (only 33 sessions have the 'doesn't want to proceed' text), and 18/59 are on ExitPlanMode/AskUserQuestion. Counting only permission-gated tools leaves 41 results in 20/126 sessions = 15.9% [10.5, 23.2].\n- The bash_progress offset sample (56/373, 51 sessions; I reproduce it when a paired result is required) contains 6 Task (subagent) calls. All 6 are over 2 s (p50 68.9 s). Shell only: 50/367 = 13.6% [5.8, 25.9].\n- Slow edits are concentrated: 187/296 come from 5 sessions, and only 51/115 sessions have any. Hooks do not explain them: 182/296 have no linked hook event, and hook-less edits are slower.\n- The maximum delta (78,675.7 s) is a main-thread Task call (tool subagent, is_subagent False), not a subagent-internal event."
+     },
+     {
+      "corpus": "swechat/codex",
+      "reproduced": true,
+      "my_numbers": "4,865/4,865 stamps have 3 digits (last-digit chi2 p 0.79). 1,122 calls, 1,120 pairs, 15 sessions. Identical 0/1,120. Whole-second stamps 2/2,240 = 0.089% [0, 0.224]. Negative 0. p50 0.1965 [0.164, 0.357], p95 7.40, max 299.98. Main thread: 941 pairs, 8 sessions, p50 0.182. Subagent: 179 pairs, 7 sessions, p50 0.692.",
+      "problem": "None in the decisive number; ALIVE follows the rule. It rests on 15 sessions, which the measurer states."
+     },
+     {
+      "corpus": "swechat/opencode",
+      "reproduced": true,
+      "my_numbers": "8,427 stamps, all 3 digits. 3,735 pairs over 25 sessions. Identical 14/3,735 = 0.375% [0.073, 0.723]. Whole-second stamps 4/7,470 = 0.054% [0, 0.101]. Negative 0. p50 0.022 [0.017, 0.024]. Subagent: 333 pairs, 14 sessions, p50 0.006, 0 identical. Last digit on 8,298 distinct stamps: chi2 p 0.039 (digit 5: 919 against a mean of 830).",
+      "problem": "The verdict reproduces. Minor: the notes call the last digit 'uniform' using a swechat-pooled p of 0.20, but OpenCode alone gives p 0.039. That is mild non-uniformity and does not change the verdict."
+     },
+     {
+      "corpus": "swechat/gemini",
+      "reproduced": true,
+      "my_numbers": "7,328 stamped events, all 3 digits; 1,028 rows have no ts. 2,800 call events, 2,313 pairs over 10 sessions. The 487 unpaired call events are all unstamped and all in 1 session: 486 distinct keys plus 1 duplicated call_id, which is the 'duplicate call id dropped'. Identical 0/2,313. Negative 6/2,313 = 0.259% [0, 0.437], min -0.022. Whole-second stamps 7/4,626 = 0.151% [0.092, 0.251]. p1 0.058, p50 0.335 [0.130, 0.391].",
+      "problem": "None; ALIVE follows. It rests on 10 sessions."
+     },
+     {
+      "corpus": "swechat/copilot",
+      "reproduced": true,
+      "my_numbers": "2,250 stamps, all 3 digits. 266 calls, 265 pairs, 2 sessions. Identical 0/265. Whole-second stamps 0/530. min 0.141, p50 0.582 [0.229, 1.03].",
+      "problem": "ALIVE by the rule, but with n = 2 sessions it is not a usable baseline. The measurer says so."
+     },
+     {
+      "corpus": "swechat/cursor",
+      "reproduced": true,
+      "my_numbers": "916 rows, all ts_kind none. 206 calls, 0 results, 0 pairs.",
+      "problem": "None; KILLED (no stamps)."
+     },
+     {
+      "corpus": "swechat/simple_text",
+      "reproduced": true,
+      "my_numbers": "20 rows over 4 sessions, all with 0 fractional digits (whole-second). 0 calls.",
+      "problem": "None; KILLED."
+     },
+     {
+      "corpus": "cc_local",
+      "reproduced": true,
+      "my_numbers": "21,074 stamps, all 3 digits; 148 rows have no ts (journal lines). 5,165 calls, 5,164 pairs over 107 sessions. Identical 0. Whole-second stamps 6/10,328 = 0.058% [0.023, 0.116]. Negative 0. p50 0.247 [0.102, 0.351], max 600.089. Main thread: 2,839 pairs, 107 sessions, p50 0.135. Subagent: 2,325 pairs from only 4 sessions (one holds 2,020 = 39% of all cc_local pairs), p50 0.427 [0.117, 4.533]. Edit/Write over 2 s: 0/358, max 0.09. cc_permission_denied: 173 results in 67/107 sessions = 62.6% [53.2, 71.2], p50 0.007 s, max 0.037. cc_interrupt_reject: 9 results in 6/107 sessions = 5.6% [2.6, 11.7], p50 4.902 s, min 0.458, max 87.0 (6 of them shell). hook_progress events: 0. Shell over 2 s: 26.1% [13.3, 29.4]. Glob delta minus durationMs: p50 0.010, 427/427 non-negative.",
+      "problem": "The ALIVE verdict reproduces. Problems:\n- Notes Part 2 says human-wait evidence is 'absent in ... cc_local', but the probe's own JSON has 9 human-paced rejections in 6 sessions (p50 4.9 s). Only the edit-specific claim (0/358) is supported.\n- The pooled cc_local delta distribution is dominated by one subagent-heavy session (39% of pairs). The bootstrap CI covers this, but the pooled p50 is not caveated."
+     },
+     {
+      "corpus": "aiv_cc",
+      "reproduced": true,
+      "my_numbers": "113,144 rows over 125 runs, all row_insert. Fractional digits: 6 = 101,759; 5 = 10,187; 4 = 1,080; 3 = 111; 2 = 7. Last digit after padding to microseconds is uniform. 33,479 calls, 33,475 pairs over 77 sessions. Identical 0. Whole-second stamps 0/66,950 (0 of all 113,144). Negative 0. 33,001 distinct deltas. min 0.046118, p1 0.0647, p50 0.448 [0.407, 0.529], max 361.5. Insert gaps: 113,019 consecutive gaps, 0 under 1 ms, 0 zero, min 18.192 ms. parent_uuid null on 113,144/113,144. Low quantiles: TodoWrite min 0.0505 / p1 0.0516; Bash min 0.0509 / p1 0.0655; Read p1 0.0582. Glob delta minus durationMs p50 0.049 (n 90, 1 negative). permissionMode bypassPermissions in 125/125 runs. Not-last tool_use blocks: Write p50 15.646 s (n 160, 1 session, 0/160 results before the last block's stamp) vs last-block Write p50 0.091 s. Other tools return before the last block in many cases: grep 41/41, read 45/68, get_events 502/993, chat_message 187/294, shell 549/1,570. Not-last Read p50 0.111 vs last 0.314; Bash 0.787 vs 0.709.",
+      "problem": "The decisive number and ALIVE follow the rule. The problems are interpretive:\n- The 'non-last block absorbs generation time / SDK does not stream' claim generalizes a single-session Write effect. Most tools' non-last results arrive before the last block is stamped.\n- 'Ingestion floor' is an attribution, not a measurement. Inserts can land 18 ms apart, yet call-to-result is never under 46 ms.\n- 'Tracks event time' is shown only at run level (82 run spans vs duration_ms)."
+     },
+     {
+      "corpus": "aiv_cu",
+      "reproduced": true,
+      "my_numbers": "16,085 rows over 200 sessions, all shared_turn. 6,107 pairs over 199 sessions. Identical 6,107/6,107 = 100% [100, 100] in all 10 strata, e.g. gemini-pro 752/752 and openai-responses 724/724. Whole-second stamps 0/12,214. Turns: 6,455; 0 with more than one distinct ts. Inter-turn gaps: n 6,255, 199 sessions, p50 14.063 [13.264, 14.924], 0 zero or negative. Gemini server timing on 1,161 turns. Gap minus server time of turn k+1: n 1,161, 35 sessions, p50 6.364 [5.820, 6.933], 0 negative. Subtracting turn k's server time instead gives 64/1,126 negative.",
+      "problem": "None; KILLED follows. 'Never negative' holds only for the documented alignment (turn k+1), which is the correct one."
+     },
+     {
+      "corpus": "whowhen",
+      "reproduced": true,
+      "my_numbers": "1,733 rows, all ts_kind none. 373 calls, 353 pairs, 0 stamped.",
+      "problem": "None; KILLED."
+     }
+    ],
+    "kill_logic_ok": true,
+    "overclaims": [
+     "'27% of sessions contain a user doesn't want to proceed rejection ... a direct measure of a human answering a permission prompt.' The 34/126 counts every cc_interrupt_reject result. 1 of the 59 is '[Request interrupted' (only 33 sessions have the quoted text), and 18/59 are on ExitPlanMode/AskUserQuestion, which are plan approvals and questions, not permission prompts. Counting only permission-gated tools: 41 results in 20/126 sessions = 15.9% [10.5, 23.2]. The minimum latency is 0.164 s.",
+     "'The same marker means machine denial in cc_local and human interaction in swechat.' This is wrong; the two corpora use different markers for these. cc_permission_denied is machine-fast in both: swechat n 3, p50 0.022 s, max 0.037; cc_local n 173, p50 0.007 s. cc_interrupt_reject is human-paced in both: swechat p50 23.4 s; cc_local 9 results, p50 4.9 s. What differs between the corpora is frequency, not meaning.",
+     "Notes Part 2 says human-wait evidence is 'absent in aiv_cc and cc_local'. For cc_local the probe's own JSON shows 9 cc_interrupt_reject results in 6/107 sessions (5.6% [2.6, 11.7]), p50 4.9 s, 6 of them shell. Only 'no waits on Edit/Write' (0/358) is supported.",
+     "aiv_cc: 'a call that is not the last tool_use block of its message absorbs the generation time of the later blocks ... tool execution streams in the CLI but not in this SDK version.' 160 of the 165 not-last file_write calls come from 1 session. For other tools, not-last results usually arrive before the last block's stamp: grep 41/41, read 45/68, get_events 502/993, chat_message 187/294, shell 549/1,570. Not-last Read is faster than last (p50 0.111 vs 0.314 s). Execution evidently does stream in the SDK for most tools; this is a one-session Write effect.",
+     "aiv_cc: 'That is the ingestion floor' and 'insert time tracks event time'. The minimum inter-row gap is 18.2 ms, so inserts alone can be that close, while call-to-result is never under 46 ms. The ~50 ms is a pipeline floor of unidentified cause. The match with event time is shown only at run level: 82 run spans vs SDK duration_ms, p50 -3.7 ms, p5 -0.244 s, p95 0.128 s. Per-event insert lag is unmeasured. The 'additive offset' also varies (Glob excess p5 0.019 to p50 0.049 s, 1/90 negative), so it is not a constant.",
+     "'15% of long shell commands start more than 2 s after the call (bash_progress offset).' The 373 calls include 6 Task (subagent) calls linked through parent_call_id. All 6 are over 2 s (p50 68.9 s), and that is subagent run time, not a pre-exec wait. Shell only: 50/367 = 13.6% [5.8, 25.9], before the ~1 s rounding from the integer elapsedTimeSeconds.",
+     "'Human waits are clearly present: 13.2% [6.8, 21.7] of Edit/Write calls take more than 2 s.' The probe's own recorded reason for the 2 s threshold says it captures human prompts, hooks or slow file systems, so this is not a direct human measure. Hooks do not explain it (182/296 slow edits have no hook event). It is concentrated: 187/296 slow edits sit in 5 sessions, 51/115 sessions have any, and 230/296 are in sessions that also have a rejection. It shows waits in a minority of sessions, not a corpus-wide property.",
+     "'The heavy right tails are real waits: the maximum is 78,675.7 s, a subagent.' The maximum is a main-thread Task call (is_subagent False) lasting about 21.9 h, and that subagent's own inner calls also show ~78,443 s deltas. This fits a suspended or resumed session. 'Real waits' is asserted, not measured.",
+     "'The last native digit is uniform' is backed by a swechat-pooled chi2 p of 0.20. OpenCode alone, on 8,298 distinct stamps, gives p 0.039. Minor, and it does not affect any verdict."
+    ]
+   }
+  },
+  {
+   "key": "a2",
+   "per_corpus": [
+    {
+     "corpus": "swechat (all formats, split A)",
+     "answer": "Orphan results: 3/21025 = 0.0001 [0.0000, 0.0003], n = 178 sessions. Calls without a result: 727/21749 = 0.0334 [0.0015, 0.0858], n = 182. Of those 727, 694 are structural: 206 Cursor calls, 488 'session has no results' (487 from one Gemini session, 1 from a one-call Claude Code session) and 1 server-side Codex web_search. Excluding structural calls: 32/21054 = 0.0015 [0.0008, 0.0023]. Duplicate call keys: 1/21748, caused by two ids redacted to the literal 'REDACTED'. Calls with more than one result: 0/21748. is_subagent=False: calls without a result 725/17325 = 0.0418 [0.0017, 0.1079], n = 161; excluding structural 30/16630 = 0.0018 [0.0009, 0.0029]. is_subagent=True: 2/4424 = 0.0005 [0.0000, 0.0011], n = 73, with 0 orphans. No paired call and result differ in is_subagent (0 of 21,022 pairs), and no result comes before its call.",
+     "decisive_number": "calls without a result, excluding structural: 32/21054 = 0.0015 [0.0008, 0.0023]",
+     "json_path": "by_corpus.swechat",
+     "verdict": "partial (usable once structural formats and sessions are excluded)"
+    },
+    {
+     "corpus": "swechat / claude_code",
+     "answer": "Orphans 3/13592 = 0.0002 [0.0000, 0.0005], n = 126. Of the 3, two open a resumed session file with a cc_interrupt_reject result, and one is unexplained. Calls without a result: 31/13620 = 0.0023 [0.0013, 0.0036], n = 127. Reasons: stream end 13, compaction boundary before the next result 7, SessionStart hook (restart or resume) 6, other 4, one-call session 1. Seven are Task/Agent calls; in 4 of them the subagent ran but the parent's result is missing. Even though the per-call rate is low, 20/127 sessions = 0.157 [0.104, 0.231] have at least one call with no result. Nested subagent calls: 2/3912 = 0.0005 [0.0000, 0.0013], n = 52. Main stream: 29/9708 = 0.0030 [0.0016, 0.0050]. Duplicate keys 0, calls with more than one result 0. Full-population census (cited, not a sample): 861/584802 = 0.0015 calls without a result, and 16 results without a call.",
+     "decisive_number": "31/13620 = 0.0023 [0.0013, 0.0036] per call; 20/127 sessions affected [0.104, 0.231]",
+     "json_path": "swechat_by_format.claude_code",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "swechat / codex",
+     "answer": "Orphans 0/1120, n = 15. Calls without a result: 2/1122 = 0.0018 [0.0000, 0.0045]. One is a server-side web_search_call; the other is stream end, leaving 1/1121 = 0.0009 [0.0000, 0.0035] excluding structural. Sub-agent sessions: 0/179, n = 7. Duplicate keys 0, calls with more than one result 0. Tool-linked end records resolve to their call in the same session for 863 of 864 events (exec_command_end 681); the one exception is a web_search_end. Census (cited): 131/21902 = 0.0060.",
+     "decisive_number": "2/1122 = 0.0018 [0.0000, 0.0045]",
+     "json_path": "swechat_by_format.codex",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "swechat / opencode",
+     "answer": "Zero defects in every slice: 0/3735 calls without a result and 0/3735 orphans, n = 25. Child (subagent) sessions: 0/333, n = 14. This is the same-record format, where one tool part holds both the call and its result. 1,026 of 3,735 calls carry loader synthetic ids because the release redacted callIDs. Census (cited): 6/22619 = 0.0003.",
+     "decisive_number": "0/3735 calls without a result (sessions affected 0/25, Wilson upper bound 0.133)",
+     "json_path": "swechat_by_format.opencode",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "swechat / gemini",
+     "answer": "Calls without a result: 487/2800 = 0.1739 [0.0000, 0.5509], n = 11. All 487 come from one session (d8bda4a8-7745-40b9-be81-e42b23525140), a bare {messages:[...]} export whose toolCalls have no result field. Excluding it: 0/2313. Orphans 0/2313. One duplicate key, from two ids redacted to the literal 'REDACTED', which the loader kept. That session has 486 distinct unpaired keys, which equals the population count of Gemini calls without a result (486, census share 0.0926).",
+     "decisive_number": "487/2800 = 0.1739, all from 1 of 11 sessions; 0/2313 elsewhere",
+     "json_path": "swechat_by_format.gemini",
+     "verdict": "partial (usable once the no-result session is excluded)"
+    },
+    {
+     "corpus": "swechat / copilot",
+     "answer": "Calls without a result: 1/266 = 0.0038 [0.0000, 0.0082], from stream end. Orphans 0/265. Only n = 2 sessions, so the session-level CI is uninformative.",
+     "decisive_number": "1/266, n = 2 sessions",
+     "json_path": "swechat_by_format.copilot",
+     "verdict": "usable (n = 2)"
+    },
+    {
+     "corpus": "swechat / cursor",
+     "answer": "There are no result events. Calls without a result are 206/206 across 2 sessions. The source format records no tool results; call ids are loader synthetic. Census (cited): 619/619.",
+     "decisive_number": "0 results for 206 calls",
+     "json_path": "swechat_by_format.cursor",
+     "verdict": "absent"
+    },
+    {
+     "corpus": "swechat conversations.parquet vs raw (cited, not recomputed)",
+     "answer": "In the table, 76,618 of 408,086 distinct results are orphaned, a share of 0.1877 (census). In a seeded check, all 1,367 orphan ids from 50 of the 4,386 orphan-bearing sessions turned up as top-level assistant tool_use blocks in the raw transcripts. The table drops 0.1869 [0.1804, 0.1927] of tool_use ids (76,258/407,920, n = 4,847 sessions; Phase C). It also hides 172,814 subagent tool_use ids inside progress rows. Full raw pass over 5,850 files: 16 results without a call out of 633,366 (0.0000253), and 2,104 calls without a result out of 635,454 (0.0033). The raw IR exposes 176,501 nested subagent calls. In the 2,200-session A+B cross-check, the raw IR has 171,329 non-nested calls against 133,018 table rows in the 2,159 sessions present in the table (38,311 more). Raw has more calls than the table in 1,671 sessions. Codex (96 sessions) and Cursor (15) have 0 table tool_use rows. Only 162 table ids are missing from raw, all OpenCode REDACTED-id handling.",
+     "decisive_number": "Table orphan share 0.1877 vs raw 0.0000253 (16/633,366)",
+     "json_path": "cited / derived_from_cited",
+     "verdict": "table: partial (unusable for joins); raw: usable"
+    },
+    {
+     "corpus": "cc_local",
+     "answer": "Calls without a result: 1/5165 = 0.0002 [0.0000, 0.0010], n = 107 sessions; the one case is stream end. Orphans 0/5164. Duplicate keys 0, calls with more than one result 0. is_subagent=True: 0/2325, n = 4. Subagent parent links resolve in-session (13/13), as do the 1,897 subagent meta links. These counts match the build report's split-A pairing exactly.",
+     "decisive_number": "1/5165 = 0.0002 [0.0000, 0.0010]",
+     "json_path": "by_corpus.cc_local",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "aiv_cc",
+     "answer": "Calls without a result: 4/33479 = 0.0001 [0.0000, 0.0003], n = 78 runs. Three are stream end; one is a one-call run that ends in error_during_execution. Orphans 0/33475. Duplicate keys 0, calls with more than one result 0. There are no subagent events. 4/78 runs are affected [0.020, 0.125]. Matches the build report's split A.",
+     "decisive_number": "4/33479 = 0.0001 [0.0000, 0.0003]",
+     "json_path": "by_corpus.aiv_cc",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "aiv_cu",
+     "answer": "0/6107 on all four defects, n = 199 sessions (Wilson upper bound on sessions affected 0.019). The zero says nothing about the source: the loader builds the pairing by emitting a result for every executed call from the same turn row, so the joins cannot fail. 1,036 of 6,107 call ids are loader 'turn:' fallbacks. 3,393/6,107 = 0.5556 [0.5020, 0.6102] of results have null or empty text. The model also issued provider calls that the harness never executed, and these have no call event: 4 out of 6,111 calls (0.0007 [0.0000, 0.0016]; gemini-pro 3, anthropic-haiku 1).",
+     "decisive_number": "0/6107 (by construction); 0.5556 of results have empty text",
+     "json_path": "by_corpus.aiv_cu",
+     "verdict": "usable (pairing built by the loader, not observed)"
+    },
+    {
+     "corpus": "whowhen",
+     "answer": "Calls without a result: 20/373 = 0.0536 [0.0299, 0.0822], n = 63. Orphans 0/353. AG (Algorithm-Generated): 12/99 = 0.1212 [0.0531, 0.1982], n = 39; all 12 are code blocks the harness never executed. HC (Hand-Crafted): 8/274 = 0.0292 [0.0109, 0.0437], n = 24; all 8 are orchestrator instructions superseded by a later call. Excluding structural: 8/361 = 0.0222 [0.0074, 0.0348]. Pairing is assigned by the loader (step adjacency for AG, an open-call heuristic for HC), and there is no ground truth for it. Population counts (cited): AG 43 of 279 unpaired, HC 37 of 689.",
+     "decisive_number": "20/373 = 0.0536 [0.0299, 0.0822]; excluding structural 8/361 = 0.0222",
+     "json_path": "by_corpus.whowhen; by_stratum.whowhen",
+     "verdict": "partial"
+    }
+   ],
+   "surprises": [
+    "Most of SWE-chat's Gemini gap is one session. A single session uses a bare {messages:[...]} export variant with 487 calls and no results at all. Its 486 distinct unpaired keys equal the full-population Gemini calls_without_result count (486), so this one session plausibly accounts for the format's census share of 0.0926. That attribution is not verified.",
+    "The SWE-chat release redacted some Gemini call ids to the literal string 'REDACTED', and the Gemini loader kept them. For OpenCode the loader replaced such ids with synthetic ones. This produces the only duplicate call key found. It is harmless here only because that session has no results.",
+    "In honest Claude Code sessions, missing results are rare per call but common per session. 20/127 swechat CC sessions = 0.157 [0.104, 0.231] have at least one call with no result. They cluster at compaction boundaries (7) and SessionStart restart/resume hooks (6), not only at session end (13).",
+    "In 4 of 7 unpaired Task/Agent calls, the subagent visibly ran (nested events exist) but the parent never got a tool_result.",
+    "In aiv_cu, 0.5556 [0.5020, 0.6102] of result events carry no output text. A result being present does not mean its content is present.",
+    "Call ids are not unique across sessions. swechat has 204 shared ids (198 are loader synthetic ids, which are per-format-seq), aiv_cu has 50 provider ids repeated across 4 sessions, and whowhen step ids repeat by construction.",
+    "1,804 swechat main-stream meta events have a parent_call_id that does not resolve to any call. Nearly all are Stop (1,189) and SessionStart (613) hook_progress events whose parent id is not a tool call. Every tool-attached timer type does resolve (bash_progress 6,033/6,033)."
+   ],
+   "verify": {
+    "question": "A2, join completeness: per corpus, per SWE-chat format, and split by is_subagent, count orphan results, calls without a result, duplicate call_ids within a session, and calls with more than one result, all as session-clustered rates on the Phase A split. Also cite how much the raw transcripts recover compared with conversations.parquet. This review re-derived the numbers independently in scratchpad scripts (a2_rederive.py, a2_extras.py, a2_reasons.py), reading only the *_A caches plus one targeted read of conversations.parquet. The measurer's script was read only after reproduction.",
+    "checks": [
+     {
+      "corpus": "swechat (all formats)",
+      "reproduced": true,
+      "my_numbers": "Join key (session_id, call_id). Orphans 3/21025 = 0.0001 [0.0000, 0.0003], n=178. Calls without result 727/21749 = 0.0334 [0.0015, 0.0858], n=182. Distinct call keys 21748: duplicates 1, keys with more than one result 0, results with null call_id 0. Structural calls 206 cursor + 488 in sessions with no results + 1 web_search_call = 695. Excluding them: 32/21054 = 0.0015 [0.0008, 0.0023], n=178. is_subagent=False: 725/17325 = 0.0418 [0.0017, 0.1079], n=161; excluding structural 30/16630 = 0.0018 [0.0009, 0.0029], n=157. is_subagent=True: 2/4424 = 0.0005 [0.0000, 0.0011], n=73; orphans 0/4422. 21022 pairs, 0 is_subagent mismatches, 0 results before their call by seq. Sessions with at least one unpaired call: 26/182, Wilson [0.099, 0.201].",
+      "problem": "Every number matches the JSON. The orchestrator summary says '694 are structural'. The JSON and my count give 206+488+1 = 695, and 727-695 = 32 matches. The slip is arithmetic and appears in the summary only."
+     },
+     {
+      "corpus": "swechat / claude_code",
+      "reproduced": true,
+      "my_numbers": "31/13620 = 0.0023 [0.0013, 0.0036], n=127. Orphans 3/13592 = 0.0002 [0.0000, 0.0005], n=126. Duplicate keys 0, keys with more than one result 0. Sessions affected 20/127, Wilson [0.104, 0.231]. Main stream 29/9708 = 0.0030 [0.0016, 0.0050], n=127. Nested 2/3912 = 0.0005 [0.0000, 0.0013], n=52. Reasons under the stated first-match rule: stream_end 13 (11 sessions), compaction 7 (6), SessionStart 6 (3), other 4 (1), session_has_no_results 1 (1). Unpaired Task/Agent calls: 7, of which 4 have nested subagent events. Orphans: 2 at seq 0 with the cc_interrupt_reject marker, 1 at seq 50 with no marker. Per-call Wilson upper bound for 31/13620: 0.0032.",
+      "problem": "The numbers reproduce. Calling the 1-call session 'structural' (session_has_no_results) is a misnomer: it is a stream-end loss, not a format gap. It does not change the verdict. The reason labels record that a compaction or hook landmark falls inside the window, which can span hundreds or thousands of events. They do not show cause."
+     },
+     {
+      "corpus": "swechat / codex",
+      "reproduced": true,
+      "my_numbers": "2/1122 = 0.0018 [0.0000, 0.0045], n=15: one web_search_call with a synthetic id, one write_stdin at stream end. Orphans 0/1120. Sub-agent sessions 0/179, n=7. Tool-linked end records 864, of which 863 resolve in-session (exec_command_end 681, patch_apply_end 96, mcp_tool_call_end 85, collab_agent_spawn_end 1). The unresolved one is a web_search_end with has_call=False. Per-call Wilson upper bound 0.0065.",
+      "problem": "The full-population census rate 131/21902 = 0.0060 lies above the split-A bootstrap upper bound of 0.0045, so the 15-cluster bootstrap CI under-covers. The verdict at the 0.01 threshold does not change."
+     },
+     {
+      "corpus": "swechat / opencode",
+      "reproduced": true,
+      "my_numbers": "0/3735 calls without result, 0/3735 orphans, n=25. Sessions affected 0/25, Wilson upper bound 0.133. Child sessions 0/333, n=14. 1026/3735 call ids are synthetic.",
+      "problem": "The salvaged, truncated document ses_3353a8139ffeLXvY9MIuOitgt6 is in split A. The raw IR has 185 calls for it; conversations.parquet has 417 tool_use rows (288 distinct non-redacted ids plus 129 REDACTED). All 162 'table ids not in raw' in the cross-check come from this session (I checked conversations.parquet directly for this one session: 162 table ids not in raw, 0 raw ids not in table), so they come from the truncated raw parse, not from REDACTED-id handling. Join-completeness metrics cannot see calls lost to truncation, so 'zero defects' does not mean the session is complete. Separately, the zero-count bootstrap CI is [0, 0], yet the census rate 6/22619 = 0.0003 lies outside it."
+     },
+     {
+      "corpus": "swechat / gemini",
+      "reproduced": true,
+      "my_numbers": "487/2800 = 0.1739 [0.0000, 0.5509], n=11. All 487 come from d8bda4a8-7745-40b9-be81-e42b23525140, which has 0 results. The other 10 sessions: 0/2313. Orphans 0/2313. One duplicate key: 2 calls whose id is the literal 'REDACTED', both in that session.",
+      "problem": "No problem with the numbers. One correction to the hedging: the census counts calls_without_result as distinct keys (load_swechat.py line 1135 iterates over cset; 5246 - 4759 = 487 ≠ 486 confirms it). The session has 486 distinct unpaired keys and is itself part of the census, so the other 58 Gemini files contribute exactly 0. The 'plausible, not verified' attribution is arithmetically entailed. The census numerator (distinct keys) and denominator (call events) use mixed units, which is negligible here."
+     },
+     {
+      "corpus": "swechat / copilot",
+      "reproduced": true,
+      "my_numbers": "1/266 = 0.0038 [0.0000, 0.0082], n=2 sessions. Per-call Wilson: [0.0007, 0.0210].",
+      "problem": "A bootstrap over 2 clusters has only 3 possible outcomes, and its upper bound of 0.0082 is just the affected session's own rate. The 'usable' verdict depends on that degenerate bound. Under per-call Wilson the upper bound is 0.021 > 0.01, which would give 'partial'. The honest label is 'insufficient n'."
+     },
+     {
+      "corpus": "swechat / cursor",
+      "reproduced": true,
+      "my_numbers": "206/206 calls without a result, 0 result events, n=2 sessions (62 and 144 calls). All ids synthetic.",
+      "problem": "None. The 'absent' verdict follows the rule."
+     },
+     {
+      "corpus": "cc_local",
+      "reproduced": true,
+      "my_numbers": "1/5165 = 0.0002 [0.0000, 0.0010], n=107. Orphans 0/5164; duplicates and keys with more than one result 0. is_subagent=False: 1/2840 = 0.0004 [0.0000, 0.0013], n=107. is_subagent=True: 0/2325, n=4. Sessions affected 1/107, Wilson [0.002, 0.051]. Distinct subagent parent_call_ids 13/13 resolve in-session; subagent meta links 1897/1897 resolve. Matches the build report's split-A pairing.",
+      "problem": "None in the numbers. The subagent slice rests on only 4 sessions, and the zero-count bootstrap [0, 0] gives no information there."
+     },
+     {
+      "corpus": "aiv_cc",
+      "reproduced": true,
+      "my_numbers": "4/33479 = 0.0001 [0.0000, 0.0003], n=78 runs. Orphans 0/33475, n=77. Duplicates and keys with more than one result 0. Sessions affected 4/78, Wilson [0.020, 0.125]. No subagent events. Matches the build report's split A.",
+      "problem": "The 1-call run whose next row is error_during_execution is classed as structural ('the source never records a result by construction'). It is a lost result. The verdict does not change."
+     },
+     {
+      "corpus": "aiv_cu",
+      "reproduced": true,
+      "my_numbers": "0/6107 on all four defects, n=199. Sessions affected 0/199, Wilson upper bound 0.019. 1036/6107 call ids are 'turn:' fallbacks. Null or empty result text 3393/6107 = 0.5556 [0.5020, 0.6102], n=199. Unexecuted provider calls 4/6111 = 0.0007 [0.0000, 0.0016]: gemini-pro 3, anthropic-haiku 1.",
+      "problem": "The zero, and 'result never precedes call', hold by construction because the loader emits the call and its result from the same row. The 'usable' label overstates this: the data cannot test it."
+     },
+     {
+      "corpus": "whowhen",
+      "reproduced": true,
+      "my_numbers": "20/373 = 0.0536 [0.0299, 0.0822], n=63. Orphans 0/353. AG 12/99 = 0.1212 [0.0531, 0.1982], n=39: extra.unexecuted next_speaker_not_terminal 10, history_end 2. HC 8/274 = 0.0292 [0.0109, 0.0437], n=24. Excluding the AG never-executed calls: 8/361 = 0.0222 [0.0074, 0.0348], n=63. Sessions affected 15/63, Wilson [0.150, 0.356].",
+      "problem": "None in the numbers. Pairing is assigned by the loader (step adjacency, open-call heuristic), and nothing in the data can check it."
+     },
+     {
+      "corpus": "swechat conversations.parquet vs raw (cited)",
+      "reproduced": true,
+      "my_numbers": "Checked against the sources. recon/swechat_scan_pinned.json: orphaned 76618 of 408086 distinct results, hidden subagent tool_use 172814. recon/swechat_compare.txt: 1367/1367 orphan ids found as top-level tool_use in raw. phase_c swechat_tables.json followup pooled_dropped_share: 76258/407920 = 0.1869 [0.1804, 0.1927], n=4847. build full_population_pass: results without call 16/633366, calls without result 2104/635454, nested 176501. build crosscheck_conversations: 171329 raw vs 133018 table in 2159 present sessions; 1671 sessions where raw has more; codex 96 and cursor 15 sessions with 0 table rows; 162 table ids not in raw, all opencode.",
+      "problem": "The 162 ids are misattributed. They come from one salvaged OpenCode session where the raw parse is truncated, not from REDACTED-id handling (see the opencode check). The 1367/1367 orphan-id check covers 48 sessions, not 50: 2 of the 50 sampled sessions had no transcript file. The headline contrast 0.1877 vs 0.0000253 compares different units (table-wide distinct ids vs result events) over different session sets (5825 vs 5850). The order-of-magnitude gap holds, but the comparison is not matched."
+     }
+    ],
+    "kill_logic_ok": true,
+    "overclaims": [
+     "The '162 table ids missing from raw, all OpenCode REDACTED-id handling' attribution is wrong. All 162 come from one salvaged, truncated OpenCode document, ses_3353a8139ffeLXvY9MIuOitgt6, which is in split A: 185 raw IR calls vs 417 table tool_use rows. For that session the table recovers more than the raw IR, and A2's join metrics cannot detect the loss.",
+     "The swechat/copilot 'usable' verdict rests on a 2-cluster bootstrap upper bound of 0.0082, which is the affected session's own rate. Per-call Wilson for 1/266 has an upper bound of 0.0210, above the 0.01 threshold. The verdict should be 'insufficient n'.",
+     "Zero-count 'usable' verdicts (opencode, aiv_cu, and every zero orphan, duplicate or multi-result rate) pass only because the bootstrap gives [0, 0] when there are no defects. The rule's 'hi' does not bound those rates: the OpenCode census rate 0.0003 lies outside A's [0, 0], and session-level Wilson upper bounds reach 0.133 for opencode. The measurer computed those Wilson bounds but did not use them in the verdict.",
+     "The 0.01 verdict threshold was set after the swechat-A unpaired counts had been seen, against the instruction to set thresholds first. The measurer disclosed this. Verdicts that sit close to the threshold (copilot 0.0082) are the ones it affects.",
+     "Calling aiv_cu 'usable' overstates it: its 0/6107 is a product of how the loader builds rows, so the data cannot test it.",
+     "The corpus-wide claim 'no result comes before its call' holds by construction for aiv_cu, opencode, gemini and whowhen, where the loader emits the result right after its call. It is an observation only for claude_code, codex, cc_local and aiv_cc.",
+     "The 1-call sessions and runs classed as structural (session_has_no_results) include a swechat claude_code stream end and an aiv_cc run that ended in error_during_execution. Both are lost results, not format gaps. Verdicts do not change.",
+     "'They cluster at compaction boundaries (7) and SessionStart restart/resume hooks (6)' is not established. The reasons come from a first-match rule that checks whether a landmark falls inside the window between the call and the stream's next result, which can span hundreds or thousands of events. There is no baseline rate, and the counts are small (SessionStart is 6 calls in 3 sessions).",
+     "'In honest Claude Code sessions': SWE-chat carries no honesty label. 'Honest' is an assumption about the baseline, not something measured.",
+     "'All 1,367 orphan ids from 50 of the 4,386 orphan-bearing sessions': 2 of the 50 sampled sessions had no transcript file, so the ids come from 48.",
+     "The summary's '694 are structural' should be 695 (206 + 488 + 1). The JSON is correct."
+    ]
+   }
+  },
+  {
+   "key": "a3",
+   "per_corpus": [
+    {
+     "corpus": "swechat",
+     "answer": "21,025 results in 178 sessions. The exact SWE-chat cap (ends with '\\n... [truncated]', len 10,256) appears 0 times; the loose form (any length) also 0. Session Wilson upper bound 2.1%. The cap exists only in conversations.parquet (1,552 of 408,572 rows, recon context, not Phase A). The raw-transcript IR is uncapped: 1,395 results are longer than 10,256 chars.\n\n10 KB window: 127/21,025 = 0.60% [0.41, 0.89], vs 144 in the equal-width window just below, so no excess overall. The exception is claude_code shell: 22/4,150 vs 9 below, and 14 of the 22 are CC error truncation (`... [N characters truncated] ...`, head and tail of 5,000 UTF-16 units each, 9,230 to 10,040 chars).\n\nAny loss-type truncation by scaffold:\n- claude_code: 134/13,592 = 0.99% [0.76, 1.22], 55/126 sessions.\n- codex: 11/1,120 = 0.98% [0.31, 2.02], 7/15 sessions.\n- gemini: 844/2,313 = 36.5% [25.5, 43.3], 7/10 sessions, all `<tool_output_masked>` previews.\n- opencode: 40/3,735 = 1.07% [0.68, 1.64], 16/25 sessions.\n- copilot: 4/265, 1/2 sessions.\n- pooled: 1,033/21,025 = 4.9% [1.9, 8.5].\n\nCC marker counts:\n- error truncation (characters truncated): 15 in 10 sessions.\n- `[N lines truncated]`: 3 (Bash cap 30,031 chars, Grep cap 20,030 to 20,031).\n- `<\\persisted-output>` spill: 65 in 36 sessions, about 2 KB previews.\n- Glob list cap: 44.\n- ripgrep omitted long line: 7.\n- read-token refusal: 27.\n\nCodex: `…N tokens truncated…` 11, always with a 'Total output lines' header.\n\nOpenCode:\n- bash spill (bytes truncated + saved to file): 16 in 14 sessions.\n- grep/glob list cap: 20 and 4.\n- read window: 398 + 14.\n\nGemini read-window notices: 90.\n\nRetention:\n- CC error truncation keeps 'Exit code N': 15/15, vs baseline 282/285 = 0.989 [0.972, 1.0].\n- Codex header exit line kept 10/11 = 0.909 [0.571, 1.0], vs 812/831 = 0.977. The one miss is a still-running write_stdin poll.\n- Gemini masked shell keeps 'Exit Code:' 97/270 = 0.359 [0.21, 0.43], vs unmasked 183/546 = 0.335 [0.22, 0.45].\n- Persisted, spill and Codex truncations have 0 failures among them, so failure retention is untestable for those types.\n\nStructured flags agree exactly with the text markers: CC Glob truncated 10/10 (0/158 false positives), OpenCode metadata.truncated 452/452 (0/3,243).\n\nSpikes: the cap-candidate rule flags CC 10,040 (true cap, 9 results in 7 sessions, all marked) and CC 1,600 (8 results in 6 sessions; on inspection unrelated content, a false positive). Every other top spike is repeated content or fixed-format output.",
+     "decisive_number": "Exact SWE-chat cap: 0/21,025 in raw transcripts (vs 1,552 in conversations.parquet). Gemini masked outputs: 844/2,313 = 36.5% [25.5, 43.3]. CC error truncation keeps the exit line 15/15.",
+     "json_path": "analysis/out/phase_a/a3.json: corpora.swechat.groups.<format>.<shell|other|all>.{window_10kb,truncation}; corpora.swechat.spikes; corpora.swechat.structured_flags; summary; context_from_recon",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "cc_local",
+     "answer": "5,164 results in 107 sessions. SWE-chat cap: 0, Wilson session upper bound 3.5%.\n\n10 KB window: 53/5,164 = 1.03% [0.51, 2.53], vs 8 below. 50 of the 53 are one repeated Read text (9,839 chars: 42 results in 42 sessions with 1 distinct text; 9,838: 8), so not truncation. Shell: 3/3,312 in the window, none with a marker.\n\nText markers: 22/5,164 = 0.43% [0.19, 0.87] in 8 sessions:\n- persisted-output spill: 18 in 5 sessions (shell 15, webfetch 3), 1,300 to 2,216 chars.\n- ripgrep omitted long line: 4.\n- read-token refusal: 1.\n- CC error truncation: 0. Shell errors are short; no 10 K error results.\n\nThe structured toolUseResult.truncated flag is true on 186 Glob results in 52 sessions, and 0 of the 186 carry any text marker. All have exactly 101 lines and a last line starting with '(' (103 to 105 chars, 29 variants, no 'truncat'). This local CC version words the Glob note differently. Markers plus flag: 208/5,164 = 4.03% [2.02, 9.98], 58/107 sessions.\n\nRetention:\n- No truncated failures (n = 0). Persisted results are native_error false 15 / null 3.\n- Untruncated baseline: error_marker given native_error true 309/311 = 0.994.\n\nSpikes: all repeated content (Glob listings 7,324 / 7,510 / 6,629 with 1 distinct prefix each; Read 9,839). No cap candidate.",
+     "decisive_number": "Glob truncated flag: 186 true, 0 with a text marker (text-only detection misses all of them); text-marker truncation 22/5,164 = 0.43% [0.19, 0.87]",
+     "json_path": "analysis/out/phase_a/a3.json: corpora.cc_local.groups.cc_local.*; corpora.cc_local.structured_flags.extra_truncated_flag.groups[0].flag_true_structure; corpora.cc_local.spikes",
+     "verdict": "partial"
+    },
+    {
+     "corpus": "aiv_cc",
+     "answer": "33,475 results in 77 sessions. SWE-chat cap: 0, Wilson session upper bound 4.8%.\n\n10 KB window: 136/33,475 = 0.41% [0.27, 0.58], vs 114 below. Of these, 15 are CC error truncation at 10,039 to 10,040 chars (2 sessions); the rest are fixed-format get_events outputs.\n\nAny truncation: 35/33,475 = 0.10% [0.03, 0.26], 10/77 sessions:\n- error middle elision: 15.\n- persisted spill: 10 in 6 sessions.\n- Glob list cap: 8.\n- tail cut at the 30,029-char Bash cap: 1.\n- line cap: 1.\n- read refusal: 1.\n\nRetention: CC error truncation keeps 'Exit code N' 15/15, vs baseline 229/267 = 0.858 [0.708, 0.942].\n\nThe Glob flag agrees with the text marker: 8/8 true, 0/82 false.\n\nSpikes: mcp__village__get_events fixed-format JSON (3,529 chars: 2,237 results, 259 distinct texts, 2 distinct prefixes). No cap candidate.",
+     "decisive_number": "Any truncation 35/33,475 = 0.10% [0.03, 0.26]; error-truncated results keep the exit line 15/15",
+     "json_path": "analysis/out/phase_a/a3.json: corpora.aiv_cc.groups.aiv_cc.*; corpora.aiv_cc.spikes; corpora.aiv_cc.structured_flags",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "aiv_cu",
+     "answer": "6,107 results in 199 sessions (median length 0: GUI results are empty).\n\nNo truncation marker of any type: 0/6,107, Wilson session upper bound 1.9%. SWE-chat cap: 0.\n\n10 KB window: 1/6,107, vs 2 below.\n\nSpikes: no exact length above 1,000 chars repeats more than 3 times (chars) or 4 times (bytes). No cap candidate.\n\nPer-stratum maxima range from 2,244 (openai-chat) to 135,168 (gemini-pro). The single 135,168-char output is a round binary size and on inspection ends mid-line. This hints at an unmarked cap, but with n = 1 nothing can be claimed.\n\nNo exit field exists, so retention is not applicable. stderr: 277 non-empty, max 55,325 chars.",
+     "decisive_number": "0/6,107 results with any truncation marker; max output 135,168 chars (n = 1)",
+     "json_path": "analysis/out/phase_a/a3.json: corpora.aiv_cu.groups.aiv_cu.*; corpora.aiv_cu.aiv_cu_per_stratum; corpora.aiv_cu.aiv_cu_stderr_chars; corpora.aiv_cu.spikes",
+     "verdict": "absent"
+    },
+    {
+     "corpus": "whowhen",
+     "answer": "353 results in 63 sessions.\n\nNo truncation marker: 0/353, Wilson session upper bound 5.7%. SWE-chat cap: 0.\n\n10 KB window: 2/353, vs 1 below, no marker.\n\nNo spike repeats more than 2 times.\n\nThe one 'truncat' mention is page content ('truncated for length'), not a harness marker.",
+     "decisive_number": "0/353 results with any truncation marker",
+     "json_path": "analysis/out/phase_a/a3.json: corpora.whowhen.groups.whowhen.*; corpora.whowhen.per_tool; corpora.whowhen.spikes",
+     "verdict": "absent"
+    }
+   ],
+   "surprises": [
+    "The SWE-chat 10,256-char cap is not in the raw transcripts at all (0/21,025). It is an artefact of conversations.parquet (1,552 rows). The 10 KB boundary that does matter is Claude Code's own error-result truncation (5,000 + 5,000 UTF-16 units around '... [N characters truncated] ...').",
+    "Gemini CLI wraps 36.5% [25.5, 43.3] of its tool results in <tool_output_masked>, a preview plus a file pointer (840/2,313, 7 of 10 sessions). For non-shell tools the preview is a narrow 583 to 773 chars. The transcript cannot show whether the model ever saw the full output.",
+    "In cc_local, Claude Code Glob truncation is invisible to the text markers: toolUseResult.truncated is true on 186 results in 52 sessions, and none of them carries the '(Results are truncated…)' wording used in swechat and aiv_cc. All 186 are exactly 101 lines with a parenthesised last line (103 to 105 chars).",
+    "Units matter. Claude Code caps count UTF-16 units, not Python chars. The opencode shell 10 KB window holds 23 results by chars but 1 by bytes, because one session emits box-drawing characters.",
+    "Claude Code spill (<\\persisted-output>, about 2 KB previews) never occurred on a failing result: none of the 65 (swechat), 18 (cc_local) or 10 (aiv_cc) has native_error true. Truncated failures are seen only in the 10 K error path, where the exit line survives.",
+    "The pre-set cap-candidate rule produced one false positive: swechat CC 1,600 chars, 8 results in 6 sessions of unrelated content. The only true cap it flagged was CC 10,040."
+   ],
+   "verify": {
+    "question": "A3 Truncation (Phase A, adversarial re-derivation). I re-derived each corpus's decisive number with my own code (C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\a3v\\load.py plus inline scripts). Unit: IR kind=='result'; text null treated as ''. Lengths are measured in chars, UTF-8 bytes and UTF-16 units. Rates use stats.cluster_rate (session bootstrap). Zero counts use the Wilson upper bound on sessions. I read the measurer's script, JSON and notes only after I had my own numbers. Most numbers reproduce exactly. There are 4 problems: (1) the marker catalogue misses an older Claude Code spill format; (2) the Gemini 844 is mislabelled as all masked; (3) the claim that cc_local Glob truncation cannot be seen in text is false; (4) the exit-line retention baselines compare different metrics.",
+    "checks": [
+     {
+      "corpus": "swechat",
+      "reproduced": true,
+      "my_numbers": "21,025 results in 178 sessions; 0 null texts. Formats: claude_code 13,592/126, codex 1,120/15, gemini 2,313/10, opencode 3,735/25, copilot 265/2.\n\nSWE-chat cap: exact (ends '\\n... [truncated]', len 10,256) 0; loose 0; '[truncated]' anywhere 0. Results longer than 10,256 chars: 1,395.\n\n10 KB window [9,728, 10,256]: 127/21,025 = 0.60% [0.41, 0.89], vs 144 in [9,199, 9,727]. claude_code shell: 22/4,150 vs 9 below; 14 of the 22 are CC '[N characters truncated]'.\n\nCC '[N characters truncated]': 15 results in 10 sessions, all Bash, all native_error True, all starting 'Exit code N'. Lengths 9,230 to 10,040; head/tail = 5,000/5,000 UTF-16 units in 14 of 15. One result is 10,035 chars = 10,039 UTF-16 units.\n\nOther CC markers:\n- '[N lines truncated]': 3 (30,031 Bash; 20,030 and 20,031 Grep).\n- '<\\persisted-output>': 65 in 36 sessions; previews 1,833 to 2,282 chars; native_error False 26 / null 39.\n- Glob 'Results are truncated': 44 in 25 sessions.\n- '[Omitted long matching line]': 7.\n- 'File content (N tokens) exceeds': 27.\n- CC loss-type union: 134/13,592 = 0.99% [0.76, 1.22], 55/126 sessions.\n\nCodex '…N tokens truncated…': 11/1,120 = 0.98% [0.31, 2.02], 7/15 sessions. All 11 co-occur with 'Total output lines' (0 header-only). Lengths 39,966 to 120,266. Exit line in the first 600 chars: 10/11 truncated vs 812/831 baseline. Every exit shown is 0.\n\nGemini: '<tool_output_masked>' 840/2,313 = 36.32% [25.24, 43.19], 7/10 sessions; shell 266, other 574. Non-shell previews 583 to 773 chars. 844/2,313 = 36.49% [25.46, 43.30] only when the 4 non-masked 'Output too large. Showing first 8,000 and last 32,000 characters' shell results are added.\n\nOpenCode:\n- extra.truncated True 452 / False 3,243 / absent 40.\n- Flag and text markers agree exactly (452/0 and 0/3,243).\n- Markers: spill 16 in 14 sessions; grep cap 20; glob cap 4; read window 398 + 14.\n- Loss-type: 40/3,735 = 1.07% [0.68, 1.64], 16/25 sessions.\n\nCopilot: 4 spills.\n\nPooled: 1,033/21,025 = 4.91% [1.90, 8.47], 86/178 sessions.\n\nSpikes: CC 10,040 = 9 results in 7 sessions, all chars-truncated, neighbourhood mean 0.09. CC 1,600 = 8 results in 6 sessions, 7 distinct texts, 0 markers.\n\nOpenCode shell window: 23 by chars vs 1 by bytes; all 23 are one session, length 9,955, 165 box-drawing characters each.\n\nUTF-16 length differs from char length on 140 CC results.",
+      "problem": "1) The Gemini 844 is labelled 'all <tool_output_masked> previews', but masked is 840. The other 4 are unmasked head/tail cuts ('Output too large. Showing first 8,000 and last 32,000 characters'). The same mixing appears in 'masked shell keeps Exit Code 97/270': the correct masked-only figure is 97/266 = 0.365 [0.21, 0.44].\n\n2) The CC exit-line comparison mixes metrics. The 15/15 truncated figure is 'Exit code N', but the 282/285 baseline is 'any ir.error_marker given native_error True'. The like-for-like 'Exit code N' baseline is 233/285 = 0.82 [0.73, 0.88]. Among untruncated native_error True shell results over 1,000 chars it is 72/72. Retention is also guaranteed by the format: the head is kept and 'Exit code N' is its first line.\n\n3) Gemini writes 'Exit Code:' only for nonzero exits: 0 occurrences of 'Exit Code: 0' among 816 shell results. So 97/266 vs 183/546 compares text-failure rates between masked and unmasked results, not retention. The original exit status of the masked outputs is unknown. All 97 masked results with a nonzero Exit Code have native_error False.\n\n4) The CC Glob flag 'agrees exactly' only where it is present. 34 of the 44 text-marked Glob truncations have no flag (older CC versions), so the flag alone misses 77% of them in swechat.\n\n5) The bootstrap CIs on 2 to 15 clusters are anti-conservative. The notes table gives copilot '1.51% [0, 2.78]' from 2 sessions.\n\n6) The 1,552/408,572 conversations.parquet figure is recon context. It was not re-derived, because it is outside the Phase A split."
+     },
+     {
+      "corpus": "cc_local",
+      "reproduced": true,
+      "my_numbers": "5,164 results in 107 sessions. SWE-chat cap 0 (Wilson session upper bound 3.47%).\n\n10 KB window: 53/5,164 = 1.03% [0.51, 2.53], vs 8 below. 50 of the 53 are Read results: 9,839 chars = 42 results in 42 sessions with 1 distinct text; 9,838 chars = 8 results, 1 text. Shell in the window: 3, none marked.\n\nMeasurer's catalogue: persisted 18 in 5 sessions (shell 15, webfetch 3; native_error False 15 / null 3); rg-omitted 4; union 22/5,164 = 0.43% [0.19, 0.87], 8/107 sessions. Read-token refusal: 1, excluded from the 22. The answer lists it under the 22, so the listed items add to 23.\n\ntoolUseResult.truncated on Glob: True 186 in 52 sessions, False 241. Of the 186 flag-true results, 0 carry any catalogue marker and 0 contain 'truncat'. All 186 are exactly 101 lines with a parenthesised last line of 103 to 105 chars (29 variants, a single word-shape). Catalogue plus flag: 208/5,164 = 4.03% [2.02, 9.98], 58/107 sessions.\n\nMissed by the catalogue: 1 older-format CC spill on an MCP tool ('Error: result (…) exceeds maximum allowed tokens. Output has been saved to …'). Text markers including it: 23/5,164 = 0.45% [0.19, 0.95], 8/107 sessions. Plus flag: 209/5,164 = 4.05% [2.02, 10.03].\n\nA post-hoc text shape rule (Glob, 101 lines, last line starting '(') matches 186/186 flag-true and 0/241 flag-false.",
+      "problem": "1) 'Text-only detection misses all of them' and 'only the structured flag catches it' are overclaims. The Glob truncations carry a consistent, differently worded parenthetical note (its wording is private, so only its shape was checked). That note separates flag-true from flag-false perfectly (186/0 vs 0/241). What misses them is the catalogue built from swechat/aiv_cc wording, not text in general.\n\n2) The catalogue misses the older CC spill format ('Error: result (N characters …) exceeds maximum allowed tokens. Output has been saved to …'), so the text-marker count should be 23, not 22. In the measurer's terms it is spill-type, with no output preview at all.\n\n3) The 'Text markers: 22 …' list includes the read refusal, which is excluded from the 22.\n\nThe 'partial' verdict is reasonable."
+     },
+     {
+      "corpus": "aiv_cc",
+      "reproduced": true,
+      "my_numbers": "33,475 results in 77 sessions.\n\n10 KB window: 136/33,475 = 0.41% [0.27, 0.58], vs 114 below. Of the 136: get_events 95, shell 24. 15 are CC chars-truncated, in 2 sessions.\n\nMeasurer's catalogue: chars-truncated 15 in 2 sessions (10,039 to 10,040 chars), lines-truncated 1 (30,029), persisted 10 in 6 sessions, Glob cap 8, rg-omit 1. Union 35/33,475 = 0.10% [0.03, 0.26], 10/77 sessions.\n\nRetention:\n- Exit line on the error-truncated results: 15/15, but from only 2 sessions (bootstrap CI degenerate [1, 1]; session Wilson lower bound 0.34).\n- Baseline 'any error_marker given native_error True', untruncated shell: 229/267 = 0.858 [0.708, 0.942]. Like-for-like 'Exit code N' baseline: 200/267 = 0.749 [0.573, 0.858].\n\nGlob flag vs text: 8/0 and 0/82.\n\nSpike at 3,529 chars: 2,237 results in only 5 sessions; 259 distinct texts; 2 distinct 64-char prefixes and 2 suffixes; 2,236 of 2,237 parse as complete JSON. So it is fixed-format get_events output, not a cap.\n\nMissed: 5 older-format CC spills ('Error: result (N characters) exceeds maximum allowed tokens. Output has been saved to …'), 4 shell plus 1 mcp__village__search_history, in 4 sessions, all native_error null, 1,180 to 1,200 chars, pointer text only. With them: 40/33,475 = 0.12% [0.04, 0.28], 11/77 sessions.",
+      "problem": "1) The catalogue misses 5 spill results in an older CC format. The measurer's own rules say the catalogue was built from contexts of 'exceeds', but only 'File content (N tokens) exceeds' was catalogued. Any-truncation should be 40 (11 sessions), not 35 (10 sessions). The CI barely moves.\n\n2) '15/15 keep the exit line' rests on 2 sessions. It is presented beside a baseline of a different metric: any marker (229/267) vs Exit code (200/267).\n\n3) The list of 6 types sums to 36 with the read refusal; the total of 35 excludes it.\n\nThe 'usable' verdict stands."
+     },
+     {
+      "corpus": "aiv_cu",
+      "reproduced": true,
+      "my_numbers": "6,107 results in 199 sessions, median length 0. Only 2,714 are non-empty, 498 are over 1,000 chars and 34 are over 10,000.\n\nNo catalogue marker in the text. stderr contains no 'truncat', 'too large', 'exceeds' or 'omitted'. The text hits for 'truncat' (7), 'too large' (2), 'exceeds' (12) and 'saved to' (2) are all content. Wilson session upper bound for 0/199 = 1.89%.\n\n10 KB window: 1, vs 2 below.\n\nTop spike over 1,000 chars: 3 results by chars, 4 by bytes.\n\nPer-stratum maxima: openai-chat 2,244 (445 results, 17 sessions) up to gemini-pro 135,168. The single 135,168-char result (= 132 KiB, ASCII) is a shell result that ends mid-line in an ls listing.\n\nstderr: 277 non-empty, max 55,325.",
+      "problem": "The null itself reproduces.\n\nOverclaim in the implications: 'aiv_cu … show no harness truncation, so their results can be treated as complete.' A marker-based method cannot see marker-free caps. The spike test has little power here (498 results over 1,000 chars, 34 over 10,000). The one candidate, 135,168 = 132 KiB ending mid-line, is consistent with an unmarked cap. The correct statement is 'no marked truncation; unmarked caps not excluded'. The verdict 'absent' is right for markers, not for completeness."
+     },
+     {
+      "corpus": "whowhen",
+      "reproduced": true,
+      "my_numbers": "353 results in 63 sessions, all classed 'other' (websurfer 231, code_exec 87, subagent 22, filesurfer 13). 0 catalogue markers; Wilson session upper bound 5.75%.\n\n10 KB window: 2, vs 1 below.\n\nTop spike repeats 2 times.\n\nThe single 'truncat' hit is page content ('(truncated for length, see more link)'). The 'exceeds' and 'saved to' hits are content.",
+      "problem": "The null reproduces.\n\nThe question asked for shell vs other, but code_exec (87 results, the shell analogue) is classed 'other' under the IR rule. This is disclosed, and the per-tool breakdown is given.\n\n'Can be treated as complete' overreaches. WebSurfer results are viewport text or summaries of pages, so they are partial by design even without a harness marker. 353 results give little power to detect an unmarked cap."
+     }
+    ],
+    "kill_logic_ok": true,
+    "overclaims": [
+     "cc_local decisive number: 'text-only detection misses all of them' and the notes' 'only the structured flag catches it' / 'invisible to the text markers'. The 186 flag-true Glob results all share a deterministic text shape: 101 lines, last line a parenthesised note of 103 to 105 chars. That shape separates them perfectly (186/186 vs 0/241 flag-false). The measurer's catalogue misses them; text does not.",
+     "Gemini: '844/2,313 = 36.5% … all <tool_output_masked> previews' and 'Exclude … Gemini <tool_output_masked> results (36.5% of Gemini results)'. Masked is 840/2,313 = 36.3% [25.2, 43.2]. The other 4 are unmasked 'Output too large. Showing first 8,000 and last 32,000 characters' cuts. Likewise 'Gemini masked shell keeps Exit Code: 97/270' should read 97/266.",
+     "'Gemini masked shell keeps Exit Code … masking does not remove the exit line at a detectable rate'. Gemini writes 'Exit Code:' only for nonzero exits: 0 'Exit Code: 0' lines in 816 shell results. The comparison is a failure-rate comparison between masked and unmasked results, which only implies retention if both have equal underlying failure rates. Retention was not measured.",
+     "'CC error truncation keeps Exit code N 15/15, vs baseline 282/285 = 0.989' (and aiv_cc 229/267). The baselines are 'any ir.error_marker given native_error True', not 'Exit code N'. Like-for-like baselines are 233/285 = 0.82 (swechat CC) and 200/267 = 0.75 (aiv_cc). Retention is also guaranteed by the format: head kept, 'Exit code N' is line 1. aiv_cc's 15/15 comes from 2 sessions.",
+     "The marker catalogue is presented as complete for CC. It misses the older CC spill 'Error: result (N characters) exceeds maximum allowed tokens. Output has been saved to …': 5 results in aiv_cc (shell 4, MCP 1; 4 sessions) and 1 in cc_local (MCP). These carry a file pointer and no output preview. aiv_cc any-truncation is 40/33,475 = 0.12% [0.04, 0.28] (11/77), not 35; cc_local text markers are 23, not 22.",
+     "'Structured flags agree exactly with the text markers: CC Glob 10/10, 0/158' is true only where the flag exists. The flag is absent on 34 of the 44 text-marked swechat Glob truncations, so a flag-based gate alone would miss 77% of them.",
+     "Implications: 'aiv_cu and whowhen show no harness truncation, so their results can be treated as complete'. Absence of markers does not establish completeness. The spike test has little power (aiv_cu: 498 results over 1,000 chars; whowhen: 353 results). aiv_cu's maximum (135,168 = 132 KiB, ends mid-line) is consistent with an unmarked cap. Who&When WebSurfer outputs are partial page views by design.",
+     "'Gemini CLI masks a third of its tool outputs' generalizes from 10 sessions. 3 of them have 0 masking (sizes 2, 1, 87), and the rate is driven by a few large sessions from a few users. This is a version- and configuration-dependent behaviour, not a general property of Gemini CLI.",
+     "The notes table reports bootstrap CIs on very few clusters, e.g. copilot '1.51% [0, 2.78]' from 2 sessions, and codex and gemini from 15 and 10 sessions. These percentile intervals are anti-conservative. For 2 sessions, give k/n and sessions only, as the per-corpus answer does.",
+     "The lists in the per-corpus answers include the read-token refusal, but the totals exclude it (cc_local listed items sum to 23 vs the stated 22; aiv_cc to 36 vs 35). The totals follow the stated rule (read_refusal is not a loss type), but the presentation is inconsistent."
+    ]
+   }
+  },
+  {
+   "key": "a4",
+   "per_corpus": [
+    {
+     "corpus": "swechat/claude_code",
+     "answer": "is_error fill 4464/13592 = 0.328 [0.285,0.370] s126. It is filled on all 4150 shell results; non-shell results are only true (314) or absent (9128), so null means 'not flagged'. exit_code is never filled. Against native (null counted as negative): A has P 488/488, R 488/614 = 0.795 [0.72,0.85] s90. On shell, A has R 297/300 = 0.990 [0.97,1.00]; on non-shell, R 191/314 = 0.608 [0.52,0.69]. The non-shell misses are harness texts without a <\\tool_use_error> wrapper, e.g. 'File content exceeds' 27, 'File does not exist' 31, EISDIR 18. B adds 0 recall and 112 FP: P 488/600 = 0.813 [0.74,0.89]. Failure text is always in the result text: stderr-only hits = 0, and the exit header sits at the start 248/248. Proposed Probe 3 definition: native_error is True (null = not error).",
+     "decisive_number": "A: precision 488/488, recall 0.795 [0.72,0.85] (n=614 native-true, 90 sessions); B adds 0 TP and 112 FP",
+     "json_path": "analysis/out/phase_a/a4.json#units['swechat/claude_code'].all.pr.native_null_neg.predictors",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "cc_local",
+     "answer": "Native fill 3359/5164 = 0.650 [0.394,0.790] s107: shell 3312/3312, non-shell 47/1852. Native true 349. A: P 331/331, R 331/349 = 0.948 [0.90,0.98] s74; shell R 309/311, non-shell R 22/38 = 0.579 [0.41,0.76]. B: P 332/369 = 0.900 [0.82,0.95], R 332/349. Of the 311 native-true shell results, 157 are cc_permission_denied (harness refusals) and 135 are cc_exit_code. Aggregates only. Proposed Probe 3 definition: native_error is True, split by marker class.",
+     "decisive_number": "A: precision 331/331, recall 0.948 [0.90,0.98] (n=349, 74 sessions)",
+     "json_path": "analysis/out/phase_a/a4.json#units['cc_local'].all.pr.native_null_neg.predictors",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "aiv_cc",
+     "answer": "Native fill 5957/33475 = 0.178 [0.108,0.247]. Bash is filled 5652/5652. mcp__village__bash is flagged only on MCP-level errors (49 true, 1750 null). Its 1746 JSON turn records (output/error/system, the same harness as aiv_cu) are all native-null, with error non-empty on 267/1746 = 0.153 [0.098,0.236]. A: P 296/296, R 296/538 = 0.550 [0.34,0.79]. B: P 534/637 = 0.838 [0.74,0.90], R 534/538 = 0.993 [0.98,1.00] s38. B's gain is MCP 'Error:' text at the start (error_line text_start 201, 200 native true). Proposed Probe 3 definition: native_error is True, plus a separate unvalidated regex class on the village-bash JSON error field.",
+     "decisive_number": "B: P 0.838 [0.74,0.90], R 0.993 [0.98,1.00] (n=538, 38 sessions); 1746/1746 village-bash JSON turns are never natively flagged",
+     "json_path": "analysis/out/phase_a/a4.json#units['aiv_cc'].all.pr.native_null_neg.predictors.B ; #aiv_cc_village_bash_json",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "swechat/codex",
+     "answer": "Native fill 860/1120. Shell exit_code fill 679/842 = 0.806 [0.513,0.930] s14; 49 nonzero, all native true. 163 shell results are null on both. No ir marker exists for Codex, so A has R 0/49. B: P 33/36 = 0.917 [0.60,1.00], R 33/49 = 0.673 [0.19,0.92]. Predictor C (adds 'Exit code: N'): P 49/52 = 0.942 [0.81,1.00], R 49/49 (Wilson [0.93,1.00]) s6. Text carries the exit code on every shell result, including zero: 'Exit code: N' on 558/842 and 'Process exited with code N' on 268/842. The header is also present on 66+78 zero and 3 nonzero native-null shell results. Proposed Probe 3 definition: native_error is True, with a nonzero text exit header as fallback where native is null. Only 15 sessions have results.",
+     "decisive_number": "C: precision 49/52 = 0.942, recall 49/49 (6 sessions); A recall 0/49",
+     "json_path": "analysis/out/phase_a/a4.json#units['swechat/codex'].all.pr.native_strict.predictors",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "swechat/opencode",
+     "answer": "Native fill 3735/3735 (status=error OR exit != 0). Shell exit_code 1135/1140, 157 nonzero. No marker exists (A R 0/197). The exit code does not survive into the IR text: B on shell has P 26/36 = 0.722, R 26/157 = 0.166 [0.10,0.25], and 24 native-true shell results have blank text. Non-shell 'Error:' lines at the start give B P 36/49 = 0.735 [0.47,0.87], R 36/40 = 0.900 [0.65,1.00]. Proposed Probe 3 definition: native_error only; the text proxy is dead for shell.",
+     "decisive_number": "B shell recall 26/157 = 0.166 [0.10,0.25] (13 sessions)",
+     "json_path": "analysis/out/phase_a/a4.json#units['swechat/opencode'].shell.pr.native_strict.predictors.B",
+     "verdict": "usable"
+    },
+    {
+     "corpus": "swechat/gemini",
+     "answer": "Native fill 2313/2313 from status: success 2170, error 126, cancelled 17. The text exit code and the native flag are DISJOINT. gemini_exit_code_nonzero fires on 280/816 shell results, all native false. Native-true results ('Failed to edit' 102, '[Operation Cancelled]' 17) match no family. A: P 0/280, R 0/143; B and C: P 0/281, R 0/143. Proposed Probe 3 definition: two classes, tool-call failure = native True and command failure = text exit code. The union cannot be validated. 10 sessions.",
+     "decisive_number": "A precision 0/280, recall 0/143 (8 sessions)",
+     "json_path": "analysis/out/phase_a/a4.json#units['swechat/gemini'].all.pr.native_strict.predictors.A",
+     "verdict": "partial"
+    },
+    {
+     "corpus": "swechat/copilot",
+     "answer": "Native fill 265/265, 8 true (error_code=failure on all 8), 2 sessions. No marker. B: 1 TP, 1 FP, 7 FN, below the pre-registered minimum n. Proposed Probe 3 definition: native_error is True; text agreement is not measurable.",
+     "decisive_number": "8 native-true results in 2 sessions",
+     "json_path": "analysis/out/phase_a/a4.json#units['swechat/copilot'].all",
+     "verdict": "partial"
+    },
+    {
+     "corpus": "swechat/cursor + swechat/simple_text",
+     "answer": "The source has no tool results: 0 results across 7 (cursor) and 4 (simple_text) A sessions. No error signal exists, so Probe 3 is dead for these formats.",
+     "decisive_number": "0 results",
+     "json_path": "analysis/out/phase_a/a4.json#swechat_A_results_by_format",
+     "verdict": "absent"
+    },
+    {
+     "corpus": "aiv_cu",
+     "answer": "No native failure field (0/6107). stderr is non-empty on 277/6107 = 0.045 [0.035,0.056]; shell 253/2229 = 0.114 [0.089,0.141]. On outputs that look successful, stderr is non-empty on 135/2698 = 0.050 [0.037,0.066] (shell 128/1888 = 0.068 [0.047,0.090]). Only 33/1888 = 0.017 [0.010,0.026] carry a failure template; the rest is mostly git/curl progress ('To https:' 41, 'From https:' 28). The 'system' key is present on 0/6107 results. output_null is structural for gui (3065/3065). On shell it is associated with failure: stderr non-empty 125/325 = 0.385 [0.308,0.473] vs 128/1904 = 0.067, and failure template 83/325 = 0.255 vs 33/1904 = 0.017. But 200/325 output-null shell results have empty stderr, so it is not a failure flag. Failure text is stderr-only: tracebacks 14/14, timeouts 27/27, nonzero returncode 17/17. Probe 3 needs a regex proxy: stderr matching the returncode-N, timeout or census templates fires on 118/6107 = 0.019 [0.013,0.026] (shell 116/2229 = 0.052 [0.038,0.072]). It is unvalidated because there is no reference.",
+     "decisive_number": "stderr non-empty on looks-successful shell outputs 128/1888 = 0.068; only 33/1888 = 0.017 carry a failure template",
+     "json_path": "analysis/out/phase_a/a4.json#aiv_cu.by_class",
+     "verdict": "absent"
+    },
+    {
+     "corpus": "whowhen",
+     "answer": "exit_code is filled on 87/353 = 0.246 [0.151,0.403] s63, all AG code_exec; 36 nonzero = native true. A, B and C all score P 36/36, R 36/36 (s26), but this is TAUTOLOGICAL: the loader and the marker parse the same 'exitcode:' header. Under null-as-negative, B adds 12 FP (tracebacks in non-code agents' text). Other agents (266 results) have no failure field. Proposed Probe 3 definition: exit_code != 0 on AG code_exec only.",
+     "decisive_number": "87/353 results carry an exit code (36 nonzero); agreement 36/36 is by construction",
+     "json_path": "analysis/out/phase_a/a4.json#units['whowhen'].all",
+     "verdict": "partial"
+    }
+   ],
+   "surprises": [
+    "Gemini (swechat): the native flag and the text exit code never co-occur. 280/816 shell results say 'Exit Code: N!=0' in text but have status=success; the 143 native-true results are edit/cancel failures with no exit text. A and B score precision 0/280 and recall 0/143.",
+    "Claude Code is_error is written only on Bash results (false) and on failures (true). Every non-shell result is true or absent: 9128, 1805 and 25768 nulls in swechat_cc, cc_local and aiv_cc. So null means 'not flagged', not 'unknown'.",
+    "cc_local: 157 of 311 native-true Bash results are cc_permission_denied (harness refusals). In swechat/claude_code, exit codes dominate (248/300). 'Error' means different things across corpora.",
+    "aiv_cc mcp__village__bash results are JSON turn records with the same output/error/system schema as aiv_cu. All 1746 are native-null even when the error field holds a failure, so aiv_cc's native flag has a structural hole exactly where its computer-use traffic is.",
+    "Codex has no entry in ir.ERROR_MARKERS (marker recall 0/49), yet its shell text carries the exit code on nearly every result, including zero: 'Exit code: N' on 558/842 and 'Process exited with code N' on 268/842.",
+    "OpenCode: the exit code does not reach the IR text. B recall on nonzero-exit shell results is 26/157, and 24 of them have blank text.",
+    "The aiv_cu 'system' field is never present in Phase A (0/6107), and the same field in aiv_cc village JSON is null on 0/1746 non-null, i.e. never set. It cannot be tested as a flag.",
+    "The census regexes add no recall in any Claude Code corpus, only false positives (swechat/CC shell +81 FP, 0 TP). They help only where native errors start with 'Error:' (aiv_cc MCP: recall 52/256 to 252/256; OpenCode non-shell)."
+   ],
+   "verify": {
+    "question": "A4 Error-signal survival. Per corpus and per swechat format: fill rates of native_error and exit_code; error_marker distribution; where failure text survives (text start, middle, stderr only); precision and recall of (a) ir.error_marker and (b) marker OR census regexes against the native flag; whether aiv_cu has any failure flag; and the proposed Probe 3 error definition. Re-derived independently from the *_A.parquet caches in scratchpad/a4v (common.py, sw.py, cc.py, cu.py). The measurer's script was read only after my numbers existed.",
+    "checks": [
+     {
+      "corpus": "swechat/claude_code",
+      "reproduced": true,
+      "my_numbers": "13592 results, 126 sessions. native T/F/null = 614/3850/9128. Fill 4464/13592 = 0.328, cluster CI [0.285,0.370], s126. Shell 4150/4150 filled. Non-shell is 314 T, 0 F, 9128 null. exit_code filled 0. Null-neg A: P 488/488 (Wilson lo 0.992), R 488/614 = 0.795, cluster [0.720,0.855], s90 (Wilson [0.761,0.825]). Shell R 297/300 = 0.990, cluster [0.975,1.0]; the 3 misses are 'Permission for this tool use was denied' variants. Non-shell R 191/314 = 0.608, cluster [0.517,0.689], s76. B adds 0 TP and 112 FP: 81 native-false Bash, 31 null non-shell (Read 15, TaskOutput 10). B P 488/600 = 0.813, cluster [0.741,0.885]. stderr non-empty on 43 results; census hits in stderr = 0. 'Exit code N' at text start 248, anywhere 250.",
+      "problem": "No material discrepancy. The headline CIs are session-cluster bootstrap; the question asked for Wilson, and Wilson is only in the JSON. '248/248 at start' is partly by construction, because cc_exit_code is anchored at the start. The 'File content exceeds' FN count is 27 for the measurer and 29 for me (regex difference)."
+     },
+     {
+      "corpus": "cc_local",
+      "reproduced": true,
+      "my_numbers": "5164 results, 107 sessions. T/F/null = 349/3010/1805. Fill 3359/5164 = 0.650, cluster [0.394,0.790]. A: P 331/331, R 331/349 = 0.948, cluster [0.900,0.977], s74. Shell R 309/311; non-shell R 22/38 = 0.579, cluster [0.405,0.759], s23. Null-neg B: P 332/369 = 0.900, cluster [0.824,0.949], R 332/349. Markers on shell native-true: permission_denied 157, exit_code 135, tool_use_error 11, interrupt 6, none 2. Non-shell filled 47 = 38 T + 9 F (all 9 F are Workflow).",
+      "problem": "The counts reproduce. The summary claim that every non-shell CC result is true or absent is false here: 9 non-shell Workflow results are False. All output is aggregates only."
+     },
+     {
+      "corpus": "aiv_cc",
+      "reproduced": true,
+      "my_numbers": "33475 results, 77 runs. T/F/null = 538/5419/27518. Fill 5957/33475 = 0.178, cluster [0.108,0.247]. A: P 296/296, R 296/538 = 0.550, cluster [0.342,0.791], s38. Null-neg B: P 534/637 = 0.838, cluster [0.736,0.897]; R 534/538 = 0.993, cluster [0.977,0.999]. B-only TPs: computer_use 170, village_bash 38, get_events 10, edit_memory 8, other 12. B FPs are 52 native-false Bash and 51 null (village_bash 31, get_events 19, search_history 1). Village-bash JSON turns: 1746/1799, all native null. Their error field is non-empty on 267/1746 = 0.153, cluster [0.098,0.236], s26; system is null on 1746/1746. mcp__village__computer_use has 3074 JSON turn records, also all native null, but error is non-empty on only 3. 33473 of the 33475 A results share ONE sdk_session_id.",
+      "problem": "The 77 runs, 38 of them with positives, are resumes of essentially one SDK conversation of one agent. Clustering by run treats them as independent, so every aiv_cc CI is too narrow. The 'usable' verdict rests on B's precision lower bound of 0.736 against a 0.70 bar. A alone fails the rule (R lower bound 0.342, so partial). The proposed definition, native_error is True, has a 1746-row hole on village bash. Text-start count for the error_line family: 244 (238 native T) for me, 201/200 for the measurer. That is a location-definition difference and not decisive."
+     },
+     {
+      "corpus": "swechat/codex",
+      "reproduced": true,
+      "my_numbers": "1120 results, s15. T/F/null = 49/811/260. Shell: 842 results, s14. exit_code fill 679/842 = 0.806, cluster [0.513,0.930]. 49 nonzero, all native T; 163 shell results are null on both. A R 0/49. B: P 33/36 = 0.917, cluster [0.60,1.0]; R 33/49 = 0.673, cluster [0.194,0.920], s6. B plus a nonzero exit header: P 47/50, R 47/49, cluster [0.823,1.0]. Adding the supplementary harness_timeout family ('sandbox error: command timed out') reproduces C: P 49/52, R 49/49, s6. Headers: 'Exit code: N' 558/842, 'Process exited with code N' 268 (266 when line-anchored), 0 overlap. 16 shell results have no header: 13 still-running unified exec, 3 sandbox-timeout texts. Null-native shell results with a zero header: 144 (66+78); with a nonzero header: 3. Exit column and text header agree on 677/677.",
+      "problem": "My independent C (exit header only) gives R 47/49. 49/49 needs the exploratory, recon-derived 'sandbox error: command timed out' string, which covers exactly 2 positives. 'Wilson [0.93,1.00]' ignores clustering across 6 sessions. 'Exit code on every shell result' is 826/842. The question's own predictors do not reach 'usable': A has R 0/49 and B is partial by the rule. The verdict rests on exploratory C. C is still usable by the rule without the timeout string (P lower bound 0.793, R lower bound 0.823), but only 6 sessions contain positives."
+     },
+     {
+      "corpus": "swechat/opencode",
+      "reproduced": true,
+      "my_numbers": "3735 results, s25. 197 T, 3538 F, fill 100%. Shell: 1140 results; exit filled 1135; nonzero 157, equal to native T shell; 24 of those have blank text. A R 0/197. B all: P 62/85 = 0.729, cluster [0.56,0.852]; R 62/197 = 0.315, cluster [0.224,0.397]. Shell: P 26/36 = 0.722, R 26/157 = 0.166, cluster [0.096,0.253], s13. Other: P 36/49 = 0.735, cluster [0.469,0.873]; R 36/40 = 0.900, cluster [0.647,1.0], s9.",
+      "problem": "The counts reproduce. The 'usable' verdict does not follow the pre-registered rule, which grades text proxies. Under that rule B is partial overall, absent on shell and partial on other. 'Usable' here means a native flag is present, which is a different standard that was not pre-registered. The shell native flag is itself exit != 0, set by the loader."
+     },
+     {
+      "corpus": "swechat/gemini",
+      "reproduced": true,
+      "my_numbers": "2313 results, s10. status success/error/cancelled = 2170/126/17; native T 143 in 8 sessions. Shell: 816 results; 'Exit Code: N!=0' on 280/816, all native F, 8 sessions. A: P 0/280, R 0/143. B: P 0/281, R 0/143. Native-true texts: 'Failed to edit' 109 (102 of them '0 occurrences'), '[Operation Cancelled]' 17.",
+      "problem": "The disjointness follows from how the loader builds the flag: native comes from status only. The loader docstring already says there is no exit field and that 'Exit Code: 1' can carry native False. So P 0/280 is not an empirical finding about text survival. Under the pre-registered rule A, B and C are all 'absent', yet the verdict says 'partial'."
+     },
+     {
+      "corpus": "swechat/copilot",
+      "reproduced": true,
+      "my_numbers": "265 results, s2. 8 native T, 257 F. A R 0/8. B: TP 1, FP 1, FN 7.",
+      "problem": "Minimum n is not met, so the rule gives 'absent' for the text proxy. The verdict 'partial' is off-rule; it actually describes the native flag, with 2 sessions."
+     },
+     {
+      "corpus": "swechat/cursor + simple_text",
+      "reproduced": true,
+      "my_numbers": "cursor: 7 A sessions, 0 results. simple_text: 4 A sessions, 0 results.",
+      "problem": "None."
+     },
+     {
+      "corpus": "aiv_cu",
+      "reproduced": true,
+      "my_numbers": "6107 results, s199. native and exit_code filled 0. 'system' key present 0/6107. stderr non-empty 277/6107 = 0.045, cluster [0.035,0.056]; shell 253/2229 = 0.114, cluster [0.089,0.141]. 'Looks successful' (non-null, non-blank output, no census hit in text): 2698 results, 1888 on shell. stderr non-empty on those: 135/2698 = 0.050, cluster [0.037,0.066]; shell 128/1888 = 0.068, cluster [0.047,0.090]. Failure template in stderr on those shell results: 33/1888 = 0.017, cluster [0.010,0.026]. output_null: gui 3065/3065, shell 325. stderr non-empty given output null: 125/325 = 0.385, cluster [0.308,0.473], versus 128/1904 = 0.067 given output present. Template: 83/325 versus 33/1904. Output null with empty stderr: 200. Stderr-only families: traceback 14/14, timeout 27/27, returncode N!=0 17/17, all with null output. Proxy fires on 118/6107 = 0.019, cluster [0.013,0.026]; shell 116/2229 = 0.052, cluster [0.038,0.072].",
+      "problem": "The counts reproduce. The notes' 'failure text lives in stderr only, in every shell family' is overstated: result text also carries no_such_file 3 (29/32 stderr-only), fatal 7, error_line 3, HTTP 2 and perm_denied 1. stderr also carries the harness string 'bash has exited with returncode 0' 4 times. The proxy is unvalidated, as the measurer states."
+     },
+     {
+      "corpus": "whowhen",
+      "reproduced": true,
+      "my_numbers": "353 results, s63. exit_code filled 87/353 = 0.246, cluster [0.151,0.403], all AG code_exec; 36 nonzero. Strict A and B: P 36/36, R 36/36, s26. Null-neg B: 12 FP, all WebSurfer tracebacks in 12 sessions, all 12 flagged extra.log_leak by the loader. Hand-Crafted: 266 results, 0 exit codes in A (no ComputerTerminal results in this split).",
+      "problem": "The by-construction agreement is correctly flagged. The rule would grade A 'usable'; the measurer downgraded it to 'partial'. That is defensible but off-rule. The 12 FPs are run-script log leakage, not failures of the agents."
+     }
+    ],
+    "kill_logic_ok": false,
+    "overclaims": [
+     "Verdict labels do not follow the pre-registered usable/partial/absent rule, which grades text proxies: opencode 'usable' (rule: B partial, shell absent), gemini 'partial' (rule: absent, P 0/281, R 0/143), copilot 'partial' (min n not met, so absent), whowhen 'partial' (rule: usable), codex 'usable' (only through exploratory predictor C; question predictor B is partial). They actually grade whether a Probe 3 error definition is available, native or text, and no rule for that was pre-registered.",
+     "'The census regexes add no recall in any Claude Code corpus, only false positives' is false for aiv_cc. There B lifts TP from 296 to 534 (R 0.550 to 0.993), and in cc_local B adds 1 TP. The claim holds only for swechat/claude_code.",
+     "'Claude Code is_error ... every non-shell result is true or absent' is false for cc_local: 9 non-shell Workflow results have is_error False.",
+     "Codex 'text carries the exit code on every shell result, including zero', and the notes' 'every legacy shell result opens with an exit header': actual coverage is 826/842 shell results and 558/561 shell_command results. 13 still-running unified exec outputs and 3 sandbox-timeout texts have no header.",
+     "Codex 'R 49/49 (Wilson [0.93,1.00]) s6': Wilson ignores clustering across 6 sessions. 2 of the 49 TPs come only from the recon-derived 'sandbox error: command timed out' string; the exit header alone gives R 47/49.",
+     "aiv_cc 'many B false positives are village-bash JSON turns whose error field holds a real failure the harness never flags' is unvalidated. That field is stderr, which the same analysis concludes is not a failure flag. Only 31 B FPs fall on village bash.",
+     "aiv_cc CIs (s38, s77) treat runs as independent, but 33473/33475 A results come from one sdk_session_id of one agent. The 'usable' verdict rests on a B precision lower bound of 0.736 against the 0.70 bar, which is less secure than stated.",
+     "aiv_cc 'native flag has a structural hole exactly where its computer-use traffic is': mcp__village__computer_use also has 3074 JSON turn records that are never natively flagged, but their error field is non-empty on only 3. So the hole that matters is village bash only.",
+     "Gemini 'native flag and text exit code are DISJOINT' is presented as an empirical finding. It follows from the loader's documented mapping: native comes from status, there is no exit field, and 'Exit Code: 1' can carry native False.",
+     "aiv_cu notes: 'failure text lives in stderr only, in every shell family' is too strong. no_such_file is 29/32 stderr-only, and fatal, error_line, HTTP and perm_denied also appear in result text.",
+     "The question asked for Wilson CIs. The headline reports session-cluster bootstrap, which is appropriate under README rule 5 but gives degenerate [1,1] intervals at P = 1, and switches to Wilson only where the bootstrap collapses (Codex). That gives a mixed and, for small-session units, overconfident account of uncertainty."
+    ]
+   }
+  },
+  {
+   "key": "a5",
+   "per_corpus": [
+    {
+     "corpus": "ALL (separate tool-result accounting)",
+     "answer": "No field in any corpus counts tool-result tokens apart from the rest of the prompt. Every usage record has a single input bucket that mixes tool output, user/system text and earlier model output. Candidates checked: (1) Gemini CLI tokens.tool is on 2505 of 3017 split-A gemini messages but nonzero in 0; total == input + output + thoughts holds 2505/2505, and the IR drops the field. (2) Gemini API toolUsePromptTokenCount is absent on all 752 + 528 aiv_cu rows; totalTokenCount == prompt + candidates + thoughts holds 752/752 and 528/528. (3) Claude usage.iterations[] never has more than one entry (swechat A: 132 single-entry lists; cc_local A: 7463). (4) CC toolUseResult.totalTokens is on 199 Task/Agent results and counts the subagent's own usage, not the result text. (5) The reasoning splits (Codex, OpenCode, Anthropic thinking_tokens, Gemini thoughts) separate model output only. (6) Copilot's toolDefinitionsTokens covers tool definitions (3 rows), and responseTokenLimit is a limit, not a count. Only partial exception: Gemini promptTokensDetails IMAGE in aiv_cu rises in 417/420 (pro) and 191/191 (flash) gaps that hold a GUI result, and in 0/309 and 0/320 gaps without one, in exact steps of 258 or 1064 tokens. So screenshot tool results are counted exactly; text tool output is not.",
+     "decisive_number": "Gemini CLI tokens.tool nonzero in 0/2505; IMAGE modality rises in 417/420 and 191/191 GUI gaps vs 0/309 and 0/320 non-GUI gaps",
+     "json_path": "part1.raw_A_checks.swechat_gemini_tokens_A.counts; part1.separate_tool_result_accounting; part2.aiv_cu/gemini-*.gemini_modality",
+     "verdict": "absent (partial for Gemini screenshot images only)"
+    },
+    {
+     "corpus": "aiv_cc",
+     "answer": "Fields: in/out/cache_read/cache_create on every assistant/call row and on 30098/31619 meta rows. Output is a streaming snapshot (per-response max has median 1). Result rows (100) carry num_turns, cost and durations but no usage in the IR. Conservation, non-image growth pairs: n=27491 in 73 sessions, Pearson 0.989, Spearman 0.985 [0.977, 0.988], chars/token median 2.431. Cross-fit median abs residual is 66.1 tokens [53.1, 82.9] (p90 195.5) vs a typical result of 1447.7 tokens, ratio 0.046 [0.038, 0.054]. delta<0 share 0.015 (449), of which 429 carry a compaction marker; delta==0 is 0. Image pairs: 2079; residual per image 913.7 [904.2, 916.7] tokens.",
+     "decisive_number": "cross-fit median |residual| 66.1 tokens = 0.046 x typical result (1447.7 tokens); Spearman 0.985",
+     "json_path": "part2.aiv_cc",
+     "verdict": "usable (TIGHT)"
+    },
+    {
+     "corpus": "swechat/claude_code",
+     "answer": "Fields: in/out/cr/cc on 4742/4745 assistant and 13620/13620 call rows, plus 3480 thinking-only meta rows. usage_in excludes cache. Output is a snapshot: it varies within 3809 of 6900 multi-row responses. Conservation: fit n=10669 in 125 sessions, Pearson 0.974, Spearman 0.915 [0.897, 0.931], chars/token median 2.225. Cross-fit median abs residual is 125.1 tokens [120.2, 130.3] (p90 607.8) vs a typical result of 168.7 tokens, ratio 0.742 [0.591, 1.0]. With thinking chars added, the residual is 90.1. delta<0 share 0.009 (100): 33 compaction-marked plus 67 unmarked; delta==0 is 8. Image pairs: only 23; residual per image 1316.2.",
+     "decisive_number": "residual 125.1 tokens = 0.742 x typical result; Spearman CI low 0.897",
+     "json_path": "part2.swechat/claude_code",
+     "verdict": "partial (LOOSE)"
+    },
+    {
+     "corpus": "cc_local",
+     "answer": "Fields: as for Claude Code, on all assistant/call rows and 3460/5054 meta rows. Conservation: fit n=4069 in 106 sessions, Pearson 0.878, Spearman 0.831 [0.804, 0.899], chars/token median 1.446, Theil-Sen intercept 851.5 tokens per pair. Cross-fit median abs residual is 586.3 tokens [539.6, 740.4] vs a typical result of 357.8 tokens, ratio 1.639 [1.372, 2.941]. delta<0: 1 of 4095. Post-hoc diagnostic: the residual tracks response k's usage_out (Spearman 0.538 [0.18, 0.614]), while thinking chars are >0 in only 15.1% of pairs. This fits thinking that stays in context but not in the log (interpretation). Image: 25 pairs in 5 sessions; per-image CI spans 0.",
+     "decisive_number": "residual 586.3 tokens = 1.639 x typical result",
+     "json_path": "part2.cc_local",
+     "verdict": "partial (NOT_TIGHT)"
+    },
+    {
+     "corpus": "aiv_cu (anthropic strata)",
+     "answer": "Fields: usage on call rows (opus 684/684, sonnet 683/683, haiku 552/552, fable 436/436, SDK 561/587), plus usage_detail (cache_creation 5m/1h, thinking_tokens). There is no image in the export; a GUI result in the gap is the image proxy. Conservation on non-GUI growth pairs: Spearman opus 0.684, sonnet 0.702, haiku 0.665 (n 188 < 200, INSUFFICIENT), fable 0.407, SDK 0.420, pooled 0.323 [0.146, 0.551] (n=1198, 67 sessions). Cross-fit residuals run 221.4-1173.1 tokens (pooled 709.3); intercepts 312-2269 tokens per pair. Typical result text is 24-74 tokens because GUI results have no text. Per GUI result: 634-1017 extra tokens.",
+     "decisive_number": "pooled Spearman 0.323; residual 709.3 tokens",
+     "json_path": "part2.aiv_cu/anthropic_all (and per-stratum keys)",
+     "verdict": "partial (NOT_TIGHT)"
+    },
+    {
+     "corpus": "aiv_cu (gemini strata)",
+     "answer": "Fields: usage_in (includes cache) and out on 752/752 and 528/528 call rows, plus usage_detail TEXT/IMAGE prompt and cache splits, thoughts and total. The identities hold exactly. Conservation on non-GUI growth pairs: Spearman 0.521 (pro, n=309) and 0.517 (flash, n=318); residuals 185.7 and 352.2 tokens. Using only the TEXT modality does not help: Spearman 0.521/0.517 without a GUI result, -0.01/0.171 with one. IMAGE modality is exact per screenshot (see the ALL row). Post-hoc rule: 119 of 752 gemini-pro usage rows have no api id. Rule off: Spearman 0.500, residual 207.1. Rule on: 0.521, 185.7.",
+     "decisive_number": "Spearman 0.521 / 0.517; IMAGE rises in 417/420 and 191/191 GUI gaps",
+     "json_path": "part2.aiv_cu/gemini-pro, part2.aiv_cu/gemini-flash",
+     "verdict": "partial (conservation NOT_TIGHT; image accounting exact)"
+    },
+    {
+     "corpus": "swechat/opencode",
+     "answer": "Fields: step-finish meta 3414/7742 with in (net of cache), out, cache read/write, cost (>0 on 3233) and reasoning_tokens (>0 on 2589). Conservation: fit n=3234 in 25 sessions, Pearson 0.982, Spearman 0.911 [0.892, 0.930]. Residual 89.2 tokens [79.6, 103.0] vs a typical result of 189.9 tokens, ratio 0.470. delta<0 share 0.045 (154), only 4 of them compaction-marked. Result-only variant (y = delta - usage_out, x = input chars): Spearman 0.951 [0.934, 0.970], residual 19.3 tokens [14.9, 22.5], ratio 0.102 [0.070, 0.135]. That meets the TIGHT thresholds.",
+     "decisive_number": "result-only residual 19.3 tokens = 0.102 x typical result",
+     "json_path": "part2.swechat/opencode",
+     "verdict": "partial (LOOSE; result-only variant meets TIGHT)"
+    },
+    {
+     "corpus": "swechat/gemini (Gemini CLI)",
+     "answer": "Fields: in (includes cache), out and cached on 2419/2923 assistant and 2307/2800 call rows. Raw-only fields thoughts and total (and tool, always 0) are dropped by the IR. Conservation: fit n=2400 in 11 sessions, Spearman 0.820 [0.778, 0.865], residual 117.8 tokens vs a typical result of 227.7, ratio 0.517. Result-only variant: Spearman 0.898 [0.857, 0.931], residual 47.0, ratio 0.174. delta<0: 87, none marked (the format has no compaction marker).",
+     "decisive_number": "residual 117.8 tokens = 0.517 x typical result",
+     "json_path": "part2.swechat/gemini",
+     "verdict": "partial (LOOSE)"
+    },
+    {
+     "corpus": "swechat/codex",
+     "answer": "Fields: token_count meta 701/2314 with last in (includes cached), out and cached, plus cumulative total_token_usage (total = in + out holds 722/722) and reasoning_output_tokens (<= out 701/701). There is no cache_create. Conservation: fit n=655 in 15 sessions, Spearman 0.918 [0.889, 0.944], residual 315.3 tokens vs a typical result of 136.5, ratio 2.311. The residual tracks usage_out (Spearman 0.548). Result-only variant (subtracting visible output only): residual 373.1, ratio 2.783. delta<0: 28 (2 marked).",
+     "decisive_number": "residual 315.3 tokens = 2.311 x typical result",
+     "json_path": "part2.swechat/codex",
+     "verdict": "partial (NOT_TIGHT)"
+    },
+    {
+     "corpus": "swechat/copilot, swechat/cursor, swechat/simple_text, whowhen, aiv_cu openai/compat",
+     "answer": "Copilot has usage_out only (364 rows in 2 sessions), with no input or context field. Cursor (7 sessions), simple_text (4), Who&When (73) and the aiv_cu openai-responses/openai-chat/compat-chat strata (28/17/22 sessions) have no usage at all. Conservation cannot be tested.",
+     "decisive_number": "rows_usage_in = 0 in all listed groups",
+     "json_path": "part2_not_feasible",
+     "verdict": "absent"
+    }
+   ],
+   "surprises": [
+    "Gemini CLI writes tokens.tool on every token record, but it is 0 in 2505/2505 split-A messages. The IR drops it, along with tokens.thoughts and tokens.total.",
+    "aiv_cu Gemini promptTokensDetails counts screenshot images exactly and apart from text. IMAGE tokens rise only in gaps that hold a GUI result (417/420 and 191/191 vs 0/309 and 0/320), in steps of 258 or 1064 tokens.",
+    "aiv_cc images cost a near-constant 913.7 tokens [904.2, 916.7] each, even though the export holds no image.",
+    "cc_local conserves far worse than the other Claude Code corpora: residual 586.3 tokens and intercept 851.5 per pair, vs 66.1 (aiv_cc) and 125.1 (swechat). The residual tracks usage_out (Spearman 0.538), and thinking chars are >0 in only 15.1% of pairs.",
+    "OpenCode's result-only form (subtracting the exact output count) cuts the residual from 89.2 to 19.3 tokens, about 0.10 of a typical result.",
+    "Context drops without a compaction marker are common in some formats: 150 of 3384 OpenCode non-image pairs, 87 of 2487 Gemini CLI, 67 of 10744 SWE-chat Claude Code. Every marked compaction pair dropped (33/33, 429/429).",
+    "aiv_cu context grows by hundreds of tokens per step that no logged text explains: intercepts 312-2269 tokens. The SDK stratum's median chars/token is 0.178.",
+    "Claude usage.iterations[] never has more than one entry (132 lists in swechat A, 7463 in cc_local A).",
+    "119 of 752 aiv_cu gemini-pro usage rows have no api_msg_id, so the USAGE DEDUPE rule cannot apply. A post-hoc rule (logged with before/after) treats each as its own response."
+   ],
+   "verify": {
+    "question": "A5 - Token accounting: which per-turn token fields exist per corpus, does any field count tool-result tokens apart from model-generated tokens, and is token conservation (context delta between consecutive API calls vs appended chars) tight enough to be worth a Phase C probe? I re-derived this independently with scratch code (C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\a5_rederive.py, sens.py, misc.py). I read only the *_A caches plus raw split-A swechat transcripts for fields the IR drops. I read the measurer's script only after I had my own numbers.",
+    "checks": [
+     {
+      "corpus": "ALL (separate tool-result accounting)",
+      "reproduced": true,
+      "my_numbers": "Gemini CLI raw, split A: 3017 gemini messages, 2505 with tokens. tokens.tool is present on 2505 and nonzero on 0. total == input+output+thoughts holds 2505/2505. aiv_cu Gemini IR: totalTokenCount == in+out+thoughts holds 752/752 (pro) and 528/528 (flash). No toolUsePromptTokenCount/Details key in any of these rows. The loader would keep that key if present, and the pass-1 key inventory for the whole population (aiv_cu_pass1_stats.json) has 0 hits. Raw swechat CC split A: usage.iterations present on 5335 usage dicts (5179 empty, 131 with one entry, 0 longer; the measurer has 132). toolUseResult.totalTokens appears on 199 results. The only usage keys containing 'tool' are server_tool_use, which counts requests. IMAGE modality: gemini-pro rises in 417/420 GUI gaps and 0/309 non-GUI gaps, steps 258 (249x) and 1064 (168x). gemini-flash rises in 191/191 GUI gaps and 0/315 non-GUI gaps, plus 5 pairs with no IMAGE field (the measurer reports 0/320), all steps 1064.",
+      "problem": "None substantive. IMAGE is a per-modality total for the whole prompt. It matches screenshot-result tokens only because screenshots are the only images in that harness. It cannot give per-result tokens when several images land in one gap. I did not re-check the cc_local iterations count (7463), because that needs the private raw files."
+     },
+     {
+      "corpus": "aiv_cc",
+      "reproduced": true,
+      "my_numbers": "30001 pairs, of which 27491 non-image growth pairs in 73 sessions. Pearson 0.988, Spearman 0.985 [0.977, 0.988]. Median chars/token 2.416. Theil-Sen slope 0.367, intercept 207-222. Cross-fit median |residual|: 66.6 with the sha1 split (measurer 66.1), 62.8 with an md5 split, 56.3 / 64.6 / 70.7 at p5 / p50 / p95 over 50 random session halves. p90 196.8. Typical result about 1450 tokens, so the ratio is 0.043-0.046. delta<0: 449 (0.015); delta==0: 0. 10 zero-ctx responses dropped. Image pairs: 2061 with delta>0 (2110 at any delta; measurer 2079 after the compaction>image categorization). Residual per image 925.4 (measurer 913.7). Thinking chars >0 in 100% of pairs; with thinking chars added, in-sample residual is 54.1.",
+      "problem": "The TIGHT verdict holds under every fold split. However, all 27491 fit pairs come from ONE sdk_session_id (0a15c7c2...), i.e. one Opus 4.5 agent in one resumed conversation. The 73 'sessions' are its runs. The session-clustered CIs treat dependent runs as independent, so the result covers one agent and one harness."
+     },
+     {
+      "corpus": "swechat/claude_code",
+      "reproduced": true,
+      "my_numbers": "Fit set 10669 pairs in 125 sessions. Pearson 0.974, Spearman 0.915 [0.897, 0.930]. Median chars/token 2.217. Cross-fit residual: 127.9 with sha1 (measurer 125.1); 118.4 / 125.0 / 138.0 at p5 / p50 / p95 over random halves. p90 609.6. Typical result 171.7 tokens (median of all result texts, 504 chars, times the slope; the measurer has 494 chars and 168.7 tokens), so the ratio is about 0.73-0.80. delta<0: 100 (0.009); delta==0: 8. Dropping the 27 zero-ctx (synthetic) responses is essential: with them kept, Pearson falls to 0.610. With thinking chars added, in-sample residual is 93.7 (measurer 90.1). Subtracting usage_out makes the fit worse (cross-fit 159.2, Spearman 0.755), consistent with usage_out being a streaming snapshot. Image: 23 pairs in 8 sessions, 1341 per image (measurer 1316.2).",
+      "problem": "LOOSE is borderline: the ratio CI upper bound in a5.json is 0.9996, at the 1.0 LOOSE/NOT_TIGHT boundary. The notes print it as 1.0."
+     },
+     {
+      "corpus": "cc_local",
+      "reproduced": true,
+      "my_numbers": "Fit set 4069 pairs in 106 sessions. Pearson 0.877, Spearman 0.828 [0.802, 0.897]. Median chars/token 1.439. Theil-Sen intercept 841-850. Cross-fit residual: 590.6 with sha1 (measurer 586.3); 566.9 / 614.7 / 668.2 at p5 / p50 / p95 over random halves. Typical result 345-353 tokens, so the ratio is about 1.6-1.75. delta<0: 1 of 4095. Thinking >0 in 15.1% of pairs. With 9 zero-ctx responses kept, Pearson falls to 0.314. Post-hoc check: subtracting max usage_out cuts the cross-fit residual to 386.0, but Spearman drops to 0.617.",
+      "problem": "None. NOT_TIGHT holds under every split I tried."
+     },
+     {
+      "corpus": "aiv_cu (anthropic strata)",
+      "reproduced": true,
+      "my_numbers": "Non-GUI growth pairs (Spearman): opus 268 pairs / 13 sessions, 0.681; sonnet 215 / 12, 0.705; haiku 188 / 12, 0.649; fable 257 / 14, 0.406; SDK 270 / 16, 0.427. Pooled: n=1198 in 67 sessions, Spearman 0.323 [0.152, 0.540]. Pooled residual: in-sample 704 (measurer's sha1 cross-fit 709.3); md5 cross-fit 1081. SDK intercept 2266. Usage fill: 684/684, 683/683, 552/552, 436/436, 561/587 calls. Median result text is 0 chars in most strata, because GUI results carry no text.",
+      "problem": "The pooled Spearman of 0.323 is lower than every single stratum (0.41-0.70). That comes from pooling strata with different intercepts, so it is a misleading 'decisive number'. With 12-16 sessions the cross-fit residuals depend heavily on the fold split (sonnet: in-sample 229 vs md5 cross-fit 805). NOT_TIGHT holds per stratum regardless."
+     },
+     {
+      "corpus": "aiv_cu (gemini strata)",
+      "reproduced": true,
+      "my_numbers": "gemini-pro: Spearman 0.521 [0.381, 0.656], n=309 in 19 sessions, in-sample residual 187.9 (measurer 185.7). 119 of 752 usage rows have no api_msg_id. Dropping those rows gives Spearman 0.494 (measurer's rule-off value: 0.500). gemini-flash: Spearman 0.517, n=318 in 17 sessions, in-sample residual 336.4 (measurer 352.2). The total-token identity and the IMAGE rises are as in the ALL row.",
+      "problem": "None. NOT_TIGHT holds."
+     },
+     {
+      "corpus": "swechat/opencode",
+      "reproduced": true,
+      "my_numbers": "Full fit: n=3235 in 25 sessions (measurer 3234). Spearman 0.911 [0.891, 0.931]. Cross-fit residual 89.6 with sha1 (measurer 89.2); 87.6 / 97.1 / 105.8 at p5 / p50 / p95 over random halves. Result-only variant (delta - usage_out vs input chars): Spearman 0.952 [0.935, 0.971]; cross-fit residual 19.0 with sha1 (measurer 19.3), 13.1 / 16.1 / 26.5 over random halves. Typical result about 190 tokens, so the ratio is about 0.07-0.14. Subtracting reasoning_tokens as well makes it worse (residual 70.1), so OpenCode does not re-send reasoning. delta<0: 154 of 3389.",
+      "problem": "The result-only typical-ratio was added post hoc; the notes say so. TIGHT for that variant holds under every random split."
+     },
+     {
+      "corpus": "swechat/gemini (Gemini CLI)",
+      "reproduced": true,
+      "my_numbers": "n=2400 in 11 sessions. Spearman 0.819 [0.776, 0.865]. Cross-fit residual 117.4 with sha1 (measurer 117.8). But 50 random session halves give 132.9 / 148.1 / 203.3 at p5 / p50 / p95, the md5 split gives 190.7, and in-sample is 148.6. Typical result 228.4 tokens, so the ratio at the random-split median is about 0.65 (reported: 0.517). Result-only: Spearman 0.902 [0.858, 0.934]; residual 46.7 with sha1, 33.1 / 39.1 / 89.3 over random halves. delta<0: 87 of 2487.",
+      "problem": "The reported residual of 117.8 comes from a sha1 fold split that falls below the 5th percentile of random splits. Its CI [91.8, 137.0] keeps the fit fixed, so it leaves out fold variance, which is large with 11 sessions. LOOSE still holds."
+     },
+     {
+      "corpus": "swechat/codex",
+      "reproduced": true,
+      "my_numbers": "Prereg numbers reproduced: n=655 in 15 sessions, Spearman 0.918 [0.887, 0.944]. Cross-fit residual 317.9 with sha1 (measurer 315.3); 221.4 / 258.9 / 310.3 at p5 / p50 / p95 over random halves. The 'visible output' result-only variant gives 373.1, exactly the measurer's value. Post hoc, subtracting the FULL usage_out (Codex output includes reasoning_output_tokens): Spearman 0.974 [0.935, 0.993]; residual 45.1 with sha1, 34.5 / 52.2 / 100.9 over random halves, in-sample 37.6. Typical result about 135 tokens, so the ratio is about 0.33 (LOOSE, close to TIGHT).",
+      "problem": "NOT_TIGHT follows the pre-registered rule, but the rule subtracts visible output only. The encrypted reasoning that is sent back into the context explains almost the whole residual. 'Codex conservation fails' is therefore an artifact of the pre-registered variant. The notes admit the full-usage_out form was not pre-registered, but still list Codex under 'No'."
+     },
+     {
+      "corpus": "swechat/copilot, cursor, simple_text, whowhen, aiv_cu openai/compat",
+      "reproduced": true,
+      "my_numbers": "usage_in rows = 0 in: copilot (usage_out on 364 rows in 2 sessions), cursor (7 sessions), simple_text (4), Who&When (73), and aiv_cu openai-responses (28 sessions), openai-chat (17), compat-chat (22).",
+      "problem": "None."
+     }
+    ],
+    "kill_logic_ok": true,
+    "overclaims": [
+     "Notes section 7 says conservation 'can carry a mechanism only where the fit is tight' and then lists Gemini CLI and SWE-chat Claude Code, with the result-only form or with thinking chars. Under the pre-registered rule neither is TIGHT. Gemini CLI result-only has a Spearman CI low of 0.857, below 0.90. SWE-chat CC with thinking gives 90.1/168.7 = 0.53, which is LOOSE. And SWE-chat CC has no exact output counts, so the result-only form does not apply to it.",
+     "Caveats say 'every residual is an upper bound on what a real tokenizer would give'. This is unproven: the chars-to-tokens error is not guaranteed to only inflate residuals.",
+     "aiv_cc TIGHT is reported with session-clustered CIs (Spearman [0.977, 0.988], residual [53.1, 82.9], ratio [0.038, 0.054]). All 27491 fit pairs come from one sdk_session_id (one agent, one resumed conversation, 73 runs). The CIs treat dependent runs as independent, so TIGHT holds for one agent and harness, not for the corpus type in general.",
+     "'A tool result whose logged length differs ... by more than about a quarter of a typical result sits outside the p90 of honest pairs' is a claim about detection power. No manipulated results were injected to test it, and the p90 comes from that single agent.",
+     "The single-split cross-fit residuals are reported with CIs that keep the fit fixed, which hides fold variance in small groups. For Gemini CLI (11 sessions), 117.8 is below the 5th percentile of 50 random session splits (median 148.1). For Codex (15 sessions), 315.3 is above the 95th percentile (median 258.9).",
+     "Codex is framed as 'No, as measured', with residual 2.3x and result-only 2.783x a typical result. Subtracting the full usage_out, reasoning included, gives a residual of 45 tokens (about 0.33 of a typical result, Spearman 0.974). The failure comes from the pre-registered visible-output-only choice, not from conservation itself.",
+     "aiv_cu Anthropic's 'decisive' pooled Spearman of 0.323 is a pooling artifact: every stratum on its own is 0.41-0.70. The verdict is unaffected, but the number understates per-stratum conservation.",
+     "'Screenshot tool results are counted exactly and apart from text' (Gemini IMAGE modality) overstates slightly. It is a total over all images in the prompt, identified with screenshots only by inference. 3 of 420 GUI gaps show no rise, and it cannot split several images in one gap.",
+     "The TIGHT vs LOOSE contrast between aiv_cc and SWE-chat CC comes mostly from the denominator: absolute residuals are 66 vs 125 tokens (1.9x), but typical results are 1447.7 vs 168.7 tokens (8.6x). aiv_cc's 'Yes' partly reflects its very large tool results. Its residual relative to delta (0.037 vs 0.214) is better, but the residual in tokens is not."
+    ]
+   }
+  },
+  {
+   "key": "a6",
+   "per_corpus": [
+    {
+     "corpus": "swechat",
+     "answer": "Many Claude Code consistency fields are not in the IR, all with high raw fill. Read file.numLines/startLine/totalLines: 2514/2561, 0.982 [0.972, 0.989], 149 files. Edit structuredPatch oldLines/newLines: 1958/2029, 0.965 [0.952, 0.976]. Grep numLines: 823/939, 0.876 [0.839, 0.908]. stop_hook_summary hookInfos[].durationMs: 792/951, 0.833 [0.694, 0.911]; hookCount/hookErrors/stopReason: 951/951. assistant stop_reason: 19457/19457. Ephemeral cache tokens: 0.998 [0.994, 1.0]. sourceToolAssistantUUID: 0.995 [0.983, 1.0]. The file-history-snapshot entry type is skipped entirely: backupTime/version 1362/1673, 0.814 [0.756, 0.856]. Other formats: Gemini tokens.thoughts/tool/total 2509/2511, 0.999 [0.997, 1.0] and diffStat (replace 0.857 [0.810, 0.898]); OpenCode reasoning time.start/end 0.998 [0.995, 1.0], info.time.completed 0.997 [0.992, 1.0], tokens.total, info.finish 0.994 [0.986, 1.0]; Codex last_token_usage.total_tokens 0.992 [0.980, 0.996], patch_apply_end status 185/185, turn_id and trace_id. The census under-stated what the IR holds: 302 entries it called uncaptured are in the IR, 271 of them swechat (Gemini usage, OpenCode state.time.end as result ts, Codex duration_s, task_complete duration_ms). Skipped Claude Code entry types: 12 types, 421,664 records (queue-operation 353,747 across its 4 subtypes, file-history-snapshot 60,218, ...).",
+     "decisive_number": "Read file.numLines raw fill 2514/2561 = 0.982 [0.972, 0.989] (149 files), uncaptured; the A slice has 4,043 result rows",
+     "json_path": "analysis/out/phase_a/a6.json :: part1_candidates.not_in_ir (corpus=swechat, group=toolUseResult/Read); part1_census_crossref.summary; part3_non_tool_inventory.skipped_summary",
+     "verdict": "partial"
+    },
+    {
+     "corpus": "cc_local",
+     "answer": "Same Claude Code gap, plus fields only local logs carry. Edit structuredPatch: 225/226, 0.996 [0.986, 1.0]. Read numLines: 194/210, 0.924 [0.847, 0.986]. Glob totalMatches: 375/375 (46 files). stop_hook_summary hookCount/hookErrors/stopReason: 596/596. assistant stop_reason: 8640/8640. usage.iterations[]: 0.999 [0.997, 1.0]. thinking_tokens: 0.900 [0.711, 0.998]. apiBlockIndex: 0.727 [0.497, 0.911]. sourceToolAssistantUUID and promptId: 1.0. The cost-state session tallies (totalAPIDuration, totalToolDuration, totalDuration, totalCostUSD, totalLinesAdded/Removed; 34/34 in 33 files) are not emitted, because cost-state is one of 11 untimestamped entry types the loader drops (18,559 raw records). file-history-delta rows are emitted but backup.version/backupTime are dropped (92/92). No progress or turn_duration entries exist in cc_local at all. native_error filled on 0.650 [0.394, 0.790] of A results; exit_code never.",
+     "decisive_number": "Edit structuredPatch oldLines/newLines 225/226 = 0.996 [0.986, 1.0] (11 files), uncaptured (156 A rows); cost-state timers 34/34, not_emitted",
+     "json_path": "analysis/out/phase_a/a6.json :: part1_candidates.not_in_ir (corpus=cc_local); part3_non_tool_inventory.skipped_summary['cc_local|claude_code']",
+     "verdict": "partial"
+    },
+    {
+     "corpus": "aiv_cc",
+     "answer": "The IR keeps the SDK result-row timers and cost (duration_ms, duration_api_ms, total_cost_usd, num_turns: 100/31,619 A meta rows). It drops these: assistant stop_reason and ephemeral cache tokens (13792/13792, 147 runs; 77,716 A rows); result-row usage.* (20/20) and modelUsage.<model>.costUSD/inputTokens (opus 18/20, 0.9 [0.75, 1.0]); init mcp_servers[].status; the row id and content.session_id. No entry type is skipped. native_error is filled on only 0.178 [0.108, 0.247] of A results (33,475 rows, 77 sessions).",
+     "decisive_number": "assistant message.stop_reason 13792/13792 (147 runs) uncaptured; native_error fill 0.178 [0.108, 0.247]",
+     "json_path": "analysis/out/phase_a/a6.json :: part1_candidates.not_in_ir (corpus=aiv_cc); part1_ir_inventory.columns_by_kind.aiv_cc.result",
+     "verdict": "partial"
+    },
+    {
+     "corpus": "aiv_cu",
+     "answer": "Most provider fields are already in the IR: usage columns, usage_detail (thoughts, total, modality, ephemeral cache, service tier), meta.stop_reason / finish_reason, Gemini timing.server_timing_dur_ms and http_date, result updated_at (6,107/6,107). The census missed 27 of these. Still not in the IR: Anthropic stop_sequence (907,506/907,506 rows, population pass 1); Agent-SDK text/thinking message stop_reason (11,679/11,679); Responses item status (4776/20000, 0.239 [0.233, 0.245], head); candidates[].index; tool_calls[].index. There is no latency field outside Gemini, and Gemini server-timing starts in 2025-12. There is no failure flag (native_error / exit_code non-null 0 in A).",
+     "decisive_number": "server-timing present on 1,161/6,107 A calls, 0.190 [0.132, 0.255], Gemini only; Anthropic stop_sequence 907,506/907,506 uncaptured",
+     "json_path": "analysis/out/phase_a/a6.json :: part1_census_crossref.entries + aiv_cu_pass1_name_only_entries (corpus=aiv_cu); part2_parser_surprises[id=au_no_latency_outside_gemini]",
+     "verdict": "partial"
+    },
+    {
+     "corpus": "whowhen",
+     "answer": "There is no timer, clock, token or hash field anywhere in the source. The only status fields are ground-truth labels, which are kept in whowhen_labels.json by design (14 entries, label_store). system_prompt is omitted (356 entries); the question is not emitted, and for 10 of 126 AG tasks it appears nowhere in the history. Hand-Crafted results have no harness exit code (644 of 652).",
+     "decisive_number": "0 timer/clock/token/hash fields; 14 census entries, all label_store",
+     "json_path": "analysis/out/phase_a/a6.json :: part1_census_crossref.summary.by_corpus_status (whowhen|label_store 14, whowhen|omitted_by_loader 1)",
+     "verdict": "absent"
+    }
+   ],
+   "surprises": [
+    "The census over-stated the gap for non-Claude-Code formats. 302 entries it marked uncaptured are in the IR now: OpenCode state.time.end is the result ts, Codex exec duration is extra.duration_s, Codex task_complete duration_ms is in extra, Gemini tokens.input/output/cached are the usage columns, aiv_cu updated_at / stop_reason / finishReason are in extra. In the other direction, 48 census-captured entries are not usable fields; 39 of them sit only inside the args JSON string.",
+    "Gemini shell results: 445 of 1,419 (A+B) have text 'Exit Code: N' with N != 0, and 0 of those have native_error true.",
+    "61 of 96 Codex A+B sessions write no exec_command_end at all, so the exit code exists only in the output header text. 1,346 exited outputs have exit_code null, 85 of them with a nonzero header exit.",
+    "One Gemini session in A (d8bda4a8...) has no timestamp on any event (1,028 of 8,356 Gemini A events) and holds all 487 toolCalls without results. One Claude Code A session (6 events) is also fully untimed.",
+    "cc_local subagent events are stamped after their parent call's result in 113,950 of 114,045 cases (Workflow 111,625 / 111,664). Parent-child ordering is inverted by design (background runs).",
+    "In cc_local, tool_use.input differs from the harness wireToolInputs copy in 4,473 cases (equal 14,250); 4,072 of them are a stripped 'cd ... &&' prefix.",
+    "conversations.parquet lacks 38,178 raw call ids in the 2,200 sampled sessions, including all 10,923 Codex calls (the table has 0).",
+    "Claude Code native_error is filled on only 0.328 [0.285, 0.370] of swechat A results, 0.650 [0.394, 0.790] in cc_local and 0.178 [0.108, 0.247] in aiv_cc, because is_error is absent rather than false. exit_code is 0% for every Claude Code corpus.",
+    "aiv_cu: 613 model-generated mouse_move to (512,384), the bootstrap target, besides the 66,294 synthetic bootstrap turns; 27,752 executed actions matched no provider tool call.",
+    "No build or review report has a parser_surprises or open_problems field. The 80 items were compiled from counters and review checks in 14 of the 15 build files. All 25 cross-report same-fact checks agree. 5 review findings are already resolved in the current build.",
+    "The review-2 cc_local row counts (A 17,762) predate the current cache (A 21,222): thinking-only meta rows were added after the review, so review numbers cannot be compared to caches 1:1.",
+    "The rule set needed 8 corrections after the first run, 7 of them removing false name-level matches: nested toolUseResult keys, coarse AIV slices, joined-row verification, OpenCode messageID. Leaf-name matching against extra is unreliable without per-entry-type slicing."
+   ],
+   "verify": {
+    "question": "A6: Unused fields and parser surprises. (1) Which timer / clock / counter / hash-id / status / token fields exist in raw data but are not in the IR now (census cross-referenced with ir.COLUMNS + every extra key in the A caches, with fill rates)? (2) Which parser surprises do the build and review reports record, deduplicated with counts? (3) Which non-tool entry types do the loaders skip, per corpus, with counts?",
+    "checks": [
+     {
+      "corpus": "swechat",
+      "reproduced": true,
+      "my_numbers": "I enumerated the IR independently (scratchpad a6v/extra_keys.py). It matches the measurer's extra_by_kind exactly: 322 top-level keys across 5 corpora, 0 count mismatches, row totals equal. CC Read results in the A cache: 4,043 rows (2,249 top-level, 1,794 subagent), 120 sessions. 'numLines' appears in 0 extra strings, so the field is uncaptured (reproduced). I read the raw transcripts of the 128 A CC sessions (a6v/swe_raw.py, swe_read.py). Top-level Read toolUseResult file.numLines is on 2,175/2,249 = 0.967 [0.956, 0.978] (117 sessions), consistent with the census 0.982 on its own 149-file sample. Per A IR Read row it is on 2,180/4,042 = 0.539 [0.456, 0.634] (120 sessions). On subagent Read rows it is 6/1,794 = 0.003 [0, 0.013], because nested agent_progress results almost never carry toolUseResult. Other A raw fills: Edit structuredPatch 1,683/1,763 = 0.955 [0.939, 0.969]; Grep numLines 864/1,045 = 0.827 [0.780, 0.864]; stop_hook_summary hookCount 863/863; hookInfos durationMs 566/863 = 0.656 [0.489, 0.798] (census 0.833). The assistant stop_reason key is on 17,929/17,932, but its value is non-null on only 5,191/17,932 = 0.290 [0.212, 0.369] (128 sessions). CC native_error is non-null on 4,464/13,592 = 0.328 [0.285, 0.370] (126 sessions) and exit_code on 0; both exact. Skipped CC types from the census inventory sum to 421,664 (9 types, 12 when queue-operation's 4 subtypes are counted); reproduced. In A the skipped types are: file-history-snapshot 1,467, queue-operation 814, last-prompt 43, summary 40, permission-mode 23, pr-link 17, custom-title 5, agent-name 3. Surprises checked on A: Gemini d8bda4a8 has 1,028/8,356 events without ts and all 487 unresolved calls; CC 145abcf4 is fully untimed (6 events); Gemini shell results with a nonzero 'Exit Code' are 280/816 and 0 of them have native_error true; 12 of 19 Codex A sessions have no exec_command_end. The 38,178 missing-id total is reproduced from the build crosscheck.",
+      "problem": "The decisive number puts a top-level-only fill (0.982) next to the full A slice (4,043 rows). 44% of that slice (1,794 subagent rows) almost never has the field, so actual availability per A Read row is 0.539, not about 0.98. Two listed 'uncaptured' fields are already in the IR. sourceToolAssistantUUID equals the result row's IR parent_uuid on 9,338/9,340 = 0.9998 [0.9993, 1.0] (121 sessions) and the call row's uuid on 9,332/9,340. OpenCode info.finish equals the step-finish 'reason' kept in IR extra.reason (3,414 A rows) on 3,227/3,227 A messages that have both. Every fill comes from key presence. stop_reason '19457/19457' is key presence: the census's own types show null 11,012, str 8,445. stop_sequence is null on 19,397/19,457."
+     },
+     {
+      "corpus": "cc_local",
+      "reproduced": true,
+      "my_numbers": "cc_local_A has 156 Edit result rows, all main. structuredPatch, numLines, totalMatches and totalAPIDuration each appear in 0 extra strings, and there are no cost-state rows, so these fields are uncaptured or not emitted (reproduced). I mapped raw files to A by entry uuid (aggregates only, a6v/cclocal.py). All 156 A Edit ids were found in raw. structuredPatch[].oldLines is on 155/156 = 0.994 [0.980, 1.0], 8 sessions (census 225/226 on 11 files). A-mapped raw files hold 43 cost-state records in 43 sessions and 11 untimestamped types. The build counters give 11 types and 18,559 records (cost-state 113); reproduced. native_error is non-null on 3,359/5,164 = 0.650 [0.394, 0.790] (107 sessions) and exit_code on 0; both exact. The 65 file-history-delta meta rows in A carry no backup.* keys (reproduced). The census inventory over all 1,172 files has no progress or turn_duration groups (reproduced). A has 21,222 rows and review2 recorded A 17,762 (reproduced).",
+      "problem": "The Edit fill rests on 8 A sessions, a narrow base, although the CI is stated. stop_sequence and subagent stop_reason are listed at fill 1.0, but the census types show null on 8,630/8,640 and 8,915/13,048. These are key-presence fills. Main-file stop_reason is genuinely non-null (8,640 str)."
+     },
+     {
+      "corpus": "aiv_cc",
+      "reproduced": false,
+      "my_numbers": "native_error is non-null on 5,957/33,475 = 0.178 [0.108, 0.247] (77 sessions; 538 true, 5,419 false) and exit_code on 0; exact. There are 100 SDK result meta rows, all with duration_ms (reproduced). I matched raw claude_code_messages assistant rows to A by content.uuid (a6v/aivcc.py). The stop_reason key is on 77,716/77,716 A rows (105 sessions), which matches the '77,716 A rows'. Its value is non-null on only 126/77,716 = 0.0016 [0.0005, 0.0037] (tool_use 110, stop_sequence 10, end_turn 6). The census's own types for the 13,792 head rows say the same: null 13,778, str 14. The ephemeral_5m/1h keys are on 77,716/77,716 rows and nonzero on 77,670. Their sum equals cache_creation_input_tokens, which is already the IR column usage_cache_create, on 77,716/77,716 = 1.0 (105 sessions; a6v/eph.py).",
+      "problem": "Half of the decisive number, 'assistant message.stop_reason 13792/13792 uncaptured', counts the key, not a value. The field is null on 99.84% of A assistant rows, so it is not a usable candidate. The ephemeral cache tokens, the other headline uncaptured field, only split a column the IR already holds. The 'partial' verdict still holds through other non-null uncaptured fields: result-row usage and modelUsage, init mcp_servers status, row id and content.session_id. But the stated decisive number does not support it."
+     },
+     {
+      "corpus": "aiv_cu",
+      "reproduced": false,
+      "my_numbers": "Server timing (call extra.timing.server_timing_dur_ms) is non-null on 1,161/6,107 = 0.190 [0.132, 0.255] (199 sessions); exact. It is 0 in all 8 non-Gemini strata and 1,161/1,280 = 0.907 [0.801, 0.986] within Gemini (40 sessions). By month: 0 before 2025-12, 40/80 in 2025-12, all calls after. native_error and exit_code are non-null on 0/6,107 results. I scanned raw computer_use_turns for A sessions (6,455 rows; a6v/aivcu_raw.py). Anthropic agent_messages.stop_sequence has the key on 2,461 rows (77 sessions) and is non-null on 0/2,461. SDK textMessage/thinkingMessage.message.stop_reason is non-null on 0/586 each. The census's own part file agrees: stop_sequence null 7,262/7,262 and SDK stop_reason null 88/88. Anthropic stop_reason is non-null on 2,461/2,461 and is in the IR as call extra meta.stop_reason. Responses items with a status key: 1,088, all non-null.",
+      "problem": "'Anthropic stop_sequence 907,506/907,506 uncaptured' and 'SDK stop_reason 11,679/11,679' are key-path counts from aiv_cu_pass1_stats. Both fields are null on every A row checked and on every census-head row. They are absent signals, not missing ones. By the measurer's own 'uncaptured' rule (expected count >= 3) they should fail, because expected non-null = 0. The server-timing half reproduces exactly."
+     },
+     {
+      "corpus": "whowhen",
+      "reproduced": true,
+      "my_numbers": "In whowhen_A (1,733 rows, 73 sessions), ts, usage_*, api_msg_id, request_id, uuid and model are each non-null on 0 rows. exit_code is non-null on 87/87 Algorithm-Generated results and 0/266 Hand-Crafted results. The census has 15 who_and_when entries: 14 label fields (is_correct / is_corrected, question_ID, level, mistake_reason across json/parquet) plus system_prompt.VSCode_Expert. 4 of the 14 have class HASH_ID (question_ID), and question_ID is UUID-shaped in 128/184 entries of whowhen_labels.json. The 644/652 (A+B) exit-code figure is in whowhen_build.json (exit_code_histogram {0: 8, none: 644}). The A share (0/266) is consistent; B was not opened.",
+      "problem": "The decisive '0 timer/clock/token/hash fields' contradicts the census's own HASH_ID class on question_ID, which is 4 of the 14 label_store entries. It is a label-store id, not a transcript field, so the 'absent' verdict for transcript-side signals stands, but the wording is wrong."
+     }
+    ],
+    "kill_logic_ok": false,
+    "overclaims": [
+     "Fills are key presence presented as value fill. The a6 script never reads the census 'types' (null counts), and the IR inventory also counts keys, not non-null values. Affected: aiv_cc stop_reason '13792/13792' (non-null 126/77,716 in A, 14/13,792 in the census); aiv_cu Anthropic stop_sequence '907,506/907,506' (0/2,461 in A) and SDK stop_reason '11,679/11,679' (0/586 in A); swechat CC stop_reason '19457/19457' (non-null 5,191/17,932 = 0.290 in A raw) and stop_sequence (60/19,457 non-null); cc_local stop_sequence (10/8,640) and subagent stop_reason (4,133/13,048). At least 12 of the 435 'harness_measured, raw fill >= 0.3' candidates are majority-null or all-null: 7 by census types, plus 5 aiv_cu pass-1 stop_* entries that are null in A. These sit inside 'uncaptured' status: their expected non-null count in A is about 0, below the measurer's own threshold of 3.",
+     "'Read file.numLines 0.982 ... the A slice has 4,043 result rows' implies near-full coverage of the A slice. 1,794 of those rows are subagent results with the field on 6/1,794. Per-row availability in A is 2,180/4,042 = 0.539 [0.456, 0.634]. The same top-level-only fill is set against nested-inclusive A row counts in the 1.2 tables.",
+     "'The highest-fill redundancy fields ... are all outside the IR' and the linkage-id list: sourceToolAssistantUUID equals the IR parent_uuid on 9,338/9,340 swechat A results, so it is already captured. OpenCode info.finish equals the step-finish 'reason' that the IR keeps in extra.reason (3,227/3,227 A messages). The ephemeral 5m+1h cache tokens sum to usage_cache_create on 77,716/77,716 aiv_cc A rows, so only the TTL split is new.",
+     "Notes Part 2.1 says 'All have raw fill >= 0.8 in at least one corpus'. turn_duration messageCount, listed among the per-turn tallies, has its only fill at 198/572 = 0.346 (swechat; cc_local has no turn_duration).",
+     "'Who&When has no timer, clock, token or hash field': question_ID is census class HASH_ID (4 of the 14 label_store entries) and is UUID-shaped in 128/184 labels. It is kept as a label, but 'no hash field' is false as written.",
+     "'extra.marker ... on swechat results it is present on 0.646': this is key presence, equal to the CC share of results (13,592/21,025; the CC parser always writes the key). The marker value is non-null on 488/21,025 (cc_exit_code 248, cc_tool_use_error 176, cc_interrupt_reject 61, cc_permission_denied 3).",
+     "'conversations.parquet lacks 38,178 raw call ids ... including all 10,923 Codex calls': the 38,178 total counts 10,899 Codex ids, because 24 synthetic ids are skipped. Minor.",
+     "Verdict note: the per-corpus verdicts (partial x4, absent for whowhen) survive on other non-null fields. Those are swechat top-level Read numLines 0.967 in A raw, cc_local Edit structuredPatch 155/156, aiv_cc result-row usage/modelUsage and row ids, and aiv_cu Responses item status 1,088/1,088 non-null. The aiv_cc and aiv_cu decisive numbers do not support them, and the 'uncaptured' status rule needs a non-null condition before Phase B uses the candidate list. My scripts are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\a6v\\ (extra_keys.py, swe_raw.py, swe_read.py, swe_ir.py, cclocal.py, aivcc.py, aivcu.py, aivcu_raw.py, oc.py, eph.py, stau.py)."
+    ]
+   }
+  }
+ ],
+ "synth": {
+  "probe1_alive": [
+   "swechat/claude_code: ALIVE. Millisecond stamps; identical call/result stamps 37/13,589 = 0.27% [0.13, 0.48]; whole-second stamps 26/27,178 = 0.096% [0.062, 0.131]; 126 sessions; delta p50 0.101 s [0.069, 0.142]. Human waits contaminate shell, edit, write and web latencies: permission-prompt rejections in 19/126 sessions = 15.1% (Wilson [9.9, 22.4]), p50 23.0 s; shell pre-exec offset > 2 s in 50/367 = 13.6% [5.8, 25.9].",
+   "cc_local: ALIVE. 0/5,164 identical; whole-second 6/10,328 = 0.058% [0.023, 0.116]; 107 sessions; p50 0.247 s [0.102, 0.351]. 0/358 Edit/Write calls exceed 2 s, but 9 human-paced rejections occur in 6/107 sessions (p50 4.9 s).",
+   "aiv_cc: ALIVE by the rule. Microsecond row-insert stamps; 0/33,475 identical; 0/66,950 whole-second; 77 runs. Caveats: every delta is at least 0.046 s (an approximately 50 ms floor of unidentified cause); all runs use bypassPermissions, so there are no human waits; 33,473 of 33,475 results come from ONE SDK session of one agent, so the CIs overstate generality.",
+   "swechat/codex: ALIVE, small n. 0/1,120 identical; 15 sessions. Keep tool_raw values separate (write_stdin polls).",
+   "swechat/opencode: ALIVE, small n. Identical stamps 14/3,735 = 0.37% [0.07, 0.72]; 25 sessions. Last digit mildly non-uniform (chi2 p 0.039), which does not affect the verdict.",
+   "swechat/gemini: ALIVE, small n. 0/2,313 identical; 10 sessions; 6 negative deltas, because the call stamp is the message stamp.",
+   "swechat/copilot: ALIVE by the rule only. 0/265 identical, but just 2 sessions, so there is no usable baseline."
+  ],
+  "probe1_killed": [
+   {
+    "unit": "aiv_cu (all 10 strata)",
+    "reason": "Call and result share one row-insert stamp in 6,107/6,107 pairs (199 sessions). Per-action latency is dead. Only the inter-turn gap remains (p50 14.06 s [13.26, 14.92], 6,255 gaps), plus Gemini-only server timing on 1,161 turns. The HTTP Date proxy is whole-second, so it is also dead."
+   },
+   {
+    "unit": "whowhen",
+    "reason": "No timestamps at all: 0 of 353 call/result pairs have a stamp (ts_kind none on every row)."
+   },
+   {
+    "unit": "swechat/cursor",
+    "reason": "No timestamps, and the source records no tool results (206 calls, 0 results)."
+   },
+   {
+    "unit": "swechat/simple_text",
+    "reason": "No tool calls; 20/20 stamps are whole-second."
+   }
+  ],
+  "error_definitions": [
+   {
+    "unit": "swechat/claude_code",
+    "definition": "native_error is True, with null counted as 'not flagged' (is_error is written only on Bash results and on failures). Split the class by marker: exit code / tool_use_error / interrupt-reject / permission denial.",
+    "precision_recall": "Native fill 4,464/13,592 = 0.328 [0.285, 0.370]. Text proxy A (ir.error_marker): P 488/488 (Wilson lower bound 0.992), R 488/614 = 0.795 [0.720, 0.855], 90 sessions. Census regexes add 0 TP and 112 FP. Pre-registered label: usable."
+   },
+   {
+    "unit": "cc_local",
+    "definition": "native_error is True (null = not flagged). Report permission denials (157 of the 311 native-true shell results) separately from command failures. 9 non-shell Workflow results are False, so 'non-shell is True or absent' does not hold here.",
+    "precision_recall": "A: P 331/331, R 331/349 = 0.948 [0.900, 0.977], 74 sessions. Label: usable."
+   },
+   {
+    "unit": "aiv_cc",
+    "definition": "native_error is True for Bash and MCP tools (null = not flagged). The 1,746 mcp__village__bash JSON turns never carry a native flag; a regex on their error field would be a separate, unvalidated class.",
+    "precision_recall": "A: R 296/538 = 0.550 [0.342, 0.791] (partial). B (A plus census regexes): P 534/637 = 0.838 [0.736, 0.897], R 534/538 = 0.993 [0.977, 0.999], 38 runs. Label: usable via B. Caveat: 33,473/33,475 results come from one SDK session."
+   },
+   {
+    "unit": "swechat/codex",
+    "definition": "native_error is True. For shell results with null native, use a nonzero exit header ('Exit code: N' or 'Process exited with code N' in the first 600 chars).",
+    "precision_recall": "Exit header alone: P 47/47, R 47/49 = 0.959 [0.823, 1.0]. C (including a timeout string): P 49/52 = 0.942 [0.806, 1.0], R 49/49. Positives come from only 6 sessions. Label: usable (small n)."
+   },
+   {
+    "unit": "swechat/opencode",
+    "definition": "native_error is True (status=error OR exit != 0). There is no text fallback for shell.",
+    "precision_recall": "Native fill 3,735/3,735. Best text proxy B: P 62/85 = 0.729, R 62/197 = 0.315 [0.224, 0.397] (partial). Shell recall 26/157 = 0.166 [0.096, 0.253] (absent). The text-proxy label is partial; the native flag is complete."
+   },
+   {
+    "unit": "swechat/gemini",
+    "definition": "Two separate classes: tool-call failure = native_error True (status error/cancelled); command failure = text 'Exit Code: N' with N != 0. Do not pool them.",
+    "precision_recall": "A: P 0/280, R 0/143. The two classes never co-occur, which follows from how the loader builds them. The text-proxy rule label is absent (the measurer said partial). 10 sessions."
+   },
+   {
+    "unit": "swechat/copilot",
+    "definition": "native_error is True.",
+    "precision_recall": "8 native positives in 2 sessions. The text proxy is below the minimum n, so its label is absent."
+   },
+   {
+    "unit": "swechat/cursor, swechat/simple_text",
+    "definition": "None. There are no tool results; Probe 3 is dead for these formats.",
+    "precision_recall": "n/a (0 results)."
+   },
+   {
+    "unit": "aiv_cu",
+    "definition": "No native failure flag (stderr is not a failure flag). Only an unvalidated proxy: stderr matches 'bash has exited with returncode N!=0', a harness timeout, or a census failure family. Report results as proxy-based or drop them.",
+    "precision_recall": "The proxy fires on 118/6,107 = 0.019 [0.013, 0.026]. Precision and recall are not measurable (no reference). The stderr rate varies by model family."
+   },
+   {
+    "unit": "whowhen",
+    "definition": "exit_code != 0 on Algorithm-Generated code_exec results only. No failure signal exists for other agents.",
+    "precision_recall": "Exit code present on 87/353 (36 nonzero). A: P 36/36, R 36/36, but this is tautological (the same header feeds both)."
+   }
+  ],
+  "token_conservation_verdict": "No corpus has a field that counts tool-result tokens separately. Gemini CLI tokens.tool is nonzero in 0/2,505 records. The only exception is Gemini computer-use screenshots: IMAGE-modality tokens rise in 417/420 (pro) and 191/191 (flash) gaps that contain a GUI result, and in 0/309 gaps without one. Context-delta conservation is TIGHT only in aiv_cc: Spearman 0.985 [0.977, 0.988]; median |cross-fit residual| 66.1 tokens (random-split median 63.8); typical result 1,447.7 tokens, ratio 0.046 [0.038, 0.054]. That result comes from one agent: all 27,491 fit pairs are in one SDK session. OpenCode's result-only form (delta minus the exact usage_out) meets the TIGHT thresholds: Spearman 0.951 [0.934, 0.970], 19.3 tokens = 0.102 [0.070, 0.135] of a result, random-split median 15.5; its relative ratio was added post hoc. LOOSE: swechat Claude Code 0.742 [0.591, 0.9996] (borderline); OpenCode chars form 0.470; Gemini CLI 0.517, which becomes 0.646 at the random-split median (the reported sha1 split was optimistic). NOT_TIGHT: Codex 2.311 (a post-hoc form subtracting all output tokens gives 0.334 [0.139, 0.658], which would be LOOSE and must be pre-registered before use); cc_local 1.639; every aiv_cu stratum (Spearman 0.407 to 0.702; haiku INSUFFICIENT). Not feasible (no usage data): copilot, cursor, simple_text, whowhen, aiv_cu OpenAI/compat. Re-fitting on 50 random session splits changes no verdict. Every compaction-marked pair is a context drop (33/33, 429/429). Unmarked drops are a known false-positive class: 67/10,744 swechat CC, 150/3,384 OpenCode, 87/2,487 Gemini CLI.",
+  "other_gate_notes": [
+   "Join completeness (A2): usable for swechat claude_code (31/13,620 = 0.0023 [0.0013, 0.0036], though 20/127 sessions have at least one unanswered call), codex, opencode, cc_local (1/5,165) and aiv_cc (4/33,479). swechat gemini is usable once the single no-result session (487 calls) is excluded. Cursor is absent. Copilot is insufficient n: per-call Wilson upper bound 0.021 > 0.01 on 2 sessions. aiv_cu cannot be tested because the loader builds every pair. whowhen is partial: 20/373 = 0.054 [0.030, 0.082], or 8/361 excluding never-executed AG code.",
+   "Use the raw-transcript IR, never conversations.parquet. The table orphans 0.1877 of distinct results (76,618/408,086) against 16/633,366 in the raw pass, and it silently caps 1,552 results at 10,256 chars; the raw IR has 0/21,025 capped and 1,395 results longer than that. Known IR loss: one salvaged, truncated OpenCode session in split A (ses_3353a8139ffeLXvY9MIuOitgt6) has 185 IR calls against 417 table rows; join metrics cannot see this.",
+   "Truncation (A3) must gate any claim-vs-output mechanism. Gemini CLI masks 840/2,313 = 36.3% [25.2, 43.2] of results. Claude Code persisted-output spills (65 results in 36/126 swechat CC sessions) show only a ~2 KB preview, a candidate fabrication surface. cc_local Glob truncation (186 results) is caught by the structured flag or a 101-line text shape (186/186 vs 0/241), not by the catalogue. The catalogue missed an older CC spill format (aiv_cc 5, cc_local 1). aiv_cu and whowhen have no marked truncation, but unmarked caps are not excluded.",
+   "CC error-result middle elision keeps the 'Exit code N' head: 15/15 in swechat and 15/15 in aiv_cc. The like-for-like baseline on untruncated failures is 233/285 = 0.82 [0.73, 0.88]. Error detection from text is valid on these truncated results.",
+   "aiv_cc is effectively one agent (one SDK session holds 33,473/33,475 results and all conservation pairs). Every aiv_cc CI over 'runs' overstates generality; treat aiv_cc findings as a single-agent case study.",
+   "A6: the IR omits most cross-record redundancy: CC Read numLines (top-level fill 0.982), Edit structuredPatch line counts (0.965), stop-hook durations (0.833), OpenCode reasoning/completion clocks. Using them needs a loader change, decided by day. Fills in the A6 candidate list are key presence: of the 435 high-fill candidates, 7 are majority-null by value (e.g. aiv_cc stop_reason non-null 14/13,792) and 7 aiv_cu entries have no value counts. Require non-null before using a candidate.",
+   "Split hygiene: several Phase C lenses read *_B.parquet by design (token_conservation, two_clocks, changepoints, distributions, outliers, sequences, ids_and_clocks_in_ids; aiv_narration and correlations read both splits). Phase B thresholds must come from Phase A only, and Phase C findings on B do not count as held-out confirmation.",
+   "Verification status: A1, A2, A3 and A5 reproduced every check, with corrections to interpretation. A4 reproduced every count, but its unit labels did not follow the pre-registered text-proxy rule (kill_logic flagged). A6 had 2 of 5 decisive numbers not reproduced (aiv_cc and aiv_cu fills counted keys, not values). The A3-A6 verifier outputs were truncated in my input; I recovered them verbatim from the workflow's verify:a3..a6 subagent transcripts and saved them in analysis/out/phase_a/verification/.",
+   "Files: C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a_merge.py; C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a_resolve.py; C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\resolve.json; C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\verification\\ (7 files); C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a.json (12.5 MB: meta, verification, gate_rules, headline, 39 resolutions, sources); C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\PHASE_A.md (153 lines). Nothing committed."
+  ],
+  "resolutions": [
+   "A2-2 (changes a gate label): swechat/copilot 'usable' rested on a 2-cluster bootstrap. The per-call Wilson upper bound for 1/266 is 0.021 > 0.01, so the rule gives 'partial'; the honest label is insufficient n (2 sessions).",
+   "A2-3: re-applying the A2 rule with per-call Wilson upper bounds changes no other unit. OpenCode 0/3,735 (0.0010), aiv_cu 0/6,107 (0.0006), cc_local 1/5,165 (0.0011), aiv_cc 4/33,479 (0.0003), codex 2/1,122 (0.0065) and swechat CC 31/13,620 (0.0032) stay usable. The session-level Wilson bound (0.133 for 0/25) bounds a different quantity.",
+   "A4-1 (changes a gate label): pre-registered text-proxy labels are swechat CC usable (A), cc_local usable (A), aiv_cc usable (B; A partial), codex usable (C; B partial), opencode partial (shell absent), gemini absent, copilot absent (min n not met), whowhen usable but tautological. The measurer's labels (opencode usable, gemini partial, copilot partial, whowhen partial) graded native-flag availability instead. Both are reported.",
+   "A1-1: the 34/126 swechat CC sessions with cc_interrupt_reject include 15 ExitPlanMode, 3 AskUserQuestion and 1 '[Request interrupted' results. Permission-prompt rejections are 40 results in 19/126 = 15.1% (Wilson [9.9, 22.4]), p50 23.0 s. The verifier's 41 in 20 sessions also counts the interrupt.",
+   "A1-2: verifier right. The two markers differ in meaning; the corpora do not. cc_permission_denied is machine-fast in both (swechat 3, p50 0.022 s; cc_local 173, p50 0.007 s). cc_interrupt_reject is human-paced in both (swechat p50 23.4 s; cc_local 9 results in 6/107 sessions, p50 4.9 s).",
+   "A1-3: the bash_progress figure of 56/373 includes 6 Task calls (all > 2 s, p50 68.9 s). Shell only: 50/367 = 13.6% [5.8, 25.9].",
+   "A1-4: the maximum delta of 78,675.683 s is a main-thread Task call (is_subagent False).",
+   "A1-5: the aiv_cc non-last-block absorption is a one-session Write effect (160/160 calls in 1 run, 0/160 results before the last block). For other tools, results usually arrive before the last block: grep 41/41, read 45/68, get_events 502/993, shell 549/1,570.",
+   "A1-6: both numbers stand: minimum inter-row gap 0.018192 s and minimum call-to-result 0.046118 s. The ~50 ms floor is measured; its cause is not identified.",
+   "A1-7: OpenCode last digit on 8,298 distinct stamps gives chi2 p 0.039. Verdict unaffected.",
+   "A2-1: 695 structural unpaired calls (206 + 488 + 1), not 694; 727 - 695 = 32.",
+   "A2-4: verifier right. All 162 conversations.parquet ids missing from the raw IR come from one salvaged, truncated OpenCode document (185 IR calls vs 417 table rows; 162 table ids not in raw, 0 raw ids not in the table), not from REDACTED-id handling.",
+   "A2-5/A2-6: aiv_cu join completeness is untestable (pairing is by construction), not 'usable'. The 1,367 orphan-id check covered 48 sessions (2 of the 50 sampled had no file).",
+   "A3-1: Gemini <tool_output_masked> appears on 840/2,313 = 36.3% [25.2, 43.2]. The 844 included 4 unmasked head/tail cuts. Masked shell results: 97/266 carry an Exit Code line.",
+   "A3-2/A3-3: the like-for-like 'Exit code N' baseline is 233/285 = 0.82 [0.73, 0.88] in swechat and 200/267 = 0.75 [0.57, 0.86] in aiv_cc; the measurer's baselines measured 'any marker'. Gemini writes Exit Code only for nonzero exits (0 'Exit Code: 0' lines in 816 shell results), so retention under masking cannot be measured.",
+   "A3-4/A3-5/A3-6: the CC Glob flag is absent on 34 of 44 text-marked swechat truncations. The older CC spill format adds 5 aiv_cc results (any truncation 40/33,475 = 0.12% [0.04, 0.28], 11/77) and 1 cc_local result (text 23/5,164 = 0.45%; with flag 209/5,164 = 4.05% [2.02, 10.03]). A 101-line text shape separates the cc_local Glob truncations 186/186 vs 0/241.",
+   "A4-2: the Codex exit header alone gives P 47/47, R 47/49 = 0.959 [0.823, 1.0]; 49/49 needs the timeout string. The header is present on 822/842 shell results (head-600 rule).",
+   "A4-3/A5-3: 33,473/33,475 aiv_cc results and 27,491/27,491 conservation fit pairs belong to one SDK session.",
+   "A4-4/A4-5: cc_local has 9 non-shell native-False Workflow results. Census regexes do add recall in aiv_cc (TP 296 to 534) and in cc_local (331 to 332); the 'no added recall' claim holds only for swechat CC.",
+   "A5-1: over 50 random session splits, no conservation verdict changes. Gemini CLI's residual is 147.2 at the random-split median (vs 117.8 on the sha1 split; ratio 0.646, LOOSE). Codex's is 251.5 (ratio 1.84, NOT_TIGHT). aiv_cc 63.8 (0.044, TIGHT). swechat CC 124.8 (0.740). OpenCode 96.2 (0.506). cc_local 609.3 (1.70).",
+   "A5-2: post hoc, Codex with the full usage_out subtracted gives Spearman 0.974 [0.936, 0.994], residual 45.1 tokens, ratio 0.334 [0.139, 0.658]. That would be LOOSE (not 'close to TIGHT'); the Phase A verdict stays NOT_TIGHT.",
+   "A5-4/A5-5: the swechat CC ratio CI upper bound is 0.9996 (borderline LOOSE). Gemini CLI result-only (Spearman lower bound 0.857) and SWE-chat CC with thinking (90.1/168.7 = 0.53) are LOOSE, not tight-capable.",
+   "A6-1: of the 435 high-fill A6 candidates, 7 are majority-null by census value counts (stop_reason/stop_sequence) and 7 aiv_cu entries have no value counts; 421 are majority non-null.",
+   "A6-2/A6-3/A6-4: 1,794 of the 4,043 A Read rows are subagent rows (the census 0.982 is top-level only). extra.marker is key-present on 13,592/21,025 but non-null on 488. Result parent_uuid already links to the call's uuid on 9,557/9,679 top-level swechat CC pairs, so sourceToolAssistantUUID adds nothing there.",
+   "A6-5/A6-6/A6c: Who&When question_ID is census class HASH_ID (label store). The Codex ids missing from the table are 10,899 of 10,923 (24 synthetic). The census I5 stores 94 uncheckable results as 94 passes. The census 'IR drops' second clocks is superseded by A6 (302 entries already captured). Census O1/O7/O8/O12/O17 corrections need full raw populations and were not re-derived (no Phase A gate depends on them)."
+  ]
+ },
+ "prereg": {
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\PREREG.md",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\prereg.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\prereg_common.py",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\prereg_calibration.py",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\prereg_calibration.json"
+  ],
+  "units_per_probe": "B session counts below come from the build reports (counts only, no B data read). swechat/copilot and swechat/simple_text have 0 B sessions, so they are NOT_TESTABLE in every probe.\n\nProbe 1 (latency physics):\n- Testable: swechat/claude_code (1,679 B sessions), cc_local (186), aiv_cc (189 runs; single-agent case study), swechat/codex (77), swechat/opencode (214), swechat/gemini (22; small n).\n- Killed in A1: aiv_cu (call and result share one stamp in 6,107/6,107 pairs), whowhen (no stamps), swechat/cursor (no stamps, no results), swechat/simple_text.\n- Phase B first re-applies the A1 kill rule to the B pairs.\n\nProbe 2 (knowledge precedence):\n- Full: swechat/claude_code, codex, opencode, gemini, cc_local, whowhen.\n- Antecedents incomplete (DEAD becomes INCONCLUSIVE): aiv_cc (no prompt or memory in the IR; earlier runs are other sessions), aiv_cu (no prompt, memory or user text; GUI results have no text), swechat/cursor (no results).\n- Subagent threads are a separate stratum with their own verdict.\n\nProbe 3 (pushback):\n- Testable: swechat/claude_code, cc_local, aiv_cc, codex, opencode, gemini, aiv_cu (proxy errors, capped at WEAK), whowhen Algorithm-Generated (78 B sessions).\n- DEAD: swechat/cursor, swechat/simple_text, whowhen Hand-Crafted.\n\nProbe 4 (entropy):\n- Testable: swechat/claude_code, codex, opencode, gemini, cc_local, aiv_cc, aiv_cu, whowhen.\n- Also pre-registered: pooled cells swechat/* and public/* (everything except cc_local).\n- swechat/cursor has no machine control class.",
+  "verdict_rules": "All rules are fixed in prereg.json and implemented mechanically. Every number below is in prereg.json resolved, prereg_calibration.json or phase_a.json.\n\nGlobal rules:\n- Session-clustered CIs via lib/stats (1,000 draws, seed 20261003).\n- Rates need a denominator of at least 30 from at least 5 sessions; below that a cell is INSUFFICIENT_N.\n- Zero-count rates use the per-event Wilson upper bound.\n- aiv_cc verdicts are always labelled single-agent case study.\n\nProbe 1 (latency physics):\n- No-human-wait filter: the A1 proposal, pre-registered. It keeps 2,387 of 13,589 swechat CC pairs on A.\n- FLAT kill: a tool is FLAT if its delta IQR is at most 2x the stamp resolution, or its IQR of log10 delta is below 0.05. The unit is DEAD if every work-bound tool is FLAT. On A the smallest work-bound IQR is 0.101.\n- Generation-time model: T_gen = chars x 0.25 / G90, and r = latency / T_gen. G90 is the A-split p90 output rate: swechat CC 65.3, cc_local 91.4, aiv_cc 47.1 (char-based), codex 76.5, opencode 62.5, gemini 94.3 tokens/s. Only pairs with T_gen of at least 1 s count.\n- fp_share (share of work-bound pairs with r >= 1): ALIVE if <= 0.05 with CI hi <= 0.10; WEAK if <= 0.20; else DEAD.\n- AUC (generation-bound vs work-bound): ALIVE if >= 0.85 with CI lo >= 0.75; WEAK if >= 0.70; else DEAD.\n- Unit verdict: ALIVE needs both ALIVE. Without a generation-bound control the unit is at most WEAK.\n- Downgrade: ALIVE becomes WEAK if the floor is UNSTABLE (more than 10% of series have a factor-2 step at p <= 0.01, minimum segment 20) or if most tools shift relative to their A p5 floors.\n\nProbe 2 (knowledge precedence):\n- Primary statistic S_deep: the share of successful first-try deep accesses that are unsourced and not enumerated.\n- Deep thresholds D per unit from A p75: swechat CC 6, opencode 6, gemini 3, cc_local 3, aiv_cc 6, others the pooled 6.\n- ALIVE if S_deep <= 0.05 with CI hi <= 0.10; WEAK if <= 0.20; DEAD if > 0.20. Minimum 100 accesses from 20 sessions; otherwise the rule falls back to S_path_any, capped at WEAK.\n- Instrument check: swechat CC edit old_string symbols must be unsourced at <= 0.10, or every Probe 2 verdict is capped at WEAK.\n\nProbe 3 (pushback):\n- Long session = paired calls >= the A p75 (L75): swechat CC 134, cc_local 20, aiv_cc 666, codex 120, opencode 185, gemini 405, aiv_cu 40, whowhen AG 3. L90 is secondary.\n- Zero-error tail Z (share of long sessions with no errors): ALIVE if Z <= 0.10 with Wilson hi <= 0.20 and n_long >= 30; WEAK if <= 0.30; else DEAD; fewer than 20 long sessions is INSUFFICIENT_N.\n- Reaction: the retry effect R_fail - R_ok, where a retry is the same tool with Jaccard >= 0.5. ALIVE if CI lo >= 0.10; WEAK if CI lo > 0; else DEAD.\n- Early vs late: descriptive only.\n\nProbe 4 (entropy):\n- Hex tokens of length 7/8/32/40/64 with at least one digit and one letter. The chi-square uses expected counts conditioned on that filter. Effect size: w_adj = sqrt(max(0, (chi2 - 15) / N)).\n- N_min = 1,131 symbols (power 0.8 for w = 0.15 at alpha 0.01).\n- Instrument: the control (M_git, else M_all) must have w_adj CI hi <= 0.15. On A: swechat CC 0.055, aiv_cc 0.081, opencode 0.107, aiv_cu 0.121.\n- ALIVE if the unsourced model-typed class (T_orig) has w_adj >= 0.15 and its CI lo is above the control's CI hi; WEAK if its point is above the control's CI hi; DEAD if its point is at or below it.\n- Round numbers are compared against the machine class (M_all), not against 0.1, because machine last-0 shares are already 0.111 to 0.316 on A.",
+  "notes": "1. **Calibration scope.** `prereg_calibration.py` (`python -m analysis.probes.prereg_calibration`, about 78 s) read only the split-A caches; every load goes through an assert on the split. It computed threshold inputs and feasibility counts only. It computed no Phase B outcome on A: no r, fp_share or AUC, no unsourced shares, no zero-error or retry rates, and no digit test on model-typed classes. The only digit tests it ran were on the machine control classes, as instrument calibration. I did not read any Phase C note or output, because some of them read split B.\n\n2. **Shared definitions.** `prereg_common.py` holds the frozen SPEC, all 49 regexes and the helper code (extraction, error classes, digit test, change point), so Phase B can import identical code. `prereg.json` records its sha256 (`bb50f690...`), the calibration script's sha256 and the input hashes. Phase B must check these match before running. I ran toy checks on the helpers and they behave as documented.\n\n3. **Two rules revised before any B data existed**, logged in `prereg.json` `drafting_notes`:\n   - **Probe 2 depth threshold** changed from one pooled value to a per-unit value with a pooled fallback. A pooled D of 6 would leave Gemini with 5 of 204 deep paths and cc_local with 6 of 97.\n   - **Probe 4 instrument ceiling** changed from 0.10 to 0.15. A perfectly uniform control of 1,131 symbols has a bootstrap CI upper bound of about 0.105, so 0.10 would fail sound controls by chance.\n\n   I also added the pooled Probe 4 cells, and a rule that a control with fewer than N_min symbols gives INSUFFICIENT_N.\n\n4. **Nulls announced in advance.** The feasibility projection scales A counts by the B/A session ratio; it is not a measurement.\n   - **Probe 4:** the primary hex test is likely testable only in aiv_cu (projected 26,800 symbols) and opencode (1,370). It is likely INSUFFICIENT_N in swechat CC (931), aiv_cc (328), cc_local (120), and codex, gemini and whowhen (0). The pooled cells exist for this reason.\n   - **Probe 3:** gemini and codex will likely have too few long sessions (projected 4.4 and 16.2, against a minimum of 20).\n   - **Probe 1:** codex has no generation-bound control and gemini projects 14.7 control pairs, so neither can be ALIVE.\n   - **Probe 2:** cc_local and codex will likely fall back to S_path_any, capped at WEAK.\n\n5. **Other facts from A that the pre-registration relies on.**\n   - aiv_cc per-response `usage_out` has a median of 1 token, so its generation rate is char-based.\n   - aiv_cu sessions cluster at about 40 turns (L75 40, L90 41).\n   - The swechat CC hook rule alone removes 1,767 pairs.\n   - Machine integers are already round: last digit 0 in 0.111 to 0.316 of values.\n\n6. **Not done.** Nothing was committed or stashed. No lib, loader or cache file was edited, and no `*_B.parquet` was opened. B session counts came from the build reports only.\n\n7. **Left to Phase B.** The Phase B probe scripts still have to be written. They should import `prereg_common.py` and write to `analysis/out/phase_b/<probe>.json`."
+ }
+}
