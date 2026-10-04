@@ -1,0 +1,12 @@
+{
+ "corpus": "glm_tb21",
+ "purpose": "Held-out split H for the Track C eval harness. Never read during tuning or analysis. Separate from analysis/HELDOUT_MANIFEST.json (not edited).",
+ "n_H": 23,
+ "n_E": 23,
+ "sha256_sorted_H_ids": "3449a5b82f54c3d5868ecfc903abba52bcb1c423e9986f6c71333546dd87b027",
+ "hash_rule": "sha256 of '\\n'.join(sorted(H ids)).encode() (as analysis/probes/phase_e_split.py)",
+ "ids_file": "analysis/cache/samples/glm_tb21_EH.json#H",
+ "seed": 20261006,
+ "loader": "analysis/loaders/load_glm_tb21.py",
+ "viewed_before_split": []
+}

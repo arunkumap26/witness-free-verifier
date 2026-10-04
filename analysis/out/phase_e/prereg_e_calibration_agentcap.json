@@ -1,0 +1,368 @@
+{
+ "corpus": "agentcap",
+ "units": {
+  "agentcap/opencode": {
+   "calibrated_as_unit": "swechat/opencode",
+   "sessions_A": 81,
+   "unit_result": {
+    "sessions_A": 81,
+    "length_terciles": {
+     "sessions": 72,
+     "cuts": [
+      4.0,
+      12.333333333333329
+     ],
+     "rule": "A-split terciles of paired calls/session"
+    },
+    "dominance_context": {
+     "repo": {
+      "top_share_events": 1.0,
+      "top_share_sessions": 1.0,
+      "top_session_share_events": 0.07990012484394507,
+      "n_clusters": 1,
+      "dominated_at_A": true
+     },
+     "model": {
+      "top_share_events": 0.23595505617977527,
+      "top_share_sessions": 0.20833333333333334,
+      "n_clusters": 7,
+      "dominated_at_A": false
+     }
+    },
+    "bracket": {
+     "responses_decoded": 0
+    },
+    "n1": {
+     "qualified_by_class": {
+      "auto_read": 310,
+      "shell": 300
+     },
+     "qualified_sessions": 59,
+     "repeat_coverage_counts_A": {
+      "auto_read": {
+       "calls_in_repeat_groups": 23,
+       "qualified_calls": 310,
+       "sessions": 49,
+       "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+      },
+      "shell": {
+       "calls_in_repeat_groups": 11,
+       "qualified_calls": 300,
+       "sessions": 41,
+       "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+      }
+     },
+     "residuals": {
+      "n": 32,
+      "n_sessions": 8,
+      "by_class": {
+       "auto_read": 23,
+       "shell": 9
+      },
+      "quantiles": {
+       "n": 32,
+       "n_sessions": 8,
+       "q0.005": -0.28562537768291474,
+       "q0.01": -0.27022075970184845,
+       "q0.05": -0.187590606068256,
+       "q0.25": -0.060230657640918395,
+       "q0.5": 0.0,
+       "q0.75": 0.060230657640918395,
+       "q0.95": 0.19434685872820856,
+       "q0.99": 0.27022075970184856,
+       "q0.995": 0.2856253776829146
+      }
+     },
+     "bounds_ok": false
+    },
+    "latency_counts": {
+     "n3": {
+      "gaps": 776,
+      "sessions_with_gaps": 71,
+      "sessions_ge_20_gaps": 10
+     },
+     "n4": {
+      "W_pairs": 310,
+      "W_k_ge_2": 3,
+      "W_k_ge_2_sessions": 2,
+      "W_k_ge_4": 0,
+      "G_pairs": 25,
+      "G_k_ge_2": 0,
+      "G_k_ge_2_sessions": 0,
+      "k_hist_W": {
+       "1": 307,
+       "2": 2,
+       "3": 1
+      },
+      "note": "eligibility counts; G here omits the Phase B nested-human-marker exclusion (count only)"
+     }
+    },
+    "cold_start": {
+     "eligible_sessions": 23
+    },
+    "n2": {
+     "granularity": {
+      "responses": 705,
+      "G1_share_both": 0.9971631205673759,
+      "G2_median_usage_out": 100.0,
+      "G2_not_partial": true,
+      "G3_identifiable": true,
+      "GRANULAR": true
+     },
+     "tau": 0.2604166666666667,
+     "tau_n": 523,
+     "tau_sessions": 68,
+     "eligible_responses": 309,
+     "eligible_sessions": 57,
+     "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+    },
+    "n5": {
+     "a_determinism_pairs": {
+      "pairs": 2,
+      "sessions": 1
+     },
+     "b_sort_eligible": {
+      "ls": {
+       "outputs": 33,
+       "sessions": 14
+      },
+      "grep_n": {
+       "outputs": 18,
+       "sessions": 9
+      }
+     },
+     "d_whitespace_eligible": {
+      "ls_long_alignment": {
+       "outputs": 29,
+       "sessions": 13
+      },
+      "wc_alignment": {
+       "outputs": 1,
+       "sessions": 1
+      },
+      "pytest_banner": {
+       "outputs": 1,
+       "sessions": 1
+      }
+     },
+     "c_truncation_A": {},
+     "e_size_families_A": {
+      "families_ge_100_results_ge_10_sessions": 0,
+      "families_total": 23
+     },
+     "f_error_fidelity_checkable": {
+      "frames": 0,
+      "sessions": 0,
+      "error_results": 183
+     }
+    },
+    "f3_round": {
+     "T_orig_distinct_values": 4,
+     "excluded_strict_any_occurrence": 4,
+     "excluded_first_occurrence": 3,
+     "first_occurrence_json_number": 2,
+     "remaining_strict": 0,
+     "remaining_first": 1,
+     "note": "counts only; no round-number share was computed on A"
+    },
+    "n6_field_gate": {
+     "pairs": 801,
+     "pairs_stamped": 801,
+     "pairs_distinct_stamps": 801,
+     "request_ids": 1513,
+     "request_ids_decodable": 0,
+     "image_usage_rows": 0,
+     "usage_granular": true,
+     "error_definition": true,
+     "results_with_text": 801,
+     "commit_claims": 0,
+     "external_commit_table": true,
+     "raw_structured_counters": false,
+     "external_usage_tally": true
+    }
+   },
+   "resolved": {
+    "n1": {
+     "bounds": [
+      -1.255296488587848,
+      1.5676685275828843
+     ],
+     "source": "pooled bounds from prereg_e.json resolved.n1 (unit has < 500 A residuals or < 5 sessions)",
+     "n_A": 32,
+     "sessions_A": 8,
+     "pooled_n_A": 4503,
+     "pooled_sessions_A": 115
+    },
+    "n2": {
+     "GRANULAR": true,
+     "G1_share_both": 0.9971631205673759,
+     "G2_median_usage_out": 100.0,
+     "responses_A": 705,
+     "tau": 0.2604166666666667,
+     "tau_n_A": 523
+    },
+    "length_terciles_A": {
+     "sessions": 72,
+     "cuts": [
+      4.0,
+      12.333333333333329
+     ],
+     "rule": "A-split terciles of paired calls/session"
+    },
+    "n6_field_gate_A": {
+     "pairs": 801,
+     "pairs_stamped": 801,
+     "pairs_distinct_stamps": 801,
+     "request_ids": 1513,
+     "request_ids_decodable": 0,
+     "image_usage_rows": 0,
+     "usage_granular": true,
+     "error_definition": true,
+     "results_with_text": 801,
+     "commit_claims": 0,
+     "external_commit_table": false,
+     "raw_structured_counters": false,
+     "external_usage_tally": false
+    },
+    "n6_field_gate_corrections": {
+     "external_commit_table": {
+      "calibrate_unit": true,
+      "corrected": false,
+      "reason": "agentcap has no external table (the True came from unit 'swechat/opencode')"
+     },
+     "external_usage_tally": {
+      "calibrate_unit": true,
+      "corrected": false,
+      "reason": "agentcap has no external table (the True came from unit 'swechat/opencode')"
+     }
+    },
+    "bracket_A": {
+     "responses_decoded": 0
+    },
+    "n5_truncation_A": {}
+   }
+  },
+  "agentcap/pi": {
+   "calibrated_as_unit": "agentcap/pi",
+   "sessions_A": 79,
+   "unit_result": {
+    "sessions_A": 79,
+    "length_terciles": {
+     "sessions": 66,
+     "cuts": [
+      12.0,
+      25.33333333333333
+     ],
+     "rule": "A-split terciles of paired calls/session"
+    },
+    "dominance_context": {
+     "repo": {
+      "top_share_events": 1.0,
+      "top_share_sessions": 1.0,
+      "top_session_share_events": 0.04768300873069174,
+      "n_clusters": 1,
+      "dominated_at_A": true
+     },
+     "model": {
+      "top_share_events": 0.33176628609805237,
+      "top_share_sessions": 0.22727272727272727,
+      "n_clusters": 8,
+      "dominated_at_A": true
+     }
+    },
+    "bracket": {
+     "responses_decoded": 0
+    },
+    "n2": {
+     "granularity": {
+      "responses": 1339,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 111.0,
+      "G2_not_partial": true,
+      "G3_identifiable": true,
+      "GRANULAR": true
+     },
+     "tau": 0.26009083043872283,
+     "tau_n": 990,
+     "tau_sessions": 66,
+     "eligible_responses": 528,
+     "eligible_sessions": 64,
+     "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+    },
+    "n6_field_gate": {
+     "pairs": 1489,
+     "pairs_stamped": 1489,
+     "pairs_distinct_stamps": 1489,
+     "request_ids": 3929,
+     "request_ids_decodable": 0,
+     "image_usage_rows": 0,
+     "usage_granular": true,
+     "error_definition": false,
+     "results_with_text": 1489,
+     "commit_claims": 0,
+     "external_commit_table": false,
+     "raw_structured_counters": false,
+     "external_usage_tally": false
+    }
+   },
+   "resolved": {
+    "n1": {
+     "bounds": null,
+     "source": "not computed: 'agentcap/pi' is not in SPEC_E N1 units (LAT_UNITS)"
+    },
+    "n2": {
+     "GRANULAR": true,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 111.0,
+     "responses_A": 1339,
+     "tau": 0.26009083043872283,
+     "tau_n_A": 990
+    },
+    "length_terciles_A": {
+     "sessions": 66,
+     "cuts": [
+      12.0,
+      25.33333333333333
+     ],
+     "rule": "A-split terciles of paired calls/session"
+    },
+    "n6_field_gate_A": {
+     "pairs": 1489,
+     "pairs_stamped": 1489,
+     "pairs_distinct_stamps": 1489,
+     "request_ids": 3929,
+     "request_ids_decodable": 0,
+     "image_usage_rows": 0,
+     "usage_granular": true,
+     "error_definition": false,
+     "results_with_text": 1489,
+     "commit_claims": 0,
+     "external_commit_table": false,
+     "raw_structured_counters": false,
+     "external_usage_tally": false
+    },
+    "n6_field_gate_corrections": {},
+    "bracket_A": {
+     "responses_decoded": 0
+    }
+   }
+  }
+ },
+ "calibrated_as_unit_reason": "calibrate_unit() keys its format rules on the unit name; a new corpus parsed by the same format parser as a pre-registered unit is calibrated under that unit name so its rules (tool keys, error classes, qualification filters, response table, N1/N5 membership) apply unchanged. corpus=<new corpus> makes the AC4 cluster map one cluster (session_cluster_map fallback).",
+ "script": "analysis/probes/prereg_e_calibration.py:calibrate_unit (called, not re-implemented)",
+ "loader": "analysis/loaders/load_agentcap.py",
+ "split": "A only (analysis/cache/agentcap_A.parquet via prereg_e_common.read_cache allowed=('A',)); B/E/H never opened",
+ "not_computed": "Phase E outcomes: N1/N3 correlations, detector flag or violation rates, determinism drift, round-number shares, recalls, tamper results",
+ "splits": {
+  "samples": "analysis/cache/samples/agentcap.json",
+  "samples_EH": "analysis/cache/samples/agentcap_EH.json",
+  "sha256_samples": "cfbfa9fafd8bdbd0031264437dc0821b0536a28791596abc8deaf926e3c2a35a",
+  "sha256_samples_EH": "d1c0e4cfec38a2751c6653c4c99cee9bf0eb9315f52e7fca04013fec60639399"
+ },
+ "prereg_e_json_sha256": "4c77ac53eda36a4f084d01cb6b383e20d4a1c98a9a7b15cf3b5fbd3db00ebcdc",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "spec_module_matches_prereg": true,
+ "calibration_script_sha256_lf": "3b6d262862039481f443d5dd8054342ed5d9e0295921af0e6db5930728468ad1",
+ "a_cache_sha256": "c9728cf8a7ed393eab94452f2a6726aeb89b95117203edeaa5d2858d3571b4c1",
+ "runtime_s": 6.1
+}

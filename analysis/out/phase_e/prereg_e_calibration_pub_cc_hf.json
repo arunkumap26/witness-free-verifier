@@ -1,0 +1,994 @@
+{
+ "corpus": "pub_cc_hf",
+ "unit": "pub_cc_hf",
+ "split": "A only (asserted; B/E/EH/H never opened)",
+ "script": "analysis/probes/phase_e_newcorp_calibration.py",
+ "prereg_rule": "analysis/prereg_e.json splits.new_corpora.calibration",
+ "prereg_e_json_sha256": "4c77ac53eda36a4f084d01cb6b383e20d4a1c98a9a7b15cf3b5fbd3db00ebcdc",
+ "prereg_e_common_frozen_check": "passed (prereg_e_common.check_frozen)",
+ "a_cache_sha256": "62bcdb101ee3aaa87eb9154b54d03e38362786958e4f4eec232d5f84180b667d",
+ "sessions_A": 32,
+ "rows_A": 9838,
+ "primary": "calibration",
+ "format_proxy_unit": "cc_local",
+ "format_proxy_reason": "see this script's docstring, WHY A FORMAT PROXY UNIT",
+ "calibration": {
+  "sessions_A": 32,
+  "length_terciles": {
+   "sessions": 32,
+   "cuts": [
+    8.333333333333332,
+    76.3333333333333
+   ],
+   "rule": "A-split terciles of paired calls/session"
+  },
+  "dominance_context": {
+   "repo": {
+    "top_share_events": 1.0,
+    "top_share_sessions": 1.0,
+    "top_session_share_events": 0.33370206489675514,
+    "n_clusters": 1,
+    "dominated_at_A": true
+   },
+   "model": {
+    "top_share_events": 0.6898967551622419,
+    "top_share_sessions": 0.59375,
+    "n_clusters": 8,
+    "dominated_at_A": true
+   }
+  },
+  "bracket": {
+   "responses_decoded": 1975,
+   "sessions": 25,
+   "streams_ge2": 62,
+   "tol_ms": 2000.0,
+   "inconsistent_streams": 0,
+   "inconsistent_rate_by_session": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 25,
+    "num": 0.0,
+    "den": 62.0,
+    "wilson_hi_per_event": 0.05834609122500061,
+    "wilson_hi_per_session": 0.13319649395317873
+   },
+   "slack_U_minus_L_consistent_ms": {
+    "n": 62,
+    "n_sessions": 25,
+    "q0.05": 349.0,
+    "q0.5": 2240.0,
+    "q0.95": 4606.7
+   },
+   "benign_category_counts_inconsistent_A": {},
+   "request_ids_in_more_than_one_A_session": 0,
+   "note": "A-split honest bracket baseline: context for the fixed 2,000 ms tolerance; sets no threshold"
+  },
+  "n1": {
+   "qualified_by_class": {
+    "shell": 995,
+    "auto_read": 249
+   },
+   "qualified_sessions": 27,
+   "repeat_coverage_counts_A": {
+    "auto_read": {
+     "calls_in_repeat_groups": 69,
+     "qualified_calls": 249,
+     "sessions": 17,
+     "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+    },
+    "shell": {
+     "calls_in_repeat_groups": 36,
+     "qualified_calls": 995,
+     "sessions": 22,
+     "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+    }
+   },
+   "residuals": {
+    "n": 104,
+    "n_sessions": 10,
+    "by_class": {
+     "auto_read": 69,
+     "shell": 35
+    },
+    "quantiles": {
+     "n": 104,
+     "n_sessions": 10,
+     "q0.005": -1.289766358925836,
+     "q0.01": -1.1089119632637827,
+     "q0.05": -0.4072279217810361,
+     "q0.25": -0.15051499783199063,
+     "q0.5": 0.0,
+     "q0.75": 0.07248764568663846,
+     "q0.95": 0.7098761637293481,
+     "q0.99": 1.1130610442087712,
+     "q0.995": 1.2897663589258357
+    }
+   },
+   "bounds_ok": false
+  },
+  "latency_counts": {
+   "n3": {
+    "gaps": 2235,
+    "sessions_with_gaps": 31,
+    "sessions_ge_20_gaps": 16
+   },
+   "n4": {
+    "W_pairs": 249,
+    "W_k_ge_2": 0,
+    "W_k_ge_2_sessions": 0,
+    "W_k_ge_4": 0,
+    "G_pairs": 35,
+    "G_k_ge_2": 11,
+    "G_k_ge_2_sessions": 4,
+    "k_hist_W": {
+     "1": 249
+    },
+    "note": "eligibility counts; G here omits the Phase B nested-human-marker exclusion (count only)"
+   }
+  },
+  "cold_start": {
+   "eligible_sessions": 18
+  },
+  "n2": {
+   "granularity": {
+    "responses": 2190,
+    "G1_share_both": 1.0,
+    "G2_median_usage_out": 377.0,
+    "G2_not_partial": true,
+    "G3_identifiable": true,
+    "GRANULAR": true
+   },
+   "tau": 0.6675977653631284,
+   "tau_n": 1562,
+   "tau_sessions": 31,
+   "eligible_responses": 441,
+   "eligible_sessions": 27,
+   "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+  },
+  "n5": {
+   "a_determinism_pairs": {
+    "pairs": 45,
+    "sessions": 3
+   },
+   "b_sort_eligible": {
+    "grep_n": {
+     "outputs": 66,
+     "sessions": 9
+    },
+    "ls": {
+     "outputs": 17,
+     "sessions": 10
+    }
+   },
+   "d_whitespace_eligible": {
+    "pytest_banner": {
+     "outputs": 56,
+     "sessions": 6
+    },
+    "ls_long_alignment": {
+     "outputs": 18,
+     "sessions": 7
+    },
+    "git_status_tab": {
+     "outputs": 1,
+     "sessions": 1
+    },
+    "wc_alignment": {
+     "outputs": 4,
+     "sessions": 4
+    }
+   },
+   "c_truncation_A": {
+    "cc_chars_mid": {
+     "n": 1,
+     "sessions": 1,
+     "prefix_u16_mode": [
+      [
+       5002,
+       1
+      ]
+     ],
+     "suffix_u16_mode": [
+      [
+       5002,
+       1
+      ]
+     ],
+     "prefix_u16_stripped_mode": [
+      [
+       5000,
+       1
+      ]
+     ],
+     "suffix_u16_stripped_mode": [
+      [
+       5000,
+       1
+      ]
+     ]
+    }
+   },
+   "e_size_families_A": {
+    "families_ge_100_results_ge_10_sessions": 1,
+    "families_total": 93
+   },
+   "f_error_fidelity_checkable": {
+    "frames": 0,
+    "sessions": 0,
+    "error_results": 142
+   }
+  },
+  "f3_round": {
+   "T_orig_distinct_values": 114,
+   "excluded_strict_any_occurrence": 32,
+   "excluded_first_occurrence": 24,
+   "first_occurrence_json_number": 18,
+   "remaining_strict": 82,
+   "remaining_first": 90,
+   "note": "counts only; no round-number share was computed on A"
+  },
+  "n6_field_gate": {
+   "pairs": 2712,
+   "pairs_stamped": 2712,
+   "pairs_distinct_stamps": 2704,
+   "request_ids": 4160,
+   "request_ids_decodable": 1975,
+   "image_usage_rows": 0,
+   "usage_granular": true,
+   "error_definition": true,
+   "results_with_text": 2712,
+   "commit_claims": 0,
+   "external_commit_table": false,
+   "raw_structured_counters": true,
+   "external_usage_tally": false
+  }
+ },
+ "calibration_literal_unit": {
+  "sessions_A": 32,
+  "length_terciles": {
+   "sessions": 32,
+   "cuts": [
+    8.333333333333332,
+    76.3333333333333
+   ],
+   "rule": "A-split terciles of paired calls/session"
+  },
+  "dominance_context": {
+   "repo": {
+    "top_share_events": 1.0,
+    "top_share_sessions": 1.0,
+    "top_session_share_events": 0.33370206489675514,
+    "n_clusters": 1,
+    "dominated_at_A": true
+   },
+   "model": {
+    "top_share_events": 0.6898967551622419,
+    "top_share_sessions": 0.59375,
+    "n_clusters": 8,
+    "dominated_at_A": true
+   }
+  },
+  "bracket": {
+   "responses_decoded": 1975,
+   "sessions": 25,
+   "streams_ge2": 62,
+   "tol_ms": 2000.0,
+   "inconsistent_streams": 0,
+   "inconsistent_rate_by_session": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 25,
+    "num": 0.0,
+    "den": 62.0,
+    "wilson_hi_per_event": 0.05834609122500061,
+    "wilson_hi_per_session": 0.13319649395317873
+   },
+   "slack_U_minus_L_consistent_ms": {
+    "n": 62,
+    "n_sessions": 25,
+    "q0.05": 349.0,
+    "q0.5": 2240.0,
+    "q0.95": 4606.7
+   },
+   "benign_category_counts_inconsistent_A": {},
+   "request_ids_in_more_than_one_A_session": 0,
+   "note": "A-split honest bracket baseline: context for the fixed 2,000 ms tolerance; sets no threshold"
+  },
+  "n2": {
+   "granularity": {
+    "responses": 2190,
+    "G1_share_both": 1.0,
+    "G2_median_usage_out": 377.0,
+    "G2_not_partial": true,
+    "G3_identifiable": true,
+    "GRANULAR": true
+   },
+   "tau": 0.6675977653631284,
+   "tau_n": 1562,
+   "tau_sessions": 31,
+   "eligible_responses": 441,
+   "eligible_sessions": 27,
+   "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+  },
+  "n6_field_gate": {
+   "pairs": 2712,
+   "pairs_stamped": 2712,
+   "pairs_distinct_stamps": 2704,
+   "request_ids": 4160,
+   "request_ids_decodable": 1975,
+   "image_usage_rows": 0,
+   "usage_granular": true,
+   "error_definition": false,
+   "results_with_text": 2712,
+   "commit_claims": 0,
+   "external_commit_table": false,
+   "raw_structured_counters": false,
+   "external_usage_tally": false
+  }
+ },
+ "phase_b_unit_functions": {
+  "unit_argument": "cc_local",
+  "probe1": {
+   "pairs": 2712,
+   "pairs_with_delta": 2712,
+   "sessions": 32,
+   "filter_outcome": {
+    "not_last_or_only_in_msg": 146,
+    "qualified": 296,
+    "class": 2245,
+    "hook": 25
+   },
+   "qualified_by_class": {
+    "auto_read": 250,
+    "file_write": 0,
+    "human_interactive": 0,
+    "internal_noperm": 46,
+    "other": 0,
+    "shell": 0,
+    "subagent": 0
+   },
+   "all_by_class": {
+    "auto_read": 401,
+    "file_write": 695,
+    "human_interactive": 2,
+    "internal_noperm": 66,
+    "other": 310,
+    "shell": 1231,
+    "subagent": 7
+   },
+   "qualified_by_tool": {
+    "glob": {
+     "n": 10,
+     "n_sessions": 4,
+     "min": 0.056,
+     "max": 9.971,
+     "p1": {
+      "value": 0.05609,
+      "lo": 0.056,
+      "hi": 0.36023999999999995
+     },
+     "p5": {
+      "value": 0.05645,
+      "lo": 0.056,
+      "hi": 1.5492000000000001
+     },
+     "p10": {
+      "value": 0.0569,
+      "lo": 0.056100000000000004,
+      "hi": 3.0354000000000005
+     },
+     "p25": {
+      "value": 0.058
+     },
+     "p50": {
+      "value": 0.063,
+      "lo": 0.058,
+      "hi": 9.971
+     },
+     "p75": {
+      "value": 0.067
+     },
+     "p95": {
+      "value": 5.515999999999989,
+      "lo": 0.06785,
+      "hi": 9.971
+     },
+     "iqr_s": 0.009000000000000001,
+     "iqr_log10": 0.062498684462711784,
+     "below_0.1s": 9,
+     "series_n_ge_40": 0,
+     "reportable": {
+      "p1": false,
+      "p5": false,
+      "p50": false
+     }
+    },
+    "grep": {
+     "n": 8,
+     "n_sessions": 3,
+     "min": 0.075,
+     "max": 0.116,
+     "p1": {
+      "value": 0.07507,
+      "lo": 0.075,
+      "hi": 0.116
+     },
+     "p5": {
+      "value": 0.07535,
+      "lo": 0.075,
+      "hi": 0.116
+     },
+     "p10": {
+      "value": 0.0757,
+      "lo": 0.075,
+      "hi": 0.116
+     },
+     "p25": {
+      "value": 0.0775
+     },
+     "p50": {
+      "value": 0.0995,
+      "lo": 0.076,
+      "hi": 0.116
+     },
+     "p75": {
+      "value": 0.10425
+     },
+     "p95": {
+      "value": 0.11425,
+      "lo": 0.078,
+      "hi": 0.116
+     },
+     "iqr_s": 0.026749999999999996,
+     "iqr_log10": 0.12850652343004454,
+     "below_0.1s": 4,
+     "series_n_ge_40": 0,
+     "reportable": {
+      "p1": false,
+      "p5": false,
+      "p50": false
+     }
+    },
+    "read": {
+     "n": 231,
+     "n_sessions": 17,
+     "min": 0.001,
+     "max": 1.023,
+     "p1": {
+      "value": 0.001,
+      "lo": 0.001,
+      "hi": 0.0043714999999999995
+     },
+     "p5": {
+      "value": 0.001,
+      "lo": 0.001,
+      "hi": 0.007
+     },
+     "p10": {
+      "value": 0.001,
+      "lo": 0.001,
+      "hi": 0.008
+     },
+     "p25": {
+      "value": 0.004
+     },
+     "p50": {
+      "value": 0.009,
+      "lo": 0.005,
+      "hi": 0.015
+     },
+     "p75": {
+      "value": 0.02
+     },
+     "p95": {
+      "value": 0.162,
+      "lo": 0.044982499999999995,
+      "hi": 0.363
+     },
+     "iqr_s": 0.016,
+     "iqr_log10": 0.6989700043360187,
+     "below_0.1s": 213,
+     "series_n_ge_40": 1,
+     "reportable": {
+      "p1": false,
+      "p5": true,
+      "p50": true
+     }
+    },
+    "taskcreate": {
+     "n": 3,
+     "n_sessions": 2,
+     "min": 0.005,
+     "max": 0.008,
+     "p1": {
+      "value": 0.00504,
+      "lo": 0.005,
+      "hi": 0.007
+     },
+     "p5": {
+      "value": 0.0052,
+      "lo": 0.005,
+      "hi": 0.007
+     },
+     "p10": {
+      "value": 0.0054,
+      "lo": 0.005,
+      "hi": 0.007
+     },
+     "p25": {
+      "value": 0.006
+     },
+     "p50": {
+      "value": 0.007,
+      "lo": 0.006500000000000001,
+      "hi": 0.007
+     },
+     "p75": {
+      "value": 0.0075
+     },
+     "p95": {
+      "value": 0.0079,
+      "lo": 0.007,
+      "hi": 0.008
+     },
+     "iqr_s": 0.0014999999999999996,
+     "iqr_log10": 0.10205999132796251,
+     "below_0.1s": 3,
+     "series_n_ge_40": 0,
+     "reportable": {
+      "p1": false,
+      "p5": false,
+      "p50": false
+     }
+    },
+    "tasklist": {
+     "n": 1,
+     "n_sessions": 1,
+     "min": 0.002,
+     "max": 0.002,
+     "p1": {
+      "value": 0.002
+     },
+     "p5": {
+      "value": 0.002
+     },
+     "p10": {
+      "value": 0.002
+     },
+     "p25": {
+      "value": 0.002
+     },
+     "p50": {
+      "value": 0.002
+     },
+     "p75": {
+      "value": 0.002
+     },
+     "p95": {
+      "value": 0.002
+     },
+     "iqr_s": 0.0,
+     "iqr_log10": 0.0,
+     "below_0.1s": 1,
+     "series_n_ge_40": 0,
+     "reportable": {
+      "p1": false,
+      "p5": false,
+      "p50": false
+     }
+    },
+    "taskupdate": {
+     "n": 8,
+     "n_sessions": 2,
+     "min": 0.004,
+     "max": 0.031,
+     "p1": {
+      "value": 0.004,
+      "lo": 0.004,
+      "hi": 0.005
+     },
+     "p5": {
+      "value": 0.004,
+      "lo": 0.004,
+      "hi": 0.005
+     },
+     "p10": {
+      "value": 0.004,
+      "lo": 0.004,
+      "hi": 0.005
+     },
+     "p25": {
+      "value": 0.00475
+     },
+     "p50": {
+      "value": 0.0055,
+      "lo": 0.004,
+      "hi": 0.006
+     },
+     "p75": {
+      "value": 0.008
+     },
+     "p95": {
+      "value": 0.02504999999999999,
+      "lo": 0.004,
+      "hi": 0.031
+     },
+     "iqr_s": 0.0032500000000000003,
+     "iqr_log10": 0.19540294562328775,
+     "below_0.1s": 8,
+     "series_n_ge_40": 0,
+     "reportable": {
+      "p1": false,
+      "p5": false,
+      "p50": false
+     }
+    },
+    "toolsearch": {
+     "n": 33,
+     "n_sessions": 10,
+     "min": 0.001,
+     "max": 0.02,
+     "p1": {
+      "value": 0.001,
+      "lo": 0.001,
+      "hi": 0.002
+     },
+     "p5": {
+      "value": 0.001,
+      "lo": 0.001,
+      "hi": 0.002
+     },
+     "p10": {
+      "value": 0.001,
+      "lo": 0.001,
+      "hi": 0.002
+     },
+     "p25": {
+      "value": 0.001
+     },
+     "p50": {
+      "value": 0.002,
+      "lo": 0.002,
+      "hi": 0.004
+     },
+     "p75": {
+      "value": 0.003
+     },
+     "p95": {
+      "value": 0.007599999999999995,
+      "lo": 0.004,
+      "hi": 0.02
+     },
+     "iqr_s": 0.002,
+     "iqr_log10": 0.4771212547196626,
+     "below_0.1s": 33,
+     "series_n_ge_40": 0,
+     "reportable": {
+      "p1": false,
+      "p5": false,
+      "p50": true
+     }
+    }
+   },
+   "negative_deltas": 0,
+   "generation_rate": {
+    "responses_with_calls": 2190,
+    "responses_with_usage": 2190,
+    "median_output_tokens_per_response": 377.0,
+    "method": "usage",
+    "usage_based": {
+     "n": 2044,
+     "n_sessions": 32,
+     "min": 0.42836041358936483,
+     "max": 154.30861723446893,
+     "p10": {
+      "value": 21.86834532808098
+     },
+     "p50": {
+      "value": 48.12607463308986,
+      "lo": 45.02873007859598,
+      "hi": 51.394637588441704
+     },
+     "p90": {
+      "value": 76.48159432143676,
+      "lo": 72.7099530482845,
+      "hi": 81.86340477022381
+     }
+    },
+    "char_based": {
+     "n": 1557,
+     "n_sessions": 31,
+     "min": 0.12028202422272073,
+     "max": 132.31981981981983,
+     "p10": {
+      "value": 5.842850770239109
+     },
+     "p50": {
+      "value": 18.169099296680027,
+      "lo": 15.02047962571656,
+      "hi": 20.65054433794653
+     },
+     "p90": {
+      "value": 42.56990937817529,
+      "lo": 39.317734966051695,
+      "hi": 52.63605887591011
+     }
+    },
+    "G50": 48.12607463308986,
+    "G90": 76.48159432143676,
+    "n_rates": 2044,
+    "n_sessions": 32
+   },
+   "G_pairs_usable": {
+    "n": 35,
+    "sessions": 11,
+    "by_tool": {
+     "subagent": 7,
+     "websearch": 11,
+     "webfetch": 11,
+     "workflow": 6
+    }
+   },
+   "eligible_T_gen_ge_1s": {
+    "W": {
+     "n": 177,
+     "sessions": 15,
+     "n_all_W": 249
+    },
+    "G": {
+     "n": 31,
+     "sessions": 11,
+     "n_all_G": 35
+    },
+    "note": "counts only; r, fp_share and AUC are Phase B outcomes and were not computed"
+   }
+  },
+  "probe2": {
+   "counts": {
+    "calls_with_structured_path": 1095,
+    "first_mention_path/main": 795,
+    "first_mention_access/main": 144,
+    "calls_with_any_reference": 2163,
+    "calls": 2713,
+    "calls_with_free_path": 955,
+    "calls_with_symbol_shell": 643,
+    "first_mention_symbol_shell/main": 862,
+    "calls_with_env_var": 373,
+    "first_mention_env_var/main": 324,
+    "calls_with_symbol_ref": 321,
+    "first_mention_symbol_ref/main": 564,
+    "calls_with_cfg_key": 31,
+    "first_mention_cfg_key/main": 19,
+    "calls_with_symbol_search": 3,
+    "first_mention_symbol_search/main": 5,
+    "first_mention_path/sub": 202,
+    "first_mention_access/sub": 108,
+    "first_mention_symbol_shell/sub": 83,
+    "first_mention_env_var/sub": 33
+   },
+   "depth_status": {
+    "depth_known": 108,
+    "depth_unknown": 36
+   },
+   "sessions_with_calls": 32,
+   "subagent_threads": 87,
+   "sessions_with_root": 22,
+   "access_depth": {
+    "n": 108,
+    "n_sessions": 18,
+    "min": 1.0,
+    "max": 5.0,
+    "p25": {
+     "value": 1.0
+    },
+    "p50": {
+     "value": 2.0,
+     "lo": 1.0,
+     "hi": 4.0
+    },
+    "p75": {
+     "value": 4.0,
+     "lo": 1.0,
+     "hi": 4.0
+    },
+    "p90": {
+     "value": 4.0
+    }
+   },
+   "access_depth_hist": {
+    "1": 45,
+    "2": 20,
+    "3": 9,
+    "4": 33,
+    "5": 1
+   }
+  },
+  "probe2_depth_inputs": {
+   "n": 108,
+   "sessions": 18,
+   "quantiles": {
+    "q0.5": 2.0,
+    "q0.75": 4.0,
+    "q0.9": 4.0
+   },
+   "note": "raw depth list summary; the D_unit resolution rule of prereg_calibration.main() is not applied here"
+  },
+  "probe3": {
+   "sessions_with_paired_calls": 32,
+   "paired_calls": 2712,
+   "calls_per_session": {
+    "n": 32,
+    "min": 2.0,
+    "p25": 5.75,
+    "p50": 35.5,
+    "p75": 111.0,
+    "p90": 148.4,
+    "max": 905.0,
+    "mean": 84.75
+   },
+   "L75": 111,
+   "L90": 149,
+   "A_sessions_at_or_above_L75": 9,
+   "A_sessions_ge_20_calls": 19,
+   "failed_with_successor": {
+    "n": 139,
+    "sessions": 19
+   },
+   "ok_with_successor": 2454,
+   "note": "counts only; zero-error shares, retry rates and early/late differences are Phase B outcomes"
+  },
+  "note": "raw outputs of the Phase B per-unit calibration functions on this corpus's A split (counts and threshold inputs; Phase B outcomes are not computed by these functions)"
+ },
+ "dominance_context_cluster_is_stratum": {
+  "top_clusters": [
+   [
+    "crispwisp__wisp-claude-code-sessions",
+    0.34292035398230086,
+    0.21875
+   ],
+   [
+    "armand0e__claude-fable-5-claude-code",
+    0.25184365781710916,
+    0.21875
+   ],
+   [
+    "cfahlgren1__Fable-5-traces",
+    0.11762536873156341,
+    0.15625
+   ],
+   [
+    "other",
+    0.06969026548672566,
+    0.0625
+   ],
+   [
+    "AlinCiocan__fable-5-claude-code-traces",
+    0.06821533923303835,
+    0.09375
+   ]
+  ],
+  "top_cluster": "crispwisp__wisp-claude-code-sessions",
+  "top_share_events": 0.34292035398230086,
+  "top_share_sessions": 0.21875,
+  "top_session_share_events": 0.33370206489675514,
+  "dominated": true,
+  "n_clusters": 9,
+  "total": 2712.0,
+  "note": "cluster = stratum column (pub_cc_hf: source repo, top 8 + other; pub_trace_commons: modal model); weights = paired calls per session (as cal_dominance)"
+ },
+ "resolved_preview": {
+  "length_terciles_A": {
+   "sessions": 32,
+   "cuts": [
+    8.333333333333332,
+    76.3333333333333
+   ],
+   "rule": "A-split terciles of paired calls/session"
+  },
+  "n1": {
+   "bounds": [
+    -1.255296488587848,
+    1.5676685275828843
+   ],
+   "source": "pre-registered pooled bounds (unit has < 500 A residuals or < 5 sessions)",
+   "n_A": 104,
+   "sessions_A": 10,
+   "pooled": {
+    "bounds": [
+     -1.255296488587848,
+     1.5676685275828843
+    ],
+    "pooled_n_A": 4503,
+    "pooled_sessions_A": 115,
+    "copied_from_unit_entry": "swechat/codex"
+   }
+  },
+  "n2": {
+   "GRANULAR": true,
+   "tau": 0.6675977653631284,
+   "tau_n_A": 1562
+  },
+  "n5_truncation_A": {
+   "cc_chars_mid": {
+    "n": 1,
+    "sessions": 1,
+    "prefix_u16_mode": [
+     [
+      5002,
+      1
+     ]
+    ],
+    "suffix_u16_mode": [
+     [
+      5002,
+      1
+     ]
+    ],
+    "prefix_u16_stripped_mode": [
+     [
+      5000,
+      1
+     ]
+    ],
+    "suffix_u16_stripped_mode": [
+     [
+      5000,
+      1
+     ]
+    ]
+   }
+  },
+  "n6_field_gate_A": {
+   "pairs": 2712,
+   "pairs_stamped": 2712,
+   "pairs_distinct_stamps": 2704,
+   "request_ids": 4160,
+   "request_ids_decodable": 1975,
+   "image_usage_rows": 0,
+   "usage_granular": true,
+   "error_definition": true,
+   "results_with_text": 2712,
+   "commit_claims": 0,
+   "external_commit_table": false,
+   "raw_structured_counters": true,
+   "external_usage_tally": false
+  },
+  "bracket_A": {
+   "responses_decoded": 1975,
+   "sessions": 25,
+   "streams_ge2": 62,
+   "tol_ms": 2000.0,
+   "inconsistent_streams": 0,
+   "inconsistent_rate_by_session": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 25,
+    "num": 0.0,
+    "den": 62.0,
+    "wilson_hi_per_event": 0.05834609122500061,
+    "wilson_hi_per_session": 0.13319649395317873
+   },
+   "slack_U_minus_L_consistent_ms": {
+    "n": 62,
+    "n_sessions": 25,
+    "q0.05": 349.0,
+    "q0.5": 2240.0,
+    "q0.95": 4606.7
+   },
+   "benign_category_counts_inconsistent_A": {},
+   "request_ids_in_more_than_one_A_session": 0,
+   "note": "A-split honest bracket baseline: context for the fixed 2,000 ms tolerance; sets no threshold"
+  },
+  "note": "copied from `calibration` except n1, which applies prereg_e_calibration.main()'s bounds rule; the pre-registered pooled truncation constants (prereg_e.json resolved.n5.truncation_constants_pooled) are not recomputed"
+ },
+ "n1_residual_rows_A": 104,
+ "not_computed": "Phase E outcomes: N1/N3 correlations, detector flag or violation rates, determinism drift, round-number shares, recalls, tamper results, bracket verdicts on B/E",
+ "opened_files": [
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/pub_cc_hf_A.parquet",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/prereg_e.json"
+ ],
+ "runtime_s": 13.3
+}

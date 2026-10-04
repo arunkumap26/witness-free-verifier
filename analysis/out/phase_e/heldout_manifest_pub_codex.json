@@ -1,0 +1,9 @@
+{
+ "purpose": "Held-out split H of a Track B corpus for the Track C eval harness. Never read during tuning or analysis. Kept outside analysis/HELDOUT_MANIFEST.json until the orchestrator merges it.",
+ "corpus": "pub_codex",
+ "n_H": 13,
+ "n_E": 12,
+ "sha256_sorted_H_ids": "55ce108e9a06b21c08f72051a5525b6cd5e0e5b8f2839f6fa128b5b6197d94db",
+ "digest_rule": "sha256('\\n'.join(sorted(H ids)).encode()) as analysis/probes/phase_e_split.py",
+ "ids_file": "analysis/cache/samples/pub_codex_EH.json#H"
+}

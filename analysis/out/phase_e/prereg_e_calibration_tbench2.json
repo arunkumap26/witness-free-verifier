@@ -1,0 +1,95 @@
+{
+ "corpus": "tbench2",
+ "script": "analysis/loaders/load_tbench2.py",
+ "function": "analysis.probes.prereg_e_calibration.calibrate_unit",
+ "split": "A only (cache/<corpus>_A.parquet built by the loader; B/E/H never parsed)",
+ "check_frozen_prereg_e_common": true,
+ "units": {
+  "tbench2": {
+   "sessions_A": 200,
+   "length_terciles": {
+    "sessions": 199,
+    "cuts": [
+     12.0,
+     30.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "top_session_share_events": 0.028426039656080013,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.11809089313914722,
+     "top_share_sessions": 0.07537688442211055,
+     "n_clusters": 26,
+     "dominated_at_A": false
+    }
+   },
+   "bracket": {
+    "responses_decoded": 141,
+    "sessions": 7,
+    "streams_ge2": 9,
+    "tol_ms": 2000.0,
+    "inconsistent_streams": 0,
+    "inconsistent_rate_by_session": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 7,
+     "num": 0.0,
+     "den": 9.0,
+     "wilson_hi_per_event": 0.2991527535509594,
+     "wilson_hi_per_session": 0.35433884297520657
+    },
+    "slack_U_minus_L_consistent_ms": {
+     "n": 9,
+     "n_sessions": 7,
+     "q0.05": 1259.999853515625,
+     "q0.5": 2375.000244140625,
+     "q0.95": 2740.2
+    },
+    "benign_category_counts_inconsistent_A": {},
+    "request_ids_in_more_than_one_A_session": 0,
+    "note": "A-split honest bracket baseline: context for the fixed 2,000 ms tolerance; sets no threshold"
+   },
+   "n2": {
+    "granularity": {
+     "responses": 4979,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 165.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": true
+    },
+    "tau": 0.34443053859951844,
+    "tau_n": 3146,
+    "tau_sessions": 151,
+    "eligible_responses": 1230,
+    "eligible_sessions": 137,
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 5699,
+    "pairs_stamped": 5445,
+    "pairs_distinct_stamps": 1674,
+    "request_ids": 283,
+    "request_ids_decodable": 141,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": false,
+    "results_with_text": 5699,
+    "commit_claims": 0,
+    "external_commit_table": false,
+    "raw_structured_counters": false,
+    "external_usage_tally": false
+   }
+  }
+ },
+ "prereg_rule": "prereg_e.json splits.new_corpora.calibration",
+ "note": "calibrate_unit runs the unit-specific blocks only for units registered in prereg_e (N1/latency for SPEC_E n1 units, N5 for the seven Phase E units, F3 for probe4 testable units, R2 for aiv_cu, R3 for swechat/cc_local/aiv_cc). A new corpus unit gets length terciles, dominance context, the request-id bracket baseline (when request ids exist), N2 granularity/tau and the N6 field gate."
+}

@@ -1,0 +1,19 @@
+{
+ "corpus": "tbench2",
+ "purpose": "Held-out split H for the Track C eval harness. Never read during tuning or analysis. Separate from analysis/HELDOUT_MANIFEST.json (not edited).",
+ "n_H": 7129,
+ "n_E": 2000,
+ "sha256_sorted_H_ids": "9ae55595d73a20fea80df41bc9073511af244ac5ec58cc4dec6b31f97e4a76dc",
+ "hash_rule": "sha256 of '\\n'.join(sorted(H ids)).encode() (as analysis/probes/phase_e_split.py)",
+ "ids_file": "analysis/cache/samples/tbench2_EH.json#H",
+ "seed": 20261006,
+ "loader": "analysis/loaders/load_tbench2.py",
+ "viewed_before_split": [
+  {
+   "session_id": "Terminus2__Claude-Opus-4.6/2026-02-05__16-08-28/adaptive-rejection-sampler__gmpg6m3",
+   "what": "result.json fields (config.agent.kwargs/env not shown) and agent/trajectory.json steps 1-3 with every string truncated to 160 characters",
+   "when": "format discovery, before draw_splits ran",
+   "split": "H"
+  }
+ ]
+}

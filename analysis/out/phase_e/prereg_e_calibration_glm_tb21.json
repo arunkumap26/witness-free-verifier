@@ -1,0 +1,68 @@
+{
+ "corpus": "glm_tb21",
+ "script": "analysis/loaders/load_glm_tb21.py",
+ "function": "analysis.probes.prereg_e_calibration.calibrate_unit",
+ "split": "A only (cache/<corpus>_A.parquet built by the loader; B/E/H never parsed)",
+ "check_frozen_prereg_e_common": true,
+ "units": {
+  "glm_tb21": {
+   "sessions_A": 17,
+   "length_terciles": {
+    "sessions": 16,
+    "cuts": [
+     9.0,
+     20.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "top_session_share_events": 0.21070234113712374,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    }
+   },
+   "n2": {
+    "granularity": {
+     "responses": 496,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 238.5,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": true
+    },
+    "tau": 0.28948438463736237,
+    "tau_n": 484,
+    "tau_sessions": 17,
+    "eligible_responses": 131,
+    "eligible_sessions": 11,
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 299,
+    "pairs_stamped": 299,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": false,
+    "results_with_text": 299,
+    "commit_claims": 0,
+    "external_commit_table": false,
+    "raw_structured_counters": false,
+    "external_usage_tally": false
+   }
+  }
+ },
+ "prereg_rule": "prereg_e.json splits.new_corpora.calibration",
+ "note": "calibrate_unit runs the unit-specific blocks only for units registered in prereg_e (N1/latency for SPEC_E n1 units, N5 for the seven Phase E units, F3 for probe4 testable units, R2 for aiv_cu, R3 for swechat/cc_local/aiv_cc). A new corpus unit gets length terciles, dominance context, the request-id bracket baseline (when request ids exist), N2 granularity/tau and the N6 field gate."
+}

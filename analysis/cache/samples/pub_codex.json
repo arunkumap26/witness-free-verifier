@@ -1,0 +1,64 @@
+{
+ "corpus": "pub_codex",
+ "seed": 20261006,
+ "population_sessions": 46,
+ "population_by_cell": {
+  "Codex Desktop|mid": 6,
+  "Codex Desktop|long": 9,
+  "codex_vscode|long": 7,
+  "Codex Desktop|short": 7,
+  "codex_vscode|mid": 8,
+  "codex_vscode|short": 7,
+  "codex-tui|mid": 1,
+  "codex-tui|short": 1
+ },
+ "A": [
+  "019e8eb1-9379-7331-9321-ba4db2593ebe",
+  "019eb7ec-8676-7d43-a29c-9ae5826d8e21",
+  "019ebc74-69cf-7bf0-9470-52e6d8db50a9",
+  "019ec13e-598b-7010-a85a-63ebb99b73e6",
+  "019ec1ee-5105-72b0-a431-c700465c5d1f",
+  "019ec1f1-d320-7d91-b87c-57590fbb5817",
+  "019ec1fb-6d6b-7473-a099-3bb74654655f",
+  "019ec67f-e91c-7c72-a2ca-33fe4023086a",
+  "019ec8fd-cd82-77e0-a9e6-d069ee247316"
+ ],
+ "B": [
+  "019e8e2a-ad5b-7113-97e6-b708d17429d7",
+  "019e8e3b-a089-7fe1-aa0c-e464a84d4c2f",
+  "019e9ef2-8a01-7840-ab67-883b5e5895c9",
+  "019ea4d2-5125-7452-9bdb-68c6592ed04f",
+  "019ebad5-b559-7871-8538-9f13b387d8a9",
+  "019ec0ed-c580-7860-bf46-9cd9f7d7713c",
+  "019ec102-5792-7143-98fc-1e84ac826f5e",
+  "019ec1f0-099a-7f61-baca-fcfbfd14da41",
+  "019ec371-47db-75d2-84b4-cdbe6b804ce5",
+  "019ec476-c4b3-71f0-8252-cfb7a8a429af",
+  "019ec665-0b96-7c21-899d-20e258abe2b0",
+  "019ec9b2-3132-7811-a8d5-c5c6cb776843"
+ ],
+ "alloc_A": {
+  "Codex Desktop|long": 2,
+  "Codex Desktop|mid": 1,
+  "Codex Desktop|short": 1,
+  "codex-tui|mid": 1,
+  "codex-tui|short": 1,
+  "codex_vscode|long": 1,
+  "codex_vscode|mid": 1,
+  "codex_vscode|short": 1
+ },
+ "alloc_B": {
+  "Codex Desktop|long": 2,
+  "Codex Desktop|mid": 2,
+  "Codex Desktop|short": 2,
+  "codex_vscode|long": 2,
+  "codex_vscode|mid": 2,
+  "codex_vscode|short": 2
+ },
+ "floor_used": {
+  "A": 1,
+  "B": 2
+ },
+ "rule": "prereg_e.json splits.new_corpora: A=min(200,floor(0.2N)); R=N-A; B=E=min(2000,floor(R/3)); H=remainder; stratum x length tercile (population terciles); lib/sample._alloc with floor=min(5,floor(n/n_cells)); seed SEED_NEW_CORPUS=20261006; one permutation, A then B then E take cell heads, H = rest",
+ "loader": "analysis/loaders/load_pub_codex.py"
+}

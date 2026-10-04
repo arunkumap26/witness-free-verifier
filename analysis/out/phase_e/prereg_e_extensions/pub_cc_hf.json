@@ -1,0 +1,45 @@
+{
+ "corpus": "pub_cc_hf",
+ "kind": "pre-registered extension (prereg_e.json splits.new_corpora)",
+ "calibration_file": "analysis/out/phase_e/prereg_e_calibration_pub_cc_hf.json",
+ "calibration_sha256": "06e63db1d8906fdfea984996003621de2da7d44eabbb2b842f1b334e4966578f",
+ "calibration_primary_unit_argument": "cc_local",
+ "splits": {
+  "seed": 20261006,
+  "N": 163,
+  "sizes": {
+   "A": 32,
+   "B": 43,
+   "E": 43,
+   "H": 45
+  },
+  "floor_used": {
+   "A": 1,
+   "B": 2,
+   "E": 3
+  },
+  "samples_json": "analysis/cache/samples/pub_cc_hf.json",
+  "samples_json_sha256": "5f0bb3a91beb8e5008ea65cc5fac7dae65837c4f8c196907570660dfd0ad2561",
+  "samples_EH_json": "analysis/cache/samples/pub_cc_hf_EH.json",
+  "samples_EH_json_sha256": "64bd27098727ae9050c0e738334bd3530a2a35784cc7dabe3fc961b38581eb67",
+  "sha256_sorted_ids": {
+   "A": "48e1b07fc1829cab168e8a545d1272dd2f6ce621c0abe4dadced95d4695eaccc",
+   "B": "99f710874ddfad1e7cc4eff80cf5a16d59632fcfbe917add2c89c376a66ce6b7",
+   "E": "109a67c1a0b847afa7684405a859496945aed3eadbc1f18db7ba293acc41dcf6",
+   "H": "dd0e8313330f40cfadb564e73ec71710825ea6e1aed79916e53cdb8241a83951"
+  },
+  "heldout_manifest": "analysis/out/phase_e/heldout_manifest_pub_cc_hf.json",
+  "source": "analysis/out/phase_e/newcorp_build_pub_cc_hf.json (hashes computed by the loader when it wrote the files)"
+ },
+ "a_cache_sha256": "62bcdb101ee3aaa87eb9154b54d03e38362786958e4f4eec232d5f84180b667d",
+ "loader": "analysis/loaders/load_pub_cc_hf.py",
+ "loader_sha256_lf": "2def06bc013d294d8dff07ba87c89bc1d4302f10626d4824140816124de777b6",
+ "common_module": "analysis/loaders/pub_cc_common.py",
+ "common_module_sha256_lf": "da5dca8b1b0ff52b0ba9b8727ad7c6306f7f0d038d766f7cd0203be5e02811e3",
+ "calibration_script": "analysis/probes/phase_e_newcorp_calibration.py",
+ "calibration_script_sha256_lf": "9dd15b4dbe8fea21bb632b148543d966b86d7b2b97301239dfa8962e0e9eda50",
+ "prereg_e_json_sha256": "4c77ac53eda36a4f084d01cb6b383e20d4a1c98a9a7b15cf3b5fbd3db00ebcdc",
+ "build_report": "analysis/out/phase_e/newcorp_build_pub_cc_hf.json",
+ "timestamp_utc": "2026-10-04T09:36:11.706867+00:00",
+ "status": "written before any B or E session of this corpus was parsed; the orchestrator appends this record to prereg_e.json change_log and commits before any B/E measurement"
+}

@@ -1,0 +1,646 @@
+{
+ "corpus": "pub_trace_commons",
+ "loader": "analysis/loaders/load_pub_trace_commons.py",
+ "common_module": "analysis/loaders/pub_cc_common.py",
+ "raw_root": "C:/Swarms/data/acquired/cli-trace-commons",
+ "generated_utc": "2026-10-04T09:35:38.380676+00:00",
+ "population": {
+  "files": {
+   "jsonl_total": 28,
+   "by_role": {
+    "main": 28
+   },
+   "by_repo": {
+    "trace-commons__agent-traces": 28
+   },
+   "journal_files_excluded": 0,
+   "journal_lines_excluded": 0,
+   "lines": 17991,
+   "bad_json_lines": 0,
+   "non_object_lines": 0,
+   "entries": 17991,
+   "entries_with_requestId_raw_copies_included": 7496,
+   "entry_types_raw_copies_included": {
+    "assistant": 7499,
+    "user": 4675,
+    "ai-title": 1168,
+    "attachment": 1138,
+    "last-prompt": 1124,
+    "file-history-snapshot": 953,
+    "queue-operation": 642,
+    "mode": 338,
+    "permission-mode": 264,
+    "system": 188,
+    "pr-link": 2
+   }
+  },
+  "grouping": {
+   "file_groups": 28,
+   "uuids_in_more_than_one_file": 0,
+   "groups_with_more_than_one_main_file": 0,
+   "groups_with_mains_in_more_than_one_repo": 0,
+   "groups_with_resume_chain_distinct_session_ids": 0,
+   "main_files_per_group_histogram": {
+    "1": 28
+   },
+   "orphan_groups_without_main_file": 0,
+   "files_attached_by_layout_without_sessionId": 0,
+   "non_main_files_without_sessionId_or_layout_parent": 0,
+   "cross_repo_pairs": {}
+  },
+  "copies": {
+   "copied_uuid_entries_identical_fingerprint": 0,
+   "copied_uuid_entries_differing_fingerprint": 0,
+   "differing_by_kept_repo_to_dropped_repo": {},
+   "differing_top_level_keys": {},
+   "differing_message_serialized_length": {},
+   "fingerprint": "sha1 of the whole entry with sessionId, cwd and version removed; per-key blake2b-64 for the differing-key census; message length = len(json.dumps(message))",
+   "kept": "the root copy (first in file order); every other copy of a uuid is dropped"
+  },
+  "field_audit": {
+   "sessions_before_audit": 28,
+   "pass": 27,
+   "fail_by_reason": {
+    "no_tool_use": 1
+   },
+   "fail_by_root_repo": {
+    "trace-commons__agent-traces": 1
+   },
+   "rule": "pass = >= 1 tool_use id answered by a tool_result with timestamps on both entries"
+  },
+  "stratum": {
+   "rule": "modal message.model of the session's assistant entries ('<synthetic>' and missing excluded, ties by name; 'unknown' if none); top 8 kept, the rest 'other'",
+   "raw_label_counts_passing": {
+    "claude-opus-4-8": 5,
+    "claude-sonnet-4-6": 22
+   },
+   "collapse_map": {
+    "claude-opus-4-8": "claude-opus-4-8",
+    "claude-sonnet-4-6": "claude-sonnet-4-6"
+   },
+   "stratum_counts_passing": {
+    "claude-opus-4-8": 5,
+    "claude-sonnet-4-6": 22
+   }
+  },
+  "length": {
+   "definition": "distinct entries (uuid + uuid-less fingerprints), journals excluded",
+   "count": 27.0,
+   "mean": 602.2592592592592,
+   "std": 505.0229692105097,
+   "min": 26.0,
+   "25%": 208.5,
+   "50%": 553.0,
+   "75%": 943.0,
+   "max": 2049.0
+  },
+  "N_after_field_audit": 27
+ },
+ "splits": {
+  "rule": "analysis/prereg_e.json splits.new_corpora (see pub_cc_common docstring SPLITS)",
+  "seed": 20261006,
+  "N": 27,
+  "sizes": {
+   "A": 5,
+   "B": 7,
+   "E": 7,
+   "H": 8
+  },
+  "floor_used": {
+   "A": 0,
+   "B": 1,
+   "E": 1
+  },
+  "by_stratum": {
+   "claude-opus-4-8": {
+    "A": 1,
+    "B": 3,
+    "E": 1,
+    "H": 0
+   },
+   "claude-sonnet-4-6": {
+    "A": 4,
+    "B": 4,
+    "E": 6,
+    "H": 8
+   }
+  },
+  "cells": {
+   "claude-opus-4-8|long": 2,
+   "claude-opus-4-8|mid": 1,
+   "claude-opus-4-8|short": 2,
+   "claude-sonnet-4-6|long": 7,
+   "claude-sonnet-4-6|mid": 8,
+   "claude-sonnet-4-6|short": 7
+  },
+  "files": {
+   "samples_json": "analysis/cache/samples/pub_trace_commons.json",
+   "samples_json_sha256": "15ab608430493243c2c50e100f134da4a976f126b8df5384e035f057159658e5",
+   "samples_EH_json": "analysis/cache/samples/pub_trace_commons_EH.json",
+   "samples_EH_json_sha256": "14869f896ef24ea0c7d1fac5731a1dc35f5f87108fbf9fd80c0aae45443eda1d",
+   "sha256_sorted_ids": {
+    "A": "2ac79b47819636560a3a0baba302933ed3c4ca604b0a128f572d8af94b1250ba",
+    "B": "1bcda6886c65e67fd1463385cc72be7e58128815173756198520c6bc63322149",
+    "E": "d589235c2ac0fd97f58941eb4dcb26f04684e4f56bc948ddce96e1017f243a75",
+    "H": "ef79e11a199a579d55f80b7feb82b7304a2796f55df769eb5956d512ce5a9881"
+   }
+  },
+  "index": "analysis/cache/pub_trace_commons_index.json",
+  "heldout_manifest": "analysis/out/phase_e/heldout_manifest_pub_trace_commons.json"
+ },
+ "A_cache": {
+  "path": "analysis/cache/pub_trace_commons_A.parquet",
+  "sha256": "5c2ed751c65adf9e92d58bf58a21a78c27c30f0f965bad297274995a486d0957",
+  "validate": {
+   "rows": 2794,
+   "sessions": 5,
+   "call": 762,
+   "result": 762,
+   "meta": 529,
+   "assistant": 480,
+   "system": 141,
+   "user": 120
+  },
+  "events_by_kind": {
+   "call": 762,
+   "result": 762,
+   "meta": 529,
+   "assistant": 480,
+   "system": 141,
+   "user": 120
+  },
+  "ts_kind": {
+   "event": 2794
+  },
+  "ts_fill": {
+   "with_ts": 2794,
+   "without_ts": 0
+  },
+  "ts_fractional_digits": {
+   "3": 2794
+  },
+  "pairing": {
+   "call_events": 762,
+   "result_events": 762,
+   "call_ids_unique": 762,
+   "result_ids_unique": 762,
+   "duplicate_call_events_same_session_id": 0,
+   "duplicate_result_events_same_session_id": 0,
+   "result_events_null_call_id": 0,
+   "paired": 762,
+   "paired_result_seq_before_call_seq": 0,
+   "calls_without_result": 0,
+   "results_without_call_in_session": 0,
+   "results_without_call_but_call_id_elsewhere_in_frame": 0,
+   "paired_both_ts": 762,
+   "paired_identical_ts": 0,
+   "paired_negative_delta": 0,
+   "delta_seconds": {
+    "n": 762,
+    "min": 0.002,
+    "p1": 0.005220000000000001,
+    "p5": 0.018,
+    "p25": 0.0825,
+    "p50": 0.544,
+    "p75": 2.182,
+    "p95": 31.025849999999995,
+    "p99": 124.11685999999999,
+    "max": 908.587,
+    "mean": 7.924594488188976
+   }
+  },
+  "native_error": {
+   "results": 762,
+   "filled": 249,
+   "true": 29,
+   "false": 220,
+   "fill_rate": 0.32677165354330706
+  },
+  "usage_fill": {
+   "assistant": {
+    "n": 480,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "usage_cache_read": 1.0,
+    "usage_cache_create": 1.0,
+    "api_msg_id": 1.0,
+    "request_id": 1.0,
+    "model": 1.0,
+    "api_msg_ids_unique": 480
+   },
+   "call": {
+    "n": 762,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "usage_cache_read": 1.0,
+    "usage_cache_create": 1.0,
+    "api_msg_id": 1.0,
+    "request_id": 1.0,
+    "model": 1.0,
+    "api_msg_ids_unique": 698
+   }
+  },
+  "request_id": {
+   "events_with_request_id": 1521,
+   "by_kind": {
+    "call": 762,
+    "assistant": 480,
+    "meta": 279
+   },
+   "assistant_fill": {
+    "n": 480,
+    "with_request_id": 480,
+    "fill_rate": 1.0
+   },
+   "call_fill": {
+    "n": 762,
+    "with_request_id": 762,
+    "fill_rate": 1.0
+   },
+   "api_responses": {
+    "n": 798,
+    "with_request_id": 798
+   },
+   "distinct_request_ids": 796,
+   "distinct_decodable_ms": 796,
+   "decodable_rate": 1.0,
+   "decoder": "analysis.probes.prereg_e_common.decode_req_ms (inferred UUIDv7-like ms layout; undocumented)",
+   "distinct_shapes": {
+    "req_24": 796
+   },
+   "events_with_request_id_and_model_synthetic": 2,
+   "distinct_request_ids_in_more_than_one_session": 0,
+   "sessions_with_any_request_id": 5,
+   "sessions": 5
+  },
+  "build_stats_full": {
+   "rows": 2794,
+   "sessions": 5,
+   "events_by_kind": {
+    "call": 762,
+    "result": 762,
+    "meta": 529,
+    "assistant": 480,
+    "system": 141,
+    "user": 120
+   },
+   "ts_kind": {
+    "event": 2794
+   },
+   "ts_fill": {
+    "with_ts": 2794,
+    "without_ts": 0
+   },
+   "ts_fractional_digits": {
+    "3": 2794
+   },
+   "ts_ties": {
+    "tie_groups": 60,
+    "events_in_tie_groups": 132,
+    "largest_tie_group": 4
+   },
+   "adjacent_ts_inversions_in_seq_order": 0,
+   "pairing": {
+    "call_events": 762,
+    "result_events": 762,
+    "call_ids_unique": 762,
+    "result_ids_unique": 762,
+    "duplicate_call_events_same_session_id": 0,
+    "duplicate_result_events_same_session_id": 0,
+    "result_events_null_call_id": 0,
+    "paired": 762,
+    "paired_result_seq_before_call_seq": 0,
+    "calls_without_result": 0,
+    "results_without_call_in_session": 0,
+    "results_without_call_but_call_id_elsewhere_in_frame": 0,
+    "paired_both_ts": 762,
+    "paired_identical_ts": 0,
+    "paired_negative_delta": 0,
+    "delta_seconds": {
+     "n": 762,
+     "min": 0.002,
+     "p1": 0.005220000000000001,
+     "p5": 0.018,
+     "p25": 0.0825,
+     "p50": 0.544,
+     "p75": 2.182,
+     "p95": 31.025849999999995,
+     "p99": 124.11685999999999,
+     "max": 908.587,
+     "mean": 7.924594488188976
+    }
+   },
+   "native_error": {
+    "results": 762,
+    "filled": 249,
+    "true": 29,
+    "false": 220,
+    "fill_rate": 0.32677165354330706
+   },
+   "exit_code_filled": 0,
+   "stderr_filled_results": 220,
+   "usage_fill": {
+    "assistant": {
+     "n": 480,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 1.0,
+     "model": 1.0,
+     "api_msg_ids_unique": 480
+    },
+    "call": {
+     "n": 762,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 1.0,
+     "model": 1.0,
+     "api_msg_ids_unique": 698
+    }
+   },
+   "result_error_marker": {
+    "None": 735,
+    "cc_exit_code": 15,
+    "cc_tool_use_error": 8,
+    "cc_interrupt_reject": 4
+   },
+   "extra_key_fill_by_kind": {
+    "meta": {
+     "entry_type": {
+      "present": 529,
+      "fill_rate": 1.0
+     },
+     "thinking_chars": {
+      "present": 279,
+      "fill_rate": 0.5274102079395085
+     },
+     "operation": {
+      "present": 98,
+      "fill_rate": 0.18525519848771266
+     },
+     "subtype": {
+      "present": 88,
+      "fill_rate": 0.166351606805293
+     },
+     "durationMs": {
+      "present": 77,
+      "fill_rate": 0.14555765595463138
+     },
+     "attachment_type": {
+      "present": 64,
+      "fill_rate": 0.12098298676748583
+     },
+     "visibility": {
+      "present": 64,
+      "fill_rate": 0.12098298676748583
+     },
+     "level": {
+      "present": 11,
+      "fill_rate": 0.020793950850661626
+     },
+     "compactMetadata": {
+      "present": 2,
+      "fill_rate": 0.003780718336483932
+     }
+    },
+    "system": {
+     "entry_type": {
+      "present": 128,
+      "fill_rate": 0.9078014184397163
+     },
+     "attachment_type": {
+      "present": 128,
+      "fill_rate": 0.9078014184397163
+     },
+     "visibility": {
+      "present": 128,
+      "fill_rate": 0.9078014184397163
+     },
+     "text_source": {
+      "present": 128,
+      "fill_rate": 0.9078014184397163
+     },
+     "notification_statuses": {
+      "present": 9,
+      "fill_rate": 0.06382978723404255
+     },
+     "toolUseID": {
+      "present": 6,
+      "fill_rate": 0.0425531914893617
+     },
+     "hookEvent": {
+      "present": 6,
+      "fill_rate": 0.0425531914893617
+     },
+     "command_mode": {
+      "present": 4,
+      "fill_rate": 0.028368794326241134
+     }
+    },
+    "result": {
+     "marker": {
+      "present": 762,
+      "fill_rate": 1.0
+     },
+     "interrupted": {
+      "present": 220,
+      "fill_rate": 0.2887139107611549
+     },
+     "noOutputExpected": {
+      "present": 167,
+      "fill_rate": 0.21916010498687663
+     },
+     "numFiles": {
+      "present": 64,
+      "fill_rate": 0.08398950131233596
+     },
+     "durationMs": {
+      "present": 33,
+      "fill_rate": 0.04330708661417323
+     },
+     "truncated": {
+      "present": 33,
+      "fill_rate": 0.04330708661417323
+     },
+     "backgroundTaskId": {
+      "present": 10,
+      "fill_rate": 0.013123359580052493
+     },
+     "durationSeconds": {
+      "present": 1,
+      "fill_rate": 0.0013123359580052493
+     }
+    },
+    "user": {
+     "entry_type": {
+      "present": 16,
+      "fill_rate": 0.13333333333333333
+     },
+     "attachment_type": {
+      "present": 16,
+      "fill_rate": 0.13333333333333333
+     },
+     "visibility": {
+      "present": 16,
+      "fill_rate": 0.13333333333333333
+     },
+     "command_mode": {
+      "present": 16,
+      "fill_rate": 0.13333333333333333
+     },
+     "text_source": {
+      "present": 16,
+      "fill_rate": 0.13333333333333333
+     }
+    }
+   },
+   "meta_entry_types": {
+    "assistant_thinking_only:None": 279,
+    "queue-operation:None": 98,
+    "system:turn_duration": 77,
+    "attachment:todo_reminder": 29,
+    "attachment:diagnostics": 23,
+    "attachment:opened_file_in_ide": 8,
+    "system:api_error": 8,
+    "attachment:command_permissions": 3,
+    "system:compact_boundary": 2,
+    "system:local_command": 1,
+    "attachment:selected_lines_in_ide": 1
+   },
+   "timer_keys_in_extra": {
+    "result": {
+     "durationMs": {
+      "present": 33,
+      "of": 762,
+      "fill_rate": 0.04330708661417323
+     },
+     "durationSeconds": {
+      "present": 1,
+      "of": 762,
+      "fill_rate": 0.0013123359580052493
+     }
+    },
+    "meta": {
+     "durationMs": {
+      "present": 77,
+      "of": 529,
+      "fill_rate": 0.14555765595463138
+     },
+     "compactMetadata.durationMs": {
+      "present": 2,
+      "of": 529,
+      "fill_rate": 0.003780718336483932
+     }
+    }
+   },
+   "timer_keys_by_result_tool": {
+    "glob": {
+     "durationMs": {
+      "present": 33,
+      "of": 33,
+      "fill_rate": 1.0
+     }
+    },
+    "websearch": {
+     "durationSeconds": {
+      "present": 1,
+      "of": 1,
+      "fill_rate": 1.0
+     }
+    }
+   },
+   "subagent": {
+    "timing_vs_parent": {
+     "subagent_events_with_parent_call_id": 0,
+     "with_ts": 0,
+     "parent_call_in_same_session": 0,
+     "parent_result_in_same_session": 0,
+     "ts_before_parent_call": 0,
+     "ts_after_parent_result": 0,
+     "by_parent_tool": {}
+    },
+    "events": 0,
+    "event_share": 0.0,
+    "calls": 0,
+    "call_share": 0.0,
+    "sessions_with_subagent_events": 0,
+    "subagent_events_parent_call_id_filled": 0,
+    "subagent_events_agent_id_filled": 0,
+    "distinct_agent_ids": 0
+   },
+   "results_by_tool_top": {
+    "shell": 175,
+    "edit": 171,
+    "write": 138,
+    "read": 124,
+    "powershell": 65,
+    "glob": 33,
+    "grep": 31,
+    "null": 9,
+    "todo": 7,
+    "askuserquestion": 3,
+    "toolsearch": 3,
+    "skill": 2,
+    "websearch": 1
+   },
+   "events_per_session": {
+    "n": 5,
+    "min": 42.0,
+    "p1": 47.88,
+    "p5": 71.4,
+    "p25": 189.0,
+    "p50": 507.0,
+    "p75": 1002.0,
+    "p95": 1043.6,
+    "p99": 1051.92,
+    "max": 1054.0,
+    "mean": 558.8
+   }
+  }
+ },
+ "A_loader_counters": {
+  "bad_json_lines": 0,
+  "dropped_untimestamped:ai-title": 230,
+  "dropped_untimestamped:file-history-snapshot": 230,
+  "dropped_untimestamped:last-prompt": 223,
+  "dropped_untimestamped:mode": 88,
+  "dropped_untimestamped:permission-mode": 78,
+  "files_main": 5,
+  "lines_main": 3636,
+  "loader_emitted_meta:queue-operation": 98,
+  "user_entry_task_notification_events_copies_included:system": 5
+ },
+ "A_redactions": {
+  "events_changed": 0,
+  "by_field_and_pattern": {},
+  "residual_matches_after_redaction": {},
+  "note": "counts only; values never printed or stored"
+ },
+ "selftest": {
+  "split_path_on_A_equals_A_cache": true,
+  "split_path_rows": 2794,
+  "refuses_A": true,
+  "refuses_H": true,
+  "redaction_unit_tests": {
+   "anthropic_key": true,
+   "bearer": true,
+   "env_secret": true,
+   "json_secret_field": true,
+   "github_token": true,
+   "private_key_block": true,
+   "args_json_walk": true,
+   "benign_unchanged": true
+  },
+  "all_pass": true
+ },
+ "runtime_s": {
+  "population_pass": 1.6,
+  "A_build": 0.6,
+  "total": 3.3
+ }
+}

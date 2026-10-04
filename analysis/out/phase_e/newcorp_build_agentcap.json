@@ -1,0 +1,618 @@
+{
+ "corpus": "agentcap",
+ "loader": "analysis/loaders/load_agentcap.py",
+ "source": "data/acquired/agentcap-dacorvo",
+ "population": {
+  "N": 804,
+  "by_stratum": {
+   "pi/local": 363,
+   "opencode/local": 352,
+   "opencode/hf-router": 59,
+   "pi/hf-router": 30
+  },
+  "by_suite": {
+   "hf-hub": 406,
+   "transformers-coding": 386,
+   "funes-recall": 12
+  },
+  "runs": 31,
+  "opencode_child_sessions": 0,
+  "header_ok": 804
+ },
+ "split_incident": {
+  "abandoned_draw_A": 161,
+  "seen_outside_final_A": 71,
+  "n_H": 14,
+  "n_B": 42,
+  "n_E": 15,
+  "file": "analysis/out/phase_e/newcorp_split_incident_agentcap.json"
+ },
+ "field_audit": {
+  "files_seen": 806,
+  "fail_reasons": {
+   "opencode_empty_file": 2
+  },
+  "duplicate_session_ids_dropped": 0,
+  "empty_opencode_file_ids": [
+   "ses_16ef1f05bffeYt5j3sbklmm5dp",
+   "ses_17b6a18d5ffe3RljiVmIl1401v"
+  ],
+  "passed": 804,
+  "rule": "OpenCode: info object decodes (else id from file stem); Pi: first line {type: session, id}"
+ },
+ "captures_index": {
+  "rows": 18885,
+  "runs": 31,
+  "files": 31,
+  "runs_matching_trace_folders": 31,
+  "note": "metadata columns only (run_id, task_id, turn, captured_at, proxy request_id); bodies read only for A tasks"
+ },
+ "splits": {
+  "A": {
+   "total": 160,
+   "by_stratum": {
+    "opencode/hf-router": 17,
+    "opencode/local": 64,
+    "pi/hf-router": 13,
+    "pi/local": 66
+   }
+  },
+  "B": {
+   "total": 214,
+   "by_stratum": {
+    "opencode/hf-router": 20,
+    "opencode/local": 91,
+    "pi/hf-router": 9,
+    "pi/local": 94
+   }
+  },
+  "E": {
+   "total": 214,
+   "by_stratum": {
+    "opencode/hf-router": 13,
+    "opencode/local": 96,
+    "pi/hf-router": 6,
+    "pi/local": 99
+   }
+  },
+  "H": {
+   "total": 216,
+   "by_stratum": {
+    "opencode/hf-router": 9,
+    "opencode/local": 101,
+    "pi/hf-router": 2,
+    "pi/local": 104
+   }
+  },
+  "floor_used": {
+   "A": 5,
+   "B": 5,
+   "E": 5
+  },
+  "files": {
+   "samples": "analysis/cache/samples/agentcap.json",
+   "samples_EH": "analysis/cache/samples/agentcap_EH.json",
+   "heldout_manifest": "analysis/out/phase_e/heldout_manifest_agentcap.json",
+   "sha256_samples": "cfbfa9fafd8bdbd0031264437dc0821b0536a28791596abc8deaf926e3c2a35a",
+   "sha256_samples_EH": "d1c0e4cfec38a2751c6653c4c99cee9bf0eb9315f52e7fca04013fec60639399"
+  },
+  "index": "analysis/cache/agentcap_index.parquet"
+ },
+ "A_cache": {
+  "path": "analysis/cache/agentcap_A.parquet",
+  "rows": 10841,
+  "sessions": 160,
+  "bytes": 3837214,
+  "validate": {
+   "rows": 10841,
+   "sessions": 160,
+   "meta": 3850,
+   "call": 2292,
+   "result": 2290,
+   "assistant": 1814,
+   "user": 575,
+   "system": 20
+  },
+  "split": "A",
+  "sessions_in_split": 160,
+  "parser_stats": {
+   "pi:lines": 3686,
+   "pi:utf8_replaced": 0,
+   "opencode:doc_ok": 81,
+   "opencode:messages": 1275,
+   "opencode:utf8_replaced": 0,
+   "opencode:opencode_results_completed_with_nonzero_exit": 54
+  },
+  "join": {
+   "rank_map_agrees": 122,
+   "sessions_no_prompt_match": 27,
+   "rank_map_disagrees": 7,
+   "rank_map_unavailable": 4,
+   "tasks_claimed_by_more_than_one_session": 0,
+   "capture_rows_loaded": 2933,
+   "capture_rows_first_user_mismatch": 763,
+   "sessions_joined_to_task": 133,
+   "trace_responses": 2239,
+   "capture_rows": 2170,
+   "capture_rows_matched_more_than_once": 0,
+   "joined_by_response_id": 1459,
+   "trace_responses_unjoined": 159,
+   "joined_by_positional": 169,
+   "joined_by_tool_call_id": 452
+  },
+  "task_rank_map_runs": {
+   "runs": 31,
+   "runs_session_count_eq_task_count": 29,
+   "runs_mismatched": {
+    "opencode-hf-router-20260604-033019": {
+     "sessions": 29,
+     "tasks": 30
+    },
+    "opencode-local-20260601-183720": {
+     "sessions": 16,
+     "tasks": 30
+    }
+   }
+  },
+  "secret_redactions": {
+   "args:hf_token": 10,
+   "text:hf_token": 4
+  },
+  "surrogate_cells_replaced": 0
+ },
+ "A_report": {
+  "rows": 10841,
+  "sessions": 160,
+  "events_by_kind": {
+   "meta": 3850,
+   "call": 2292,
+   "result": 2290,
+   "assistant": 1814,
+   "user": 575,
+   "system": 20
+  },
+  "pairing": {
+   "calls": 2292,
+   "results": 2290,
+   "calls_with_result": 2290,
+   "calls_without_result": 2,
+   "results_without_call": 0,
+   "duplicate_call_ids": 0,
+   "synthetic_call_ids": 0
+  },
+  "ts_kind": {
+   "event": 8875,
+   "none": 1966
+  },
+  "ts_fractional_digits": {
+   "3": 8875
+  },
+  "ts_null_by_kind": {
+   "meta": 1966
+  },
+  "pairs_delta": {
+   "pairs": 2290,
+   "stamped": 2290,
+   "delta_gt_0": 2290,
+   "delta_eq_0": 0,
+   "delta_lt_0": 0,
+   "q50_s": 0.01
+  },
+  "native_error": {
+   "results": 2290,
+   "nonnull": 2290,
+   "true": 384,
+   "exit_code_nonnull": 299,
+   "stderr_nonnull": 0
+  },
+  "usage": {
+   "rows_with_usage": 2622,
+   "by_kind": {
+    "meta": 2622
+   },
+   "distinct_session_api_msg_id": 2622,
+   "api_msg_id_null_on_usage_rows": 0,
+   "cache_read_nonnull": 2622
+  },
+  "request_id": {
+   "rows_nonnull": 5442,
+   "distinct": 2080,
+   "sessions_with_any": 127,
+   "families_distinct": {
+    "openai_chatcmpl": 1798,
+    "other": 282
+   },
+   "decodable_anthropic_req_ms": 0
+  },
+  "api_msg_id": {
+   "rows_nonnull_nonsynthetic": 6714,
+   "distinct": 2610,
+   "families_distinct": {
+    "openai_chatcmpl": 1423,
+    "other": 210,
+    "anthropic_msg": 977
+   }
+  },
+  "tools": {
+   "shell": 1115,
+   "read": 529,
+   "write": 275,
+   "edit": 149,
+   "grep": 83,
+   "glob": 43,
+   "skill": 27,
+   "subagent": 27,
+   "webfetch": 25,
+   "todo": 16,
+   "recall": 1,
+   "get": 1,
+   "funes_recall": 1
+  },
+  "models": {
+   "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF": 1813,
+   "ggml-org/Qwen3.6-35B-A3B-GGUF": 1486,
+   "unsloth/GLM-4.7-Flash-GGUF": 1450,
+   "zai-org/GLM-4.6": 927,
+   "google/gemma-4-12B-it-qat-q4_0-gguf": 488,
+   "ggml-org/gemma-4-26B-A4B-it-GGUF": 296,
+   "ggml-org/gemma-4-E4B-it-GGUF": 262,
+   "GLM-4.5-Air": 6
+  },
+  "is_subagent_rows": 0,
+  "by_agent": {
+   "opencode": {
+    "rows": 4406,
+    "sessions": 81,
+    "events_by_kind": {
+     "meta": 1966,
+     "call": 803,
+     "result": 801,
+     "assistant": 554,
+     "user": 273,
+     "system": 9
+    },
+    "pairing": {
+     "calls": 803,
+     "results": 801,
+     "calls_with_result": 801,
+     "calls_without_result": 2,
+     "results_without_call": 0,
+     "duplicate_call_ids": 0,
+     "synthetic_call_ids": 0
+    },
+    "ts_kind": {
+     "event": 2440,
+     "none": 1966
+    },
+    "ts_fractional_digits": {
+     "3": 2440
+    },
+    "ts_null_by_kind": {
+     "meta": 1966
+    },
+    "pairs_delta": {
+     "pairs": 801,
+     "stamped": 801,
+     "delta_gt_0": 801,
+     "delta_eq_0": 0,
+     "delta_lt_0": 0,
+     "q50_s": 0.015
+    },
+    "native_error": {
+     "results": 801,
+     "nonnull": 801,
+     "true": 183,
+     "exit_code_nonnull": 299,
+     "stderr_nonnull": 0
+    },
+    "usage": {
+     "rows_with_usage": 975,
+     "by_kind": {
+      "meta": 975
+     },
+     "distinct_session_api_msg_id": 975,
+     "api_msg_id_null_on_usage_rows": 0,
+     "cache_read_nonnull": 975
+    },
+    "request_id": {
+     "rows_nonnull": 1513,
+     "distinct": 621,
+     "sessions_with_any": 54,
+     "families_distinct": {
+      "openai_chatcmpl": 522,
+      "other": 99
+     },
+     "decodable_anthropic_req_ms": 0
+    },
+    "api_msg_id": {
+     "rows_nonnull_nonsynthetic": 2332,
+     "distinct": 977,
+     "families_distinct": {
+      "anthropic_msg": 977
+     }
+    },
+    "tools": {
+     "shell": 300,
+     "read": 184,
+     "grep": 83,
+     "write": 53,
+     "edit": 44,
+     "glob": 43,
+     "skill": 27,
+     "subagent": 27,
+     "webfetch": 25,
+     "todo": 16,
+     "funes_recall": 1
+    },
+    "models": {
+     "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF": 611,
+     "unsloth/GLM-4.7-Flash-GGUF": 489,
+     "zai-org/GLM-4.6": 466,
+     "google/gemma-4-12B-it-qat-q4_0-gguf": 312,
+     "ggml-org/gemma-4-E4B-it-GGUF": 154,
+     "ggml-org/Qwen3.6-35B-A3B-GGUF": 154,
+     "ggml-org/gemma-4-26B-A4B-it-GGUF": 146
+    },
+    "is_subagent_rows": 0
+   },
+   "pi": {
+    "rows": 6435,
+    "sessions": 79,
+    "events_by_kind": {
+     "meta": 1884,
+     "call": 1489,
+     "result": 1489,
+     "assistant": 1260,
+     "user": 302,
+     "system": 11
+    },
+    "pairing": {
+     "calls": 1489,
+     "results": 1489,
+     "calls_with_result": 1489,
+     "calls_without_result": 0,
+     "results_without_call": 0,
+     "duplicate_call_ids": 0,
+     "synthetic_call_ids": 0
+    },
+    "ts_kind": {
+     "event": 6435
+    },
+    "ts_fractional_digits": {
+     "3": 6435
+    },
+    "ts_null_by_kind": {},
+    "pairs_delta": {
+     "pairs": 1489,
+     "stamped": 1489,
+     "delta_gt_0": 1489,
+     "delta_eq_0": 0,
+     "delta_lt_0": 0,
+     "q50_s": 0.009
+    },
+    "native_error": {
+     "results": 1489,
+     "nonnull": 1489,
+     "true": 201,
+     "exit_code_nonnull": 0,
+     "stderr_nonnull": 0
+    },
+    "usage": {
+     "rows_with_usage": 1647,
+     "by_kind": {
+      "meta": 1647
+     },
+     "distinct_session_api_msg_id": 1647,
+     "api_msg_id_null_on_usage_rows": 0,
+     "cache_read_nonnull": 1647
+    },
+    "request_id": {
+     "rows_nonnull": 3929,
+     "distinct": 1459,
+     "sessions_with_any": 73,
+     "families_distinct": {
+      "openai_chatcmpl": 1276,
+      "other": 183
+     },
+     "decodable_anthropic_req_ms": 0
+    },
+    "api_msg_id": {
+     "rows_nonnull_nonsynthetic": 4382,
+     "distinct": 1633,
+     "families_distinct": {
+      "openai_chatcmpl": 1423,
+      "other": 210
+     }
+    },
+    "tools": {
+     "shell": 815,
+     "read": 345,
+     "write": 222,
+     "edit": 105,
+     "recall": 1,
+     "get": 1
+    },
+    "models": {
+     "ggml-org/Qwen3.6-35B-A3B-GGUF": 1332,
+     "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF": 1202,
+     "unsloth/GLM-4.7-Flash-GGUF": 961,
+     "zai-org/GLM-4.6": 461,
+     "google/gemma-4-12B-it-qat-q4_0-gguf": 176,
+     "ggml-org/gemma-4-26B-A4B-it-GGUF": 150,
+     "ggml-org/gemma-4-E4B-it-GGUF": 108,
+     "GLM-4.5-Air": 6
+    },
+    "is_subagent_rows": 0
+   }
+  },
+  "second_witness": {
+   "rows_with_capture": 5442,
+   "sessions_with_capture": 127,
+   "sessions_A": 160,
+   "joined_responses": 2080,
+   "joined_by": {
+    "response_id": 1459,
+    "tool_call_id": 452,
+    "positional": 169
+   },
+   "responses_with_server_timings": 1798,
+   "request_id_rows_nonnull": 5442,
+   "trace_end_minus_resp_created_last_s": {
+    "n": 2074,
+    "q0.01": -16.677769939899445,
+    "q0.5": 0.4864999055862427,
+    "q0.99": 64.7142800211906
+   },
+   "resp_created_first_minus_request_start_s": {
+    "n": 1459,
+    "q0.01": -0.7853600215911866,
+    "q0.5": 0.17400002479553223,
+    "q0.99": 15.897760090827969
+   },
+   "captured_at_minus_trace_end_s": {
+    "n": 2074,
+    "q0.01": -69.32227997541428,
+    "q0.5": -4.1859999895095825,
+    "q0.99": -0.3995699334144594
+   },
+   "note": "created is integer seconds from the serving process (llama.cpp-style server or HF Router); captured_at is integer seconds from the capture proxy. Descriptive only, no threshold set here."
+  },
+  "run_dominance_A": {
+   "top_cluster": "pi-local-20260602-030454",
+   "top_share_events": 0.1518324607329843,
+   "top_share_sessions": 0.050724637681159424,
+   "top_session_share_events": 0.030977312390924956,
+   "n_clusters": 28,
+   "dominated": false
+  },
+  "suite_dominance_A": {
+   "top_cluster": "transformers-coding",
+   "top_share_events": 0.6195462478184991,
+   "top_share_sessions": 0.4782608695652174,
+   "top_session_share_events": 0.030977312390924956,
+   "n_clusters": 3,
+   "dominated": true
+  }
+ },
+ "calibration": {
+  "file": "analysis/out/phase_e/prereg_e_calibration_agentcap.json",
+  "extension": "analysis/out/phase_e/prereg_e_extensions/agentcap.json",
+  "units": {
+   "agentcap/opencode": {
+    "calibrated_as_unit": "swechat/opencode",
+    "sessions_A": 81,
+    "resolved": {
+     "n1": {
+      "bounds": [
+       -1.255296488587848,
+       1.5676685275828843
+      ],
+      "source": "pooled bounds from prereg_e.json resolved.n1 (unit has < 500 A residuals or < 5 sessions)",
+      "n_A": 32,
+      "sessions_A": 8,
+      "pooled_n_A": 4503,
+      "pooled_sessions_A": 115
+     },
+     "n2": {
+      "GRANULAR": true,
+      "G1_share_both": 0.9971631205673759,
+      "G2_median_usage_out": 100.0,
+      "responses_A": 705,
+      "tau": 0.2604166666666667,
+      "tau_n_A": 523
+     },
+     "length_terciles_A": {
+      "sessions": 72,
+      "cuts": [
+       4.0,
+       12.333333333333329
+      ],
+      "rule": "A-split terciles of paired calls/session"
+     },
+     "n6_field_gate_A": {
+      "pairs": 801,
+      "pairs_stamped": 801,
+      "pairs_distinct_stamps": 801,
+      "request_ids": 1513,
+      "request_ids_decodable": 0,
+      "image_usage_rows": 0,
+      "usage_granular": true,
+      "error_definition": true,
+      "results_with_text": 801,
+      "commit_claims": 0,
+      "external_commit_table": false,
+      "raw_structured_counters": false,
+      "external_usage_tally": false
+     },
+     "n6_field_gate_corrections": {
+      "external_commit_table": {
+       "calibrate_unit": true,
+       "corrected": false,
+       "reason": "agentcap has no external table (the True came from unit 'swechat/opencode')"
+      },
+      "external_usage_tally": {
+       "calibrate_unit": true,
+       "corrected": false,
+       "reason": "agentcap has no external table (the True came from unit 'swechat/opencode')"
+      }
+     },
+     "bracket_A": {
+      "responses_decoded": 0
+     },
+     "n5_truncation_A": {}
+    }
+   },
+   "agentcap/pi": {
+    "calibrated_as_unit": "agentcap/pi",
+    "sessions_A": 79,
+    "resolved": {
+     "n1": {
+      "bounds": null,
+      "source": "not computed: 'agentcap/pi' is not in SPEC_E N1 units (LAT_UNITS)"
+     },
+     "n2": {
+      "GRANULAR": true,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 111.0,
+      "responses_A": 1339,
+      "tau": 0.26009083043872283,
+      "tau_n_A": 990
+     },
+     "length_terciles_A": {
+      "sessions": 66,
+      "cuts": [
+       12.0,
+       25.33333333333333
+      ],
+      "rule": "A-split terciles of paired calls/session"
+     },
+     "n6_field_gate_A": {
+      "pairs": 1489,
+      "pairs_stamped": 1489,
+      "pairs_distinct_stamps": 1489,
+      "request_ids": 3929,
+      "request_ids_decodable": 0,
+      "image_usage_rows": 0,
+      "usage_granular": true,
+      "error_definition": false,
+      "results_with_text": 1489,
+      "commit_claims": 0,
+      "external_commit_table": false,
+      "raw_structured_counters": false,
+      "external_usage_tally": false
+     },
+     "n6_field_gate_corrections": {},
+     "bracket_A": {
+      "responses_decoded": 0
+     }
+    }
+   }
+  }
+ },
+ "selftest_split_code_path": {
+  "A_rebuild_identical": true,
+  "H_refused": true
+ },
+ "provider_request_id": "request_id = response id from the joined capture body (SSE 'id'); minted by the serving process (local llama.cpp-style server or HF Router), not a first-party provider; Pi traces carry the same value as message.responseId. Not decodable to a clock (no embedded time); the clock is the body's integer 'created'.",
+ "runtime_s": 36.8
+}

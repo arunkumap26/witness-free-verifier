@@ -1,0 +1,534 @@
+{
+ "corpus": "glm_tb21",
+ "loader": "analysis/loaders/load_glm_tb21.py",
+ "source": "C:/Swarms/data/acquired/glm52-nf3-tb21-traces/hf_repo/traces (HF 0xSero/glm-5.2-nf3-hybrid-terminal-bench-2.1-traces @6020a41c)",
+ "population": {
+  "candidate_trials": 86,
+  "passing": 86,
+  "fail_reasons": {},
+  "fail_by_submission": {},
+  "pass_by_stratum": {
+   "terminus-2__openai/GLM-5.2": 86
+  },
+  "format_by_stratum": {
+   "terminus-2__openai/GLM-5.2": {
+    "atif": 86
+   }
+  },
+  "native_parse_fallback_to_atif": 0,
+  "also_has_atif_not_loaded": 0,
+  "structural_totals_passing": {
+   "records": 3323,
+   "calls": 5252,
+   "calls_with_id": 5252,
+   "results": 3237,
+   "ts_records": 3323,
+   "bad_lines": 0
+  },
+  "length_calls_passing": {
+   "count": 86.0,
+   "mean": 61.06976744186046,
+   "std": 83.69507550313037,
+   "min": 2.0,
+   "25%": 14.25,
+   "50%": 28.0,
+   "75%": 71.0,
+   "max": 548.0
+  }
+ },
+ "splits": {
+  "N": 86,
+  "A": 17,
+  "B": 23,
+  "E": 23,
+  "H": 23,
+  "floor_used": {
+   "A": 5,
+   "B": 5,
+   "E": 5
+  },
+  "n_cells": 3,
+  "by_stratum": {
+   "terminus-2__openai/GLM-5.2": {
+    "A": 17,
+    "B": 23,
+    "E": 23,
+    "H": 23
+   }
+  }
+ },
+ "heldout_manifest": {
+  "n_H": 23,
+  "sha256_sorted_H_ids": "3449a5b82f54c3d5868ecfc903abba52bcb1c423e9986f6c71333546dd87b027"
+ },
+ "A_cache": {
+  "path": "analysis/cache/glm_tb21_A.parquet",
+  "validate": {
+   "rows": 2053,
+   "sessions": 17,
+   "call": 1027,
+   "assistant": 496,
+   "result": 496,
+   "user": 17,
+   "meta": 17
+  },
+  "parse_errors": {},
+  "loader_counters": {
+   "atif_collapsed_stamp_sessions": 0,
+   "atif_join:source_call_id": 268,
+   "atif_join:step_multi": 197,
+   "atif_join:step_single": 31,
+   "atif_ts_naive": 0,
+   "credential_redactions:aws_akid": 27,
+   "credential_redactions:github": 27,
+   "credential_redactions:huggingface": 38,
+   "format:atif": 17,
+   "surrogate_fields_sanitized": 0
+  },
+  "rows": 2053,
+  "sessions": 17,
+  "events_by_kind": {
+   "call": 1027,
+   "assistant": 496,
+   "result": 496,
+   "user": 17,
+   "meta": 17
+  },
+  "ts_kind": {
+   "shared_turn": 2019,
+   "event": 17,
+   "none": 17
+  },
+  "ts_fill": {
+   "with_ts": 2036,
+   "without_ts": 17
+  },
+  "ts_fractional_digits": {
+   "6": 2036
+  },
+  "ts_ties": {
+   "tie_groups": 496,
+   "events_in_tie_groups": 2019,
+   "largest_tie_group": 13
+  },
+  "adjacent_ts_inversions_in_seq_order": 0,
+  "pairing": {
+   "call_events": 1027,
+   "result_events": 496,
+   "call_ids_unique": 1027,
+   "result_ids_unique": 316,
+   "duplicate_call_events_same_session_id": 0,
+   "duplicate_result_events_same_session_id": 180,
+   "result_events_null_call_id": 197,
+   "paired": 299,
+   "paired_result_seq_before_call_seq": 0,
+   "calls_without_result": 728,
+   "results_without_call_in_session": 0,
+   "results_without_call_but_call_id_elsewhere_in_frame": 0,
+   "paired_both_ts": 299,
+   "paired_identical_ts": 299,
+   "paired_negative_delta": 0,
+   "delta_seconds": {
+    "n": 299,
+    "min": 0.0,
+    "p1": 0.0,
+    "p5": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.0,
+    "p95": 0.0,
+    "p99": 0.0,
+    "max": 0.0,
+    "mean": 0.0
+   }
+  },
+  "native_error": {
+   "results": 496,
+   "filled": 0,
+   "true": 0,
+   "false": 0,
+   "fill_rate": 0.0
+  },
+  "exit_code_filled": 0,
+  "stderr_filled_results": 0,
+  "usage_fill": {
+   "assistant": {
+    "n": 496,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "usage_cache_read": 0.0,
+    "usage_cache_create": 0.0,
+    "api_msg_id": 1.0,
+    "request_id": 0.0,
+    "model": 1.0,
+    "api_msg_ids_unique": 496
+   },
+   "call": {
+    "n": 1027,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "usage_cache_read": 0.0,
+    "usage_cache_create": 0.0,
+    "api_msg_id": 1.0,
+    "request_id": 0.0,
+    "model": 1.0,
+    "api_msg_ids_unique": 496
+   }
+  },
+  "result_error_marker": {
+   "None": 496
+  },
+  "extra_key_fill_by_kind": {
+   "user": {
+    "atif_step_id": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "atif_source": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "ts_semantics": {
+     "present": 17,
+     "fill_rate": 1.0
+    }
+   },
+   "assistant": {
+    "atif_step_id": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "atif_source": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "ts_semantics": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "synthetic_api_msg_id": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "thinking_chars": {
+     "present": 282,
+     "fill_rate": 0.5685483870967742
+    },
+    "credential_redactions": {
+     "present": 1,
+     "fill_rate": 0.0020161290322580645
+    }
+   },
+   "call": {
+    "atif_step_id": {
+     "present": 1027,
+     "fill_rate": 1.0
+    },
+    "atif_source": {
+     "present": 1027,
+     "fill_rate": 1.0
+    },
+    "ts_semantics": {
+     "present": 1027,
+     "fill_rate": 1.0
+    },
+    "synthetic_api_msg_id": {
+     "present": 1027,
+     "fill_rate": 1.0
+    },
+    "credential_redactions": {
+     "present": 8,
+     "fill_rate": 0.007789678675754625
+    }
+   },
+   "result": {
+    "atif_step_id": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "atif_source": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "ts_semantics": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "join": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "n_calls_in_step": {
+     "present": 496,
+     "fill_rate": 1.0
+    },
+    "step_call_ids": {
+     "present": 197,
+     "fill_rate": 0.3971774193548387
+    },
+    "credential_redactions": {
+     "present": 6,
+     "fill_rate": 0.012096774193548387
+    }
+   },
+   "meta": {
+    "entry_type": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "task_name": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "started_at": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "finished_at": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "agent_name": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "agent_version": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "model_name": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "model_provider": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "environment_setup_started_at": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "environment_setup_finished_at": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "agent_setup_started_at": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "agent_setup_finished_at": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "agent_execution_started_at": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "agent_execution_finished_at": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "n_input_tokens": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "n_cache_tokens": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "n_output_tokens": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "n_episodes": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "summarization_count": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "api_request_times_msec": {
+     "present": 17,
+     "fill_rate": 1.0
+    },
+    "verifier_started_at": {
+     "present": 16,
+     "fill_rate": 0.9411764705882353
+    },
+    "verifier_finished_at": {
+     "present": 16,
+     "fill_rate": 0.9411764705882353
+    },
+    "reward": {
+     "present": 16,
+     "fill_rate": 0.9411764705882353
+    },
+    "exception_type": {
+     "present": 1,
+     "fill_rate": 0.058823529411764705
+    }
+   }
+  },
+  "meta_entry_types": {
+   "trial_result:None": 17
+  },
+  "timer_keys_in_extra": {},
+  "timer_keys_by_result_tool": {},
+  "subagent": {
+   "timing_vs_parent": {
+    "subagent_events_with_parent_call_id": 0,
+    "with_ts": 0,
+    "parent_call_in_same_session": 0,
+    "parent_result_in_same_session": 0,
+    "ts_before_parent_call": 0,
+    "ts_after_parent_result": 0,
+    "by_parent_tool": {}
+   },
+   "events": 0,
+   "event_share": 0.0,
+   "calls": 0,
+   "call_share": 0.0,
+   "sessions_with_subagent_events": 0,
+   "subagent_events_parent_call_id_filled": 0,
+   "subagent_events_agent_id_filled": 0,
+   "distinct_agent_ids": 0
+  },
+  "results_by_tool_top": {
+   "bash_command": 268,
+   "None": 197,
+   "mark_task_complete": 31
+  },
+  "events_per_session": {
+   "n": 17,
+   "min": 6.0,
+   "p1": 9.04,
+   "p5": 21.200000000000003,
+   "p25": 31.0,
+   "p50": 70.0,
+   "p75": 125.0,
+   "p95": 364.5999999999999,
+   "p99": 468.91999999999996,
+   "max": 495.0,
+   "mean": 120.76470588235294
+  },
+  "events_by_kind_and_ts_kind": {
+   "assistant|shared_turn": 496,
+   "call|shared_turn": 1027,
+   "meta|none": 17,
+   "result|shared_turn": 496,
+   "user|event": 17
+  },
+  "request_id": {
+   "events_with_request_id": 0,
+   "distinct": 0,
+   "distinct_decodable_anthropic_layout": 0,
+   "calls_with_request_id": 0,
+   "calls": 1027,
+   "call_fill_rate": 0.0,
+   "sessions_with_request_id": 0,
+   "by_stratum_calls_with_request_id": {}
+  },
+  "provider_response_ids_on_calls": {
+   "anthropic_msg_": 0,
+   "openai_resp_": 0,
+   "chatcmpl_": 0,
+   "synthetic": 1027,
+   "other": 0
+  },
+  "native_error_by_stratum": {
+   "terminus-2__openai/GLM-5.2": {
+    "results": 496,
+    "filled": 0,
+    "true": 0
+   }
+  },
+  "usage_fill_calls_by_stratum": {
+   "terminus-2__openai/GLM-5.2": {
+    "calls": 1027,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   }
+  },
+  "ts_fractional_digits_by_stratum": {
+   "terminus-2__openai/GLM-5.2": {
+    "6": 2036
+   }
+  },
+  "result_join": {
+   "step_multi": 197,
+   "source_call_id": 268,
+   "step_single": 31
+  },
+  "provider_ids_by_stratum": {
+   "request_id": {},
+   "api_msg_id": {
+    "terminus-2__openai/GLM-5.2": {
+     "synthetic": {
+      "distinct": 496,
+      "decodes_to_plausible_time": 0
+     }
+    }
+   },
+   "provider_minted_families": [
+    "anthropic_req",
+    "anthropic_msg",
+    "openai_resp_hex50",
+    "gemini_response_id_b64"
+   ],
+   "note": "family by shape only; gemini_response_id_b64 is the aiv_cu Gemini responseId shape (first 4 bytes LE = unix s); chatcmpl- and uuid ids are operator/harness-minted; layouts inferred, not documented"
+  },
+  "note_duplicate_result_events": "pairing.duplicate_result_events_same_session_id counts results with a null call_id (step_multi) as duplicates of each other; non-null duplicates = 0"
+ },
+ "calibration": {
+  "path": "analysis/out/phase_e/prereg_e_calibration_glm_tb21.json",
+  "sha256": "f340bebb29b666a68fec70fed4b7b7e3ed9aea2e7dae8f6d83c24e7cb5ce7779"
+ },
+ "A_checks": {
+  "naive_ts_inside_agent_execution_pm5s": {
+   "inside": 0,
+   "events": 0
+  },
+  "collapsed_atif_stamps": {
+   "sessions_by_stratum": {},
+   "span_s": {
+    "n": 0
+   },
+   "first_stamp_minus_agent_execution_finished_s": {
+    "n": 0
+   }
+  },
+  "gemini_cli_result_minus_call_s": {
+   "n": 0
+  },
+  "gemini_cli_next_model_event_minus_result_s": {
+   "n": 0
+  }
+ },
+ "extension": {
+  "corpus": "glm_tb21",
+  "calibration_file": "analysis/out/phase_e/prereg_e_calibration_glm_tb21.json",
+  "calibration_sha256": "f340bebb29b666a68fec70fed4b7b7e3ed9aea2e7dae8f6d83c24e7cb5ce7779",
+  "splits_sha256": {
+   "analysis/cache/samples/glm_tb21.json": "e9be9eff1c922f49f2aceaa402c813a21acaeb94f9252683b99347729ec7a2d4",
+   "analysis/cache/samples/glm_tb21_EH.json": "26fa25ef631b5b51189377a42276f635b0051d5dbd032decbbef0377d44efb5b"
+  },
+  "heldout_manifest": "analysis/out/phase_e/heldout_manifest_glm_tb21.json",
+  "loader": "analysis/loaders/load_glm_tb21.py",
+  "loader_sha256_lf": "9ffb40caff90362ace425d4579b2fc1653750ce19aec5d18acaa3a3140937de7",
+  "timestamp": "2026-10-04T09:35:41Z",
+  "status": "calibration written BEFORE any B or E read; orchestrator appends the change_log entry"
+ },
+ "selftest_split_builder_on_A": {
+  "rebuilt_A_equals_cache": true,
+  "H_refused": true,
+  "rows": 2053,
+  "errors": 0
+ },
+ "runtime_s": {
+  "audit_and_splits": 0.1,
+  "A_cache": 0.3,
+  "total": 2.2
+ }
+}

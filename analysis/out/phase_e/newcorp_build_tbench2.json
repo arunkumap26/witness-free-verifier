@@ -1,0 +1,2007 @@
+{
+ "corpus": "tbench2",
+ "loader": "analysis/loaders/load_tbench2.py",
+ "source": "C:/Swarms/data/acquired/terminal-bench-2-leaderboard/hf_repo (HF harborframework/terminal-bench-2-leaderboard @572b2614)",
+ "population": {
+  "candidate_trials": 32803,
+  "passing": 11329,
+  "fail_reasons": {
+   "no_structured_log": 21368,
+   "no_tool_call": 106
+  },
+  "fail_by_submission": {
+   "0error-Ledger__Claude-Opus-4.7": {
+    "no_structured_log": 445
+   },
+   "Ante__Gemini-3-Pro-Preview": {
+    "no_structured_log": 445
+   },
+   "Ante__Gemini-3.1-Pro-Preview": {
+    "no_structured_log": 445
+   },
+   "BashAgent__TermiGen-32B": {
+    "no_structured_log": 445
+   },
+   "Capy__Claude-Opus-4.6": {
+    "no_structured_log": 445
+   },
+   "Capy__GPT-5.5": {
+    "no_structured_log": 445
+   },
+   "ClaudeCode__GLM-4.7": {
+    "no_structured_log": 6
+   },
+   "CodeBrain-1.5__GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "CodeBrain-1__GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "CodeBrain-1__Gemini-3-Pro-Preview": {
+    "no_structured_log": 445
+   },
+   "Codelia__GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "Crux__Claude-Opus-4.6": {
+    "no_structured_log": 445
+   },
+   "Deep-Agents__GPT-5.2-Codex": {
+    "no_tool_call": 82
+   },
+   "Dirac__Gemini-3-Flash-Preview": {
+    "no_structured_log": 445
+   },
+   "Droid__Claude-Opus-4.6": {
+    "no_structured_log": 445
+   },
+   "Droid__GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "Forge__GPT-5.4": {
+    "no_structured_log": 445
+   },
+   "Forge__Gemini-3.1-Pro-Preview": {
+    "no_structured_log": 445
+   },
+   "Forge__Opus-4.6": {
+    "no_structured_log": 445
+   },
+   "Gemini_CLI__Gemini-3-Flash-Preview": {
+    "no_structured_log": 5,
+    "no_tool_call": 10
+   },
+   "Gemini_CLI__Gemini-3.1-Pro-Preview": {
+    "no_structured_log": 1,
+    "no_tool_call": 2
+   },
+   "IndusAGICodingAgent__MiniMax-M2.7": {
+    "no_structured_log": 445
+   },
+   "IndusAGICodingAgent__gpt-5.3-codex": {
+    "no_structured_log": 445
+   },
+   "Judy__Claude-Opus-4.6": {
+    "no_tool_call": 3
+   },
+   "Junie_CLI__Gemini-3-Flash-Preview-Gemini-3.1-Pro-Preview-Claude-Opus-4.6-GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "LemonCode__GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "LemonHarness_GPT-5.3-CodeX": {
+    "no_structured_log": 445
+   },
+   "MAYA__Claude-4.5-sonnet": {
+    "no_structured_log": 445
+   },
+   "MAYA__Claude-4.6-opus": {
+    "no_structured_log": 445
+   },
+   "Mux__Claude-Opus-4.5": {
+    "no_structured_log": 89
+   },
+   "Mux__Claude-Opus-4.6": {
+    "no_structured_log": 445
+   },
+   "Mux__GPT-5.2": {
+    "no_structured_log": 89
+   },
+   "Mux__GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "NexAU-AHE__gpt-5.5": {
+    "no_tool_call": 1
+   },
+   "OB-1_GPT-5.3-Codex-Claude-Opus-4.5-Claude-Opus-4.6": {
+    "no_structured_log": 445
+   },
+   "OB-1_GPT-5.4-GPT-5.3-Codex-Claude-Opus-4.5-Claude-Opus-4.6": {
+    "no_structured_log": 445
+   },
+   "OpenCode__Claude-Opus-4.5": {
+    "no_structured_log": 89
+   },
+   "OpenSage__GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "OpenSage__Gemini-3-Pro-Preview": {
+    "no_structured_log": 445
+   },
+   "Polaris__Claude-Opus-4.7-GPT-5.5-Gemini-3.1-Pro": {
+    "no_structured_log": 445
+   },
+   "Simplai-Agent__Claude-Sonnet-4.6": {
+    "no_structured_log": 445
+   },
+   "Simple-Codex__GPT-5.3-Codex": {
+    "no_structured_log": 97
+   },
+   "Terminus-KIRA__Claude-Opus-4.6": {
+    "no_structured_log": 3
+   },
+   "Terminus2__GLM-4.7": {
+    "no_structured_log": 10
+   },
+   "Terminus2__GPT-5.3-Codex": {
+    "no_tool_call": 2
+   },
+   "Terminus2__Kimi-k2.5": {
+    "no_structured_log": 3
+   },
+   "Terminus2__Minimax-m2.5": {
+    "no_tool_call": 1
+   },
+   "WOZCODE__Claude-Opus-4-7": {
+    "no_structured_log": 445
+   },
+   "Wecode__GPT-5.5": {
+    "no_tool_call": 4
+   },
+   "WozCode__Claude-Opus-4.6": {
+    "no_structured_log": 1
+   },
+   "cchuter__minimax-m2.5": {
+    "no_structured_log": 3
+   },
+   "clnkr__GPT-5.5": {
+    "no_structured_log": 445
+   },
+   "copilot-cli__claude-opus-4.6": {
+    "no_structured_log": 445
+   },
+   "dakou__qwen3-coder-480b": {
+    "no_structured_log": 445
+   },
+   "grok-cli__grok-4.20-0309-reasoning": {
+    "no_structured_log": 496
+   },
+   "harness-agent__minimax-m2-7-highspeed": {
+    "no_structured_log": 445
+   },
+   "hookele__gpt5.1-codex-mini": {
+    "no_structured_log": 2,
+    "no_tool_call": 1
+   },
+   "just-another-coding-agent__GLM-5": {
+    "no_structured_log": 445
+   },
+   "little-coder__qwen3.5-9b": {
+    "no_structured_log": 445
+   },
+   "little-coder__qwen3.6-35b-a3b": {
+    "no_structured_log": 445
+   },
+   "logos-latest__claude-opus-4.7": {
+    "no_structured_log": 445
+   },
+   "logos-ts__claude-opus-4.7": {
+    "no_structured_log": 445
+   },
+   "logos__claude-opus-4.6": {
+    "no_structured_log": 445
+   },
+   "pilot-real__claude-opus-4-6": {
+    "no_structured_log": 445
+   },
+   "spoox-o-m__GPT-5-Nano": {
+    "no_structured_log": 445
+   },
+   "spoox-o-m__GPT-5.3-Codex": {
+    "no_structured_log": 445
+   },
+   "vix__claude-opus-4-7": {
+    "no_structured_log": 4
+   }
+  },
+  "pass_by_stratum": {
+   "ClaudeCode__GLM-4.7": 439,
+   "Deep-Agents__GPT-5.2-Codex": 363,
+   "Gemini_CLI__Gemini-3-Flash-Preview": 430,
+   "Gemini_CLI__Gemini-3.1-Pro-Preview": 442,
+   "JJAgent__Multiple": 890,
+   "Judy__Claude-Opus-4.6": 442,
+   "Judy__Gemini-3.1-Pro-Preview": 445,
+   "Meta-Harness__Claude-Opus-4.6": 445,
+   "NexAU-AHE__gpt-5.5": 444,
+   "Simple-Codex__GPT-5.3-Codex": 348,
+   "Terminus-KIRA__Claude-Opus-4.6": 442,
+   "Terminus-KIRA__Gemini-3.1-Pro-Preview": 445,
+   "Terminus2__Claude-Opus-4.6": 445,
+   "Terminus2__DeepSeek-V3.2": 445,
+   "Terminus2__GLM-4.7": 435,
+   "Terminus2__GLM-5": 445,
+   "Terminus2__GPT-5.3-Codex": 443,
+   "Terminus2__Kimi-k2.5": 442,
+   "Terminus2__Minimax-m2.5": 444,
+   "Wecode__GPT-5.5": 441,
+   "WozCode__Claude-Opus-4.6": 444,
+   "cchuter__minimax-m2.5": 442,
+   "hookele__gpt5.1-codex-mini": 442,
+   "terminus-2__AfterQuery-GPT-OSS-20B": 445,
+   "vix__claude-opus-4-7": 441
+  },
+  "format_by_stratum": {
+   "ClaudeCode__GLM-4.7": {
+    "cc_jsonl": 439
+   },
+   "Deep-Agents__GPT-5.2-Codex": {
+    "atif": 363
+   },
+   "Gemini_CLI__Gemini-3-Flash-Preview": {
+    "gemini_cli": 430
+   },
+   "Gemini_CLI__Gemini-3.1-Pro-Preview": {
+    "gemini_cli": 442
+   },
+   "JJAgent__Multiple": {
+    "atif": 890
+   },
+   "Judy__Claude-Opus-4.6": {
+    "atif": 442
+   },
+   "Judy__Gemini-3.1-Pro-Preview": {
+    "atif": 445
+   },
+   "Meta-Harness__Claude-Opus-4.6": {
+    "atif": 445
+   },
+   "NexAU-AHE__gpt-5.5": {
+    "atif": 444
+   },
+   "Simple-Codex__GPT-5.3-Codex": {
+    "atif": 348
+   },
+   "Terminus-KIRA__Claude-Opus-4.6": {
+    "atif": 442
+   },
+   "Terminus-KIRA__Gemini-3.1-Pro-Preview": {
+    "atif": 445
+   },
+   "Terminus2__Claude-Opus-4.6": {
+    "atif": 445
+   },
+   "Terminus2__DeepSeek-V3.2": {
+    "atif": 445
+   },
+   "Terminus2__GLM-4.7": {
+    "atif": 435
+   },
+   "Terminus2__GLM-5": {
+    "atif": 445
+   },
+   "Terminus2__GPT-5.3-Codex": {
+    "atif": 443
+   },
+   "Terminus2__Kimi-k2.5": {
+    "atif": 442
+   },
+   "Terminus2__Minimax-m2.5": {
+    "atif": 444
+   },
+   "Wecode__GPT-5.5": {
+    "atif": 441
+   },
+   "WozCode__Claude-Opus-4.6": {
+    "cc_jsonl": 444
+   },
+   "cchuter__minimax-m2.5": {
+    "cc_jsonl": 442
+   },
+   "hookele__gpt5.1-codex-mini": {
+    "hookele": 442
+   },
+   "terminus-2__AfterQuery-GPT-OSS-20B": {
+    "atif": 445
+   },
+   "vix__claude-opus-4-7": {
+    "atif": 441
+   }
+  },
+  "native_parse_fallback_to_atif": 0,
+  "also_has_atif_not_loaded": 885,
+  "structural_totals_passing": {
+   "records": 607154,
+   "calls": 535245,
+   "calls_with_id": 535105,
+   "results": 380252,
+   "ts_records": 605670,
+   "bad_lines": 0
+  },
+  "length_calls_passing": {
+   "count": 11329.0,
+   "mean": 47.2332068143702,
+   "std": 64.00450186899569,
+   "min": 1.0,
+   "25%": 17.0,
+   "50%": 31.0,
+   "75%": 55.0,
+   "max": 1654.0
+  }
+ },
+ "splits": {
+  "N": 11329,
+  "A": 200,
+  "B": 2000,
+  "E": 2000,
+  "H": 7129,
+  "floor_used": {
+   "A": 2,
+   "B": 5,
+   "E": 5
+  },
+  "n_cells": 75,
+  "by_stratum": {
+   "ClaudeCode__GLM-4.7": {
+    "A": 8,
+    "B": 78,
+    "E": 78,
+    "H": 275
+   },
+   "Deep-Agents__GPT-5.2-Codex": {
+    "A": 7,
+    "B": 66,
+    "E": 67,
+    "H": 223
+   },
+   "Gemini_CLI__Gemini-3-Flash-Preview": {
+    "A": 8,
+    "B": 77,
+    "E": 76,
+    "H": 269
+   },
+   "Gemini_CLI__Gemini-3.1-Pro-Preview": {
+    "A": 8,
+    "B": 79,
+    "E": 79,
+    "H": 276
+   },
+   "JJAgent__Multiple": {
+    "A": 10,
+    "B": 146,
+    "E": 148,
+    "H": 586
+   },
+   "Judy__Claude-Opus-4.6": {
+    "A": 8,
+    "B": 78,
+    "E": 78,
+    "H": 278
+   },
+   "Judy__Gemini-3.1-Pro-Preview": {
+    "A": 8,
+    "B": 79,
+    "E": 79,
+    "H": 279
+   },
+   "Meta-Harness__Claude-Opus-4.6": {
+    "A": 8,
+    "B": 79,
+    "E": 78,
+    "H": 280
+   },
+   "NexAU-AHE__gpt-5.5": {
+    "A": 7,
+    "B": 78,
+    "E": 76,
+    "H": 283
+   },
+   "Simple-Codex__GPT-5.3-Codex": {
+    "A": 7,
+    "B": 64,
+    "E": 63,
+    "H": 214
+   },
+   "Terminus-KIRA__Claude-Opus-4.6": {
+    "A": 8,
+    "B": 78,
+    "E": 78,
+    "H": 278
+   },
+   "Terminus-KIRA__Gemini-3.1-Pro-Preview": {
+    "A": 9,
+    "B": 78,
+    "E": 79,
+    "H": 279
+   },
+   "Terminus2__Claude-Opus-4.6": {
+    "A": 8,
+    "B": 79,
+    "E": 79,
+    "H": 279
+   },
+   "Terminus2__DeepSeek-V3.2": {
+    "A": 8,
+    "B": 79,
+    "E": 79,
+    "H": 279
+   },
+   "Terminus2__GLM-4.7": {
+    "A": 9,
+    "B": 77,
+    "E": 77,
+    "H": 272
+   },
+   "Terminus2__GLM-5": {
+    "A": 9,
+    "B": 79,
+    "E": 79,
+    "H": 278
+   },
+   "Terminus2__GPT-5.3-Codex": {
+    "A": 8,
+    "B": 79,
+    "E": 78,
+    "H": 278
+   },
+   "Terminus2__Kimi-k2.5": {
+    "A": 9,
+    "B": 78,
+    "E": 79,
+    "H": 276
+   },
+   "Terminus2__Minimax-m2.5": {
+    "A": 8,
+    "B": 79,
+    "E": 79,
+    "H": 278
+   },
+   "Wecode__GPT-5.5": {
+    "A": 8,
+    "B": 78,
+    "E": 78,
+    "H": 277
+   },
+   "WozCode__Claude-Opus-4.6": {
+    "A": 7,
+    "B": 79,
+    "E": 79,
+    "H": 279
+   },
+   "cchuter__minimax-m2.5": {
+    "A": 9,
+    "B": 78,
+    "E": 78,
+    "H": 277
+   },
+   "hookele__gpt5.1-codex-mini": {
+    "A": 7,
+    "B": 78,
+    "E": 79,
+    "H": 278
+   },
+   "terminus-2__AfterQuery-GPT-OSS-20B": {
+    "A": 7,
+    "B": 79,
+    "E": 79,
+    "H": 280
+   },
+   "vix__claude-opus-4-7": {
+    "A": 7,
+    "B": 78,
+    "E": 78,
+    "H": 278
+   }
+  }
+ },
+ "heldout_manifest": {
+  "n_H": 7129,
+  "sha256_sorted_H_ids": "9ae55595d73a20fea80df41bc9073511af244ac5ec58cc4dec6b31f97e4a76dc"
+ },
+ "A_cache": {
+  "path": "analysis/cache/tbench2_A.parquet",
+  "validate": {
+   "rows": 22041,
+   "sessions": 200,
+   "call": 8523,
+   "result": 6509,
+   "assistant": 4398,
+   "meta": 1972,
+   "user": 499,
+   "system": 140
+  },
+  "parse_errors": {},
+  "loader_counters": {
+   "atif_call_without_id": 6,
+   "atif_collapsed_stamp_sessions": 7,
+   "atif_join:no_call_in_step": 73,
+   "atif_join:source_call_id": 2303,
+   "atif_join:step_multi": 810,
+   "atif_join:step_single": 1550,
+   "atif_metrics_only_steps": 123,
+   "atif_step_extra_keys_dropped": 6072,
+   "atif_ts_naive": 744,
+   "cc_dropped_untimed:agent-setting": 14,
+   "cc_dropped_untimed:last-prompt": 14,
+   "cc_meta_entry:queue-operation": 72,
+   "cc_raw_ts_inversions_main": 466,
+   "cc_raw_ts_inversions_subagent": 0,
+   "cc_subagent_files": 2,
+   "cc_subagent_files_parent_resolved": 2,
+   "cc_utf8_replaced_files": 0,
+   "credential_redactions:aws_akid": 29,
+   "credential_redactions:github": 19,
+   "credential_redactions:google_api": 2,
+   "credential_redactions:huggingface": 41,
+   "format:atif": 153,
+   "format:cc_jsonl": 24,
+   "format:gemini_cli": 16,
+   "format:hookele": 7,
+   "gemini_messages": 518,
+   "hookele_builtin_tool_calls": 2,
+   "hookele_result_metadata_exit_code": 227,
+   "hookele_type:chat_only_nudge": 1,
+   "hookele_type:early_exit": 6,
+   "hookele_type:llm_call": 271,
+   "hookele_type:plan_only": 7,
+   "hookele_type:plan_update": 24,
+   "hookele_type:raw_response": 271,
+   "hookele_type:skills_classified": 3,
+   "hookele_type:start": 7,
+   "hookele_type:stream_summary": 271,
+   "hookele_type:tool_execution": 265,
+   "lines": 4744,
+   "surrogate_fields_sanitized": 0
+  },
+  "rows": 22041,
+  "sessions": 200,
+  "events_by_kind": {
+   "call": 8523,
+   "result": 6509,
+   "assistant": 4398,
+   "meta": 1972,
+   "user": 499,
+   "system": 140
+  },
+  "ts_kind": {
+   "shared_turn": 13912,
+   "event": 7387,
+   "none": 742
+  },
+  "ts_fill": {
+   "with_ts": 21299,
+   "without_ts": 742
+  },
+  "ts_fractional_digits": {
+   "0": 1126,
+   "3": 8036,
+   "6": 11713,
+   "8": 33,
+   "9": 391
+  },
+  "ts_ties": {
+   "tie_groups": 5253,
+   "events_in_tie_groups": 16268,
+   "largest_tie_group": 27
+  },
+  "adjacent_ts_inversions_in_seq_order": 41,
+  "pairing": {
+   "call_events": 8523,
+   "result_events": 6509,
+   "call_ids_unique": 8523,
+   "result_ids_unique": 5778,
+   "duplicate_call_events_same_session_id": 0,
+   "duplicate_result_events_same_session_id": 731,
+   "result_events_null_call_id": 810,
+   "paired": 5699,
+   "paired_result_seq_before_call_seq": 0,
+   "calls_without_result": 2824,
+   "results_without_call_in_session": 0,
+   "results_without_call_but_call_id_elsewhere_in_frame": 0,
+   "paired_both_ts": 5445,
+   "paired_identical_ts": 3771,
+   "paired_negative_delta": 0,
+   "delta_seconds": {
+    "n": 5445,
+    "min": 0.0,
+    "p1": 0.0,
+    "p5": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.054,
+    "p95": 2.545400000000005,
+    "p99": 42.92336000000013,
+    "max": 476.515,
+    "mean": 1.9772734618916439
+   }
+  },
+  "native_error": {
+   "results": 6509,
+   "filled": 1750,
+   "true": 245,
+   "false": 1505,
+   "fill_rate": 0.2688585036103856
+  },
+  "exit_code_filled": 425,
+  "stderr_filled_results": 566,
+  "usage_fill": {
+   "assistant": {
+    "n": 4398,
+    "usage_in": 0.645293315143247,
+    "usage_out": 0.645293315143247,
+    "usage_cache_read": 0.30286493860845837,
+    "usage_cache_create": 0.06070941336971351,
+    "api_msg_id": 0.645293315143247,
+    "request_id": 0.011368804001819008,
+    "model": 0.8049113233287858,
+    "api_msg_ids_unique": 2838
+   },
+   "call": {
+    "n": 8523,
+    "usage_in": 0.8427783644256717,
+    "usage_out": 0.8427783644256717,
+    "usage_cache_read": 0.5116742930892878,
+    "usage_cache_create": 0.09245570808400798,
+    "api_msg_id": 0.8427783644256717,
+    "request_id": 0.023700574914936056,
+    "model": 0.8724627478587352,
+    "api_msg_ids_unique": 4979
+   }
+  },
+  "result_error_marker": {
+   "None": 6301,
+   "cc_exit_code": 193,
+   "gemini_exit_code_nonzero": 10,
+   "cc_tool_use_error": 5
+  },
+  "extra_key_fill_by_kind": {
+   "meta": {
+    "entry_type": {
+     "present": 1972,
+     "fill_rate": 1.0
+    },
+    "iteration": {
+     "present": 580,
+     "fill_rate": 0.29411764705882354
+    },
+    "thinking_chars": {
+     "present": 523,
+     "fill_rate": 0.2652129817444219
+    },
+    "type": {
+     "present": 445,
+     "fill_rate": 0.22565922920892495
+    },
+    "hookEvent": {
+     "present": 427,
+     "fill_rate": 0.2165314401622718
+    },
+    "hookName": {
+     "present": 427,
+     "fill_rate": 0.2165314401622718
+    },
+    "response_id": {
+     "present": 271,
+     "fill_rate": 0.1374239350912779
+    },
+    "tool_call_count": {
+     "present": 271,
+     "fill_rate": 0.1374239350912779
+    },
+    "reasoning_tokens": {
+     "present": 271,
+     "fill_rate": 0.1374239350912779
+    },
+    "task_name": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "started_at": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "finished_at": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "agent_name": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "agent_version": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "environment_setup_started_at": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "environment_setup_finished_at": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "agent_setup_started_at": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "agent_setup_finished_at": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "agent_execution_started_at": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "agent_execution_finished_at": {
+     "present": 200,
+     "fill_rate": 0.10141987829614604
+    },
+    "verifier_started_at": {
+     "present": 199,
+     "fill_rate": 0.10091277890466531
+    },
+    "verifier_finished_at": {
+     "present": 199,
+     "fill_rate": 0.10091277890466531
+    },
+    "reward": {
+     "present": 199,
+     "fill_rate": 0.10091277890466531
+    },
+    "n_input_tokens": {
+     "present": 166,
+     "fill_rate": 0.08417849898580122
+    },
+    "n_output_tokens": {
+     "present": 166,
+     "fill_rate": 0.08417849898580122
+    },
+    "n_cache_tokens": {
+     "present": 159,
+     "fill_rate": 0.0806288032454361
+    },
+    "model_name": {
+     "present": 140,
+     "fill_rate": 0.07099391480730223
+    },
+    "model_provider": {
+     "present": 140,
+     "fill_rate": 0.07099391480730223
+    },
+    "atif_step_id": {
+     "present": 123,
+     "fill_rate": 0.06237322515212982
+    },
+    "atif_source": {
+     "present": 123,
+     "fill_rate": 0.06237322515212982
+    },
+    "ts_semantics": {
+     "present": 123,
+     "fill_rate": 0.06237322515212982
+    },
+    "synthetic_api_msg_id": {
+     "present": 123,
+     "fill_rate": 0.06237322515212982
+    },
+    "step_phase": {
+     "present": 103,
+     "fill_rate": 0.052231237322515216
+    },
+    "step_stop_reason": {
+     "present": 103,
+     "fill_rate": 0.052231237322515216
+    },
+    "n_episodes": {
+     "present": 91,
+     "fill_rate": 0.04614604462474645
+    },
+    "summarization_count": {
+     "present": 91,
+     "fill_rate": 0.04614604462474645
+    },
+    "api_request_times_msec": {
+     "present": 91,
+     "fill_rate": 0.04614604462474645
+    },
+    "operation": {
+     "present": 72,
+     "fill_rate": 0.036511156186612576
+    },
+    "cost_usd": {
+     "present": 51,
+     "fill_rate": 0.02586206896551724
+    },
+    "exception_type": {
+     "present": 37,
+     "fill_rate": 0.018762677484787018
+    }
+   },
+   "result": {
+    "atif_step_id": {
+     "present": 4663,
+     "fill_rate": 0.7163926870487018
+    },
+    "atif_source": {
+     "present": 4663,
+     "fill_rate": 0.7163926870487018
+    },
+    "ts_semantics": {
+     "present": 4663,
+     "fill_rate": 0.7163926870487018
+    },
+    "join": {
+     "present": 4663,
+     "fill_rate": 0.7163926870487018
+    },
+    "n_calls_in_step": {
+     "present": 4663,
+     "fill_rate": 0.7163926870487018
+    },
+    "marker": {
+     "present": 1118,
+     "fill_rate": 0.17176217544937777
+    },
+    "step_call_ids": {
+     "present": 810,
+     "fill_rate": 0.12444307881394992
+    },
+    "ts_naive": {
+     "present": 645,
+     "fill_rate": 0.09909356275925642
+    },
+    "step_cost_time": {
+     "present": 645,
+     "fill_rate": 0.09909356275925642
+    },
+    "interrupted": {
+     "present": 566,
+     "fill_rate": 0.08695652173913043
+    },
+    "status": {
+     "present": 491,
+     "fill_rate": 0.07543401444154248
+    },
+    "step_payload_type": {
+     "present": 419,
+     "fill_rate": 0.06437240743585804
+    },
+    "step_wecode_thread_id": {
+     "present": 419,
+     "fill_rate": 0.06437240743585804
+    },
+    "step_wecode_agent_name": {
+     "present": 419,
+     "fill_rate": 0.06437240743585804
+    },
+    "noOutputExpected": {
+     "present": 410,
+     "fill_rate": 0.06298970656014749
+    },
+    "step_phase": {
+     "present": 285,
+     "fill_rate": 0.04378552773083423
+    },
+    "step_stop_reason": {
+     "present": 285,
+     "fill_rate": 0.04378552773083423
+    },
+    "entry_type": {
+     "present": 265,
+     "fill_rate": 0.04071285911814411
+    },
+    "atif_write_stamp": {
+     "present": 254,
+     "fill_rate": 0.03902289138116454
+    },
+    "truncated": {
+     "present": 233,
+     "fill_rate": 0.03579658933783991
+    },
+    "duration_seconds": {
+     "present": 227,
+     "fill_rate": 0.034874788754032875
+    },
+    "duration_ms": {
+     "present": 198,
+     "fill_rate": 0.0304194192656322
+    },
+    "durationSeconds": {
+     "present": 39,
+     "fill_rate": 0.005991703794745736
+    },
+    "durationMs": {
+     "present": 37,
+     "fill_rate": 0.005684436933476725
+    },
+    "bytes": {
+     "present": 31,
+     "fill_rate": 0.004762636349669688
+    },
+    "code": {
+     "present": 31,
+     "fill_rate": 0.004762636349669688
+    },
+    "backgroundTaskId": {
+     "present": 19,
+     "fill_rate": 0.0029190351820556153
+    },
+    "credential_redactions": {
+     "present": 14,
+     "fill_rate": 0.002150868028883085
+    },
+    "numFiles": {
+     "present": 10,
+     "fill_rate": 0.0015363343063450607
+    },
+    "step_status": {
+     "present": 5,
+     "fill_rate": 0.0007681671531725304
+    },
+    "returnCodeInterpretation": {
+     "present": 4,
+     "fill_rate": 0.0006145337225380243
+    },
+    "totalDurationMs": {
+     "present": 2,
+     "fill_rate": 0.00030726686126901216
+    },
+    "totalTokens": {
+     "present": 2,
+     "fill_rate": 0.00030726686126901216
+    },
+    "totalToolUseCount": {
+     "present": 2,
+     "fill_rate": 0.00030726686126901216
+    },
+    "subagent_usage": {
+     "present": 2,
+     "fill_rate": 0.00030726686126901216
+    },
+    "persistedOutputSize": {
+     "present": 1,
+     "fill_rate": 0.00015363343063450608
+    }
+   },
+   "user": {
+    "atif_step_id": {
+     "present": 452,
+     "fill_rate": 0.905811623246493
+    },
+    "atif_source": {
+     "present": 452,
+     "fill_rate": 0.905811623246493
+    },
+    "ts_semantics": {
+     "present": 452,
+     "fill_rate": 0.905811623246493
+    },
+    "step_wecode_thread_id": {
+     "present": 156,
+     "fill_rate": 0.312625250501002
+    },
+    "step_wecode_agent_name": {
+     "present": 156,
+     "fill_rate": 0.312625250501002
+    },
+    "ts_naive": {
+     "present": 106,
+     "fill_rate": 0.2124248496993988
+    },
+    "step_phase": {
+     "present": 56,
+     "fill_rate": 0.11222444889779559
+    },
+    "atif_write_stamp": {
+     "present": 7,
+     "fill_rate": 0.014028056112224449
+    },
+    "entry_type": {
+     "present": 7,
+     "fill_rate": 0.014028056112224449
+    },
+    "hookele_version": {
+     "present": 7,
+     "fill_rate": 0.014028056112224449
+    },
+    "reasoning_effort": {
+     "present": 6,
+     "fill_rate": 0.012024048096192385
+    }
+   },
+   "system": {
+    "atif_step_id": {
+     "present": 107,
+     "fill_rate": 0.7642857142857142
+    },
+    "atif_source": {
+     "present": 107,
+     "fill_rate": 0.7642857142857142
+    },
+    "ts_semantics": {
+     "present": 107,
+     "fill_rate": 0.7642857142857142
+    },
+    "join": {
+     "present": 73,
+     "fill_rate": 0.5214285714285715
+    },
+    "n_calls_in_step": {
+     "present": 73,
+     "fill_rate": 0.5214285714285715
+    },
+    "atif_observation": {
+     "present": 73,
+     "fill_rate": 0.5214285714285715
+    },
+    "subagent_refs": {
+     "present": 16,
+     "fill_rate": 0.11428571428571428
+    },
+    "atif_write_stamp": {
+     "present": 15,
+     "fill_rate": 0.10714285714285714
+    },
+    "nested_prompt": {
+     "present": 2,
+     "fill_rate": 0.014285714285714285
+    }
+   },
+   "call": {
+    "atif_step_id": {
+     "present": 6675,
+     "fill_rate": 0.7831749384019712
+    },
+    "atif_source": {
+     "present": 6675,
+     "fill_rate": 0.7831749384019712
+    },
+    "ts_semantics": {
+     "present": 6675,
+     "fill_rate": 0.7831749384019712
+    },
+    "synthetic_api_msg_id": {
+     "present": 4648,
+     "fill_rate": 0.5453478822011029
+    },
+    "metrics_cost_usd": {
+     "present": 2946,
+     "fill_rate": 0.34565293910594863
+    },
+    "thinking_chars": {
+     "present": 950,
+     "fill_rate": 0.11146309984747155
+    },
+    "ts_naive": {
+     "present": 687,
+     "fill_rate": 0.08060542062653996
+    },
+    "step_cost_time": {
+     "present": 687,
+     "fill_rate": 0.08060542062653996
+    },
+    "status": {
+     "present": 491,
+     "fill_rate": 0.05760882318432477
+    },
+    "step_payload_type": {
+     "present": 420,
+     "fill_rate": 0.049278423090461106
+    },
+    "step_wecode_thread_id": {
+     "present": 420,
+     "fill_rate": 0.049278423090461106
+    },
+    "step_wecode_agent_name": {
+     "present": 420,
+     "fill_rate": 0.049278423090461106
+    },
+    "step_phase": {
+     "present": 285,
+     "fill_rate": 0.03343892995424146
+    },
+    "step_stop_reason": {
+     "present": 285,
+     "fill_rate": 0.03343892995424146
+    },
+    "iteration": {
+     "present": 265,
+     "fill_rate": 0.03109233837850522
+    },
+    "reasoning_tokens": {
+     "present": 265,
+     "fill_rate": 0.03109233837850522
+    },
+    "atif_write_stamp": {
+     "present": 254,
+     "fill_rate": 0.02980171301185029
+    },
+    "elapsed_ms": {
+     "present": 194,
+     "fill_rate": 0.02276193828464156
+    },
+    "step_status": {
+     "present": 11,
+     "fill_rate": 0.0012906253666549337
+    },
+    "credential_redactions": {
+     "present": 8,
+     "fill_rate": 0.0009386366302944972
+    }
+   },
+   "assistant": {
+    "atif_step_id": {
+     "present": 3769,
+     "fill_rate": 0.8569804456571168
+    },
+    "atif_source": {
+     "present": 3769,
+     "fill_rate": 0.8569804456571168
+    },
+    "ts_semantics": {
+     "present": 3769,
+     "fill_rate": 0.8569804456571168
+    },
+    "synthetic_api_msg_id": {
+     "present": 2066,
+     "fill_rate": 0.4697589813551614
+    },
+    "thinking_chars": {
+     "present": 1985,
+     "fill_rate": 0.45134151887221463
+    },
+    "step_wecode_thread_id": {
+     "present": 830,
+     "fill_rate": 0.18872214643019555
+    },
+    "step_wecode_agent_name": {
+     "present": 830,
+     "fill_rate": 0.18872214643019555
+    },
+    "metrics_cost_usd": {
+     "present": 767,
+     "fill_rate": 0.1743974533879036
+    },
+    "step_phase": {
+     "present": 754,
+     "fill_rate": 0.17144156434743066
+    },
+    "step_payload_type": {
+     "present": 420,
+     "fill_rate": 0.09549795361527967
+    },
+    "step_stop_reason": {
+     "present": 344,
+     "fill_rate": 0.07821737153251478
+    },
+    "ts_naive": {
+     "present": 143,
+     "fill_rate": 0.03251477944520236
+    },
+    "step_cost_time": {
+     "present": 143,
+     "fill_rate": 0.03251477944520236
+    },
+    "elapsed_ms": {
+     "present": 29,
+     "fill_rate": 0.006593906321055025
+    },
+    "atif_write_stamp": {
+     "present": 12,
+     "fill_rate": 0.002728512960436562
+    },
+    "step_status": {
+     "present": 11,
+     "fill_rate": 0.0025011368804001817
+    },
+    "iteration": {
+     "present": 6,
+     "fill_rate": 0.001364256480218281
+    },
+    "reasoning_tokens": {
+     "present": 6,
+     "fill_rate": 0.001364256480218281
+    }
+   }
+  },
+  "meta_entry_types": {
+   "assistant_thinking_only:None": 523,
+   "progress:hook_progress": 427,
+   "llm_call:None": 271,
+   "stream_summary:None": 271,
+   "trial_result:None": 200,
+   "atif_metrics_only:None": 123,
+   "queue-operation:None": 72,
+   "system:stop_hook_summary": 24,
+   "plan_update:None": 24,
+   "progress:waiting_for_task": 16,
+   "plan_only:None": 7,
+   "early_exit:None": 6,
+   "skills_classified:None": 3,
+   "progress:bash_progress": 2,
+   "system:api_error": 2,
+   "chat_only_nudge:None": 1
+  },
+  "timer_keys_in_extra": {
+   "result": {
+    "duration_seconds": {
+     "present": 227,
+     "of": 6509,
+     "fill_rate": 0.034874788754032875
+    },
+    "duration_ms": {
+     "present": 198,
+     "of": 6509,
+     "fill_rate": 0.0304194192656322
+    },
+    "durationSeconds": {
+     "present": 39,
+     "of": 6509,
+     "fill_rate": 0.005991703794745736
+    },
+    "durationMs": {
+     "present": 37,
+     "of": 6509,
+     "fill_rate": 0.005684436933476725
+    },
+    "totalDurationMs": {
+     "present": 2,
+     "of": 6509,
+     "fill_rate": 0.00030726686126901216
+    }
+   },
+   "meta": {
+    "elapsedTimeSeconds": {
+     "present": 2,
+     "of": 1972,
+     "fill_rate": 0.0010141987829614604
+    }
+   },
+   "call": {
+    "elapsed_ms": {
+     "present": 194,
+     "of": 8523,
+     "fill_rate": 0.02276193828464156
+    }
+   },
+   "assistant": {
+    "elapsed_ms": {
+     "present": 29,
+     "of": 4398,
+     "fill_rate": 0.006593906321055025
+    }
+   }
+  },
+  "timer_keys_by_result_tool": {
+   "shell": {
+    "duration_seconds": {
+     "present": 227,
+     "of": 3215,
+     "fill_rate": 0.07060653188180405
+    },
+    "duration_ms": {
+     "present": 198,
+     "of": 3215,
+     "fill_rate": 0.06158631415241057
+    }
+   },
+   "websearch": {
+    "durationSeconds": {
+     "present": 39,
+     "of": 50,
+     "fill_rate": 0.78
+    }
+   },
+   "webfetch": {
+    "durationMs": {
+     "present": 31,
+     "of": 50,
+     "fill_rate": 0.62
+    }
+   },
+   "glob": {
+    "durationMs": {
+     "present": 6,
+     "of": 12,
+     "fill_rate": 0.5
+    }
+   },
+   "subagent": {
+    "totalDurationMs": {
+     "present": 2,
+     "of": 2,
+     "fill_rate": 1.0
+    }
+   }
+  },
+  "subagent": {
+   "timing_vs_parent": {
+    "subagent_events_with_parent_call_id": 118,
+    "with_ts": 118,
+    "parent_call_in_same_session": 118,
+    "parent_result_in_same_session": 118,
+    "ts_before_parent_call": 0,
+    "ts_after_parent_result": 0,
+    "by_parent_tool": {
+     "Agent": {
+      "events_with_ts": 118,
+      "ts_after_parent_result": 0
+     }
+    }
+   },
+   "events": 118,
+   "event_share": 0.005353659089877955,
+   "calls": 53,
+   "call_share": 0.006218467675701044,
+   "sessions_with_subagent_events": 2,
+   "subagent_events_parent_call_id_filled": 118,
+   "subagent_events_agent_id_filled": 118,
+   "distinct_agent_ids": 2
+  },
+  "results_by_tool_top": {
+   "shell": 3215,
+   "bash_command": 1350,
+   "None": 810,
+   "write": 188,
+   "mark_task_complete": 175,
+   "read": 157,
+   "update_plan": 88,
+   "edit": 81,
+   "websearch": 50,
+   "webfetch": 50,
+   "grep": 35,
+   "edit_file": 30,
+   "read_media": 30,
+   "call": 29,
+   "wait_shell_command": 27,
+   "todo": 25,
+   "image_read": 25,
+   "taskoutput": 23,
+   "end_execution": 23,
+   "wait": 17,
+   "ls": 15,
+   "finish_verification": 13,
+   "spawn_agent": 13,
+   "glob": 12,
+   "view_image": 6
+  },
+  "events_per_session": {
+   "n": 200,
+   "min": 6.0,
+   "p1": 9.0,
+   "p5": 18.0,
+   "p25": 47.75,
+   "p50": 75.0,
+   "p75": 135.25,
+   "p95": 324.09999999999997,
+   "p99": 466.8599999999992,
+   "max": 699.0,
+   "mean": 110.205
+  },
+  "events_by_kind_and_ts_kind": {
+   "assistant|event": 1255,
+   "assistant|none": 12,
+   "assistant|shared_turn": 3131,
+   "call|event": 1897,
+   "call|none": 254,
+   "call|shared_turn": 6372,
+   "meta|event": 1772,
+   "meta|none": 200,
+   "result|event": 1846,
+   "result|none": 254,
+   "result|shared_turn": 4409,
+   "system|event": 125,
+   "system|none": 15,
+   "user|event": 492,
+   "user|none": 7
+  },
+  "request_id": {
+   "events_with_request_id": 283,
+   "distinct": 141,
+   "distinct_decodable_anthropic_layout": 141,
+   "calls_with_request_id": 202,
+   "calls": 8523,
+   "call_fill_rate": 0.023700574914936056,
+   "sessions_with_request_id": 7,
+   "by_stratum_calls_with_request_id": {
+    "WozCode__Claude-Opus-4.6": 202
+   }
+  },
+  "provider_response_ids_on_calls": {
+   "anthropic_msg_": 626,
+   "openai_resp_": 265,
+   "chatcmpl_": 737,
+   "synthetic": 4648,
+   "other": 907
+  },
+  "native_error_by_stratum": {
+   "ClaudeCode__GLM-4.7": {
+    "results": 423,
+    "filled": 288,
+    "true": 132
+   },
+   "Deep-Agents__GPT-5.2-Codex": {
+    "results": 254,
+    "filled": 0,
+    "true": 0
+   },
+   "Gemini_CLI__Gemini-3-Flash-Preview": {
+    "results": 274,
+    "filled": 274,
+    "true": 1
+   },
+   "Gemini_CLI__Gemini-3.1-Pro-Preview": {
+    "results": 217,
+    "filled": 217,
+    "true": 0
+   },
+   "JJAgent__Multiple": {
+    "results": 339,
+    "filled": 233,
+    "true": 18
+   },
+   "Judy__Claude-Opus-4.6": {
+    "results": 252,
+    "filled": 0,
+    "true": 0
+   },
+   "Judy__Gemini-3.1-Pro-Preview": {
+    "results": 393,
+    "filled": 0,
+    "true": 0
+   },
+   "Meta-Harness__Claude-Opus-4.6": {
+    "results": 359,
+    "filled": 0,
+    "true": 0
+   },
+   "NexAU-AHE__gpt-5.5": {
+    "results": 198,
+    "filled": 0,
+    "true": 0
+   },
+   "Simple-Codex__GPT-5.3-Codex": {
+    "results": 254,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus-KIRA__Claude-Opus-4.6": {
+    "results": 299,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus-KIRA__Gemini-3.1-Pro-Preview": {
+    "results": 209,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus2__Claude-Opus-4.6": {
+    "results": 131,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus2__DeepSeek-V3.2": {
+    "results": 153,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus2__GLM-4.7": {
+    "results": 269,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus2__GLM-5": {
+    "results": 226,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus2__GPT-5.3-Codex": {
+    "results": 93,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus2__Kimi-k2.5": {
+    "results": 261,
+    "filled": 0,
+    "true": 0
+   },
+   "Terminus2__Minimax-m2.5": {
+    "results": 286,
+    "filled": 0,
+    "true": 0
+   },
+   "Wecode__GPT-5.5": {
+    "results": 419,
+    "filled": 0,
+    "true": 0
+   },
+   "WozCode__Claude-Opus-4.6": {
+    "results": 202,
+    "filled": 176,
+    "true": 15
+   },
+   "cchuter__minimax-m2.5": {
+    "results": 465,
+    "filled": 335,
+    "true": 38
+   },
+   "hookele__gpt5.1-codex-mini": {
+    "results": 265,
+    "filled": 227,
+    "true": 41
+   },
+   "terminus-2__AfterQuery-GPT-OSS-20B": {
+    "results": 74,
+    "filled": 0,
+    "true": 0
+   },
+   "vix__claude-opus-4-7": {
+    "results": 194,
+    "filled": 0,
+    "true": 0
+   }
+  },
+  "usage_fill_calls_by_stratum": {
+   "ClaudeCode__GLM-4.7": {
+    "calls": 424,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Deep-Agents__GPT-5.2-Codex": {
+    "calls": 254,
+    "usage_in": 0.0,
+    "usage_out": 0.0,
+    "api_msg_id": 0.0
+   },
+   "Gemini_CLI__Gemini-3-Flash-Preview": {
+    "calls": 274,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Gemini_CLI__Gemini-3.1-Pro-Preview": {
+    "calls": 217,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "JJAgent__Multiple": {
+    "calls": 345,
+    "usage_in": 0.37971014492753624,
+    "usage_out": 0.37971014492753624,
+    "api_msg_id": 0.37971014492753624
+   },
+   "Judy__Claude-Opus-4.6": {
+    "calls": 271,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Judy__Gemini-3.1-Pro-Preview": {
+    "calls": 416,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Meta-Harness__Claude-Opus-4.6": {
+    "calls": 550,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "NexAU-AHE__gpt-5.5": {
+    "calls": 198,
+    "usage_in": 0.0,
+    "usage_out": 0.0,
+    "api_msg_id": 0.0
+   },
+   "Simple-Codex__GPT-5.3-Codex": {
+    "calls": 254,
+    "usage_in": 0.0,
+    "usage_out": 0.0,
+    "api_msg_id": 0.0
+   },
+   "Terminus-KIRA__Claude-Opus-4.6": {
+    "calls": 474,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Terminus-KIRA__Gemini-3.1-Pro-Preview": {
+    "calls": 384,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Terminus2__Claude-Opus-4.6": {
+    "calls": 314,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Terminus2__DeepSeek-V3.2": {
+    "calls": 537,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Terminus2__GLM-4.7": {
+    "calls": 452,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Terminus2__GLM-5": {
+    "calls": 316,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Terminus2__GPT-5.3-Codex": {
+    "calls": 312,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Terminus2__Kimi-k2.5": {
+    "calls": 370,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Terminus2__Minimax-m2.5": {
+    "calls": 288,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "Wecode__GPT-5.5": {
+    "calls": 420,
+    "usage_in": 0.0,
+    "usage_out": 0.0,
+    "api_msg_id": 0.0
+   },
+   "WozCode__Claude-Opus-4.6": {
+    "calls": 202,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "cchuter__minimax-m2.5": {
+    "calls": 466,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "hookele__gpt5.1-codex-mini": {
+    "calls": 265,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "terminus-2__AfterQuery-GPT-OSS-20B": {
+    "calls": 326,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   },
+   "vix__claude-opus-4-7": {
+    "calls": 194,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "api_msg_id": 1.0
+   }
+  },
+  "ts_fractional_digits_by_stratum": {
+   "ClaudeCode__GLM-4.7": {
+    "3": 1047
+   },
+   "Gemini_CLI__Gemini-3-Flash-Preview": {
+    "3": 834
+   },
+   "Gemini_CLI__Gemini-3.1-Pro-Preview": {
+    "3": 502
+   },
+   "JJAgent__Multiple": {
+    "3": 1278
+   },
+   "Judy__Claude-Opus-4.6": {
+    "6": 679
+   },
+   "Judy__Gemini-3.1-Pro-Preview": {
+    "6": 902
+   },
+   "Meta-Harness__Claude-Opus-4.6": {
+    "6": 1246
+   },
+   "NexAU-AHE__gpt-5.5": {
+    "6": 622
+   },
+   "Simple-Codex__GPT-5.3-Codex": {
+    "6": 775
+   },
+   "Terminus-KIRA__Claude-Opus-4.6": {
+    "6": 781
+   },
+   "Terminus-KIRA__Gemini-3.1-Pro-Preview": {
+    "6": 610
+   },
+   "Terminus2__Claude-Opus-4.6": {
+    "6": 584
+   },
+   "Terminus2__DeepSeek-V3.2": {
+    "6": 867
+   },
+   "Terminus2__GLM-4.7": {
+    "6": 1001
+   },
+   "Terminus2__GLM-5": {
+    "6": 777
+   },
+   "Terminus2__GPT-5.3-Codex": {
+    "6": 506
+   },
+   "Terminus2__Kimi-k2.5": {
+    "6": 933
+   },
+   "Terminus2__Minimax-m2.5": {
+    "6": 886
+   },
+   "Wecode__GPT-5.5": {
+    "3": 1832
+   },
+   "WozCode__Claude-Opus-4.6": {
+    "3": 511
+   },
+   "cchuter__minimax-m2.5": {
+    "3": 2032
+   },
+   "hookele__gpt5.1-codex-mini": {
+    "0": 1126
+   },
+   "terminus-2__AfterQuery-GPT-OSS-20B": {
+    "6": 544
+   },
+   "vix__claude-opus-4-7": {
+    "8": 33,
+    "9": 391
+   }
+  },
+  "result_join": {
+   "native_id": 1846,
+   "source_call_id": 2303,
+   "step_multi": 810,
+   "step_single": 1550
+  },
+  "provider_ids_by_stratum": {
+   "request_id": {
+    "WozCode__Claude-Opus-4.6": {
+     "anthropic_req": {
+      "distinct": 141,
+      "decodes_to_plausible_time": 141
+     }
+    }
+   },
+   "api_msg_id": {
+    "ClaudeCode__GLM-4.7": {
+     "other": {
+      "distinct": 376,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Gemini_CLI__Gemini-3-Flash-Preview": {
+     "uuid": {
+      "distinct": 278,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Gemini_CLI__Gemini-3.1-Pro-Preview": {
+     "uuid": {
+      "distinct": 221,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "JJAgent__Multiple": {
+     "synthetic": {
+      "distinct": 180,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Judy__Claude-Opus-4.6": {
+     "chatcmpl_operator": {
+      "distinct": 202,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Judy__Gemini-3.1-Pro-Preview": {
+     "gemini_response_id_b64": {
+      "distinct": 436,
+      "decodes_to_plausible_time": 436
+     }
+    },
+    "Meta-Harness__Claude-Opus-4.6": {
+     "synthetic": {
+      "distinct": 360,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus-KIRA__Claude-Opus-4.6": {
+     "synthetic": {
+      "distinct": 299,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus-KIRA__Gemini-3.1-Pro-Preview": {
+     "synthetic": {
+      "distinct": 213,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus2__Claude-Opus-4.6": {
+     "synthetic": {
+      "distinct": 131,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus2__DeepSeek-V3.2": {
+     "synthetic": {
+      "distinct": 161,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus2__GLM-4.7": {
+     "synthetic": {
+      "distinct": 270,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus2__GLM-5": {
+     "synthetic": {
+      "distinct": 226,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus2__GPT-5.3-Codex": {
+     "synthetic": {
+      "distinct": 93,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus2__Kimi-k2.5": {
+     "synthetic": {
+      "distinct": 262,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "Terminus2__Minimax-m2.5": {
+     "synthetic": {
+      "distinct": 292,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "WozCode__Claude-Opus-4.6": {
+     "anthropic_msg": {
+      "distinct": 141,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "cchuter__minimax-m2.5": {
+     "chatcmpl_operator": {
+      "distinct": 492,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "hookele__gpt5.1-codex-mini": {
+     "openai_resp_hex50": {
+      "distinct": 271,
+      "decodes_to_plausible_time": 271
+     }
+    },
+    "terminus-2__AfterQuery-GPT-OSS-20B": {
+     "synthetic": {
+      "distinct": 90,
+      "decodes_to_plausible_time": 0
+     }
+    },
+    "vix__claude-opus-4-7": {
+     "synthetic": {
+      "distinct": 201,
+      "decodes_to_plausible_time": 0
+     }
+    }
+   },
+   "provider_minted_families": [
+    "anthropic_req",
+    "anthropic_msg",
+    "openai_resp_hex50",
+    "gemini_response_id_b64"
+   ],
+   "note": "family by shape only; gemini_response_id_b64 is the aiv_cu Gemini responseId shape (first 4 bytes LE = unix s); chatcmpl- and uuid ids are operator/harness-minted; layouts inferred, not documented"
+  },
+  "note_duplicate_result_events": "pairing.duplicate_result_events_same_session_id counts results with a null call_id (step_multi) as duplicates of each other; non-null duplicates = 0"
+ },
+ "calibration": {
+  "path": "analysis/out/phase_e/prereg_e_calibration_tbench2.json",
+  "sha256": "7d95d098b3724861c0dfe0ea8c02b2a768f8715d3ba0ca29994744366a10200b"
+ },
+ "A_checks": {
+  "naive_ts_inside_agent_execution_pm5s": {
+   "inside": 1581,
+   "events": 1581
+  },
+  "collapsed_atif_stamps": {
+   "sessions_by_stratum": {
+    "Deep-Agents__GPT-5.2-Codex": 7
+   },
+   "span_s": {
+    "n": 7,
+    "q0": 0.000223,
+    "q0.05": 0.0002659,
+    "q0.5": 0.000477,
+    "q0.95": 0.0010920999999999997,
+    "q1": 0.00127
+   },
+   "first_stamp_minus_agent_execution_finished_s": {
+    "n": 7,
+    "q0": 17999.994064,
+    "q0.05": 17999.9944789,
+    "q0.5": 17999.997376,
+    "q0.95": 17999.9986756,
+    "q1": 17999.998957
+   }
+  },
+  "gemini_cli_result_minus_call_s": {
+   "n": 491,
+   "q0": 0.01,
+   "q0.05": 0.0285,
+   "q0.5": 0.131,
+   "q0.95": 17.7655,
+   "q1": 349.778
+  },
+  "gemini_cli_next_model_event_minus_result_s": {
+   "n": 488,
+   "q0": -0.133,
+   "q0.05": 1.8238,
+   "q0.5": 4.4384999999999994,
+   "q0.95": 18.193049999999992,
+   "q1": 54.124
+  }
+ },
+ "extension": {
+  "corpus": "tbench2",
+  "calibration_file": "analysis/out/phase_e/prereg_e_calibration_tbench2.json",
+  "calibration_sha256": "7d95d098b3724861c0dfe0ea8c02b2a768f8715d3ba0ca29994744366a10200b",
+  "splits_sha256": {
+   "analysis/cache/samples/tbench2.json": "7dff75493d9f3f61c1c5ebd9f7e7122f8ae4f4b9c62eb78d9565c56fd32ba362",
+   "analysis/cache/samples/tbench2_EH.json": "bb7cccb9c45ea44c28b08dc1d6a8c5479f7f090d75559fc3c6d4cc8f719e9039"
+  },
+  "heldout_manifest": "analysis/out/phase_e/heldout_manifest_tbench2.json",
+  "loader": "analysis/loaders/load_tbench2.py",
+  "loader_sha256_lf": "dbb776e515378955519d034d7fe66f6351f2587cf3d78d4c6c02c148a68656e4",
+  "timestamp": "2026-10-04T09:35:34Z",
+  "status": "calibration written BEFORE any B or E read; orchestrator appends the change_log entry"
+ },
+ "selftest_split_builder_on_A": {
+  "rebuilt_A_equals_cache": true,
+  "H_refused": true,
+  "rows": 22041,
+  "errors": 0
+ },
+ "runtime_s": {
+  "audit_and_splits": 8.7,
+  "A_cache": 1.8,
+  "total": 26.4
+ }
+}

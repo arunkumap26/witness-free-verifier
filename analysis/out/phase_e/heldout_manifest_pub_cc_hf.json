@@ -1,0 +1,13 @@
+{
+ "corpus": "pub_cc_hf",
+ "purpose": "Held-out split H for the Track C eval harness. Never read during tuning or analysis. Separate from analysis/HELDOUT_MANIFEST.json (not edited).",
+ "n_H": 45,
+ "n_E": 43,
+ "n_B": 43,
+ "n_A": 32,
+ "sha256_sorted_H_ids": "dd0e8313330f40cfadb564e73ec71710825ea6e1aed79916e53cdb8241a83951",
+ "hash_method": "sha256 of '\\n'.join(sorted H ids).encode() (as HELDOUT_MANIFEST)",
+ "ids_file": "analysis/cache/samples/pub_cc_hf_EH.json#H",
+ "seed": 20261006,
+ "rule": "analysis/prereg_e.json splits.new_corpora: N after field audit; A = min(200, floor(0.2 N)); of the rest R: B = min(2000, floor(R/3)), E = min(2000, floor(R/3)), H = remainder; lib/sample cells (stratum x length tercile over the population) via lib/sample._alloc with floor per draw = min(5, floor(n_draw / n_cells)) (floor_used); seed SEED_NEW_CORPUS = 20261006; one permutation, A then B then E take cell heads, H = rest"
+}

@@ -1,0 +1,51 @@
+{
+ "corpus": "pub_trace_commons",
+ "seed": 20261006,
+ "population_sessions": 27,
+ "population_by_cell": {
+  "claude-opus-4-8|long": 2,
+  "claude-opus-4-8|mid": 1,
+  "claude-opus-4-8|short": 2,
+  "claude-sonnet-4-6|long": 7,
+  "claude-sonnet-4-6|mid": 8,
+  "claude-sonnet-4-6|short": 7
+ },
+ "A": [
+  "09d9abe9-0a02-4bd1-8129-3b864695079d",
+  "3be5ba0c-62b2-4645-8589-9216be0c10d8",
+  "4130c9a7-ee88-443a-91b5-224accd13629",
+  "47d9fc04-420c-47bb-8ac0-85780af22632",
+  "da6566ff-0116-4424-bb59-660623f9eb31"
+ ],
+ "B": [
+  "07b57159-218e-4330-a64e-0ec4b4355056",
+  "17c2cf98-e64a-43c6-932e-fa7efcade358",
+  "2965219c-42ad-45af-889c-4581ecbe0103",
+  "89cf9e13-a4bd-4cf9-9486-7c89737bec1b",
+  "c99032e9-377b-4ae9-a9a9-ec7752b059cd",
+  "da5d32d6-547f-45ae-a5b5-4747ed06542f",
+  "f93127ef-dec9-4d58-964b-ee660964ec4d"
+ ],
+ "alloc_A": {
+  "claude-opus-4-8|long": 1,
+  "claude-opus-4-8|mid": 0,
+  "claude-opus-4-8|short": 0,
+  "claude-sonnet-4-6|long": 1,
+  "claude-sonnet-4-6|mid": 2,
+  "claude-sonnet-4-6|short": 1
+ },
+ "alloc_B": {
+  "claude-opus-4-8|long": 1,
+  "claude-opus-4-8|mid": 1,
+  "claude-opus-4-8|short": 1,
+  "claude-sonnet-4-6|long": 2,
+  "claude-sonnet-4-6|mid": 1,
+  "claude-sonnet-4-6|short": 1
+ },
+ "floor_used": {
+  "A": 0,
+  "B": 1
+ },
+ "rule": "analysis/prereg_e.json splits.new_corpora: N after field audit; A = min(200, floor(0.2 N)); of the rest R: B = min(2000, floor(R/3)), E = min(2000, floor(R/3)), H = remainder; lib/sample cells (stratum x length tercile over the population) via lib/sample._alloc with floor per draw = min(5, floor(n_draw / n_cells)) (floor_used); seed SEED_NEW_CORPUS = 20261006; one permutation, A then B then E take cell heads, H = rest",
+ "session_unit": "union-find group of Claude Code JSONL files sharing a uuid or a sessionId (copies and resume chains merged)"
+}

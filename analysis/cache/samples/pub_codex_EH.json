@@ -1,0 +1,56 @@
+{
+ "corpus": "pub_codex",
+ "seed": 20261006,
+ "population_sessions": 46,
+ "used_by_A_B": 21,
+ "remainder": 25,
+ "E": [
+  "019e8e60-f5a7-74d2-b893-03bfd42c68a5",
+  "019ea216-0e47-7fd0-b791-2c14d47e5b66",
+  "019ebeb1-d395-7a73-8b19-257b98ab2350",
+  "019ebefd-d39b-7ef2-a1e6-ec90d41e4f33",
+  "019ec14c-c248-7a23-af30-131d32fb2958",
+  "019ec173-a86a-7960-92ce-f5aa2a4b2a19",
+  "019ec2e2-e0b3-7912-ad12-547decd78b0b",
+  "019ec3e6-500c-7521-b56b-7e6255a3b01b",
+  "019ec47b-df33-7bb1-8aee-426652c9d6c7",
+  "019ec482-09e4-7ac2-a990-dc5a2b5446a9",
+  "019ec646-d39b-7bc3-a54f-b81ca26bb0ac",
+  "019ec659-be3c-77b3-b2f1-f42b671de4f1"
+ ],
+ "H": [
+  "019ea17f-1972-7d61-a5d5-5fab7ae406d0",
+  "019eb815-a46c-7013-a25b-d6cc1ea621e7",
+  "019eb81a-7769-7932-84b6-2356d814942f",
+  "019ebf2e-e00a-75d1-a835-b044fb17fe73",
+  "019ec1a2-2011-7e70-b599-c0cd79f8fce8",
+  "019ec1ba-1c42-74a3-a3a2-f95965789a9c",
+  "019ec1e4-bdcf-7e21-a5a4-8ca1413be538",
+  "019ec2a7-c65b-73e0-9c24-2b8e0a2d61e2",
+  "019ec2c6-c196-7012-a264-76540b7f02dd",
+  "019ec3d0-5542-7ec2-b616-8d5a9fe7bdea",
+  "019ec65d-55c4-78a1-b8a2-14261a12937d",
+  "019ec73d-0faa-77c0-b259-0b9066152c7e",
+  "019ec952-acff-7653-9660-2781c061f18e"
+ ],
+ "alloc_E": {
+  "Codex Desktop|long": 2,
+  "Codex Desktop|mid": 2,
+  "Codex Desktop|short": 2,
+  "codex_vscode|long": 2,
+  "codex_vscode|mid": 2,
+  "codex_vscode|short": 2
+ },
+ "alloc_H": {
+  "Codex Desktop|long": 3,
+  "codex_vscode|long": 2,
+  "codex_vscode|short": 2,
+  "codex_vscode|mid": 3,
+  "Codex Desktop|short": 2,
+  "Codex Desktop|mid": 1
+ },
+ "floor_used": {
+  "E": 2
+ },
+ "rule": "prereg_e.json splits.new_corpora: A=min(200,floor(0.2N)); R=N-A; B=E=min(2000,floor(R/3)); H=remainder; stratum x length tercile (population terciles); lib/sample._alloc with floor=min(5,floor(n/n_cells)); seed SEED_NEW_CORPUS=20261006; one permutation, A then B then E take cell heads, H = rest"
+}

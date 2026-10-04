@@ -1,0 +1,9 @@
+{
+ "purpose": "Held-out split H of a Track B corpus for the Track C eval harness. Never read during tuning or analysis. Kept outside analysis/HELDOUT_MANIFEST.json until the orchestrator merges it.",
+ "corpus": "agentcap",
+ "n_H": 216,
+ "n_E": 214,
+ "sha256_sorted_H_ids": "36efde7d1e40d3eebed724b68911f06f361c48259825211c8a567683d250aa64",
+ "digest_rule": "sha256('\\n'.join(sorted(H ids)).encode()) as analysis/probes/phase_e_split.py",
+ "ids_file": "analysis/cache/samples/agentcap_EH.json#H"
+}

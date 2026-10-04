@@ -1,0 +1,411 @@
+{
+ "built": [
+  {
+   "corpora": [
+    {
+     "corpus": "pub_cc_hf",
+     "loaded": true,
+     "reason_if_not": "",
+     "N": 163,
+     "A": 32,
+     "B": 43,
+     "E": 43,
+     "H": 45,
+     "request_ids": "A cache: assistant events 816/962 (0.848) and call events 2,264/2,713 (0.835) carry request_id. 1,975 distinct ids, all of shape req_<24>, and all 1,975 decode to ms with prereg_e_common.decode_req_ms. 25 of 32 A sessions carry any id; INONONO and victor carry none and AlinCiocan only some. 19 events with model '<synthetic>' also carry a request_id. No id appears in more than one A session (the copies were deduped). Bracket context on A from calibrate_unit: 62 streams with >= 2 responses, 0 inconsistent at the 2 s tolerance.",
+     "files": [
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_pub_cc_hf.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\pub_cc_common.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_e_newcorp_calibration.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_cc_hf_A.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_cc_hf_index.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_cc_hf.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_cc_hf_EH.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_cc_hf.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_pub_cc_hf.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\pub_cc_hf.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_pub_cc_hf.json"
+     ]
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "loaded": true,
+     "reason_if_not": "",
+     "N": 27,
+     "A": 5,
+     "B": 7,
+     "E": 7,
+     "H": 8,
+     "request_ids": "A cache: assistant 480/480 and call 762/762 carry request_id (fill 1.0). 796 distinct ids, all req_<24>, and all 796 decode with decode_req_ms. 5 of 5 A sessions carry ids. 2 events with model '<synthetic>' carry an id. Bracket context on A: 5 streams, 0 inconsistent.",
+     "files": [
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_pub_trace_commons.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\pub_cc_common.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_e_newcorp_calibration.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_trace_commons_A.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_trace_commons_index.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_trace_commons.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_trace_commons_EH.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_trace_commons.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_pub_trace_commons.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\pub_trace_commons.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_pub_trace_commons.json"
+     ]
+    }
+   ],
+   "surprises": [
+    "The armand0e and cfahlgren1 uploads of the same 29 sessions (plus 8 subagent files) have identical uuid sets but are NOT byte-identical. 3,406 copied entries differ, in message (1,914), message+toolUseResult (1,154), toolUseResult (192) and attachment (145). Where the message differs, the kept armand0e copy is the longer one in 3,036 of 3,068 cases, so the cfahlgren1 upload looks rewritten. The root rule keeps the armand0e bytes. Source: newcorp_build_pub_cc_hf.json population.copies; only key names and lengths were compared.",
+    "pub_cc_hf: 379 JSONL files (240 main, 46 subagent, 91 workflow-agent, 2 journals excluded) form 206 sessions: 29 cross-repo copy groups, 3 resume chains, victor's 53 sessionId-less files joined by directory layout into 1 session. 43 of the 206 sessions fail the field audit, all for no_tool_use, and 29 of those are rooted in cfahlgren1. N = 163.",
+    "prereg_e_calibration.calibrate_unit chooses its logic by the unit NAME. Called with unit = corpus name, it skips N1, N5 and F3 and has no error definition (error_classes returns 'no_definition'), so it cannot produce the N1 bounds or N5 truncation constants that splits.new_corpora requires. The primary calibration therefore uses calibrate_unit(corpus, 'cc_local', u). cc_local is the same Claude Code generation: hooks are hook_* attachments with toolUseID, and these corpora have 0 progress entries. The literal-unit result is stored beside it as a reference. Side effect of the proxy: private_key masking of non-public tool names (labels only).",
+    "splits.new_corpora.calibration lists Probe 1 floors/G90, Probe 3 L75 and Probe 2 D_unit, but calibrate_unit computes none of them. I also called prereg_calibration.probe1_unit, probe2_unit and probe3_unit with the proxy and stored their raw outputs (phase_b_unit_functions). The D_unit resolution rule was not applied. L75 is 111 for pub_cc_hf and 251 for pub_trace_commons.",
+    "prereg_e_common.session_cluster_map has no branch for new corpora, so calibrate_unit's repo dominance sees 1 cluster (dominated_at_A=True by construction). As a separate field I added dominance with cluster = stratum: for pub_cc_hf the top repo (crispwisp) holds 0.343 of A paired calls, and one session holds 0.334, so it is flagged dominated.",
+    "N1 bounds_ok is False for both corpora (pub_cc_hf 104 residuals from 10 sessions; trace_commons 23 from 3), so the pre-registered pooled bounds [-1.2553, 1.5677] apply (resolved_preview.n1).",
+    "Workflow agents start asynchronously: all 969 of 969 A subagent events with a parent_call_id are stamped after the parent call's result. victor's 50 workflow agents and 2 subagents have no parent call in the data. Probes must not read 'subagent after parent result' as an anomaly here.",
+    "Credential-like values are real. In the pub_cc_hf A split, 28 events were redacted (bearer tokens in args/command 12, env-style secrets in text/args 34 matches). A re-scan after redaction finds 0 unredacted matches. No value was printed. trace_commons A: 0.",
+    "pub_trace_commons is tiny: N = 27 after the audit (28 files, 1 with no tool use), no subagents, no copies. Stratum = modal model (sonnet-4-6 22, opus-4-8 5). Every B/E statistic will be small-n. The parquet in that repo duplicates sessions/; the Cursor and OpenCode files are excluded as other harnesses.",
+    "Three other parallel new-corpus loaders already handle the floor overflow with floor = min(5, n_draw // n_cells): newcorp_common._take, load_tbench2, and glm_tb21, where floor 5 already fits. lib/sample._alloc does not cap floors, so without this the floors alone exceed A. I aligned to that shared rule. The saved splits equal newcorp_common.split_population exactly for both corpora. floor_used: pub_cc_hf A1/B2/E3, trace_commons A0/B1/E1.",
+    "With the floor rule, small pub_cc_hf repos are used up by A, B and E. H has 0 sessions from INONONO, build-small-hackathon, naazimsnh02, yellowbeeblackbee and 'other', and 1 from cfahlgren1. 40 of the 45 H sessions are armand0e or crispwisp."
+   ],
+   "problems": [
+    "BLINDNESS DISCLOSURE: before the split existed, while designing the loader, I ran exploratory scratch scans over ALL raw files of both corpora. These were a structural survey, credential-pattern counts with variable names, value lengths and character shapes, a character-level diff-shape comparison of the armand0e and cfahlgren1 copies, and JSON secret-field counts. No timing, latency, request-id bracket, error or mechanism quantity was computed, but B/E/H content was opened. The committed loader's population pass also reads every file's structure by design (ids, types, timestamps, tool ids, model strings, fingerprints; no content kept). Separately, Track B (B5e) already computed request-id decode deltas and call-to-result gap quantiles over these full corpora (CORPUS_INVENTORY 2.5), so R1, latency and N3 results on E for these corpora are not fully blind with respect to B5e.",
+    "An earlier run of my loader wrote a different B/E/H draw (largest feasible floor). I replaced it with the shared min(5, n//cells) rule before any B/E/H session was parsed. A was identical under both rules, and the A caches are byte-identical. The orchestrator should log the floor deviation once for all new corpora.",
+    "Decisions only the orchestrator can make before any B/E read: (1) accept or override the 'cc_local' format-proxy unit for these corpora; the measurement scripts must pass the same proxy to the prereg functions. (2) Add a session_cluster_map branch for new corpora (cluster = stratum) if repo dominance and confinement should be testable. (3) Append both prereg_e_extensions records to the change_log; I did not edit prereg_e.json, HELDOUT_MANIFEST.json or any lib/ file.",
+    "analysis/cache/<corpus>_index.json and the samples/*.json files are untracked but not gitignored; the parquet caches are gitignored. --split {B,E} is implemented and was tested only through the A path: build_frame(A ids) equals the A cache, and it refuses A and H. It was never run on B or E. Nothing was committed."
+   ]
+  },
+  {
+   "corpora": [
+    {
+     "corpus": "tbench2",
+     "loaded": true,
+     "reason_if_not": "",
+     "N": 11329,
+     "A": 200,
+     "B": 2000,
+     "E": 2000,
+     "H": 7129,
+     "request_ids": "A cache: 141 distinct Anthropic req_ ids, 141/141 decodable by prereg_e_common.decode_req_ms. They sit on 283 events in 7 sessions, all in WozCode__Claude-Opus-4.6 (native CC JSONL). Call fill is 202/8,523 = 0.024 overall and WozCode-only. No other stratum has a request id. Provider-minted response ids on A, counted by distinct values on call/assistant events: hookele OpenAI resp_ hex50 271 (271 decode to a plausible second); Judy__Gemini-3.1 Gemini-responseId shape 436 (436 decode to a plausible second); WozCode Anthropic msg_ 141 (0 decode, pre-format-switch). Operator- or harness-minted ids: Judy__Claude chatcmpl-<uuid> 202 (litellm), cchuter chatcmpl- 492, ClaudeCode__GLM-4.7 msg_ (len 34, not Anthropic layout) 376, Gemini CLI uuid. All other ATIF strata have synthetic per-step ids or none. Bracket baseline from calibrate_unit on A: 141 responses, 9 streams with >=2 responses, 0 inconsistent at the fixed 2,000 ms tolerance.",
+     "files": [
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_tbench2.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\tbench2.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\tbench2_EH.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\tbench2_A.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\tbench2_population.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\tbench2_split_index.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_tbench2.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_tbench2.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\tbench2.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_tbench2.json"
+     ]
+    },
+    {
+     "corpus": "glm_tb21",
+     "loaded": true,
+     "reason_if_not": "",
+     "N": 86,
+     "A": 17,
+     "B": 23,
+     "E": 23,
+     "H": 23,
+     "request_ids": "None (self-hosted vLLM). The A cache has 0 request ids and 0 provider response ids. All 1,027 A calls carry synthetic per-step api_msg_ids; usage fill on calls is 1.0. No bracket calibration was possible.",
+     "files": [
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_glm_tb21.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\glm_tb21.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\glm_tb21_EH.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\glm_tb21_A.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\glm_tb21_population.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\glm_tb21_split_index.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_glm_tb21.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_glm_tb21.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\glm_tb21.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_glm_tb21.json"
+     ]
+    }
+   ],
+   "surprises": [
+    "Deep-Agents__GPT-5.2-Codex ATIF timestamps are not event times. In all 7 A sessions every step stamp falls within 0.2-1.3 ms of the others, 17,999.99 s (5 h) after result.json agent_execution.finished_at. They look like local time written as UTC at conversion. The loader applies a generic rule: an ATIF file with >=3 stamped steps spanning under 1 s gets ts None and ts_kind 'none', and the raw stamp goes to extra.atif_write_stamp. Evidence is in report A_checks.collapsed_atif_stamps.",
+    "New provider clock not listed in CORPUS_INVENTORY 1.2: on Judy__Gemini-3.1-Pro-Preview, step.extra.response_id has the Gemini responseId shape. 436/436 distinct A values decode to a plausible unix second (first 4 bytes little-endian, the aiv_cu layout; inferred, not documented). Judy__Claude-Opus-4.6 ids are litellm chatcmpl-<uuid>, i.e. minted by the operator.",
+    "hookele run_command output is a JSON string whose metadata holds exit_code, duration_seconds and truncated. 227 of 265 A results have it. The loader maps it to exit_code, native_error (exit != 0) and extra.duration_seconds, which is a harness timer usable for N1.",
+    "ATIF observations in steps with no tool call (73 on A) are harness feedback: Terminus 'Previous response had parsing errors', idle 'New Terminal Output', Wecode subagent notes. They are mapped to kind 'system', not 'result'.",
+    "Terminus-family steps give one stamp to a whole keystroke batch and its single observation. 810 A results cannot be joined to one call (join='step_multi', call_id None), and 2,760 of the 2,824 A calls without a result are bash_command. Among paired calls, 3,771/5,445 tbench2 pairs and 299/299 glm_tb21 pairs have identical call and result stamps (shared_turn). glm_tb21 therefore has no call-to-result latency at all.",
+    "Naive (no-offset) Judy stamps were assumed UTC. 1,581/1,581 naive-stamped A events fall inside result.json agent_execution (UTC 'Z') +-5 s.",
+    "Gemini CLI toolCalls[].timestamp behaves like a completion time. On A it is 0.01-350 s after its message stamp (median 0.13 s, n=491), and the next model event follows it by a median 4.4 s.",
+    "vix__claude-opus-4-7 stamps carry 8-9 fractional digits (nanoseconds, trailing zeros trimmed). hookele stamps are whole seconds. CC/Gemini/JJAgent/Wecode have 3 digits; the other ATIF strata have 6.",
+    "Most credential-pattern hits are fixtures of the TB2 task sanitize-git-repo (AWS/GitHub/HF-shaped). Two Gemini_CLI A results carry a Google-API-key-shaped value right after an env-var assignment, likely an env dump of a real key. All were redacted to [REDACTED:credential]: 91 replacements in tbench2 A and 92 in glm_tb21 A (all fixtures). No values were printed. One vix result shows CLAUDE_CODE_OAUTH_TOKEN=[REDACTED], already redacted upstream.",
+    "cchuter main CC files write 466 entries below the running-max stamp, mostly progress and queue-operation lines. They are kept in file order (load_cc_local sorts by time instead), giving 41 adjacent ts inversions in seq order on A.",
+    "The population audit found 32,803 candidate trials. 11,329 pass; 21,368 have no structured log (50 result-only submissions) and 106 have no tool call (82 of them Deep-Agents, crashed trials). 885 passing trials also have a Harbor ATIF copy that is deliberately not loaded (WozCode, Gemini_CLI 3.1).",
+    "A sibling workflow's analysis/loaders/newcorp_common.split_population, written independently, gives identical A/B/E/H ids for both corpora when run on these population tables. It also uses the same floor rule, min(5, floor(n/n_cells))."
+   ],
+   "problems": [
+    "Split floor deviation needs a change_log entry. tbench2 has 25 strata x 3 terciles = 75 cells, and 75 x floor 5 = 375 > A = 200. lib/sample._alloc does not cap floors, so it would have returned 375. The floor was set to min(5, floor(n/n_cells)): 2 for A, 5 for B and E. This is recorded in the samples files (floor_used).",
+    "One trial was viewed before the split was drawn: Terminus2__Claude-Opus-4.6/2026-02-05__16-08-28/adaptive-rejection-sampler__gmpg6m3, landing in H. I saw result.json fields (kwargs/env hidden) and trajectory steps 1-3 with strings truncated to 160 chars. It is recorded in heldout_manifest_tbench2.json under viewed_before_split. Also pre-split, format discovery read 3 random files per submission (and 3+3+2 glm files) for key names, types and enums only, so B/E/H files were opened at structure level. The field audit itself opens every candidate log for structural counts only.",
+    "calibrate_unit gives only part of the calibration for these new units. Length terciles, dominance, request-id bracket (tbench2), N2 granularity/tau (tbench2 tau 0.344, n=3,146; glm 0.289, n=484) and the N6 field gate are computed. N1 residual bounds, latency/N3/N4 counts, N5 truncation constants, F3 and R3 are NOT computed, because the units are not registered in SPEC_E/pc.SPEC. Running those mechanisms on tbench2/glm_tb21 later needs an orchestrator registration decision.",
+    "Repo dominance in the calibration is degenerate for both corpora (dominated_at_A=true, 1 cluster). prereg_e_common.session_cluster_map has no cluster map for new corpora and falls back to one cluster. Model dominance is meaningful for tbench2 (26 clusters, top share 0.118) but degenerate for glm (1 model).",
+    "Redaction changes byte counts of affected text/args/command fields (extra.credential_redactions marks them). Size-based probes (N1/N3/N5) on sanitize-git-repo sessions will see altered sizes.",
+    "build_stats pairing.duplicate_result_events_same_session_id (tbench2 731, glm 180) is an artifact: null call_ids on step_multi results count as duplicates of each other. The non-null duplicate count is 0, as stated in the report note.",
+    "Index filename differs from the sibling loaders: mine is analysis/cache/<corpus>_split_index.parquet with A/B/E rows, theirs <corpus>_index.parquet. My --split {B,E} path reads mine.",
+    "Not done by design: B/E caches were not built. The --split {B,E} option was tested only through selftest (A rebuilt through the same code path equals the A cache; H refused). prereg_e.json, HELDOUT_MANIFEST.json, lib/* and other loaders were not edited. Nothing was committed."
+   ]
+  },
+  {
+   "corpora": [
+    {
+     "corpus": "pub_codex",
+     "loaded": true,
+     "reason_if_not": "",
+     "N": 46,
+     "A": 9,
+     "B": 12,
+     "E": 12,
+     "H": 13,
+     "request_ids": "none. Codex rollouts log no provider request id or response id; api_msg_id is synthetic (one per token_count). 0 decodable.",
+     "files": [
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_pub_codex.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\newcorp_common.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_codex_A.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_codex_population.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_codex_index.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_codex.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_codex_EH.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_pub_codex.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\pub_codex.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_pub_codex.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_codex.json"
+     ]
+    },
+    {
+     "corpus": "agentcap",
+     "loaded": true,
+     "reason_if_not": "",
+     "N": 804,
+     "A": 160,
+     "B": 214,
+     "E": 214,
+     "H": 216,
+     "request_ids": "On A: 5,442 rows, 2,080 distinct response ids in 127 of 160 sessions (1,798 'chatcmpl-', 282 other). Taken from the joined capture SSE/JSON body. They are minted by the serving process (a local llama.cpp-style server or the HF Router), not by a first-party provider, and are not decodable to a clock (0 decodable). The clock comes from the body's integer-second 'created'. Of the 2,080 joined responses, 1,798 also carry llama.cpp server timings (prompt_ms/predicted_ms). Pi responseId equals the SSE id exactly.",
+     "files": [
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_agentcap.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\newcorp_common.py",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\agentcap_A.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\agentcap_population.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\agentcap_index.parquet",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\agentcap.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\agentcap_EH.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_agentcap.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\agentcap.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_agentcap.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_agentcap.json",
+      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_split_incident_agentcap.json"
+     ]
+    },
+    {
+     "corpus": "openhands_eval",
+     "loaded": false,
+     "reason_if_not": "Not started. The ~90-minute budget went to pub_codex and agentcap, including the agentcap capture join and the split incident described under problems. Notes for the next attempt: the corpus is 4.76 GB, 19 runs, one JSON line per instance. Detect the history shape per line, flat versus [action, observation] pairs (CORPUS_INVENTORY 5.3). Only 8 flat runs carry tool_call_metadata (the model_response id and created). Glob output.jsonl exactly, because a duplicate .part file sits beside one of them.",
+     "files": []
+    },
+    {
+     "corpus": "group4 (tracelab-uw, cli-pi-hf, miniswe-v2-qwen3-30b-swebv-tarsur385, sweagent-combo2-rl-rollouts, osworld_verified_trajs, webarena_infinity_trajs, openhands-feedback)",
+     "loaded": false,
+     "reason_if_not": "Not started because the time budget ran out. cli-pi-hf is the cheapest next one: load_agentcap.parse_pi already parses Pi v3 JSONL. Load only files whose first line is {type: session}, dedupe on session id keeping the longer file, and redact the known sk-ant value (CORPUS_INVENTORY 5.13). It has no wire captures.",
+     "files": []
+    }
+   ],
+   "surprises": [
+    "Split rule vs lib/sample floor: lib/sample._alloc applies a floor of min(5, cell size) per cell even when the floors add up to more than the split total. For pub_codex (N=46, A=9, 6 cells) it would have returned more sessions than the rule allows. newcorp_common uses floor = min(5, floor(n/n_cells)): pub_codex floors were A 1, B 2, E 2; agentcap floors were 5.",
+    "calibrate_unit() keys its format rules on the unit name. So the new corpora are calibrated under their pre-registered analogue: pub_codex as 'swechat/codex', agentcap OpenCode sessions as 'swechat/opencode'. A side effect: field_gate() then reports external_commit_table=True and external_usage_tally=True, inherited from swechat. These are corrected to False in resolved.n6_field_gate_A (listed in n6_field_gate_corrections); the raw unit_result keeps calibrate_unit's own output.",
+    "Pi has no pre-registered analogue. It is calibrated as 'agentcap/pi', which means no N1 bounds and no N5 items (it is not in LAT_UNITS or N5_UNITS), and error_classes returns no_definition even though Pi records a native isError on 1,522 of 1,522 A results.",
+    "AC4 dominance is degenerate for any new corpus: session_cluster_map falls back to a single cluster, so dominated_at_A is always True. Uploader/run dominance is computed separately in the build reports. pub_codex is dominated by one uploader (kingkw1: 49% of A calls; one session alone holds 36%). agentcap is not dominated by run (top run 15%), but by suite it is: transformers-coding holds 62% of A calls.",
+    "pub_codex: CLI 0.135-0.140 rollouts write no exec_command_end. The exit_code column is empty (0 of 726 A results). The exit code exists only in the output text header (691/726), and 'Wall time' lines are present in 718/726. native_error is non-null on 75/726 (patch and MCP ends only).",
+    "pub_codex: turn_context approval_policy is mostly 'on-request' (67 vs 26 'never'). The pre-registered swechat/codex qualification needs 'never', so only 3 shell pairs qualify in A, N1 has 0 residuals, and the pooled N1 bounds are used. 90 of 726 A pairs have a zero call-to-result delta (timestamps are ms).",
+    "pub_codex population: 2 rollouts are forks (forked_from_id) and 6 are sub-agent rollouts. Sub-agent parent_call_id is not resolved, because resolving it needs the parent's text and could open another split.",
+    "agentcap: each capture parquet's schema metadata ('tasks') lists every task prompt. That gives a content-free session-to-task join: the session's first user message must equal a task prompt. The creation-time rank mapping disagrees with it in 7 A sessions, so it is kept as a cross-check only. 27 of 160 A sessions match no prompt: 25 have a first message that differs from every prompt, and 2 funes-recall runs have no tasks metadata.",
+    "agentcap per-call join is exact for both harnesses. Pi message.responseId equals the SSE chunk id (1,459 responses joined). OpenCode callIDs equal the streamed tool_calls ids (452 joined). 169 more join positionally, and 159 trace responses stay unjoined. 763 capture rows of joined tasks have a different first user message and were dropped; they look like side requests such as OpenCode title generation.",
+    "agentcap clocks (descriptive, A only): captured_at falls before the trace's response-end stamp (median -4.19 s, q0.01 -69.3 s), so it is not a capture-at-response time. Trace end minus the server's last-chunk created has median +0.49 s but q0.01 -16.7 s, which suggests a host clock offset in some runs. Pi message.timestamp is the request start, not the entry time; it is kept as extra.request_start_ms.",
+    "agentcap: 2 OpenCode trace files are 0 bytes. These are the 2 'undecodable' files in the B5e audit.",
+    "Credential-like value not listed in CORPUS_INVENTORY 2.4: agentcap A raw data contains strings matching hf_[A-Za-z0-9]{30,}. There are 2 distinct values in 3 A sessions. One has the shape of a real Hugging Face token (37 characters, mixed case and digits); the other is probably a false positive (33 characters, all lowercase). Both are redacted in the IR (args 10, text 4) and were never printed. Whether to notify the uploader is a human decision.",
+    "OpenCode traces in agentcap have no child (subagent) sessions: 0 with parentID."
+   ],
+   "problems": [
+    "SPLIT INCIDENT, agentcap. The first build drew the split with the 2 zero-byte OpenCode files in the population (N=806) and parsed that A, before the empty-file check existed. The final split uses N=804. Of the 161 sessions in the abandoned A, 71 are now in B (42), E (15) and H (14). A transient rebuild with N=806 also parsed the then-A sessions; that rebuild reproduces the same abandoned draw. Exposure: these sessions went through the loader, and I looked at aggregate counts in overwritten build and calibration outputs; no per-session value was inspected. analysis/out/phase_e/newcorp_split_incident_agentcap.json lists the B and E ids and gives the H count and sha256, and is regenerated by main(). Recommendation: exclude those B/E ids from measurement or label them, and have Track C drop or annotate the 14 H sessions.",
+    "The prereg_e.json change_log entries were not written, per instructions. The orchestrator must append both extensions (sha256 values are in prereg_e_extensions/<corpus>.json) and merge heldout_manifest_<corpus>.json into HELDOUT_MANIFEST.json before any B/E measurement.",
+    "pub_codex is tiny (B=12, E=12 sessions). Most mechanisms will come out INSUFFICIENT_N, and N1 has no qualified repeat groups under the pre-registered approval_policy filter.",
+    "Pi needs its own N1/N5/error-definition registration (a change_log decision) before its N1, N5 and P3 cells can be anything but NOT_TESTABLE.",
+    "agentcap capture join, not verified: a (run, task) re-run by sessions in different splits would share capture rows. Within A there are 0 tasks claimed by more than one session, but cross-split sharing cannot be checked without opening other splits. Joins are by exact id wherever possible, so a wrong positional join is the only possible effect.",
+    "Loaders built --split B/E code paths and tested them only on A: rebuilding A through the same path gives an identical frame, and H is refused. They were not run on B or E.",
+    "openhands_eval and every group-4 corpus are not loaded (time budget).",
+    "analysis/out/phase_e/heldout_manifest_tbench2.json is not from this task; another workflow wrote it."
+   ]
+  }
+ ],
+ "ver": {
+  "corpora": [
+   {
+    "corpus": "pub_cc_hf",
+    "loaded": true,
+    "reason_if_not": "",
+    "N": 163,
+    "A": 32,
+    "B": 43,
+    "E": 43,
+    "H": 45,
+    "request_ids": "VERIFIED by recomputing from the A cache. assistant 816/962 and call 2,264/2,713 events carry request_id. 1,975 distinct ids, all req_<24>, and 1,975/1,975 decode with prereg_e_common.decode_req_ms. 25 of 32 sessions have ids, no id appears in more than one session, and 19 '<synthetic>' events carry one. This matches the build claims. Re-parse: 4 A sessions (files: 2, 1, 1 and victor's 53) give identical call/result counts and call_id multisets (311/311, 53/53, 143/143, 149/149). Split: my own implementation, run on the loader's structure-only population pass, reproduces A/B/E/H exactly (floors 1/2/3). All hashes match: calibration 06e63db1, samples, EH, A cache, prereg_e.json, loader, common module and calibration script. The index holds A/B/E only (0 H ids). Credential scan of A: 0 values. The 4 'sk-ant-' hits are regex or placeholder text, the 23 CLAUDE_CODE_OAUTH_TOKEN hits are variable references, and there are 47 redaction markers.",
+    "files": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_pub_cc_hf.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\pub_cc_common.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_e_newcorp_calibration.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_cc_hf_A.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_cc_hf_index.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_cc_hf.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_cc_hf_EH.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_pub_cc_hf.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\pub_cc_hf.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_pub_cc_hf.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_cc_hf.json",
+     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v6_resplit_cc.py",
+     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v7_reparse.py"
+    ]
+   },
+   {
+    "corpus": "pub_trace_commons",
+    "loaded": true,
+    "reason_if_not": "",
+    "N": 27,
+    "A": 5,
+    "B": 7,
+    "E": 7,
+    "H": 8,
+    "request_ids": "VERIFIED. assistant 480/480 and call 762/762 carry request_id. 796 distinct req_<24> ids, all of which decode. 5/5 sessions have ids and 2 '<synthetic>' events carry one. Re-parse: 3 A sessions match exactly (11/11, 75/75, 274/274 calls and results, call_id multisets equal). Split reproduces exactly (floors 0/1/1). With floor 0, claude-opus-4-8 has 0 sessions in H. All hashes match (calibration bf34d413). The index holds A/B/E only. Credential scan: 0 matches and 0 redactions.",
+    "files": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_pub_trace_commons.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\pub_cc_common.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_trace_commons_A.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_trace_commons_index.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_trace_commons.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_trace_commons_EH.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_pub_trace_commons.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\pub_trace_commons.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_pub_trace_commons.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_trace_commons.json"
+    ]
+   },
+   {
+    "corpus": "tbench2",
+    "loaded": true,
+    "reason_if_not": "",
+    "N": 11329,
+    "A": 200,
+    "B": 2000,
+    "E": 2000,
+    "H": 7129,
+    "request_ids": "VERIFIED. 141 distinct req_<24> ids, all of which decode. They sit on 283 events in 7 sessions, all WozCode__Claude-Opus-4.6. Call fill is 202/8,523 and assistant fill 50/4,398. Re-parse: one session per format, all matching exactly. cc_jsonl WozCode 44/44 calls and results; gemini_cli 27/27; hookele 43/43; atif Terminus-KIRA 46 calls and 22 results; atif Simple-Codex 4/4. Call_id multisets and result call_ids are equal, including the null ids from step_multi. Split reproduces exactly from tbench2_population.parquet (floors 2/5/5), and every one of the 25 strata appears in both A and H. Calibration sha (7d95d098), both sample hashes and the loader sha match. H is absent from the split index. VIEWED_BEFORE_SPLIT: 1 trial, in H. Credential scan: 0 values. The 1 CLAUDE_CODE_OAUTH_TOKEN hit is an upstream '=[REDACTED]' marker, and there are 93 loader redaction markers.",
+    "files": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_tbench2.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\tbench2_A.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\tbench2_population.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\tbench2_split_index.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\tbench2.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\tbench2_EH.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_tbench2.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\tbench2.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_tbench2.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_tbench2.json"
+    ]
+   },
+   {
+    "corpus": "glm_tb21",
+    "loaded": true,
+    "reason_if_not": "",
+    "N": 86,
+    "A": 17,
+    "B": 23,
+    "E": 23,
+    "H": 23,
+    "request_ids": "VERIFIED none: 0 request ids. All 1,027 A calls carry a synthetic api_msg_id, and usage_in/usage_out fill on calls is 1.0. Re-parse (ATIF): 3 A sessions match exactly (33 calls / 25 results, 11/6, 115/46; call_id and result call_id multisets equal). Split reproduces exactly (one stratum, 3 cells, floor 5). Calibration sha (f340bebb), sample hashes and loader sha match. The index excludes H. Credential scan: 0 values and 97 redaction markers, all in 1 session.",
+    "files": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_glm_tb21.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\glm_tb21_A.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\glm_tb21_population.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\glm_tb21_split_index.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\glm_tb21.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\glm_tb21_EH.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_glm_tb21.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\glm_tb21.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_glm_tb21.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_glm_tb21.json"
+    ]
+   },
+   {
+    "corpus": "agentcap",
+    "loaded": true,
+    "reason_if_not": "",
+    "N": 804,
+    "A": 160,
+    "B": 214,
+    "E": 214,
+    "H": 216,
+    "request_ids": "VERIFIED. request_id holds the response id taken from the joined capture body. 2,080 distinct ids: 1,798 'chatcmpl-' and 282 hex. 0 decode, as expected for operator-minted ids from a llama.cpp-style server or the HF Router, not first-party provider ids. Call fill 1,838/2,292, assistant fill 1,525/1,814, 127 of 160 sessions; no id appears in more than one session. Re-parse: 2 OpenCode (3/3, 6/6) and 2 Pi (7/7, 13/13) sessions match exactly. Split reproduces exactly (floor 5). Calibration sha (f0ae0eea), samples, EH, heldout manifest, loader, common module, A cache and prereg_e.json hashes all match. Capture-body read: the run_id x task_id parquet filter pulls 0 rows beyond the 127 wanted A (run, task) pairs. This was checked on metadata columns only. Credential scan: 0 values. There are 20 env-style HF_TOKEN / INFERENCE_ENDPOINT_TOKEN assignments with placeholder shapes (lowercase words) and 14 redaction markers.",
+    "files": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_agentcap.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\newcorp_common.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\agentcap_A.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\agentcap_population.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\agentcap_index.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\agentcap.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\agentcap_EH.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_agentcap.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\agentcap.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_agentcap.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_agentcap.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_split_incident_agentcap.json"
+    ]
+   },
+   {
+    "corpus": "pub_codex",
+    "loaded": true,
+    "reason_if_not": "",
+    "N": 46,
+    "A": 9,
+    "B": 12,
+    "E": 12,
+    "H": 13,
+    "request_ids": "VERIFIED none: 0 request ids and 0 provider response ids. Codex logs neither, and api_msg_id is synthetic from token_count. Re-parse: 3 A sessions match on call and result counts (192/179, 102/100, 270/259). Non-web-search call_ids and result call_ids are equal. Web-search calls (13, 2, 11) take their ids from web_search_end and match in count. Split reproduces exactly (floors 1/2/2). Both A sessions of the 'codex-tui' stratum are in A, so B, E and H have none. Calibration sha (c95f3739), samples, EH, heldout manifest, loader, common module, A cache and prereg_e.json hashes all match. Credential scan: 0 matches.",
+    "files": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\load_pub_codex.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\loaders\\newcorp_common.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_codex_A.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_codex_population.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_codex_index.parquet",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_codex.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\samples\\pub_codex_EH.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_calibration_pub_codex.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\pub_codex.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_pub_codex.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_codex.json",
+     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v1_hashes.py",
+     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v2_secrets.py",
+     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v5_resplit.py",
+     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v8_envsecrets.py",
+     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\reparse_result.json"
+    ]
+   }
+  ],
+  "surprises": [
+   "All 6 builds pass the mechanical checks. I re-derived the splits with my own code from each population. The calls are lib/sample._alloc with floor min(5, n // cells) and default_rng(20261006). The result equals the saved A/B/E/H for every corpus, and every size equals the pre-registered formula. Every calibration sha256 matches its extension record. ir.validate passes on all 6 A caches. Each A cache's session set equals its A ids. No <corpus>_{B,E,H} cache or newcorp_build_<corpus>_{B,E}.json exists anywhere under C:\\Swarms (data/ excluded) or in TEMP. No index file contains an H id. git shows no change to any tracked file: prereg_e.json, HELDOUT_MANIFEST.json, lib/* and the other loaders are untouched, and the older caches keep their Oct 3 and 01:3x mtimes.",
+   "Independent re-parse: 22 A sessions across the 6 corpora, covering 8 formats (CC JSONL with copies and 53-file workflow sessions, Codex, OpenCode, Pi, ATIF Terminus and Simple-Codex, Gemini CLI, hookele). Each one reproduces the A cache's call and result counts and call_id multisets exactly. My first pub_codex comparison reported a mismatch. That came from my own comparison logic: web_search_call ids come from web_search_end. With web-search calls excluded the ids are equal, and the web-search counts match.",
+   "The field audits differ between loaders, and N inherits the difference. pub_cc_hf and pub_trace_commons require a stamped call/result join and exclude tool-less sessions (43 and 1). agentcap and pub_codex run header-only audits, which admit tool-less sessions: 22 of 160 agentcap A sessions and 1 of 9 pub_codex A sessions have 0 calls. tbench2's audit checks that calls, results and a timestamp are present, but in 7 of its 200 A sessions (all Deep-Agents__GPT-5.2-Codex) the collapsed-stamp rule nulls every timestamp. 1 tbench2 and 1 glm_tb21 A session have calls and results but no per-call id join (Terminus step_multi).",
+   "Calibration unit choice is inconsistent across builders. pub_cc_hf and pub_trace_commons use the 'cc_local' proxy. pub_codex uses 'swechat/codex'. agentcap uses 'swechat/opencode' for OpenCode and the literal name for Pi. tbench2 and glm_tb21 use the literal corpus name, so their calibration files have no n1, n5, latency_counts, cold_start or f3_round blocks, only sessions_A, length_terciles, dominance_context, [bracket], n2 and n6_field_gate. N1 residual bounds and N5 truncation constants are therefore missing for tbench2, glm_tb21 and agentcap/pi. tbench2's A has 24 cc_jsonl and 16 gemini_cli sessions that could have been calibrated with a format proxy, as the other builders did.",
+   "agentcap split incident reproduced exactly with my own split code. The abandoned build drew N = 806 with 2 empty files and A = 161. 71 sessions that sit outside the final A were parsed into that abandoned A cache: B 42/214 (19.6%), E 15/214 (7.0%), H 14/216. The B list, E list and H hash equal newcorp_split_incident_agentcap.json.",
+   "tbench2 A: one result in Terminus2__DeepSeek-V3.2/.../extract-moves-from-video__4yMgoHH contains an anonymous YouTube visitor-cookie dump that was not redacted. The cookie names are __Secure-ROLLOUT_TOKEN (39-character random value), VISITOR_INFO1_LIVE and VISITOR_PRIVACY_METADATA. A count of auth-cookie names followed by a value (SID, HSID, SSID, APISID, SAPISID, __Secure-1PSID, __Secure-3PSID, LOGIN_INFO, sessionid) finds 0 in all 6 A caches. Not a credential.",
+   "agentcap A has 20 env-style token assignments in 7 Pi sessions (HF_TOKEN 13, INFERENCE_ENDPOINT_TOKEN 4, others 3), not redacted. Every value is placeholder-shaped (lowercase words with underscores, or uppercase placeholder words), not a real token. Across the 6 A caches, counts of unredacted values matching sk-ant-, sk-or-v1-, Bearer <20+ chars> and CLAUDE_CODE_OAUTH_TOKEN=<value> are all 0. Separately, a key-name census of extra finds no env, kwargs, headers, config, hidden_params, api_base, request or response keys in any A cache.",
+   "The provenance pinning is uneven. tbench2 and glm_tb21 record neither the A-cache sha256 nor the prereg_e.json sha in their calibration files or extension records, while the other four do. Current values: tbench2_A.parquet f630179357ce0272dd50318b2d3b5705bb1efbbd105b645fe8c014b196e1de3c, glm_tb21_A.parquet ed91cf79f818b9b4358110cc24bd12ea6e167539774868b87b8c583e30588774. The orchestrator could put these in the change_log entries.",
+   "The --split paths differ. In pub_cc_common and tbench2/glm, --split re-checks that the population or index reproduces the saved draw. The agentcap and pub_codex --split builders read the gitignored <corpus>_population.parquet and do not re-check the draw against the sample files. All population and index parquets are gitignored and regenerable by main(). pub_cc_hf_index.json and pub_trace_commons_index.json are untracked and NOT gitignored; they hold ids, paths, stratum and length, no content."
+  ],
+  "problems": [
+   "NO FIXES APPLIED. No finding was trivially safe to fix. Any edit to a loader, cache or calibration file changes sha256 values already recorded in the extension, calibration or build records, which the orchestrator is about to append to the change_log.",
+   "Decision needed (agentcap blindness): 42 B and 15 E sessions were parsed in an abandoned A build, and aggregate counts from that build were viewed. Exclude them from B/E measurement or label them, and have Track C drop or label the 14 H sessions (sha 36df3363...).",
+   "Decision needed (field-audit consistency): agentcap and pub_codex N include tool-less sessions, while pub_cc_* exclude them. tbench2 N includes sessions whose timestamps are all nulled by the collapsed-stamp rule. Each split follows the rule exactly against its own loader's audit, but the audits are not the same criterion. Changing the audits now would redraw splits after A was calibrated, so either accept and log the difference, or re-audit, redraw and rebuild A before any B/E read.",
+   "Decision needed (calibration units): the proxy-versus-literal unit choice differs per builder (see surprises). tbench2, glm_tb21 and agentcap/pi have no N1 bounds and no N5 truncation constants. The measurement scripts must pass the same unit argument per corpus that each calibration used: cc_local; swechat/codex; swechat/opencode plus agentcap/pi; tbench2; glm_tb21.",
+   "Minor overclaim in the pub_cc_common docstring (POPULATION PASS says no content is measured). scan_file computes len(json.dumps(message)) for every uuid entry of every file, B/E/H included. It is used only in the copy census, and the builder disclosed it in its own report. tbench2 and glm format discovery and the tbench2 VIEWED_BEFORE_SPLIT trial (in H) are documented in the loaders.",
+   "Verifier self-disclosure: while locating the ROLLOUT_TOKEN context, one of my scratch prints showed two short fragments of anonymous YouTube visitor-cookie values next to cookie names. They appeared only in this session's console, not in any file, and they are not repeated here. Every other check printed counts, shapes or booleans only. My checks opened raw files of A sessions only, plus the loader's own structure-only population pass for pub_cc_hf and pub_trace_commons (to re-derive their splits) and agentcap capture metadata columns run_id and task_id. Scratch scripts are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\."
+  ]
+ }
+}

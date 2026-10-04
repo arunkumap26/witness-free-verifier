@@ -12,6 +12,89 @@
    "n_E": 2000,
    "sha256_sorted_H_ids": "baa2b4d1d3ec407202d0357606b25b60921423110c3d76f961cbf0afa86099be",
    "ids_file": "analysis/cache/samples/aiv_cu_EH.json#H"
+  },
+  "agentcap": {
+   "source": "analysis/out/phase_e/heldout_manifest_agentcap.json",
+   "source_sha256": "6a55e5182b992859b6917c3ca1a423455f2c46807f3a9c2a260cbd6300544f8f",
+   "purpose": "Held-out split H of a Track B corpus for the Track C eval harness. Never read during tuning or analysis. Kept outside analysis/HELDOUT_MANIFEST.json until the orchestrator merges it.",
+   "corpus": "agentcap",
+   "n_H": 216,
+   "n_E": 214,
+   "sha256_sorted_H_ids": "36efde7d1e40d3eebed724b68911f06f361c48259825211c8a567683d250aa64",
+   "digest_rule": "sha256('\\n'.join(sorted(H ids)).encode()) as analysis/probes/phase_e_split.py",
+   "ids_file": "analysis/cache/samples/agentcap_EH.json#H",
+   "exposed_H_sessions": {
+    "n": 14,
+    "sha256_sorted_ids": "36df3363db5f39b3299db68503d169c54046bbfcc7ce442f960eeb84bbb91408",
+    "rule": "Track C drops these (parsed in an abandoned A build)"
+   }
+  },
+  "glm_tb21": {
+   "source": "analysis/out/phase_e/heldout_manifest_glm_tb21.json",
+   "source_sha256": "0fc9561c571fb78129348b0ee45b44cdac7dc7b4d1f9a013c37cbdae61350425",
+   "corpus": "glm_tb21",
+   "purpose": "Held-out split H for the Track C eval harness. Never read during tuning or analysis. Separate from analysis/HELDOUT_MANIFEST.json (not edited).",
+   "n_H": 23,
+   "n_E": 23,
+   "sha256_sorted_H_ids": "3449a5b82f54c3d5868ecfc903abba52bcb1c423e9986f6c71333546dd87b027",
+   "hash_rule": "sha256 of '\\n'.join(sorted(H ids)).encode() (as analysis/probes/phase_e_split.py)",
+   "ids_file": "analysis/cache/samples/glm_tb21_EH.json#H",
+   "seed": 20261006,
+   "loader": "analysis/loaders/load_glm_tb21.py"
+  },
+  "pub_cc_hf": {
+   "source": "analysis/out/phase_e/heldout_manifest_pub_cc_hf.json",
+   "source_sha256": "a9c793824a4114d068bbeb8ed84aeba513a208b9f30c9fccb688926898fc11e7",
+   "corpus": "pub_cc_hf",
+   "purpose": "Held-out split H for the Track C eval harness. Never read during tuning or analysis. Separate from analysis/HELDOUT_MANIFEST.json (not edited).",
+   "n_H": 45,
+   "n_E": 43,
+   "n_B": 43,
+   "n_A": 32,
+   "sha256_sorted_H_ids": "dd0e8313330f40cfadb564e73ec71710825ea6e1aed79916e53cdb8241a83951",
+   "hash_method": "sha256 of '\\n'.join(sorted H ids).encode() (as HELDOUT_MANIFEST)",
+   "ids_file": "analysis/cache/samples/pub_cc_hf_EH.json#H",
+   "seed": 20261006,
+   "rule": "analysis/prereg_e.json splits.new_corpora: N after field audit; A = min(200, floor(0.2 N)); of the rest R: B = min(2000, floor(R/3)), E = min(2000, floor(R/3)), H = remainder; lib/sample cells (stratum x length tercile over the population) via lib/sample._alloc with floor per draw = min(5, floor(n_draw / n_cells)) (floor_used); seed SEED_NEW_CORPUS = 20261006; one permutation, A then B then E take cell heads, H = rest"
+  },
+  "pub_codex": {
+   "source": "analysis/out/phase_e/heldout_manifest_pub_codex.json",
+   "source_sha256": "62a5dd23559cb41de935cc08eb412cc76ae51b2476ba8bf224ac80ef21c8a51d",
+   "purpose": "Held-out split H of a Track B corpus for the Track C eval harness. Never read during tuning or analysis. Kept outside analysis/HELDOUT_MANIFEST.json until the orchestrator merges it.",
+   "corpus": "pub_codex",
+   "n_H": 13,
+   "n_E": 12,
+   "sha256_sorted_H_ids": "55ce108e9a06b21c08f72051a5525b6cd5e0e5b8f2839f6fa128b5b6197d94db",
+   "digest_rule": "sha256('\\n'.join(sorted(H ids)).encode()) as analysis/probes/phase_e_split.py",
+   "ids_file": "analysis/cache/samples/pub_codex_EH.json#H"
+  },
+  "pub_trace_commons": {
+   "source": "analysis/out/phase_e/heldout_manifest_pub_trace_commons.json",
+   "source_sha256": "6c52a05f8b00a99df9ce76094adbc3f17b5ab7a8d1d0f54b975ce25a6ebecdf6",
+   "corpus": "pub_trace_commons",
+   "purpose": "Held-out split H for the Track C eval harness. Never read during tuning or analysis. Separate from analysis/HELDOUT_MANIFEST.json (not edited).",
+   "n_H": 8,
+   "n_E": 7,
+   "n_B": 7,
+   "n_A": 5,
+   "sha256_sorted_H_ids": "ef79e11a199a579d55f80b7feb82b7304a2796f55df769eb5956d512ce5a9881",
+   "hash_method": "sha256 of '\\n'.join(sorted H ids).encode() (as HELDOUT_MANIFEST)",
+   "ids_file": "analysis/cache/samples/pub_trace_commons_EH.json#H",
+   "seed": 20261006,
+   "rule": "analysis/prereg_e.json splits.new_corpora: N after field audit; A = min(200, floor(0.2 N)); of the rest R: B = min(2000, floor(R/3)), E = min(2000, floor(R/3)), H = remainder; lib/sample cells (stratum x length tercile over the population) via lib/sample._alloc with floor per draw = min(5, floor(n_draw / n_cells)) (floor_used); seed SEED_NEW_CORPUS = 20261006; one permutation, A then B then E take cell heads, H = rest"
+  },
+  "tbench2": {
+   "source": "analysis/out/phase_e/heldout_manifest_tbench2.json",
+   "source_sha256": "9525b3991551e6f16ce75f3a8b375f19124a0cc26bcebc73e0e044525dbb1462",
+   "corpus": "tbench2",
+   "purpose": "Held-out split H for the Track C eval harness. Never read during tuning or analysis. Separate from analysis/HELDOUT_MANIFEST.json (not edited).",
+   "n_H": 7129,
+   "n_E": 2000,
+   "sha256_sorted_H_ids": "9ae55595d73a20fea80df41bc9073511af244ac5ec58cc4dec6b31f97e4a76dc",
+   "hash_rule": "sha256 of '\\n'.join(sorted(H ids)).encode() (as analysis/probes/phase_e_split.py)",
+   "ids_file": "analysis/cache/samples/tbench2_EH.json#H",
+   "seed": 20261006,
+   "loader": "analysis/loaders/load_tbench2.py"
   }
  },
  "no_heldout": {

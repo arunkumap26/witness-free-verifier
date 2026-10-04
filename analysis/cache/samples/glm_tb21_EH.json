@@ -1,0 +1,78 @@
+{
+ "corpus": "glm_tb21",
+ "seed": 20261006,
+ "population_sessions": 86,
+ "population_by_cell": {
+  "terminus-2__openai/GLM-5.2|long": 29,
+  "terminus-2__openai/GLM-5.2|mid": 29,
+  "terminus-2__openai/GLM-5.2|short": 28
+ },
+ "rule": "prereg_e.json splits.new_corpora: A=min(200,floor(0.2N)); R=N-A; B=min(2000,floor(R/3)); E=min(2000,floor(R/3)); H=remainder; lib/sample cells (stratum x length tercile over the population sorted by session_id); one permutation default_rng(seed); A then B then E by lib/sample._alloc; floor per draw = min(5, floor(n_draw/n_cells))",
+ "floor_used": {
+  "A": 5,
+  "B": 5,
+  "E": 5
+ },
+ "n_cells": 3,
+ "length_definition": "tool calls with an id in the loaded log (structural count from the field audit)",
+ "E": [
+  "build-pov-ray__cvRqLLL",
+  "caffe-cifar-10__GSrFprV",
+  "cobol-modernization__DssrPpD",
+  "code-from-image__Mb3V8hu",
+  "configure-git-webserver__zHwuUe3",
+  "constraints-scheduling__vNQk8zN",
+  "custom-memory-heap-crash__PRmgoLU",
+  "dna-assembly__iCHFnVp",
+  "financial-document-processor__JaYjKGr",
+  "gcode-to-text__cPEimCd",
+  "git-leak-recovery__RAbL3uV",
+  "headless-terminal__TkHZBED",
+  "log-summary-date-ranges__Xn9XHjA",
+  "merge-diff-arc-agi-task__7umUMW9",
+  "mteb-retrieve__kRgHZCn",
+  "path-tracing-reverse__DQzdGCL",
+  "path-tracing__o5QUSR3",
+  "pypi-server__cQSxqee",
+  "sam-cell-seg__4cpfMe5",
+  "sparql-university__7py8QvR",
+  "tune-mjcf__cqu23TR",
+  "vulnerable-secret__NVRKYj8",
+  "winning-avg-corewars__MmHwgx3"
+ ],
+ "H": [
+  "dna-insert__hMr9VQN",
+  "extract-moves-from-video__6DqQnjS",
+  "filter-js-from-html__tyJoVCG",
+  "fix-code-vulnerability__RWPsHjf",
+  "fix-git__cTUU49M",
+  "git-multibranch__3wsonaU",
+  "gpt2-codegolf__eAfcqNS",
+  "install-windows-3.11__8hVSJtS",
+  "kv-store-grpc__uypjTPa",
+  "model-extraction-relu-logits__HdhW4SG",
+  "modernize-scientific-stack__J53CNJt",
+  "nginx-request-logging__qYQ8jq6",
+  "openssl-selfsigned-cert__NdTyZfP",
+  "password-recovery__bdxsWib",
+  "polyglot-c-py__MLsqMaW",
+  "portfolio-optimization__nDM4WVL",
+  "pytorch-model-cli__YtSkuVU",
+  "pytorch-model-recovery__hjRtoTw",
+  "qemu-startup__u4nowut",
+  "regex-log__bURzJYV",
+  "schemelike-metacircular-eval__d6kMVb9",
+  "train-fasttext__EK73GFU",
+  "video-processing__w5eVHZM"
+ ],
+ "alloc_E": {
+  "terminus-2__openai/GLM-5.2|long": 8,
+  "terminus-2__openai/GLM-5.2|mid": 7,
+  "terminus-2__openai/GLM-5.2|short": 8
+ },
+ "alloc_H": {
+  "terminus-2__openai/GLM-5.2|long": 7,
+  "terminus-2__openai/GLM-5.2|mid": 8,
+  "terminus-2__openai/GLM-5.2|short": 8
+ }
+}
