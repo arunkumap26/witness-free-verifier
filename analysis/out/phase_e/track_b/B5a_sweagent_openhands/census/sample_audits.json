@@ -1,0 +1,248 @@
+{
+ "s3_bashonly_mini_v2.1_claude-sonnet-4-5": {
+  "mini_version": "2.1.0",
+  "trajectory_format": "mini-swe-agent-1.1",
+  "model": "anthropic/claude-sonnet-4-5-20250929",
+  "counts": {
+   "system": 1,
+   "user": 1,
+   "assistant": 37,
+   "assistant_ts": 37,
+   "tool": 38,
+   "tool_ts": 38,
+   "tool_joined": 38,
+   "tool_returncode": 38,
+   "exit": 1
+  },
+  "response_id_examples": [
+   "chatcmpl-93c82145-0f90-4af0-922f-537e812e68a1",
+   "chatcmpl-b9bfe831-7c1f-493f-80b0-ca5db8e3db3e"
+  ],
+  "openai_style_chatcmpl_ids": 0,
+  "openai_chatcmpl_created_decode_matches": 0
+ },
+ "livesweagent_gpt-5_mini_v1.14": {
+  "mini_version": "1.14.2",
+  "trajectory_format": "mini-swe-agent-1",
+  "model": "tensorblock/gpt-5",
+  "counts": {
+   "system": 1,
+   "user": 15,
+   "assistant": 14
+  },
+  "response_id_examples": [
+   "chatcmpl-CaDOxYqMRPwwSRjjzrOc9h5wJMZok",
+   "chatcmpl-CaDP1MmSc6Eqf5zAFfUqj3lCeQ6HG"
+  ],
+  "openai_style_chatcmpl_ids": 14,
+  "openai_chatcmpl_created_decode_matches": 14
+ },
+ "livesweagent_claude-sonnet-4-5_mini_v1.14": {
+  "mini_version": "1.14.2",
+  "trajectory_format": "mini-swe-agent-1",
+  "model": "tensorblock/claude-sonnet-4-5",
+  "counts": {
+   "system": 1,
+   "user": 48,
+   "assistant": 47
+  },
+  "response_id_examples": [
+   "chatcmpl-f0f035b9-a213-436a-9967-081ffe71f894",
+   "chatcmpl-9c9c185d-88b0-4e35-b7e0-0b8f42399ed8"
+  ],
+  "openai_style_chatcmpl_ids": 0,
+  "openai_chatcmpl_created_decode_matches": 0
+ },
+ "cooperbench_solo_qwen9b_mini_v2": {
+  "mini_version": null,
+  "trajectory_format": null,
+  "model": null,
+  "counts": {
+   "system": 1,
+   "user": 1,
+   "assistant": 6,
+   "assistant_ts": 6,
+   "tool": 4,
+   "tool_ts": 4,
+   "tool_joined": 4,
+   "tool_returncode": 4,
+   "exit": 1
+  },
+  "response_id_examples": [
+   "chatcmpl-bb38e0b19a44c37e",
+   "chatcmpl-8180b9e34461c163"
+  ],
+  "openai_style_chatcmpl_ids": 0,
+  "openai_chatcmpl_created_decode_matches": 0
+ },
+ "s3_sweagent_0x_claude3.5sonnet": {
+  "steps": 52,
+  "step_keys": {
+   "action": 52,
+   "observation": 52,
+   "response": 52,
+   "state": 52,
+   "thought": 52
+  },
+  "has_execution_time": false,
+  "history_items": 127,
+  "history_with_tool_call_ids": 0,
+  "wallclock_timestamp_keys": [],
+  "info_version": null
+ },
+ "s3_sweagent_1.1_claude-4-sonnet": {
+  "steps": 27,
+  "step_keys": {
+   "action": 27,
+   "observation": 27,
+   "response": 27,
+   "thought": 27,
+   "execution_time": 27,
+   "state": 27,
+   "query": 27,
+   "extra_info": 27
+  },
+  "has_execution_time": true,
+  "history_items": 54,
+  "history_with_tool_call_ids": 26,
+  "wallclock_timestamp_keys": [],
+  "info_version": "1.1.0"
+ },
+ "s3_openhands_20241029_codeact2.1": {
+  "messages": 32,
+  "key_sets": [
+   [
+    [
+     "content",
+     "role",
+     "tool_calls"
+    ],
+    14
+   ],
+   [
+    [
+     "content",
+     "name",
+     "role",
+     "tool_call_id"
+    ],
+    12
+   ],
+   [
+    [
+     "content",
+     "role"
+    ],
+    4
+   ],
+   [
+    [
+     "cache_control",
+     "content",
+     "name",
+     "role",
+     "tool_call_id"
+    ],
+    2
+   ]
+  ],
+  "timestamp_keys": []
+ },
+ "s3_openhands_20250415": {
+  "messages": 42,
+  "key_sets": [
+   [
+    [
+     "content",
+     "role",
+     "tool_calls"
+    ],
+    20
+   ],
+   [
+    [
+     "content",
+     "name",
+     "role",
+     "tool_call_id"
+    ],
+    19
+   ],
+   [
+    [
+     "content",
+     "role"
+    ],
+    2
+   ],
+   [
+    [
+     "cache_control",
+     "content",
+     "name",
+     "role",
+     "tool_call_id"
+    ],
+    1
+   ]
+  ],
+  "timestamp_keys": []
+ },
+ "s3_openhands_20251127_opus-4-5": {
+  "messages": 56,
+  "key_sets": [
+   [
+    [
+     "content",
+     "role"
+    ],
+    56
+   ]
+  ],
+  "timestamp_keys": []
+ },
+ "openhands_index_v1.8.3_deepseek-reasoner_swebench": {
+  "event_kinds": {
+   "ConversationStateUpdateEvent": 4,
+   "SystemPromptEvent": 1,
+   "MessageEvent": 1,
+   "ActionEvent": 65,
+   "ObservationEvent": 65
+  },
+  "events_with_timestamp": 136,
+  "observations_joined_by_action_id": 65,
+  "observations": 65,
+  "observations_with_exit_code": 41,
+  "metrics_keys": [
+   "model_name",
+   "accumulated_cost",
+   "max_budget_per_task",
+   "accumulated_token_usage",
+   "costs",
+   "response_latencies",
+   "token_usages"
+  ],
+  "response_latencies_n": 65,
+  "llm_response_id_examples": [
+   "309d3aa4-cad6-4cd0-b179-967e4b6833a6",
+   "f8080b89-e314-48d8-a49b-96d10caaba0a"
+  ]
+ },
+ "openhands_index_v1.24.0_claude-opus-4-8_swebench_one_conversation": {
+  "event_files": 54,
+  "kinds": {
+   "null": 3,
+   "ObservationEvent": 13,
+   "ActionEvent": 13,
+   "ConversationStateUpdateEvent": 21,
+   "MessageEvent": 3,
+   "SystemPromptEvent": 1
+  },
+  "llm_response_id_shapes": [
+   "chatcmpl-<uuid>"
+  ],
+  "tool_call_id_prefixes": [
+   "toolu_"
+  ]
+ }
+}

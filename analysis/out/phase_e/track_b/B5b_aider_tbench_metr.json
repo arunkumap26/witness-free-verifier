@@ -1,0 +1,331 @@
+{
+ "key": "B5b_aider_tbench_metr",
+ "task": "Phase E Track B5 (acquire more corpora), source group b: Aider benchmark logs, Terminal-Bench traces and run artifacts, METR public task-suite transcripts and released logs. Includes internal-embodiment prior-art checks of the same systems.",
+ "date": "2026-10-04",
+ "scope_note": "Public corpora only. Nothing related to the local Qwen swarm was read or run. No agent transcripts were generated, and no downloaded code was executed. The only code run was the scripts in analysis/out/phase_e/track_b/B5b_aider_tbench_metr/. Gated sets were not downloaded: only their public dataset cards were read.",
+ "supporting_files_dir": "analysis/out/phase_e/track_b/B5b_aider_tbench_metr/",
+
+ "bottom_line": [
+  "DOWNLOADED (passed the field audit): (1) terminal-bench-2-leaderboard, a 4.762 GB field-audited subset of the official Terminal-Bench 2.0 leaderboard submissions (HF harborframework/terminal-bench-2-leaderboard @572b2614, apache-2.0 in the card). It holds 75 agent/model submissions, 32,803 trials, 9,670 ATIF trajectories with 399,962 timestamped steps and 472,285 tool calls, 1,379 native Claude Code session JSONLs, 884 native Gemini-CLI logs, 443 hookele logs and 1,332 asciinema casts. (2) glm52-nf3-tb21-traces, 89 MB, 85 Terminus-2 trials on TB 2.1 with a self-hosted GLM-5.2 (HF 0xSero/..., mit in the card).",
+  "REQUEST-ID COVERAGE (B4 column): a second public corpus carries Anthropic provider request ids. The WozCode__Claude-Opus-4.6 submission in the TB2 subset has 444/444 sessions with requestId, 7,272 distinct ids and 12,327 carrying entries. 12,327/12,327 decode as UUIDv7, and 12,279/12,327 (0.9961) fall within [-2 s, +600 s] of the carrying entry. Event-minus-id is p50 4.2 s, p95 46 s and minimum +0.548 s. Same harness (Claude Code 2.1.86, entrypoint sdk-cli) and provider as swechat, but a different operator, period (Mar 2026) and task suite. It adds coverage, not harness diversity.",
+  "NEW PROVIDER CLOCK (OpenAI, 1 s resolution): hookele__gpt5.1-codex-mini has 12,804 OpenAI Responses resp_ ids, all in the hex50 layout (16-hex prefix, '00', 8-hex unix seconds; per B2a, undocumented). 12,804/12,804 decode to a second inside [harness llm_call ts - 1 s, harness stream_summary ts + 1 s]. This is a cross-provider replication of the id-clock bracket idea at 1 s granularity.",
+  "HARNESS TIMERS: 4,876 Terminus-family trials (Terminus-2, Terminus-KIRA, Meta-Harness, AfterQuery) carry result.json agent_result.metadata.api_request_times_msec. These are 146,857 harness-measured wall times, one per LLM request, from time.time() around chat.chat in harbor terminus_2.py. Combined with step timestamps minted on the host after command execution, they allow a per-step split of LLM time versus execution plus wait time. That is directly usable for N1 and N3. Caveat: Terminus waits an agent-chosen 'duration' per keystroke batch, so execution time is partly model-controlled.",
+  "FAILED THE FIELD AUDIT or NOT PUBLIC: Aider benchmark logs. The artifacts are per-exercise .aider.results.json aggregates and a markdown chat history with only a session-start timestamp; there are no tool calls or call/result join, and no run directories are published. METR report transcripts are embedded excerpts only. METR time-horizon runs.jsonl is per-run aggregates with no licence. yoonholee/terminalbench-trajectories reduces steps to {src,msg,tools,obs} with no per-step timestamps. mercor ApexAgents TB2.1 traces have no per-message timestamps.",
+  "LISTED FOR A HUMAN (not downloaded): METR MALT (gated by a contact-info agreement; MIT). The card schema passes on paper: per-node first_called_at int64, a parent-pointer DAG and function_call nodes. This account's HF token already has access, so a human only needs to approve downloading the default config of malt-transcripts-public (1.66 GB). Also listed: TB 2.1 official leaderboard jobs on Harbor Hub (needs the harbor CLI, i.e. executing third-party code; per-job licence not stated), several unlicensed TB trace dumps on HF, and Simple-Codex codex.txt (OpenAI resp_ ids plus per-exec 'Wall time').",
+  "PRIOR-ART INTERNAL CHECK: Harbor's ATIF model already enforces referential call/result integrity at write and load time. It checks that each observation source_call_id is in the same step's tool_call_ids, that step_ids are sequential and that timestamps are ISO-8601 parseable. Structural join checking is therefore PARTIAL/TAKEN as schema validation. Nothing in Harbor, Terminal-Bench, Aider or METR's released material checks timing, provider-id clocks, or result-content consistency to detect fabricated tool output. TB's integrity policy relies on static config checks plus an LLM 'agent judge'."
+ ],
+
+ "downloads": {
+  "acquired_total_before_first_download_GB": 0.0,
+  "acquired_total_after_GB": 13.344,
+  "acquired_total_note": "Shared directory; other B5 agents downloaded concurrently. The total was checked before each download and stayed under 25 GB.",
+  "my_content_GB": 4.852,
+  "my_on_disk_GB": 5.988,
+  "cap_issue": "terminal-bench-2-leaderboard content is 4.762 GB, under the 5 GB per-corpus cap. On disk it is 5.884 GB because hf_repo/.git holds 1.070 GB: 0.470 GB real packs, 0.110 GB index, and a 0.476 GB orphaned .tmp pack from a killed git auto-gc. Nothing was deleted (append-only rule). HUMAN DECISION: hf_repo/.git can be removed safely, because the content is covered by _acquisition/FILES_SHA256.v2_lf_exact.jsonl.",
+  "incidents": [
+   "Per-file HTTPS download hit the account-wide HF quota of 5000 resolver requests per 5 minutes ('We had to rate limit you, you hit the quota of 5000 resolvers requests per 5 minutes period'), which other agents share. I stopped after 1,766 files and switched to a git partial clone with sparse-checkout plus the LFS batch API, which uses no resolver quota.",
+   "Global git core.autocrlf=true converted LF->CRLF in 48,185 (TB2) and 788 (GLM) text files at checkout. fix_crlf.py restored the exact committed blob bytes and core.autocrlf was set false locally. Verified: 1,766/1,766 files identical to the raw HTTPS bytes, and the TB2 content total equals the HF listing (4,762,210,223 bytes). The census was re-run after the restore and is unchanged.",
+   "A 'git lfs ls-files' I ran in the blob:none partial clone spawned 'git ls-tree -r -l', which triggered lazy blob fetches of the whole 40 GB repo from 02:22 to 02:34 local time. TaskStop did not kill the git grandchildren; I killed them with taskkill. About 0.03 GB of stray blobs landed in .git, plus the 0.476 GB orphaned gc temp pack. remote.origin.url was then set to https://invalid.invalid/lazy-fetch-blocked to prevent a recurrence; the original URL is recorded in ACQUISITION.json."
+  ],
+  "sensitive_data_warning": "UPSTREAM PUBLIC DATA CONTAINS CREDENTIAL-LIKE VALUES. 446 result.json/config.json files under submissions/terminal-bench/2.0/pilot-real__claude-opus-4-6 carry the env var CLAUDE_CODE_OAUTH_TOKEN with an sk-ant- value. They were not printed. Any derived or normalized release (B7) must scrub agent env and kwargs fields. Whether to tell the dataset maintainers is a human decision."
+ },
+
+ "corpora": [
+  {
+   "name": "terminal-bench-2-leaderboard (field-audited subset)",
+   "source_url": "https://huggingface.co/datasets/harborframework/terminal-bench-2-leaderboard",
+   "revision": "572b2614be2c0cb2527e14f5b1e4026f1072e6c1",
+   "licence": "apache-2.0, declared in the HF card front matter ('license: apache-2.0'). There is no standalone LICENSE file; I took the card declaration as the licence statement. Submissions are third-party job folders merged by PR. Submissions closed May 14 2026 per the README.",
+   "research_use_ok": true,
+   "gated": false,
+   "full_size": "513,085 files / 40.25 GB across 75 submissions (tb2lb_full_listing_summary.json)",
+   "downloaded_size": "52,543 files / 4,762,210,223 bytes of content (+1.07 GB .git)",
+   "downloaded_to": "C:\\Swarms\\data\\acquired\\terminal-bench-2-leaderboard\\hf_repo (authoritative). 1,766 byte-identical early HTTPS copies sit at ...\\terminal-bench-2-leaderboard\\submissions. Provenance is in _acquisition\\ACQUISITION.json, FILES_SHA256.v2_lf_exact.jsonl (aggregate sha256 03639266a3aadf6c6810ddf82c3416ded5d09a1c921f3defb6488fc7bf9bfacf), LFS_FETCH.jsonl and CRLF_RESTORE.jsonl.",
+   "selection_rule": "tb2_sparse_patterns.txt: all metadata.yaml, job-level config.json/job.log, all result.json and exception.txt; agent/trajectory.json for the 21 submissions whose median ATIF passed the audit; native Claude Code JSONL; gemini-cli.trajectory.json; hookele traj.jsonl; recording.cast for 3 submissions only (casts total 8.47 GB, so only 0.39 GB was taken).",
+   "excluded_and_why": {
+    "CodeBrain-1/1.5 x3 ATIF": "the median trajectory.json has 0 steps (agent 'ruley'), so the audit failed",
+    "hookele ATIF": "0 tool calls in ATIF; the native traj.jsonl was taken instead",
+    "ClaudeCode__GLM-4.7 ATIF": "1.5 GB and redundant with its 0.93 GB native Claude Code JSONL, which was taken",
+    "per-trial config.json, verifier/ctrf.json, test-stdout.txt, setup logs, command-N stdout, prompt/response .txt, debug.json, most casts": "redundant with result.json, or not call/result structured, or over the size budget",
+    "53 submissions without ATIF or native structured logs": "only result.json (trial outcome, phase timestamps, token totals) and exception.txt were taken. Their agent logs are free text (stdout.txt, <agent>.txt), which is pure narration for our purposes."
+   },
+   "field_audit": {
+    "method": "Median-size agent/trajectory.json from each of the 25 ATIF-bearing submissions (atif_audit.json), plus one sample of each native log type. The full census after download is in tb2_stats_v2.json and id_clock_checks.json.",
+    "pass": true,
+    "pass_detail": "ATIF: every step has an ISO-8601 timestamp (399,962/399,962). Resolution is microseconds (6 digits) for Terminus-family, Judy, Deep-Agents, NexAU and Simple-Codex; milliseconds (3 digits) for Claude Code-derived, Gemini-CLI, JJAgent and Wecode; nanosecond-precision strings for vix. Join: 173,384 of 317,403 observation results join by source_call_id (Claude Code, Gemini-CLI, Judy, JJAgent, Deep-Agents, NexAU, Simple-Codex, Wecode, vix). The other 144,019 are Terminus-family, where all keystroke tool_calls of a step map to one terminal observation in the same step object: strict step-level pairing, not per-call. Native Claude Code: 155,051 entries, 153,567 with ms timestamps, 47,939 tool_use with 47,852 joined to tool_result by tool_use_id. Gemini-CLI: 21,009/21,009 tool calls with their own ms timestamp and an id-joined functionResponse. hookele: 12,230/12,230 tool_execution rows with call_id, at 1 s resolution."
+   },
+   "schema_note": {
+    "layout": "submissions/terminal-bench/2.0/<agent>__<model>/{metadata.yaml, <job>/{config.json, result.json, job.log?, <task>__<trial>/{result.json, exception.txt?, agent/{trajectory.json?, recording.cast?, sessions/projects/-app/<uuid>.jsonl?, gemini-cli.trajectory.json?, .hookele/traj.jsonl?}}}}",
+    "result.json (trial)": "id, task_name, trial_name, config{agent{name,model_name,kwargs},environment{type},timeout_multiplier}, agent_info{name,version,model_info{name,provider}}, agent_result{n_input_tokens,n_cache_tokens,n_output_tokens,cost_usd,metadata{n_episodes, api_request_times_msec[] (Terminus family), summarization_count}}, verifier_result.rewards.reward, exception_info, started_at/finished_at plus environment_setup/agent_setup/agent_execution/verifier {started_at,finished_at} (ISO-8601 microsecond Z). 32,803 trials; 32,178 with an agent_execution window; 5,398 with exception_info.",
+    "ATIF trajectory.json (harbor src/harbor/models/trajectories)": "schema_version (v1.2: 889, v1.5: 4,879, v1.6: 3,902 files), session_id, agent{name,version,model_name}, steps[{step_id, timestamp (ISO-8601), source system|user|agent, model_name, message, reasoning_content, tool_calls[{tool_call_id,function_name,arguments}], observation{results[{source_call_id,content}]}, metrics{prompt_tokens,completion_tokens,cached_tokens,cost_usd,logprobs,...}, extra}], final_metrics. Terminus-2 mints the step timestamp with datetime.now() on the host after executing the step's commands (terminus_2.py ~l.1630). 567 files have non-monotonic step timestamps (JJAgent 462, WozCode 105), likely subagent or sidechain interleaving. Treat this as a loader caveat, not a signal.",
+    "native Claude Code JSONL": "Same format as cc_local and swechat raw: type user|assistant|queue-operation|progress..., uuid, parentUuid, sessionId, timestamp (ms Z), version, message{id,model,content[tool_use{id,name,input}|tool_result{tool_use_id,content,is_error}],usage}, toolUseResult{stdout,stderr,interrupted,...}, requestId (WozCode only), sourceToolAssistantUUID. Large tool outputs are spilled to sessions/projects/-app/<uuid>/tool-results/*.txt, which were NOT downloaded.",
+    "gemini-cli.trajectory.json": "sessionId, startTime, lastUpdated, messages[{id, timestamp (ms Z), type user|gemini, content, thoughts, tokens{input,output,cached,thoughts,tool,total}, model, toolCalls[{id, name, args, result[{functionResponse{id,name,response{output}}}], status, timestamp}]}]. Shell outputs embed 'Exit Code: N'.",
+    "hookele .hookele/traj.jsonl": "type start|llm_call|stream_summary|raw_response|tool_execution|plan_update..., ts (ISO-8601, 1 s), iteration, response_id (OpenAI resp_), usage{input_tokens,output_tokens,cached_tokens,reasoning_tokens}, call_id, name, args, output.",
+    "recording.cast": "asciinema v2: header {version,width,height,timestamp (unix s),env}, then [rel_seconds (us), 'i'|'o', data] events. 1,332 casts, 2,770,960 events. A terminal-level stream with its own clock, independent of the ATIF step clock. Where asciinema runs (inside or outside the sandbox) is UNVERIFIED, so its trust level under the threat model is open."
+   },
+   "sessions": "32,803 trials (75 submissions). Structured per-event logs: 9,670 ATIF, 1,379 Claude Code JSONL (1,325 sessions), 884 Gemini-CLI, 443 hookele",
+   "tool_calls": "ATIF 472,285; Claude Code tool_use 47,939; Gemini-CLI 21,009; hookele 12,230",
+   "ms_timestamps": "YES. Per step/entry ISO-8601 at us (Terminus family etc.) or ms (Claude Code, Gemini-CLI, JJAgent, Wecode) resolution; hookele at 1 s; asciinema casts at us relative to a unix-second header.",
+   "call_result_join": "YES. ID join for 173,384 ATIF observations, 47,852 Claude Code and 21,009 Gemini-CLI pairs. Terminus family (144,019 observations) uses step-level strict pairing (calls and observation co-located in one step object), not per call.",
+   "token_counts": "YES. ATIF step metrics on 253,556 steps; Claude Code message.usage; Gemini tokens per message; hookele usage; trial totals in result.json.",
+   "truncation_markers": "Terminus-2 observations carry '[... output limited to 10000 bytes; N interior bytes omitted ...]' (terminus_2.py _limit_output_length; present in 161/445 Terminus2__Claude-Opus-4.6 trajectories). Claude Code spills large results to tool-results/*.txt, which were not downloaded.",
+   "error_markers": "Claude Code tool_result.is_error and toolUseResult.stderr/interrupted; Gemini 'Exit Code: N' in output plus toolCall.status; result.json exception_info (5,398 trials) and exception.txt. Terminus has no exit-code field, only terminal text.",
+   "provider_request_ids": "YES for one submission: WozCode__Claude-Opus-4.6 Anthropic requestId on 444/444 sessions, 7,272 distinct, 12,327 entries, 12,327 decode v7, 12,279 agree within [-2 s, +600 s]. OpenAI Responses resp_ ids in hookele (12,804, 1 s clock, 12,804/12,804 bracketed by harness ts +-1 s). NOT present in ClaudeCode__GLM-4.7 (GLM endpoint, 0 ids) or cchuter (local MiniMax gguf, 0 ids). Gemini responseId/headers are absent from gemini-cli logs.",
+   "field_audit_pass": true,
+   "notes": "Best multi-harness public corpus found in this group: 21 ATIF-bearing agent harnesses plus 3 native formats, about 20 model families, the same 89 tasks x 5 trials each. That suits the N6 cross-harness transfer matrix. Threat-model caveat: Terminus step clocks are host-side harness clocks. Claude Code, Gemini-CLI and hookele logs are written by the agent CLI inside the sandbox and copied out, which is weaker under execution-path compromise."
+  },
+  {
+   "name": "glm52-nf3-tb21-traces",
+   "source_url": "https://huggingface.co/datasets/0xSero/glm-5.2-nf3-hybrid-terminal-bench-2.1-traces",
+   "revision": "6020a41cb40ca06761d96250d80afef96d086e2a",
+   "licence": "mit, declared in the HF card front matter. No standalone LICENSE file. Per the README, the endpoint and API key are redacted.",
+   "research_use_ok": true,
+   "gated": false,
+   "size": "948 files / 89,329,692 bytes (+0.014 GB .git)",
+   "downloaded_to": "C:\\Swarms\\data\\acquired\\glm52-nf3-tb21-traces\\hf_repo (manifest _acquisition\\FILES_SHA256.v2_lf_exact.jsonl, aggregate sha256 655abf8c32334f373b9e242e3d7e9aa6a887a27c5a2df6949c0864cb29c8890d)",
+   "schema_note": "Same Harbor job layout as the TB2 subset: traces/<task>__<id>/{result.json, config.json, agent/{trajectory.json (ATIF-v1.7), recording.cast, terminus_2.pane}, verifier/*}, plus results_summary.json. Counts (glm_stats_v2.json): 85 trials, 86 ATIF files, 3,323 steps (all us timestamps), 5,252 tool_calls, 3,237 observation results (2,106 with source_call_id, 1,131 step-paired), 3,237 steps with metrics, 85 trials with api_request_times_msec (3,199 values), 86 casts (171,145 events), 2 trials with exceptions.",
+   "sessions": "85 trials",
+   "tool_calls": "5,252 (ATIF)",
+   "ms_timestamps": "YES (us ISO-8601 per step; cast us relative)",
+   "call_result_join": "PARTIAL. 2,106/3,237 observations join by source_call_id (ATIF v1.7 Terminus-2 emits ids for some); the rest are step-paired.",
+   "token_counts": "YES (ATIF step metrics)",
+   "truncation_markers": "Terminus-2 10,000-byte interior-omission marker (same code path)",
+   "error_markers": "result.json exception_info (2); no exit-code field",
+   "provider_request_ids": "NO (self-hosted vLLM)",
+   "field_audit_pass": true,
+   "notes": "A self-hosted inference regime (vLLM TP4+DCP4, MTP speculative decoding, concurrency 2) gives a latency baseline with no provider network. It is useful as a contrast for N1/N3/N4 (generation-bound latency without an API queue). Small: n=85."
+  },
+  {
+   "name": "METR MALT transcripts (metr-evals/malt-transcripts-public; also metr-evals/malt-public)",
+   "source_url": "https://huggingface.co/datasets/metr-evals/malt-transcripts-public",
+   "revision": "3521e8e22b6af12fea3249443e554b96b6fc4f49 (malt-public: 6100006c2fd23d81e5afe2b1cc3bf3f3fff48df1)",
+   "licence": "MIT (LICENSE file present: 'MIT License Copyright (c) 2025 METR')",
+   "research_use_ok": true,
+   "gated": "auto. Gate text: 'You need to agree to share your contact information to access this dataset'. This account's HF token ALREADY has access (get_hf_file_metadata on README.md returned 200), so someone accepted the terms earlier. Per the rules I downloaded only the card (README.md, LICENSE) and no data rows.",
+   "size": "transcripts-public: default config 7,179 rows, download_size 1,659,690,445 bytes (dataset_size 6.47 GB); 4 perturbation configs of similar size; repo total about 8.48 GB. malt-public: 28.3 GB across 5 configs.",
+   "schema_note": "From the card (dataset_info features; rows not inspected): run_id, task_id, model, labels[], has_chain_of_thought, manually_reviewed, run_source, public, nodes[{node_id, parent_node_id, branch_id, node_data{first_called_at int64, message{role, content, name, function_call{name,arguments}}, metadata{completion_type, contains_function_call, function_call_result}, source_generation_index}}]. malt-public has samples[{input[{role,content,name,function_call,metadata{node_id,parent_node_id,branch_id,timestamp int64,...}}], output[[...]]}]. About 19 models, 30 task families, 169 tasks. Labels include bypass_constraints, hardcoded_solution, gives_up, sabotage, match_weaker_model, refusals.",
+   "ms_timestamps": "PROBABLY. Per-node first_called_at int64 (Vivaria calledAt, presumably epoch ms). UNVERIFIED without rows. B1d notes Vivaria's calledAt is minted inside the agent container, i.e. agent-controlled.",
+   "call_result_join": "PROBABLY, by DAG parent pointer: a function_call node, then a child node flagged function_call_result. There is no tool_call_id (legacy OpenAI function-calling format). UNVERIFIED without rows.",
+   "provider_request_ids": "NO (none in the schema)",
+   "field_audit_pass": false,
+   "field_audit_note": "Schema-level pass on paper, but not row-audited because the set is gated. Listed for a human.",
+   "downloaded_to": "NOT DOWNLOADED (gated)",
+   "notes": "HUMAN DECISION: approve downloading the malt-transcripts-public default config (1.66 GB, within caps). Its value is the only public, manually labeled agent-misbehaviour corpus in this group (reward hacking, sabotage). It is not labeled for fabricated tool results."
+  },
+  {
+   "name": "Aider benchmark logs (Aider polyglot / code-editing benchmark)",
+   "source_url": "https://github.com/Aider-AI/aider/tree/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/benchmark",
+   "licence": "Apache-2.0 (repo)",
+   "research_use_ok": true,
+   "size": "No public run directories found. Public data is only aggregate leaderboard rows: 69 'dirname' entries in aider/website/_data/polyglot_leaderboard.yml.",
+   "ms_timestamps": "NO. .aider.chat.history.md has only '# aider chat started at <time>' per session. The optional --llm-history-file has 1 s 'ROLE <iso>' headers, but benchmark.py does not enable it. .aider.results.json has a single aggregate 'duration'.",
+   "call_result_join": "NO. Aider uses text edit formats rather than tool calls. Unit-test output is appended to the chat history as markdown.",
+   "provider_request_ids": "NO. The harness records chat_hashes: sha1 of each LLM request kwargs and response, not provider ids.",
+   "field_audit_pass": false,
+   "downloaded_to": "NOT DOWNLOADED (fails audit; no public run logs)",
+   "notes": "Harbor has an aider-polyglot adapter. DCAgent2/aider_polyglot and about 40 DCAgent2/*aider_polyglot* trace sets exist on HF with licence: None, so they are listed and not downloaded."
+  },
+  {
+   "name": "yoonholee/terminalbench-trajectories",
+   "source_url": "https://huggingface.co/datasets/yoonholee/terminalbench-trajectories",
+   "revision": "04e8940f5b6736a7ce8d22224fe2f2af74163ed2",
+   "licence": "apache-2.0 (card)",
+   "research_use_ok": true,
+   "size": "52,104 trials, 109 agent/model combos, 26 scaffolds, 221 MB parquet",
+   "ms_timestamps": "NO per step. Only trial started_at/ended_at; the 'steps' JSON reduces each step to {src,msg,tools,obs} (checked on 12 rows via datasets-server). Many rows have steps=null.",
+   "call_result_join": "Step-level only, no ids",
+   "provider_request_ids": "NO",
+   "field_audit_pass": false,
+   "downloaded_to": "NOT DOWNLOADED (fails audit)",
+   "notes": "Covers more agent/model combos (109) than the leaderboard repo, likely including Harbor Hub jobs, but the per-step clock and ids were stripped."
+  },
+  {
+   "name": "mercor/ApexAgentsRecipe-TBench2_1-EvalTraces",
+   "source_url": "https://huggingface.co/datasets/mercor/ApexAgentsRecipe-TBench2_1-EvalTraces",
+   "revision": "82235a7ab05e5d903a24ae49edb33b1f46e1c6c5",
+   "licence": "mit (card)",
+   "research_use_ok": true,
+   "size": "1,072 trajectory JSON (4 sets x 267), 317 MB",
+   "ms_timestamps": "NO. trajectory_messages[] have role/content/tool_calls only; only trajectory-level created_at/updated_at and trajectory_time_elapsed.",
+   "call_result_join": "Alternation only (role 'tool' messages without tool_call_id)",
+   "provider_request_ids": "NO",
+   "field_audit_pass": false,
+   "downloaded_to": "NOT DOWNLOADED (fails audit)",
+   "notes": "Terminus-style agent on the 'archipelago' framework; Qwen3.5/3.6 before and after RL."
+  },
+  {
+   "name": "Terminal-Bench 2.1 official leaderboard jobs and other public Harbor Hub jobs",
+   "source_url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench-2-1/latest?tab=leaderboard&leaderboard=main (API: https://api.harborframework.com/functions/v1/leaderboard-read)",
+   "licence": "NOT STATED per job. The terminal-bench-2-1 repo is Apache-2.0, but that covers tasks and code, not uploaded trajectories.",
+   "research_use_ok": false,
+   "size": "22 leaderboard rows, each linking a public Harbor Hub job, e.g. https://hub.harborframework.com/jobs/17d1a7f6-3339-4670-8b70-3b145979f57f; typically 445 trials per row; ATIF-v1.7 per the cody-vi4 card",
+   "ms_timestamps": "Likely YES (ATIF), not audited",
+   "call_result_join": "Likely YES (ATIF), not audited",
+   "provider_request_ids": "UNKNOWN",
+   "field_audit_pass": false,
+   "downloaded_to": "NOT DOWNLOADED. Download needs the harbor CLI ('harbor job download <id>'), which means installing and executing third-party code, and there is no licence statement. Listed for a human.",
+   "notes": "This is the live successor to the TB 2.0 HF repo, which closed submissions on May 14 2026. Community submissions to TB 2.1 are closed ('Only submissions run by the maintainers will be added')."
+  },
+  {
+   "name": "Unlicensed Terminal-Bench trace dumps on HF (listed only)",
+   "source_url": "https://huggingface.co/datasets/dot-agi/harbor-tb2-results ; https://huggingface.co/datasets/mlfoundations-dev/terminal-bench-traces-local ; https://huggingface.co/datasets/mlfoundations-dev/claude_3_7_tbench_traces ; https://huggingface.co/datasets/DCAgent2 (dozens of *terminal_bench_2* trace sets) ; https://huggingface.co/datasets/harborframework/parity-experiments",
+   "licence": "None declared in the card metadata (HF API cardData.license is null)",
+   "research_use_ok": false,
+   "size": "dot-agi/harbor-tb2-results 3,523 files / 89 MB (hermes agent: hermes-session.jsonl plus command-N dirs); the others are small to medium",
+   "ms_timestamps": "not audited",
+   "call_result_join": "not audited",
+   "provider_request_ids": "not audited",
+   "field_audit_pass": false,
+   "downloaded_to": "NOT DOWNLOADED (no licence)",
+   "notes": "dot-agi's hermes-session.jsonl would add a Hermes-agent native format if a licence were obtained."
+  },
+  {
+   "name": "METR released run data and report transcripts",
+   "source_url": "https://github.com/METR/eval-analysis-public (runs.jsonl) ; https://metr.org/evaluations/openai-o3-report/ ; https://github.com/METR/gdm-replication",
+   "licence": "eval-analysis-public: none (GitHub license null); gdm-replication: none; report pages: n/a",
+   "research_use_ok": false,
+   "size": "time-horizon-1-0 runs.jsonl 24.0 MB, time-horizon-1-1 15.0 MB (per-run rows); gdm-replication has 62 .eval files as LFS pointers (QA tasks)",
+   "ms_timestamps": "Per run only (started_at/completed_at epoch ms); no per-event timestamps",
+   "call_result_join": "NO",
+   "provider_request_ids": "NO",
+   "field_audit_pass": false,
+   "downloaded_to": "NOT DOWNLOADED",
+   "notes": "The o3 report embeds 'Transcripts of some of these attempts' as prose excerpts with no timestamps or ids. gdm-replication's Inspect .eval logs would be structured, but there is no licence and they appear to be QA-task logs, not agentic tool use."
+  },
+  {
+   "name": "Simple-Codex codex.txt and other free-text agent logs inside the TB2 leaderboard (not in the downloaded subset)",
+   "source_url": "https://huggingface.co/datasets/harborframework/terminal-bench-2-leaderboard/tree/572b2614be2c0cb2527e14f5b1e4026f1072e6c1/submissions/terminal-bench/2.0/Simple-Codex__GPT-5.3-Codex",
+   "licence": "apache-2.0 (card)",
+   "research_use_ok": true,
+   "size": "codex.txt: 443 files / 32.7 MB",
+   "ms_timestamps": "NO wall-clock per event, but each exec carries 'Wall time: <s> seconds' and 'Process exited with code N'",
+   "call_result_join": "Text pairing ('Calling function: exec' then output)",
+   "provider_request_ids": "YES: 'Initial response ID: resp_...' (OpenAI hex50 layout; the sample decodes to 2026-02-05T06:07:07Z)",
+   "field_audit_pass": false,
+   "downloaded_to": "NOT DOWNLOADED (free text; the same trials' ATIF was downloaded)",
+   "notes": "Cheap follow-up (32.7 MB) if per-exec harness wall times plus an OpenAI resp_ clock are wanted alongside the ATIF."
+  }
+ ],
+
+ "prior_art_internal_embodiment": [
+  {
+   "claim": "Witness-free structural checking of call/result records (join integrity) as part of fabrication detection",
+   "closest_existing_work": "Harbor ATIF Pydantic models (harbor-framework/harbor @3e30cca0, src/harbor/models/trajectories/trajectory.py and step.py), applied whenever a trajectory is built, loaded or validated (src/harbor/utils/trajectory_validator.py)",
+   "what_it_does": "Raises an error if an observation result's source_call_id is not in the same step's tool_calls ids; requires sequential step_ids from 1; requires every timestamp to parse as ISO-8601; requires unique ids for embedded subagent trajectories.",
+   "what_it_does_not_do": "No timestamp monotonicity or ordering check (567 published ATIF files are non-monotonic and pass). Results without a source_call_id are allowed. No check of result content against anything (repeats, sizes, grammar, state). No timing or duration check. No provider-id clock. It validates format, not truth.",
+   "verdict": "PARTIAL",
+   "verdict_reasoning": "Referential call/result integrity as a schema check is TAKEN (Harbor embodies it). Our contribution can only be the content-, time- and state-level checks layered on top, which Harbor does not do.",
+   "deciding_citation": "trajectory.py validate_tool_call_references: docstring 'Validate that observation source_call_ids reference valid tool_call_ids.' raising ValueError when 'source_call_id ... is not found in step {step_id}'s tool_calls'. URL: https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/models/trajectories/trajectory.py"
+  },
+  {
+   "claim": "N1 / N3: harness-measured durations (LLM time vs execution time) used as a fabrication signal",
+   "closest_existing_work": "Harbor Terminus-2 agent (src/harbor/agents/terminus_2/terminus_2.py) records api_request_times_msec, one time.time() wall time per LLM call, and stamps each ATIF step with datetime.now() after the step's commands run. The tbench.ai leaderboard reports avg_trial_duration.",
+   "what_it_does": "Collects per-LLM-request latency and per-step wall-clock and emits them into result.json metadata and ATIF.",
+   "what_it_does_not_do": "Nothing in terminus_2.py consumes them beyond appending and emitting (ll. 784, 1134, 1201, 1772). Leaderboard integrity relies on static checks plus an LLM agent judge. No duration-vs-workload or reaction-time check. Other Harbor modules that might read the field were not searched (GitHub code search needs auth).",
+   "verdict": "NOVEL (relative to this source group; literature-wide status is decided in B1)",
+   "verdict_reasoning": "The timers exist as data and serve as an enabler, not prior art.",
+   "deciding_citation": "terminus_2.py ll.1127-1134: 'start_time = time.time()' / 'llm_response = await chat.chat(' / 'request_time_ms = (end_time - start_time) * 1000' / 'self._api_request_times.append(request_time_ms)'; https://www.tbench.ai/news/leaderboard-integrity-update: 'To detect reward hacking, we will run an agent judge over all passing trials in a submission.'"
+  },
+  {
+   "claim": "B2: provider-minted id embeds a clock usable to bracket a stream",
+   "closest_existing_work": "Claude Code (stores requestId per assistant entry) and the hookele harness (stores OpenAI response_id), both as opaque strings in TB2 artifacts",
+   "what_it_does": "Persists provider ids next to harness timestamps.",
+   "what_it_does_not_do": "Neither decodes the id nor compares it to any clock. No TB, Harbor, Aider or METR artifact or code examined here parses provider ids.",
+   "verdict": "NOVEL (relative to this source group; literature-wide status is decided in B2)",
+   "verdict_reasoning": "Our measurements here are replications on new public data, not prior art: Anthropic 12,279/12,327 agree; OpenAI resp_ 12,804/12,804 bracketed within 1 s.",
+   "deciding_citation": "id_clock_checks.json (this task); B2a_provider_id_facts.json for the layouts"
+  },
+  {
+   "claim": "Benchmark harness keeps a tamper-evident record of model I/O",
+   "closest_existing_work": "Aider benchmark: results['chat_hashes'] = zip(coder.chat_completion_call_hashes, coder.chat_completion_response_hashes)",
+   "what_it_does": "sha1 of each LLM request's kwargs (from send_completion) and of each response's {function_call, content}, stored per exercise in .aider.results.json",
+   "what_it_does_not_do": "Covers only the model I/O, never tool or test output. No timestamps per event, and it is not anchored to any external witness. The hashes are self-computed by the same process.",
+   "verdict": "PARTIAL (for 'harness commits to model I/O'); does not embody tool-result verification",
+   "verdict_reasoning": "Not a neighbour of our method: it hashes the model side and is used for replay and caching, not checking.",
+   "deciding_citation": "aider/coders/base_coder.py ll.1803 'self.chat_completion_call_hashes.append(hash_object.hexdigest())', ll.1874-1875 'resp_hash = hashlib.sha1(json.dumps(resp_hash, sort_keys=True).encode())'; benchmark/benchmark.py results dict 'chat_hashes=list(zip(...))' @5dc9490bb35f9729ef2c95d00a19ccd30c26339c"
+  },
+  {
+   "claim": "Labeled ground truth for agent misbehaviour exists publicly",
+   "closest_existing_work": "METR MALT (manually reviewed labeled transcripts)",
+   "what_it_does": "Labels runs as bypass_constraints, hardcoded_solution, gives_up, sabotage, refusals, etc., about 7,179 transcripts, some manually reviewed",
+   "what_it_does_not_do": "Labels behaviours, not fabricated tool results. No detector. Gated.",
+   "verdict": "PARTIAL (as an eval-input resource, not as a method)",
+   "verdict_reasoning": "Could serve as an external labeled corpus for the Track C eval's 'future labeled input' slot, but not for fabricated-output recall.",
+   "deciding_citation": "https://huggingface.co/datasets/metr-evals/malt-transcripts-public README (card): summary table of labels and the 'Format' section: 'Each row in the dataset has metadata as columns and a DAG as a transcript.'"
+  }
+ ],
+
+ "implications_for_design": [
+  "B4 request-ID column: add 'tb2_leaderboard/WozCode (Anthropic, 444 sessions)' and 'tb2_leaderboard/hookele (OpenAI resp_, 443 trials, 1 s)'. The public count of corpora carrying provider ids goes from 1 to 2, or 3 counting the OpenAI 1 s clock. Still one harness (Claude Code) for Anthropic ids.",
+  "N6 transfer matrix: the TB2 subset alone spans about 24 harness formats on the same 89 tasks; that is the cleanest cross-harness control available. Add a Harbor/ATIF loader plus 3 native loaders (Claude Code JSONL already exists for swechat/cc_local; Gemini-CLI; hookele).",
+  "N1/N3: Terminus-family trials give harness-side api_request_times_msec aligned with host step timestamps (4,876 trials, 146,857 requests) and agent-chosen command waits (arguments.duration). The residual exec time = (ts[n]-ts[n-1]) - api_time[n] - chosen wait is computable without a model. Caveat: duration is model-chosen, so 'execution time' is partly agent-controlled.",
+  "Second clock witness: asciinema casts (1,332 + 86) record terminal output events with their own timestamps. Cross-checking cast output against ATIF observation text and step times is a new external-witness-style check on existing records. Whether asciinema runs inside the sandbox (agent-reachable) is UNVERIFIED.",
+  "Loader caveat: never let git or the OS rewrite line endings in corpus files (core.autocrlf). Byte counts and hashes of tool output depend on it."
+ ],
+
+ "search_log": [
+  "HF API dataset search: terminal-bench, tbench, terminal_bench, harbor, aider, polyglot, metr, malt, re-bench, hcast, vivaria (full=true; licence and gating from cardData)",
+  "WebSearch: TB2 leaderboard submissions trajectories HF; Harbor ATIF fields; aider benchmark logs released; '.aider.results.json' published; METR transcripts RE-Bench HCAST download; METR report transcripts; terminal-bench-core 0.1.1 run logs",
+  "GitHub API (anonymous): harbor-framework/harbor tree @3e30cca0; Aider-AI/aider @5dc9490b; METR org repo list and trees of evaluation-resources, MirrorCode, CoT-faithfulness-and-monitorability, eval-analysis-public, RE-Bench, gdm-replication, swe-bench-labeling; harbor-framework/terminal-bench-2-1",
+  "Harbor Hub public API: leaderboard-read for terminal-bench/terminal-bench-2-1 main"
+ ],
+
+ "sources": [
+  {"url": "https://huggingface.co/datasets/harborframework/terminal-bench-2-leaderboard/raw/572b2614be2c0cb2527e14f5b1e4026f1072e6c1/README.md", "opened": true, "how_opened": "HTTP GET (sha256 5ab292f7...)", "deciding_passage": "'license: apache-2.0'; '# SUBMISSIONS CLOSED - All PRs opened before May 14th have been reviewed and merged if valid.'; 'Each job directory must contain all of the contents of your run.'; 'Trial directories must contain other artifacts from the run'"},
+  {"url": "https://huggingface.co/api/datasets/harborframework/terminal-bench-2-leaderboard (list_repo_tree recursive @572b2614)", "opened": true, "how_opened": "huggingface_hub HfApi", "deciding_passage": "75 submissions, 513,085 files, 40,252,617,483 bytes (tb2lb_full_listing_summary.json)"},
+  {"url": "https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/models/trajectories/step.py", "opened": true, "how_opened": "HTTP GET", "deciding_passage": "'timestamp: str | None = Field(default=None, description=\"ISO 8601 timestamp indicating when this step occurred\")'"},
+  {"url": "https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/models/trajectories/observation_result.py", "opened": true, "how_opened": "HTTP GET", "deciding_passage": "'source_call_id ... The `tool_call_id` from the _tool_calls_ array in _StepObject_ that this result corresponds to. If null or omitted, the result comes from an action that doesn't use the standard tool calling format'"},
+  {"url": "https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/models/trajectories/trajectory.py", "opened": true, "how_opened": "HTTP GET", "deciding_passage": "validate_tool_call_references: 'Validate that observation source_call_ids reference valid tool_call_ids.'; validate_step_ids: 'Validate that step_ids are sequential starting from 1.'"},
+  {"url": "https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/utils/trajectory_validator.py", "opened": true, "how_opened": "HTTP GET (294 lines; wraps the Pydantic model validation plus image-path checks)", "deciding_passage": "'Always collects all validation errors before returning.'; checks are Pydantic missing/extra/type/literal/value errors plus image paths, with no temporal or content checks"},
+  {"url": "https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/agents/terminus_2/terminus_2.py", "opened": true, "how_opened": "HTTP GET (sha256 de15c2c8...)", "deciding_passage": "ll.1127-1134 'start_time = time.time() ... request_time_ms = (end_time - start_time) * 1000 / self._api_request_times.append(request_time_ms)'; l.1772 '\"api_request_times_msec\": self._api_request_times'; _limit_output_length: '[... output limited to {max_bytes} bytes; {omitted_bytes} interior bytes omitted ...]'"},
+  {"url": "https://docs.harborframework.com/agents/atif", "opened": true, "how_opened": "WebFetch (small-model extraction; redirect from harborframework.com/docs/trajectory-format)", "deciding_passage": "Top-level fields schema_version, session_id, trajectory_id, agent, steps, final_metrics, subagent_trajectories, extra; tool call tool_call_id/function_name/arguments; observation source_call_id/content"},
+  {"url": "https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/docs-mintlify/harbor-hub/download.mdx", "opened": true, "how_opened": "HTTP GET", "deciding_passage": "'harbor job download \"<job-id>\"' / 'harbor trial download \"<trial-id>\" --trajectory' (Hub downloads go through the harbor CLI)"},
+  {"url": "https://www.tbench.ai/news/leaderboard-integrity-update", "opened": true, "how_opened": "WebFetch (small-model extraction; absence claims are weak evidence)", "deciding_passage": "'ATIF trajectories are required for all passing trials'; 'To detect reward hacking, we will run an agent judge over all passing trials in a submission.'; the extraction reported no mention of timestamps, consistency checks or fabricated tool outputs"},
+  {"url": "https://www.tbench.ai/docs/submitting-to-leaderboard", "opened": false, "how_opened": "WebFetch returned HTTP 404", "deciding_passage": "404. Whether TB 1.0 (terminal-bench-core 0.1.1) run logs were ever publicly released is UNVERIFIED."},
+  {"url": "https://api.harborframework.com/functions/v1/leaderboard-read (package terminal-bench/terminal-bench-2-1, name main)", "opened": true, "how_opened": "POST JSON, public endpoint", "deciding_passage": "pagination total 22; rows[].metadata.pr_url.url = https://hub.harborframework.com/jobs/<uuid>; metrics n_trials 445"},
+  {"url": "https://raw.githubusercontent.com/harbor-framework/terminal-bench-2-1/HEAD/README.md", "opened": true, "how_opened": "HTTP GET; repo licence Apache-2.0 per the GitHub API", "deciding_passage": "'Community submissions are currently closed for Terminal-Bench 2.1. Only submissions run by the maintainers will be added to the leaderboard at this time.'"},
+  {"url": "https://huggingface.co/datasets/0xSero/glm-5.2-nf3-hybrid-terminal-bench-2.1-traces", "opened": true, "how_opened": "hf_hub_download README + sample trajectory/result, then git clone", "deciding_passage": "'license: mit'; 'Full agent traces from running Terminal-Bench 2.1 (89 tasks) against a self-hosted GLM-5.2 ... using the Terminus-2 agent via Harbor'; 'The serving endpoint hostname, tailnet addresses, and API key have been redacted'"},
+  {"url": "https://huggingface.co/datasets/yoonholee/terminalbench-trajectories", "opened": true, "how_opened": "README via hf_hub_download; 15 rows via datasets-server /rows", "deciding_passage": "README: 'Total trajectories | 52,104'; rows: step keys {'src','msg','tools','obs'} only; many rows steps=null"},
+  {"url": "https://huggingface.co/datasets/mercor/ApexAgentsRecipe-TBench2_1-EvalTraces", "opened": true, "how_opened": "README plus one median trajectory JSON", "deciding_passage": "trajectory_messages keys: content, role, function_call, metadata, provider_specific_fields, tool_calls (no timestamp); trajectory-level created_at/updated_at only"},
+  {"url": "https://huggingface.co/datasets/fbobe3/tbench-condensed-selfdistill-traces", "opened": true, "how_opened": "README", "deciding_passage": "'condensed_sft.jsonl - 7 rows, chat format' (condensed SFT, out of scope)"},
+  {"url": "https://huggingface.co/datasets/cody-vi4/tbench-2-1-cody-opus48", "opened": true, "how_opened": "README", "deciding_passage": "'Public Harbor Hub jobs (full trajectories, inspect freely)'; 'harbor 0.17.1 (trial locks, ATIF-v1.7 trajectories on every passing trial)'"},
+  {"url": "https://huggingface.co/datasets/dot-agi/harbor-tb2-results", "opened": true, "how_opened": "HfApi metadata and file list only (no content)", "deciding_passage": "cardData.license null; files include hermes__claude-opus-4-6/.../agent/hermes-session.jsonl"},
+  {"url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/benchmark/benchmark.py", "opened": true, "how_opened": "raw HTTP GET (sha256 ba350b7b...)", "deciding_passage": "results = dict(testdir=..., tests_outcomes=..., cost=..., duration=dur, ..., prompt_tokens=..., completion_tokens=..., chat_hashes=list(zip(coder.chat_completion_call_hashes, coder.chat_completion_response_hashes)))"},
+  {"url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/io.py", "opened": true, "how_opened": "raw HTTP GET", "deciding_passage": "'self.append_chat_history(f\"\\n# aider chat started at {current_time}\\n\\n\")'; log_llm_history: 'timestamp = datetime.now().isoformat(timespec=\"seconds\")' (only when llm_history_file is set)"},
+  {"url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py", "opened": true, "how_opened": "raw HTTP GET", "deciding_passage": "l.1803 'self.chat_completion_call_hashes.append(hash_object.hexdigest())'; ll.1874-1875 sha1 of {function_call, content}"},
+  {"url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/website/_data/polyglot_leaderboard.yml", "opened": true, "how_opened": "raw HTTP GET", "deciding_passage": "per-run aggregate rows (dirname, pass_rate_1/2, seconds_per_case, total_cost, ...); 69 dirname entries; no run logs"},
+  {"url": "https://huggingface.co/datasets/metr-evals/malt-transcripts-public", "opened": true, "how_opened": "WebFetch of the public card page, plus README.md/LICENSE via hf_hub_download (card files only; the token already had access; no data files fetched)", "deciding_passage": "gate: 'You need to agree to share your contact information to access this dataset'; features nodes[].node_data.first_called_at int64, message.function_call, metadata.function_call_result, parent_node_id; default split 'num_examples: 7179', 'download_size: 1659690445'; LICENSE 'MIT License Copyright (c) 2025 METR'"},
+  {"url": "https://huggingface.co/datasets/metr-evals/malt-public", "opened": true, "how_opened": "WebFetch card page plus README via hf_hub_download (card only)", "deciding_passage": "'Each row in the dataset has metadata and samples from a run. Samples are a list of input and output messages.'; samples.input[].metadata.timestamp int64; total about 28.3 GB"},
+  {"url": "https://raw.githubusercontent.com/METR/eval-analysis-public/52cb829c7a2efb2d659285c4b1768d191d97f8d2/reports/time-horizon-1-1/data/raw/runs.jsonl", "opened": true, "how_opened": "HTTP Range GET of the first 4 KB", "deciding_passage": "row keys task_id, run_id, model, score_cont, started_at 1758931705966.0, completed_at, tokens_count, scaffold: per-run, no events; repo licence null"},
+  {"url": "https://api.github.com/repos/METR/gdm-replication/git/trees/HEAD?recursive=1", "opened": true, "how_opened": "GitHub API", "deciding_passage": "logs/FINALRUN/*.eval at 131-133 bytes (LFS pointers), 'qa-task'; licence null"},
+  {"url": "https://metr.org/evaluations/openai-o3-report/", "opened": true, "how_opened": "WebFetch (small-model extraction)", "deciding_passage": "'Transcripts of some of these attempts are included in the \"Reward Hacking Examples\" section below.' (embedded excerpts; no timestamps or ids)"},
+  {"url": "https://arxiv.org/abs/2607.25891", "opened": true, "how_opened": "WebFetch of the abs page (abstract only)", "deciding_passage": "'MESSIER, a unified corpus of 957,611 records spanning 30 benchmarks, 745 agents ...' Evaluation records; whether per-event trajectories are released is UNVERIFIED (abstract only); CC-BY-4.0 per the page"},
+  {"url": "https://github.com/harbor-framework/terminal-bench-1", "opened": false, "how_opened": "search result only", "deciding_passage": "UNVERIFIED: not opened. TB 1.0 harness logs (agent.cast, agent.log) are per-run local outputs; no public release of leaderboard run logs found."}
+ ],
+
+ "unverified_or_unopened": [
+  "METR MALT row-level fields (first_called_at resolution and semantics, parent-pointer pairing): card only, because the set is gated.",
+  "Harbor Hub job contents and licence for TB 2.1 leaderboard jobs: not downloaded (harbor CLI required).",
+  "Whether asciinema in Terminus/Harbor runs inside the task container: UNVERIFIED; it decides whether casts are agent-reachable.",
+  "TB 1.0 public run logs: not found; the submission docs page returned 404.",
+  "Messier corpus (arXiv 2607.25891): abstract only.",
+  "Other Harbor modules that may consume api_request_times_msec: not code-searched (GitHub code search needs auth)."
+ ],
+
+ "human_decisions_needed": [
+  "Approve downloading metr-evals/malt-transcripts-public default config (1.66 GB, MIT, gated by contact-info agreement; the account already has access).",
+  "Whether to remove C:\\Swarms\\data\\acquired\\terminal-bench-2-leaderboard\\hf_repo\\.git (1.07 GB, including a 0.476 GB orphaned temp pack) so the corpus fits the 5 GB per-corpus cap on disk. Content is unaffected.",
+  "Whether to notify the harborframework/terminal-bench-2-leaderboard maintainers that pilot-real__claude-opus-4-6 publishes CLAUDE_CODE_OAUTH_TOKEN values in 446 files.",
+  "Whether to install the harbor CLI to pull public TB 2.1 Harbor Hub jobs; per-job licence is unstated.",
+  "Optional cheap follow-up: Simple-Codex codex.txt (32.7 MB; per-exec 'Wall time' plus OpenAI resp_ ids)."
+ ],
+
+ "dead_ends_respected": "Did not use or cite thimble, TwinCheck, swarmtraces.org, NARCBench or GovSim-SelfGovern. Did not re-research the CLAUDE_context_swarms.md §5-7 items. Reused B1d's Vivaria/MALT notes and B2a's id layouts by reference rather than re-deriving them.",
+
+ "files_written": [
+  "analysis/out/phase_e/track_b/B5b_aider_tbench_metr.json",
+  "analysis/out/phase_e/track_b/B5b_aider_tbench_metr/ (scripts: get.py, hf_fetch.py, lfs_fetch.py, fix_crlf.py, manifest.py, count_ptrs.py, tb_stats.py, id_clock_checks.py, tb2_git_sparse_clone.sh, tb2_sparse_patterns.txt; outputs: atif_audit.json, tb2lb_native_logs.json, tb2lb_full_listing_summary.json, tb2_stats_v2.json, glm_stats_v2.json, id_clock_checks.json; reference copy aider_benchmark_5dc9490b.py.txt)",
+  "C:/Swarms/data/acquired/terminal-bench-2-leaderboard/ (hf_repo/ + _acquisition/{ACQUISITION.json, MANIFEST.jsonl, FILES_SHA256.jsonl (superseded, CRLF), FILES_SHA256.v2_lf_exact.jsonl, LFS_FETCH.jsonl, CRLF_RESTORE.jsonl} + 1,766 early raw copies under submissions/)",
+  "C:/Swarms/data/acquired/glm52-nf3-tb21-traces/ (hf_repo/ + _acquisition/{ACQUISITION.json, FILES_SHA256.jsonl (superseded), FILES_SHA256.v2_lf_exact.jsonl, LFS_FETCH.jsonl (empty), CRLF_RESTORE.jsonl})"
+ ]
+}

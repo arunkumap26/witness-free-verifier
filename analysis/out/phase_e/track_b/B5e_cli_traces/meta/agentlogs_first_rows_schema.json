@@ -1,0 +1,754 @@
+{
+ "splits": {
+  "splits": [
+   {
+    "dataset": "risenlab/agentlogs",
+    "config": "agent_sessions",
+    "split": "train"
+   },
+   {
+    "dataset": "risenlab/agentlogs",
+    "config": "agent_session_logs",
+    "split": "train"
+   },
+   {
+    "dataset": "risenlab/agentlogs",
+    "config": "agent_tasks",
+    "split": "train"
+   },
+   {
+    "dataset": "risenlab/agentlogs",
+    "config": "users",
+    "split": "train"
+   }
+  ],
+  "pending": [],
+  "failed": [
+   {
+    "dataset": "risenlab/agentlogs",
+    "config": "repositories",
+    "error": {
+     "error": "Cannot get the split names for the config 'repositories' of the dataset.",
+     "cause_exception": "SplitsNotFoundError",
+     "cause_message": "The split names could not be parsed from the dataset config.",
+     "cause_traceback": [
+      "Traceback (most recent call last):\n",
+      "  File \"/usr/local/lib/python3.14/site-packages/datasets/inspect.py\", line 286, in get_dataset_config_info\n    for split_generator in builder._split_generators(\n                           ~~~~~~~~~~~~~~~~~~~~~~~~~^\n        StreamingDownloadManager(base_path=builder.base_path, download_config=download_config)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n",
+      "  File \"/usr/local/lib/python3.14/site-packages/datasets/packaged_modules/parquet/parquet.py\", line 127, in _split_generators\n    self.info.features = datasets.Features.from_arrow_schema(pq.read_schema(f))\n                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n",
+      "  File \"/usr/local/lib/python3.14/site-packages/datasets/features/features.py\", line 1977, in from_arrow_schema\n    else generate_from_arrow_type(field.type)\n         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n",
+      "  File \"/usr/local/lib/python3.14/site-packages/datasets/features/features.py\", line 1634, in generate_from_arrow_type\n    return Value(dtype=_arrow_to_datasets_dtype(pa_type))\n                       ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n",
+      "  File \"/usr/local/lib/python3.14/site-packages/datasets/features/features.py\", line 125, in _arrow_to_datasets_dtype\n    raise ValueError(f\"Arrow type {arrow_type} does not have a datasets dtype equivalent.\")\n",
+      "ValueError: Arrow type map<string, int64 ('languages')> does not have a datasets dtype equivalent.\n",
+      "\nThe above exception was the direct cause of the following exception:\n\n",
+      "Traceback (most recent call last):\n",
+      "  File \"/src/services/worker/src/worker/job_runners/config/split_names.py\", line 68, in compute_split_names_from_streaming_response\n    for split in get_dataset_split_names(\n                 ~~~~~~~~~~~~~~~~~~~~~~~^\n        path=dataset,\n        ^^^^^^^^^^^^^\n        config_name=config,\n        ^^^^^^^^^^^^^^^^^^^\n        token=hf_token,\n        ^^^^^^^^^^^^^^^\n    )\n    ^\n",
+      "  File \"/usr/local/lib/python3.14/site-packages/datasets/inspect.py\", line 340, in get_dataset_split_names\n    info = get_dataset_config_info(\n        path,\n    ...<6 lines>...\n        **config_kwargs,\n    )\n",
+      "  File \"/usr/local/lib/python3.14/site-packages/datasets/inspect.py\", line 291, in get_dataset_config_info\n    raise SplitsNotFoundError(\"The split names could not be parsed from the dataset config.\") from err\n",
+      "datasets.inspect.SplitsNotFoundError: The split names could not be parsed from the dataset config.\n"
+     ]
+    }
+   }
+  ]
+ },
+ "rows_sample_config": {
+  "dataset": "risenlab/agentlogs",
+  "config": "agent_session_logs",
+  "split": "train"
+ },
+ "features": [
+  {
+   "feature_idx": 0,
+   "name": "session",
+   "type": {
+    "id": {
+     "dtype": "string",
+     "_type": "Value"
+    }
+   }
+  },
+  {
+   "feature_idx": 1,
+   "name": "entry_index",
+   "type": {
+    "dtype": "int64",
+    "_type": "Value"
+   }
+  },
+  {
+   "feature_idx": 2,
+   "name": "parsed",
+   "type": {
+    "dtype": "bool",
+    "_type": "Value"
+   }
+  },
+  {
+   "feature_idx": 3,
+   "name": "data",
+   "type": {
+    "id": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "agentId": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "arguments": {
+     "canOfferSessionApproval": {
+      "dtype": "bool",
+      "_type": "Value"
+     },
+     "command": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "description": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "diff": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "filePath": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "kind": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "toolName": {
+      "dtype": "string",
+      "_type": "Value"
+     }
+    },
+    "callId": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "choices": {
+     "feature": {
+      "content_filter_results": {
+       "hate": {
+        "filtered": {
+         "dtype": "bool",
+         "_type": "Value"
+        },
+        "severity": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       },
+       "self_harm": {
+        "filtered": {
+         "dtype": "bool",
+         "_type": "Value"
+        },
+        "severity": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       },
+       "sexual": {
+        "filtered": {
+         "dtype": "bool",
+         "_type": "Value"
+        },
+        "severity": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       },
+       "violence": {
+        "filtered": {
+         "dtype": "bool",
+         "_type": "Value"
+        },
+        "severity": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       }
+      },
+      "delta": {
+       "content": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "copilot_annotations": {
+        "IPCodeCitations": {
+         "feature": {
+          "citations": {
+           "citation_type": {
+            "dtype": "string",
+            "_type": "Value"
+           },
+           "ip_type": {
+            "dtype": "string",
+            "_type": "Value"
+           },
+           "license": {
+            "dtype": "string",
+            "_type": "Value"
+           },
+           "snippet": {
+            "dtype": "string",
+            "_type": "Value"
+           },
+           "url": {
+            "dtype": "string",
+            "_type": "Value"
+           }
+          },
+          "end_offset": {
+           "dtype": "int64",
+           "_type": "Value"
+          },
+          "id": {
+           "dtype": "int64",
+           "_type": "Value"
+          },
+          "start_offset": {
+           "dtype": "int64",
+           "_type": "Value"
+          }
+         },
+         "_type": "List"
+        },
+        "raw": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       },
+       "encrypted_content": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "padding": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "phase": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "reasoning_opaque": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "reasoning_text": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "role": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "tool_calls": {
+        "feature": {
+         "function_name": {
+          "dtype": "string",
+          "_type": "Value"
+         },
+         "function_arguments": {
+          "dtype": "string",
+          "_type": "Value"
+         },
+         "custom_name": {
+          "dtype": "string",
+          "_type": "Value"
+         },
+         "custom_input": {
+          "dtype": "string",
+          "_type": "Value"
+         },
+         "id": {
+          "dtype": "string",
+          "_type": "Value"
+         },
+         "index": {
+          "dtype": "int64",
+          "_type": "Value"
+         },
+         "type": {
+          "dtype": "string",
+          "_type": "Value"
+         }
+        },
+        "_type": "List"
+       }
+      },
+      "finish_reason": {
+       "dtype": "string",
+       "_type": "Value"
+      },
+      "index": {
+       "dtype": "int64",
+       "_type": "Value"
+      },
+      "message": {
+       "content": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "role": {
+        "dtype": "string",
+        "_type": "Value"
+       },
+       "tool_calls": {
+        "feature": {
+         "function_name": {
+          "dtype": "string",
+          "_type": "Value"
+         },
+         "function_arguments": {
+          "dtype": "string",
+          "_type": "Value"
+         },
+         "id": {
+          "dtype": "string",
+          "_type": "Value"
+         },
+         "type": {
+          "dtype": "string",
+          "_type": "Value"
+         }
+        },
+        "_type": "List"
+       }
+      }
+     },
+     "_type": "List"
+    },
+    "content": {
+     "feature": {
+      "type": {
+       "dtype": "string",
+       "_type": "Value"
+      },
+      "text": {
+       "dtype": "string",
+       "_type": "Value"
+      },
+      "image_url": {
+       "dtype": "string",
+       "_type": "Value"
+      }
+     },
+     "_type": "List"
+    },
+    "copilotBillingMetadata": {
+     "billable": {
+      "dtype": "bool",
+      "_type": "Value"
+     }
+    },
+    "copilot_info_messages": {
+     "feature": {
+      "code": {
+       "dtype": "string",
+       "_type": "Value"
+      },
+      "message": {
+       "dtype": "string",
+       "_type": "Value"
+      }
+     },
+     "_type": "List"
+    },
+    "copilot_model_warning_message": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "copilot_usage": {
+     "token_details": {
+      "feature": {
+       "batch_size": {
+        "dtype": "int64",
+        "_type": "Value"
+       },
+       "cost_per_batch": {
+        "dtype": "int64",
+        "_type": "Value"
+       },
+       "token_count": {
+        "dtype": "int64",
+        "_type": "Value"
+       },
+       "token_type": {
+        "dtype": "string",
+        "_type": "Value"
+       }
+      },
+      "_type": "List"
+     },
+     "total_nano_aiu": {
+      "dtype": "int64",
+      "_type": "Value"
+     }
+    },
+    "copilot_warning_messages": {
+     "feature": {
+      "code": {
+       "dtype": "string",
+       "_type": "Value"
+      },
+      "message": {
+       "dtype": "string",
+       "_type": "Value"
+      }
+     },
+     "_type": "List"
+    },
+    "created": {
+     "dtype": "timestamp[ms]",
+     "_type": "Value"
+    },
+    "data": {
+     "actions": {
+      "feature": {
+       "dtype": "string",
+       "_type": "Value"
+      },
+      "_type": "List"
+     },
+     "alreadyInUse": {
+      "dtype": "bool",
+      "_type": "Value"
+     },
+     "approved": {
+      "dtype": "bool",
+      "_type": "Value"
+     },
+     "autoApproveEdits": {
+      "dtype": "bool",
+      "_type": "Value"
+     },
+     "eventCount": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "eventsFileSizeBytes": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "feedback": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "intent": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "newMode": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "planContent": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "previousMode": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "reason": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "reasoningEffort": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "recommendedAction": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "remoteSteerable": {
+      "dtype": "bool",
+      "_type": "Value"
+     },
+     "requestId": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "selectedAction": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "selectedModel": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "summary": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "toolCallId": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "turnId": {
+      "dtype": "string",
+      "_type": "Value"
+     }
+    },
+    "ephemeral": {
+     "dtype": "bool",
+     "_type": "Value"
+    },
+    "error": {
+     "code": {
+      "dtype": "string",
+      "_type": "Value"
+     },
+     "message": {
+      "dtype": "string",
+      "_type": "Value"
+     }
+    },
+    "kind": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "model": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "modelCall_error": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "modelCallDurationMs": {
+     "dtype": "int64",
+     "_type": "Value"
+    },
+    "object": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "output": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "parentId": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "performedBy": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "prompt_filter_results": {
+     "feature": {
+      "prompt_index": {
+       "dtype": "int64",
+       "_type": "Value"
+      },
+      "content_filter_results": {
+       "hate": {
+        "filtered": {
+         "dtype": "bool",
+         "_type": "Value"
+        },
+        "severity": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       },
+       "self_harm": {
+        "filtered": {
+         "dtype": "bool",
+         "_type": "Value"
+        },
+        "severity": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       },
+       "sexual": {
+        "filtered": {
+         "dtype": "bool",
+         "_type": "Value"
+        },
+        "severity": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       },
+       "violence": {
+        "filtered": {
+         "dtype": "bool",
+         "_type": "Value"
+        },
+        "severity": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       }
+      }
+     },
+     "_type": "List"
+    },
+    "role": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "source": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "system_fingerprint": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "timestamp": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "toolCallId": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "toolName": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "tool_call_id": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "truncateResult": {
+     "messagesRemovedDuringTruncation": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "postTruncationMessagesLength": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "postTruncationTokensInMessages": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "preTruncationMessagesLength": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "preTruncationTokensInMessages": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "tokenLimit": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "tokensRemovedDuringTruncation": {
+      "dtype": "int64",
+      "_type": "Value"
+     }
+    },
+    "turn": {
+     "dtype": "int64",
+     "_type": "Value"
+    },
+    "type": {
+     "dtype": "string",
+     "_type": "Value"
+    },
+    "usage": {
+     "completion_tokens": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "completion_tokens_details": {
+      "accepted_prediction_tokens": {
+       "dtype": "int64",
+       "_type": "Value"
+      },
+      "reasoning_tokens": {
+       "dtype": "int64",
+       "_type": "Value"
+      },
+      "rejected_prediction_tokens": {
+       "dtype": "int64",
+       "_type": "Value"
+      }
+     },
+     "copilot_usage": {
+      "token_details": {
+       "feature": {
+        "batch_size": {
+         "dtype": "int64",
+         "_type": "Value"
+        },
+        "cost_per_batch": {
+         "dtype": "int64",
+         "_type": "Value"
+        },
+        "token_count": {
+         "dtype": "int64",
+         "_type": "Value"
+        },
+        "token_type": {
+         "dtype": "string",
+         "_type": "Value"
+        }
+       },
+       "_type": "List"
+      },
+      "total_nano_aiu": {
+       "dtype": "int64",
+       "_type": "Value"
+      }
+     },
+     "prompt_tokens": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "prompt_tokens_details": {
+      "cache_creation_tokens": {
+       "dtype": "int64",
+       "_type": "Value"
+      },
+      "cached_tokens": {
+       "dtype": "int64",
+       "_type": "Value"
+      },
+      "input_tokens": {
+       "dtype": "int64",
+       "_type": "Value"
+      },
+      "output_tokens": {
+       "dtype": "int64",
+       "_type": "Value"
+      }
+     },
+     "reasoning_tokens": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "time_in_ms": {
+      "dtype": "int64",
+      "_type": "Value"
+     },
+     "total_tokens": {
+      "dtype": "int64",
+      "_type": "Value"
+     }
+    }
+   }
+  },
+  {
+   "feature_idx": 4,
+   "name": "raw",
+   "type": {
+    "dtype": "string",
+    "_type": "Value"
+   }
+  }
+ ],
+ "n_rows_returned": 12
+}

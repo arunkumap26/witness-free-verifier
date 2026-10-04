@@ -1,0 +1,1878 @@
+{
+ "probe": "phase_e_b4_inventory",
+ "script": "analysis/probes/phase_e_b4_inventory.py",
+ "definitions": "provider request id     an id the LLM provider mints per HTTP request and the harness stores in the log (Anthropic's\n                          `request-id` response header -> Claude Code `requestId`). Detected two ways: (a) the IR\n                          request_id column (lib/cc_jsonl.py reads entry.requestId, nested subagent entries included);\n                          (b) a raw-text scan for JSON keys matching REQ_KEY_RX, with the value classified.\n  provider response id    an id the provider mints per response (Anthropic msg_, Gemini responseId, OpenAI output item\n                          ids). Context only: B2's claim is about request ids, but a response id with an embedded clock is\n                          the nearest substitute where request ids are absent.\n  decodable time          the Phase C ids-lens layouts (analysis/probes/phase_c_ids_and_clocks_in_ids.py decode()). For\n                          Anthropic ids: V>>80 inside 2024-01-01..2027-01-01 (\"time_format\"), plus RFC 9562 version-7 and\n                          variant-2 bits. These layouts were inferred from data and are UNVERIFIED against vendor docs.\n                          \"agrees\" = first carrying event's ts minus embedded time in [-2 s, +600 s] (-3 s for 1 s ids),\n                          the ids lens's pre-registered agreement band.\n  tool-call coverage      call events whose own row carries a non-null request id / all call events.\n  ms timestamps           events whose ts has >= 3 fractional-second digits / events.\n  tool_call_id join       calls with a same-session result on call_id; calls whose id is loader-synthetic.\n  token counts            call events with usage_in not null.\n  error markers           results with native_error not null / true; exit_code not null; lib.ir.error_marker(text).\n  truncation markers      results whose text matches a loss-type marker of the Phase A3 catalogue\n                          (analysis/probes/phase_a_a3.py MARKERS restricted to LOSS_TYPES).",
+ "split_hygiene": "H (swechat, aiv_cu) never read; see module docstring",
+ "population_quoted_from_builds": {
+  "swechat": {
+   "source": "analysis/out/build/swechat_build.json",
+   "snapshot": "SALT-NLP/SWE-chat@f66cca95",
+   "session_rows": 5851,
+   "transcript_files": 5850,
+   "by_format": {
+    "claude_code": {
+     "files": 4925,
+     "calls": 584802,
+     "results": 583958
+    },
+    "codex": {
+     "files": 213,
+     "calls": 21902,
+     "results": 21771
+    },
+    "copilot": {
+     "files": 2,
+     "calls": 266,
+     "results": 265
+    },
+    "cursor": {
+     "files": 23,
+     "calls": 619,
+     "results": 0
+    },
+    "gemini": {
+     "files": 59,
+     "calls": 5246,
+     "results": 4759
+    },
+    "opencode": {
+     "files": 624,
+     "calls": 22619,
+     "results": 22613
+    },
+    "simple_text": {
+     "files": 4,
+     "calls": 0,
+     "results": 0
+    }
+   },
+   "totals": {
+    "calls": 635454,
+    "results": 633366,
+    "calls_without_result": 2104,
+    "results_without_call": 16
+   }
+  },
+  "cc_local": {
+   "source": "analysis/out/build/cc_local_build.json",
+   "sessions": 309,
+   "calls": 41707,
+   "results": 41706,
+   "usage_fill_request_id": {
+    "assistant": {
+     "n": 8424,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 0.9988129154795822,
+     "model": 1.0,
+     "api_msg_ids_unique": 8424
+    },
+    "call": {
+     "n": 41707,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 1.0,
+     "model": 1.0,
+     "api_msg_ids_unique": 34095
+    }
+   }
+  },
+  "aiv_cc": {
+   "source": "analysis/out/build/aiv_cc_build.json",
+   "runs": 314,
+   "distinct_sdk_session_id": 53,
+   "largest_sdk_session_share": 0.9995466056694714,
+   "calls": 72225,
+   "results": 72213
+  },
+  "aiv_cu": {
+   "source": "analysis/out/build/aiv_cu_build.json",
+   "turn_rows": 2510487,
+   "sessions_with_turns": 78114,
+   "turns_by_shape": {
+    "anthropic": 907506,
+    "openai-responses": 586287,
+    "gemini": 560264,
+    "openai-chat": 428684,
+    "empty-list": 16046,
+    "anthropic-sdk": 11679,
+    "empty-dict": 21
+   },
+   "sessions_by_shape": {
+    "anthropic": 28135,
+    "openai-responses": 19619,
+    "gemini": 15745,
+    "openai-chat": 13664,
+    "anthropic-sdk": 856,
+    "empty-list": 89,
+    "empty-dict": 6
+   },
+   "fields_by_shape_non_synthetic": {
+    "anthropic": {
+     "rows_non_synthetic": 879321,
+     "usage": {
+      "k": 879321,
+      "n": 879321,
+      "frac": 1.0
+     },
+     "server_timing": {
+      "k": 0,
+      "n": 879321,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 879321,
+      "frac": 0.0
+     },
+     "row_model": {
+      "k": 879321,
+      "n": 879321,
+      "frac": 1.0
+     },
+     "api_msg_id": {
+      "k": 879321,
+      "n": 879321,
+      "frac": 1.0
+     },
+     "provider_call_id_on_action_rows": {
+      "k": 866293,
+      "n": 866293,
+      "frac": 1.0
+     }
+    },
+    "anthropic-sdk": {
+     "rows_non_synthetic": 11679,
+     "usage": {
+      "k": 11679,
+      "n": 11679,
+      "frac": 1.0
+     },
+     "server_timing": {
+      "k": 0,
+      "n": 11679,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 11679,
+      "frac": 0.0
+     },
+     "row_model": {
+      "k": 11679,
+      "n": 11679,
+      "frac": 1.0
+     },
+     "api_msg_id": {
+      "k": 11679,
+      "n": 11679,
+      "frac": 1.0
+     },
+     "provider_call_id_on_action_rows": {
+      "k": 0,
+      "n": 11679,
+      "frac": 0.0
+     }
+    },
+    "empty-dict": {
+     "rows_non_synthetic": 21,
+     "usage": {
+      "k": 0,
+      "n": 21,
+      "frac": 0.0
+     },
+     "server_timing": {
+      "k": 0,
+      "n": 21,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 21,
+      "frac": 0.0
+     },
+     "row_model": {
+      "k": 0,
+      "n": 21,
+      "frac": 0.0
+     },
+     "api_msg_id": {
+      "k": 0,
+      "n": 21,
+      "frac": 0.0
+     },
+     "provider_call_id_on_action_rows": {
+      "k": 0,
+      "n": 21,
+      "frac": 0.0
+     }
+    },
+    "empty-list": {
+     "rows_non_synthetic": 0,
+     "usage": {
+      "k": 0,
+      "n": 0,
+      "frac": null
+     },
+     "server_timing": {
+      "k": 0,
+      "n": 0,
+      "frac": null
+     },
+     "http_date": {
+      "k": 0,
+      "n": 0,
+      "frac": null
+     },
+     "row_model": {
+      "k": 0,
+      "n": 0,
+      "frac": null
+     },
+     "api_msg_id": {
+      "k": 0,
+      "n": 0,
+      "frac": null
+     },
+     "provider_call_id_on_action_rows": {
+      "k": 0,
+      "n": 0,
+      "frac": null
+     }
+    },
+    "gemini": {
+     "rows_non_synthetic": 544501,
+     "usage": {
+      "k": 544501,
+      "n": 544501,
+      "frac": 1.0
+     },
+     "server_timing": {
+      "k": 473955,
+      "n": 544501,
+      "frac": 0.870439
+     },
+     "http_date": {
+      "k": 473955,
+      "n": 544501,
+      "frac": 0.870439
+     },
+     "row_model": {
+      "k": 544501,
+      "n": 544501,
+      "frac": 1.0
+     },
+     "api_msg_id": {
+      "k": 473955,
+      "n": 544501,
+      "frac": 0.870439
+     },
+     "provider_call_id_on_action_rows": {
+      "k": 258121,
+      "n": 543337,
+      "frac": 0.475066
+     }
+    },
+    "openai-chat": {
+     "rows_non_synthetic": 422384,
+     "usage": {
+      "k": 0,
+      "n": 422384,
+      "frac": 0.0
+     },
+     "server_timing": {
+      "k": 0,
+      "n": 422384,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 422384,
+      "frac": 0.0
+     },
+     "row_model": {
+      "k": 0,
+      "n": 422384,
+      "frac": 0.0
+     },
+     "api_msg_id": {
+      "k": 0,
+      "n": 422384,
+      "frac": 0.0
+     },
+     "provider_call_id_on_action_rows": {
+      "k": 414395,
+      "n": 414420,
+      "frac": 0.99994
+     }
+    },
+    "openai-responses": {
+     "rows_non_synthetic": 586287,
+     "usage": {
+      "k": 0,
+      "n": 586287,
+      "frac": 0.0
+     },
+     "server_timing": {
+      "k": 0,
+      "n": 586287,
+      "frac": 0.0
+     },
+     "http_date": {
+      "k": 0,
+      "n": 586287,
+      "frac": 0.0
+     },
+     "row_model": {
+      "k": 0,
+      "n": 586287,
+      "frac": 0.0
+     },
+     "api_msg_id": {
+      "k": 586287,
+      "n": 586287,
+      "frac": 1.0
+     },
+     "provider_call_id_on_action_rows": {
+      "k": 528015,
+      "n": 528015,
+      "frac": 1.0
+     }
+    }
+   }
+  },
+  "whowhen": {
+   "source": "analysis/out/build/whowhen_build.json",
+   "sessions": 184,
+   "full_population_validate": {
+    "rows": 4371,
+    "sessions": 184,
+    "assistant": 2359,
+    "call": 968,
+    "result": 888,
+    "system": 98,
+    "user": 58
+   }
+  }
+ },
+ "whowhen": {
+  "sessions_measured": 184,
+  "sessions_total_in_corpus": null,
+  "sums": {
+   "calls": 968,
+   "calls_backend|none": 968,
+   "calls_joined": 888,
+   "calls_synthetic_id": 968,
+   "events": 4371,
+   "responses": 0,
+   "responses_with_request_id": 0,
+   "results": 888,
+   "results_error_marker_text": 90,
+   "results_exit_code_nonnull": 244,
+   "results_native_nonnull": 244,
+   "results_native_true": 90,
+   "results_without_call": 0
+  },
+  "rates": {
+   "calls_with_request_id/calls": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 160,
+    "num": 0.0,
+    "den": 968.0
+   },
+   "responses_with_request_id/responses": {
+    "rate": null,
+    "lo": null,
+    "hi": null,
+    "n_sessions": 0,
+    "num": 0.0,
+    "den": 0.0
+   },
+   "events_ts_ms/events": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 184,
+    "num": 0.0,
+    "den": 4371.0
+   },
+   "calls_joined/calls": {
+    "rate": 0.9173553719008265,
+    "lo": 0.896664924955139,
+    "hi": 0.9365600014356391,
+    "n_sessions": 160,
+    "num": 888.0,
+    "den": 968.0
+   },
+   "calls_with_usage_in/calls": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 160,
+    "num": 0.0,
+    "den": 968.0
+   },
+   "results_native_nonnull/results": {
+    "rate": 0.2747747747747748,
+    "lo": 0.204447925368978,
+    "hi": 0.35645097118407487,
+    "n_sessions": 158,
+    "num": 244.0,
+    "den": 888.0
+   },
+   "results_error_marker_text/results": {
+    "rate": 0.10135135135135136,
+    "lo": 0.07213791638576693,
+    "hi": 0.13643418216425252,
+    "n_sessions": 158,
+    "num": 90.0,
+    "den": 888.0
+   },
+   "results_loss_marker/results": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 158,
+    "num": 0.0,
+    "den": 888.0
+   }
+  },
+  "sessions_with_ge1_request_id": 0,
+  "sessions_with_ge1_call": 160,
+  "sessions_with_ge1_call_and_ge1_request_id": 0,
+  "request_ids": {
+   "session_copies": 0
+  },
+  "raw_key_scan": {
+   "request_id_keys": {},
+   "correlation_keys": {},
+   "anthropic_req_value_occurrences_anywhere": 0
+  },
+  "raw_key_scan_files": 184,
+  "wall_s": 0.3
+ },
+ "aiv_cc": {
+  "sessions_measured": 314,
+  "sessions_total_in_corpus": null,
+  "sums": {
+   "calls": 72225,
+   "calls_backend|anthropic_first_party": 72225,
+   "calls_joined": 72213,
+   "calls_with_usage_in": 72225,
+   "events": 244820,
+   "events_ts": 244820,
+   "events_ts_ms": 244790,
+   "responses": 65571,
+   "responses_backend|anthropic_first_party": 65550,
+   "responses_backend|uuid": 21,
+   "responses_with_request_id": 0,
+   "results": 72213,
+   "results_error_marker_text": 543,
+   "results_loss_marker": 62,
+   "results_native_nonnull": 11655,
+   "results_native_true": 1317,
+   "results_without_call": 0
+  },
+  "rates": {
+   "calls_with_request_id/calls": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 201,
+    "num": 0.0,
+    "den": 72225.0
+   },
+   "responses_with_request_id/responses": {
+    "rate": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "n_sessions": 261,
+    "num": 0.0,
+    "den": 65571.0
+   },
+   "events_ts_ms/events": {
+    "rate": 0.999877460991749,
+    "lo": 0.9998261350556996,
+    "hi": 0.9999268290838257,
+    "n_sessions": 314,
+    "num": 244790.0,
+    "den": 244820.0
+   },
+   "calls_joined/calls": {
+    "rate": 0.9998338525441329,
+    "lo": 0.9997061734064706,
+    "hi": 0.9999305382684704,
+    "n_sessions": 201,
+    "num": 72213.0,
+    "den": 72225.0
+   },
+   "calls_with_usage_in/calls": {
+    "rate": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "n_sessions": 201,
+    "num": 72225.0,
+    "den": 72225.0
+   },
+   "results_native_nonnull/results": {
+    "rate": 0.16139753230027834,
+    "lo": 0.1198443460530528,
+    "hi": 0.20389394298042748,
+    "n_sessions": 196,
+    "num": 11655.0,
+    "den": 72213.0
+   },
+   "results_error_marker_text/results": {
+    "rate": 0.007519421710772299,
+    "lo": 0.005386145538552664,
+    "hi": 0.009714827902415797,
+    "n_sessions": 196,
+    "num": 543.0,
+    "den": 72213.0
+   },
+   "results_loss_marker/results": {
+    "rate": 0.0008585711713957321,
+    "lo": 0.0003970354023626249,
+    "hi": 0.0016280502716009063,
+    "n_sessions": 196,
+    "num": 62.0,
+    "den": 72213.0
+   }
+  },
+  "sessions_with_ge1_request_id": 0,
+  "sessions_with_ge1_call": 201,
+  "sessions_with_ge1_call_and_ge1_request_id": 0,
+  "request_ids": {
+   "session_copies": 0
+  },
+  "raw_key_scan": {
+   "request_id_keys": {},
+   "correlation_keys": {},
+   "anthropic_req_value_occurrences_anywhere": 8
+  },
+  "provider_response_ids": {
+   "distinct_api_msg_id": 65571,
+   "families": {
+    "uuid": 21,
+    "anthropic_msg": 65550
+   },
+   "anthropic_msg_time_format": 22,
+   "anthropic_msg_expected_by_chance": 22.05
+  },
+  "wall_s": 21.1
+ },
+ "cc_local": {
+  "sessions_measured": 309,
+  "sessions_total_in_corpus": null,
+  "sums": {
+   "calls": 41707,
+   "calls_backend_with_req|anthropic_first_party": 41707,
+   "calls_backend|anthropic_first_party": 41707,
+   "calls_joined": 41706,
+   "calls_with_request_id": 41707,
+   "calls_with_usage_in": 41707,
+   "events": 168728,
+   "events_ts": 167231,
+   "events_ts_ms": 167231,
+   "events_with_request_id": 75774,
+   "responses": 35391,
+   "responses_backend_with_req|anthropic_first_party": 35334,
+   "responses_backend_with_req|uuid": 47,
+   "responses_backend|anthropic_first_party": 35334,
+   "responses_backend|uuid": 57,
+   "responses_with_request_id": 35381,
+   "results": 41706,
+   "results_error_marker_text": 1540,
+   "results_loss_marker": 493,
+   "results_native_nonnull": 30581,
+   "results_native_true": 1803,
+   "results_without_call": 0
+  },
+  "rates": {
+   "calls_with_request_id/calls": {
+    "rate": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "n_sessions": 281,
+    "num": 41707.0,
+    "den": 41707.0
+   },
+   "responses_with_request_id/responses": {
+    "rate": 0.9997174422875872,
+    "lo": 0.9990005104639186,
+    "hi": 0.9998738819538824,
+    "n_sessions": 309,
+    "num": 35381.0,
+    "den": 35391.0
+   },
+   "events_ts_ms/events": {
+    "rate": 0.9911277322080508,
+    "lo": 0.9893909380765125,
+    "hi": 0.995604341759588,
+    "n_sessions": 309,
+    "num": 167231.0,
+    "den": 168728.0
+   },
+   "calls_joined/calls": {
+    "rate": 0.9999760232095332,
+    "lo": 0.9998289581677322,
+    "hi": 1.0,
+    "n_sessions": 281,
+    "num": 41706.0,
+    "den": 41707.0
+   },
+   "calls_with_usage_in/calls": {
+    "rate": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "n_sessions": 281,
+    "num": 41707.0,
+    "den": 41707.0
+   },
+   "results_native_nonnull/results": {
+    "rate": 0.7332518102910852,
+    "lo": 0.5169739544912246,
+    "hi": 0.7831884730288273,
+    "n_sessions": 281,
+    "num": 30581.0,
+    "den": 41706.0
+   },
+   "results_error_marker_text/results": {
+    "rate": 0.036925142665323936,
+    "lo": 0.02998219329259193,
+    "hi": 0.06837102579876922,
+    "n_sessions": 281,
+    "num": 1540.0,
+    "den": 41706.0
+   },
+   "results_loss_marker/results": {
+    "rate": 0.011820841125977078,
+    "lo": 0.004189168151670332,
+    "hi": 0.014281031073600277,
+    "n_sessions": 281,
+    "num": 493.0,
+    "den": 41706.0
+   }
+  },
+  "sessions_with_ge1_request_id": 304,
+  "sessions_with_ge1_call": 281,
+  "sessions_with_ge1_call_and_ge1_request_id": 281,
+  "request_ids": {
+   "agrees_minus2s_plus600s": 35227,
+   "distinct": 35379,
+   "family|anthropic_req": 35379,
+   "prefix|req_": 35379,
+   "session_copies": 35379,
+   "time_format": 35379,
+   "time_format_within_1day_of_event": 35379,
+   "v7_version_and_variant": 35379
+  },
+  "raw_key_scan": {
+   "request_id_keys": {
+    "requestid|anthropic_req": 86257
+   },
+   "correlation_keys": {},
+   "anthropic_req_value_occurrences_anywhere": 86280
+  },
+  "raw_key_scan_files": 1172,
+  "privacy": "aggregates only; no id value, text, path or date written",
+  "wall_s": 6.5
+ },
+ "collusion_wiki": {
+  "events.jsonl": {
+   "rows": 19913,
+   "time_and_id_field_fill": {
+    "clock_delta_seconds": 5220,
+    "clock_note": 1,
+    "event_id": 19913,
+    "related_event_id": 67,
+    "request_action": 5322,
+    "request_time": 5220,
+    "round_id": 92,
+    "success_time": 5221,
+    "time": 19913,
+    "time_grade": 19913,
+    "uncertainty_seconds": 5221,
+    "winning_clock": 5221
+   },
+   "time_grade": {
+    "reqlog": 19803,
+    "rclog": 104,
+    "write_date": 6
+   },
+   "raw_key_scan": {
+    "request_id_keys": {},
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 0
+   }
+  },
+  "revisions.jsonl": {
+   "rows": 14591,
+   "time_and_id_field_fill": {
+    "page_id": 14591,
+    "related_event_id": 63,
+    "request_action": 14482,
+    "request_time": 14482,
+    "rev_id": 14591,
+    "round_id": 63,
+    "success_time": 14585,
+    "time": 14591,
+    "time_grade": 14591,
+    "uncertainty_seconds": 14591,
+    "winning_clock": 14591,
+    "write_date": 14591
+   },
+   "time_grade": {
+    "write_date": 6,
+    "reqlog": 14482,
+    "rclog": 103
+   },
+   "raw_key_scan": {
+    "request_id_keys": {},
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 0
+   }
+  },
+  "pages.jsonl": {
+   "rows": 4579,
+   "time_and_id_field_fill": {
+    "page_id": 4579
+   },
+   "time_grade": {},
+   "raw_key_scan": {
+    "request_id_keys": {},
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 0
+   }
+  },
+  "labels.jsonl": {
+   "rows": 3103,
+   "time_and_id_field_fill": {
+    "save_request_ip16": 3103,
+    "save_request_ips": 3103,
+    "save_request_pages": 3103,
+    "save_request_source": 3040,
+    "save_requests": 3103
+   },
+   "time_grade": {},
+   "raw_key_scan": {
+    "request_id_keys": {},
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 0
+   }
+  }
+ },
+ "urlquery": {
+  "rows": 38160,
+  "columns": [
+   "report_id",
+   "report_url",
+   "report_date_utc",
+   "timestamp_precision",
+   "disposition",
+   "confidence",
+   "broad_class",
+   "why_included",
+   "caveat"
+  ],
+  "report_id_families": {
+   "uuid": 38160
+  },
+  "report_id_uuid_versions": {
+   "v4": 38160
+  },
+  "timestamp_precision": {
+   "second": 38160
+  },
+  "raw_key_scan_json_files": {
+   "request_id_keys": {},
+   "correlation_keys": {},
+   "anthropic_req_value_occurrences_anywhere": 0
+  }
+ },
+ "swechat": {
+  "measured_set": "A u B u E (H never opened)",
+  "n_H_skipped": 1825,
+  "sessions_measured": 4025,
+  "by_format": {
+   "claude_code": {
+    "sessions_measured": 3353,
+    "sessions_total_in_corpus": null,
+    "sums": {
+     "calls": 388605,
+     "calls_backend_with_req|anthropic_first_party": 380295,
+     "calls_backend_with_req|anthropic_vertex": 560,
+     "calls_backend|anthropic_bedrock": 3575,
+     "calls_backend|anthropic_first_party": 382061,
+     "calls_backend|anthropic_req": 60,
+     "calls_backend|anthropic_vertex": 560,
+     "calls_backend|chatcmpl_ms": 59,
+     "calls_backend|msg_datetime14": 2041,
+     "calls_backend|none": 1,
+     "calls_backend|openai_item_hex": 62,
+     "calls_backend|other": 180,
+     "calls_backend|uuid": 6,
+     "calls_joined": 388002,
+     "calls_with_request_id": 380855,
+     "calls_with_usage_in": 388604,
+     "events": 1730824,
+     "events_ts": 1730813,
+     "events_ts_ms": 1730813,
+     "events_with_request_id": 573048,
+     "responses": 314821,
+     "responses_backend_with_req|anthropic_first_party": 306985,
+     "responses_backend_with_req|anthropic_vertex": 494,
+     "responses_backend|anthropic_bedrock": 2752,
+     "responses_backend|anthropic_first_party": 308445,
+     "responses_backend|anthropic_req": 54,
+     "responses_backend|anthropic_vertex": 495,
+     "responses_backend|chatcmpl_ms": 22,
+     "responses_backend|msg_datetime14": 1700,
+     "responses_backend|openai_item_hex": 20,
+     "responses_backend|other": 168,
+     "responses_backend|uuid": 1165,
+     "responses_with_request_id": 307479,
+     "results": 388012,
+     "results_error_marker_text": 12956,
+     "results_loss_marker": 3474,
+     "results_native_nonnull": 130495,
+     "results_native_true": 16494,
+     "results_without_call": 10
+    },
+    "rates": {
+     "calls_with_request_id/calls": {
+      "rate": 0.9800568700865918,
+      "lo": 0.9727885145028049,
+      "hi": 0.9870781912683277,
+      "n_sessions": 3303,
+      "num": 380855.0,
+      "den": 388605.0
+     },
+     "responses_with_request_id/responses": {
+      "rate": 0.976678811133946,
+      "lo": 0.9691572266298246,
+      "hi": 0.9835539669159677,
+      "n_sessions": 3348,
+      "num": 307479.0,
+      "den": 314821.0
+     },
+     "events_ts_ms/events": {
+      "rate": 0.9999936446455561,
+      "lo": 0.9999840616388679,
+      "hi": 1.0,
+      "n_sessions": 3352,
+      "num": 1730813.0,
+      "den": 1730824.0
+     },
+     "calls_joined/calls": {
+      "rate": 0.9984482958273826,
+      "lo": 0.9982825006200736,
+      "hi": 0.9986080404649039,
+      "n_sessions": 3303,
+      "num": 388002.0,
+      "den": 388605.0
+     },
+     "calls_with_usage_in/calls": {
+      "rate": 0.9999974266929144,
+      "lo": 0.9999920867898516,
+      "hi": 1.0,
+      "n_sessions": 3303,
+      "num": 388604.0,
+      "den": 388605.0
+     },
+     "results_native_nonnull/results": {
+      "rate": 0.33631691803346286,
+      "lo": 0.3268495136051276,
+      "hi": 0.34566027782032094,
+      "n_sessions": 3299,
+      "num": 130495.0,
+      "den": 388012.0
+     },
+     "results_error_marker_text/results": {
+      "rate": 0.03339071987464305,
+      "lo": 0.031926002406743474,
+      "hi": 0.03483382292943052,
+      "n_sessions": 3299,
+      "num": 12956.0,
+      "den": 388012.0
+     },
+     "results_loss_marker/results": {
+      "rate": 0.008953331340267826,
+      "lo": 0.00846257497511325,
+      "hi": 0.009494849710926168,
+      "n_sessions": 3299,
+      "num": 3474.0,
+      "den": 388012.0
+     }
+    },
+    "sessions_with_ge1_request_id": 3270,
+    "sessions_with_ge1_call": 3303,
+    "sessions_with_ge1_call_and_ge1_request_id": 3233,
+    "request_ids": {
+     "agrees_minus2s_plus600s": 305584,
+     "distinct": 305727,
+     "family|anthropic_req": 305727,
+     "prefix|req_": 305233,
+     "prefix|req_vrtx_": 494,
+     "session_copies": 307454,
+     "time_format": 305727,
+     "time_format_within_1day_of_event": 305727,
+     "v7_version_and_variant": 305727
+    }
+   },
+   "codex": {
+    "sessions_measured": 161,
+    "sessions_total_in_corpus": null,
+    "sums": {
+     "calls": 17153,
+     "calls_backend|none": 17153,
+     "calls_joined": 17063,
+     "calls_synthetic_id": 25,
+     "events": 74868,
+     "events_ts": 74868,
+     "events_ts_ms": 74868,
+     "responses": 0,
+     "responses_with_request_id": 0,
+     "results": 17063,
+     "results_exit_code_nonnull": 8954,
+     "results_loss_marker": 131,
+     "results_native_nonnull": 11063,
+     "results_native_true": 746,
+     "results_without_call": 0
+    },
+    "rates": {
+     "calls_with_request_id/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 130,
+      "num": 0.0,
+      "den": 17153.0
+     },
+     "responses_with_request_id/responses": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "events_ts_ms/events": {
+      "rate": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n_sessions": 161,
+      "num": 74868.0,
+      "den": 74868.0
+     },
+     "calls_joined/calls": {
+      "rate": 0.9947531044132222,
+      "lo": 0.9915739243635102,
+      "hi": 0.9974885565439764,
+      "n_sessions": 130,
+      "num": 17063.0,
+      "den": 17153.0
+     },
+     "calls_with_usage_in/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 130,
+      "num": 0.0,
+      "den": 17153.0
+     },
+     "results_native_nonnull/results": {
+      "rate": 0.648361952763289,
+      "lo": 0.5747332766717161,
+      "hi": 0.7081401810887009,
+      "n_sessions": 130,
+      "num": 11063.0,
+      "den": 17063.0
+     },
+     "results_error_marker_text/results": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 130,
+      "num": 0.0,
+      "den": 17063.0
+     },
+     "results_loss_marker/results": {
+      "rate": 0.007677430698001524,
+      "lo": 0.004882478489522553,
+      "hi": 0.012467316057224596,
+      "n_sessions": 130,
+      "num": 131.0,
+      "den": 17063.0
+     }
+    },
+    "sessions_with_ge1_request_id": 0,
+    "sessions_with_ge1_call": 130,
+    "sessions_with_ge1_call_and_ge1_request_id": 0,
+    "request_ids": {
+     "session_copies": 0
+    }
+   },
+   "copilot": {
+    "sessions_measured": 2,
+    "sessions_total_in_corpus": null,
+    "sums": {
+     "calls": 266,
+     "calls_backend|uuid": 266,
+     "calls_joined": 265,
+     "events": 2250,
+     "events_ts": 2250,
+     "events_ts_ms": 2250,
+     "responses": 184,
+     "responses_backend|uuid": 184,
+     "responses_with_request_id": 0,
+     "results": 265,
+     "results_loss_marker": 4,
+     "results_native_nonnull": 265,
+     "results_native_true": 8,
+     "results_without_call": 0
+    },
+    "rates": {
+     "calls_with_request_id/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 2,
+      "num": 0.0,
+      "den": 266.0
+     },
+     "responses_with_request_id/responses": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 2,
+      "num": 0.0,
+      "den": 184.0
+     },
+     "events_ts_ms/events": {
+      "rate": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n_sessions": 2,
+      "num": 2250.0,
+      "den": 2250.0
+     },
+     "calls_joined/calls": {
+      "rate": 0.9962406015037594,
+      "lo": 0.9918032786885246,
+      "hi": 1.0,
+      "n_sessions": 2,
+      "num": 265.0,
+      "den": 266.0
+     },
+     "calls_with_usage_in/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 2,
+      "num": 0.0,
+      "den": 266.0
+     },
+     "results_native_nonnull/results": {
+      "rate": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n_sessions": 2,
+      "num": 265.0,
+      "den": 265.0
+     },
+     "results_error_marker_text/results": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 2,
+      "num": 0.0,
+      "den": 265.0
+     },
+     "results_loss_marker/results": {
+      "rate": 0.01509433962264151,
+      "lo": 0.0,
+      "hi": 0.027777777777777776,
+      "n_sessions": 2,
+      "num": 4.0,
+      "den": 265.0
+     }
+    },
+    "sessions_with_ge1_request_id": 0,
+    "sessions_with_ge1_call": 2,
+    "sessions_with_ge1_call_and_ge1_request_id": 0,
+    "request_ids": {
+     "session_copies": 0
+    }
+   },
+   "cursor": {
+    "sessions_measured": 22,
+    "sessions_total_in_corpus": null,
+    "sums": {
+     "calls": 589,
+     "calls_backend|none": 589,
+     "calls_synthetic_id": 589,
+     "events": 1575,
+     "responses": 0,
+     "responses_with_request_id": 0,
+     "results_without_call": 0
+    },
+    "rates": {
+     "calls_with_request_id/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 11,
+      "num": 0.0,
+      "den": 589.0
+     },
+     "responses_with_request_id/responses": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "events_ts_ms/events": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 22,
+      "num": 0.0,
+      "den": 1575.0
+     },
+     "calls_joined/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 11,
+      "num": 0.0,
+      "den": 589.0
+     },
+     "calls_with_usage_in/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 11,
+      "num": 0.0,
+      "den": 589.0
+     },
+     "results_native_nonnull/results": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "results_error_marker_text/results": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "results_loss_marker/results": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     }
+    },
+    "sessions_with_ge1_request_id": 0,
+    "sessions_with_ge1_call": 11,
+    "sessions_with_ge1_call_and_ge1_request_id": 0,
+    "request_ids": {
+     "session_copies": 0
+    }
+   },
+   "gemini": {
+    "sessions_measured": 51,
+    "sessions_total_in_corpus": null,
+    "sums": {
+     "calls": 5104,
+     "calls_backend|uuid": 5104,
+     "calls_joined": 4617,
+     "calls_with_usage_in": 4601,
+     "events": 15469,
+     "events_ts": 14441,
+     "events_ts_ms": 14441,
+     "responses": 5496,
+     "responses_backend|uuid": 5496,
+     "responses_with_request_id": 0,
+     "results": 4617,
+     "results_error_marker_text": 483,
+     "results_loss_marker": 1300,
+     "results_native_nonnull": 4617,
+     "results_native_true": 256,
+     "results_without_call": 0
+    },
+    "rates": {
+     "calls_with_request_id/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 44,
+      "num": 0.0,
+      "den": 5104.0
+     },
+     "responses_with_request_id/responses": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 51,
+      "num": 0.0,
+      "den": 5496.0
+     },
+     "events_ts_ms/events": {
+      "rate": 0.9335445083715819,
+      "lo": 0.7838534577340543,
+      "hi": 1.0,
+      "n_sessions": 51,
+      "num": 14441.0,
+      "den": 15469.0
+     },
+     "calls_joined/calls": {
+      "rate": 0.9045846394984326,
+      "lo": 0.7059850825446087,
+      "hi": 1.0,
+      "n_sessions": 44,
+      "num": 4617.0,
+      "den": 5104.0
+     },
+     "calls_with_usage_in/calls": {
+      "rate": 0.9014498432601881,
+      "lo": 0.7031717283348669,
+      "hi": 0.9977929591018623,
+      "n_sessions": 44,
+      "num": 4601.0,
+      "den": 5104.0
+     },
+     "results_native_nonnull/results": {
+      "rate": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n_sessions": 43,
+      "num": 4617.0,
+      "den": 4617.0
+     },
+     "results_error_marker_text/results": {
+      "rate": 0.1046133853151397,
+      "lo": 0.06779288853393908,
+      "hi": 0.12617492285584103,
+      "n_sessions": 43,
+      "num": 483.0,
+      "den": 4617.0
+     },
+     "results_loss_marker/results": {
+      "rate": 0.2815681178254278,
+      "lo": 0.17429538471166087,
+      "hi": 0.3474897147647219,
+      "n_sessions": 43,
+      "num": 1300.0,
+      "den": 4617.0
+     }
+    },
+    "sessions_with_ge1_request_id": 0,
+    "sessions_with_ge1_call": 44,
+    "sessions_with_ge1_call_and_ge1_request_id": 0,
+    "request_ids": {
+     "session_copies": 0
+    }
+   },
+   "opencode": {
+    "sessions_measured": 432,
+    "sessions_total_in_corpus": null,
+    "sums": {
+     "calls": 17354,
+     "calls_backend|loader_synthetic": 2196,
+     "calls_backend|opencode_id": 15157,
+     "calls_backend|other": 1,
+     "calls_joined": 17349,
+     "calls_synthetic_id": 4903,
+     "events": 64371,
+     "events_ts": 37660,
+     "events_ts_ms": 37660,
+     "responses": 10846,
+     "responses_backend|opencode_id": 10844,
+     "responses_backend|other": 2,
+     "responses_with_request_id": 0,
+     "results": 17349,
+     "results_exit_code_nonnull": 4163,
+     "results_loss_marker": 308,
+     "results_native_nonnull": 17349,
+     "results_native_true": 682,
+     "results_without_call": 0
+    },
+    "rates": {
+     "calls_with_request_id/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 428,
+      "num": 0.0,
+      "den": 17354.0
+     },
+     "responses_with_request_id/responses": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 431,
+      "num": 0.0,
+      "den": 10846.0
+     },
+     "events_ts_ms/events": {
+      "rate": 0.585046061114477,
+      "lo": 0.5670912075240844,
+      "hi": 0.6099359613838378,
+      "n_sessions": 432,
+      "num": 37660.0,
+      "den": 64371.0
+     },
+     "calls_joined/calls": {
+      "rate": 0.9997118819868618,
+      "lo": 0.9992413961055486,
+      "hi": 1.0,
+      "n_sessions": 428,
+      "num": 17349.0,
+      "den": 17354.0
+     },
+     "calls_with_usage_in/calls": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 428,
+      "num": 0.0,
+      "den": 17354.0
+     },
+     "results_native_nonnull/results": {
+      "rate": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "n_sessions": 428,
+      "num": 17349.0,
+      "den": 17349.0
+     },
+     "results_error_marker_text/results": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 428,
+      "num": 0.0,
+      "den": 17349.0
+     },
+     "results_loss_marker/results": {
+      "rate": 0.017753184621592023,
+      "lo": 0.014914196837515487,
+      "hi": 0.02076450463935144,
+      "n_sessions": 428,
+      "num": 308.0,
+      "den": 17349.0
+     }
+    },
+    "sessions_with_ge1_request_id": 0,
+    "sessions_with_ge1_call": 428,
+    "sessions_with_ge1_call_and_ge1_request_id": 0,
+    "request_ids": {
+     "session_copies": 0
+    }
+   },
+   "simple_text": {
+    "sessions_measured": 4,
+    "sessions_total_in_corpus": null,
+    "sums": {
+     "events": 20,
+     "events_ts": 20,
+     "responses": 0,
+     "responses_with_request_id": 0,
+     "results_without_call": 0
+    },
+    "rates": {
+     "calls_with_request_id/calls": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "responses_with_request_id/responses": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "events_ts_ms/events": {
+      "rate": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_sessions": 4,
+      "num": 0.0,
+      "den": 20.0
+     },
+     "calls_joined/calls": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "calls_with_usage_in/calls": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "results_native_nonnull/results": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "results_error_marker_text/results": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     },
+     "results_loss_marker/results": {
+      "rate": null,
+      "lo": null,
+      "hi": null,
+      "n_sessions": 0,
+      "num": 0.0,
+      "den": 0.0
+     }
+    },
+    "sessions_with_ge1_request_id": 0,
+    "sessions_with_ge1_call": 0,
+    "sessions_with_ge1_call_and_ge1_request_id": 0,
+    "request_ids": {
+     "session_copies": 0
+    }
+   }
+  },
+  "raw_key_scan_by_format": {
+   "claude_code": {
+    "request_id_keys": {
+     "cf-ray|other_len20": 155,
+     "request-id|anthropic_req": 95,
+     "request_id|anthropic_req": 114,
+     "request_id|other_len26": 2,
+     "request_id|other_len28": 5,
+     "request_id|other_len29": 4,
+     "request_id|other_len30": 15,
+     "request_id|other_len31": 32,
+     "request_id|other_len32": 40,
+     "request_id|other_len33": 9,
+     "request_id|other_len34": 50,
+     "request_id|other_len35": 8,
+     "request_id|other_len36": 12,
+     "request_id|other_len37": 40,
+     "request_id|other_len38": 30,
+     "request_id|other_len39": 10,
+     "request_id|other_len40": 25,
+     "request_id|other_len41": 5,
+     "request_id|other_len42": 7,
+     "request_id|other_len43": 10,
+     "request_id|other_len44": 6,
+     "request_id|other_len45": 1,
+     "request_id|other_len46": 2,
+     "request_id|other_len47": 2,
+     "request_id|other_len48": 1,
+     "request_id|uuid": 2,
+     "requestid|anthropic_req": 596653,
+     "requestid|null": 246,
+     "requestid|redacted": 1,
+     "x-amzn-requestid|uuid": 8,
+     "x-request-id|uuid": 80
+    },
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 611236
+   },
+   "codex": {
+    "request_id_keys": {},
+    "correlation_keys": {
+     "trace_id|hex32": 217
+    },
+    "anthropic_req_value_occurrences_anywhere": 4
+   },
+   "copilot": {
+    "request_id_keys": {
+     "requestid|other_len42": 2
+    },
+    "correlation_keys": {
+     "interactionid|uuid": 644
+    },
+    "anthropic_req_value_occurrences_anywhere": 0
+   },
+   "cursor": {
+    "request_id_keys": {},
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 0
+   },
+   "gemini": {
+    "request_id_keys": {},
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 128
+   },
+   "opencode": {
+    "request_id_keys": {
+     "cf-ray|other_len20": 4
+    },
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 0
+   },
+   "simple_text": {
+    "request_id_keys": {},
+    "correlation_keys": {},
+    "anthropic_req_value_occurrences_anywhere": 0
+   }
+  },
+  "all_formats": {
+   "sessions_measured": 4025,
+   "sessions_total_in_corpus": null,
+   "sums": {
+    "calls": 429071,
+    "calls_backend_with_req|anthropic_first_party": 380295,
+    "calls_backend_with_req|anthropic_vertex": 560,
+    "calls_backend|anthropic_bedrock": 3575,
+    "calls_backend|anthropic_first_party": 382061,
+    "calls_backend|anthropic_req": 60,
+    "calls_backend|anthropic_vertex": 560,
+    "calls_backend|chatcmpl_ms": 59,
+    "calls_backend|loader_synthetic": 2196,
+    "calls_backend|msg_datetime14": 2041,
+    "calls_backend|none": 17743,
+    "calls_backend|openai_item_hex": 62,
+    "calls_backend|opencode_id": 15157,
+    "calls_backend|other": 181,
+    "calls_backend|uuid": 5376,
+    "calls_joined": 427296,
+    "calls_synthetic_id": 5517,
+    "calls_with_request_id": 380855,
+    "calls_with_usage_in": 393205,
+    "events": 1889377,
+    "events_ts": 1860052,
+    "events_ts_ms": 1860032,
+    "events_with_request_id": 573048,
+    "responses": 331347,
+    "responses_backend_with_req|anthropic_first_party": 306985,
+    "responses_backend_with_req|anthropic_vertex": 494,
+    "responses_backend|anthropic_bedrock": 2752,
+    "responses_backend|anthropic_first_party": 308445,
+    "responses_backend|anthropic_req": 54,
+    "responses_backend|anthropic_vertex": 495,
+    "responses_backend|chatcmpl_ms": 22,
+    "responses_backend|msg_datetime14": 1700,
+    "responses_backend|openai_item_hex": 20,
+    "responses_backend|opencode_id": 10844,
+    "responses_backend|other": 170,
+    "responses_backend|uuid": 6845,
+    "responses_with_request_id": 307479,
+    "results": 427306,
+    "results_error_marker_text": 13439,
+    "results_exit_code_nonnull": 13117,
+    "results_loss_marker": 5217,
+    "results_native_nonnull": 163789,
+    "results_native_true": 18186,
+    "results_without_call": 10
+   },
+   "rates": {
+    "calls_with_request_id/calls": {
+     "rate": 0.8876269894726048,
+     "lo": 0.8624376886145741,
+     "hi": 0.9088325310438159,
+     "n_sessions": 3918,
+     "num": 380855.0,
+     "den": 429071.0
+    },
+    "responses_with_request_id/responses": {
+     "rate": 0.9279667538864091,
+     "lo": 0.913413809286945,
+     "hi": 0.9420361490919418,
+     "n_sessions": 3832,
+     "num": 307479.0,
+     "den": 331347.0
+    },
+    "events_ts_ms/events": {
+     "rate": 0.9844684253063312,
+     "lo": 0.9802008080935586,
+     "hi": 0.9885303316929883,
+     "n_sessions": 4024,
+     "num": 1860032.0,
+     "den": 1889377.0
+    },
+    "calls_joined/calls": {
+     "rate": 0.9958631555150547,
+     "lo": 0.9928618466509027,
+     "hi": 0.9977208253989657,
+     "n_sessions": 3918,
+     "num": 427296.0,
+     "den": 429071.0
+    },
+    "calls_with_usage_in/calls": {
+     "rate": 0.9164101046213797,
+     "lo": 0.8925893194991465,
+     "hi": 0.9367795725990833,
+     "n_sessions": 3918,
+     "num": 393205.0,
+     "den": 429071.0
+    },
+    "results_native_nonnull/results": {
+     "rate": 0.38330610850304,
+     "lo": 0.3709971896348284,
+     "hi": 0.3954669007455335,
+     "n_sessions": 3902,
+     "num": 163789.0,
+     "den": 427306.0
+    },
+    "results_error_marker_text/results": {
+     "rate": 0.03145052959705691,
+     "lo": 0.029756136051933044,
+     "hi": 0.033228951530956966,
+     "n_sessions": 3902,
+     "num": 13439.0,
+     "den": 427306.0
+    },
+    "results_loss_marker/results": {
+     "rate": 0.012209049252760317,
+     "lo": 0.010224586926210578,
+     "hi": 0.014541694411812566,
+     "n_sessions": 3902,
+     "num": 5217.0,
+     "den": 427306.0
+    }
+   },
+   "sessions_with_ge1_request_id": 3270,
+   "sessions_with_ge1_call": 3918,
+   "sessions_with_ge1_call_and_ge1_request_id": 3233,
+   "request_ids": {
+    "agrees_minus2s_plus600s": 305584,
+    "distinct": 305727,
+    "family|anthropic_req": 305727,
+    "prefix|req_": 305233,
+    "prefix|req_vrtx_": 494,
+    "session_copies": 307454,
+    "time_format": 305727,
+    "time_format_within_1day_of_event": 305727,
+    "v7_version_and_variant": 305727
+   }
+  },
+  "wall_s": 11.8
+ },
+ "aiv_cu": {
+  "measured_set": "all sessions except H",
+  "n_H_sessions_excluded": 2000,
+  "turn_rows_population": 2510487,
+  "turn_rows_measured": 2446268,
+  "sessions_measured": 76114,
+  "by_shape": {
+   "anthropic": {
+    "rows": 883862,
+    "rows_non_synthetic": 856403,
+    "sessions": 27409,
+    "tool_calls_n_calls_sum": 844309,
+    "rows_action_not_none": 843743,
+    "rows_has_usage": 856403,
+    "rows_server_timing": 0,
+    "rows_http_date": 0,
+    "rows_has_error_channel": 29490,
+    "rows_api_msg_id": 856403,
+    "provider_response_ids": {
+     "distinct": 856394,
+     "families": {
+      "anthropic_msg": 856394
+     },
+     "decodable_in_window": 294075,
+     "decodable_resolution": {
+      "ms": 294075
+     },
+     "agrees_with_row_created_at": 293865,
+     "anthropic_v7_version_and_variant": 293869,
+     "sessions_with_ge1_decodable": 8826
+    }
+   },
+   "anthropic-sdk": {
+    "rows": 10881,
+    "rows_non_synthetic": 10881,
+    "sessions": 821,
+    "tool_calls_n_calls_sum": 0,
+    "rows_action_not_none": 10881,
+    "rows_has_usage": 10881,
+    "rows_server_timing": 0,
+    "rows_http_date": 0,
+    "rows_has_error_channel": 647,
+    "rows_api_msg_id": 10881,
+    "provider_response_ids": {
+     "distinct": 10590,
+     "families": {
+      "anthropic_msg": 10590
+     },
+     "decodable_in_window": 4,
+     "decodable_resolution": {
+      "ms": 4
+     },
+     "agrees_with_row_created_at": 0,
+     "anthropic_v7_version_and_variant": 0,
+     "sessions_with_ge1_decodable": 4
+    }
+   },
+   "empty-dict": {
+    "rows": 19,
+    "rows_non_synthetic": 19,
+    "sessions": 18,
+    "tool_calls_n_calls_sum": 0,
+    "rows_action_not_none": 19,
+    "rows_has_usage": 0,
+    "rows_server_timing": 0,
+    "rows_http_date": 0,
+    "rows_has_error_channel": 0,
+    "rows_api_msg_id": 0,
+    "provider_response_ids": {
+     "distinct": 0,
+     "families": {},
+     "decodable_in_window": 0,
+     "decodable_resolution": {},
+     "agrees_with_row_created_at": 0,
+     "anthropic_v7_version_and_variant": 0,
+     "sessions_with_ge1_decodable": 0
+    }
+   },
+   "empty-list": {
+    "rows": 15648,
+    "rows_non_synthetic": 0,
+    "sessions": 15628,
+    "tool_calls_n_calls_sum": 0,
+    "rows_action_not_none": 0,
+    "rows_has_usage": 0,
+    "rows_server_timing": 0,
+    "rows_http_date": 0,
+    "rows_has_error_channel": 0,
+    "rows_api_msg_id": 0,
+    "provider_response_ids": {
+     "distinct": 0,
+     "families": {},
+     "decodable_in_window": 0,
+     "decodable_resolution": {},
+     "agrees_with_row_created_at": 0,
+     "anthropic_v7_version_and_variant": 0,
+     "sessions_with_ge1_decodable": 0
+    }
+   },
+   "gemini": {
+    "rows": 546039,
+    "rows_non_synthetic": 530678,
+    "sessions": 15343,
+    "tool_calls_n_calls_sum": 551268,
+    "rows_action_not_none": 529524,
+    "rows_has_usage": 530678,
+    "rows_server_timing": 462024,
+    "rows_http_date": 462024,
+    "rows_has_error_channel": 34024,
+    "rows_api_msg_id": 462024,
+    "provider_response_ids": {
+     "distinct": 462024,
+     "families": {
+      "gemini_response_id": 462024
+     },
+     "decodable_in_window": 462024,
+     "decodable_resolution": {
+      "s": 462024
+     },
+     "agrees_with_row_created_at": 462022,
+     "anthropic_v7_version_and_variant": 0,
+     "sessions_with_ge1_decodable": 13155
+    }
+   },
+   "openai-chat": {
+    "rows": 417737,
+    "rows_non_synthetic": 411606,
+    "sessions": 13311,
+    "tool_calls_n_calls_sum": 441924,
+    "rows_action_not_none": 403768,
+    "rows_has_usage": 0,
+    "rows_server_timing": 0,
+    "rows_http_date": 0,
+    "rows_has_error_channel": 32883,
+    "rows_api_msg_id": 0,
+    "provider_response_ids": {
+     "distinct": 0,
+     "families": {},
+     "decodable_in_window": 0,
+     "decodable_resolution": {},
+     "agrees_with_row_created_at": 0,
+     "anthropic_v7_version_and_variant": 0,
+     "sessions_with_ge1_decodable": 0
+    }
+   },
+   "openai-responses": {
+    "rows": 572082,
+    "rows_non_synthetic": 572082,
+    "sessions": 19136,
+    "tool_calls_n_calls_sum": 515574,
+    "rows_action_not_none": 515476,
+    "rows_has_usage": 0,
+    "rows_server_timing": 0,
+    "rows_http_date": 0,
+    "rows_has_error_channel": 51153,
+    "rows_api_msg_id": 572082,
+    "provider_response_ids": {
+     "distinct": 572082,
+     "families": {
+      "openai_item_hex": 572082
+     },
+     "decodable_in_window": 572082,
+     "decodable_resolution": {
+      "s": 572082
+     },
+     "agrees_with_row_created_at": 572082,
+     "anthropic_v7_version_and_variant": 0,
+     "sessions_with_ge1_decodable": 19136
+    }
+   }
+  },
+  "raw_key_scan": {
+   "request_id_keys": {},
+   "correlation_keys": {
+    "responseid|other_len19": 33,
+    "responseid|other_len20": 1305,
+    "responseid|other_len22": 33396,
+    "responseid|other_len23": 427290
+   },
+   "anthropic_req_value_occurrences_anywhere": 11
+  },
+  "raw_key_scan_rows": {
+   "rows_read": 2510487,
+   "rows_skipped_H": 64219,
+   "rows_prefix_mismatch": 0
+  },
+  "wall_s": 36.6
+ },
+ "swechat_mirror": {
+  "opened": false,
+  "reason": "superseded (analysis/README.md rule 8); note only"
+ },
+ "runtime_s": 78.2
+}

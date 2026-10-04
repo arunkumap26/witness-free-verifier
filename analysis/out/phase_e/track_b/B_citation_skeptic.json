@@ -1,0 +1,1444 @@
+{
+ "key": "B_citation_skeptic",
+ "task": "Phase E Track B citation skeptic for analysis/PRIOR_ART.md: open every deciding citation behind NOVEL/PARTIAL verdicts and the B1/B2 citations; hunt missed prior art for B1 and B2; correct PRIOR_ART.md and append 'Skeptic changes'.",
+ "date": "2026-10-04",
+ "scope_note": "Nothing swarm-related was read. No transcripts were generated. Nothing was committed. Dead ends in CLAUDE_context §7 were not cited; Silent Failure is cited only for its transfer AUROCs, which PRIOR_ART already used.",
+ "coverage_summary": {
+  "citations_opened_by_skeptic": 103,
+  "confirmed": 86,
+  "confirmed_with_correction": 15,
+  "not_readable": 1,
+  "not_found": 1,
+  "nonexistent_or_misattributed_citations_found_in_PRIOR_ART": 0,
+  "note": "Every deciding citation in the PRIOR_ART verdict table and every NOVEL/PARTIAL deciding citation was re-opened, except Haber & Stornetta (image scan, unreadable) and Vanini et al. 2024 (not found; already UNVERIFIED). Supporting (non-deciding) B1/B2 citations were not all re-opened; they are listed in not_reopened_by_skeptic and keep the originating agent's opened=true status."
+ },
+ "verified": [
+  {
+   "citation": "Vanini, Hargreaves & Breitinger, 'Evaluating tamper resistance of digital forensic artifacts during event reconstruction', arXiv 2412.12814",
+   "url": "https://arxiv.org/abs/2412.12814",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "§4: 'Another concept is time anchors as discussed by [19] where an anchor is an artefact that contains two timestamps - one originating from the internal clock and one from an external source. If these timestamps do not match, this indicates tampering.'",
+   "prior_art_sections": [
+    "verdict table B2",
+    "1.1 time-anchor row"
+   ],
+   "note": "Quote confirmed, but the paper only summarises the concept in one sentence and attributes it to [19] = Vanini, Hargreaves, van Beek & Breitinger 2024 'Was the clock correct?' (FSI:DI 49:301759), which no agent (including this one) opened. 2412.12814's authors are Vanini, Hargreaves and Breitinger (no van Beek). PRIOR_ART must cite it as a secondary summary."
+  },
+  {
+   "citation": "Vanini et al. 2024, 'Was the clock correct? ... time anchors', FSI:DI 49:301759",
+   "url": "https://dfrws.org/presentation/was-the-clock-correct-exploring-timestamp-interpretation-through-time-anchors-for-digital-forensic-event-reconstruction/",
+   "opened": true,
+   "how_opened": "WebFetch (HTTP 403); alphaXiv title lookup resolved to 2412.12814 instead; WebSearch found no open copy",
+   "status": "NOT_FOUND",
+   "deciding_passage": "",
+   "prior_art_sections": [
+    "1.5"
+   ],
+   "note": "Still UNVERIFIED. Remains the main open risk to the B2 conjunction verdict."
+  },
+  {
+   "citation": "Willassen 2008, 'Hypothesis-based investigation of digital timestamps', Advances in Digital Forensics IV (IFIP 11.9), ch.7",
+   "url": "https://dl.ifip.org/db/conf/ifip11-9/df2008/Willassen08.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "Theorem 2: 'In a correct clock hypothesis ch(t) the timestamps of all causally connected events ei->ej in an observation set O must be such that the timestamp of the first event minus the deviation from a common base is not greater than the timestamp of the latter event minus the deviation from a common base'. §2: 'Gladyshev [4] studied the use of causality properties to establish a time period during which an event may have occurred ... time boundaries can be established when an event that occurred at an unknown or uncertain time is causally preceded and succeeded by events whose times of occurrence are known. When investigating a target computer, the events whose occurrence times are known must come from external sources.' §2: 'Schatz and colleagues [6] ... suggest that clock drift can be mitigated by correlating timestamps stored in the web cache with records obtained from web servers. Other researchers [1, 7] also advocate the use of correlation methods for timestamps stored on target computers that were created by other clocks (e.g., timestamps in dynamically generated web pages) ... They are able to confirm or refute hypotheses about a clock'.",
+   "prior_art_sections": [
+    "verdict table B2",
+    "1.1",
+    "1.4",
+    "3.6",
+    "4"
+   ],
+   "note": "Theorem 2 confirmed. Correction: 'antedating' does not occur in this paper; the antedating application is Willassen's ARES 2008 paper (not opened). New: §2 shows that external-time bracketing (Gladyshev & Patel 2005) and server-generated clocks inside local artifacts used to confirm or refute a local clock hypothesis (Schatz et al. 2006; Boyd & Forster 2004; Weil 2002) were already discussed together in 2008."
+  },
+  {
+   "citation": "IETF draft-ietf-ntp-roughtime-17 §8.2",
+   "url": "https://www.ietf.org/archive/id/draft-ietf-ntp-roughtime-17.html",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "§8.2 'Measurement Sequence': 'If at least one check fails, there has been a malfeasance and the client SHOULD store a report'",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": "The radius is the RADI tag defined elsewhere in the draft, not in §8.2."
+  },
+  {
+   "citation": "Jaeger ClockSkew adjuster, model/adjuster/clockskew.go @v1.60.0 (and @v1.57.0)",
+   "url": "https://raw.githubusercontent.com/jaegertracing/jaeger/v1.60.0/model/adjuster/clockskew.go",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'child already fits within the parent span, do not adjust'; warning 'max clock skew adjustment delta of %v exceeded; not applying calculated delta of %v'",
+   "prior_art_sections": [
+    "1.1",
+    "3.6"
+   ],
+   "note": "Same comment present at v1.57.0."
+  },
+  {
+   "citation": "debug-claude-session skill",
+   "url": "https://claudskills.com/skills/debug-claude-session/SKILL.md",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'Correlate by time + model, not request id.' ... 'request IDs are often absent. Use a tight UTC window around transcript timestamps plus the served decision_model'",
+   "prior_art_sections": [
+    "verdict table B2",
+    "1.1",
+    "1.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "anthropic-sdk-python types/message.py",
+   "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/message.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "id docstring: 'Unique object identifier. The format and length of IDs may change over time.' Fields: id, container, content, diagnostics, model, role, stop_details, stop_reason, stop_sequence, type, usage (no timestamp).",
+   "prior_art_sections": [
+    "verdict table B2 fact",
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "anthropic-sdk-python _response.py",
+   "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/_response.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "return self.http_response.headers.get(\"request-id\") (no parsing)",
+   "prior_art_sections": [
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "OpenAI API reference overview",
+   "url": "https://developers.openai.com/api/reference/overview",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "Backwards-compatible change: 'Changing the length or format of opaque strings, like resource identifiers'; 'x-request-id: Unique identifier for this API request (used in troubleshooting)'",
+   "prior_art_sections": [
+    "verdict table B2 fact",
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Anthropic API errors page",
+   "url": "https://platform.claude.com/docs/en/api/errors",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "Error-body example request_id 'req_011CSHoEeqs5C35K2UUqR7Fy'; 'Every API response includes a unique request-id header. This header contains a value such as req_018EeWyXxfu5pfWkrYcMdjWG.' No format statement.",
+   "prior_art_sections": [
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Anthropic API versioning page",
+   "url": "https://platform.claude.com/docs/en/api/versioning",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'For any given version with the Messages API, Anthropic preserves: Existing input parameters; Existing output parameters'",
+   "prior_art_sections": [
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Vertex prediction_service.proto",
+   "url": "https://raw.githubusercontent.com/googleapis/googleapis/master/google/cloud/aiplatform/v1/prediction_service.proto",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "response_id: 'response_id is used to identify each response. It is the encoding of the event_id.'; create_time: 'Timestamp when the request is made to the server.'",
+   "prior_art_sections": [
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Decoding Google 'ei' parameter (deedpolloffice)",
+   "url": "https://deedpolloffice.com/blog/articles/decoding-ei-parameter",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'4 bytes, in little-endian order ... 32-bit unsigned integer' followed by '3 varints'; first = Unix timestamp, second conjectured microseconds",
+   "prior_art_sections": [
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "pydantic-ai issue #2071",
+   "url": "https://github.com/pydantic/pydantic-ai/issues/2071",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'OpenAI response timestamp contradicts chronological order of message history' (second vs microsecond precision); closed as duplicate of #1996",
+   "prior_art_sections": [
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "LiteLLM responses/utils.py",
+   "url": "https://raw.githubusercontent.com/BerriAI/litellm/main/litellm/responses/utils.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "base64_encoded_id = base64.b64encode(assembled_id.encode(...)); return f\"resp_{base64_encoded_id}\" (provider, model, original id)",
+   "prior_art_sections": [
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Unfurl parse_uuid.py",
+   "url": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/unfurl/parsers/parse_uuid.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'timestamp = int(u.hex[:12], 16)' (v7)",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "RFC 9562 §6.1 and §8",
+   "url": "https://www.rfc-editor.org/rfc/rfc9562.html",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "§6.1 'Implementations MAY alter the actual timestamp.' §8 'they MUST NOT be used as security capabilities'",
+   "prior_art_sections": [
+    "1.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Weil 2002, 'Dynamic Time & Date Stamp Analysis', IJDE 1(2)",
+   "url": "https://www.utica.edu/academic/institutes/ecii/publications/articles/A048B1E4-B921-1DA3-EB227EE7F61F2053.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "'Dynamic time and date stamp analysis is a method for correlating times and dates contained within a file to the modified, accessed, and created/change of status (MAC) times of the file. This method can be used to standardize the apparent file MAC times to the actual time.'; step (7): 'A range of date and times should now be calculated.'",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "James & Jang 2017 (arXiv 1803.08205)",
+   "url": "https://arxiv.org/abs/1803.08205",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'The time-span in which the action instance may be bound is denoted as (t2 - θ) <= i.τ <= t1'; θ from a 2σ limit of measured update durations",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Haber & Stornetta 1991 (gwern PDF)",
+   "url": "https://www.gwern.net/doc/bitcoin/1991-haber.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; it is a CCITTFax image scan with no extractable text",
+   "status": "NOT_READABLE",
+   "deciding_passage": "",
+   "prior_art_sections": [
+    "1.1",
+    "1.4"
+   ],
+   "note": "Existence not in doubt (also ref [31] in NovaFabric, arXiv 2609.12582). The §6.1-6.2 two-sided-bound claim was NOT re-verified by the skeptic; it rests on B2b."
+  },
+  {
+   "citation": "Metaspike, 'Using IMAP Internal Date for forensic email authentication'",
+   "url": "https://www.metaspike.com/imap-internal-date-forensic-email-authentication/",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'if our message with the fraudulent date was added to the mailbox after the fact, it should have a larger UID value'; no tolerance discussed",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Metaspike, 'Forensic examination of manipulated email in Gmail'",
+   "url": "https://www.metaspike.com/forensic-examination-manipulated-email-gmail/",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "The new MIME boundary delimiter contained 'a timestamp reflecting the time the altered message was reintroduced to Gmail'; the manipulated message's UID is out of order",
+   "prior_art_sections": [
+    "1.1 (new)"
+   ],
+   "note": "Opened by B2b but not used in PRIOR_ART. An identifier-embedded time (MIME boundary FILETIME minted by the editing client) that exposes a backdated record: added as an analogue."
+  },
+  {
+   "citation": "TweetedAt (WS-DL blog 2019)",
+   "url": "https://ws-dl.blogspot.com/2019/08/2019-08-03-tweetedat-finding-tweet.html",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'We can extract the timestamp for a tweet ID by right shifting the tweet ID by 22 bits and adding the Twitter epoch time'",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Sharma et al., arXiv 2604.21361",
+   "url": "https://arxiv.org/abs/2604.21361",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "§3: 'We do not consider adversarial clock manipulation; skew arises from benign and unavoidable system effects.' §4.4: binary causality_health from negative spans",
+   "prior_art_sections": [
+    "1.1",
+    "3.6"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Langfuse ai-gateway telemetry/mapping.rs @f75c661d",
+   "url": "https://raw.githubusercontent.com/langfuse/langfuse/f75c661dbe8c6b85523c81486b39e8403ac2c141/ai-gateway/src/telemetry/mapping.rs",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "('upstream.request.id', &facts.inference.provider_request_id) inserted as metadata; never parsed, compared or used for ordering",
+   "prior_art_sections": [
+    "verdict table B2 app",
+    "1.1",
+    "1.3"
+   ],
+   "note": "Content confirmed; the cited line range L183-189 was not confirmed (the extractor placed it near L143-146)."
+  },
+  {
+   "citation": "Codex rollout-trace reducer/inference.rs @ab452649",
+   "url": "https://raw.githubusercontent.com/openai/codex/ab45264919aaeb8a421cc156f1a5459ef9d60b72/codex-rs/rollout-trace/src/reducer/inference.rs",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "inference.upstream_request_id = Some(upstream_request_id); stored only, never decoded or compared",
+   "prior_art_sections": [
+    "1.1",
+    "1.3"
+   ],
+   "note": "Line range L211-217 not confirmed. The 'runtime payloads are evidence, not proof that the model saw the same bytes' quote is in codex-rs/rollout-trace/README.md ('Reducer Invariants'), not in inference.rs."
+  },
+  {
+   "citation": "Codex rollout-trace README",
+   "url": "https://github.com/openai/codex/tree/main/codex-rs/rollout-trace",
+   "opened": true,
+   "how_opened": "alphaXiv read_files_from_github_repository (raw file content)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'runtime payloads are evidence, not proof that the model saw the same bytes.'; 'The reducer is strict where the raw evidence should be self-consistent: raw events are replayed in seq order; payload files must exist before events refer to them'",
+   "prior_art_sections": [
+    "3.5"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "ccusage rust/adapters/claude/src/README.md @8904e880",
+   "url": "https://raw.githubusercontent.com/ccusage/ccusage/8904e880d04e4cb4d4223457615bbe94385ac675/rust/adapters/claude/src/README.md",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'When requestId is present, both loaders deduplicate matching message and request IDs across sessions because Claude Code can copy one response into multiple session transcripts.'",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Harbor trajectories/step.py @3e30cca0",
+   "url": "https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/models/trajectories/step.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "validate_timestamp: datetime.fromisoformat(...) only; no ordering or cross-clock check",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Harbor trajectories/trajectory.py @3e30cca0",
+   "url": "https://raw.githubusercontent.com/harbor-framework/harbor/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/models/trajectories/trajectory.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'if result.source_call_id not in tool_call_ids: raise ValueError'; validators check sequential step ids, unique subagent ids, tool-call references; no temporal ordering",
+   "prior_art_sections": [
+    "3.12"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Agent Flight Recorder afr/verifier.py @28ddcde9",
+   "url": "https://raw.githubusercontent.com/mpi-dsg/agent-flight-recorder/28ddcde9c133bd10e9a500cc7e38e3d70d8baa86/afr/verifier.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'if timestamp == 0: missing.append(epoch.epoch_number)'; the anchor timestamp is never compared to log or provider time",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "OTel semantic-conventions-genai registry.yaml @e07f4eba",
+   "url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/e07f4ebacb08f56db8c4c882d117720333fbca04/model/gen-ai/registry.yaml",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "gen_ai.response.id: 'The unique identifier for the completion.' (example chatcmpl-123); no provider-side timestamp attribute",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": "PRIOR_ART says the spec stores it 'for correlation only'; the spec text says no such thing. Reworded to 'defines it only as the completion identifier'."
+  },
+  {
+   "citation": "Inspect model/_providers/util/hooks.py @9f6accda",
+   "url": "https://raw.githubusercontent.com/UKGovernmentBEIS/inspect_ai/9f6accda8dce5ccd754e6be1a22fbcee96042e82/src/inspect_ai/model/_providers/util/hooks.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "REQUEST_ID_HEADER = \"x-irid\"; request_id = uuid()",
+   "prior_art_sections": [
+    "1.3"
+   ],
+   "note": "Cited as L70; the extractor placed it near L54. Line number unconfirmed."
+  },
+  {
+   "citation": "LangSmith wrappers/_anthropic.py @61793baa",
+   "url": "https://raw.githubusercontent.com/langchain-ai/langsmith-sdk/61793baa489b316c55a53705da7332a80c2e5db0/python/langsmith/wrappers/_anthropic.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "request_id exposed as a passthrough property only",
+   "prior_art_sections": [
+    "1.3"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Vivaria shared/src/types.ts @20a6c290",
+   "url": "https://raw.githubusercontent.com/METR/vivaria/20a6c290c3c11f701af95a559d9d0c64dd6105d4/shared/src/types.ts",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "request_id: z.string().nullish() in MiddlemanModelOutput, undocumented; calledAt: uint, undocumented",
+   "prior_art_sections": [
+    "1.3",
+    "2.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "nabaos src/runtime/receipt.rs @d0a96fa9",
+   "url": "https://raw.githubusercontent.com/nabaos/nabaos/d0a96fa923ad94a956b42c99dca84c16ed1e76dc/src/runtime/receipt.rs",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "ToolReceipt fields id, tool_name, input_hash, output_hash, result_count, facts, timestamp_ms, duration_ms, signature; staleness check against the verifier's clock (MAX_RECEIPT_AGE_MS = 5 min); no provider id",
+   "prior_art_sections": [
+    "1.1",
+    "1.5"
+   ],
+   "note": "Field list matches Tool Receipts §3.2. This supports, but does not prove, that it is the paper's code."
+  },
+  {
+   "citation": "Claude Code monitoring-usage doc",
+   "url": "https://code.claude.com/docs/en/monitoring-usage",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "request_id: 'Server-assigned ID of the API request, read from the request-id response header, such as req_011...'; tool_result event carries tool_use_id, duration_ms, tool_result_size_bytes; telemetry off by default",
+   "prior_art_sections": [
+    "1.3",
+    "3.5"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Hearsay, arXiv 2609.32495",
+   "url": "https://arxiv.org/abs/2609.32495",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "App. I p.48: 'The next writer out is the model provider's own request log, the one witness the operator does not run.' App. G p.37: 'Twelve of the 14 misses on witnessed content are records that natively hold a second copy of the altered content.' 'The row hash binds writer, sequence, kind, reference and body, but not the timestamp.'",
+   "prior_art_sections": [
+    "1.1",
+    "3.5"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "NovaFabric, arXiv 2609.12582 §3.4",
+   "url": "https://arxiv.org/abs/2609.12582",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'a ULID's leading field is a Unix millisecond reading from the emitting node's own clock, so this is a convenience of representation, not independence from that clock'",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Anthropic preserved-thinking doc",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'a thinking block stays valid only while everything you sent before it is unchanged' (system prompt, tools, every earlier message); clearing or shortening an earlier tool_result invalidates later blocks; 400 'Invalid signature in thinking block. The block is bound to a different conversation.'",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Futuremark SystemInfo v4.20 (hwbot forum)",
+   "url": "https://community.hwbot.org/topic/83469-futuremark-systeminfo-v420-out",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'Added Windows RTC clock verification, results with inaccurate time measurement can now be rejected on 3DMark.com'",
+   "prior_art_sections": [
+    "1.1"
+   ],
+   "note": "PRIOR_ART asked for a re-open before quoting; done."
+  },
+  {
+   "citation": "Qin et al., 'LLM Agents Can Easily Tamper With Their Own Traces', arXiv 2609.30266",
+   "url": "https://arxiv.org/abs/2609.30266",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "fn.4: 'We focus on preventing unauthorized trace tampering. Detecting tampering and evaluating the efficacy of monitoring for flagging it are outside this study's scope.' §2: 'This study restricts the blue team to the client-side recording pipeline, excluding provider-side records and other independent telemetry.' §1: 'compliance APIs may offer independent evidence but their coverage remains limited'",
+   "prior_art_sections": [
+    "2.3",
+    "1.1 (new)"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "BOINC CreditNew.md",
+   "url": "https://raw.githubusercontent.com/wiki/BOINC/boinc/CreditNew.md",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'If PFC(J) > wu.fpops_bound, J is assigned a default PFC'; 'PFC(J) is not reliable; cheaters can falsify elapsed time or device attributes.'",
+   "prior_art_sections": [
+    "verdict table B1a",
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Sinharay 2020, 'Detection of Item Preknowledge Using Response Times', Applied Psychological Measurement",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7433384",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "tests 'whether their speed parameters are larger on the compromised items than on the non-compromised items' under the lognormal RT model",
+   "prior_art_sections": [
+    "verdict table B1a",
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Kovah et al. 2012, 'New Results for Timing-Based Attestation' (IEEE S&P 2012)",
+   "url": "https://www.ieee-security.org/TC/SP2012/papers/4681a239.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "'We generate a baseline a system by taking about 200 measurements, and then generate upper and lower control limits (average +/- 3 standard deviation)'; 'TPMs of the same model and manufacturer return a different number of ticks ... unlike software timing-based attestation, no single expected baseline can be set for different hosts; each host must be baselined independently.'",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": "The MITRE URL B1a used now returns 403; the IEEE S&P copy was opened instead. Nuance: the 'baselined independently' sentence is about TPM tick counts and is contrasted with software attestation."
+  },
+  {
+   "citation": "Zheng, Li, Tan & Wu 2013, 'User-based CPU Verification Scheme for Public Cloud Computing'",
+   "url": "https://cis.temple.edu/~wu/research/publications/Publication_files/Huanyang-cloud.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "compares actual with 'the theoretical execution time, as to determine whether the cloud is cheating or not. A time-lock puzzle is introduced'",
+   "prior_art_sections": [
+    "2.1",
+    "2.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Sekar & Maniatis 2011, 'Verifiable Resource Accounting for Cloud Computing Services' (CCSW)",
+   "url": "https://users.ece.cmu.edu/~vsekar/assets/pdf/2011CCSW-AA.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "'the client can extract key features of the workload from its own tamper-resistant execution log and check if the predicted resource consumption roughly matches the reports from the provider'",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": "A discussion-section proposal, as PRIOR_ART says."
+  },
+  {
+   "citation": "Kelly 2005, 'Detecting Performance Anomalies in Global Applications' (WORLDS)",
+   "url": "https://static.usenix.org/events/worlds05/tech/full_papers/kelly/kelly_html/anomdet.html",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "aggregate response time = sum of alpha_j x N_ij over the transaction mix; 'The relatively rare cases where actual performance disagrees with the model can reasonably be deemed anomalous.'",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "TraceAnomaly 2020 (ISSRE)",
+   "url": "https://netman.aiops.org/wp-content/uploads/2020/09/%E5%88%98%E5%B9%B3issre.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "Title 'Unsupervised Detection of Microservice Trace Anomalies through Service-Level Deep Bayesian Networks'",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "MLPerf inference compliance TEST04",
+   "url": "https://github.com/mlcommons/inference/blob/master/compliance/TEST04/README.md",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'TEST04 can be at most 10% faster than the standard performance run'",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "MLPerf inference compliance TEST09",
+   "url": "https://github.com/mlcommons/inference/blob/master/compliance/TEST09/README.md",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'ensure that models are generating outputs of expected length ... prevents cheating by truncating outputs'; bounds about +/-10% of the reference mean",
+   "prior_art_sections": [
+    "2.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Tsafrir, Etsion & Feitelson 2007 (TPDS)",
+   "url": "https://www.cs.huji.ac.il/~feit/papers/Pred07TPDS.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "'a very simple runtime predictor that just averages the runtimes of the last two jobs by the same user; counterintuitively, our results indicate that using recent data is more important than mining the history for similar jobs'",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "DeepLog (CCS 2017)",
+   "url": "https://users.cs.utah.edu/~lifeifei/papers/deeplog.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "parameter value vector includes 'the time elapsed between consecutive log entries'; anomaly if the MSE falls outside the confidence interval of 'a Gaussian distribution' of validation MSEs; threat model assumes the log's integrity is protected",
+   "prior_art_sections": [
+    "2.1",
+    "2.3"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Fu et al. 2009, 'Execution Anomaly Detection in Distributed Systems through Unstructured Log Analysis' (ICDM)",
+   "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/DM790-CR.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "'We use the transition time between adjacent states ... We use a Gaussian model to present the distribution'",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Landauer et al., arXiv 2207.03820 Table II",
+   "url": "https://arxiv.org/abs/2207.03820",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "PP-2 'EI' (event interval time) appears for DeepLog, SwissLog, Studiawan et al. [57], ATT-GRU and LogNL: 5 of 62",
+   "prior_art_sections": [
+    "2.3"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "van der Linden & Guo 2008, Psychometrika (abstract)",
+   "url": "https://www.cambridge.org/core/journals/psychometrika/article/abs/bayesian-procedures-for-identifying-aberrant-responsetime-patterns-in-adaptive-testing/85CFBD47811965DD943573EB7905CD37",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "lognormal RT model; Bayesian predictive checks",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "CacheWise, arXiv 2606.16824 §5.2",
+   "url": "https://arxiv.org/abs/2606.16824",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "estimates expected tool-call completion 'by analyzing distributions of tool execution durations with similar metadata m from historical sessions' using TF-IDF clusters of arguments; Table 3: python -c P50 0.1 s, mypy 10 s, docker compose 22 s",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": "Also reports that InferCept estimates tool durations by a session-local moving average (InferCept primary not opened)."
+  },
+  {
+   "citation": "Continuum, arXiv 2511.02230 §4.2",
+   "url": "https://arxiv.org/abs/2511.02230",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'we estimate P(τ, f) using the empirical CDF derived from historical tool-call records S[f]' to set a KV-cache TTL",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Ask the Tool, Don't Guess, arXiv 2609.18849",
+   "url": "https://arxiv.org/abs/2609.18849",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "Fig. 3: recorded-to-replay median 0.12x; Kendall τ -0.04 (idle replay). 'A history of past calls does help, but only when it was collected in the same environment the call now runs in'",
+   "prior_art_sections": [
+    "2.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "crewAI PR #3388",
+   "url": "https://github.com/crewAIInc/crewAI/pull/3388",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "Closed 2026-03-19, unmerged; head file tool_execution_verifier.py: 'if evidence.execution_time < 0.01:  # Less than 10ms' -> LIKELY_FAKE; output_size recorded, never used in a decision",
+   "prior_art_sections": [
+    "2.1",
+    "2.2",
+    "2.4"
+   ],
+   "note": "Head file opened at raw.githubusercontent.com/crewAIInc/crewAI/7be9270565ab704a2f333b67d3c17b2ef3412dcc/src/crewai/utilities/tool_execution_verifier.py"
+  },
+  {
+   "citation": "crewAI PR #4077 (follow-up to #3388)",
+   "url": "https://github.com/crewAIInc/crewAI/pull/4077",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'Fix Issue #3154: Detect Tool Fabrication at Parser Level': 'Check for fabrication: LLM cannot include both Action and Final Answer'; raises OutputParserError; closed unmerged 2026-04-28",
+   "prior_art_sections": [
+    "3.4 (new)"
+   ],
+   "note": "Not in PRIOR_ART. A harness rule that rejects inline-fabricated tool cycles at parse time: the closest internal embodiment of N2's inline-fabrication class (prevention, not a log audit)."
+  },
+  {
+   "citation": "METR 2025 reward-hacking blog",
+   "url": "https://metr.org/blog/2025-06-05-recent-reward-hacking/",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "'On RE-Bench tasks, we looked for anomalously high-scoring runs and manually inspected them'; HCAST used an LLM monitor",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": "The page describes high-score triage. It does not describe a solution-runtime or timing check. Reworded."
+  },
+  {
+   "citation": "METR/Redwood Hugging Face incident blog 2026-08-26",
+   "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'the command returned immediately'; 'The transcripts in the dataset included approximate timestamps for the start and end, but did not include timestamps for individual agent actions.'; SPOOFTEST mismatch; 'we cannot rule out that we missed instances'",
+   "prior_art_sections": [
+    "2.3"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Early Bird, arXiv 2409.20002",
+   "url": "https://arxiv.org/abs/2409.20002",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "§IV-D: 'when the cache is hit, the TTFT remains consistent, regardless of the request length, whereas when the cache is missed, TTFT increases almost linearly as the length of the request grows'; document-probing attack: 2.0 s threshold, 'average accuracy of 89%' (Fig. 11)",
+   "prior_art_sections": [
+    "verdict table B1b",
+    "2.2"
+   ],
+   "note": "The constant-vs-linear observation (§IV-D measurement study) and the thresholded 89% attack (document summarisation, Fig. 11) are separate parts of the paper. Cite both."
+  },
+  {
+   "citation": "Time Will Tell, arXiv 2412.15431 Table 3",
+   "url": "https://arxiv.org/abs/2412.15431",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "Pearson(token count, generation time): Tower 1.000, M2M100 0.990, MBart50 0.989, Gemma2 0.987, GPT-4o 0.370",
+   "prior_art_sections": [
+    "2.2",
+    "2.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "DistServe, arXiv 2401.09670",
+   "url": "https://arxiv.org/abs/2401.09670",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'time to first token (TTFT) for the prefill phase and time per output token (TPOT) of each request for the decoding phase'",
+   "prior_art_sections": [
+    "2.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "claude-code issue #67847",
+   "url": "https://github.com/anthropics/claude-code/issues/67847",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'All fabricating turns: unusually long thinking-heavy responses (3.9k-5.5k output tokens, 60-90s)'; no correlation analysis; issue open",
+   "prior_art_sections": [
+    "2.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Tool Receipts / NabaOS, arXiv 2603.10060 §3.2",
+   "url": "https://arxiv.org/abs/2603.10060",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "signature: HMAC-SHA256(id | tool_name | input_hash | output_hash | timestamp_ms, SECRET_KEY); duration_ms and result_count are outside the signed string",
+   "prior_art_sections": [
+    "2.2"
+   ],
+   "note": "The paper's prose says result count is covered, which contradicts its own listing. Its reference 'Tharakan 2025, arXiv:2503.11221' resolves to an unrelated image-quality paper (A-FINE); do not cite Tharakan via Tool Receipts."
+  },
+  {
+   "citation": "Dubey 2026, arXiv 2608.02464",
+   "url": "https://arxiv.org/abs/2608.02464",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "§11(6): 'wall-clock latency features are machine-specific and are excluded from the shipped configuration'; tool_contract 'trips on 0 of 1825 healthy episodes, flags 46% of context_corruption'",
+   "prior_art_sections": [
+    "2.1",
+    "3.12"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "SoK: Honeypots & LLMs, arXiv 2510.25939",
+   "url": "https://arxiv.org/abs/2510.25939",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "Table 1, Outputs & Behavior examples: 'response timing anomalies'; LLM Fail: 'Cannot reproduce temporal fidelity or real-time dynamics'; §3.1.1 Guan et al.: 'the LLM responds in a manner inconsistent with history'",
+   "prior_art_sections": [
+    "2.1",
+    "3.10"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Honeyval, arXiv 2605.29963 §5.2",
+   "url": "https://arxiv.org/abs/2605.29963",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'we observe no clear correlation between the honeypots' latency or functional fidelity and the detection rates ...; upon inspecting the hacking agents' logs, we do find that they repeatedly cite response latency and timeouts as evidence'",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "ShellGames, arXiv 2606.17986",
+   "url": "https://arxiv.org/abs/2606.17986",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "speculative execution cuts mean response time from 1.09 s to 0.71 s; latency 'may alert the adversary'; no output-length scaling analysis",
+   "prior_art_sections": [
+    "2.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Condrey, arXiv 2601.17280",
+   "url": "https://arxiv.org/abs/2601.17280",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'all attacks achieve >= 99.8% evasion rates against five classifiers'",
+   "prior_art_sections": [
+    "2.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Jones & Bergen, arXiv 2405.08007",
+   "url": "https://arxiv.org/abs/2405.08007",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "delay = 1 + N(0.3,0.03) x n_char + ...: 'a delay of around 0.3s per character'",
+   "prior_art_sections": [
+    "2.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Xu & Malkin, arXiv 2607.00403",
+   "url": "https://arxiv.org/abs/2607.00403",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'screening out participants who complete surveys much more quickly than others ... is not sufficient in the age of AI'",
+   "prior_art_sections": [
+    "2.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Leiner 2019, Survey Research Methods 13(3)",
+   "url": "https://ojs.ub.uni-konstanz.de/srm/article/view/7403",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "'careless responses are most reliably identified by questionnaire completion time' but 'the tested indicators do not allow for detecting intended faking'",
+   "prior_art_sections": [
+    "2.4"
+   ],
+   "note": "Nuance: completion time is the best indicator of careless responding; it fails only for intended faking."
+  },
+  {
+   "citation": "Palisade LLM Agent Honeypot, arXiv 2410.13919",
+   "url": "https://arxiv.org/abs/2410.13919",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'the LLM agents typically replied within 1.7 second'",
+   "prior_art_sections": [
+    "3.7"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "LogGP tech report UCSB 1995-09",
+   "url": "https://cs.ucsb.edu/research/tech-reports/1995-09",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "abstract: G 'captures the bandwidth obtained for long messages'",
+   "prior_art_sections": [
+    "2.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Velasco, Tsirtsis & Gomez-Rodriguez, arXiv 2510.05181 §3.2",
+   "url": "https://arxiv.org/html/2510.05181",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "E = len(T~) - EstimateLength(Q, str(T~), P^M, P^k); requires 'the next-token probability that the LLM M assigns'",
+   "prior_art_sections": [
+    "3.1"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Paritok / Chen & Shi, arXiv 2609.22114 Table 2",
+   "url": "https://arxiv.org/html/2609.22114",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "Table 2: 'Turn-aligned prefix, content compression only (Sonnet/Claude Code, sparkline task). The per-turn saving is the compressed file slice (~2K), all cache-read.'; the arms 'thereafter differ by only ~1.5-2K tokens/turn - exactly the compressed file slice'",
+   "prior_art_sections": [
+    "3.1"
+   ],
+   "note": "This is a between-arm difference equal to the compressed slice, not a within-session 'input delta equals appended slice' check. Reworded."
+  },
+  {
+   "citation": "KeyPooling, arXiv 2608.17485 §II-A",
+   "url": "https://arxiv.org/html/2608.17485",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "'We primarily use the cached input count, a documented integer visible through the API'; 'Set PP to a purported leaked prompt, and a positive separates a genuine deployment from a fabrication.'; '... so resolution belongs to the route' (with Table II, §VI-B)",
+   "prior_art_sections": [
+    "3.2"
+   ],
+   "note": "The cited 'Table XI' was not located in the HTML opened; the route-granularity statement sits with Table II §VI-B there."
+  },
+  {
+   "citation": "CacheTracer, arXiv 2608.20732",
+   "url": "https://arxiv.org/html/2608.20732",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "Assumption 1: 'The reported cached-token count reflects genuine reuse of state deposited by our earlier request.'; 3 false hits in 5,059 cold-prompt observations",
+   "prior_art_sections": [
+    "3.2"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "ReAct hotpotqa.ipynb",
+   "url": "https://raw.githubusercontent.com/ysymyth/ReAct/master/hotpotqa.ipynb",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "thought_action = llm(prompt + f\"Thought {i}:\", stop=[f\"\\nObservation {i}:\"])",
+   "prior_art_sections": [
+    "3.4"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Strider GhostBuster, MSR-TR-2005-25",
+   "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2005-25.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "'Detecting Stealth Software with Strider GhostBuster' ... 'we adopt a cross-view diff'",
+   "prior_art_sections": [
+    "3.5"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Magnet Forensics $FN timestomp blog",
+   "url": "https://www.magnetforensics.com/blog/expose-evidence-of-timestomping-with-the-ntfs-timestamp-mismatch-artifact-in-magnet-axiom-4-4/",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'$FN timestamps in the MFT record are only modified by the Windows kernel and will generally go untouched by antiforensic timestomping tools'",
+   "prior_art_sections": [
+    "3.5"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Zhang & Conrad 2014, Survey Research Methods 8(2)",
+   "url": "https://ojs.ub.uni-konstanz.de/srm/article/view/5453/5344",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "'we set the speeding threshold as 300 milliseconds (msec) per word'",
+   "prior_art_sections": [
+    "3.7"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Google patent US8271865",
+   "url": "https://patents.google.com/patent/US8271865",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'may also be used to detect automated surfing systems from actual users that are reading a document'",
+   "prior_art_sections": [
+    "3.7"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Rubenstein, Kurose & Towsley, UMass TR 99-66",
+   "url": "https://web.cs.umass.edu/publication/docs/1999/UM-CS-1999-066.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "'techniques based on loss or delay observations at end-hosts to infer whether or not two flows experiencing congestion are congested at the same network resources'",
+   "prior_art_sections": [
+    "3.8"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "RAFT, IACR ePrint 2010/214",
+   "url": "https://eprint.iacr.org/2010/214",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'The larger the number of hard drives across which a file is distributed, the faster the read-request response.'",
+   "prior_art_sections": [
+    "3.8"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "AdvancedShelLM, arXiv 2606.27990 §5.3",
+   "url": "https://arxiv.org/html/2606.27990",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'I did an 'ls' in /var/ twice, and got different results'",
+   "prior_art_sections": [
+    "3.9"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Berenson et al. 1995, arXiv cs/0701157",
+   "url": "https://arxiv.org/abs/cs/0701157",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "title and authors confirmed; abstract names Non-Repeatable Reads",
+   "prior_art_sections": [
+    "3.9"
+   ],
+   "note": "A2's formal definition is not on the abstract page; not re-verified."
+  },
+  {
+   "citation": "Bitter Harvest, Vetterl & Clayton, WOOT 2018",
+   "url": "https://www.usenix.org/system/files/conference/woot18/woot18-paper-vetterl.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "status": "CONFIRMED",
+   "deciding_passage": "'we differentiate between Kippo (\"bad packet length *\", ...), Cowrie (\"Packet corrupt\\n\") and OpenSSH (\"Packet corrupt\\x00\"). OpenSSH does have a similar error message to Kippo, but with a capital B'; 'identify 7 605 honeypot instances'",
+   "prior_art_sections": [
+    "3.10"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "ToolEmu, arXiv 2309.15817",
+   "url": "https://arxiv.org/abs/2309.15817",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "status": "CONFIRMED",
+   "deciding_passage": "Table A.1 Consistency: 'Emulated outputs must be consistent with those in previous trajectory' -> Critical; Table B.1 Critical Issues 8.1% (standard) / 14.4% (adversarial); Table 4 critical-issue-free 91.9% / 85.6%",
+   "prior_art_sections": [
+    "3.10"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "CEF/Thanatosis, arXiv 2606.14831",
+   "url": "https://arxiv.org/html/2606.14831",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "§5.2: 'each of these is a hypothesis rather than a validated technique'; §4.6: the stack-trace behaviour 'did not recur under our progressive exit-sealing framework'",
+   "prior_art_sections": [
+    "3.10"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "ETF, arXiv 2410.14748",
+   "url": "https://arxiv.org/abs/2410.14748",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'utilises static program analysis to identify code entities from the program and uses LLMs to map and verify these entities and their intents within generated code summaries'",
+   "prior_art_sections": [
+    "3.10"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Nirujan et al., arXiv 2605.24137",
+   "url": "https://arxiv.org/abs/2605.24137",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "classifier over bug-report summaries; not an error-fidelity check",
+   "prior_art_sections": [
+    "3.10"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "TraceProbe, arXiv 2607.06184",
+   "url": "https://arxiv.org/html/2607.06184",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'structured plan absence is higher for Claude Code (49.6% vs 0.4%)'; 'detector thresholds should be audited on the target benchmark before conclusions are reused'; scaffold adapters for Claude Code, Codex and OpenCode; Zenodo 10.5281/zenodo.20789918 (the arXiv page shows the arXiv licence; no dataset licence shown)",
+   "prior_art_sections": [
+    "3.11"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "FreeLog, arXiv 2507.19806 Table 1",
+   "url": "https://arxiv.org/html/2507.19806",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "BGL->HDFS zero-shot F1 3.32 (PLELog), 4.35 (LogRobust) vs in-target 68.38, 76.77",
+   "prior_art_sections": [
+    "3.11"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "Silent Failure, arXiv 2606.09863 (transfer results)",
+   "url": "https://arxiv.org/html/2606.09863",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "LOMO 0.904 (TF-IDF+LR) / 0.913 (TF-IDF+XGBoost); LODO 0.696 / 0.665; task-disjoint 0.849 / 0.825; 'XGBoost inference on CPU takes 1.19 ms'",
+   "prior_art_sections": [
+    "3.11",
+    "4"
+   ],
+   "note": "Corroborates B1d/B3c: the version opened reports TF-IDF+XGBoost and an XGBoost latency, which contradicts CLAUDE_context §7 ('TF-IDF only - no XGBoost'). The extractor did not pin the arXiv version."
+  },
+  {
+   "citation": "SWE-bench sb_submit_verify.py (local copy)",
+   "url": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/sources/sb_submit_verify.py",
+   "opened": true,
+   "how_opened": "local file read (grep)",
+   "status": "CONFIRMED",
+   "deciding_passage": "'No Docker and no re-execution: the recorded test output is the evidence'",
+   "prior_art_sections": [
+    "3.12"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "aider base_coder.py @5dc9490b",
+   "url": "https://raw.githubusercontent.com/Aider-AI/aider/5dc9490b/aider/coders/base_coder.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "chat_completion_call_hashes; resp_hash = hashlib.sha1(json.dumps(resp_hash, sort_keys=True).encode()): model I/O only",
+   "prior_art_sections": [
+    "3.12"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "mini-swe-agent actions_toolcall.py @04d809ce",
+   "url": "https://raw.githubusercontent.com/SWE-agent/mini-swe-agent/04d809ceab9df28f9adaed044884180159172930/src/minisweagent/models/utils/actions_toolcall.py",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED",
+   "deciding_passage": "not_executed = {\"output\": \"\", \"returncode\": -1, \"exception_info\": \"action was not executed\"}",
+   "prior_art_sections": [
+    "3.12"
+   ],
+   "note": ""
+  },
+  {
+   "citation": "HF melissapan/swe-bench-lite-agent-traces-v14 SCHEMA.md",
+   "url": "https://huggingface.co/datasets/melissapan/swe-bench-lite-agent-traces-v14/blob/main/SCHEMA.md",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "status": "CONFIRMED_WITH_CORRECTION",
+   "deciding_passage": "'deterministic public projection of gateway receipts. Authentication headers, response headers, provider request IDs, body artifact names, and raw request/response payloads are excluded.' 'Payload digests and byte counts remain.'",
+   "prior_art_sections": [
+    "3.12"
+   ],
+   "note": "The schema excludes request ids and headers. It does not say timestamps are dropped; B5d's 'no timestamps' is an observation of the data."
+  }
+ ],
+ "not_reopened_by_skeptic": [
+  "B2b classics not re-opened (existence not in doubt; content claims rest on B2b): RFC 3161, Schneier & Kelsey 1999, Ma & Tsudik 2008, Crosby & Wallach 2009, Lamport 1978, Mattern 1989, RFC 5905, Moon/Skelly/Towsley 1998, Kohno 2005, Spanner 2012, Elle 2020, Zipkin clock-skew.js, AWS X-Ray trace id, RFC 9111, RFC 7519, RFC 6376, dfdatetime uuid_time, Magnet Google-URL timestamps, Breitinger 2025 SoK, Vanini 2025 user study (2501.00175), Willassen e-Forensics 2008.",
+  "B2c systems not re-opened (15 of 25): Helicone (2 files), W&B Weave openai_sdk.py, Braintrust lingua/bt-daemon/js wrapper, OpenInference, OpenLLMetry, OTel http registry, Inspect _model_call.py, SWE-bench run_api.py, SWE-agent models.py, mini-swe-agent litellm_model.py, OpenHands (2 files), Harbor devin.py/claude_code.py, codex client.rs, Tracekit hook.py, NovaFabric _anthropic.py hook, getmaxim docs. The skeptic spot-checked 10 systems (Langfuse, Codex, Harbor, AFR, ccusage, LangSmith, Vivaria, Inspect, nabaos, OTel GenAI); all are consistent with 'store or correlate only'.",
+  "B2a: OpenAI cookbook notebooks, openai-python/openai-node source, Google python-genai, Kotlin docs, the release-notes page, rate-limits/tool-use/streaming/messages pages, unfurl parse_google/parse_base58: not re-opened.",
+  "B1a sources not re-opened: S02 US9177153, S04 2011.07400, S06, S07 TDR OSDI14 page, S08 US10437993, S09 CCS07, S10 Gu 2502.07776 (TAKEN row), S17, S18 2507.22956, S19 2511.12468, S21 Prolific, S24-S26, S28 aberrance, S29, S30 Stripe, S31 Entra, S32 impossible-day, S33 CTIT, S35, S40 2609.20370.",
+  "B1b sources not re-opened: VeriCount, Gow 2013, Pip, Magpie, Daly 2020, Datadog Watchdog, Dynatrace, New Relic, Datadog LLMObs, Dynatrace MCP, MLPerf paper 1911.02549, TEST01, Bisong, Marcus, FAIR, Taxonomist, AIOps OOPS.",
+  "B1c sources not re-opened: deep-loglizer, AdaLog, Soldani & Brogi, Distalyzer, Gu prompt-cache audit (TAKEN row), Carlini & Nasr, LLMs Have Rhythm, model-substitution audit, Mehta keystroke, Davalos, Westwood/404 Media, Veselovsky, LEDGER, Trofimov & Novikov.",
+  "B1d sources not re-opened: Redwood HF page, Inspect event/_tool.py, inspect_scout, Vivaria pyhooks, SWE-agent agents.py, SWE-bench infra_failure.py, OpenHands stuck detector, Harbor tree, Docent telemetry.py, crewAI #3154, claude-code #67730, docent-judge-false-claim, OverclaimBench, Plans They Abandon, 2609.34262, 2609.36308, ACE, BenchShield, 2609.15397, 2605.08545, MALT card, LessWrong post, dev.to post, and the AFR/Tracekit/SINGED/Inspect Scout/LEDGER/SLEIGHT/Agent-Diff html pages.",
+  "B3 supporting (non-deciding) citations not re-opened: Hoque 2605.30040, CacheProbe 2605.30613, Anthropic prompt-caching doc, Gu 2502.07776, TraceLab 2606.30560, Ristenpart 2009, PANDA 2511.08803, shelLM 2309.00155, StableToolBench 2403.07714, SelfCheckGPT, EC-Agent 2610.00327, Rouxii 2609.26555, Spracklen 2406.10279, Transluce o3 page, Sethi 2609.14758, Singh 2607.19449, AgentGuard 2609.16287, CroSysLog 2412.15445, M4, RAID, Orgad, Pacchiardi, ImpossibleBench, TRAIL."
+ ],
+ "missed_prior_art": [
+  {
+   "item": "Email security practice: an InternetMessageId-embedded date checked against the receiving server's recorded processing time (Sergio Albea KQL hunting query, 2026)",
+   "relevant_to": [
+    "B2 conjunction"
+   ],
+   "url": "https://www.kqlsearch.com/query/Detect%20Potential%20Malicious%20Emails%20Based%20On%20Internetmessageid%20Dates&cmoast5p700023nlo25dqehv1",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked); repo github.com/Sergio-Albea-Git/Threat-Hunting-KQL-Queries confirmed to exist, the specific file was not located in it",
+   "what_it_does": "A passive, uninstrumented check over a recorded log (Defender EmailEvents). It extracts the yyyyMMdd date embedded in an identifier minted by the sending system and flags messages whose recorded processing Timestamp falls on a later day.",
+   "what_it_does_not": "One-sided; day-granularity tolerance; no causal bracket between two local events; no per-stream offset estimate. The id is the less-trusted clock, so the trust direction is the reverse of B2.",
+   "deciding_passage": "'InternetMessageIds contain a date integrated' ... '| where Timestamp > Extracted_IMF_Date_dt' ... case1 = iff(IMF contains Timestamp_YYYYMMDD, \"valid\", \"other\")",
+   "effect_on_verdict": "Strengthens 'do not claim the method': comparing an id-embedded time with a recorded log stamp, on recorded logs, is already practised in email threat hunting. The B2 conjunction stays PARTIAL by PRIOR_ART's definition (no single source has all parts) but is near-TAKEN."
+  },
+  {
+   "item": "Gladyshev & Patel 2005 external-time bracketing plus Schatz et al. 2006 / Boyd & Forster 2004 / Weil 2002 server-clock correlation, as summarised together in Willassen 2008 §2",
+   "relevant_to": [
+    "B2 conjunction"
+   ],
+   "url": "https://dl.ifip.org/db/conf/ifip11-9/df2008/Willassen08.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf and grepped",
+   "what_it_does": "Establishes in 2005-2008 forensics (i) bounding an uncertainly timed local event between causally preceding and succeeding events whose times come from external sources, and (ii) correlating server-generated timestamps cached on the target with server records to confirm or refute a local clock hypothesis. Willassen adds clock hypotheses with a deviation function, of which a constant offset is the simplest case.",
+   "what_it_does_not": "No identifier-embedded clock; manual and per-case; no LLM or agent logs; no automated per-record flag.",
+   "deciding_passage": "'time boundaries can be established when an event that occurred at an unknown or uncertain time is causally preceded and succeeded by events whose times of occurrence are known. When investigating a target computer, the events whose occurrence times are known must come from external sources.'",
+   "effect_on_verdict": "Every ingredient of the B2 conjunction except 'the external clock is embedded in a provider-minted id' already co-occurs in one 2008 paper's related-work section. Kept PARTIAL, labelled near-TAKEN."
+  },
+  {
+   "item": "Metaspike Gmail manipulation case: a MIME-boundary FILETIME exposes the true edit time of a backdated message",
+   "relevant_to": [
+    "B2 id-embedded time"
+   ],
+   "url": "https://www.metaspike.com/forensic-examination-manipulated-email-gmail/",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "what_it_does": "Reads a timestamp embedded in an identifier-like token (the MIME boundary delimiter) to show that a message dated in the past was re-introduced later; combined with an out-of-order UID.",
+   "what_it_does_not": "No tolerance; manual; not an LLM-provider id; the token is minted by the editing client.",
+   "deciding_passage": "'the new delimiter contained a timestamp reflecting the time the altered message was reintroduced to Gmail'",
+   "effect_on_verdict": "Adds a forensic precedent for reading an id-embedded time against a record's claimed time. No verdict change."
+  },
+  {
+   "item": "Luo et al., 'Rewriting the Response Path: Silent Tampering and Provider-Signed Defense in BYOK LLM Agents', arXiv 2605.02187",
+   "relevant_to": [
+    "B2 provider-as-witness",
+    "B2 threat model",
+    "B3.1/B3.4 token accounting"
+   ],
+   "url": "https://arxiv.org/abs/2605.02187",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "what_it_does": "Shows that an authorized relay can rewrite execution-bearing response fields (tool_use names and arguments) after alignment and re-polish the surrounding text with the same model. Proposes sign-c: provider-side signatures over the canonical execution contract, verified by a local shim.",
+   "what_it_does_not": "Does not use provider request ids or provider clocks; needs provider cooperation (new signatures) and instrumentation; not a retrospective log check.",
+   "deciding_passage": "'Observation 1: Post-hoc detection cannot distinguish tampered from vanilla responses.' 'Providers attach no verifiable integrity tags'. §8: 'per-turn token accounting is a complementary detection signal' (same-model polishing roughly doubles token usage on tampered turns).",
+   "effect_on_verdict": "No change to B2's NOVEL application (no provider-id clock). It belongs in the provider-as-witness row and in the threat-model boundary: a relay that rewrites fields passes the request-id bracket because the id passes through unchanged. It also supports token accounting as a tamper signal (B3.1/B3.4)."
+  },
+  {
+   "item": "Qin et al. 2609.30266 on provider-side records",
+   "relevant_to": [
+    "B2 provider-as-witness"
+   ],
+   "url": "https://arxiv.org/abs/2609.30266",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (returned PDF page text read directly)",
+   "what_it_does": "Recommends recording model API exchanges through an independent interception server outside the agent host. Names provider compliance APIs as independent but limited evidence. Demonstrates BASH_ENV and shell-snapshot tool-call spoofing across harnesses.",
+   "what_it_does_not": "Explicitly excludes provider-side records from its blue team and leaves detection out of scope.",
+   "deciding_passage": "'This study restricts the blue team to the client-side recording pipeline, excluding provider-side records and other independent telemetry.' 'compliance APIs may offer independent evidence but their coverage remains limited'",
+   "effect_on_verdict": "Supports the provider-as-witness PARTIAL row: provider records are named as an independent witness but not built. No change."
+  },
+  {
+   "item": "crewAI PR #4077 (parser-level fabrication detection)",
+   "relevant_to": [
+    "B3.4 N2",
+    "B1 context"
+   ],
+   "url": "https://github.com/crewAIInc/crewAI/pull/4077",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "what_it_does": "Rejects an LLM output that contains both an Action and a Final Answer, i.e. an inline-fabricated tool cycle, at parse time.",
+   "what_it_does_not": "Live and preventive; never merged; no token accounting; no audit of recorded logs.",
+   "deciding_passage": "'Check for fabrication: LLM cannot include both Action and Final Answer. This prevents Issue #3154 where LLM fabricates tool execution.'",
+   "effect_on_verdict": "Adds a harness-internal embodiment of the inline-fabrication class that N2 targets. B3.4 stays PARTIAL."
+  },
+  {
+   "item": "Kelly 2005 and Sekar & Maniatis 2011 (already cited), re-read",
+   "relevant_to": [
+    "B1a"
+   ],
+   "url": "https://static.usenix.org/events/worlds05/tech/full_papers/kelly/kelly_html/anomdet.html",
+   "opened": true,
+   "how_opened": "WebFetch (small-model extraction; quotes requested verbatim, not byte-checked)",
+   "what_it_does": "Kelly models aggregate response time over the transaction mix and treats disagreement with the model as anomalous; Sekar & Maniatis propose checking workload-predicted consumption against provider reports.",
+   "what_it_does_not": "Trusted logs and performance faults, not fabricated records or agent tool calls.",
+   "deciding_passage": "'The relatively rare cases where actual performance disagrees with the model can reasonably be deemed anomalous.'",
+   "effect_on_verdict": "Confirms B1(a) PARTIAL. No change."
+  }
+ ],
+ "search_log": [
+  "WebSearch: Metaspike Gmail MIME boundary timestamp decode forensic",
+  "WebSearch: email forensics Message-ID embedded timestamp compare Date header backdated detection",
+  "WebSearch: Discord snowflake timestamp verify screenshot fake message forensic",
+  "WebSearch: email forensics Received header timestamps chronological order clock skew tolerance",
+  "WebSearch: Anthropic request id req_011 timestamp decode UUIDv7 base58 (no public decoding of Anthropic ids found)",
+  "WebSearch: OpenAI chatcmpl id contains timestamp base62 decode created (no public decoding found)",
+  "WebSearch (extended): verify agent transcript timestamps using LLM API response id provider timestamp tamper detection",
+  "WebSearch: detect LLM honeypot sleep command returns too fast execution time fingerprint",
+  "WebSearch (extended): agent fabricated tool result detection execution time OR duration too fast 2026",
+  "WebSearch: MongoDB ObjectId embedded timestamp forensic detect backdated createdAt tampering (blog-level tips only)",
+  "WebSearch: 'cryptographic wall' verifying LLM sandbox execution Tharakan (not found)",
+  "WebSearch: 'Was the clock correct' time anchors Vanini pdf (no open copy)",
+  "alphaXiv discover: LLM honeypot response time vs output length fingerprinting",
+  "alphaXiv discover: detecting fabricated tool outputs via tool execution timing",
+  "alphaXiv discover: tampered or spoofed agent transcripts via timestamps or provider metadata",
+  "alphaXiv discover: execution-time plausibility checks for fabricated results",
+  "Opened and rejected as not prior art for B1/B2: Chameleon 2608.15407 (no timing-vs-workload check), 2608.28439 (tool-call-record check, instrumented), A2A-ForensicTrace 2609.33924 (signed receipts), zkAgent IACR ePrint 2026/199 (zkTLS, instrumented)"
+ ],
+ "verdict_changes": [
+  {
+   "item": "B2 conjunction sub-row (§1.1)",
+   "before": "PARTIAL",
+   "after": "PARTIAL, labelled near-TAKEN as a method",
+   "evidence": "Willassen 2008 §2 (Gladyshev & Patel 2005 bracketing plus Schatz et al. 2006 server-clock correlation) and the Albea 2026 KQL id-date check; see missed_prior_art 1-2"
+  },
+  {
+   "item": "B2 time-anchor sub-row (§1.1) and verdict table B2 row",
+   "before": "TAKEN; deciding citation arXiv 2412.12814 'time-anchor definition'",
+   "after": "TAKEN; deciding citation re-labelled as a one-sentence secondary summary; the primary (Vanini et al. 2024) is UNVERIFIED",
+   "evidence": "2412.12814 §4 attributes the definition to its ref [19]"
+  },
+  {
+   "item": "Futuremark row (§1.1)",
+   "before": "TAKEN (narrow), 're-open before quoting'",
+   "after": "TAKEN (narrow), quote confirmed",
+   "evidence": "hwbot forum post re-opened"
+  },
+  {
+   "item": "All other verdicts",
+   "before": "unchanged",
+   "after": "unchanged",
+   "evidence": "Deciding citations confirmed; wording corrections only (listed in PRIOR_ART 'Skeptic changes')"
+  }
+ ],
+ "REASONING_not_findings": [
+  "B2's application-level NOVEL verdict survives. No opened source, including the new email, forensic and BYOK-relay sources, decodes an LLM-provider request or message id as a clock for agent tool-log stamps.",
+  "The B2 conjunction is PARTIAL only because no single source combines an identifier-embedded external clock with a causal bracket and an offset allowance. Every pair of these ingredients is published, and email security already compares id-embedded dates with recorded log stamps. The writeup should present B2 as 2005-2008 forensic clock-correlation methods applied to a new clock source, not present the bracket test as a contribution.",
+  "Luo et al. 2605.02187 sharpens the threat-model boundary. A relay that rewrites tool_use fields leaves the provider request id intact, so the B2 bracket cannot see field-level response tampering; only retiming and misbinding are in scope.",
+  "B1(a) and B1(b) verdicts are unchanged. The closest agent-domain timing rule is still crewAI #3388 (a fixed 10 ms floor, never merged). No source correlates a workload-conditioned residual with output size."
+ ],
+ "files_written": [
+  "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\B_citation_skeptic.json"
+ ]
+}

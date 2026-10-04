@@ -1,0 +1,103 @@
+{
+ "id": "SWE-Gym/OpenHands-Verifier-Trajectories",
+ "sha": "d47f6cab996d3a5f7ba517c0be57595f4f6201ce",
+ "gated": false,
+ "private": false,
+ "lastModified": "2024-12-23T03:43:37.000Z",
+ "license_tags": [],
+ "cardData_license": null,
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "train.mixture",
+     "path": "data/train.mixture-*"
+    },
+    {
+     "split": "train.onpolicy",
+     "path": "data/train.onpolicy-*"
+    },
+    {
+     "split": "train.offpolicy",
+     "path": "data/train.offpolicy-*"
+    }
+   ]
+  }
+ ],
+ "dataset_info": {
+  "features": [
+   {
+    "name": "messages",
+    "list": [
+     {
+      "name": "content",
+      "dtype": "string"
+     },
+     {
+      "name": "role",
+      "dtype": "string"
+     }
+    ]
+   },
+   {
+    "name": "resolved",
+    "dtype": "bool"
+   }
+  ],
+  "splits": [
+   {
+    "name": "train.mixture",
+    "num_bytes": 187858280,
+    "num_examples": 2636
+   },
+   {
+    "name": "train.onpolicy",
+    "num_bytes": 138859078,
+    "num_examples": 1750
+   },
+   {
+    "name": "train.offpolicy",
+    "num_bytes": 44713422,
+    "num_examples": 886
+   }
+  ],
+  "download_size": 119011745,
+  "dataset_size": 371430780
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2461,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 675,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "data/train.mixture-00000-of-00001.parquet",
+   "size": 60547599,
+   "type": "file",
+   "lfs_sha256": "761cf9cc22107f5abf10979c9b6402c8326a052c396cfc9f01bf6d42d5da9f90"
+  },
+  {
+   "path": "data/train.offpolicy-00000-of-00001.parquet",
+   "size": 13911967,
+   "type": "file",
+   "lfs_sha256": "b33acd8a78680ce45372e69f0d22934e85df1ce241330cb544084de95ef44b2c"
+  },
+  {
+   "path": "data/train.onpolicy-00000-of-00001.parquet",
+   "size": 44552179,
+   "type": "file",
+   "lfs_sha256": "52422151518bc2ad9feea1db7b12d1b215fb4601c149843a5e67d91f1120f6e3"
+  }
+ ],
+ "total_bytes": 119014881,
+ "n_files": 5,
+ "readme_bytes": 675
+}

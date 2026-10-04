@@ -1,0 +1,1343 @@
+{
+ "key": "B5a_sweagent_openhands",
+ "task": "Phase E Track B5 (sources group a): SWE-agent / SWE-bench trajectory releases and OpenHands (OpenDevin) public logs. Find, audit fields, download what passes.",
+ "produced_by": {
+  "composer": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/scripts/compose_b5a.py (reads the census/meta/manifest files; no number typed by hand)",
+  "scripts": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/scripts/",
+  "census_outputs": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/census/",
+  "hub_metadata": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/meta/",
+  "source_code_evidence": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/sources/ (MANIFEST.json has URL + sha256 of each file)",
+  "samples": "third-party sample bytes kept in the session scratchpad only (not committed)"
+ },
+ "scope_and_rules_followed": [
+  "Public, ungated, licence-tagged data only; no click-through accepted; nothing under swarm/ read.",
+  "Field audit on a sample (byte range, parquet footer, datasets-server rows, or one file) before every download.",
+  "Downloaded code never executed (pages/*.py and analyze_outputs.py in openhands-evaluation-outputs).",
+  "Shared 25 GB cap checked before each download (pinned_dl.py); this task added 5391625819 bytes plus one 153,841,006-byte duplicate .part file."
+ ],
+ "headline": {
+  "downloaded": [
+   "openhands-evaluation-outputs",
+   "openhands-feedback",
+   "miniswe-v2-qwen3-30b-swebv-tarsur385",
+   "sweagent-combo2-rl-rollouts (subset: trajectories_00 of 6)"
+  ],
+  "downloaded_bytes": 5391625819,
+  "new_harness_formats_with_ts_and_join": [
+   "OpenHands legacy event stream (v1.9 pairs, v2.x flat)",
+   "OpenHands feedback export (real users)",
+   "mini-swe-agent v2 (tool_call_id + per-message time.time())",
+   "combo RL harness (mini-swe-agent-derived)"
+  ],
+  "provider_request_ids": "NONE of the downloaded corpora carries a provider request id with embedded time. The rank-1 request-id bracket does not transfer to this family. A weaker substitute exists in the 4 DeepSeek/Fireworks OpenHands runs (deepseek-chat_maxiter_100_N_v2.2-no-hint-main-non-fncall-run_1, llama-v3p1-405b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1, llama-v3p1-70b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1, llama-v3p3-70b-instruct_maxiter_100_N_v0.15.0-no-hint-run_1): a provider-set `created` second (DeepSeek documents it as 'The Unix timestamp (in seconds) of when the chat completion was created') that normally precedes the harness action timestamp; but llama-v3p1-70b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1: 26 actions with created after the action stamp (min -0.159 s); llama-v3p3-70b-instruct_maxiter_100_N_v0.15.0-no-hint-run_1: 83 actions with created after the action stamp (min -0.15 s) - so a created <= action-timestamp ordering check needs a tolerance of at least 0.159 s (provider rounding or clock skew; descriptive, not a calibrated threshold), on top of the 1 s resolution of created. The Gemini-via-proxy run also shows created 1-265 s earlier, but whether the proxy or Google set it is UNVERIFIED. Anthropic runs carry only proxy-minted chatcmpl-<uuid> ids.",
+  "biggest_gap": "The two richest timing sources in this family (SWE-bench S3 mini-swe-agent v2 trajectories with frontier models; OpenHands Index V1 archives with per-response latency ledgers) carry no licence: human request needed.",
+  "most_useful_find": "OpenHands eval outputs: 145,966 observations, 0.9977 joined by cause, microsecond timestamps, 42,866 exit codes, 19 distinct llm_config.model strings (anthropic/claude-3-5-haiku-20241022, anthropic/claude-3-5-sonnet-20241022, deepseek/deepseek-chat, deepseek/deepseek-coder, fireworks_ai/accounts/fireworks/models/llama-v3p1-405b-instruct, fireworks_ai/accounts/fireworks/models/llama-v3p1-70b-instruct, fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct, gemini/gemini-1.5-pro-002, litellm_proxy/claude-3-5-sonnet-20241022, litellm_proxy/gemini-1.5-pro-002, openai/accounts/fireworks/models/llama-v3p1-405b-instruct, openai/accounts/fireworks/models/llama-v3p2-90b-vision-instruct, openai/claude-3-5-sonnet@20240620, openai/gpt-4o-2024-05-13, openai/gpt-4o-mini-2024-07-18, openai/neulab/gpt-4o-2024-05-13, openai/neulab/o1-mini, openrouter/meta-llama/llama-3.1-70b-instruct, openrouter/qwen/qwen-2.5-72b-instruct), one harness - a direct second corpus for N1, N3, N5 and the N6 transfer grid."
+ },
+ "seen_data_warning": "The OpenHands census computed action.timestamp minus model_response.created for every v2.x run (a bracket-like quantity), and the combo2 census split latency by the synthetic flag. Any pre-registered test of those quantities on these corpora is not blind: pre-register on held-out instances or the unseen combo2 shards.",
+ "corpora_downloaded": [
+  {
+   "name": "openhands-evaluation-outputs",
+   "family": "OpenHands (CodeActAgent) SWE-bench Lite eval outputs, 19 runs x ~300 instances, 13 models",
+   "source": {
+    "url": "https://huggingface.co/datasets/OpenHands/openhands-evaluation-outputs",
+    "revision": "aa8977805b4cefd317001d80ddf1ad52790e9d23",
+    "gated": false,
+    "licence_tag": [
+     "license:mit"
+    ],
+    "total_bytes": 4608334624,
+    "n_files": 91,
+    "last_modified": "2025-01-18"
+   },
+   "licence": "MIT (dataset card YAML `license: mit`; README body is only that front matter)",
+   "research_use_ok": true,
+   "decision": "DOWNLOADED (whole repo at pinned revision)",
+   "downloaded_to": "C:\\Swarms\\data\\acquired\\openhands-evaluation-outputs\\",
+   "sha256": {
+    "manifest": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/census/manifest_openhands-evaluation-outputs.json",
+    "n_files": 91,
+    "total_bytes": 4608334624,
+    "all_match_hub_lfs_sha256": true
+   },
+   "field_audit": {
+    "sample_first": "byte-range heads of 4 output.jsonl files (sonnet v2.2, gpt-4o v1.9, deepseek v2.2, llama-3.3 v0.15) before download: census/sample_audit_oh_legacy_heads.txt",
+    "population_census": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/census/census_oh_eval.json (scripts/census_oh_eval.py over every outputs/**/output.jsonl)",
+    "per_event_timestamps": {
+     "present": true,
+     "format": "ISO-8601 naive, microsecond (e.g. 2024-10-31T20:07:06.471072); UTC by inference (action ts minus provider `created` is 2-216 s for DeepSeek, never hours)",
+     "events_with_parseable_ts": {
+      "k": 312115,
+      "n": 318298,
+      "rate": 0.98057
+     }
+    },
+    "call_result_join": {
+     "present": true,
+     "how": "observation.cause == action.id (both formats); v2.x also carries tool_call_metadata.tool_call_id on both sides",
+     "observations_joined": {
+      "k": 145631,
+      "n": 145966,
+      "rate": 0.9977
+     }
+    },
+    "provider_request_ids": {
+     "present": "PARTIAL - no provider *request* ids; per-action model_response.id + created in v2.x runs only",
+     "detail": "Anthropic runs (direct and via litellm proxy): model_response.id = 'chatcmpl-<uuid4>' minted by litellm; `created` is set locally after the response (action ts - created between 0 and ~2 s, p50 ~0.5 s). DeepSeek and Fireworks runs: id is a bare UUID (DeepSeek documents a UUID example, see sources) and `created` is set on a non-local clock: it normally precedes the action event by seconds, and in two Fireworks runs a few values fall after it, which a local request-start stamp could not do. Gemini via litellm_proxy: chatcmpl-<uuid>, created seconds earlier (setter UNVERIFIED). Per-run quantiles in created_vs_action_ts_by_run. v1.9 runs carry no model_response at all. tool_call_id: Anthropic first-party `toolu_01...` and Bedrock `tooluse_...` (provider-minted, no decodable time per B2a); non-function-calling runs use harness-minted sequential `toolu_01`, `toolu_02`.",
+     "created_vs_action_ts_by_run": {
+      "claude-3-5-haiku-20241022_maxiter_100_N_v2.1-no-hint": {
+       "model": "anthropic/claude-3-5-haiku-20241022",
+       "model_response_id_shape": "chatcmpl-<uuid>",
+       "n": 9500,
+       "p0": 0.004,
+       "p50": 0.516,
+       "p100": 1.006,
+       "n_negative": 0
+      },
+      "claude-3-5-sonnet-20241022_maxiter_100_N_v2.1-no-hint": {
+       "model": "anthropic/claude-3-5-sonnet-20241022",
+       "model_response_id_shape": "chatcmpl-<uuid>",
+       "n": 8277,
+       "p0": 0.003,
+       "p50": 0.494,
+       "p100": 1.005,
+       "n_negative": 0
+      },
+      "claude-3-5-sonnet-20241022_maxiter_100_N_v2.2-no-hint": {
+       "model": "litellm_proxy/claude-3-5-sonnet-20241022",
+       "model_response_id_shape": "chatcmpl-<uuid>",
+       "n": 7808,
+       "p0": 0.01,
+       "p50": 0.519,
+       "p100": 2.128,
+       "n_negative": 0
+      },
+      "deepseek-chat_maxiter_100_N_v2.2-no-hint-main-non-fncall-run_1": {
+       "model": "deepseek/deepseek-chat",
+       "model_response_id_shape": "<uuid>",
+       "n": 8531,
+       "p0": 2.16,
+       "p50": 6.972,
+       "p100": 216.014,
+       "n_negative": 0
+      },
+      "gemini-1.5-pro-002_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+       "model": "litellm_proxy/gemini-1.5-pro-002",
+       "model_response_id_shape": "chatcmpl-<uuid>",
+       "n": 7511,
+       "p0": 1.154,
+       "p50": 4.674,
+       "p100": 264.751,
+       "n_negative": 0
+      },
+      "llama-v3p1-405b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+       "model": "fireworks_ai/accounts/fireworks/models/llama-v3p1-405b-instruct",
+       "model_response_id_shape": "<uuid>",
+       "n": 12654,
+       "p0": 0.303,
+       "p50": 5.037,
+       "p100": 93.669,
+       "n_negative": 0
+      },
+      "llama-v3p1-70b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+       "model": "fireworks_ai/accounts/fireworks/models/llama-v3p1-70b-instruct",
+       "model_response_id_shape": "<uuid>",
+       "n": 16092,
+       "p0": -0.159,
+       "p50": 1.233,
+       "p100": 23.385,
+       "n_negative": 26
+      },
+      "llama-v3p3-70b-instruct_maxiter_100_N_v0.15.0-no-hint-run_1": {
+       "model": "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct",
+       "model_response_id_shape": "<uuid>",
+       "n": 14357,
+       "p0": -0.15,
+       "p50": 0.981,
+       "p100": 10.036,
+       "n_negative": 83
+      }
+     }
+    },
+    "token_counts": {
+     "present": "per action in v2.x (model_response.usage: prompt/completion, cache fields for Anthropic); none in v1.9",
+     "actions_with_usage": 84730
+    },
+    "error_markers": {
+     "exit_code_in_observation_extras": 42866,
+     "error_observations": 457,
+     "note": "exit_code only on CmdRunObservation; IPython/file-editor observations carry none"
+    },
+    "truncation_markers": {
+     "observations_with_marker_v2x": 3057,
+     "note": "regex in census_oh_eval.py; v1.9 runs use other wording (0 hits), so truncation in v1.9 is UNMEASURED"
+    },
+    "pass": true
+   },
+   "schema_note": {
+    "unit": "one JSON line per SWE-bench Lite instance: instance_id, instruction, metadata (agent_class, llm_config with api_key masked '******', max_iterations), history, metrics (accumulated_cost, costs[]), test_result.git_patch, report (resolved, ...), error",
+    "history_v2x": "flat list of events {id, timestamp, source, message, action|observation, args|content+extras, cause, tool_call_metadata{function_name, tool_call_id, model_response{id, created, model, usage, choices}, total_calls_in_response}}",
+    "history_v1.9": "list of [action, observation] pairs, same event fields minus tool_call_metadata",
+    "event_types": "actions: run (bash), run_ipython, browse_interactive, message, finish, ...; observations: run, run_ipython, error, browse, ...",
+    "counts": {
+     "runs": 19,
+     "runs_v2x_with_model_response": 8,
+     "runs_v1.9_pairs": 11,
+     "instances": 5695,
+     "events": 318298,
+     "agent_tool_actions": 145702,
+     "observations": 145966
+    },
+    "event_ts_range": [
+     "2024-09-14T15:01:27.974099",
+     "2024-12-07T19:21:56.314531"
+    ],
+    "caveats": [
+     "Benchmark runs, not production: one harness (OpenHands 0.9-0.15 era), SWE-bench Lite only, Sep-Dec 2024.",
+     "pages/0_*_OpenHands_Benchmark.py and analyze_outputs.py are code shipped with the data; never executed.",
+     "A byte-identical duplicate of claude-3-5-sonnet-20241022_maxiter_100_N_v2.1-no-hint/output.jsonl exists as output.jsonl.part (153,841,006 B, same sha256 4c54a4ab...) from a download race between two of this task's own downloaders; not deleted (data/ is append-only) - flagged for human cleanup; loaders must glob output.jsonl exactly."
+    ]
+   }
+  },
+  {
+   "name": "openhands-feedback",
+   "family": "OpenHands real-user sessions shared publicly via the thumbs-up/down button (not benchmark runs)",
+   "source": {
+    "url": "https://huggingface.co/datasets/OpenHands/openhands-feedback",
+    "revision": "facf45600d625510b98222ec584a8c9ac59272a2",
+    "gated": false,
+    "licence_tag": [
+     "license:mit"
+    ],
+    "total_bytes": 113694217,
+    "n_files": 3,
+    "last_modified": "2024-12-14"
+   },
+   "licence": "MIT (card YAML `license: mit`); every row has permissions='public'",
+   "research_use_ok": true,
+   "decision": "DOWNLOADED",
+   "downloaded_to": "C:\\Swarms\\data\\acquired\\openhands-feedback\\",
+   "sha256": {
+    "manifest": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/census/manifest_openhands-feedback.json",
+    "all_match_hub_lfs_sha256": true
+   },
+   "field_audit": {
+    "sample_first": "2 rows via datasets-server /rows before download; then whole-file census census/census_feedback.json",
+    "per_event_timestamps": {
+     "present": true,
+     "format": "parquet timestamp[us] per trajectory event (microsecond)",
+     "agent_tool_actions_with_ts": {
+      "k": 5898,
+      "n": 5968,
+      "rate": 0.98827
+     },
+     "observations_with_ts": {
+      "k": 5974,
+      "n": 5974,
+      "rate": 1.0
+     }
+    },
+    "call_result_join": {
+     "present": "strict pairing only (no `cause` column in this export)",
+     "rule": "observation id == preceding action id + 1 and, where both carry command/code, observation extras echo it",
+     "observations_paired": {
+      "k": 5552,
+      "n": 5974,
+      "rate": 0.92936
+     },
+     "command_echo_matches": {
+      "k": 5144,
+      "n": 5170,
+      "rate": 0.99497
+     }
+    },
+    "provider_request_ids": {
+     "present": false
+    },
+    "token_counts": {
+     "present": false
+    },
+    "error_markers": {
+     "exit_code_in_extras": 2614,
+     "error_observations": 115
+    },
+    "truncation_markers": {
+     "observations_with_marker": 25
+    },
+    "pass": true
+   },
+   "schema_note": {
+    "columns": "version, feedback (positive/negative), permissions, timestamp[us], trajectory[] {action, content, extras (JSON string), id, message, observation, source, timestamp[us]}",
+    "counts": {
+     "sessions": 275,
+     "events": 19701,
+     "feedback": {
+      "negative": 111,
+      "positive": 164
+     },
+     "distinct_llm_configs": 53,
+     "submitted_range": [
+      "2024-06-03 23:50:08",
+      "2024-12-01 18:50:35"
+     ]
+    },
+    "models_top5": [
+     [
+      "gpt-4o",
+      114
+     ],
+     [
+      "openai/claude-3-5-sonnet@20240620",
+      51
+     ],
+     [
+      "claude-3-5-sonnet-20240620",
+      21
+     ],
+     [
+      "gpt-4o-2024-08-06",
+      19
+     ],
+     [
+      "groq/llama3-8b-8192",
+      17
+     ]
+    ],
+    "caveats": [
+     "Real users' prompts and repos: report aggregates only; do not republish raw content in the B7 release without review.",
+     "Strict-pairing join, not an id join: weaker than cause/tool_call_id.",
+     "53 LLM configs incl. local ollama models: provider clocks absent."
+    ]
+   }
+  },
+  {
+   "name": "miniswe-v2-qwen3-30b-swebv-tarsur385",
+   "family": "mini-swe-agent 2.2.8 (SWE-agent org's minimal harness), SWE-bench Verified, Qwen3-30B-A3B-Instruct-2507 on self-hosted vLLM, T=0",
+   "source": {
+    "url": "https://huggingface.co/datasets/tarsur385/qwen3-30b-a3b-instruct-2507-swebench-verified-mini-swe-agent",
+    "revision": "58389eb5426db5a3ae6159faa37498072b4735ff",
+    "gated": false,
+    "licence_tag": [
+     "license:mit"
+    ],
+    "total_bytes": 224075642,
+    "n_files": 504,
+    "last_modified": "2026-05-15"
+   },
+   "licence": "MIT (card YAML)",
+   "research_use_ok": true,
+   "decision": "DOWNLOADED",
+   "downloaded_to": "C:\\Swarms\\data\\acquired\\miniswe-v2-qwen3-30b-swebv-tarsur385\\",
+   "sha256": {
+    "manifest": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/census/manifest_miniswe-v2-qwen3-30b-swebv-tarsur385.json",
+    "all_match_hub_lfs_sha256": true
+   },
+   "field_audit": {
+    "sample_first": "one median-size .traj.json (scratchpad) before download; population census census/census_mini.json",
+    "per_event_timestamps": {
+     "present": true,
+     "format": "float unix seconds (time.time(), microsecond digits) in extra.timestamp on every assistant and tool message",
+     "semantics": "assistant ts = after the model response returns; tool ts = when the observation is formatted after the action batch executes (sources/msa_litellm_model.py L104, msa_actions_toolcall.py L100): parallel calls in one step share near-identical stamps",
+     "assistant": {
+      "k": 13884,
+      "n": 13884,
+      "rate": 1.0
+     },
+     "tool": {
+      "k": 13664,
+      "n": 13664,
+      "rate": 1.0
+     }
+    },
+    "call_result_join": {
+     "present": true,
+     "how": "tool.tool_call_id == assistant.tool_calls[].id",
+     "tool_results_joined": {
+      "k": 13664,
+      "n": 13664,
+      "rate": 1.0
+     },
+     "calls_without_result": 223,
+     "note": "unmatched calls = 223; trajectories with exit_status Submitted = 223 (final submit call ends the run without a tool result; descriptive)"
+    },
+    "provider_request_ids": {
+     "present": false,
+     "detail": "response.id 'chatcmpl-<16hex>' and created are minted by the local vLLM server: a second clock in a separate process, not a provider clock",
+     "assistant_ts_minus_created_s": {
+      "n": 13884,
+      "p0": 0.597,
+      "p5": 2.654,
+      "p50": 6.926,
+      "p95": 23.474,
+      "p100": 102.916
+     }
+    },
+    "token_counts": {
+     "present": true,
+     "assistant_with_usage": 13884
+    },
+    "error_markers": {
+     "returncode_in_extra": 13664,
+     "nonzero_returncode": 3547,
+     "harness_not_executed_padding": 0
+    },
+    "truncation_markers": "not audited (mini-swe-agent truncates long output via its observation template; marker wording UNVERIFIED)",
+    "pass": true
+   },
+   "schema_note": {
+    "files": "trajectories/<instance_id>.traj.json (499), preds.json/.jsonl, grading_report.json",
+    "traj": "{info{model_stats, config, mini_version, exit_status, submission}, messages[], trajectory_format 'mini-swe-agent-1.1', instance_id}",
+    "message": "assistant {content, tool_calls[{id,function{name,arguments}}], extra{actions, response{id, created, usage,...}, cost, timestamp}}; tool {content, tool_call_id, extra{raw_output, returncode, timestamp, exception_info}}",
+    "counts": {
+     "trajectories": 499,
+     "tool_calls": 13887,
+     "tool_results": 13664,
+     "exit_status": {
+      "Submitted": 223,
+      "LimitsExceeded": 276
+     }
+    },
+    "caveats": [
+     "Single model, self-hosted: no provider ids, no cross-provider variety.",
+     "Same harness format as the SWE-bench bash-only leaderboard trajectories (listed below, no licence), so loaders transfer."
+    ]
+   }
+  },
+  {
+   "name": "sweagent-combo2-rl-rollouts (subset: trajectories_00 of 6)",
+   "family": "GRPO RL rollouts of Qwen3.5-35B-A3B in a mini-swe-agent-derived 'combo' harness; SWE-rebench V1/V2 + Scale-SWE tasks",
+   "source": {
+    "url": "https://huggingface.co/datasets/sweagent/combo2-rl-rollouts",
+    "revision": "eaff5487b8983db9aaed9e93c16e670695389827",
+    "gated": false,
+    "licence_tag": [
+     "license:mit"
+    ],
+    "total_bytes": 2925032911,
+    "n_files": 10,
+    "last_modified": "2026-08-17",
+    "publisher_note": "HF org 'sweagent' (fullname 'SWE-Agent', 1 member, unverified): affiliation with the SWE-agent project is UNVERIFIED"
+   },
+   "licence": "MIT (card YAML)",
+   "research_use_ok": true,
+   "decision": "DOWNLOADED SUBSET: README, .gitattributes, group_info.tar.gz, trajectories_00.tar.gz (445 MB of 2.93 GB). Shards 01-05 and rewards.tar.gz deliberately left on the Hub as fresh, unseen data (see seen_data_warning) and to stay within the shared 25 GB budget.",
+   "downloaded_to": "C:\\Swarms\\data\\acquired\\sweagent-combo2-rl-rollouts\\",
+   "sha256": {
+    "manifest": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/census/manifest_sweagent-combo2-rl-rollouts.json",
+    "all_match_hub_lfs_sha256": true
+   },
+   "field_audit": {
+    "sample_first": "first 3 members of trajectories_00.tar.gz from a 3 MB range read, then full streamed census of shard 00 (census/census_combo2.json); never extracted to disk",
+    "per_event_timestamps": {
+     "present": true,
+     "format": "float unix seconds on every message",
+     "messages": {
+      "k": 901376,
+      "n": 901376,
+      "rate": 1.0
+     }
+    },
+    "call_result_join": {
+     "present": true,
+     "how": "tool.tool_call_id == assistant extra.actions[].tool_call_id (harness-minted 'call_<step>_<k>')",
+     "tool_results_joined": {
+      "k": 441588,
+      "n": 441588,
+      "rate": 1.0
+     }
+    },
+    "provider_request_ids": {
+     "present": false
+    },
+    "token_counts": {
+     "present": "prompt/response token_ids and loss_mask per trajectory (RL training record), no per-call usage"
+    },
+    "error_markers": {
+     "returncode_in_content": 441588
+    },
+    "harness_labelled_synthetic_results": {
+     "what": "the harness writes some tool results itself instead of returning the executed command's output, and flags them extra.synthetic",
+     "counts_shard00": {
+      "tool:combo_empty_guard": 164,
+      "user:combo_empty_guard": 164,
+      "tool:combo_ground": 4361,
+      "user:combo_ground": 4361,
+      "user:combo_valve": 101
+     },
+     "descriptive_latency_tool_ts_minus_assistant_ts_s": {
+      "synthetic": {
+       "n": 4525,
+       "p0": 0.0462,
+       "p5": 0.0606,
+       "p50": 0.19,
+       "p95": 1.9824,
+       "p100": 8.4712
+      },
+      "executed": {
+       "n": 437063,
+       "p0": 0.0476,
+       "p5": 0.0767,
+       "p50": 0.4158,
+       "p95": 3.8968,
+       "p100": 93.5188
+      }
+     },
+     "interpretation": "A natural, harness-labelled set of results whose content did not come from the tool. NOT a clean 'zero-time' positive: synthetic results still arrive >= 0.0462 s after the call (the submit command appears to run before its output is replaced), and the two latency distributions overlap. Descriptive only; no threshold was set or tested."
+    },
+    "pass": true
+   },
+   "schema_note": {
+    "unit": "<instance_id>_<sample_index>.json inside tar.gz shards",
+    "fields": "instance_id, instance, messages[{role, content, timestamp, tool_call_id?, extra{actions|returncode|synthetic}}], model_patch, n_steps, exit_status, all_tokens_length, prompt_token_ids, response_token_ids, loss_mask, env_creation_time",
+    "counts_shard00": {
+     "trajectories": 4571,
+     "messages": 901376,
+     "tool_results": 441588,
+     "exit_status": {
+      "Submitted": 4424,
+      "TimeExceeded": 74,
+      "LimitsExceeded": 73
+     }
+    },
+    "caveats": [
+     "RL training rollouts of one policy, not production; ~34.8 GiB uncompressed for all 6 shards (README) - stream, do not extract.",
+     "Content is model output on third-party repos; token-id arrays dominate the bytes."
+    ]
+   },
+   "seen_data_warning": "This census looked at result latency split by the synthetic flag on shard 00. Any later pre-registered test that uses the synthetic flag as a label should be confirmed on shards 01-05 (not downloaded, unseen)."
+  }
+ ],
+ "corpora_passed_audit_but_listed": [
+  {
+   "name": "SWE-bench leaderboard trajectories (S3 bucket swe-bench-submissions + self-hosted submitter repos)",
+   "source": {
+    "url": "https://github.com/SWE-bench/experiments",
+    "commit": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+    "bucket": "s3://swe-bench-submissions (anonymous HTTPS listing works per prefix; root listing 403)",
+    "entries_at_commit": {
+     "verified": 182,
+     "lite": 84,
+     "test": 24,
+     "multimodal": 22,
+     "multilingual": 14
+    }
+   },
+   "licence": "NONE. GitHub API license=null; root has no LICENSE file (README, checklist.md, analysis/, evaluation/, validation/ only). README says the logs are 'publicly accessible' but grants no licence; per-submitter repos may carry their own.",
+   "research_use_ok": false,
+   "decision": "LISTED - no licence file (rule: do not download). Human decision: ask SWE-bench maintainers for a data licence, or pick submitter repos that carry one.",
+   "field_audit_by_format (one file each, scratchpad)": {
+    "mini-swe-agent v2.x bash-only (e.g. 20260217_mini-v2.0.0_claude-4-5-sonnet-high, 503 objects, 0.30 GB)": {
+     "mini_version": "2.1.0",
+     "trajectory_format": "mini-swe-agent-1.1",
+     "model": "anthropic/claude-sonnet-4-5-20250929",
+     "counts": {
+      "system": 1,
+      "user": 1,
+      "assistant": 37,
+      "assistant_ts": 37,
+      "tool": 38,
+      "tool_ts": 38,
+      "tool_joined": 38,
+      "tool_returncode": 38,
+      "exit": 1
+     },
+     "response_id_examples": [
+      "chatcmpl-93c82145-0f90-4af0-922f-537e812e68a1",
+      "chatcmpl-b9bfe831-7c1f-493f-80b0-ca5db8e3db3e"
+     ],
+     "openai_style_chatcmpl_ids": 0,
+     "openai_chatcmpl_created_decode_matches": 0,
+     "pass": true
+    },
+    "SWE-agent 0.x .traj (20240620_sweagent_claude3.5sonnet)": {
+     "steps": 52,
+     "step_keys": {
+      "action": 52,
+      "observation": 52,
+      "response": 52,
+      "state": 52,
+      "thought": 52
+     },
+     "has_execution_time": false,
+     "history_items": 127,
+     "history_with_tool_call_ids": 0,
+     "wallclock_timestamp_keys": [],
+     "info_version": null,
+     "pass": false,
+     "why": "no timestamps, no ids"
+    },
+    "SWE-agent 1.1 .traj (20250522_sweagent_claude-4-sonnet-20250514)": {
+     "steps": 27,
+     "step_keys": {
+      "action": 27,
+      "observation": 27,
+      "response": 27,
+      "thought": 27,
+      "execution_time": 27,
+      "state": 27,
+      "query": 27,
+      "extra_info": 27
+     },
+     "has_execution_time": true,
+     "history_items": 54,
+     "history_with_tool_call_ids": 26,
+     "wallclock_timestamp_keys": [],
+     "info_version": "1.1.0",
+     "pass": false,
+     "why": "per-step execution_time (perf_counter duration) and tool_call_ids, but no wall-clock timestamps"
+    },
+    "OpenHands submissions (20241029 CodeAct 2.1, 20250415, 20251127 Opus 4.5)": {
+     "20241029": {
+      "messages": 32,
+      "key_sets": [
+       [
+        [
+         "content",
+         "role",
+         "tool_calls"
+        ],
+        14
+       ],
+       [
+        [
+         "content",
+         "name",
+         "role",
+         "tool_call_id"
+        ],
+        12
+       ],
+       [
+        [
+         "content",
+         "role"
+        ],
+        4
+       ],
+       [
+        [
+         "cache_control",
+         "content",
+         "name",
+         "role",
+         "tool_call_id"
+        ],
+        2
+       ]
+      ],
+      "timestamp_keys": []
+     },
+     "20250415": {
+      "messages": 42,
+      "key_sets": [
+       [
+        [
+         "content",
+         "role",
+         "tool_calls"
+        ],
+        20
+       ],
+       [
+        [
+         "content",
+         "name",
+         "role",
+         "tool_call_id"
+        ],
+        19
+       ],
+       [
+        [
+         "content",
+         "role"
+        ],
+        2
+       ],
+       [
+        [
+         "cache_control",
+         "content",
+         "name",
+         "role",
+         "tool_call_id"
+        ],
+        1
+       ]
+      ],
+      "timestamp_keys": []
+     },
+     "20251127": {
+      "messages": 56,
+      "key_sets": [
+       [
+        [
+         "content",
+         "role"
+        ],
+        56
+       ]
+      ],
+      "timestamp_keys": []
+     },
+     "pass": false,
+     "why": "LLM-message export only (role/content/tool_calls/tool_call_id); no timestamps"
+    }
+   },
+   "notes": "The 48 mini-swe-agent entries in evaluation/verified at this commit (14 of them v2.x) are the largest pool of this harness with frontier models (Claude, GPT-5.x, Gemini 3, GLM, Kimi, DeepSeek). Of the two versions sampled, only v2.1 carries per-message timestamps (v1.14 does not); Anthropic response ids are litellm 'chatcmpl-<uuid>', not provider ids."
+  },
+  {
+   "name": "OpenHands Index full_archive tarballs (results.eval.all-hands.dev)",
+   "source": {
+    "url": "https://github.com/OpenHands/openhands-index-results",
+    "commit": "3015ac612e7196f428e6e8a3948965d32d9a3331",
+    "examples_opened": [
+     "https://results.eval.all-hands.dev/eval-21386741317-deepseek-v_litellm_proxy-deepseek-deepseek-reasoner_26-01-27-17-23.tar.gz (423,683,435 B)",
+     "https://results.eval.all-hands.dev/swebench/litellm_proxy-anthropic-claude-opus-4-8/26737081181/results.tar.gz (515,328,661 B)"
+    ],
+    "entries": "35 model directories, each with swe-bench / swt-bench / gaia / commit0 / multimodal archives"
+   },
+   "licence": "NONE on the results repo (GitHub API license=null) or the archive host. The HF snapshot OpenHands/openhands-index is Apache-2.0 but holds only leaderboard scores and per-instance resolved/cost, not trajectories.",
+   "research_use_ok": false,
+   "decision": "LISTED - no licence. HIGH VALUE for a human request to All Hands: richest timing schema seen in this family.",
+   "field_audit": {
+    "v1.8.3 deepseek-reasoner (first output.jsonl line from an 8 MB range read)": {
+     "event_kinds": {
+      "ConversationStateUpdateEvent": 4,
+      "SystemPromptEvent": 1,
+      "MessageEvent": 1,
+      "ActionEvent": 65,
+      "ObservationEvent": 65
+     },
+     "events_with_timestamp": 136,
+     "observations_joined_by_action_id": 65,
+     "observations": 65,
+     "observations_with_exit_code": 41,
+     "metrics_keys": [
+      "model_name",
+      "accumulated_cost",
+      "max_budget_per_task",
+      "accumulated_token_usage",
+      "costs",
+      "response_latencies",
+      "token_usages"
+     ],
+     "response_latencies_n": 65,
+     "llm_response_id_examples": [
+      "309d3aa4-cad6-4cd0-b179-967e4b6833a6",
+      "f8080b89-e314-48d8-a49b-96d10caaba0a"
+     ]
+    },
+    "v1.24.0 claude-opus-4-8 (one per-conversation event tarball)": {
+     "event_files": 54,
+     "kinds": {
+      "null": 3,
+      "ObservationEvent": 13,
+      "ActionEvent": 13,
+      "ConversationStateUpdateEvent": 21,
+      "MessageEvent": 3,
+      "SystemPromptEvent": 1
+     },
+     "llm_response_id_shapes": [
+      "chatcmpl-<uuid>"
+     ],
+     "tool_call_id_prefixes": [
+      "toolu_"
+     ]
+    },
+    "pass": true,
+    "why_valuable": "ActionEvent/ObservationEvent with microsecond timestamps, tool_call_id + action_id joins, exit_code/is_error/timeout on observations, and metrics.response_latencies[] + token_usages[] keyed by llm_response_id (a per-LLM-call latency and token ledger). Provider ids: DeepSeek UUIDs; Anthropic via litellm proxy = chatcmpl-<uuid> (not provider)."
+   }
+  },
+  {
+   "name": "CooperBench qwen9b mini-swe-agent v2 (solo 0.78 GB; coop 12.05 GB)",
+   "source": {
+    "solo": {
+     "url": "https://huggingface.co/datasets/CooperBench/qwen9b-solo-mini-swe-agent",
+     "revision": "9134cf3a8ecce54bb3947cbbdcc2f58dbfd2118c",
+     "gated": false,
+     "licence_tag": [
+      "license:mit"
+     ],
+     "total_bytes": 778200793,
+     "n_files": 1814,
+     "last_modified": "2026-05-29"
+    },
+    "coop": {
+     "url": "https://huggingface.co/datasets/CooperBench/qwen9b-coop-mini-swe-agent",
+     "revision": "0e40296ea361ec15b19f23d63f1ce5a537288e5c",
+     "gated": false,
+     "licence_tag": [
+      "license:mit"
+     ],
+     "total_bytes": 12046922412,
+     "n_files": 3230,
+     "last_modified": "2026-05-29"
+    }
+   },
+   "licence": "MIT (both cards)",
+   "research_use_ok": true,
+   "decision": "LISTED. solo: passes the audit (one trajectory sampled) but is the same harness and model class as the downloaded tarsur385 corpus, on a non-SWE benchmark: redundant here. coop: over the 5 GB cap. Swarm-relevant: two agents per task coordinating via Redis messages and a shared git remote (conversation.json per pair). Human decision: a sub-5 GB subset of coop.",
+   "field_audit": {
+    "solo_sample": {
+     "mini_version": null,
+     "trajectory_format": null,
+     "model": null,
+     "counts": {
+      "system": 1,
+      "user": 1,
+      "assistant": 6,
+      "assistant_ts": 6,
+      "tool": 4,
+      "tool_ts": 4,
+      "tool_joined": 4,
+      "tool_returncode": 4,
+      "exit": 1
+     },
+     "response_id_examples": [
+      "chatcmpl-bb38e0b19a44c37e",
+      "chatcmpl-8180b9e34461c163"
+     ],
+     "openai_style_chatcmpl_ids": 0,
+     "openai_chatcmpl_created_decode_matches": 0
+    },
+    "coop": "not sampled; README lists agent{1,2}_full_traj.json in the same mini v2 format - UNVERIFIED"
+   }
+  },
+  {
+   "name": "sweagent/iter2-rl-rollouts and combo2 shards 01-05",
+   "source": {
+    "iter2": {
+     "url": "https://huggingface.co/datasets/sweagent/iter2-rl-rollouts",
+     "revision": "ec07602618bc22d56e71112fc8e81943fcbd28be",
+     "gated": false,
+     "licence_tag": [
+      "license:mit"
+     ],
+     "total_bytes": 3273126801,
+     "n_files": 10,
+     "last_modified": "2026-08-17"
+    },
+    "combo2": {
+     "url": "https://huggingface.co/datasets/sweagent/combo2-rl-rollouts",
+     "revision": "eaff5487b8983db9aaed9e93c16e670695389827",
+     "gated": false,
+     "licence_tag": [
+      "license:mit"
+     ],
+     "total_bytes": 2925032911,
+     "n_files": 10,
+     "last_modified": "2026-08-17"
+    }
+   },
+   "licence": "MIT",
+   "research_use_ok": true,
+   "decision": "LISTED: same family as the downloaded combo2 shard; kept on the Hub as unseen confirmation data and for the shared budget. iter2 not sampled (format UNVERIFIED)."
+  }
+ ],
+ "corpora_failed_audit": [
+  {
+   "name": "nebius/SWE-agent-trajectories",
+   "source": {
+    "url": "https://huggingface.co/datasets/nebius/SWE-agent-trajectories",
+    "revision": "68195a1450865274106246d0d0296a1d6807b88e",
+    "gated": false,
+    "licence_tag": [
+     "license:cc-by-4.0"
+    ],
+    "total_bytes": 1114375946,
+    "n_files": 14,
+    "last_modified": "2024-12-23"
+   },
+   "licence": "CC-BY-4.0 (+ Llama 3.1 licence notice for outputs)",
+   "audit": "parquet footer + 1 row: trajectory[] = {cutoff_date, mask, role, system_prompt, text}; cutoff_date is the model knowledge cutoff ('01.01.2023') on the system turn only. No timestamps, no ids; alternating ai/user pairing only.",
+   "pass": false,
+   "rows": 80036
+  },
+  {
+   "name": "nebius/SWE-rebench-openhands-trajectories",
+   "source": {
+    "url": "https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories",
+    "revision": "35455389ab51bf5e2306bfd436ef72d0f98bf882",
+    "gated": false,
+    "licence_tag": [
+     "license:cc-by-4.0"
+    ],
+    "total_bytes": 2079557168,
+    "n_files": 6,
+    "last_modified": "2025-12-27"
+   },
+   "licence": "CC-BY-4.0",
+   "audit": "parquet footer: trajectory[] = {content, name, role, tool_call_id, tool_calls[]}; tool_call_id join yes, no timestamp anywhere (OpenHands 0.54 export to chat format).",
+   "pass": false,
+   "rows": 67074
+  },
+  {
+   "name": "SWE-Gym/OpenHands-Sampled-Trajectories",
+   "source": {
+    "url": "https://huggingface.co/datasets/SWE-Gym/OpenHands-Sampled-Trajectories",
+    "revision": "baf3a4e4bff514d48ddc08a93a2ade5c126212c7",
+    "gated": false,
+    "licence_tag": [],
+    "total_bytes": 301101058,
+    "n_files": 5,
+    "last_modified": "2024-12-23"
+   },
+   "licence": "none tagged",
+   "audit": "messages[] {content, role, tool_call_id, tool_calls}; no timestamps",
+   "pass": false
+  },
+  {
+   "name": "SWE-Gym/OpenHands-SFT-Trajectories",
+   "source": {
+    "url": "https://huggingface.co/datasets/SWE-Gym/OpenHands-SFT-Trajectories",
+    "revision": "4aaa5a4a4b5861f4799d2336908760c190ac3b17",
+    "gated": false,
+    "licence_tag": [
+     "license:mit"
+    ],
+    "total_bytes": 10382267,
+    "n_files": 3,
+    "last_modified": "2025-05-10"
+   },
+   "licence": "MIT",
+   "audit": "messages[] {content, role} only",
+   "pass": false
+  },
+  {
+   "name": "SWE-Gym/OpenHands-Verifier-Trajectories",
+   "source": {
+    "url": "https://huggingface.co/datasets/SWE-Gym/OpenHands-Verifier-Trajectories",
+    "revision": "d47f6cab996d3a5f7ba517c0be57595f4f6201ce",
+    "gated": false,
+    "licence_tag": [],
+    "total_bytes": 119014881,
+    "n_files": 5,
+    "last_modified": "2024-12-23"
+   },
+   "licence": "none tagged",
+   "audit": "messages[] {content, role}, resolved",
+   "pass": false
+  },
+  {
+   "name": "SWE-bench/SWE-smith-trajectories",
+   "source": {
+    "url": "https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories",
+    "revision": "08e109b4a59eaeebf80e4675cd125d42e7ac99a4",
+    "gated": false,
+    "licence_tag": [
+     "license:mit"
+    ],
+    "total_bytes": 4223845920,
+    "n_files": 34,
+    "last_modified": "2025-07-19"
+   },
+   "licence": "MIT",
+   "audit": "messages is a JSON string of SWE-agent history items {role, content, agent, message_type, thought, action, tool_calls, tool_call_ids}; no timestamps",
+   "pass": false
+  },
+  {
+   "name": "nvidia/SWE-Zero-openhands-trajectories",
+   "source": {
+    "url": "https://huggingface.co/datasets/nvidia/SWE-Zero-openhands-trajectories",
+    "revision": "7b3cd106d00f60918e722d33a1d74bc67072a7ea",
+    "gated": false,
+    "licence_tag": [
+     "license:cc-by-4.0"
+    ],
+    "total_bytes": 12207173274,
+    "n_files": 67,
+    "last_modified": "2026-05-05"
+   },
+   "licence": "CC-BY-4.0",
+   "audit": "trajectory[] {content, role, tool_calls[]}; no timestamps; also 12.2 GB > cap",
+   "pass": false
+  },
+  {
+   "name": "nvidia/SWE-Hero-openhands-trajectories",
+   "source": {
+    "url": "https://huggingface.co/datasets/nvidia/SWE-Hero-openhands-trajectories",
+    "revision": "150bc119e52c647216fce285fd801f16b6fd745b",
+    "gated": false,
+    "licence_tag": [
+     "license:cc-by-4.0"
+    ],
+    "total_bytes": 2402031292,
+    "n_files": 17,
+    "last_modified": "2026-05-08"
+   },
+   "licence": "CC-BY-4.0",
+   "audit": "trajectory[] {content, role, tool_calls[]}; no timestamps",
+   "pass": false
+  },
+  {
+   "name": "Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k",
+   "source": {
+    "url": "https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k",
+    "revision": "750b2c11239fd5e32f97e6cfb9bf80fb9a9a2983",
+    "gated": false,
+    "licence_tag": [
+     "license:mit"
+    ],
+    "total_bytes": 1579065713,
+    "n_files": 50,
+    "last_modified": "2025-11-06"
+   },
+   "licence": "MIT",
+   "audit": "messages[] {content, role} only",
+   "pass": false
+  },
+  {
+   "name": "livesweagent/*_swebench_verified_traj (gpt-5, claude-sonnet-4-5, gemini-3-pro, ...)",
+   "source": {
+    "gpt-5": {
+     "url": "https://huggingface.co/datasets/livesweagent/gpt-5_swebench_verified_traj",
+     "revision": "ad736cba8094cbbc9cce92d5fcc9c8d58d8f1d20",
+     "gated": false,
+     "licence_tag": [
+      "license:mit"
+     ],
+     "total_bytes": 80453289,
+     "n_files": 504,
+     "last_modified": "2025-11-21"
+    },
+    "claude-sonnet-4-5": {
+     "url": "https://huggingface.co/datasets/livesweagent/claude-sonnet-4-5_swebench_verified_traj",
+     "revision": "5d0526ad86289af86996d5d1712ea5b43ca5c060",
+     "gated": false,
+     "licence_tag": [
+      "license:mit"
+     ],
+     "total_bytes": 1918733786,
+     "n_files": 504,
+     "last_modified": "2025-11-21"
+    },
+    "gemini-3-pro": {
+     "url": "https://huggingface.co/datasets/livesweagent/gemini_3_pro_swebench_verified_traj",
+     "revision": "607040a2d2a5fb8e857cb4990213362d84c111f6",
+     "gated": false,
+     "licence_tag": [
+      "license:mit"
+     ],
+     "total_bytes": 110533123,
+     "n_files": 504,
+     "last_modified": "2025-11-21"
+    }
+   },
+   "licence": "MIT",
+   "audit": {
+    "gpt-5": {
+     "mini_version": "1.14.2",
+     "trajectory_format": "mini-swe-agent-1",
+     "model": "tensorblock/gpt-5",
+     "counts": {
+      "system": 1,
+      "user": 15,
+      "assistant": 14
+     },
+     "response_id_examples": [
+      "chatcmpl-CaDOxYqMRPwwSRjjzrOc9h5wJMZok",
+      "chatcmpl-CaDP1MmSc6Eqf5zAFfUqj3lCeQ6HG"
+     ],
+     "openai_style_chatcmpl_ids": 14,
+     "openai_chatcmpl_created_decode_matches": 14
+    },
+    "claude-sonnet-4-5": {
+     "mini_version": "1.14.2",
+     "trajectory_format": "mini-swe-agent-1",
+     "model": "tensorblock/claude-sonnet-4-5",
+     "counts": {
+      "system": 1,
+      "user": 48,
+      "assistant": 47
+     },
+     "response_id_examples": [
+      "chatcmpl-f0f035b9-a213-436a-9967-081ffe71f894",
+      "chatcmpl-9c9c185d-88b0-4e35-b7e0-0b8f42399ed8"
+     ],
+     "openai_style_chatcmpl_ids": 0,
+     "openai_chatcmpl_created_decode_matches": 0
+    },
+    "why_fail": "mini-swe-agent 1.14: no harness timestamps; observations are plain user messages with no id (pairing only). Only the LLM response carries `created`."
+   },
+   "pass": false,
+   "note_for_B2_B4": "The gpt-5 trajectories (via the tensorblock proxy) carry OpenAI-minted chatcmpl ids: in the sampled trajectory 14/14 ids decode to their `created` second with B2a's rule (base62(id[9:14]) + 1,576,800,000). A provider clock without a harness clock: usable only for inter-request ordering, not for the rank-1 bracket."
+  },
+  {
+   "name": "OpenHands/CodeScout_Eval_Rollouts",
+   "source": {
+    "url": "https://huggingface.co/datasets/OpenHands/CodeScout_Eval_Rollouts",
+    "revision": "c8150bdfcd7589cafb1717a5e9efd151a4b41b59",
+    "gated": false,
+    "licence_tag": [],
+    "total_bytes": 205728503,
+    "n_files": 39,
+    "last_modified": "2026-03-17"
+   },
+   "licence": "none tagged",
+   "audit": "chat_messages (role/content/tool_calls/tool_call_id) + accumulated token metrics; no timestamps",
+   "pass": false
+  },
+  {
+   "name": "sailplane/swe-agent-trajs",
+   "source": {
+    "url": "https://huggingface.co/datasets/sailplane/swe-agent-trajs",
+    "revision": "04eb93df490e7fbb7b6e8358da8145aba6f5a25c",
+    "gated": false,
+    "licence_tag": [],
+    "total_bytes": 92255214,
+    "n_files": 3,
+    "last_modified": "2024-08-13"
+   },
+   "licence": "none tagged",
+   "audit": "SWE-agent 0.x leaderboard trajs re-packed: trajectory string + model_stats; no timestamps",
+   "pass": false
+  },
+  {
+   "name": "antontuzovAI/swe-agent-successful-raw-1000, ElenaFu/SWE-agent-trajectories",
+   "source": {
+    "a": {
+     "url": "https://huggingface.co/datasets/antontuzovAI/swe-agent-successful-raw-1000",
+     "revision": "5b611dee158951b231dd799721d44375e2aa3dac",
+     "gated": false,
+     "licence_tag": [
+      "license:cc-by-4.0"
+     ],
+     "total_bytes": 10904068,
+     "n_files": 22,
+     "last_modified": "2026-09-23"
+    },
+    "b": {
+     "url": "https://huggingface.co/datasets/ElenaFu/SWE-agent-trajectories",
+     "revision": "70b3d347c367fc4c9b67f834865ed4e46abb31bd",
+     "gated": false,
+     "licence_tag": [
+      "license:cc-by-4.0"
+     ],
+     "total_bytes": 1114375946,
+     "n_files": 14,
+     "last_modified": "2026-04-23"
+    }
+   },
+   "licence": "CC-BY-4.0",
+   "audit": "subset/mirror of nebius/SWE-agent-trajectories (same schema; ElenaFu total_bytes identical to nebius); no timestamps",
+   "pass": false
+  },
+  {
+   "name": "WhitzardAgent/ClaudeCode-OpenHands",
+   "source": {
+    "url": "https://huggingface.co/datasets/WhitzardAgent/ClaudeCode-OpenHands",
+    "revision": "effcafec2acd100077ff50177b66a2958e4f9057",
+    "gated": false,
+    "licence_tag": [
+     "license:apache-2.0"
+    ],
+    "total_bytes": 3692438546,
+    "n_files": 3,
+    "last_modified": "2026-05-14"
+   },
+   "licence": "Apache-2.0",
+   "audit": "README: Claude Code traces converted by AgentIR into OpenHands chat format {role, content, tool_calls, tool_call_id}; conversion target has no timestamps (from README; data not sampled)",
+   "pass": false,
+   "lead": "Its source nlile/misc-merged-claude-code-traces-v1 (1.16 GB) declares `timestamp`, `request_id` and `claude_log` columns in its card, but carries NO licence tag: list for the B4/B2 owners; do not download."
+  }
+ ],
+ "corpora_excluded_unaudited": [
+  {
+   "name": "OpenHandsCommunity/eval-output-webarena",
+   "source": {
+    "url": "https://huggingface.co/datasets/OpenHandsCommunity/eval-output-webarena",
+    "revision": "35869ceb04d13d5db6ffb0128f11f479d9e5c437",
+    "gated": false,
+    "licence_tag": [],
+    "total_bytes": 31769760846,
+    "n_files": 7,
+    "last_modified": "2024-07-20"
+   },
+   "why": "no licence; 31.8 GB > cap; not sampled"
+  },
+  {
+   "name": "OpenHandsCommunity/evaluation (HF Space, formerly OpenHands/evaluation)",
+   "source": {
+    "url": "https://huggingface.co/spaces/OpenHandsCommunity/evaluation",
+    "revision": "f86335188c3ad61d2e2285751968ffbeff94f856",
+    "n_files": 10733
+   },
+   "why": "no licence declared; legacy viewer of eval outputs (the MIT dataset above appears to be its curated successor - UNVERIFIED)"
+  },
+  {
+   "name": "OnepointfiveHz/sonnet-openhands-0815",
+   "source": {
+    "url": "https://huggingface.co/datasets/OnepointfiveHz/sonnet-openhands-0815",
+    "revision": "f22c26a7047e16d7309a1fe175884a8354965f82",
+    "gated": false,
+    "licence_tag": [],
+    "total_bytes": 28396768197,
+    "n_files": 2,
+    "last_modified": "2026-08-15"
+   },
+   "why": "no licence; 28.4 GB .zst > cap"
+  },
+  {
+   "name": "sweagent/pi-harness-swev-trajs",
+   "source": {
+    "url": "https://huggingface.co/datasets/sweagent/pi-harness-swev-trajs",
+    "revision": "958eff6f82db74ecbad53ef6d603f6ead0770a99",
+    "gated": false,
+    "licence_tag": [],
+    "total_bytes": 19971164,
+    "n_files": 12,
+    "last_modified": "2026-08-15"
+   },
+   "why": "no licence (pi coding-agent harness, not SWE-agent)"
+  },
+  {
+   "name": "SWE-agent repo trajectories/demonstrations",
+   "source": {
+    "url": "https://github.com/SWE-agent/SWE-agent/tree/3ea751c087f32b16e039a2233dd6eefecef325d5/trajectories",
+    "licence": "MIT"
+   },
+   "why": "22 few-shot demonstration .traj files, not a corpus; not opened"
+  }
+ ],
+ "prior_art": [
+  {
+   "claim": "A SWE-bench-family harness or leaderboard already verifies tool results, or time-checks tool calls, from the recorded log",
+   "closest_work": "SWE-bench `swebench submit verify` + SWE-bench/experiments analysis scripts",
+   "does": "Re-grades every instance from the recorded test output and flags disagreement with results.json, with no re-execution (sources/sb_submit_verify.py docstring: 'No Docker and no re-execution: the recorded test output is the evidence'). detect_similarity.py compares predicted patches with the gold patch ('Cheating detection for SWE-bench'). git_peek_suspicious_commits.py regex-scans mini-swe-agent trajectory commands for git-history peeking. validate_entries.py checks entry structure only ('not that the artifacts are correct').",
+   "does_not": "No script reads timestamps, durations, request/response ids, or checks tool results against each other. The recorded test output and trajectories are trusted as given. The README requirement that traces be 'Generated with the inference process, not post-hoc' is stated but not machine-checked in any script opened.",
+   "verdict": "NOT TAKEN for our mechanisms (rank-1 id bracket, N1 conditional duration, repeat determinism). PARTIAL precedent only for the general pattern 'verify claims from the record without re-execution' (claim-vs-recorded-artifact), which, like OverclaimBench, trusts the record.",
+   "deciding_citation": "sources/sb_submit_verify.py lines 1-10 and sources/sbexp_validate_entries.py docstring (SWE-bench @02e7a74f, experiments @40f164d5)"
+  },
+  {
+   "claim": "Agent harnesses in this family already record the clocks N1/N3 need",
+   "closest_work": "SWE-agent StepOutput.execution_time; mini-swe-agent extra.timestamp; OpenHands event timestamps and V1 metrics.response_latencies",
+   "does": "SWE-agent times each action with time.perf_counter() (B1d evidence swa_agents.py L960-L991) for a total-execution budget. mini-swe-agent stamps time.time() on every response and observation (sources/msa_litellm_model.py L104; msa_actions_toolcall.py L100). OpenHands stamps every event (microseconds) and, in the V1 SDK, logs latency and token usage per llm_response_id.",
+   "does_not": "None of them uses these clocks to check whether a result is consistent with the work claimed. They are budget and accounting fields.",
+   "verdict": "NOT TAKEN (consistent with B1d). These harnesses supply the inputs for N1/N3 across three more harness formats.",
+   "deciding_citation": "sources/msa_*.py (mini-swe-agent @04d809ce); B1d_agent_eval/swa_agents.py (SWE-agent @3ea751c0)"
+  },
+  {
+   "claim": "Harness-written tool results are labelled as such in the record",
+   "closest_work": "mini-swe-agent not_executed padding; 'combo' harness extra.synthetic",
+   "does": "mini-swe-agent pads unexecuted actions with {output:'', returncode:-1, exception_info:'action was not executed'} (sources/msa_actions_toolcall.py L88). The combo harness substitutes some submit outputs and flags them extra.synthetic (combo_ground / combo_empty_guard), counted in census_combo2.json.",
+   "does_not": "These are provenance labels the harness writes about its own substitutions, not detectors. No paper using them as fabrication ground truth was searched for or found.",
+   "verdict": "NOT ASSESSED as a method claim (data property). Use: a small, honest, labelled positive set for 'result content not produced by the command'. Novelty of using it as ground truth: UNVERIFIED.",
+   "deciding_citation": "sources/msa_actions_toolcall.py L88; census/census_combo2.json synthetic_flags"
+  }
+ ],
+ "hf_search_sweep": {
+  "queries": [
+   "search=swe-agent",
+   "search=sweagent",
+   "search=openhands",
+   "search=opendevin",
+   "author=nebius",
+   "author=SWE-Gym",
+   "author=SWE-bench",
+   "author=OpenHands",
+   "author=all-hands",
+   "author=princeton-nlp",
+   "search=swe-smith",
+   "search=swe-rebench",
+   "search=swe-bench",
+   "search=trajector",
+   "search=mini-swe",
+   "search=R2E-Gym",
+   "author=R2E-Gym"
+  ],
+  "relevant_hits_after_name_filter": 212,
+  "saved": "analysis/out/phase_e/track_b/B5a_sweagent_openhands/meta/hfsearch_all.json",
+  "not_audited": "roughly 180 remaining small third-party SFT/RL re-exports (DCAgent*, OnepointfiveHz/*, asaverren/*, ...). Spot-checked re-exports were chat-format without timestamps; the remainder are UNVERIFIED and mostly lack licence tags."
+ },
+ "sources": [
+  {
+   "url": "https://huggingface.co/datasets/OpenHands/openhands-evaluation-outputs",
+   "opened": true,
+   "saw": "card `license: mit`; 91 files; output.jsonl event streams (sampled then downloaded)"
+  },
+  {
+   "url": "https://huggingface.co/datasets/OpenHands/openhands-feedback",
+   "opened": true,
+   "saw": "card license mit; 275 public feedback sessions; schema in census"
+  },
+  {
+   "url": "https://huggingface.co/datasets/tarsur385/qwen3-30b-a3b-instruct-2507-swebench-verified-mini-swe-agent",
+   "opened": true,
+   "saw": "card license mit; 499 mini-swe-agent 2.2.8 trajectories"
+  },
+  {
+   "url": "https://huggingface.co/datasets/sweagent/combo2-rl-rollouts",
+   "opened": true,
+   "saw": "card license mit; README: 27,787 trajectories in 6 shards, '34.8 GiB raw'"
+  },
+  {
+   "url": "https://github.com/SWE-bench/experiments",
+   "opened": true,
+   "saw": "license null via API at 40f164d5; README: entries not artifacts; S3 bucket swe-bench-submissions"
+  },
+  {
+   "url": "https://swe-bench-submissions.s3.amazonaws.com/ (prefix listings)",
+   "opened": true,
+   "saw": "listing per prefix allowed, root listing 403; trajectory files fetched one each"
+  },
+  {
+   "url": "https://github.com/SWE-bench/SWE-bench/blob/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/submit/verify.py",
+   "opened": true,
+   "saw": "re-grade from recorded test output, no re-execution"
+  },
+  {
+   "url": "https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/types.py",
+   "opened": true,
+   "saw": "TrajectoryStep has execution_time; no wall-clock field"
+  },
+  {
+   "url": "https://github.com/SWE-agent/mini-swe-agent (commit 04d809ce)",
+   "opened": true,
+   "saw": "licence MIT; time.time() stamps in litellm_model.py and actions_toolcall.py"
+  },
+  {
+   "url": "https://github.com/OpenHands/openhands-index-results (commit 3015ac61)",
+   "opened": true,
+   "saw": "license null; scores.json full_archive URLs"
+  },
+  {
+   "url": "https://results.eval.all-hands.dev/ (two archives, range reads only)",
+   "opened": true,
+   "saw": "OpenHands V1 SDK events, response_latencies keyed by llm_response_id"
+  },
+  {
+   "url": "https://huggingface.co/datasets/OpenHands/openhands-index",
+   "opened": true,
+   "saw": "Apache-2.0 leaderboard snapshot; no trajectories"
+  },
+  {
+   "url": "https://api-docs.deepseek.com/api/create-chat-completion",
+   "opened": true,
+   "saw": "created: 'The Unix timestamp (in seconds) of when the chat completion was created'; example id is a UUID"
+  },
+  {
+   "url": "https://huggingface.co/api/organizations/sweagent/overview",
+   "opened": true,
+   "saw": "fullname 'SWE-Agent', numUsers 1, isVerified false"
+  },
+  {
+   "url": "https://huggingface.co/spaces/OpenHandsCommunity/evaluation",
+   "opened": true,
+   "saw": "API metadata only: 10,733 files, no licence"
+  },
+  {
+   "url": "https://huggingface.co/datasets/nlile/misc-merged-claude-code-traces-v1",
+   "opened": true,
+   "saw": "card features include timestamp and request_id; no licence tag"
+  },
+  {
+   "url": "(all other HF datasets in the failed/excluded lists)",
+   "opened": true,
+   "saw": "Hub API info + tree + README at the pinned revision in meta/; parquet footers via HfFileSystem range reads"
+  }
+ ],
+ "process_incidents": [
+  "HF resolver rate limit (5000 req / 5 min) hit while other Track B agents were downloading; switched to a downloader that fetches only missing files.",
+  "A stopped background retry script kept running and its `hf download` raced pinned_dl.py on openhands-evaluation-outputs; final state verified: 91/91 files match Hub LFS sha256; one duplicate .part file left in place (see caveats)."
+ ]
+}

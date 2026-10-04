@@ -1,0 +1,141 @@
+{
+ "id": "sailplane/swe-agent-trajs",
+ "sha": "04eb93df490e7fbb7b6e8358da8145aba6f5a25c",
+ "gated": false,
+ "private": false,
+ "lastModified": "2024-08-13T02:32:48.000Z",
+ "license_tags": [],
+ "cardData_license": null,
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "train",
+     "path": "data/train-*"
+    }
+   ]
+  }
+ ],
+ "dataset_info": {
+  "features": [
+   {
+    "name": "exit_status",
+    "dtype": "string"
+   },
+   {
+    "name": "submission",
+    "dtype": "string"
+   },
+   {
+    "name": "model_stats",
+    "struct": [
+     {
+      "name": "api_calls",
+      "dtype": "int64"
+     },
+     {
+      "name": "instance_cost",
+      "dtype": "float64"
+     },
+     {
+      "name": "tokens_received",
+      "dtype": "int64"
+     },
+     {
+      "name": "tokens_sent",
+      "dtype": "int64"
+     },
+     {
+      "name": "total_cost",
+      "dtype": "float64"
+     }
+    ]
+   },
+   {
+    "name": "total_cost",
+    "dtype": "float64"
+   },
+   {
+    "name": "instance_cost",
+    "dtype": "float64"
+   },
+   {
+    "name": "tokens_sent",
+    "dtype": "int64"
+   },
+   {
+    "name": "tokens_received",
+    "dtype": "int64"
+   },
+   {
+    "name": "api_calls",
+    "dtype": "int64"
+   },
+   {
+    "name": "trajectory",
+    "dtype": "string"
+   },
+   {
+    "name": "filename",
+    "dtype": "string"
+   },
+   {
+    "name": "resolved",
+    "dtype": "bool"
+   },
+   {
+    "name": "steps",
+    "dtype": "int64"
+   },
+   {
+    "name": "20240620_sweagent_claude3.5sonnet",
+    "dtype": "bool"
+   },
+   {
+    "name": "20240402_sweagent_gpt4",
+    "dtype": "bool"
+   },
+   {
+    "name": "20240721_amazon-q-developer-agent-20240719-dev",
+    "dtype": "bool"
+   },
+   {
+    "name": "20240628_autocoderover-v20240620",
+    "dtype": "bool"
+   }
+  ],
+  "splits": [
+   {
+    "name": "train",
+    "num_bytes": 370108525,
+    "num_examples": 2294
+   }
+  ],
+  "download_size": 92251627,
+  "dataset_size": 370108525
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2419,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 1168,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "data/train-00000-of-00001.parquet",
+   "size": 92251627,
+   "type": "file",
+   "lfs_sha256": "ed6c7d9a0f39fcfbb890eedd72bdf0ccfe295ac7a1f17b468f787515bdbe201e"
+  }
+ ],
+ "total_bytes": 92255214,
+ "n_files": 3,
+ "readme_bytes": 1168
+}

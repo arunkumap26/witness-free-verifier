@@ -1,0 +1,1696 @@
+{
+ "key": "corpus_skeptic",
+ "task": "Phase E Track B corpus skeptic: re-check every corpus marked downloaded in CORPUS_INVENTORY.md (files on disk, licence, size caps, field audit re-run on a sample, request-id column vs committed evidence); correct the doc.",
+ "produced_by": "analysis/out/phase_e/track_b/corpus_skeptic/compose_skeptic.py",
+ "generated_utc": "2026-10-04T09:08:08Z",
+ "method": {
+  "independence": "all parsers and scanners written fresh in corpus_skeptic/; none imports B5 scripts, compose_inventory.py or analysis/lib",
+  "seen_data": "structural counts only (presence, resolution, joins, ids); no latency, gap or duration statistic computed",
+  "secrets": "credential-like values counted and classed, never printed or stored",
+  "scope": "C:/Swarms/data/acquired only; swechat H split, cc_local raw and anything swarm-related not opened"
+ },
+ "inputs_sha256": {
+  "field_audit.json": "b3bb64e392c4ba82ba4c81c48e3d40ec94d35867f6b579748beb9a48c63bf57d",
+  "full_counts.json": "c05e7538a6fb1390a77daa4b5bd76b849c825bab0caa205ded59ebecec5cdeb0",
+  "request_id_scan.json": "a04d16401454ca89a8162cb276bc00be15458b6a833bb644727641ed96cbcf3b",
+  "combo2_synthetic.json": "7f942f812bab148c20f68221a6d0baa5a8fdd2ba1519c31baf4b9ea7ef2f9150",
+  "openhands_shapes.json": "3e1b2277deca5b89afbed6b8c942b57a29b3dcb8b91454a76d544027426d99dc",
+  "context_probe.json": "da5229b9a42c5ffba346a6c827671f3a93bd0bc6ba8e0d076c3b8ab4da33338e"
+ },
+ "doc_checked": {
+  "path": "analysis/CORPUS_INVENTORY.md",
+  "sha256_before_edit": "0e2a20afd93dc04bf5d36256d60176a7b5f38e0aa554aa2f69ac8c1147f410c1",
+  "sha256_after_edit": "b5514ac38e3b724e6624ad4ffbde288d355903d1cb42c0e41cae9b7d98edfda5",
+  "edits": "corrections in place (sections 0, 1.1, 1.3, 2.4, 5.3, 5.6, 5.10, 5.11, 5.13, 6) plus an appended 'Skeptic changes' section"
+ },
+ "summary": {
+  "corpora_marked_downloaded": 14,
+  "dirs_present": 14,
+  "disk_total_bytes": 14957562193,
+  "disk_total_GB": 14.958,
+  "disk_total_GiB": 13.93,
+  "over_per_corpus_cap_on_disk": [
+   "terminal-bench-2-leaderboard"
+  ],
+  "over_per_corpus_cap_excluding_.git": [],
+  "licence_permits_research_use": 14,
+  "field_audit_pass": 12,
+  "field_audit_pass_weak": [
+   "osworld_verified_trajs",
+   "webarena_infinity_trajs"
+  ],
+  "request_id_carriers_confirmed": [
+   "terminal-bench-2-leaderboard (WozCode only)",
+   "cli-trace-commons",
+   "cli-claude-code-hf (10 of 12 repos)"
+  ],
+  "request_id_NO_rows_confirmed_by_full_scan": [
+   "agentcap-dacorvo",
+   "cli-codex-hf",
+   "glm52-nf3-tb21-traces",
+   "miniswe-v2-qwen3-30b-swebv-tarsur385",
+   "openhands-evaluation-outputs",
+   "openhands-feedback",
+   "osworld_verified_trajs",
+   "sweagent-combo2-rl-rollouts",
+   "tracelab-uw",
+   "webarena_infinity_trajs"
+  ],
+  "git_status_note": "no file under analysis/out/phase_e/track_b/ (incl. b4.json, B5*.json, corpus_inventory.json) is committed (git ls-files shows none); the B5 rows of the request-id column rest on uncommitted evidence. The B4 rows were checked against committed files instead (see committed_evidence_check)."
+ },
+ "per_corpus": {
+  "openhands-evaluation-outputs": {
+   "exists": true,
+   "disk": {
+    "bytes": 4762213089,
+    "GB": 4.762,
+    "GiB": 4.435,
+    "bytes_excluding_.git": 4762213089,
+    "bytes_excluding_.git_and_.cache": 4762203191,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "openhands-evaluation-outputs/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet-20241022_maxiter_100_N_v2.1-no-hint/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet-20241022_maxiter_30_N_v1.9-no-hint/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet@20240620_maxiter_30_N_v1.9-no-hint-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/deepseek-v2.5_maxiter_30_N_v1.9-no-hint-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/gemini-1.5-pro-002_maxiter_30_N_v1.9-no-hint-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/gpt-4o-2024-05-13_maxiter_30_N_v1.9-no-hint-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/gpt-4o-mini-2024-07-18_maxiter_30_N_v1.9-no-hint-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/llama-3.1-405b-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/llama-3.1-70b-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/llama-3.2-90b-vision-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/o1-mini-2024-09-12_maxiter_30_N_v1.9-no-hint-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/qwen-2.5-72b-instruct_maxiter_30_N_v1.9-no-hint-non-fncall-eval-24sep/README.md",
+     "licence": null,
+     "line": null
+    },
+    {
+     "card": "openhands-evaluation-outputs/outputs/webarena/README.md",
+     "licence": null,
+     "line": null
+    }
+   ],
+   "licence": "MIT (card, on disk and upstream API @aa897780)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "6 instances per run x 19 runs (seeded reservoir)",
+    "events_with_ts": [
+     6534,
+     6654
+    ],
+    "events_ts_subsecond": [
+     6534,
+     6654
+    ],
+    "observations_cause_resolves_flat_runs": [
+     2002,
+     2012
+    ],
+    "tally": {
+     "actions_with_model_response": 1886,
+     "agent_tool_actions": 3144,
+     "agent_tool_actions_with_obs_by_cause": 2002,
+     "agent_tool_actions_with_obs_positional": 1140,
+     "events_n": 6654,
+     "events_ts_subsecond": 6534,
+     "events_with_ts": 6534,
+     "instances_flat": 54,
+     "instances_pairs": 60,
+     "model_response_id_chatcmpl": 679,
+     "observations": 2012,
+     "observations_cause_resolves": 2002,
+     "observations_with_cause": 2002
+    },
+    "history_shape_full_pass": {
+     "runs_flat": 9,
+     "flat_runs_without_tool_call_metadata": 1,
+     "runs_pairs": 10
+    }
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 93,
+    "bytes_scanned": 4608362185,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "312,115/318,298 events with ts",
+     "doc_rate": 0.9806,
+     "skeptic_sample_rate": 0.982,
+     "status": "CONSISTENT"
+    },
+    {
+     "claim": "history: v2.x (8 runs) flat; v1.9 (11 runs) [action, observation] pairs",
+     "status": "WRONG",
+     "skeptic": "full pass over all 5,695 instances: 9 runs flat, 10 runs pairs. claude-3-5-sonnet-20241022_maxiter_30_N_v1.9-no-hint is flat (joined by cause) but has no tool_call_metadata. B5a's own census_oh_eval.json per_run.history_format already shows 9 flat / 10 pair; the doc text (and B5a's prose) miscounted.",
+     "evidence": "corpus_skeptic/openhands_shapes.json"
+    },
+    {
+     "claim": "duplicate .part file, byte-identical, 153,841,006 B",
+     "status": "CONFIRMED",
+     "evidence": "request_id_scan.json#duplicates/openhands_part_files"
+    },
+    {
+     "claim": "provider request ids: NO",
+     "status": "CONFIRMED",
+     "skeptic": "0 Anthropic-layout ids in 4.61 GB scanned"
+    }
+   ],
+   "notes": [
+    "outputs/webarena/ holds only a 118-byte pointer README (726 B with folder); not a corpus.",
+    "join is by cause in the 9 flat runs and positional in the 10 pair runs; the doc's 'by cause' label for the 145,631/145,966 total mixes both."
+   ]
+  },
+  "openhands-feedback": {
+   "exists": true,
+   "disk": {
+    "bytes": 113695664,
+    "GB": 0.114,
+    "GiB": 0.106,
+    "bytes_excluding_.git": 113695664,
+    "bytes_excluding_.git_and_.cache": 113695329,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "openhands-feedback/README.md",
+     "licence": "mit",
+     "line": 4
+    }
+   ],
+   "licence": "MIT (card on disk; B5a manifest license_tags)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "40 of 275 sessions (seeded)",
+    "tool_actions_with_ts": [
+     820,
+     828
+    ],
+    "tool_observations_with_ts": [
+     823,
+     823
+    ],
+    "tool_observations_paired_to_id_minus_1_action": [
+     780,
+     823
+    ],
+    "tally": {
+     "tool_actions_n": 828,
+     "tool_actions_ts_subsecond": 820,
+     "tool_actions_with_ts": 820,
+     "tool_observations_n": 823,
+     "tool_observations_paired_id_minus_1_to_tool_action": 780,
+     "tool_observations_ts_subsecond": 823,
+     "tool_observations_with_ts": 823
+    }
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 4,
+    "bytes_scanned": 366317459,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "actions with ts 5,898/5,968",
+     "doc_rate": 0.9883,
+     "skeptic_sample_rate": 0.9903,
+     "status": "CONSISTENT"
+    },
+    {
+     "claim": "strict pairing 5,552/5,974 (id-1 and echo match)",
+     "doc_rate": 0.9294,
+     "skeptic_sample_rate_id_minus_1_only": 0.9478,
+     "status": "CONSISTENT (looser rule, so higher)"
+    }
+   ],
+   "notes": [
+    "real users' prompts: aggregates only (unchanged)."
+   ]
+  },
+  "miniswe-v2-qwen3-30b-swebv-tarsur385": {
+   "exists": true,
+   "disk": {
+    "bytes": 224243500,
+    "GB": 0.224,
+    "GiB": 0.209,
+    "bytes_excluding_.git": 224243500,
+    "bytes_excluding_.git_and_.cache": 224191154,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "miniswe-v2-qwen3-30b-swebv-tarsur385/README.md",
+     "licence": "mit",
+     "line": 2
+    }
+   ],
+   "licence": "MIT (card on disk; upstream API @58389eb5)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "40 of 499 trajectories",
+    "assistant_with_ts": [
+     1016,
+     1016
+    ],
+    "tool_with_ts": [
+     993,
+     993
+    ],
+    "calls_joined": [
+     993,
+     1016
+    ],
+    "tally": {
+     "assistant_n": 1016,
+     "assistant_ts_subsecond": 1016,
+     "assistant_with_ts": 1016,
+     "calls": 1016,
+     "calls_joined": 993,
+     "exit_LimitsExceeded": 17,
+     "exit_Submitted": 23,
+     "results": 993,
+     "results_without_call": 0,
+     "tool_n": 993,
+     "tool_ts_subsecond": 993,
+     "tool_with_ts": 993
+    }
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 505,
+    "bytes_scanned": 224191154,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "13,664/13,664 results join; 223 unjoined calls = final submit of 223 Submitted runs",
+     "status": "CONSISTENT",
+     "skeptic": "sample: 23 unjoined calls, 23 Submitted runs"
+    }
+   ],
+   "notes": []
+  },
+  "sweagent-combo2-rl-rollouts": {
+   "exists": true,
+   "disk": {
+    "bytes": 445522917,
+    "GB": 0.446,
+    "GiB": 0.415,
+    "bytes_excluding_.git": 445522917,
+    "bytes_excluding_.git_and_.cache": 445522788,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "sweagent-combo2-rl-rollouts/README.md",
+     "licence": "mit",
+     "line": 2
+    }
+   ],
+   "licence": "MIT (card on disk; upstream API @eaff5487)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "40 of 4,571 trajectories (seeded reservoir over the tar stream)",
+    "assistant_with_ts": [
+     3757,
+     3757
+    ],
+    "tool_with_ts": [
+     3717,
+     3717
+    ],
+    "calls_joined": [
+     3717,
+     3757
+    ],
+    "tally": {
+     "assistant_n": 3757,
+     "assistant_ts_subsecond": 3757,
+     "assistant_with_ts": 3757,
+     "calls": 3757,
+     "calls_joined": 3717,
+     "results": 3717,
+     "results_without_call": 0,
+     "tool_n": 3717,
+     "tool_ts_subsecond": 3717,
+     "tool_with_ts": 3717
+    },
+    "synthetic_flag_full_pass": {
+     "tool:combo_empty_guard": 164,
+     "user:combo_empty_guard": 164,
+     "tool:combo_ground": 4361,
+     "user:combo_ground": 4361,
+     "user:combo_valve": 101
+    }
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 5,
+    "bytes_scanned": 5602727055,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "4,525 tool results harness-flagged (combo_ground 4,361 + combo_empty_guard 164) + 101 user combo_valve",
+     "status": "CONFIRMED with clarification",
+     "skeptic": "every flagged tool message is accompanied by a user-role message carrying the same flag (4,361 + 164 more), so 9,151 messages carry extra.synthetic in shard 00; a raw-byte count gives 2x the tool figure. Count tool-role messages only when using these as labelled positives.",
+     "evidence": "corpus_skeptic/combo2_synthetic.json"
+    }
+   ],
+   "notes": []
+  },
+  "terminal-bench-2-leaderboard": {
+   "exists": true,
+   "disk": {
+    "bytes": 5884289870,
+    "GB": 5.884,
+    "GiB": 5.48,
+    "bytes_excluding_.git": 4814220907,
+    "bytes_excluding_.git_and_.cache": 4814220907,
+    "over_5GB_cap_on_disk": true,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "terminal-bench-2-leaderboard/hf_repo/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    }
+   ],
+   "licence": "Apache-2.0 (card on disk; upstream README @572b2614 opened)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": {
+     "atif_files": 42,
+     "cc_jsonl_files": 12,
+     "gemini_files": 8,
+     "hookele_files": 8,
+     "rule": "2 ATIF per ATIF submission, 4 CC JSONL per CC submission"
+    },
+    "census": {
+     "submissions": 75,
+     "submissions_with_any_structured_log": 25,
+     "submissions_without_structured_log": 50,
+     "submissions_with": {
+      "atif": 21,
+      "cc": 3,
+      "gemini": 2,
+      "hookele": 1
+     },
+     "native_only_submissions": [
+      "ClaudeCode__GLM-4.7",
+      "Gemini_CLI__Gemini-3-Flash-Preview",
+      "cchuter__minimax-m2.5",
+      "hookele__gpt5.1-codex-mini"
+     ],
+     "files": {
+      "atif": 9670,
+      "cc_jsonl": 1379,
+      "gemini": 884,
+      "hookele": 443
+     },
+     "trial_result_json_total": 33047
+    },
+    "atif_steps_with_ts": [
+     1670,
+     1670
+    ],
+    "atif_steps_ts_subsecond": [
+     1670,
+     1670
+    ],
+    "atif_results_with_source_call_id": [
+     703,
+     1296
+    ],
+    "atif_results_step_paired": [
+     578,
+     1296
+    ],
+    "atif_steps_with_metrics": [
+     1038,
+     1670
+    ],
+    "atif_steps_with_nonzero_tokens": [
+     1007,
+     1670
+    ],
+    "cc_entries_with_ts": [
+     997,
+     997
+    ],
+    "cc_calls_joined": [
+     367,
+     368
+    ],
+    "gemini_calls_joined": [
+     126,
+     126
+    ],
+    "hookele_calls_joined": [
+     140,
+     140
+    ],
+    "hookele_ts_subsecond": [
+     0,
+     643
+    ]
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 52549,
+    "bytes_scanned": 4806700084,
+    "anth_matches": 12333,
+    "anth_distinct": 7278,
+    "files_with_anth": 470,
+    "keys": {
+     "requestId|anthropic_req": 12327,
+     "request_id|other_len8": 2
+    },
+    "anth_by_prefix": {
+     "hf_repo/submissions/terminal-bench/2.0/WozCode__Claude-Opus-4.6": 12327,
+     "hf_repo/submissions/terminal-bench/2.0/Meta-Harness__Claude-Opus-4.6": 3,
+     "hf_repo/submissions/terminal-bench/2.0/Terminus-KIRA__Claude-Opus-4.6": 2,
+     "hf_repo/submissions/terminal-bench/2.0/JJAgent__Multiple": 1
+    },
+    "files_with_sk_ant": 446,
+    "files_with_oauth_env": 449,
+    "wozcode_agreement": {
+     "jsonl_files": 464,
+     "entries_with_req": 12327,
+     "entries_with_req_type_assistant": 12327,
+     "entries_agree_-2s_+600s": 12279,
+     "entries_event_after_id_by_gt_600s": 48,
+     "distinct_req_ids": 7272,
+     "distinct_req_ids_with_ge1_agreeing_entry": 7250,
+     "models_on_req_entries": {
+      "claude-opus-4-6": 11913,
+      "claude-haiku-4-5-20251001": 414
+     }
+    }
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "53 submissions without ATIF or native structured logs (so '1 of 75' has 53 unchecked)",
+     "status": "WRONG",
+     "skeptic": "25 of 75 submissions hold structured logs (21 ATIF; native-only: ClaudeCode__GLM-4.7, Gemini_CLI__Gemini-3-Flash-Preview, cchuter__minimax-m2.5, hookele__gpt5.1-codex-mini); 50 hold none"
+    },
+    {
+     "claim": "request ids in 1 of 75 submissions (WozCode), 12,327 entries, 7,272 distinct, 12,279 agree",
+     "status": "CONFIRMED",
+     "skeptic": "entries 12327, distinct 7272, agree 12279; correct denominator is 1 of 25 submissions with logs"
+    },
+    {
+     "claim": "ATIF scan: 5 matches, all in mteb-leaderboard trials of 5 harnesses (probably task content)",
+     "status": "PARTLY WRONG (regex artefact)",
+     "skeptic": "compose_inventory.py's regex needs an unescaped closing quote, so it misses ids inside escaped JSON. The strict Anthropic-layout scan finds 6 ids in 6 non-WozCode files (Meta-Harness 3, Terminus-KIRA 2, JJAgent 1), all inside observation content or step message text (API error bodies), none in a harness field. The conclusion (no ATIF harness field carries request ids) stands.",
+     "evidence": "corpus_skeptic/context_probe.json#tb2_non_wozcode_anthropic_req_ids"
+    },
+    {
+     "claim": "1,766 early copies under submissions/ are byte-identical",
+     "status": "CONFIRMED",
+     "evidence": "request_id_scan.json#duplicates/tb2_early_copies"
+    },
+    {
+     "claim": "446 files carry CLAUDE_CODE_OAUTH_TOKEN with sk-ant- value (pilot-real__claude-opus-4-6)",
+     "status": "CONFIRMED",
+     "skeptic": "446 files with an sk-ant- value, all under pilot-real__claude-opus-4-6; 449 files mention the variable name"
+    },
+    {
+     "claim": "over the 5 GB cap only because of .git (4.814 GB without)",
+     "status": "CONFIRMED"
+    },
+    {
+     "claim": "ATIF metrics on 253,556 steps",
+     "status": "CAVEAT",
+     "skeptic": "metrics present does not mean token counts present: in the sample 1007 of 1038 steps with metrics have nonzero prompt or completion tokens"
+    }
+   ],
+   "notes": [
+    "hookele stamps are 1 s; its trajectory start line names model gpt-5.1-codex-max while the submission folder says gpt5.1-codex-mini (seen in one file; not counted)."
+   ]
+  },
+  "glm52-nf3-tb21-traces": {
+   "exists": true,
+   "disk": {
+    "bytes": 104031201,
+    "GB": 0.104,
+    "GiB": 0.097,
+    "bytes_excluding_.git": 89885543,
+    "bytes_excluding_.git_and_.cache": 89885543,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "glm52-nf3-tb21-traces/hf_repo/README.md",
+     "licence": "mit",
+     "line": 2
+    }
+   ],
+   "licence": "MIT (card on disk; upstream API @6020a41c)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "20 of 86 ATIF files",
+    "steps_with_ts": [
+     772,
+     772
+    ],
+    "results_with_source_call_id": [
+     494,
+     752
+    ],
+    "tally": {
+     "atif_calls_joined_same_step": 494,
+     "atif_calls_with_id": 1262,
+     "atif_files": 20,
+     "atif_obs_results": 752,
+     "atif_obs_results_no_call_in_step": 1,
+     "atif_obs_results_step_paired": 257,
+     "atif_obs_results_with_source_call_id": 494,
+     "atif_results_with_id_without_call_same_step": 0,
+     "atif_steps_n": 772,
+     "atif_steps_ts_subsecond": 772,
+     "atif_steps_with_metrics": 752,
+     "atif_steps_with_nonzero_tokens": 752,
+     "atif_steps_with_ts": 772,
+     "atif_tool_calls": 1262
+    }
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 953,
+    "bytes_scanned": 89885543,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {
+     "request_id|other_len8": 5,
+     "request_id|other_len10": 5
+    },
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "2,106/3,237 results by id, rest step-paired",
+     "doc_rate": 0.6506,
+     "skeptic_sample_rate": 0.6569,
+     "status": "CONSISTENT"
+    }
+   ],
+   "notes": [
+    "hf_repo/.git holds 14,145,658 B (not mentioned in the doc; negligible)."
+   ]
+  },
+  "osworld_verified_trajs": {
+   "exists": true,
+   "disk": {
+    "bytes": 1705169711,
+    "GB": 1.705,
+    "GiB": 1.588,
+    "bytes_excluding_.git": 1705169711,
+    "bytes_excluding_.git_and_.cache": 1705169711,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "osworld_verified_trajs/autoglm_15steps/SOURCE.json",
+     "licence": "MIT (dataset card license: mit)",
+     "line": null,
+     "kind": "acquisition record (B5c/B5e), not a dataset card"
+    }
+   ],
+   "licence": "MIT (SOURCE.json records the card; upstream API @5473c39e)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "4 traj.jsonl per submission x 20",
+    "rows_with_ts": [
+     1762,
+     1762
+    ],
+    "rows_ts_subsecond": [
+     523,
+     1762
+    ],
+    "rows_with_call_id": [
+     1100,
+     1762
+    ],
+    "rows_with_screenshot_ref": [
+     1762,
+     1762
+    ]
+   },
+   "field_audit_pass": "weak",
+   "request_ids_full_scan": {
+    "files": 23213,
+    "bytes_scanned": 1705169711,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "us 49,907 / s 95,890 / missing 20 of 145,817 steps",
+     "doc_subsecond_rate": 0.3423,
+     "skeptic_sample_rate": 0.2968,
+     "status": "CONSISTENT"
+    },
+    {
+     "claim": "Claude runs via Bedrock, 0 req_",
+     "status": "CONFIRMED",
+     "skeptic": "0 Anthropic-layout ids in all 23,213 files"
+    }
+   ],
+   "notes": [
+    "PASS is weak: one pre-action stamp per step, no result-arrival time, positional join to a screenshot that was not downloaded. Two thirds of stamps are whole seconds."
+   ]
+  },
+  "webarena_infinity_trajs": {
+   "exists": true,
+   "disk": {
+    "bytes": 104495210,
+    "GB": 0.104,
+    "GiB": 0.097,
+    "bytes_excluding_.git": 104495210,
+    "bytes_excluding_.git_and_.cache": 104352799,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "webarena_infinity_trajs/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "webarena_infinity_trajs/SOURCE.json",
+     "licence": "MIT (dataset card license: mit)",
+     "line": null,
+     "kind": "acquisition record (B5c/B5e), not a dataset card"
+    }
+   ],
+   "licence": "MIT (card on disk; upstream API @73cf7f57)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "40 of 844 history files",
+    "steps_with_start_end": [
+     441,
+     441
+    ],
+    "steps_action_result_count_match": [
+     430,
+     441
+    ]
+   },
+   "field_audit_pass": "weak",
+   "request_ids_full_scan": {
+    "files": 1692,
+    "bytes_scanned": 104352799,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "counts match in 9,078/9,241 steps",
+     "doc_rate": 0.9824,
+     "skeptic_sample_rate": 0.9751,
+     "status": "CONSISTENT"
+    },
+    {
+     "claim": "4 .incomplete files",
+     "status": "BENIGN",
+     "skeptic": "0-byte HF cache markers under .cache/; the 4 target history/result files exist"
+    }
+   ],
+   "notes": [
+    "PASS is weak: one start/end window per step, positional action-result join, successful trajectories only."
+   ]
+  },
+  "tracelab-uw": {
+   "exists": true,
+   "disk": {
+    "bytes": 100940317,
+    "GB": 0.101,
+    "GiB": 0.094,
+    "bytes_excluding_.git": 100940317,
+    "bytes_excluding_.git_and_.cache": 100940317,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "tracelab-uw/v0.0.2/_b5e_provenance.json",
+     "licence": "CC BY 4.0 (LICENSE-DATASET.md at uw-syfi/TraceLab@11b8b14c6005808ab272b3431487066832582414); code Apache-2.0",
+     "line": null,
+     "kind": "acquisition record (B5c/B5e), not a dataset card"
+    }
+   ],
+   "licence": "CC BY 4.0 data (LICENSE-DATASET.md @11b8b14c opened upstream; asks users not to re-identify contributors), Apache-2.0 code",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "3,000 of 665,453 rows",
+    "tools_with_id_and_both_stamps_claude": [
+     1391,
+     1393
+    ],
+    "tools_with_id_and_both_stamps_codex": [
+     1941,
+     1942
+    ],
+    "full_pass": {
+     "counts": {
+      "rows_claude": 305445,
+      "tools_claude": 305005,
+      "tools_with_id_and_both_stamps_claude": 304290,
+      "rows_codex": 360008,
+      "tools_codex": 438814,
+      "tools_with_id_and_both_stamps_codex": 438760
+     },
+     "sessions_by_provider": {
+      "claude": 5319,
+      "codex": 2739
+     },
+     "sessions_total": 8058
+    }
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 2,
+    "bytes_scanned": 1245532892,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "8,058 sessions (5,319 + 2,739); 743,819 tools; both stamps 304,290 + 438,760",
+     "status": "CONFIRMED (full pass)"
+    }
+   ],
+   "notes": [
+    "no content, no provider ids (unchanged)."
+   ]
+  },
+  "cli-trace-commons": {
+   "exists": true,
+   "disk": {
+    "bytes": 127455347,
+    "GB": 0.127,
+    "GiB": 0.119,
+    "bytes_excluding_.git": 127455347,
+    "bytes_excluding_.git_and_.cache": 127455347,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "cli-trace-commons/trace-commons__agent-traces@112ebd4d/README.md",
+     "licence": "cc-by-4.0",
+     "line": 2
+    }
+   ],
+   "licence": "CC BY 4.0 for the compilation (card on disk; upstream API @112ebd4d); trace contents keep contributors' own licences",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "all 29 session JSONL files",
+    "entries_with_ts": [
+     12174,
+     12174
+    ],
+    "calls_joined": [
+     4262,
+     4264
+    ]
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 37,
+    "bytes_scanned": 132387231,
+    "anth_matches": 15006,
+    "anth_distinct": 4352,
+    "files_with_anth": 29,
+    "keys": {
+     "requestId|anthropic_req": 7496,
+     "request-id|anthropic_req": 2,
+     "requestID|anthropic_req": 2,
+     "request_id|anthropic_req": 2
+    },
+    "anth_by_prefix": {
+     "trace-commons__agent-traces@112ebd4d/sessions": 7503,
+     "trace-commons__agent-traces@112ebd4d/data": 7503
+    },
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0,
+    "agreement": {
+     "jsonl_files": 29,
+     "entries_with_req": 7496,
+     "entries_with_req_type_assistant": 7496,
+     "entries_agree_-2s_+600s": 7496,
+     "distinct_req_ids": 4349,
+     "distinct_req_ids_with_ge1_agreeing_entry": 4349,
+     "models_on_req_entries": {
+      "claude-sonnet-4-6": 5512,
+      "claude-opus-4-8": 1979,
+      "<synthetic>": 5
+     }
+    }
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "7,496/7,499 assistant entries with requestId; 4,349 distinct; 7,496 agree",
+     "status": "CONFIRMED"
+    },
+    {
+     "claim": "data/ holds a parquet index",
+     "status": "WRONG",
+     "skeptic": "data/train-00000-of-00001.parquet has 30 rows with a `trace` column holding full session copies (the raw scan finds the same 7,503 request-id occurrences in data/ as in sessions/). Read one or the other, never both."
+    }
+   ],
+   "notes": [
+    "5 request-id entries carry model `<synthetic>` (harness-written messages)."
+   ]
+  },
+  "cli-claude-code-hf": {
+   "exists": true,
+   "disk": {
+    "bytes": 244096133,
+    "GB": 0.244,
+    "GiB": 0.227,
+    "bytes_excluding_.git": 244096133,
+    "bytes_excluding_.git_and_.cache": 244096133,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "cli-claude-code-hf/AlinCiocan__fable-5-claude-code-traces@e33ebbca/README.md",
+     "licence": "cc-by-4.0",
+     "line": 2
+    },
+    {
+     "card": "cli-claude-code-hf/INONONO__tarkov-customs-trajectory@a0557bb9/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-claude-code-hf/armand0e__claude-fable-5-claude-code@7388ef96/README.md",
+     "licence": "mit",
+     "line": 17
+    },
+    {
+     "card": "cli-claude-code-hf/build-small-hackathon__kirana-detective-build-traces@d61ca08e/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-claude-code-hf/cfahlgren1__Fable-5-traces@0ba6f538/README.md",
+     "licence": "agpl-3.0",
+     "line": 2
+    },
+    {
+     "card": "cli-claude-code-hf/crispwisp__wisp-claude-code-sessions@c2c90b59/README.md",
+     "licence": "mit",
+     "line": 3
+    },
+    {
+     "card": "cli-claude-code-hf/naazimsnh02__tutordesk-agent-traces@4d538090/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-claude-code-hf/thomwolf__am-session-claude-code-1-a66490@e8a022e9/README.md",
+     "licence": "apache-2.0",
+     "line": 3
+    },
+    {
+     "card": "cli-claude-code-hf/thomwolf__am-session-claude-code-1-c3cc0a@037d661c/README.md",
+     "licence": "apache-2.0",
+     "line": 3
+    },
+    {
+     "card": "cli-claude-code-hf/thomwolf__am-session-sharing-design@36dd5850/README.md",
+     "licence": "apache-2.0",
+     "line": 3
+    },
+    {
+     "card": "cli-claude-code-hf/victor__claude-worldcup-2026-wallchart-traces@c2c03b28/README.md",
+     "licence": "cc-by-4.0",
+     "line": 2
+    },
+    {
+     "card": "cli-claude-code-hf/yellowbeeblackbee__claude-traces@0cad5c49/README.md",
+     "licence": "cc0-1.0",
+     "line": 16
+    }
+   ],
+   "licence": "per repo on disk: MIT x5, Apache-2.0 x3, CC BY 4.0 x2, CC0 x1, AGPL-3.0 x1 (cfahlgren1, upstream API @0ba6f538 confirms agpl-3.0)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "full pass, 379 JSONL files",
+    "entries_with_ts": [
+     39686,
+     39686
+    ],
+    "calls_joined": [
+     12994,
+     12997
+    ],
+    "distinct_sessionIds": 210
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 415,
+    "bytes_scanned": 244261716,
+    "anth_matches": 21629,
+    "anth_distinct": 7676,
+    "files_with_anth": 282,
+    "keys": {
+     "requestId|anthropic_req": 21604,
+     "requestId|req_other": 2
+    },
+    "anth_by_prefix": {
+     "cfahlgren1__Fable-5-traces@0ba6f538/sessions": 7693,
+     "crispwisp__wisp-claude-code-sessions@c2c90b59/transcripts": 4237,
+     "build-small-hackathon__kirana-detective-build-traces@d61ca08e/sessions": 882,
+     "naazimsnh02__tutordesk-agent-traces@4d538090/build_sessions": 708,
+     "armand0e__claude-fable-5-claude-code@7388ef96/602033e7-dc55-4b7f-909f-1c67135d8f4b.jsonl": 643,
+     "armand0e__claude-fable-5-claude-code@7388ef96/e3d0c93f-5cf8-4067-9a49-657ba5c67c80.jsonl": 539,
+     "armand0e__claude-fable-5-claude-code@7388ef96/f956721a-0af7-4bdc-8678-3a493d8fcd39.jsonl": 444,
+     "armand0e__claude-fable-5-claude-code@7388ef96/5eeb7e10-99a4-4d7d-a505-3ef47dcab480.jsonl": 365,
+     "armand0e__claude-fable-5-claude-code@7388ef96/7274969b-ab5c-461c-bc7c-8434eb9eb42e.jsonl": 309,
+     "armand0e__claude-fable-5-claude-code@7388ef96/c7c6924c-09c0-4c89-9ce1-a2080fd18f8f.jsonl": 305,
+     "armand0e__claude-fable-5-claude-code@7388ef96/6ae0aeed-340e-4b4d-9d74-f905a74ca2fc.jsonl": 303,
+     "armand0e__claude-fable-5-claude-code@7388ef96/68396a0d-8585-4d00-9321-54b2b00c07f4.jsonl": 280
+    },
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 2,
+    "agreement_union": {
+     "jsonl_files": 379,
+     "entries_with_req": 21585,
+     "entries_with_req_type_assistant": 21577,
+     "entries_agree_-2s_+600s": 21575,
+     "entries_event_after_id_by_gt_600s": 8,
+     "entries_with_req_type_system": 8,
+     "entries_req_not_anthropic_layout": 2,
+     "bad_lines": 2,
+     "distinct_req_ids": 7660,
+     "distinct_req_ids_with_ge1_agreeing_entry": 7655,
+     "models_on_req_entries": {
+      "claude-fable-5": 16171,
+      "claude-opus-4-8": 3173,
+      "claude-sonnet-4-6": 1878,
+      "<synthetic>": 146,
+      "claude-haiku-4-5-20251001": 114,
+      "claude-opus-5": 95,
+      "None": 8
+     }
+    }
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "377 files; 210 distinct sessionIds",
+     "status": "PARTLY WRONG",
+     "skeptic": "379 JSONL files (compose_inventory.json per_corpus also says 379); 210 sessionIds confirmed"
+    },
+    {
+     "claim": "21,577/24,425 assistant entries with requestId; 7,660 distinct; 21,567 agree",
+     "status": "CONFIRMED",
+     "skeptic": "21,567 = assistant entries agreeing; all-type entries: 21,575 of 21,585 agree (8 system entries carry requestId; 2 entries in cfahlgren1 carry a non-Anthropic-layout req_ value of length 28)"
+    },
+    {
+     "claim": "model strings include non-Claude names, so check the model before trusting a requestId",
+     "status": "CLARIFIED",
+     "skeptic": "on entries that carry requestId the models are only Claude names, `<synthetic>` (146) and None (8); non-Claude model strings never carry a requestId here"
+    }
+   ],
+   "notes": [
+    "`<synthetic>` entries are harness-written; flag them before using their requestId as a provider clock."
+   ]
+  },
+  "cli-codex-hf": {
+   "exists": true,
+   "disk": {
+    "bytes": 72628969,
+    "GB": 0.073,
+    "GiB": 0.068,
+    "bytes_excluding_.git": 72628969,
+    "bytes_excluding_.git_and_.cache": 72628969,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "cli-codex-hf/build-small-hackathon__MatchWise-agent-trace@10606dda/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-codex-hf/build-small-hackathon__clue-vibes-traces@fe8ba279/README.md",
+     "licence": "cc-by-4.0",
+     "line": 2
+    },
+    {
+     "card": "cli-codex-hf/build-small-hackathon__pit-wall-chaos-traces@60bd7c26/README.md",
+     "licence": "cc-by-4.0",
+     "line": 2
+    },
+    {
+     "card": "cli-codex-hf/build-small-hackathon__sense-garden-traces@1a13d90d/README.md",
+     "licence": "cc-by-4.0",
+     "line": 2
+    },
+    {
+     "card": "cli-codex-hf/drdavidtang__build-small-agent-trace@af8e7279/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-codex-hf/kingkw1__read-along-ai-agent-traces@0bee208f/README.md",
+     "licence": "mit",
+     "line": 2
+    }
+   ],
+   "licence": "per repo on disk: CC BY 4.0 x3, MIT x3",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "all 46 rollouts",
+    "lines_with_ts": [
+     17617,
+     17617
+    ],
+    "calls_joined": [
+     3381,
+     3381
+    ]
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 58,
+    "bytes_scanned": 72628969,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "46 rollouts, 3,381/3,381 by call_id, 17,617/17,617 lines",
+     "status": "CONFIRMED (full pass)"
+    }
+   ],
+   "notes": []
+  },
+  "cli-pi-hf": {
+   "exists": true,
+   "disk": {
+    "bytes": 211044988,
+    "GB": 0.211,
+    "GiB": 0.197,
+    "bytes_excluding_.git": 211044988,
+    "bytes_excluding_.git_and_.cache": 211044988,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "cli-pi-hf/Becks723__pi-traces@70163ead/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/OmarRabhI__pi-sessions@d3d60fea/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/OmarRabhI__pi-sessions@d3d60fea/_upload_staging/README.md",
+     "licence": "other",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/abidlabs__gradio-pi-sessions@7af63c1c/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/abidlabs__trackio-pi-sessions@4c1420de/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/championswimmer__pi-coding-sessions@f655c6c2/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/championswimmer__pi-coding-sessions@f655c6c2/_upload_staging/README.md",
+     "licence": "other",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/julien-c__pi-sessions@70041688/README.md",
+     "licence": "cc-by-4.0",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/lucacorbucci__llm_timeline_deepseek_v4_flash-pi@b46eaa8c/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/merve__agent_traces@2e1b3fce/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/merve__hf-find-traces@650d439f/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/moikapy__0xKobolds@50d5828c/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/moikapy__0xKobolds@50d5828c/_upload_staging/README.md",
+     "licence": "other",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/rgruchalski__combust-labs_pi-mono-docker@7829c4a2/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__clean-slides-sessions@0ecc915c/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__economist-tui-sessions@95b6dba5/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__heypocket-reader-sessions@70f6d07d/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__pi-computer-use-sessions@83536449/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__pi-extensions-sessions@17e22c59/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__pi-mono-sessions@d0895347/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__pi-nes-sessions@47d55a25/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__pi-session-hud-sessions@041268c0/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__pi-symphony-sessions@0697350f/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/thomasmustier__pine-of-glass-sessions@b9a6b263/README.md",
+     "licence": "mit",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/woxQAQ__pi-web@1928c53b/README.md",
+     "licence": "mit",
+     "line": 2
+    },
+    {
+     "card": "cli-pi-hf/woxQAQ__pi-web@1928c53b/_upload_staging/README.md",
+     "licence": "other",
+     "line": 12
+    },
+    {
+     "card": "cli-pi-hf/xhochy__conda-forge-agent-traces@046e1aff/README.md",
+     "licence": "bsd-3-clause",
+     "line": 2
+    }
+   ],
+   "licence": "per repo root card: MIT x17, Apache-2.0 x4, CC BY 4.0 x1, BSD-3-Clause x1 (xhochy, upstream API @046e1aff confirms)",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "full pass, 544 JSONL files",
+    "session_files": 530,
+    "distinct_session_ids": 522,
+    "calls_joined": [
+     23927,
+     23974
+    ],
+    "messages_epoch_ms": [
+     50107,
+     50107
+    ]
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 596,
+    "bytes_scanned": 211044988,
+    "anth_matches": 31,
+    "anth_distinct": 14,
+    "files_with_anth": 11,
+    "keys": {},
+    "anth_by_prefix": {
+     "championswimmer__pi-coding-sessions@f655c6c2/_upload_staging": 16,
+     "thomasmustier__pine-of-glass-sessions@b9a6b263/2026-06-04T14-29-08-894Z_019e9309-ba9e-7e05-9c01-1f502b895276.jsonl": 3,
+     "thomasmustier__pi-extensions-sessions@17e22c59/2026-01-10T19-34-08-975Z_e2ebc249-bf94-4407-a64a-dd3556dc75c3.jsonl": 2,
+     "thomasmustier__pi-mono-sessions@d0895347/2026-01-15T21-53-47-573Z_6b002064-6813-4f5c-9bd0-2d5e56b2f377.jsonl": 2,
+     "thomasmustier__pine-of-glass-sessions@b9a6b263/2026-06-09T22-08-06-945Z_019eae6d-b921-71c2-92c7-c412e69e8798.jsonl": 2,
+     "thomasmustier__clean-slides-sessions@0ecc915c/2026-02-03T11-49-55-265Z_ae3526ce-73df-444f-b1fe-fd8ceae280c0.jsonl": 1,
+     "thomasmustier__pi-computer-use-sessions@83536449/2026-04-25T17-20-32-336Z_019dc5a8-4450-725e-b701-afed219ba6c6.jsonl": 1,
+     "thomasmustier__pi-extensions-sessions@17e22c59/2026-01-07T12-22-23-866Z_cd714c64-cf62-438e-b140-d3a5a284c260.jsonl": 1,
+     "thomasmustier__pi-mono-sessions@d0895347/2026-01-07T23-30-39-269Z_6fd15e5e-cb8a-4719-9f83-0a61ca2312c9.jsonl": 1,
+     "thomasmustier__pi-mono-sessions@d0895347/2026-01-11T18-11-03-967Z_89972297-a0b4-46d3-87e9-1e0163f760b0.jsonl": 1,
+     "thomasmustier__pi-symphony-sessions@0697350f/2026-03-16T00-16-57-617Z_b0547d97-1e7c-47eb-8d91-77c7fbc3d6a8.jsonl": 1
+    },
+    "files_with_sk_ant": 1,
+    "files_with_oauth_env": 0,
+    "anthropic_ids_context": "all 31 in message text / error bodies; none in a harness field",
+    "credential_like": [
+     {
+      "file": "cli-pi-hf/thomasmustier__pine-of-glass-sessions@b9a6b263/2026-06-04T14-15-37-417Z_019e92fd-58c9-7e88-adb6-5c5907e48f76.jsonl",
+      "json_path": "/data/queries[]/answer",
+      "entry_type": "custom",
+      "value_class": "sk-ant-api03-...(len 79)"
+     },
+     {
+      "file": "cli-pi-hf/thomasmustier__pine-of-glass-sessions@b9a6b263/2026-06-04T14-15-37-417Z_019e92fd-58c9-7e88-adb6-5c5907e48f76.jsonl",
+      "json_path": "/message/content[]/text",
+      "entry_type": "message",
+      "value_class": "sk-ant-api03-...(len 79)"
+     }
+    ]
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "530 sessions, 23,974 calls, 23,928 joined",
+     "status": "CONSISTENT with dedupe caveat",
+     "skeptic": "530 session files but 522 distinct session ids: 7 files in julien-c__pi-sessions are copies under huggingface.js/ (6 byte-identical) and 1 session is shared by two thomasmustier repos; the 8 duplicate files hold 248 tool calls. 14 further JSONL files are pi-share-hf redaction manifests (427 rows, no timestamp). Joined calls: 23,927 here vs 23,928."
+    },
+    {
+     "claim": "provider request ids: NO",
+     "status": "CONFIRMED",
+     "skeptic": "31 Anthropic-layout ids (14 distinct) occur only inside message text and API error bodies"
+    },
+    {
+     "claim": "one file in lucacorbucci fails JSON decoding",
+     "status": "CLARIFIED",
+     "skeptic": "the failing file is the 0-byte .agents/skills/hf-cli/.hf-skill-manifest.json, not a session; the session JSONL parses 184/184 lines"
+    },
+    {
+     "claim": "hygiene list in 2.4 is complete",
+     "status": "INCOMPLETE",
+     "skeptic": "one file in thomasmustier__pine-of-glass-sessions@b9a6b263 contains an `sk-ant-api03-` value (79 chars) in an x-api-key header of a curl command, twice. Not printed. Add to 2.4."
+    }
+   ],
+   "notes": [
+    "4 repos (OmarRabhI, championswimmer, moikapy, woxQAQ) keep their data under _upload_staging/, whose generated README says `license: other`; the root card (the Hub card) says MIT or Apache-2.0."
+   ]
+  },
+  "agentcap-dacorvo": {
+   "exists": true,
+   "disk": {
+    "bytes": 857735277,
+    "GB": 0.858,
+    "GiB": 0.799,
+    "bytes_excluding_.git": 857735277,
+    "bytes_excluding_.git_and_.cache": 857735277,
+    "over_5GB_cap_on_disk": false,
+    "over_5GB_cap_excluding_.git": false
+   },
+   "licence_cards_on_disk": [
+    {
+     "card": "agentcap-dacorvo/dacorvo__funes-recall-session-captures@7d86201b/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "agentcap-dacorvo/dacorvo__funes-recall-session-opencode-traces@bedb923b/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "agentcap-dacorvo/dacorvo__funes-recall-session-pi-traces@4e2b658e/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "agentcap-dacorvo/dacorvo__hf-hub-session-captures@86fdbab8/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "agentcap-dacorvo/dacorvo__hf-hub-session-opencode-traces@228a481c/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "agentcap-dacorvo/dacorvo__hf-hub-session-pi-traces@54094d0a/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "agentcap-dacorvo/dacorvo__transformers-coding-session-captures@ebf80ae3/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "agentcap-dacorvo/dacorvo__transformers-coding-session-opencode-traces@ac0f5209/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    },
+    {
+     "card": "agentcap-dacorvo/dacorvo__transformers-coding-session-pi-traces@4a37658d/README.md",
+     "licence": "apache-2.0",
+     "line": 2
+    }
+   ],
+   "licence": "Apache-2.0 on all 9 cards on disk",
+   "research_use_ok": true,
+   "field_audit_resample": {
+    "sample": "full pass",
+    "oc_parts_with_callID_and_output": [
+     3934,
+     4694
+    ],
+    "oc_tool_start_end": [
+     4685,
+     4694
+    ],
+    "pi_calls_joined": [
+     6804,
+     6805
+    ],
+    "captures": {
+     "captured_at_n": 18885,
+     "captured_at_with_ts": 18885,
+     "request_id_hex32_uuid": 18885,
+     "request_id_present": 18885
+    }
+   },
+   "field_audit_pass": true,
+   "request_ids_full_scan": {
+    "files": 855,
+    "bytes_scanned": 3837013580,
+    "anth_matches": 0,
+    "anth_distinct": 0,
+    "files_with_anth": 0,
+    "keys": {},
+    "anth_by_prefix": {},
+    "files_with_sk_ant": 0,
+    "files_with_oauth_env": 0
+   },
+   "doc_claims_checked": [
+    {
+     "claim": "OpenCode 3,934/4,694 parts with callID+output; time on 4,685/4,694; Pi 6,804/6,805; 18,885 capture rows all matching a trace folder",
+     "status": "CONFIRMED (full pass)"
+    },
+    {
+     "claim": "capture request_id minted by the proxy",
+     "status": "CONSISTENT",
+     "skeptic": "18,885/18,885 are 32-hex values; 0 Anthropic-layout ids; captured_at is whole epoch seconds"
+    }
+   ],
+   "notes": [
+    "the 760 OpenCode parts without output are status error (751), running (8), pending (1): calls with an error result or none, not a join failure."
+   ]
+  }
+ },
+ "committed_evidence_check": {
+  "swechat": {
+   "committed_file": "analysis/out/phase_c/ids_and_clocks_in_ids.json#census.swechat.request_id.claude_code.anthropic_req",
+   "committed_value": "split B: 287,574 rows, 154,765 distinct ids, 1,639 sessions; all time-format (clocks: 155,326 ids incl. copies)",
+   "doc_value": "A u B u E: 305,727 distinct ids, 3,270 sessions with >=1 id",
+   "check": "ratio 305,727/154,765 = 1.975 vs sessions 3,270/1,639 = 1.995: consistent; B split alone cannot confirm the A u E part",
+   "status": "CONSISTENT"
+  },
+  "swechat_population": {
+   "committed_file": "analysis/out/build/swechat_build.json#full_population_pass.by_format.claude_code",
+   "committed_value": "584,802 calls, 583,958 results",
+   "doc_value": "pop. 584,802 calls",
+   "status": "MATCH"
+  },
+  "cc_local": {
+   "committed_file": "analysis/out/build/cc_local_build.json#full_corpus_ir.usage_fill.call",
+   "committed_value": "n 41,707, request_id fill 1.0",
+   "doc_value": "41,707/41,707",
+   "status": "MATCH"
+  },
+  "aiv_cc": {
+   "committed_file": "analysis/out/build/aiv_cc_build.json#full_corpus_ir.usage_fill.call",
+   "committed_value": "n 72,225, request_id fill 0.0",
+   "doc_value": "0/72,225",
+   "status": "MATCH"
+  }
+ },
+ "sources": [
+  {
+   "url": "https://huggingface.co/api/datasets/sweagent/combo2-rl-rollouts",
+   "opened": true,
+   "saw": "sha eaff5487b8983db9aaed9e93c16e670695389827; cardData.license mit; tag license:mit; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/OpenHands/openhands-evaluation-outputs",
+   "opened": true,
+   "saw": "sha aa8977805b4cefd317001d80ddf1ad52790e9d23; license mit; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/xlangai/ubuntu_osworld_verified_trajs",
+   "opened": true,
+   "saw": "sha 5473c39e42a538a187a9b2c2b499db59d560fd8c; license mit; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/cfahlgren1/Fable-5-traces",
+   "opened": true,
+   "saw": "sha 0ba6f53852f296f8389290b112054b47cec2dc1f; license agpl-3.0; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/0xSero/glm-5.2-nf3-hybrid-terminal-bench-2.1-traces",
+   "opened": true,
+   "saw": "sha 6020a41cb40ca06761d96250d80afef96d086e2a; license MIT; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/trace-commons/agent-traces",
+   "opened": true,
+   "saw": "sha 112ebd4d03ce852b00e935d523107c3d0c9a65bf; license cc-by-4.0; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/webarena-x/webarena-infinity-trajectories",
+   "opened": true,
+   "saw": "sha 73cf7f57a6ff61c95722a23bffdd9c1de4069bfe; license mit; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/tarsur385/qwen3-30b-a3b-instruct-2507-swebench-verified-mini-swe-agent",
+   "opened": true,
+   "saw": "sha 58389eb5426db5a3ae6159faa37498072b4735ff; license MIT; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/xhochy/conda-forge-agent-traces",
+   "opened": true,
+   "saw": "sha 046e1aff399803cc767fc76d91860ffd65b24add; license bsd-3-clause; gated false"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/harborframework/terminal-bench-2-leaderboard",
+   "opened": false,
+   "saw": "fetch failed: response over the 10 MB tool limit (file listing); replaced by the README at the pinned revision"
+  },
+  {
+   "url": "https://huggingface.co/datasets/harborframework/terminal-bench-2-leaderboard/raw/572b2614be2c0cb2527e14f5b1e4026f1072e6c1/README.md",
+   "opened": true,
+   "saw": "License: Apache 2.0 (front matter `license: apache-2.0`); 'SUBMISSIONS CLOSED' notice; same bytes' content as the on-disk card"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/uw-syfi/TraceLab/11b8b14c6005808ab272b3431487066832582414/LICENSE-DATASET.md",
+   "opened": true,
+   "saw": "'Creative Commons Attribution 4.0 International License (CC BY 4.0)'; asks users not to re-identify contributors"
+  }
+ ],
+ "doc_corrections": [
+  {
+   "section": "0, 1.1",
+   "was": "1 of 75 submissions; 53 submissions without ATIF or native structured logs",
+   "now": "1 of 25 submissions with structured logs (75 in repo); 50 without",
+   "evidence": "corpus_skeptic/field_audit.json#results/terminal-bench-2-leaderboard/census"
+  },
+  {
+   "section": "1.1",
+   "was": "ATIF scan: 5 matches, all in mteb-leaderboard trials",
+   "now": "strict scan: 6 Anthropic-layout ids in Meta-Harness/Terminus-KIRA/JJAgent files, all in content or message text; CI regex misses escaped JSON; conclusion unchanged",
+   "evidence": "corpus_skeptic/context_probe.json#tb2_non_wozcode_anthropic_req_ids"
+  },
+  {
+   "section": "1.1",
+   "was": "(silent)",
+   "now": "evidence status: track_b files uncommitted; B4 rows match committed files; B5 rows re-derived from data",
+   "evidence": "committed_evidence_check"
+  },
+  {
+   "section": "1.3, 5.11",
+   "was": "377 files",
+   "now": "379 JSONL files; requestId-bearing entries carry only Claude, <synthetic> (146) or no model (8); 2 non-layout req_ values",
+   "evidence": "corpus_skeptic/full_counts.json, request_id_scan.json#claude_code_request_id_agreement"
+  },
+  {
+   "section": "1.3, 5.13",
+   "was": "530 sessions; lucacorbucci file fails JSON decoding",
+   "now": "530 session files / 522 distinct ids, 8 duplicates hold 248 calls; 14 manifest JSONL; failing file is an empty skill manifest; _upload_staging cards say other",
+   "evidence": "corpus_skeptic/full_counts.json"
+  },
+  {
+   "section": "5.3",
+   "was": "v2.x (8 runs) flat; v1.9 (11 runs) pairs",
+   "now": "9 flat (one v1.9-named, no tool_call_metadata) / 10 pairs; detect per line",
+   "evidence": "corpus_skeptic/openhands_shapes.json"
+  },
+  {
+   "section": "5.10",
+   "was": "data/ holds a parquet index",
+   "now": "data/ parquet holds full session copies (trace column)",
+   "evidence": "request_id_scan.json#per_corpus/cli-trace-commons/anth_by_prefix"
+  },
+  {
+   "section": "5.6",
+   "was": "4,525 tool results flagged",
+   "now": "confirmed for tool role; each also has a user-role message with the same flag (9,151 flagged messages)",
+   "evidence": "corpus_skeptic/combo2_synthetic.json"
+  },
+  {
+   "section": "2.4, 6",
+   "was": "credential list: TB2 OAuth tokens, sammshen bearer",
+   "now": "adds one sk-ant-api03- value in cli-pi-hf thomasmustier/pine-of-glass-sessions (not printed); .incomplete markers benign",
+   "evidence": "corpus_skeptic/context_probe.json#cli-pi-hf_sk_ant"
+  },
+  {
+   "section": "0",
+   "was": "All 14 passed the field audit before download",
+   "now": "adds skeptic re-run: 14/14 pass, OSWorld and WebArena-Infinity weakly",
+   "evidence": "per_corpus/*/field_audit_pass"
+  }
+ ],
+ "VERDICT_REASONING": {
+  "label": "Reasoning, not measurement.",
+  "overall": "All 14 directories exist and match the doc's byte counts. Every licence permits research use. Only TB2 is over the 5 GB cap, and only through its .git folder. The field audit re-run agrees with the doc on all 14 corpora within sampling noise; OSWorld and WebArena-Infinity pass only weakly (one stamp or window per step, positional join). The request-id column holds: the three new carriers reproduce exactly, and a full-content scan finds no Anthropic-layout id in any harness field of the 11 NO corpora. Corrections are counts and descriptions (TB2 submissions without logs, OpenHands run shapes, trace-commons parquet, cli-claude-code-hf file count, ATIF scan matches), one missed credential-like value (cli-pi-hf), and dedupe caveats (cli-pi-hf, combo2 flag doubling)."
+ }
+}

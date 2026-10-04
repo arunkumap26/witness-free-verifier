@@ -1,0 +1,180 @@
+{
+ "id": "nlile/misc-merged-claude-code-traces-v1",
+ "sha": "ab456b000b13563156e84d75bfa4d20acccb4f88",
+ "gated": false,
+ "private": false,
+ "lastModified": "2025-12-16T17:13:12.000Z",
+ "license_tags": [],
+ "cardData_license": null,
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "train",
+     "path": "data/train-*"
+    }
+   ]
+  }
+ ],
+ "dataset_info": {
+  "features": [
+   {
+    "name": "id",
+    "dtype": "string"
+   },
+   {
+    "name": "source_table",
+    "dtype": "string"
+   },
+   {
+    "name": "source_repo",
+    "dtype": "string"
+   },
+   {
+    "name": "messages_json",
+    "dtype": "string"
+   },
+   {
+    "name": "system_prompt",
+    "dtype": "string"
+   },
+   {
+    "name": "user_prompt",
+    "dtype": "string"
+   },
+   {
+    "name": "assistant_response",
+    "dtype": "string"
+   },
+   {
+    "name": "model",
+    "dtype": "string"
+   },
+   {
+    "name": "timestamp",
+    "dtype": "string"
+   },
+   {
+    "name": "request_id",
+    "dtype": "string"
+   },
+   {
+    "name": "tools_json",
+    "dtype": "string"
+   },
+   {
+    "name": "gitdiff",
+    "dtype": "string"
+   },
+   {
+    "name": "claude_log",
+    "dtype": "string"
+   },
+   {
+    "name": "chatml",
+    "dtype": "string"
+   },
+   {
+    "name": "has_empty_response",
+    "dtype": "bool"
+   },
+   {
+    "name": "content_hash",
+    "dtype": "string"
+   }
+  ],
+  "splits": [
+   {
+    "name": "train",
+    "num_bytes": 5494041444,
+    "num_examples": 32133
+   }
+  ],
+  "download_size": 1157999310,
+  "dataset_size": 5494041444
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2461,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 4643,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "data/train-00000-of-00011.parquet",
+   "size": 90164532,
+   "type": "file",
+   "lfs_sha256": "465a634ca3a37801499857c2a34739597f83887bb8c086a8c8ce6aeda57a50e3"
+  },
+  {
+   "path": "data/train-00001-of-00011.parquet",
+   "size": 43969042,
+   "type": "file",
+   "lfs_sha256": "f2f7b7cdf9d0613ff5079b13df1e9e6432fb408474e4067fa1c2bf7af7c065a5"
+  },
+  {
+   "path": "data/train-00002-of-00011.parquet",
+   "size": 111802031,
+   "type": "file",
+   "lfs_sha256": "23046748d72771403c70c79a9abd1d0c802db80653732bec660dd3fe70cd309f"
+  },
+  {
+   "path": "data/train-00003-of-00011.parquet",
+   "size": 124768714,
+   "type": "file",
+   "lfs_sha256": "f200bf7a2d1ca83906a322078cf496a06072c1b183bbe9236aeba766652cae21"
+  },
+  {
+   "path": "data/train-00004-of-00011.parquet",
+   "size": 121141708,
+   "type": "file",
+   "lfs_sha256": "5a06c9b34f285ee8641190d7d99a2495770e726e98791d0f0cec1a383001b5fa"
+  },
+  {
+   "path": "data/train-00005-of-00011.parquet",
+   "size": 116823219,
+   "type": "file",
+   "lfs_sha256": "da27d18dc0ef26f9d89f689a3731c811091e7e3faf9f4bd95d8254c6bca5176b"
+  },
+  {
+   "path": "data/train-00006-of-00011.parquet",
+   "size": 102141742,
+   "type": "file",
+   "lfs_sha256": "3c8b65695d60b2a6b570e56ce9b4891b8e88d332d00f023250381468645e78e0"
+  },
+  {
+   "path": "data/train-00007-of-00011.parquet",
+   "size": 119818545,
+   "type": "file",
+   "lfs_sha256": "adfd7d6bb212f0b44fa3bd2ecbb3e9258008d0866f7beeb4c262ba972cac5a0b"
+  },
+  {
+   "path": "data/train-00008-of-00011.parquet",
+   "size": 107372418,
+   "type": "file",
+   "lfs_sha256": "999b409b24e8bf88ebf0f8e28e656159f558c0a1909266b64484e82e39591cc7"
+  },
+  {
+   "path": "data/train-00009-of-00011.parquet",
+   "size": 107154694,
+   "type": "file",
+   "lfs_sha256": "5206e15431677272ee5e434c47a6345fa7f8c90bc8a1b81ea44ef1d27e210e36"
+  },
+  {
+   "path": "data/train-00010-of-00011.parquet",
+   "size": 112842665,
+   "type": "file",
+   "lfs_sha256": "56fdb36d3717a459da9b98fb90f2a8c30aa6173a330f4c45a722c8fda2503f7b"
+  }
+ ],
+ "total_bytes": 1158006414,
+ "n_files": 13,
+ "readme_bytes": 4643
+}

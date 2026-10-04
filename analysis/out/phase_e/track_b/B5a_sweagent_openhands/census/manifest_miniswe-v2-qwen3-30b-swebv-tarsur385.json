@@ -1,0 +1,3544 @@
+{
+ "repo": "tarsur385/qwen3-30b-a3b-instruct-2507-swebench-verified-mini-swe-agent",
+ "revision": "58389eb5426db5a3ae6159faa37498072b4735ff",
+ "source": "https://huggingface.co/datasets/tarsur385/qwen3-30b-a3b-instruct-2507-swebench-verified-mini-swe-agent/tree/58389eb5426db5a3ae6159faa37498072b4735ff",
+ "license_tags": [
+  "license:mit"
+ ],
+ "gated": false,
+ "downloaded_at": "2026-10-04T02:21:18-0500",
+ "include_globs": null,
+ "n_files": 504,
+ "total_bytes": 224075642,
+ "all_sha256_ok": true,
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2664,
+   "sha256": "83ac3292b401f6f783137328b27dc9d422c5bb037cfd2e5d6a5291c487eacdb8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "README.md",
+   "size": 4432,
+   "sha256": "bb3519957fef336c0f268654f672b174f24d2613492668d8c34e1ecfcff4d508",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "grading_report.json",
+   "size": 41048,
+   "sha256": "75c9af514387247075cf639c6647adffda8ef8cb29f9f32d74af3441def2cbf5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "preds.json",
+   "size": 508289,
+   "sha256": "ed8adfac34a751cf6a6acd262a8f05912b5d0c326bf3b4cd5b7e628a5e906a94",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "preds.jsonl",
+   "size": 486053,
+   "sha256": "a00752e8585d18f3dcdf04936812b7c535ae22ec38d772560de4478b47514e3d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-12907.traj.json",
+   "size": 148634,
+   "sha256": "74d1000456c5b24290b94cb7fd9d08816c302e7b0c8107e07a29cae0d23fd4af",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-13033.traj.json",
+   "size": 238961,
+   "sha256": "41346201ddf4f4cc64ed81fd6b8201b08950628e09f2bc12c672a2fc013f451a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-13236.traj.json",
+   "size": 65942,
+   "sha256": "8cdb35b0e07396a1a1274e9fd6b5519ca2fa6de7516d30b953e6a47f85269d3b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-13398.traj.json",
+   "size": 198819,
+   "sha256": "f2b7a6e18e310a9badee028964649a349ba8a51791fc65f1b5c3bb571ac780ae",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-13453.traj.json",
+   "size": 156264,
+   "sha256": "1b2c6cfe64c2146c16fb6461106604df9b27e20934e1a9e1e90df55c30498192",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-13579.traj.json",
+   "size": 220416,
+   "sha256": "337e800731c836bd7d6f127f6e1918131a5388e698bd6d1e1603ad24531e1901",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-13977.traj.json",
+   "size": 92683,
+   "sha256": "4177798c2d508a7a6bdfcc1b10c3890c5bd3e75e13def637d345667ff802af20",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14096.traj.json",
+   "size": 626097,
+   "sha256": "fbd3e98b741f2a7716635f2dbebdef056ad66c4ed6e75475c6056f8823c75a47",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14182.traj.json",
+   "size": 92563,
+   "sha256": "c3a4f0eba1ee2aeea8520f682996a5333ac2f186c4566eea92151f620f36d5bc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14309.traj.json",
+   "size": 236597,
+   "sha256": "d4e6baa8010c02c5f90fff6aedbfaf4a3244586b6aa661e99d98d6adb694c9f8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14365.traj.json",
+   "size": 228359,
+   "sha256": "ceb29cfb58133b8947dcaac99201222a148a8ead5a2262edc61284b2a4d7b042",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14369.traj.json",
+   "size": 437959,
+   "sha256": "57dfacf58b9f5965728be8529d73c20a33cec3c0e64103535fdfd9ebf27dfce9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14508.traj.json",
+   "size": 58866,
+   "sha256": "b16081816fb049802cdb062c717e609336205f8094bd98e33229569f628164ff",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14539.traj.json",
+   "size": 128885,
+   "sha256": "4466e270671a18da0a0b1ce20845df6b6890e3a344a06ae8d7c9f023bcd5600c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14598.traj.json",
+   "size": 325739,
+   "sha256": "38baf1fac8dce4e740ce11b9c6d6c617e0f3a26e72b2c192d93a58caded560aa",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-14995.traj.json",
+   "size": 126611,
+   "sha256": "f3b58082f660ea9bbcda519713c21e5d602a9d49d6a50792ce9f7112961d6966",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-7166.traj.json",
+   "size": 112966,
+   "sha256": "28181180918520ff6a262024eeeb54284f1c89e9d9e2308071641104d059e724",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-7336.traj.json",
+   "size": 72421,
+   "sha256": "d2e2a6da47de43270244a3557a23bc0eef3b11bea31dd22a5daef8e0fac87210",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-7606.traj.json",
+   "size": 264080,
+   "sha256": "295d7cacfeb9896981456717dcb10d6f1df5d545dd289fb5dbb947d5176dc997",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-7671.traj.json",
+   "size": 73936,
+   "sha256": "8c0f52fab409ec1099f692dd3d3c3d2d78e9ed0464b59dff0645426d417d80eb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-8707.traj.json",
+   "size": 247402,
+   "sha256": "7065bced2cfcdb01718cd7165350e95c39f6ceca7d8232fac14ac8e5503d80d0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/astropy__astropy-8872.traj.json",
+   "size": 174979,
+   "sha256": "643cc06121d405eef5f1abc4a05377463c62a3724f2268a0b512ad714cc7e9cf",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-10097.traj.json",
+   "size": 546625,
+   "sha256": "1f60051f92522d842c815a14a199aaef08ad94ba68a6753127ba2fc3cf715f97",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-10554.traj.json",
+   "size": 231443,
+   "sha256": "a86b17bd792bdb86eda08f4561454010bdaf4e4681592ad398904d089cedefaf",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-10880.traj.json",
+   "size": 198312,
+   "sha256": "4f61b207541d758b747f31e5b23606c1959648842b1f72d699b66dd15f462221",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-10914.traj.json",
+   "size": 48479,
+   "sha256": "09546ed6869a51cd60ce5971ad5781d5ae08219a606edceeb637ad93f91a9cdb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-10973.traj.json",
+   "size": 183213,
+   "sha256": "54e7e11c23de328815cacf9cc2899918992cdd11dd2e2fd0970addc706a9ce0f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-10999.traj.json",
+   "size": 205812,
+   "sha256": "8a755be1fab222f845bdc46922db6730d14181411734c90f87165a0358f0cd64",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11066.traj.json",
+   "size": 81169,
+   "sha256": "4f6fffd0702c0f7db41dbcee523c3d70f61d292375b85d1362c94d60dc5e4bbf",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11087.traj.json",
+   "size": 256904,
+   "sha256": "17bfbc43606411c57912f375eb7e6b8b1197a2f372a2166e47deee5c72d38852",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11095.traj.json",
+   "size": 141215,
+   "sha256": "ec84f63d623613ecda0d118d6c3680d7be8d5d9d708774de00e121ba97ec0fd8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11099.traj.json",
+   "size": 220697,
+   "sha256": "c9f009b03c9bca83027ffa6ab7335cc820f508e75bff2ba3e2dba7a78d144342",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11119.traj.json",
+   "size": 61545,
+   "sha256": "127ef4c72c7d5449d6d6d5a5a083d73b94a22efaece41f2a64a60b6c1d5fc46e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11133.traj.json",
+   "size": 73254,
+   "sha256": "dfdadb3f9fca6e7a32a268249e6f3275c38a34699528057219ec02160d5df19b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11138.traj.json",
+   "size": 240776,
+   "sha256": "a9e584c7779607b7970ad748d547c7fab5a631544e6109088f4279bb9d41e1a1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11141.traj.json",
+   "size": 96932,
+   "sha256": "b84450474ac725503a08980f84876fec59a09dcc2e607a3344c3098227f94b36",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11149.traj.json",
+   "size": 118829,
+   "sha256": "93904aef3818a457388a992ac09c5c212a55294e5c8479c044608878dd6ca694",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11163.traj.json",
+   "size": 37114,
+   "sha256": "1dbf125652b1e1bffcabc3398bc7a1a22ff99b3e6fd12f53134418b167d90298",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11179.traj.json",
+   "size": 99023,
+   "sha256": "e737f039426c9851814303fb4539186d906953c97872e1902d474bf0c8470cba",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11206.traj.json",
+   "size": 322038,
+   "sha256": "886a92eecfda8632fc8ade2ca7edb75256c5d06161748b8d81f669c37738b653",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11211.traj.json",
+   "size": 252056,
+   "sha256": "6207ff721a25dbf0e93e858937a1961bb49af6f728b1c473be1f7375abdf0a3d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11239.traj.json",
+   "size": 90031,
+   "sha256": "76d5da529e533f9a429b57249bec07b3fdf378149976013bde78802c122bef96",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11265.traj.json",
+   "size": 236898,
+   "sha256": "7f6c22b27440d97710c7ab6c08e2956c31620a92542629897fb2e7c6ec897b9f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11276.traj.json",
+   "size": 42259,
+   "sha256": "5d309d8de1f7f841556119ddf17dbf5a4fa78b6067eb1bf1bb63aa73e49ce0ae",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11292.traj.json",
+   "size": 353174,
+   "sha256": "86b464e1baa9b4f31ed4819305fa4b966d910bbd2ff9782a6ab1fc20bda42307",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11299.traj.json",
+   "size": 385968,
+   "sha256": "414a4e5895ab93bf153484cdad79506c922c941863d67d71d2aa1ebe9dfdd7c5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11333.traj.json",
+   "size": 43162,
+   "sha256": "699eb521c69c4b8e132fd08b2acece970f6c8414eada5335d473a4e6a8290bbe",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11400.traj.json",
+   "size": 233707,
+   "sha256": "3139386777990f1fa8d5579e6b2b357199d648f316b829708e358bf4818ca993",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11433.traj.json",
+   "size": 185181,
+   "sha256": "dc7e78b0d49a5e6b9b078993b56626e9f46d4ecba1d464c597b21356ed302c86",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11451.traj.json",
+   "size": 94371,
+   "sha256": "3394b4252d73e83b342cdc386dece6c09baf9dfa3ebd1336d9fd225c4bfc766d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11477.traj.json",
+   "size": 410446,
+   "sha256": "ee1182559f85ebf6da1006e1f8652763d15a14b27f688fe1ff717e88b83c2cf1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11490.traj.json",
+   "size": 332845,
+   "sha256": "22daafcc6b6bac583ff9796a8997be836b1a29c702e8a37cfcb7f12f8409746a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11532.traj.json",
+   "size": 143880,
+   "sha256": "8eb6368ca95c4a6b8dffb29c07c3d53f3482cea218957ebe2ffa53c33a44f0de",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11551.traj.json",
+   "size": 73247,
+   "sha256": "5b1f99c054d3c55837fd195025f44482b69cb911abb1bb951bda6d2b0b40cad7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11555.traj.json",
+   "size": 109571,
+   "sha256": "8640ff700b40257fd5f5508c2f89d185286e2e10242b7f7b3bc1a640de836cd2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11603.traj.json",
+   "size": 78056,
+   "sha256": "f1e32250ff87311878b50f6482bfc08460ae44ee22118cb2e9b2da080b211678",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11728.traj.json",
+   "size": 122430,
+   "sha256": "60d8f5ae60360138808e70f958a00d349f6914dc276a8a0e61771504f4078047",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11734.traj.json",
+   "size": 95628,
+   "sha256": "df62356507bd793450a3d3bf3f720aa247679c100ba0392822d51e29572f0e63",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11740.traj.json",
+   "size": 240228,
+   "sha256": "b98d41baf12f77901f0f627ed195884c62ec752586af2a5beeba0334028d4bd7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11749.traj.json",
+   "size": 292983,
+   "sha256": "7cc30b33b8677b2740592575b0d1d44e71ae77f91385297e792f0d77ff2af449",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11790.traj.json",
+   "size": 73203,
+   "sha256": "482d6317d183d6e056d7990e6362ab8260a950da59ea873a4005157ad875ba47",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11815.traj.json",
+   "size": 71504,
+   "sha256": "6765504196d91b55eb33338f3d939abe5cfe3544f7977d44a228bf921f4dc3ef",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11820.traj.json",
+   "size": 119121,
+   "sha256": "1f7f2165dbeb936ede2f9a617d8a478096c477dcae630ad86b6610151d0adbac",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11848.traj.json",
+   "size": 346997,
+   "sha256": "fc71cf646d6e3a5e6108ef0b2773cf4295abc2ffef37d36d8e9374b75cf96b74",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11880.traj.json",
+   "size": 64291,
+   "sha256": "82f06720b8eca390298094d1e499a77b9f3270b3ccdcff716a5a710465ecfcb6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11885.traj.json",
+   "size": 123784,
+   "sha256": "290aaa67a5318bc367e3463a74640a2c784a660eacee30026d38f4052a54a834",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11951.traj.json",
+   "size": 132436,
+   "sha256": "f2d6ff15b72ab788e96373c53ac4576753c1e428f6c073fe2725d8e759fc8a72",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11964.traj.json",
+   "size": 139360,
+   "sha256": "8309e17e5b83bafcd3d31325b84871d0c828cb06d9988e3cb02443ced883ed85",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-11999.traj.json",
+   "size": 14724572,
+   "sha256": "603b4b941d2be89fb38c071cb589d7b5e9bc7ff1773bf21b3815152ddb38eb9a",
+   "lfs_sha256_expected": "603b4b941d2be89fb38c071cb589d7b5e9bc7ff1773bf21b3815152ddb38eb9a",
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12039.traj.json",
+   "size": 126468,
+   "sha256": "fdb5b75afac8e40267e8b87895200973ba7c1b90df3bb901e326c5a8c999a4ed",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12050.traj.json",
+   "size": 217665,
+   "sha256": "d53a2a239b0bd373c052ae079f06b126f657ed0ae2afed80d20b6352c3479d1e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12125.traj.json",
+   "size": 333844,
+   "sha256": "108e47f5907ee4bb7e17b09a0b9311037dfa94fea009dc8025bc6d80a2529389",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12143.traj.json",
+   "size": 276718,
+   "sha256": "cd0856e4e6bb9feba20aa972d4942cca013f7359e2c6ff0d7d96a3b4c4f1bfb9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12155.traj.json",
+   "size": 39763,
+   "sha256": "0b6571d08d037d4e5d1079dcdd4672e56836f3762533a127c563fed1681ac846",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12193.traj.json",
+   "size": 228044,
+   "sha256": "75f1bf22229cb159d1aaaa876d333c7cd24877f5bb6ed9e7bfe453f039847704",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12209.traj.json",
+   "size": 541509,
+   "sha256": "bb0affa52f67597532ec1e109315c4b683f120973b29f2b12536729c0e026c80",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12262.traj.json",
+   "size": 404596,
+   "sha256": "5ef20406bb006780e1498212492d5009a8834993ee149d01043b80d2963a1ea4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12273.traj.json",
+   "size": 116175,
+   "sha256": "76783e7beccd0bc4d14ec52193bd135f0fafacb7fdb2a4cd7b6ce72f44dbfe8f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12276.traj.json",
+   "size": 184761,
+   "sha256": "9f1044616272276f946f3648c38d8b22497f6bdf1b7d6ca3392b252b381bdc97",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12304.traj.json",
+   "size": 46306,
+   "sha256": "a9fd378bc797af9bfd806ac93f03b30d794c100e3ad16d471ecbb4818f6055b5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12308.traj.json",
+   "size": 87466,
+   "sha256": "4c5d6160f53ed1e38f696bffe5d1e2460847f46d73da536619d8eafe5e2eb361",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12325.traj.json",
+   "size": 102415,
+   "sha256": "e574d4e4d5ec50763700730311f1471c6e14f053ce672af642f96dc3aae6fac4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12406.traj.json",
+   "size": 1808359,
+   "sha256": "984f03683dc9cb601686e5282c5155451cdef0b7b3c9f2d5752678ac772b10bc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12419.traj.json",
+   "size": 45687,
+   "sha256": "93a3c8e1dacaf92b3fe5de5af9a2c1bc8a1d8aa9504f9980d1786e1208e29a26",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12663.traj.json",
+   "size": 156078,
+   "sha256": "9d15ea808e2988f6694028563352b6737b741155582972542eeef141e4d5ffd5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12708.traj.json",
+   "size": 47667,
+   "sha256": "e808b28f009ae1760be3c25ab2c109ba012c7c092ea47473dbbc89dd8a593147",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12713.traj.json",
+   "size": 432239,
+   "sha256": "c3c2dcd47ad3ad5c17cf523285f8b677fb1a22b2f368dc85d43e0d50838bfded",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12741.traj.json",
+   "size": 54666,
+   "sha256": "e132269f1690af47f5b3cf43a3655cc02edd1f4371d4bf81f3331a0772756926",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12754.traj.json",
+   "size": 332104,
+   "sha256": "d349f08a004cc062c3829b5938861390d9b668e095d0e172b028649ac96e76de",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12774.traj.json",
+   "size": 320919,
+   "sha256": "d9e6dbdf213aa0d6c92b54bea27d32e152cda746d908b4f1a6248cb37e106759",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12858.traj.json",
+   "size": 229268,
+   "sha256": "e2719e6cc81dd2e7bd3154b75818a18a1dd542a63160c4ecf93187736c3a92c1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-12965.traj.json",
+   "size": 124873,
+   "sha256": "8aa8656cd944152681637e0d016cc8e6ce6fdb80bc5aa2b6006fe53e649bf1a4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13012.traj.json",
+   "size": 364797,
+   "sha256": "6fe543cf6ed23c2973a7bf88366adb84e2d53a0faabbbf2b98e0b8b79ca061fb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13023.traj.json",
+   "size": 191766,
+   "sha256": "cc48ee3ed68cca2cb32821e1789071efd97d390f5b1f076cae312f831b3163e1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13028.traj.json",
+   "size": 160733,
+   "sha256": "b1a1d0e7c7ab84677640cbd26c2a62037e656072e00f1fdd8cf64ff834898684",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13033.traj.json",
+   "size": 123144,
+   "sha256": "2edea6f37f7239f7f4931767a7101aeb911c2766dfa722820ca587c6751cb1c8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13089.traj.json",
+   "size": 225944,
+   "sha256": "df6fe8c4a22d317a3b62cc720628b66eddc382a095c153a0b2eb2f5033c6e2c6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13109.traj.json",
+   "size": 49369,
+   "sha256": "524479451f4884bc38049186dbc60326da8cabbde715299f50b948283844d2dc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13112.traj.json",
+   "size": 623413,
+   "sha256": "9a2883ddb150b7dd933a4da5958fa3a5996c6a3683938e8edb91c617e5bd4098",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13121.traj.json",
+   "size": 246289,
+   "sha256": "48a7369ea895f469070daa345eb56b66875304b0d76a84b7b7506e9e488333a3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13128.traj.json",
+   "size": 548432,
+   "sha256": "34949fe62efeea90799064208b9ab816de7f8449fca8f808af5a578e0bb582a8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13158.traj.json",
+   "size": 404042,
+   "sha256": "645e2e0af81e6be5ab03d4b81cbb2f4bf5a5e8f4969707e9e0fa14102faed60a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13195.traj.json",
+   "size": 57075,
+   "sha256": "97c57ffd9bc3e055f692e5b11e28a6a7c2cf52a7112f7308715bac9242b8244d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13212.traj.json",
+   "size": 182210,
+   "sha256": "b8b6ac61b952ba5301568e7e0b221859de866d18e7766a5a53947a3930442b9c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13279.traj.json",
+   "size": 454202,
+   "sha256": "272fe8cc7359eb959a8c29c428254f0c1611afef0b663c9b1a9398c7227b0d40",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13297.traj.json",
+   "size": 52018,
+   "sha256": "e9265e2fe74c378b7d291acdee2906679c3d2df59b0627acc5a4bd683c8b1631",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13315.traj.json",
+   "size": 189778,
+   "sha256": "cb595f0c3b5031da8c982f88c626d850147cd72b82baa431a720848952a5c224",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13343.traj.json",
+   "size": 225127,
+   "sha256": "384acafa58d77bd2cd9724be55a8effe013391949318528912e8c21561d31600",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13344.traj.json",
+   "size": 185423,
+   "sha256": "fca8b615c96202442af5808be65842cc128e49dcde404a5ba2b534d2cab50f49",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13346.traj.json",
+   "size": 266294,
+   "sha256": "774d83811b8ab47cdfc2a8a7f942faa3c5b753a7c60e551c3aca30294a726a77",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13363.traj.json",
+   "size": 56583,
+   "sha256": "d1c9fe38dbd2b2e85312e327f6f1f356e4f3ac177b354957820e183562e50f1a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13401.traj.json",
+   "size": 179832,
+   "sha256": "a7f7f9a0055d2a514dcfbbe93522de17d57248ba70f5643c85689e42d012fe36",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13406.traj.json",
+   "size": 569674,
+   "sha256": "5f5d95117d75b8b92a77779d41ec117d553bdd2169a3deb20a67dd45c67a1d2e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13410.traj.json",
+   "size": 47362,
+   "sha256": "018831a7dddc9bae73d5d0ba35ced19b6c0e4628294ae875a6d5222951219598",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13417.traj.json",
+   "size": 277116,
+   "sha256": "563c58ede68f1749c254c21600b4c7b5a86a8c6bb654ec4513871655ef1cfcee",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13449.traj.json",
+   "size": 69177,
+   "sha256": "810d7585dd828ef4e27754669f7fc4987d7cc7abfa9247063d8d2922bd1a1937",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13512.traj.json",
+   "size": 108765,
+   "sha256": "9e3f0d547806eba35185b47a0fd8aaa3c8f9c585e64354232c6cabbc4704fb25",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13513.traj.json",
+   "size": 36290,
+   "sha256": "7cfb41dd5fb6fa5a10d00531da90a2f362041c474b26dd05665026880b07fd73",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13516.traj.json",
+   "size": 372830,
+   "sha256": "c0569d3a4c23e046caebd627d139268e6d48068ea13e1424c2711ae70ebe9d28",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13551.traj.json",
+   "size": 79959,
+   "sha256": "1a4a4a3a9cc8c06790e76ee0f8acde401d8f1a21e2a6079e92c14df8f4d2503f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13568.traj.json",
+   "size": 62922,
+   "sha256": "66d036e2f43ca1357746b6569fd907c99f8982b4cf9b7493f3663bb7c63a99ed",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13569.traj.json",
+   "size": 235485,
+   "sha256": "b307b9670a86fe9596f901c6580e20f0b31f1b3c244eb8d40da838e304a710be",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13590.traj.json",
+   "size": 384735,
+   "sha256": "b0be5985dc225f1dd6d89a857498039a4d4f8e53a3b22de73f65803c13c460a1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13658.traj.json",
+   "size": 166163,
+   "sha256": "9092125f6332e9d27e9053910e417b31fc96c033a574edb2b83c58cdc6b549f1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13670.traj.json",
+   "size": 282118,
+   "sha256": "b5ccdd160ec1549d6b986973c67cade11b2e656a8ea7bbab964017f0fa701b98",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13741.traj.json",
+   "size": 74265,
+   "sha256": "dc42334dd550b880ff72f29ab5c1dfb9002ce929ba4d00895986583bcb88da49",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13786.traj.json",
+   "size": 65636,
+   "sha256": "ebd41e8c034498221d10761538e7f7b91693a6b8453801507bc20d9a7b67014e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13794.traj.json",
+   "size": 118564,
+   "sha256": "084be35810e360748e879bae36a28056c9fc29e91817b8587491ff680b6456c3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13807.traj.json",
+   "size": 401810,
+   "sha256": "a66bbb76b1366c0b8c7b3ca4fda5bd000216b6cc5d2479dcef70986eb3a6c4f1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13809.traj.json",
+   "size": 118827,
+   "sha256": "dfdbaa3095b3e4ef45d5e28dac71816cb6011fcf63a72e21fdc9405cc53bb4a1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13810.traj.json",
+   "size": 164859,
+   "sha256": "38d32f57ca4b50c59ff53a9e9defd0a0d39f8877d7c763bbb2f663774a21fa58",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13820.traj.json",
+   "size": 211831,
+   "sha256": "35a9d9df079f0993d95370e974a312ecf89a7d38ac83d3f58f9e6c2aaa5a169a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13821.traj.json",
+   "size": 91341,
+   "sha256": "f5ecdaf8577df5d6ce3465fe94d9c4068fb431bb78d12354f5ef6304d2733fe7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13837.traj.json",
+   "size": 269000,
+   "sha256": "3e1984f2ffb8d366f25d64d3a9fe51593eb702b14297e2f8cd014ee9f1193f4b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13925.traj.json",
+   "size": 76297,
+   "sha256": "6bd8f82900bef19d178613ce5dd80f5ce74a12f6403ddc51f31e59db37589b8b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13933.traj.json",
+   "size": 115682,
+   "sha256": "57ea4aa506ac59a5f6edc8f56b8b789a90e6130b54978e9a4edd59c43aa1a537",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-13964.traj.json",
+   "size": 234290,
+   "sha256": "71e575af18871ceba5d1de1d8a4ecc3f6a5e8abca71f1e85c4786fa182522403",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14007.traj.json",
+   "size": 143432,
+   "sha256": "57a2c34f51965b8d5a9b5acc40a43facb84916e359917533a44e152fa4563b8c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14011.traj.json",
+   "size": 131953,
+   "sha256": "1bd2fbb38b22fa3ea3db7efb1a96bcc2b323c00689512ac28e35492a04b5866e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14017.traj.json",
+   "size": 201609,
+   "sha256": "3e5d4ec83a591bf58b5c4d16bb96c4ff002abe27b46743def298736bdfe2d138",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14034.traj.json",
+   "size": 398779,
+   "sha256": "14fc82d9acddc7e503c2cb419beee348ab081cafac863969548e199037eb7f82",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14053.traj.json",
+   "size": 85477,
+   "sha256": "905005803af01d46c4c6e1dab9cc5ee7f093c956b335f5ef1d94d07573d49d46",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14089.traj.json",
+   "size": 43038,
+   "sha256": "418a1c34116f160242495412ce8dd1a357a945e50e43aa8a350021871b05b8b1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14122.traj.json",
+   "size": 172678,
+   "sha256": "093a6aad125fcf520c112d36dc1408b057aa0ac1fd61a3e9fc6a40299ca07a2b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14140.traj.json",
+   "size": 259019,
+   "sha256": "a7fb848ebe8ba48161145962c164879a474b7c1baa670826354265326559a778",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14155.traj.json",
+   "size": 215673,
+   "sha256": "5fd4c563a8b40aceb607782a8a70b7518ea2761cf9151f10c71f2aefe189dacc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14170.traj.json",
+   "size": 316465,
+   "sha256": "8effe4017a85bb75cdf614ed5990597dd91739cd1ff956e984eeeeca6a4259ed",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14238.traj.json",
+   "size": 236818,
+   "sha256": "81a5ecf900f0b1e1f7d0d03ca4b2949ff031757618afff84fc9b3ce12bc94ed5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14311.traj.json",
+   "size": 284397,
+   "sha256": "fb29fa507ab8cff68203443b2ec8a5ef47061435494e55203e17eeb74f416ea6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14315.traj.json",
+   "size": 222903,
+   "sha256": "8981d8dcf0c1d6cb1a240cdaf53c1048c9ba318165d83e8513d4e9191e67707c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14349.traj.json",
+   "size": 63542,
+   "sha256": "54a829cad53f1d498eca98b9b9aeff11491e696038a0aa8d62be8b5eed0b9453",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14351.traj.json",
+   "size": 754234,
+   "sha256": "253bf4b5867693e852f5c371eaf2a433e1dd12ac5fed2d7acb29856a83fcf77e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14373.traj.json",
+   "size": 44830,
+   "sha256": "cbbb89ec809c54f4c9e8843865cecd386c5790605b51afd996c79814cc868131",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14376.traj.json",
+   "size": 39589,
+   "sha256": "826cb152298f1d779de25716e67a91bb0243febdb08db58ae1580e7ac3cc4172",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14404.traj.json",
+   "size": 48499,
+   "sha256": "23d0615c064da2ccbc731dfa706bce05a2d779aa2847e997fb93a983e23e88d9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14434.traj.json",
+   "size": 83243284,
+   "sha256": "4c1837181b82e6ab2eed451262cfe2f166fa76a10d1b28a60e6d46f021545da6",
+   "lfs_sha256_expected": "4c1837181b82e6ab2eed451262cfe2f166fa76a10d1b28a60e6d46f021545da6",
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14493.traj.json",
+   "size": 98908,
+   "sha256": "aef48b2c693b9ac97195b5c2dc199636bb5d9a8f9733d2f66f26c9199c75aba0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14500.traj.json",
+   "size": 87782,
+   "sha256": "298f39485bf542eada0fca83e3fab09a91ae9907bf35bc3ffe2a9182b170791c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14534.traj.json",
+   "size": 94553,
+   "sha256": "cb768009efb1ab09bc52d7a2fcb8581b0dbce434aa8dae5de90351bc448dad6a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14539.traj.json",
+   "size": 253608,
+   "sha256": "01c52708d83b4662fc77568095e304dab7028590bd9adf6ee7166115c9b9384d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14559.traj.json",
+   "size": 197750,
+   "sha256": "eb98edc9f50a0f03f6c0ea7f1bad4d34d9ec0b3e41dbcfc88eb79650b57a3b5b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14580.traj.json",
+   "size": 162523,
+   "sha256": "208861ca476a8f80b3e0174f5c944720b570b1556da3e90871554eb25ed4c117",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14608.traj.json",
+   "size": 164990,
+   "sha256": "87378378c7827bebc1d4566814943c7f140e87e0ff0698ccbe80f686f51064ba",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14631.traj.json",
+   "size": 285595,
+   "sha256": "2f166edccad464d7dd8ddf244fc65e57248b9eb08b6ebd1d1139182e6c97e772",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14672.traj.json",
+   "size": 70730,
+   "sha256": "efd8936bc66a63aff59a28bc68d9ac7763744c4078ed9e038e35d14546f6c6c0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14725.traj.json",
+   "size": 324734,
+   "sha256": "d1bb565e6f64e9bfadcf539b6968b82bb51c992100b76ddb86bce84b76e82eb5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14752.traj.json",
+   "size": 180699,
+   "sha256": "2a4e1b083d06a78303e814f75a740627d4c4fa088d3bfd7d5e691aed4d123ce3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14765.traj.json",
+   "size": 264813,
+   "sha256": "3f28320ad485f529e994b15005595ef322c7b106a9e050e358f5887abb70f3ca",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14771.traj.json",
+   "size": 286170,
+   "sha256": "8a1e069d437d52a1c8a175b4f9277f730cfd2d77b37fa55d373ca4b448f4f7e8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14787.traj.json",
+   "size": 84384,
+   "sha256": "391bc6957281241aacfeaf0a2cad3a325729cf23ab6d66c3cf36bef7d343d045",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14792.traj.json",
+   "size": 169228,
+   "sha256": "f07c2dc0c7448b7df40070a79344dd49e012244224c321255cf31b3be441e2ba",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14855.traj.json",
+   "size": 118612,
+   "sha256": "ad1a19161172cf1e9ceba5f2c8f17daee24abfaf793cf40abd20f691edd0c972",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14915.traj.json",
+   "size": 64046,
+   "sha256": "c296404ef86b17e4f16e2157db57416b54a0ceedb40e47a9bdda2f89ebfd44dd",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-14999.traj.json",
+   "size": 251241,
+   "sha256": "b631d149d362d6d0b4562e5ab654ad16283af18bec597d8f2010bc08d7b35074",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15022.traj.json",
+   "size": 156162,
+   "sha256": "b108df3f8c87d7817951e0b685b08e2c2cb487f9052ab22c4c35ca77a0bfb7fd",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15037.traj.json",
+   "size": 231070,
+   "sha256": "ac6597c07029f5b9bc781ebdd9dbbc54a79f8836839069a5f0ac8da26f1494c6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15098.traj.json",
+   "size": 412621,
+   "sha256": "c1773231f5f8aca480edb849ce07d1c23c837f907c781cb7b137859e4a46aa40",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15103.traj.json",
+   "size": 223339,
+   "sha256": "921bd6c03e469474964dbb19ac22d36b01e01d946efcb6c2d3a5eca1ac63a5b0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15104.traj.json",
+   "size": 192209,
+   "sha256": "f9e18aaa1ff819bea044d664c963258bc3473f3a0d3c7e94cfae0ceec7039893",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15127.traj.json",
+   "size": 103716,
+   "sha256": "21ce86cd0e276eb83e4a82022a904e169fccecc04d0157a0a239b11f55820924",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15128.traj.json",
+   "size": 393720,
+   "sha256": "3ec226d14f875ef3125e313f42ee23655a1f7fc441d7a999ea3a8b91911133c8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15161.traj.json",
+   "size": 109529,
+   "sha256": "01c8f3e1c9682e70569ebdecb1ff931d9c42034e89a5153da29b36bde5476974",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15252.traj.json",
+   "size": 163778,
+   "sha256": "4593503a5484cda1582314b8913a2d0d7bbc6ce232f177e8af8cad777e97087a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15268.traj.json",
+   "size": 296916,
+   "sha256": "c8d0a09a2e2a498e90116d9f4d1c41d0930984304b248639151fdf3916accecb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15277.traj.json",
+   "size": 87951,
+   "sha256": "1771c1f7f700aaae35a300ac16d964b3be22894b1bc63482f16d4a38b8b096d9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15278.traj.json",
+   "size": 152112,
+   "sha256": "9b4fb38a771d4b9f55cb22e548b108c1bc31f9211d52884b9764da3afb137bee",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15280.traj.json",
+   "size": 795005,
+   "sha256": "d10008f1fb97d5d5b2a4fe565f89a65a8b1a8a9471eb421f77443c0dd19f0f8d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15315.traj.json",
+   "size": 181376,
+   "sha256": "ce97b21b0190f5c3aa59fe98c54ab2d974e630fbff3a9d7e282a4dda83ee508b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15368.traj.json",
+   "size": 78448,
+   "sha256": "daab0f5c6f14fd9849eb5906f2572e0f16cf9473eb32c3a6b576104db75d835b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15375.traj.json",
+   "size": 90247,
+   "sha256": "f8a494924249dfded4d82fb83d67cdf58e24154a2fd75b071e05aff04f591ea3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15380.traj.json",
+   "size": 104799,
+   "sha256": "b12386fa4ccff1cbbadbdbb816a4f8e15dfe932d6bd44b804a0c42c6e07bdbb1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15382.traj.json",
+   "size": 511573,
+   "sha256": "b42ea40613c097a778127af012ea30c931656ede684bc57069f31416dafa4c74",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15467.traj.json",
+   "size": 194053,
+   "sha256": "0e323fd7edc9740b6703d66df720ecf4a9a93f9f5f0434dce4fe29649fb61738",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15499.traj.json",
+   "size": 155001,
+   "sha256": "b7b53402fdbcfb76b60814374ab5f24d6fe9af8cf729b375fb6e56c784ba021f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15503.traj.json",
+   "size": 651089,
+   "sha256": "ba1ceb1aedacac8ded59c3ab197aa745ccd27d77898c52df4f08b4d50ccd5638",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15525.traj.json",
+   "size": 913884,
+   "sha256": "a95b5b1600b9e0d01c5f31e19610ec46051ee197837c412d24bb7076ce96edd5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15554.traj.json",
+   "size": 165199,
+   "sha256": "7a94cd086ec2fa904df9eb32c720d555ed0423d236fcc575b6d82abd9829a06c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15561.traj.json",
+   "size": 65693,
+   "sha256": "2421222bc596a9563ea068b61d3a1205aa7c6fff450a65d3266e849ae828191c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15563.traj.json",
+   "size": 119762,
+   "sha256": "08e8978ffe8e03c796e7f41c5a67b1e65055ed3d9128c9fd3ab6d030bbb9a849",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15569.traj.json",
+   "size": 153284,
+   "sha256": "44481d5f6262a0442c1093957bef454e0280f5034e2827a9507600e8d730893d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15572.traj.json",
+   "size": 63469,
+   "sha256": "88a1e322a13359aa10a397b23293795a3fa4c75420bce165b96530458c856a82",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15629.traj.json",
+   "size": 281355,
+   "sha256": "0a32ee3512a53ee1fb18def97dd8dc3db5bb993c890db21da18a0bd085e98ebd",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15695.traj.json",
+   "size": 66500,
+   "sha256": "967c810e2cc92e2aa8ac27908bf7926c8e6fef5ce2caf6b461cf2c5076f6a5be",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15731.traj.json",
+   "size": 228425,
+   "sha256": "7dafe0796e2c8e61142a0f86424a1b2ab4c5b07fb452f96d2a1f0f9ba3ba8fa4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15732.traj.json",
+   "size": 908118,
+   "sha256": "18b07c7c8f53b43d7caf57027bc9ad67d2e00078373ba15b1283bfaa6f3961b9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15741.traj.json",
+   "size": 58708,
+   "sha256": "43b1553f804132e98094ad037e4819655254671f6399c2f2e410a5d49ceffe5b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15814.traj.json",
+   "size": 39587,
+   "sha256": "a6e9cd077e3993f813771e59990738728cb44fef95d7d7b00a181cc77132c1ee",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15851.traj.json",
+   "size": 212205,
+   "sha256": "a6fbfa4473c4057da99a52b16678b68fbeed767ebeb0ebb48d7bcd11fce04ce2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15863.traj.json",
+   "size": 386220,
+   "sha256": "d09feff8556044dbb832b90134ee268c952e0a239f538befa5b10f04a3612770",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15916.traj.json",
+   "size": 56893,
+   "sha256": "0a077a1a2d664f31fe72784c63a5cfb94b05796c68561f513ac703c39cd5cb10",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15930.traj.json",
+   "size": 201125,
+   "sha256": "1f50628f52af7a6d5bcd91ceab65000267bcdd0837965e91fb4e789996102776",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15957.traj.json",
+   "size": 259355,
+   "sha256": "b59197870935610c96cedc0163b1ae37cb25bfb5c180c2d78a0d5029a2414c58",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15973.traj.json",
+   "size": 403887,
+   "sha256": "a1ea3a209b31ceda1930da7b265d2fe0e510b8b141bf552f07597503f742c4e6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-15987.traj.json",
+   "size": 76455,
+   "sha256": "fa617efcdb7ad9ab8d9038b80696047c75bd673e65fd7ebc5c92d4e9f3754abb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16032.traj.json",
+   "size": 637179,
+   "sha256": "59bf637e4bde8b8cf977fcfd9228bee791c48247a28c429bf2646d03b55ee107",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16082.traj.json",
+   "size": 791406,
+   "sha256": "ed790e5d425604e844ea07d36c64f09333ffc7a08b09e2139089782e23e30e2d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16100.traj.json",
+   "size": 233348,
+   "sha256": "61c4d74bf7a64c284a54cde239ede941148cc9be85c375430c6b8e5ea1503634",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16116.traj.json",
+   "size": 292636,
+   "sha256": "2ecbe2d2b40885a7dc31cc1b8c7927d39399e8f536bca647baa8159396c6ae9f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16136.traj.json",
+   "size": 236679,
+   "sha256": "6df744cd12d711da52131109c0a6e25be1bc34bdae1f30b70d4c8103253c1139",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16139.traj.json",
+   "size": 41509,
+   "sha256": "ae7877aab1601e1e477d8939eafeb37e421834a6eac227464cb558f627067c06",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16145.traj.json",
+   "size": 153596,
+   "sha256": "2ec250636ce2282a0fcab53437cfb03dd91c467de02b880770c9f774594cbb40",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16255.traj.json",
+   "size": 41231,
+   "sha256": "e6df5190c1293604feb0a0b777faa19e97d7494f3a4783ed78ff6f131fb02625",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16256.traj.json",
+   "size": 166672,
+   "sha256": "f93e182276b4bce327fa601745c81ab37eb5918e093cefcd59c04cfb5ad5052f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16263.traj.json",
+   "size": 272787,
+   "sha256": "8c9f9bd49fc8aabc5d23694b082c5daccb83695b9e9ccd1be2157e5f308188d5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16315.traj.json",
+   "size": 185079,
+   "sha256": "7afcb7f235ff7156c84e83b01adbc4d977bebb12d997a7fd60f6d80fc8721583",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16333.traj.json",
+   "size": 51442,
+   "sha256": "f6b039bc916552ec90ad3806d592ed06239326c85d6fc07066bffac7ddd405d7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16429.traj.json",
+   "size": 71393,
+   "sha256": "52d17677abb11cf6cc3b5f75290730c693673a67f48361dc6da8b4c06d0a631b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16454.traj.json",
+   "size": 316114,
+   "sha256": "4d8cd14e66600f786dab10acdcb87ae638a14cd229baab26b6b308a5dd8e23e3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16485.traj.json",
+   "size": 51370,
+   "sha256": "553e6bab2536ff7d8366cb1153f305eee1e5959769c72c8a926d6baa3b8363d9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16493.traj.json",
+   "size": 53105,
+   "sha256": "2016f976aab49b5b1bf82e5178fbf23fceb7995eb4f06c2e855e5a93b0c7c769",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16502.traj.json",
+   "size": 257086,
+   "sha256": "8476c34eedf8e6376efda212a52dbc0aa305daf2f1f096b6264a50038b6cd56b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16527.traj.json",
+   "size": 33840,
+   "sha256": "4be444275e8fdb58bbb4145c6e2f07200b0d80391cd23fa2fcefb5affdca510d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16560.traj.json",
+   "size": 98477,
+   "sha256": "e3ef1e5417a202d1513fee6823e9673b25f05e42f5d0d489f7ee3693467ee18e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16569.traj.json",
+   "size": 59989,
+   "sha256": "cb0dfcf55995645052afb07d2c7877c1c987d6db7881ea0c853ee288549aa299",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16595.traj.json",
+   "size": 195982,
+   "sha256": "579755e19aa1ad487d330ebc112802c45cc70e8edd9adab67215ff1272513664",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16612.traj.json",
+   "size": 48741,
+   "sha256": "f22b4cae9b94894ec711f43edf4b79c0330733ea595e216987fad65489c211de",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16631.traj.json",
+   "size": 94469,
+   "sha256": "a07685649ab675f4e084c16e6210fded9585c7855fed1dd582c330e1791b40ed",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16642.traj.json",
+   "size": 251638,
+   "sha256": "368aa9d3a610188cd9fb2bfb8b3110ca31b3a7a6012ab83da0c6fc79702efb69",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16661.traj.json",
+   "size": 72993,
+   "sha256": "38403207679cd0d24e7880c6fd60ed757d5ef4c85b5f767c6595e87dc377ee42",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16662.traj.json",
+   "size": 295346,
+   "sha256": "fe9ca6aff7ad8389ac8123351144a385959fd36002298fdd755ec3a877785d34",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16667.traj.json",
+   "size": 288291,
+   "sha256": "f78a981b55e76c4fef136a643e377b57f8347b8d4eeeba8d477d78e1c9ccd365",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16801.traj.json",
+   "size": 69528,
+   "sha256": "1ca65870df5b4c8624b151060f80bad42e57378e743d5185a88b39e7928c9e2a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16819.traj.json",
+   "size": 393487,
+   "sha256": "4f4db47565e48a1a7a7dbfa4e8997d1bff2a98df973fca1baf8a165266144c49",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16877.traj.json",
+   "size": 90869,
+   "sha256": "8b6e427dd237e49a5822e23bdc4579888865c43b600cb9af5c2c0fb2779f9b97",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16899.traj.json",
+   "size": 61246,
+   "sha256": "e6ea80ebda0acfe54075ba5b7ad04633dbd8d8d248ea41fe29685560a67ac017",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16901.traj.json",
+   "size": 211648,
+   "sha256": "09dea0088478694743ad227e2540f962cc3d2bce46ae2744f1f4c68530d38195",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16938.traj.json",
+   "size": 313039,
+   "sha256": "c5f2b45306527769800d2779f315070852b6f0b61ec6cfc10efdc4113f33d947",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-16950.traj.json",
+   "size": 216267,
+   "sha256": "13aeb590ac4e96d0e2b94b64e9451048cf45c8498f368c38966e76ad71d5aeda",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-17029.traj.json",
+   "size": 176546,
+   "sha256": "fbaf4c042a256184bc8c90063f990477fb9897a88e4269a037b0e9f5ffd406ac",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-17084.traj.json",
+   "size": 520672,
+   "sha256": "4d8dbae85a7e9c98340f6b5adf8d8623ec8ef1f30073bcf97afaaf4fd43fe53e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-17087.traj.json",
+   "size": 155031,
+   "sha256": "64519327881ed3337e657067c3057c7e2e15c6aab01aead3a7a2f47e4c66a78c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-7530.traj.json",
+   "size": 333848,
+   "sha256": "24f46b721779aed04f71e360f4d3bff88601b7a82647a585a4076188c3053f1b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/django__django-9296.traj.json",
+   "size": 63665,
+   "sha256": "b0720a5c6a64cbe5d9c101e05fea324b4ad18f9c77b693dea40483d07635afce",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-13989.traj.json",
+   "size": 252913,
+   "sha256": "553ef7f583b05a342e08f08c5b7b4b3512e21bf7a8fa4f08d45bef968140f2d4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-14623.traj.json",
+   "size": 213867,
+   "sha256": "f7c9b3ec8714309a5f7cc38a67df6071f53ea2d01a1ff218e524bb8910ca8fa6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-20488.traj.json",
+   "size": 1142011,
+   "sha256": "61bd253152a57069df8db129870eefc141870206633e474464bd962d362f3c4d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-20676.traj.json",
+   "size": 232453,
+   "sha256": "2449f5d1c31d98384add8afa5601fd92145bddadafdac6aaaaeb7c7e94cc30ec",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-20826.traj.json",
+   "size": 236096,
+   "sha256": "01e73c0d522a507ce7433fdb29279bc21f22b3c56e870bbeef111ea8af23c25c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-20859.traj.json",
+   "size": 61788,
+   "sha256": "3b30c22e44dcd94d1381b88b5fc915f316d1f464ecc486e9dd8822dd0adc182c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-21568.traj.json",
+   "size": 131007,
+   "sha256": "cf9282a67d265f2335140c6a8b9f3c9c542a08701b36af6eee7169acdf442e8a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-22865.traj.json",
+   "size": 118080,
+   "sha256": "17226d419358654c22177a30cd80b47ad84628ccffb146ce131b661e3c5e7495",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-22871.traj.json",
+   "size": 217861,
+   "sha256": "5a2922a79703b7763039821118245e134bd22f78eeb2e26c8e8648f8bae9a193",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-23299.traj.json",
+   "size": 599570,
+   "sha256": "30dca26f1be6880a6d82d319859417e57279f257c15bbe3ac2a95ba1d02a5d17",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-23314.traj.json",
+   "size": 193504,
+   "sha256": "2215684cb7e16966da47ef753a4642ecc51e9fcdc47e039c10d1f442bbdd504d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-23412.traj.json",
+   "size": 110637,
+   "sha256": "c467a7b35b6c7050960a586a5a9da750515bd6f5ff550a763922b0a2ac5ca796",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-23476.traj.json",
+   "size": 173358,
+   "sha256": "3e71e2f56ad36f4d1a4eeafce1c2a90e0e3c4fd7ef30d8c8bbf59eb0891e583f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24026.traj.json",
+   "size": 100440,
+   "sha256": "08848f4e2762eef0b6a963f2a20fe52576c95ee2f660bb0c083c55726ab4d90b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24149.traj.json",
+   "size": 65798,
+   "sha256": "04c1fc7f2b99fd3e3fed95f58b566cdb2e09db6169309464c198918b38b516d2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24177.traj.json",
+   "size": 410045,
+   "sha256": "303a744c06181d37e8c05dc1d3b33a8e3294af8ae0282c7e523fc5cbcfd40de0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24570.traj.json",
+   "size": 427919,
+   "sha256": "77a7fe91a42650adcbeeaeb1ecf14214f93705b319b393e02859d9e1ed1b4140",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24627.traj.json",
+   "size": 439770,
+   "sha256": "8c935fec668132daaae5a4d08bf6b06c158bc8954848c7ea91add094e329cee6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24637.traj.json",
+   "size": 111666,
+   "sha256": "d03688ae671bd19b8ba5de54f13b8313a4044dc2e10c8553bd8d79d81060b2de",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24870.traj.json",
+   "size": 299004,
+   "sha256": "8af30abc32a8cd599fa6b08b045a613258697ceba74b89c84d86bd5b662f58a4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24970.traj.json",
+   "size": 69931,
+   "sha256": "00d98a42717323ad90cc85404874e1408bc3b63f1afb50ef31f66b2f2802499d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25122.traj.json",
+   "size": 60847,
+   "sha256": "4f7c0f5a6f99a75fefd21fd092aaa4f4b9665bc2c952c6c487a56c12f448f2c9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25287.traj.json",
+   "size": 74954,
+   "sha256": "4fa29854b92eccffc86e362e43216055dbed8b87c24742447cd62bcc0dfbd864",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25311.traj.json",
+   "size": 224946,
+   "sha256": "72f10cb1220bf9f1b8535f9459780ddef72ef8d34ba3f651a225655df9bbd1aa",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25332.traj.json",
+   "size": 444830,
+   "sha256": "85632a1c0637cb79ec0925e97c8d2b8e760885500e1c2b16f0056cf43146fe4b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25479.traj.json",
+   "size": 252701,
+   "sha256": "f77a2b2595dfef3a3208a3879620d7f39568cd36e94c09b3ceb011b310028477",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25775.traj.json",
+   "size": 249258,
+   "sha256": "6a4a8bda94da8bb0678dc2d6946417838dc0c5aefb64e77f783f3fb3766f7479",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25960.traj.json",
+   "size": 69453,
+   "sha256": "6a833e532236e0cde8e17290f2c7a0812dff527a47f4b6dee70026cabfb1b7dc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26113.traj.json",
+   "size": 101465,
+   "sha256": "4d9b7542f947751175598e0d053a75eb773a0fc476e04504547ca27f9dc81757",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26208.traj.json",
+   "size": 554912,
+   "sha256": "354c9e2ca97328556ac9b5f4f035d852b4290272f8eb76e17c9c25a76d8a8e6f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26291.traj.json",
+   "size": 307887,
+   "sha256": "58466b0ddf92e619b8394346c361423f0ffd2da696dc6f2028400867a6840928",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26342.traj.json",
+   "size": 124614,
+   "sha256": "c41e980bcfcb5ff23c58bae8bb046a51abfeee45ae444d5009b6d67d4e940a34",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26466.traj.json",
+   "size": 211843,
+   "sha256": "101ed4a8c60f727b820fcf97b9ed6a50f0f71cb65f027023203f5a485a34199f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/mwaskom__seaborn-3069.traj.json",
+   "size": 406850,
+   "sha256": "337448c970dd14e7357793d0f1c6b0a642d0d609ffd008d8a7a38d194bc2f3c7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/mwaskom__seaborn-3187.traj.json",
+   "size": 177451,
+   "sha256": "37769365f5a618c20f6b0f91c1cabf63ebea80b15846546d78ec965f05e0b4e8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pallets__flask-5014.traj.json",
+   "size": 58036,
+   "sha256": "0f9f3b774803aabe028b3a943c51358ac02cc8ac35f9ebed8d71abe9ed58c51c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/psf__requests-1142.traj.json",
+   "size": 77893,
+   "sha256": "660db5987b22d93c789c38e59006c84254de54ea6daf41ce8283404b1cc0e31d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/psf__requests-1724.traj.json",
+   "size": 124697,
+   "sha256": "ba2fe449cfa254ea1d789f905c750a3ba217d133020650880cd6680a8d08a5d2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/psf__requests-1766.traj.json",
+   "size": 54188,
+   "sha256": "9361596bb4ba64a71a04252669b6c63dcf8e002cee27a79c9b01b26d2c82f272",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/psf__requests-1921.traj.json",
+   "size": 316232,
+   "sha256": "6074a1f8c56917a9bb75429a779adfb54aec33fda6b8b5d413da467616fb2c45",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/psf__requests-2317.traj.json",
+   "size": 102097,
+   "sha256": "8fd1649d5402bfa8ec7442f0f03ff5a2ed94d1f73873be81567bee746955bb3a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/psf__requests-2931.traj.json",
+   "size": 160940,
+   "sha256": "6adcb9dcc295ca7ce46fc5ce116347591dbd853f7926bcfdb86ec78de97305a7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/psf__requests-5414.traj.json",
+   "size": 707054,
+   "sha256": "2d79627c82d8d6746f85fe851010a68350a2c0337707e2317024b16357dfe36e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/psf__requests-6028.traj.json",
+   "size": 136691,
+   "sha256": "4c36a9df7c30d2c77e59bf100803d35e856c43162edf2effaa43552a557a3918",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-2905.traj.json",
+   "size": 67610,
+   "sha256": "7e41f0618ac0c55aa1b81dee212136524883988a092d2d55a1ebecc54603bfd0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-3095.traj.json",
+   "size": 270765,
+   "sha256": "004c304555988f5d9cbb4dee84fad0c89c0465869373265bd3682ad8897160fa",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-3151.traj.json",
+   "size": 309821,
+   "sha256": "babb54d8a24829f94358dfb860aa375ae1471de6d85d24c65d1ee51e62f6190b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-3305.traj.json",
+   "size": 508620,
+   "sha256": "a5449fc9e3a6934776e05167685f58aab7a6f05e0830acc6e4e5b2f101d291bf",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-3677.traj.json",
+   "size": 267049,
+   "sha256": "ef85b3a2c4895b762306b33ab3ebbd9a86329d3542e99c6efc1cd7c862aeb4fb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-3993.traj.json",
+   "size": 268238,
+   "sha256": "c14f8e560f01bfdc607231177781065c9da0d023c8bb558fd0a3fc87157638e1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-4075.traj.json",
+   "size": 107538,
+   "sha256": "fbff6b081e37e3163d08655b7b3c75daf594bd5cc611031c9f96cde59daaff67",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-4094.traj.json",
+   "size": 99443,
+   "sha256": "0912e0af620ec1c1d41b5e84ac3434582f1dfe5eed11dbb9d0867d81d98ecc4b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-4356.traj.json",
+   "size": 242211,
+   "sha256": "16d51ba73ddcf066cb1654d4a6f40dfaf14696debeeba563f7fbbe684f955180",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-4629.traj.json",
+   "size": 49837,
+   "sha256": "05662f5305712f035bf2deac9491f95113b80bbf352091e43be1ccfa0cbe0b0e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-4687.traj.json",
+   "size": 189992,
+   "sha256": "e573c159ba91571837a10ef7e27dbc3800ce73145e04f91addad55fdf44ec9d2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-4695.traj.json",
+   "size": 274756,
+   "sha256": "bf154ccc494fc470c66a659e3f65879743d1f1b39a622f78557b44d419286767",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-4966.traj.json",
+   "size": 1429220,
+   "sha256": "4d5deff1b28dc4566a0be743b8661d6cbc195db2d9ab4018dffeca158f50c146",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-6461.traj.json",
+   "size": 138319,
+   "sha256": "4cd2a6fc66214e2d826bcae6b5e5a8661aecf786f3c2a03905259ec794161f90",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-6599.traj.json",
+   "size": 305469,
+   "sha256": "5aa01025bd35337db80f8059442d373852823916cd4fcbec129f2ac30b210034",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-6721.traj.json",
+   "size": 653351,
+   "sha256": "081526fa674dcf0d14d772b0af3a0eecaf9e1ee81be4a4963a31f9e4905d71a3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-6744.traj.json",
+   "size": 553957,
+   "sha256": "27a6694740def331d9de4a1973f50dda9c6b7846ef1a8ff443bcc2bebdc6451e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-6938.traj.json",
+   "size": 312317,
+   "sha256": "a529fb4f41c1ac783205aa37aa6a0ac3340108d201389dff411504769d4d0cde",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-6992.traj.json",
+   "size": 69287,
+   "sha256": "1d7635cec70f8c110e49d2aa46f75829dd6cac2a2df2cce923dfc508e1b7de01",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-7229.traj.json",
+   "size": 515328,
+   "sha256": "fa2bdbaabf290092dd7aa0012c786ab3807ef65499a225a4d0b23123c71424db",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-7233.traj.json",
+   "size": 295623,
+   "sha256": "a8d6e93fe8743e660a8af79d447032c9118fb0c60de587434e6e700b51833258",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pydata__xarray-7393.traj.json",
+   "size": 596437,
+   "sha256": "aeb5e3783c47b1b56205d1adf4ebd4e1e6eb1cd3f13b68021346106bf93af2dc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-4551.traj.json",
+   "size": 175385,
+   "sha256": "ffafc4e7f91032aa7572e39baaed7a38c339ddf5dde4922d433f6735c9d7b273",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-4604.traj.json",
+   "size": 185795,
+   "sha256": "f501f7f975fdffe841efded29064350302f4e4ca70da5ff9872eaef5297cc72e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-4661.traj.json",
+   "size": 61965,
+   "sha256": "12028d898b76520844b2aec331fd4348e7e7e737072bfcfbbda568bcbe02aea7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-4970.traj.json",
+   "size": 288225,
+   "sha256": "2742ee767a4e63ecf7ffe21619bcb7b4be2e9b30d7c01a7dd8d444d604d8bb53",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-6386.traj.json",
+   "size": 9227303,
+   "sha256": "43c47ad74964ed54385e8f61545367d274845b507f9eb7977ce30780deae7661",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-6528.traj.json",
+   "size": 182391,
+   "sha256": "d320ae36035b80e0639e9c91babbd4008a3ddfa5aa275eff0f8d002eef5fc4b6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-6903.traj.json",
+   "size": 229416,
+   "sha256": "7f19edeb7a486928b662256033f2649ae11f815c38a239f413f004280d0825cb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-7080.traj.json",
+   "size": 438781,
+   "sha256": "2ba14780b19a40403ebe26bfd00e19520855f07b818dfcc1b15a7c374bde3a4a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-7277.traj.json",
+   "size": 46104,
+   "sha256": "38bea408d9055eadb6f88aa8de1bef88e1874daf60d9c0a10fc2a437ae91632a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-8898.traj.json",
+   "size": 242042,
+   "sha256": "140678a0cb9f62ada7f2daae7352e8767e0111f29969fbd3ec01a19885edafd4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-10051.traj.json",
+   "size": 268317,
+   "sha256": "c9152b2dc6e51730fe2d871414c3c119b230cec0b4b73216d16d51c83c16e0d5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-10081.traj.json",
+   "size": 124942,
+   "sha256": "760ed81e4b8035f0dbfd5e249e0dd7e8ca7b37f9268a012432fd754368ecc78e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-10356.traj.json",
+   "size": 215898,
+   "sha256": "53fc0c9cb87da42488d47158f5cbd57e6e8ba960649f3186646b83639257e098",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5262.traj.json",
+   "size": 273472,
+   "sha256": "7bd054152e9d17d3aa52ce444cc2e876d69e543e17f4ba294b9255d396b1c6ef",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5631.traj.json",
+   "size": 234640,
+   "sha256": "927c85097168faf7c7dc92798aa99cce4fb1099e9ed523c84d4c35af4b2a7f42",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5787.traj.json",
+   "size": 305935,
+   "sha256": "8b6bd953953ff7ec980d933a5fe64cd37e6f1a07c3485e2183dfdde0b880ac42",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5809.traj.json",
+   "size": 67378,
+   "sha256": "b61c85160af2f3fe717a211f996179e60e2ec53708aeab22d95adf2cc0bffc2a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5840.traj.json",
+   "size": 244830,
+   "sha256": "9180521f7c8f31fdfc8696be7c7de5aaf3707d295da91287e0cf789aa808789e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-6197.traj.json",
+   "size": 265827,
+   "sha256": "a95db38f366367948b22d6ad8587676e81f38cbfb765a9bb6c606e00d1ba64ca",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-6202.traj.json",
+   "size": 76394,
+   "sha256": "24c3f4c83a098ae89765082ed580af374a06c9908f6483a6dc603b73c1968907",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7205.traj.json",
+   "size": 54216,
+   "sha256": "30f24b6144dd7d545b20af2dcfbba73ff23293ed4c15f26e23769afbd6a74d67",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7236.traj.json",
+   "size": 239712,
+   "sha256": "42735b3e14e3d91f76781e5c7ec354158fdd61fd028c0c228d90e35f2ccbb9da",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7324.traj.json",
+   "size": 66631,
+   "sha256": "237658ed2a37f0986c1b907a66296daeca4072afb70c85dd391f7eb9d2d77fa6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7432.traj.json",
+   "size": 146263,
+   "sha256": "45c5a209768d26edad4023d116f9dc79597d703d5e37226adbc24e4fc2c4d1ec",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7490.traj.json",
+   "size": 220397,
+   "sha256": "5df19bddcadbaa1623f8146738e9238e7a91b7ef3d335de9154e6c659e5e08f6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7521.traj.json",
+   "size": 82854,
+   "sha256": "d6904db92170d144ec8052d7e81b2e30a509c0b4145b2a6e7bd4b917254ff164",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7571.traj.json",
+   "size": 305333,
+   "sha256": "74d40d95a40eb490f4797b2e4f74e8a2d9e64426c71de52f5cbd680261bf8da8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7982.traj.json",
+   "size": 115412,
+   "sha256": "e248cb210e223a38106208c2881cee84e5494f544698dc220b56718d6c90eb4d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-8399.traj.json",
+   "size": 48615,
+   "sha256": "a754d94c0764220f1cfe6b38593ee57d6af2d922eec08566c39d05a6be34c0d0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-10297.traj.json",
+   "size": 204298,
+   "sha256": "7f530b9fcb4555bd95d2468c6ad78140c53836c8951e2accda650780ad604468",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-10844.traj.json",
+   "size": 186765,
+   "sha256": "b41f874a52b6b3e04e77db46d887fe02c619695db6cd3478381c17cc26046c3f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-10908.traj.json",
+   "size": 252606,
+   "sha256": "661cc576852cf52d46a76e44789798836272c6fbb665035c7c79460d29380206",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-11310.traj.json",
+   "size": 75905,
+   "sha256": "87da254e87faf0e5d68aa5f354852e6f45791c7ac7c41e6a6ff8807b3b0b706f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-11578.traj.json",
+   "size": 55130,
+   "sha256": "41463c7f2ac8435c4dfa62df686cd51e2ab435eef63c051355f2fd6ffb626ba2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-12585.traj.json",
+   "size": 84298,
+   "sha256": "2885d060f316be7cf28f69ca6d7142eac556cd5829e8791f26592af6ac06a196",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-12682.traj.json",
+   "size": 534442,
+   "sha256": "a80dec80952ec1cbe3bdc3047f43a9f9fd8a38f565305ade496dfc9a4dae54d4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-12973.traj.json",
+   "size": 93439,
+   "sha256": "1448314265e075fb56a32a1cc8117e6e9ed4ec08ae30b9781825d0d761eb9808",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13124.traj.json",
+   "size": 445231,
+   "sha256": "70f22d68cabb110a71a4e1f90e0ae95d4ca61fede4c244269c673397332ef29f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13135.traj.json",
+   "size": 289186,
+   "sha256": "376e01da1b0fe469854005b9eeb65d9bb50f23691703980f6804b36cf9ce1efa",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13142.traj.json",
+   "size": 366580,
+   "sha256": "b7ec84ed28fe68f80eb297ecd801c7635367a62e917ea9ca7fba8d1e49bc3afe",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13328.traj.json",
+   "size": 252659,
+   "sha256": "bd0e80f5d184ef20278bcf16ceb9d5df489f1073974029c91876016419a1b48c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13439.traj.json",
+   "size": 287243,
+   "sha256": "e4f4da876373a1a73504b290e243ff01dd5198766d6e78ca087873dcff1ead59",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13496.traj.json",
+   "size": 164023,
+   "sha256": "ec3b047ae4efab489250c9ae265cc191e2ac407c0b1adfb2e7beee0d203a9ebe",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13779.traj.json",
+   "size": 401155,
+   "sha256": "a45488538e10031d8565fcbe1e3c70710693fc437bd86cde3e63f512593d0ac9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14053.traj.json",
+   "size": 188351,
+   "sha256": "eb864b9e539cb66f336abfe991b0c12d3ea3dbd3e18b41fad6620fcd418a077f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14087.traj.json",
+   "size": 441533,
+   "sha256": "bed534a044e68a086f5e19b6e2af1e6e9ae26a07f85122b804c0ae9e97d44b1b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14141.traj.json",
+   "size": 40462,
+   "sha256": "b08fc7d6a7691ba53e195d9aa89e594e57cee18bfecf091a6d9055f0949b94d2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14496.traj.json",
+   "size": 271865,
+   "sha256": "367d731e3e0aa3dc9055e7b432c64c8c64740d8547f0324333e88fc3c55b6a5c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14629.traj.json",
+   "size": 77234,
+   "sha256": "91bcfad9e4c08f7a79547ece17f6a3ed27fcf7b8a9b5935ca3b54e9a5ee0aded",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14710.traj.json",
+   "size": 1257204,
+   "sha256": "b64407233458aa738ad91ac440c0fa1cf897ddd7542d1120fd1229b6822b54fd",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14894.traj.json",
+   "size": 137901,
+   "sha256": "d804101652657f0c372d8d150f0209fcc03d25e0bd9deb235cb42e8673bee68a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14983.traj.json",
+   "size": 94050,
+   "sha256": "bd571ae76885f59ed0958604b2d5c061f5266b9dc2e3aea9c058d27a86f9cccc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-15100.traj.json",
+   "size": 126794,
+   "sha256": "c2466225e99480c7978dbb4306ffb05963552cd291866cd063d944bf7db30636",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25102.traj.json",
+   "size": 367140,
+   "sha256": "46412e0592df1ec90aa1081383c9bee1e4a3a4d68d043764111d5b7a5f2362fd",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25232.traj.json",
+   "size": 245925,
+   "sha256": "83d69edb0831ad3f8d98e924c470528ff35a61fa286d0d01b887d559dd91f0c6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25747.traj.json",
+   "size": 1509162,
+   "sha256": "64b50c9b4be25b8fb3c10de2a01c87e74dea1f48494f0748f4c4360c599c11c4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25931.traj.json",
+   "size": 567716,
+   "sha256": "512b17f84c4ab697c8bfd47983e2cc7c2240fa126ec6cd109f66334b70070199",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25973.traj.json",
+   "size": 92317,
+   "sha256": "41fb90614c7add1a6c9770ec1822eab7bb4553bacfed39fbe5454e52528a4f69",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-26194.traj.json",
+   "size": 98815,
+   "sha256": "2ca44f63c1e1a76c1f9e9b8b903c060966713584fe49520ec991f6dca42c8ee8",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-26323.traj.json",
+   "size": 157203,
+   "sha256": "a56cd4f6f2dc1204428a00275b3ec95f76ab414339ab58b5f4c3151baef89f43",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-9288.traj.json",
+   "size": 201859,
+   "sha256": "6417e09861be8d61997b26fc7822144be21b407f049719974f1468f16d90c735",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10323.traj.json",
+   "size": 537526,
+   "sha256": "19d2fe03ff6e1c0ea6dc674eeafd33a3e304ce27986db976683d65effb9dbfb4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10435.traj.json",
+   "size": 227285,
+   "sha256": "427394fc2f7c2c8c4e35795728c77c8b5b963b9f837acdee2a55d92fbaef0d28",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10449.traj.json",
+   "size": 430732,
+   "sha256": "15ad96fb8b48d7f6c3b3577549e51cabb82510eaf4c996a9b366d475b942e29b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10466.traj.json",
+   "size": 67012,
+   "sha256": "ece3331d7f78b86afb14f84952c5cd5457ca240b17403de408ced0f415bc0850",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10614.traj.json",
+   "size": 224042,
+   "sha256": "fa83ac4fac3bdaad745dfd1512e464ef249362f0d2a2227ba43d9adaebaa7757",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10673.traj.json",
+   "size": 1130259,
+   "sha256": "7207551b671a041509b24cdb9f12be54c373aac7ce9272fe6de3ceb0889e1df7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-11445.traj.json",
+   "size": 364357,
+   "sha256": "4dfe22b1f048a0e621afd8553927d821293073d24446ee39efa50115e538d292",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-11510.traj.json",
+   "size": 420284,
+   "sha256": "3f42b3d741d04acf628dad3a93916dc820ef26ebc9e15f2688441107e6247ff9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7440.traj.json",
+   "size": 188952,
+   "sha256": "e98c6d978a2c84f60fca5628859c4dc3c62feadeb0ad7b29aad6a3bed2538a37",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7454.traj.json",
+   "size": 408411,
+   "sha256": "637f3b1f986be3c0d9da98fd92f33ede83bdc953fc2a3f7191faf29fa0048d55",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7462.traj.json",
+   "size": 49439,
+   "sha256": "854dc92b06e5ba7a90825142110600ca7926a159436022ac1faf858feb1d34d1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7590.traj.json",
+   "size": 110023,
+   "sha256": "f859412ea7e43513eb068ca83262e5fb84df3a19e3f0c19a0200066883c7bab2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7748.traj.json",
+   "size": 301739,
+   "sha256": "93b00d2bd0445b6a1e165cb25ac012eaae1675e0d4f04f9048d3a5db99b28777",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7757.traj.json",
+   "size": 165686,
+   "sha256": "41d5fc81c4a881b49578eb3767ac0c567ade3e89d5355f66c2f76671b9c459a5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7889.traj.json",
+   "size": 209556,
+   "sha256": "62204115d14671396595a92c62afa361e1fa5f35960d51ce6b9b34cd68dd7aec",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7910.traj.json",
+   "size": 364163,
+   "sha256": "db36fba5842b44bb03c56b98ac64d9ee7b2b150cc419b7640d16b20696e63133",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7985.traj.json",
+   "size": 386554,
+   "sha256": "c335eee3a7e0be639af39fc0e29a3319fb69c54a18a2664ffe61a067f4c0eb3d",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8035.traj.json",
+   "size": 301445,
+   "sha256": "4b8a4b1e878a1aa0cd8093047d8688510bf275047c1f9b3451fb6276c1b5bf41",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8056.traj.json",
+   "size": 394879,
+   "sha256": "bba610accccc561fc9c2c35d2f584dadfd0b8488088138154238975861d366b1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8120.traj.json",
+   "size": 148604,
+   "sha256": "4fe40812e69ae6659099b90f0d8478fb98074e0a0789e331fc59b358eb9cf7d5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8265.traj.json",
+   "size": 187316,
+   "sha256": "9b6a8e0f65ffea9db0cacf9472a869403c3528bfb5ce4a69e767f03cd82ccca2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8269.traj.json",
+   "size": 292180,
+   "sha256": "b8d45585142ae7c0ce806cbf6393015ef74e463defeb28f6b5d73247e26ca44e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8459.traj.json",
+   "size": 329187,
+   "sha256": "3cf4380c835e1c58990e191a9ad0cd68e39d0c28270eb6a4106c82484d2f5cff",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8475.traj.json",
+   "size": 64398,
+   "sha256": "028e11fed95e9dd9752d9e7938a3319cae3d968023fc277909c78c9944109620",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8548.traj.json",
+   "size": 137249,
+   "sha256": "231888356acb83d2649ac258b7cdb7815d148919db07b082b77053983a32d31e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8551.traj.json",
+   "size": 116576,
+   "sha256": "7742ea78e1f88f56a8ff915eefeae6d989ebfc588df5476ca6742090e8336b77",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8593.traj.json",
+   "size": 207621,
+   "sha256": "80e27aedfcdf435eed6660d9fd106f58135b66ded2332728bc02cb17279f4e65",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8595.traj.json",
+   "size": 387569,
+   "sha256": "3aba383991cbfa8b65b53a38e18ebc1f5e1e32990177d8e480fb9ba1c5184164",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8621.traj.json",
+   "size": 110061,
+   "sha256": "62e5ad239c3f16a6b7e78b35d9cb791e7f1ee727b8f783da60728aa4ed5ba46a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8638.traj.json",
+   "size": 249613,
+   "sha256": "e6095d0fef2e1e0d77c862428b8041409235c2fe7f81ce4abb23de02e45da2d0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8721.traj.json",
+   "size": 307266,
+   "sha256": "2161b7b913d1dbba273d1066d25ea4f509d221733d3996215118b2490fff9821",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9229.traj.json",
+   "size": 337428,
+   "sha256": "64341a60dee22cc67710cedc44e7bcf01d9efcbb4dd946478ffe41aa9d72e6bf",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9230.traj.json",
+   "size": 529940,
+   "sha256": "f334c405660bd0f13da0d8b6c04adb2d9f85a73078d44f33b46c5c6e6d34967f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9258.traj.json",
+   "size": 123296,
+   "sha256": "de73dae27f683a84b2bacdbd40df3d8f22c9d4179f19842145f87e22be778400",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9281.traj.json",
+   "size": 303082,
+   "sha256": "fe614e87ffc67cac3e003c07ab7e6421557de5476f4e36d2b2e0ecdc9bc081c9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9320.traj.json",
+   "size": 70014,
+   "sha256": "5df8d9a2b49cccc9ba48970d3bf1121379b0ed609ab5a23de924b68740ae89ca",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9367.traj.json",
+   "size": 75430,
+   "sha256": "7a0f7b5e330ab6950d9885aca397d758749e894a223935c937481667afc69fbc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9461.traj.json",
+   "size": 481332,
+   "sha256": "4ae78e79c10756d4ece6688f44ac8b96f6b80c3ec2d96ce16715cc9f1f280495",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9591.traj.json",
+   "size": 149033,
+   "sha256": "ede848bddc892278751d5fb395762f699b43a38b7a544744111233bcc261fc39",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9602.traj.json",
+   "size": 241733,
+   "sha256": "7a5e88b5bfc73b89fe8ac84c33a30c3d3cffe8a06158fbd442394c3686deaf17",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9658.traj.json",
+   "size": 314249,
+   "sha256": "27b9b434a38ce0b0eb28139d53a026499bc6de666a653bbb637df409da1ffece",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9673.traj.json",
+   "size": 156918,
+   "sha256": "895197d8a89e9125fbd06074eaaaea1e1582507327ab7d5ed2a2ef30489d4e83",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9698.traj.json",
+   "size": 94052,
+   "sha256": "d31b5a9c78b9fb8c956ab8122647b16b48e05932171d242675b31f1ef54b9670",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9711.traj.json",
+   "size": 67180,
+   "sha256": "69ebe522a86babafb0bcd183e35ce6602de42947e3d72e5f38c6229b1bff13f6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-11618.traj.json",
+   "size": 594633,
+   "sha256": "45287af031d3ba5b5d701c0eb1698b88ad43a5b6b875d66a353069a4cd0a19fb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-12096.traj.json",
+   "size": 354828,
+   "sha256": "9eb6a37b805932ba2b9e13f68035d45a96430ede6bd0d9920f31f1615831c9ad",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-12419.traj.json",
+   "size": 683946,
+   "sha256": "b8278f49ca192249f5e35546533332aba9656e41ba7a0cb4d56ee4661d3a9dbd",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-12481.traj.json",
+   "size": 242448,
+   "sha256": "7f1dfd6a3ab04958460c167a8cb361b91060fa6814f5850a9b12a823c96c1927",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-12489.traj.json",
+   "size": 236890,
+   "sha256": "ab4a8a56a23ea823155c1c967815b3467dad5f55e4ae4f7c639aeaf49d8c51b6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13031.traj.json",
+   "size": 350484,
+   "sha256": "b2d596d4f8ae2a19148e1ec5d8f5fe59eea40a86a79e6e6e933b4ebd83ca57c7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13091.traj.json",
+   "size": 55049,
+   "sha256": "9be369b61fc28db5670e6549924961c190c882628a5531bcfe6773b9c63fb066",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13372.traj.json",
+   "size": 234134,
+   "sha256": "cdc143c46cbdd8411fdd56d9c7d8920e314847062a6b84d35b48a594567c9529",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13480.traj.json",
+   "size": 59306,
+   "sha256": "d01a0b0e61eccd279e029eebad6c0faf18abc9938d5657efa445c27b83a8c1f9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13551.traj.json",
+   "size": 194308,
+   "sha256": "c751c4a818469c68317895cba73ae1bc7f4ae06616d493ca8621bef230947718",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13615.traj.json",
+   "size": 122701,
+   "sha256": "5f6cfa3642c837f0f49391fc1558e13d054ad6d73e5df185d7c2ce1943b5a1f5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13647.traj.json",
+   "size": 152539,
+   "sha256": "25f0a353fc2220e195b0c25cb9cf268a2844d0f1e55afdb30b261ce6b629deba",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13757.traj.json",
+   "size": 225576,
+   "sha256": "803db7449e5ad3a8700a3f082bd048069a7cf47d69b2569e2016ac4f014a0bf0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13798.traj.json",
+   "size": 463643,
+   "sha256": "fab85506056f082664ff62cfc652f410a8468521f13e876a807f929a99df90db",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13852.traj.json",
+   "size": 61918,
+   "sha256": "6983a0e93b29f02012f9d0b2dfc2c00cf440c24f7e5c776582da2374b9267833",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13877.traj.json",
+   "size": 246002,
+   "sha256": "d3aea8b25c2de8c8c7a03e018d545988d10d1b3726cdfec2f364eeb8c38eb778",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13878.traj.json",
+   "size": 252734,
+   "sha256": "b20a058c46cc32ddd7cd7c7c3c1a3c5cabd26e0d4c494a59112fc8e8f2da0cee",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-13974.traj.json",
+   "size": 114077,
+   "sha256": "f92ac198f7df321bdd08a5a0e988b1a984e6a76a21e61f5a698d763dcf4863bb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-14248.traj.json",
+   "size": 561368,
+   "sha256": "d2269f8c6a35b7e148564775ba5f91c4383d0113acc2aab8ca65f04001dcebee",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-14531.traj.json",
+   "size": 282832,
+   "sha256": "99de32aefd320161cbba0cf33b487c14a7878ed3417ec40d71fc40c8a40b6c94",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-14711.traj.json",
+   "size": 238582,
+   "sha256": "1229270ebf3408ea59e1110284afb1efd81409d12757da10cd94ece677e00432",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-14976.traj.json",
+   "size": 131629,
+   "sha256": "6f7f85f12abf2a07e8b8408b98ae18121e4c5b7278f90c79f2fe19c02948d585",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-15017.traj.json",
+   "size": 263747,
+   "sha256": "1cf2b99b31bd9eed65257f8803182dc27945cb41400722dfdc1306cdfc75e1d1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-15345.traj.json",
+   "size": 265641,
+   "sha256": "ba3131e16960294c4f10ff1de0f5cade87b8cf008f21f8ec9b5c999ff2d6c2dc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-15349.traj.json",
+   "size": 226174,
+   "sha256": "028773d9e62cbd838276ce25549a7ec81ecbc3f298f4b1d21f93eb3e32466c65",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-15599.traj.json",
+   "size": 453157,
+   "sha256": "0cc714e4e6f8e913ef7660620815f7a2f51683a4f2dc34a4e8e2ad063fcaca03",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-15809.traj.json",
+   "size": 151432,
+   "sha256": "d4c91a43a55acd3ff7150f577850f8caa7caa7b6417df58f5a7f7ecae9c54d96",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-15875.traj.json",
+   "size": 81209,
+   "sha256": "a3a103d1afd2d1bfdf6fbd021240bf614aeaea261da491a834ecbf7b26c4b85c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-15976.traj.json",
+   "size": 179770,
+   "sha256": "70470f63de75587f4a62221a0696b9ec66f93e995a01eb1e1af9bbe58856ff6b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-16450.traj.json",
+   "size": 385796,
+   "sha256": "3fe5ccdd99238c29a55ce5fc87a05c1645f36ae4793b90aef0e2cc4da953aa28",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-16597.traj.json",
+   "size": 84987,
+   "sha256": "50b3a6500be1e1182b0ab72c707f8fff2ae9dd0f039bb07cc8dfd9b473c4c75c",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-16766.traj.json",
+   "size": 332078,
+   "sha256": "dfbc81bcc4216bc027b7558a9990e5c1513fc847584e3f343e619caef769a2c3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-16792.traj.json",
+   "size": 158807,
+   "sha256": "8a7cc296e12430e293b21116c4ba37a8e4ab84d85bf24f20e3fe5c884ebf6386",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-16886.traj.json",
+   "size": 40055,
+   "sha256": "e00e26e04f24b70417d2463573f65fb3866493d8ac71900c40b84bf6cdfdd5d9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-17139.traj.json",
+   "size": 102107,
+   "sha256": "1499cdb2840a6cf457b5fdb54c95550971252a482e2262c80dd7ac8e5e9006bb",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-17318.traj.json",
+   "size": 66017,
+   "sha256": "084384489e37f6b942d5575f6fa7ddcd415592319e06eaf7e0a07adfb6fc39c7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-17630.traj.json",
+   "size": 215858,
+   "sha256": "54ed2cab6581c305dc191e01838e8aca0f5884be50b9f9118e90541a3ce5c291",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-17655.traj.json",
+   "size": 59507,
+   "sha256": "c82066963e86075f993f08628d6793648c2a8e5194a636a78aef74c07aaf55b3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-18189.traj.json",
+   "size": 314222,
+   "sha256": "5a80bbc1a89de77aa46d1c384b9a7496986b9e3c32896f986e98a8975d8e40e6",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-18199.traj.json",
+   "size": 151431,
+   "sha256": "9ee7f0890e75911d24f95e5d32292b883e584e7bab35a9d51d3d412ef57488b0",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-18211.traj.json",
+   "size": 233854,
+   "sha256": "2979173eaa9c13b7fd32664fafac1d34e566e95b2e169e3dd2b8767391abdc93",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-18698.traj.json",
+   "size": 269700,
+   "sha256": "097afa8770af14533607137562627d7915323f611d899543177bd79a62691bf2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-18763.traj.json",
+   "size": 93114,
+   "sha256": "2c632e9297e30ddb15d0703f31e9b454ee1a1ef5d5dc3b8b146e97f5b62f868f",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-19040.traj.json",
+   "size": 353974,
+   "sha256": "12c199a281b6a8da7e2630085b840ab35c2994b241774d6acdd4dc6a5d4e12e1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-19346.traj.json",
+   "size": 204459,
+   "sha256": "65a92109496693b3487385bdd6fa38423e62acd40e0e2b1fd4e7cdfbe33c61be",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-19495.traj.json",
+   "size": 332874,
+   "sha256": "41abd5350e3325db911cb636f0eeead953c9b6914b824cbc745bb534a52bd0db",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-19637.traj.json",
+   "size": 104288,
+   "sha256": "4cb563c9db56a043c9899be7280b1857fb7fb6c94451ff683f4b334b77c0a3e9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-19783.traj.json",
+   "size": 115456,
+   "sha256": "c1f44b91e0ac28bddbfe33fa4738428d93ebd5f56339d230775bb5982f62e335",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-19954.traj.json",
+   "size": 310905,
+   "sha256": "275dbb70e445e1498b564a08bf166b20631c8de953c03cd8de65373cd28a698b",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-20154.traj.json",
+   "size": 224284,
+   "sha256": "4f340d80a16ef37d25fb81b76655b7e34ea60806410db1ce8a0318274d38cf50",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-20428.traj.json",
+   "size": 229373,
+   "sha256": "dab772d87eb74b538b514f0e889ac5ab9102a157b963335a507f22e7e463c3c9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-20438.traj.json",
+   "size": 139923,
+   "sha256": "6b0583be832b9100e70857df1e46a1b2093ddd55e8b377474ad60647eee6a5bf",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-20590.traj.json",
+   "size": 360016,
+   "sha256": "07e1a610a3dfeb0e8c1d016ff0fa1bc63f444ca20e994c4ca78417f17c073d3e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-20801.traj.json",
+   "size": 241259,
+   "sha256": "31eb585f5149698bcf9e02428da243081b082b7d25081a67897fa2b32267c2d1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-20916.traj.json",
+   "size": 128328,
+   "sha256": "0d9997c012213fe80adc36b43d2b69dbdd7593cf193f566648214542bea79533",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-21379.traj.json",
+   "size": 476316,
+   "sha256": "04745eb0e8af32b31e7566934d1d4d4dcc6ff6e6e00e999eb8a0dd229563c555",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-21596.traj.json",
+   "size": 1455210,
+   "sha256": "7d38907dbeb27e308a59460062a5b8309b4dbdaf7174cbc326e02e83a2d1ce44",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-21612.traj.json",
+   "size": 386550,
+   "sha256": "dd5362f98741a727c0c22aa434758c5007927cfad0f97be5487f16b22843c674",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-21847.traj.json",
+   "size": 334517,
+   "sha256": "4fd241fa339387c224a3170fcd0471f6c06f6e64aa0d166c1ea724e74c783c1a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-21930.traj.json",
+   "size": 287170,
+   "sha256": "657dc4a7bc4d2203c557bc660948fc41af7524ef46857835ebbd2903df25a3b1",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-22080.traj.json",
+   "size": 165262,
+   "sha256": "8bd8486019abdfa06353c9495cf737d3b36907ff6a84a3c660049182f1de5cbc",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-22456.traj.json",
+   "size": 109980,
+   "sha256": "7417e8bc525b4e4d63394f353e6e464c49cda04a03a2fce4b728e9c592bee5d3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-22714.traj.json",
+   "size": 258651,
+   "sha256": "67a7476a49f854502cd0abeb602fc7368c8deaa35d74b63ed7309c50e700b616",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-22914.traj.json",
+   "size": 160091,
+   "sha256": "8af99608474c27333edd16d21201d5503ee3a3f356b728840b41e2f6dfb31ad3",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-23262.traj.json",
+   "size": 166839,
+   "sha256": "e469ce812627f8b55e9fe3300cd0e098c595845aac98c9f4fd9248bc431fcfde",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-23413.traj.json",
+   "size": 156214,
+   "sha256": "737cdde93b26e39bbac9d5ebe38c310f3c688f2241d2242e479529831a4735c5",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-23534.traj.json",
+   "size": 251790,
+   "sha256": "180b47fc9ae7dcce4ea68e227770554cbf4fc26c1e4d817acb44d1d23e8bad2e",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-23824.traj.json",
+   "size": 96147,
+   "sha256": "0b21c96a94e82a76dd378dcfb099da18328fe7cae48fe2825d6939815ab66379",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-23950.traj.json",
+   "size": 58964,
+   "sha256": "30f4e18797539d29c25e7a445a006897aacf7d012535a47d0c60301d6b8458c4",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-24066.traj.json",
+   "size": 70388,
+   "sha256": "5f0e78035697c9a422d3b02b14e947aa5b32462ead550c46d8395654eddebec2",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-24213.traj.json",
+   "size": 89093,
+   "sha256": "0a5d80a1a115b0997452a5cfa6b6e691f41002a66947075d0cbb06b655b226ef",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-24443.traj.json",
+   "size": 322123,
+   "sha256": "f294f081fb82922d2c0fe5219406e7bdcfbe5da1f6664c58ddc1d8bce4784c89",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-24539.traj.json",
+   "size": 227448,
+   "sha256": "f57ac3f1abe4333c6e2597cfc52f7b79fa53191002064327109d53fe5e4466f9",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-24562.traj.json",
+   "size": 214240,
+   "sha256": "09326541606c91bf813776ab9c5defb41fe5b1831ba92ec5e9b0b4799a4ff4c7",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  },
+  {
+   "path": "trajectories/sympy__sympy-24661.traj.json",
+   "size": 420680,
+   "sha256": "4f7a39aa2f0041fc298513cf3b16d7edbfd4aeda3731266c0c890e3ada893b7a",
+   "lfs_sha256_expected": null,
+   "sha256_ok": true
+  }
+ ]
+}

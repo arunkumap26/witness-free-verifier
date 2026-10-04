@@ -1,0 +1,3042 @@
+{
+ "id": "tarsur385/qwen3-30b-a3b-instruct-2507-swebench-verified-mini-swe-agent",
+ "sha": "58389eb5426db5a3ae6159faa37498072b4735ff",
+ "gated": false,
+ "private": false,
+ "lastModified": "2026-05-15T21:27:03.000Z",
+ "license_tags": [
+  "license:mit"
+ ],
+ "cardData_license": "mit",
+ "cardData_configs": null,
+ "dataset_info": null,
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2664,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 4432,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "grading_report.json",
+   "size": 41048,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "preds.json",
+   "size": 508289,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "preds.jsonl",
+   "size": 486053,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-12907.traj.json",
+   "size": 148634,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-13033.traj.json",
+   "size": 238961,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-13236.traj.json",
+   "size": 65942,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-13398.traj.json",
+   "size": 198819,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-13453.traj.json",
+   "size": 156264,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-13579.traj.json",
+   "size": 220416,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-13977.traj.json",
+   "size": 92683,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14096.traj.json",
+   "size": 626097,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14182.traj.json",
+   "size": 92563,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14309.traj.json",
+   "size": 236597,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14365.traj.json",
+   "size": 228359,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14369.traj.json",
+   "size": 437959,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14508.traj.json",
+   "size": 58866,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14539.traj.json",
+   "size": 128885,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14598.traj.json",
+   "size": 325739,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-14995.traj.json",
+   "size": 126611,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-7166.traj.json",
+   "size": 112966,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-7336.traj.json",
+   "size": 72421,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-7606.traj.json",
+   "size": 264080,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-7671.traj.json",
+   "size": 73936,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-8707.traj.json",
+   "size": 247402,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/astropy__astropy-8872.traj.json",
+   "size": 174979,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-10097.traj.json",
+   "size": 546625,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-10554.traj.json",
+   "size": 231443,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-10880.traj.json",
+   "size": 198312,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-10914.traj.json",
+   "size": 48479,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-10973.traj.json",
+   "size": 183213,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-10999.traj.json",
+   "size": 205812,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11066.traj.json",
+   "size": 81169,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11087.traj.json",
+   "size": 256904,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11095.traj.json",
+   "size": 141215,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11099.traj.json",
+   "size": 220697,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11119.traj.json",
+   "size": 61545,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11133.traj.json",
+   "size": 73254,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11138.traj.json",
+   "size": 240776,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11141.traj.json",
+   "size": 96932,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11149.traj.json",
+   "size": 118829,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11163.traj.json",
+   "size": 37114,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11179.traj.json",
+   "size": 99023,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11206.traj.json",
+   "size": 322038,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11211.traj.json",
+   "size": 252056,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11239.traj.json",
+   "size": 90031,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11265.traj.json",
+   "size": 236898,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11276.traj.json",
+   "size": 42259,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11292.traj.json",
+   "size": 353174,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11299.traj.json",
+   "size": 385968,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11333.traj.json",
+   "size": 43162,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11400.traj.json",
+   "size": 233707,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11433.traj.json",
+   "size": 185181,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11451.traj.json",
+   "size": 94371,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11477.traj.json",
+   "size": 410446,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11490.traj.json",
+   "size": 332845,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11532.traj.json",
+   "size": 143880,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11551.traj.json",
+   "size": 73247,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11555.traj.json",
+   "size": 109571,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11603.traj.json",
+   "size": 78056,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11728.traj.json",
+   "size": 122430,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11734.traj.json",
+   "size": 95628,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11740.traj.json",
+   "size": 240228,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11749.traj.json",
+   "size": 292983,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11790.traj.json",
+   "size": 73203,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11815.traj.json",
+   "size": 71504,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11820.traj.json",
+   "size": 119121,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11848.traj.json",
+   "size": 346997,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11880.traj.json",
+   "size": 64291,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11885.traj.json",
+   "size": 123784,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11951.traj.json",
+   "size": 132436,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11964.traj.json",
+   "size": 139360,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-11999.traj.json",
+   "size": 14724572,
+   "type": "file",
+   "lfs_sha256": "603b4b941d2be89fb38c071cb589d7b5e9bc7ff1773bf21b3815152ddb38eb9a"
+  },
+  {
+   "path": "trajectories/django__django-12039.traj.json",
+   "size": 126468,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12050.traj.json",
+   "size": 217665,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12125.traj.json",
+   "size": 333844,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12143.traj.json",
+   "size": 276718,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12155.traj.json",
+   "size": 39763,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12193.traj.json",
+   "size": 228044,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12209.traj.json",
+   "size": 541509,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12262.traj.json",
+   "size": 404596,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12273.traj.json",
+   "size": 116175,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12276.traj.json",
+   "size": 184761,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12304.traj.json",
+   "size": 46306,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12308.traj.json",
+   "size": 87466,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12325.traj.json",
+   "size": 102415,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12406.traj.json",
+   "size": 1808359,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12419.traj.json",
+   "size": 45687,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12663.traj.json",
+   "size": 156078,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12708.traj.json",
+   "size": 47667,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12713.traj.json",
+   "size": 432239,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12741.traj.json",
+   "size": 54666,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12754.traj.json",
+   "size": 332104,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12774.traj.json",
+   "size": 320919,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12858.traj.json",
+   "size": 229268,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-12965.traj.json",
+   "size": 124873,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13012.traj.json",
+   "size": 364797,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13023.traj.json",
+   "size": 191766,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13028.traj.json",
+   "size": 160733,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13033.traj.json",
+   "size": 123144,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13089.traj.json",
+   "size": 225944,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13109.traj.json",
+   "size": 49369,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13112.traj.json",
+   "size": 623413,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13121.traj.json",
+   "size": 246289,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13128.traj.json",
+   "size": 548432,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13158.traj.json",
+   "size": 404042,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13195.traj.json",
+   "size": 57075,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13212.traj.json",
+   "size": 182210,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13279.traj.json",
+   "size": 454202,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13297.traj.json",
+   "size": 52018,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13315.traj.json",
+   "size": 189778,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13343.traj.json",
+   "size": 225127,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13344.traj.json",
+   "size": 185423,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13346.traj.json",
+   "size": 266294,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13363.traj.json",
+   "size": 56583,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13401.traj.json",
+   "size": 179832,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13406.traj.json",
+   "size": 569674,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13410.traj.json",
+   "size": 47362,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13417.traj.json",
+   "size": 277116,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13449.traj.json",
+   "size": 69177,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13512.traj.json",
+   "size": 108765,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13513.traj.json",
+   "size": 36290,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13516.traj.json",
+   "size": 372830,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13551.traj.json",
+   "size": 79959,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13568.traj.json",
+   "size": 62922,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13569.traj.json",
+   "size": 235485,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13590.traj.json",
+   "size": 384735,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13658.traj.json",
+   "size": 166163,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13670.traj.json",
+   "size": 282118,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13741.traj.json",
+   "size": 74265,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13786.traj.json",
+   "size": 65636,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13794.traj.json",
+   "size": 118564,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13807.traj.json",
+   "size": 401810,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13809.traj.json",
+   "size": 118827,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13810.traj.json",
+   "size": 164859,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13820.traj.json",
+   "size": 211831,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13821.traj.json",
+   "size": 91341,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13837.traj.json",
+   "size": 269000,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13925.traj.json",
+   "size": 76297,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13933.traj.json",
+   "size": 115682,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-13964.traj.json",
+   "size": 234290,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14007.traj.json",
+   "size": 143432,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14011.traj.json",
+   "size": 131953,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14017.traj.json",
+   "size": 201609,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14034.traj.json",
+   "size": 398779,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14053.traj.json",
+   "size": 85477,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14089.traj.json",
+   "size": 43038,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14122.traj.json",
+   "size": 172678,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14140.traj.json",
+   "size": 259019,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14155.traj.json",
+   "size": 215673,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14170.traj.json",
+   "size": 316465,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14238.traj.json",
+   "size": 236818,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14311.traj.json",
+   "size": 284397,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14315.traj.json",
+   "size": 222903,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14349.traj.json",
+   "size": 63542,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14351.traj.json",
+   "size": 754234,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14373.traj.json",
+   "size": 44830,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14376.traj.json",
+   "size": 39589,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14404.traj.json",
+   "size": 48499,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14434.traj.json",
+   "size": 83243284,
+   "type": "file",
+   "lfs_sha256": "4c1837181b82e6ab2eed451262cfe2f166fa76a10d1b28a60e6d46f021545da6"
+  },
+  {
+   "path": "trajectories/django__django-14493.traj.json",
+   "size": 98908,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14500.traj.json",
+   "size": 87782,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14534.traj.json",
+   "size": 94553,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14539.traj.json",
+   "size": 253608,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14559.traj.json",
+   "size": 197750,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14580.traj.json",
+   "size": 162523,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14608.traj.json",
+   "size": 164990,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14631.traj.json",
+   "size": 285595,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14672.traj.json",
+   "size": 70730,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14725.traj.json",
+   "size": 324734,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14752.traj.json",
+   "size": 180699,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14765.traj.json",
+   "size": 264813,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14771.traj.json",
+   "size": 286170,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14787.traj.json",
+   "size": 84384,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14792.traj.json",
+   "size": 169228,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14855.traj.json",
+   "size": 118612,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14915.traj.json",
+   "size": 64046,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-14999.traj.json",
+   "size": 251241,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15022.traj.json",
+   "size": 156162,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15037.traj.json",
+   "size": 231070,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15098.traj.json",
+   "size": 412621,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15103.traj.json",
+   "size": 223339,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15104.traj.json",
+   "size": 192209,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15127.traj.json",
+   "size": 103716,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15128.traj.json",
+   "size": 393720,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15161.traj.json",
+   "size": 109529,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15252.traj.json",
+   "size": 163778,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15268.traj.json",
+   "size": 296916,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15277.traj.json",
+   "size": 87951,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15278.traj.json",
+   "size": 152112,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15280.traj.json",
+   "size": 795005,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15315.traj.json",
+   "size": 181376,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15368.traj.json",
+   "size": 78448,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15375.traj.json",
+   "size": 90247,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15380.traj.json",
+   "size": 104799,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15382.traj.json",
+   "size": 511573,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15467.traj.json",
+   "size": 194053,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15499.traj.json",
+   "size": 155001,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15503.traj.json",
+   "size": 651089,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15525.traj.json",
+   "size": 913884,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15554.traj.json",
+   "size": 165199,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15561.traj.json",
+   "size": 65693,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15563.traj.json",
+   "size": 119762,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15569.traj.json",
+   "size": 153284,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15572.traj.json",
+   "size": 63469,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15629.traj.json",
+   "size": 281355,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15695.traj.json",
+   "size": 66500,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15731.traj.json",
+   "size": 228425,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15732.traj.json",
+   "size": 908118,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15741.traj.json",
+   "size": 58708,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15814.traj.json",
+   "size": 39587,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15851.traj.json",
+   "size": 212205,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15863.traj.json",
+   "size": 386220,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15916.traj.json",
+   "size": 56893,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15930.traj.json",
+   "size": 201125,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15957.traj.json",
+   "size": 259355,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15973.traj.json",
+   "size": 403887,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-15987.traj.json",
+   "size": 76455,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16032.traj.json",
+   "size": 637179,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16082.traj.json",
+   "size": 791406,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16100.traj.json",
+   "size": 233348,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16116.traj.json",
+   "size": 292636,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16136.traj.json",
+   "size": 236679,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16139.traj.json",
+   "size": 41509,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16145.traj.json",
+   "size": 153596,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16255.traj.json",
+   "size": 41231,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16256.traj.json",
+   "size": 166672,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16263.traj.json",
+   "size": 272787,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16315.traj.json",
+   "size": 185079,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16333.traj.json",
+   "size": 51442,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16429.traj.json",
+   "size": 71393,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16454.traj.json",
+   "size": 316114,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16485.traj.json",
+   "size": 51370,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16493.traj.json",
+   "size": 53105,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16502.traj.json",
+   "size": 257086,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16527.traj.json",
+   "size": 33840,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16560.traj.json",
+   "size": 98477,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16569.traj.json",
+   "size": 59989,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16595.traj.json",
+   "size": 195982,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16612.traj.json",
+   "size": 48741,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16631.traj.json",
+   "size": 94469,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16642.traj.json",
+   "size": 251638,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16661.traj.json",
+   "size": 72993,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16662.traj.json",
+   "size": 295346,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16667.traj.json",
+   "size": 288291,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16801.traj.json",
+   "size": 69528,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16819.traj.json",
+   "size": 393487,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16877.traj.json",
+   "size": 90869,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16899.traj.json",
+   "size": 61246,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16901.traj.json",
+   "size": 211648,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16938.traj.json",
+   "size": 313039,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-16950.traj.json",
+   "size": 216267,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-17029.traj.json",
+   "size": 176546,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-17084.traj.json",
+   "size": 520672,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-17087.traj.json",
+   "size": 155031,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-7530.traj.json",
+   "size": 333848,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/django__django-9296.traj.json",
+   "size": 63665,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-13989.traj.json",
+   "size": 252913,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-14623.traj.json",
+   "size": 213867,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-20488.traj.json",
+   "size": 1142011,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-20676.traj.json",
+   "size": 232453,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-20826.traj.json",
+   "size": 236096,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-20859.traj.json",
+   "size": 61788,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-21568.traj.json",
+   "size": 131007,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-22865.traj.json",
+   "size": 118080,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-22871.traj.json",
+   "size": 217861,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-23299.traj.json",
+   "size": 599570,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-23314.traj.json",
+   "size": 193504,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-23412.traj.json",
+   "size": 110637,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-23476.traj.json",
+   "size": 173358,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24026.traj.json",
+   "size": 100440,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24149.traj.json",
+   "size": 65798,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24177.traj.json",
+   "size": 410045,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24570.traj.json",
+   "size": 427919,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24627.traj.json",
+   "size": 439770,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24637.traj.json",
+   "size": 111666,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24870.traj.json",
+   "size": 299004,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-24970.traj.json",
+   "size": 69931,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25122.traj.json",
+   "size": 60847,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25287.traj.json",
+   "size": 74954,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25311.traj.json",
+   "size": 224946,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25332.traj.json",
+   "size": 444830,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25479.traj.json",
+   "size": 252701,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25775.traj.json",
+   "size": 249258,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-25960.traj.json",
+   "size": 69453,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26113.traj.json",
+   "size": 101465,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26208.traj.json",
+   "size": 554912,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26291.traj.json",
+   "size": 307887,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26342.traj.json",
+   "size": 124614,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/matplotlib__matplotlib-26466.traj.json",
+   "size": 211843,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/mwaskom__seaborn-3069.traj.json",
+   "size": 406850,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/mwaskom__seaborn-3187.traj.json",
+   "size": 177451,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pallets__flask-5014.traj.json",
+   "size": 58036,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/psf__requests-1142.traj.json",
+   "size": 77893,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/psf__requests-1724.traj.json",
+   "size": 124697,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/psf__requests-1766.traj.json",
+   "size": 54188,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/psf__requests-1921.traj.json",
+   "size": 316232,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/psf__requests-2317.traj.json",
+   "size": 102097,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/psf__requests-2931.traj.json",
+   "size": 160940,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/psf__requests-5414.traj.json",
+   "size": 707054,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/psf__requests-6028.traj.json",
+   "size": 136691,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-2905.traj.json",
+   "size": 67610,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-3095.traj.json",
+   "size": 270765,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-3151.traj.json",
+   "size": 309821,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-3305.traj.json",
+   "size": 508620,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-3677.traj.json",
+   "size": 267049,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-3993.traj.json",
+   "size": 268238,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-4075.traj.json",
+   "size": 107538,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-4094.traj.json",
+   "size": 99443,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-4356.traj.json",
+   "size": 242211,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-4629.traj.json",
+   "size": 49837,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-4687.traj.json",
+   "size": 189992,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-4695.traj.json",
+   "size": 274756,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-4966.traj.json",
+   "size": 1429220,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-6461.traj.json",
+   "size": 138319,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-6599.traj.json",
+   "size": 305469,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-6721.traj.json",
+   "size": 653351,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-6744.traj.json",
+   "size": 553957,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-6938.traj.json",
+   "size": 312317,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-6992.traj.json",
+   "size": 69287,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-7229.traj.json",
+   "size": 515328,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-7233.traj.json",
+   "size": 295623,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pydata__xarray-7393.traj.json",
+   "size": 596437,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-4551.traj.json",
+   "size": 175385,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-4604.traj.json",
+   "size": 185795,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-4661.traj.json",
+   "size": 61965,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-4970.traj.json",
+   "size": 288225,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-6386.traj.json",
+   "size": 9227303,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-6528.traj.json",
+   "size": 182391,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-6903.traj.json",
+   "size": 229416,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-7080.traj.json",
+   "size": 438781,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-7277.traj.json",
+   "size": 46104,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pylint-dev__pylint-8898.traj.json",
+   "size": 242042,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-10051.traj.json",
+   "size": 268317,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-10081.traj.json",
+   "size": 124942,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-10356.traj.json",
+   "size": 215898,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5262.traj.json",
+   "size": 273472,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5631.traj.json",
+   "size": 234640,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5787.traj.json",
+   "size": 305935,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5809.traj.json",
+   "size": 67378,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-5840.traj.json",
+   "size": 244830,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-6197.traj.json",
+   "size": 265827,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-6202.traj.json",
+   "size": 76394,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7205.traj.json",
+   "size": 54216,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7236.traj.json",
+   "size": 239712,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7324.traj.json",
+   "size": 66631,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7432.traj.json",
+   "size": 146263,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7490.traj.json",
+   "size": 220397,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7521.traj.json",
+   "size": 82854,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7571.traj.json",
+   "size": 305333,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-7982.traj.json",
+   "size": 115412,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/pytest-dev__pytest-8399.traj.json",
+   "size": 48615,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-10297.traj.json",
+   "size": 204298,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-10844.traj.json",
+   "size": 186765,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-10908.traj.json",
+   "size": 252606,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-11310.traj.json",
+   "size": 75905,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-11578.traj.json",
+   "size": 55130,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-12585.traj.json",
+   "size": 84298,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-12682.traj.json",
+   "size": 534442,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-12973.traj.json",
+   "size": 93439,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13124.traj.json",
+   "size": 445231,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13135.traj.json",
+   "size": 289186,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13142.traj.json",
+   "size": 366580,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13328.traj.json",
+   "size": 252659,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13439.traj.json",
+   "size": 287243,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13496.traj.json",
+   "size": 164023,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-13779.traj.json",
+   "size": 401155,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14053.traj.json",
+   "size": 188351,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14087.traj.json",
+   "size": 441533,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14141.traj.json",
+   "size": 40462,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14496.traj.json",
+   "size": 271865,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14629.traj.json",
+   "size": 77234,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14710.traj.json",
+   "size": 1257204,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14894.traj.json",
+   "size": 137901,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-14983.traj.json",
+   "size": 94050,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-15100.traj.json",
+   "size": 126794,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25102.traj.json",
+   "size": 367140,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25232.traj.json",
+   "size": 245925,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25747.traj.json",
+   "size": 1509162,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25931.traj.json",
+   "size": 567716,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-25973.traj.json",
+   "size": 92317,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-26194.traj.json",
+   "size": 98815,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-26323.traj.json",
+   "size": 157203,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/scikit-learn__scikit-learn-9288.traj.json",
+   "size": 201859,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10323.traj.json",
+   "size": 537526,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10435.traj.json",
+   "size": 227285,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10449.traj.json",
+   "size": 430732,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10466.traj.json",
+   "size": 67012,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10614.traj.json",
+   "size": 224042,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-10673.traj.json",
+   "size": 1130259,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-11445.traj.json",
+   "size": 364357,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-11510.traj.json",
+   "size": 420284,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7440.traj.json",
+   "size": 188952,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7454.traj.json",
+   "size": 408411,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7462.traj.json",
+   "size": 49439,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7590.traj.json",
+   "size": 110023,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7748.traj.json",
+   "size": 301739,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7757.traj.json",
+   "size": 165686,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7889.traj.json",
+   "size": 209556,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7910.traj.json",
+   "size": 364163,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-7985.traj.json",
+   "size": 386554,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8035.traj.json",
+   "size": 301445,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8056.traj.json",
+   "size": 394879,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8120.traj.json",
+   "size": 148604,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8265.traj.json",
+   "size": 187316,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8269.traj.json",
+   "size": 292180,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8459.traj.json",
+   "size": 329187,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8475.traj.json",
+   "size": 64398,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8548.traj.json",
+   "size": 137249,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8551.traj.json",
+   "size": 116576,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8593.traj.json",
+   "size": 207621,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8595.traj.json",
+   "size": 387569,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8621.traj.json",
+   "size": 110061,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8638.traj.json",
+   "size": 249613,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-8721.traj.json",
+   "size": 307266,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9229.traj.json",
+   "size": 337428,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9230.traj.json",
+   "size": 529940,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9258.traj.json",
+   "size": 123296,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9281.traj.json",
+   "size": 303082,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9320.traj.json",
+   "size": 70014,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9367.traj.json",
+   "size": 75430,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9461.traj.json",
+   "size": 481332,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9591.traj.json",
+   "size": 149033,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9602.traj.json",
+   "size": 241733,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9658.traj.json",
+   "size": 314249,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9673.traj.json",
+   "size": 156918,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9698.traj.json",
+   "size": 94052,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sphinx-doc__sphinx-9711.traj.json",
+   "size": 67180,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-11618.traj.json",
+   "size": 594633,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-12096.traj.json",
+   "size": 354828,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-12419.traj.json",
+   "size": 683946,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-12481.traj.json",
+   "size": 242448,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-12489.traj.json",
+   "size": 236890,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13031.traj.json",
+   "size": 350484,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13091.traj.json",
+   "size": 55049,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13372.traj.json",
+   "size": 234134,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13480.traj.json",
+   "size": 59306,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13551.traj.json",
+   "size": 194308,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13615.traj.json",
+   "size": 122701,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13647.traj.json",
+   "size": 152539,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13757.traj.json",
+   "size": 225576,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13798.traj.json",
+   "size": 463643,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13852.traj.json",
+   "size": 61918,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13877.traj.json",
+   "size": 246002,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13878.traj.json",
+   "size": 252734,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-13974.traj.json",
+   "size": 114077,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-14248.traj.json",
+   "size": 561368,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-14531.traj.json",
+   "size": 282832,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-14711.traj.json",
+   "size": 238582,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-14976.traj.json",
+   "size": 131629,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-15017.traj.json",
+   "size": 263747,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-15345.traj.json",
+   "size": 265641,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-15349.traj.json",
+   "size": 226174,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-15599.traj.json",
+   "size": 453157,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-15809.traj.json",
+   "size": 151432,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-15875.traj.json",
+   "size": 81209,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-15976.traj.json",
+   "size": 179770,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-16450.traj.json",
+   "size": 385796,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-16597.traj.json",
+   "size": 84987,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-16766.traj.json",
+   "size": 332078,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-16792.traj.json",
+   "size": 158807,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-16886.traj.json",
+   "size": 40055,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-17139.traj.json",
+   "size": 102107,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-17318.traj.json",
+   "size": 66017,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-17630.traj.json",
+   "size": 215858,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-17655.traj.json",
+   "size": 59507,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-18189.traj.json",
+   "size": 314222,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-18199.traj.json",
+   "size": 151431,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-18211.traj.json",
+   "size": 233854,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-18698.traj.json",
+   "size": 269700,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-18763.traj.json",
+   "size": 93114,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-19040.traj.json",
+   "size": 353974,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-19346.traj.json",
+   "size": 204459,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-19495.traj.json",
+   "size": 332874,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-19637.traj.json",
+   "size": 104288,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-19783.traj.json",
+   "size": 115456,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-19954.traj.json",
+   "size": 310905,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-20154.traj.json",
+   "size": 224284,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-20428.traj.json",
+   "size": 229373,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-20438.traj.json",
+   "size": 139923,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-20590.traj.json",
+   "size": 360016,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-20801.traj.json",
+   "size": 241259,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-20916.traj.json",
+   "size": 128328,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-21379.traj.json",
+   "size": 476316,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-21596.traj.json",
+   "size": 1455210,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-21612.traj.json",
+   "size": 386550,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-21847.traj.json",
+   "size": 334517,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-21930.traj.json",
+   "size": 287170,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-22080.traj.json",
+   "size": 165262,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-22456.traj.json",
+   "size": 109980,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-22714.traj.json",
+   "size": 258651,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-22914.traj.json",
+   "size": 160091,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-23262.traj.json",
+   "size": 166839,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-23413.traj.json",
+   "size": 156214,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-23534.traj.json",
+   "size": 251790,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-23824.traj.json",
+   "size": 96147,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-23950.traj.json",
+   "size": 58964,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-24066.traj.json",
+   "size": 70388,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-24213.traj.json",
+   "size": 89093,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-24443.traj.json",
+   "size": 322123,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-24539.traj.json",
+   "size": 227448,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-24562.traj.json",
+   "size": 214240,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "trajectories/sympy__sympy-24661.traj.json",
+   "size": 420680,
+   "type": "file",
+   "lfs_sha256": null
+  }
+ ],
+ "total_bytes": 224075642,
+ "n_files": 504,
+ "readme_bytes": 4432
+}

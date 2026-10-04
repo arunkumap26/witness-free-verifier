@@ -1,0 +1,19 @@
+===== samples/oh_eval_sonnet_v22.head
+ instances(complete lines): 16 {'events': 410, 'ts_ok': 410, 'agent_actions': 205, 'tcm': 366, 'obs': 175, 'obs_cause_joined': 175, 'obs_exit_code': 91, 'obs_trunc_marker': 10}
+ metrics keys: {'accumulated_cost': 16, 'costs': 16}
+ model_response.id shapes (actions): [('chatcmpl-<uuid>', 191)]
+ action.timestamp - model_response.created (s): n=191 p0=0.017 p5=0.055 p50=0.504 p95=0.947 p100=1.022
+===== samples/oh_eval_gpt4o_v19.head
+ instances(complete lines): 17 {'events': 824, 'ts_ok': 801, 'obs': 412, 'agent_actions': 395, 'obs_cause_joined': 389, 'obs_exit_code': 122}
+ metrics keys: {'accumulated_cost': 17, 'costs': 17}
+ model_response.id shapes (actions): []
+===== samples/oh_eval_deepseek_v22.head
+ instances(complete lines): 18 {'events': 532, 'ts_ok': 532, 'agent_actions': 260, 'tcm': 514, 'obs': 254, 'obs_cause_joined': 254, 'obs_exit_code': 123, 'obs_trunc_marker': 10}
+ metrics keys: {'accumulated_cost': 18, 'costs': 18}
+ model_response.id shapes (actions): [('<uuid>', 260)]
+ action.timestamp - model_response.created (s): n=260 p0=2.934 p5=3.326 p50=6.328 p95=13.809 p100=21.84
+===== samples/oh_eval_llama33_v015.head
+ instances(complete lines): 10 {'events': 594, 'ts_ok': 594, 'agent_actions': 296, 'tcm': 584, 'obs': 288, 'obs_cause_joined': 288, 'obs_exit_code': 143, 'obs_trunc_marker': 5}
+ metrics keys: {'accumulated_cost': 10, 'costs': 10}
+ model_response.id shapes (actions): [('<uuid>', 296)]
+ action.timestamp - model_response.created (s): n=296 p0=0.205 p5=0.49 p50=1.509 p95=3.087 p100=6.262

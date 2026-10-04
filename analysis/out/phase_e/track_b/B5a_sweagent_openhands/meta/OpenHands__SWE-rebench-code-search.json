@@ -1,0 +1,106 @@
+{
+ "id": "OpenHands/SWE-rebench-code-search",
+ "sha": "b4e0432105eef4bf7b2f4cfad41b9167af3f418c",
+ "gated": false,
+ "private": false,
+ "lastModified": "2026-03-17T19:13:31.000Z",
+ "license_tags": [],
+ "cardData_license": null,
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "train",
+     "path": "data/train-*"
+    }
+   ]
+  }
+ ],
+ "dataset_info": {
+  "features": [
+   {
+    "name": "instance_id",
+    "dtype": "string"
+   },
+   {
+    "name": "file_changes",
+    "list": [
+     {
+      "name": "changes",
+      "struct": [
+       {
+        "name": "added_entities",
+        "list": "string"
+       },
+       {
+        "name": "added_modules",
+        "list": "string"
+       },
+       {
+        "name": "edited_entities",
+        "list": "string"
+       },
+       {
+        "name": "edited_modules",
+        "list": "string"
+       }
+      ]
+     },
+     {
+      "name": "file",
+      "dtype": "string"
+     }
+    ]
+   },
+   {
+    "name": "repo",
+    "dtype": "string"
+   },
+   {
+    "name": "base_commit",
+    "dtype": "string"
+   },
+   {
+    "name": "problem_statement",
+    "dtype": "string"
+   },
+   {
+    "name": "patch",
+    "dtype": "string"
+   }
+  ],
+  "splits": [
+   {
+    "name": "train",
+    "num_bytes": 192315129,
+    "num_examples": 17591
+   }
+  ],
+  "download_size": 85029893,
+  "dataset_size": 192315129
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2461,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 744,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "data/train-00000-of-00001.parquet",
+   "size": 85029893,
+   "type": "file",
+   "lfs_sha256": "5975f2234c1c6783b000fe3c730a759d243648dc8a2d05f9037505a38c0bed17"
+  }
+ ],
+ "total_bytes": 85033098,
+ "n_files": 3,
+ "readme_bytes": 744
+}

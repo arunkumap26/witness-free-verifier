@@ -1,0 +1,751 @@
+{
+  "key": "B2b_timestamping_lit",
+  "task": "Phase E Track B, B2 part b: literature on trusted timestamping, secure audit-log timestamping, multi-clock consistency, forensic clock analysis and event-time bounding, and time-in-identifier forensics.",
+  "date": "2026-10-04",
+  "scope_note": "Literature only. Nothing in swarm/ or data/swarm/ was read. No transcripts generated. No paid APIs. Agent-domain and provider-id-structure searches belong to sibling B2 tasks (see B2a_provider_id_facts); here they were only spot-checked.",
+  "question": "Has anyone used an externally minted identifier's embedded time to bound a log event between causally ordered local events, with a skew allowance?",
+  "answer": {
+    "short": "Not as one published technique that we could open. Each ingredient is published, and two-ingredient combinations are common. The concept is one step from Vanini et al. 2024's forensic 'time anchors'. Verdict on the conjunction: PARTIAL, not NOVEL. The only novel part is the domain application: LLM-provider request ids as the anchor for agent tool-log stamps, plus a single-response binding test.",
+    "ingredient_map": {
+      "identifier-embedded external time as evidence": "TAKEN (Unfurl, dfdatetime, Magnet AXIOM ei, TweetedAt, Metaspike)",
+      "external time inside local artifact to check local clock / detect tampering": "TAKEN (Weil 2002; Schatz 2006 via Willassen; Vanini 2024 time anchors)",
+      "bounding between causally ordered events": "TAKEN (Haber-Stornetta 1991 s6.2; Gladyshev-Patel 2005 via Willassen 2008; James-Jang 2017)",
+      "skew allowance in a cross-clock causal consistency test": "TAKEN as mathematics (Willassen 2008 Thm 2; Cristian 1989; NTP; Moon 1998 LP; Roughtime radius; JWT leeway; Jaeger maxDelta)",
+      "all of the above on a recorded log, uninstrumented, as a tamper flag": "not found in anything opened (PARTIAL; Vanini 2024b full text unread is the main risk)"
+    },
+    "what_FINDINGS_s4_3_should_say": "Replace 'Novelty guess: UNVERIFIED' with: 'Mechanism is a time-anchor / clock-hypothesis consistency test (Vanini et al. 2024; Willassen 2008; event-time bounding: Gladyshev & Patel 2005, Haber & Stornetta 1991). New only in applying it to LLM-provider request ids in agent tool logs, and in measuring its honest inconsistency rate on public corpora.' Cite Roughtime and Jaeger's ClockSkew adjuster as the closest structural and internal-embodiment analogs."
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "Reading creation time out of a server- or externally-minted identifier (UUIDv1/v7, ULID, Snowflake, Google ei, Message-ID/MIME boundary) is usable forensic evidence.",
+      "verdict": "TAKEN",
+      "closest_work": "Unfurl (obsidianforensics); dfdatetime uuid_time; Magnet AXIOM Google-URL timestamps; TweetedAt; Metaspike MIME-boundary FILETIME.",
+      "what_it_does": "Decode embedded times from identifiers as timestamps in forensic timelines; Magnet stresses the ei time comes 'straight from Google' and is independent of the user's system.",
+      "what_it_does_not": "None of the opened tools compares the decoded time against causally adjacent local events with a skew allowance.",
+      "deciding_citation": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/README.md ; https://www.magnetforensics.com/resources/analyzing-timestamps-in-google-search-urls/ ; https://dfdatetime.readthedocs.io/en/stable/_modules/dfdatetime/uuid_time.html",
+      "opened": true,
+      "verdict_reasoning": "Established DFIR practice and tooling. FINDINGS s4.3's own guess ('Reading time out of UUIDv1/v7, ULID or Snowflake ids is known forensics') is confirmed."
+    },
+    {
+      "id": "C2",
+      "claim": "An external clock's time carried inside a locally recorded artifact can check the local clock, estimate skew, and expose tampering ('time anchor').",
+      "verdict": "TAKEN",
+      "closest_work": "Vanini et al. 2024 'Was the clock correct? ... time anchors' (FSI:DI 49:301759); Weil 2002; Schatz et al. 2006.",
+      "what_it_does": "Weil corrects local MAC times using server times in cached HTML as a range. Vanini defines anchors as artifacts with an internal and an external timestamp; 'If these timestamps do not match, this indicates tampering'. The abstract adds determining system clock skew, with a Google-search example.",
+      "what_it_does_not": "The parts of Vanini we read do not show a two-sided bracket between causal neighbours or a stated tolerance. Full text unread. Nothing here concerns LLM-provider ids or agent logs.",
+      "deciding_citation": "arXiv 2412.12814 (opened): 'an anchor is an artefact that contains two timestamps - one originating from the internal clock and one from an external source. If these timestamps do not match, this indicates tampering.' ; Weil 2002 IJDE 1(2) (opened).",
+      "opened": true,
+      "verdict_reasoning": "The concept, its name and its tamper interpretation exist in peer-reviewed forensics (2002 to 2024). Our mechanism is an instance of a time anchor."
+    },
+    {
+      "id": "C3",
+      "claim": "An event's time can be bounded between causally preceding and succeeding events whose times are known.",
+      "verdict": "TAKEN",
+      "closest_work": "Haber & Stornetta 1991 s6.2; Gladyshev & Patel 2005 (as described by Willassen 2008); James & Jang 2017.",
+      "what_it_does": "H&S: linking 'only locates the time of a document between the times of the previous and the next requests', and the constraint is two-sided only if stamping is part of the event. G&P: time boundaries from causally preceding and succeeding events with externally known times. James & Jang: (t2 - theta) <= tau <= t1 with an empirical delay allowance.",
+      "what_it_does_not": "H&S needs instrumentation (hash links). G&P full text not opened by us. None uses an identifier-embedded server clock.",
+      "deciding_citation": "Haber & Stornetta, J. Cryptology 3:99-111 (1991) s6.1-6.2 (opened, https://www.gwern.net/doc/bitcoin/1991-haber.pdf); Willassen 2008 s2 describing G&P 2005 (opened, https://dl.ifip.org/db/conf/ifip11-9/df2008/Willassen08.pdf).",
+      "opened": true,
+      "verdict_reasoning": "Event-time bounding by causal neighbours is 30+ years old in timestamping and ~20 in forensics. The G&P link in FINDINGS s4.3, previously an unverified recollection, is now confirmed through Willassen's description. The G&P primary is still unopened."
+    },
+    {
+      "id": "C4",
+      "claim": "A skew-tolerant cross-clock consistency test: a single constant offset must make every remote-clock time fall inside its local causal bracket, and infeasibility is evidence of tampering.",
+      "verdict": "PARTIAL",
+      "closest_work": "Willassen 2008 Theorem 2 (clock hypotheses vs causality); Roughtime s8.2 malfeasance check; Jaeger ClockSkew adjuster; Cristian 1989 / NTP s8 on-wire bracket; Moon et al. LP feasibility.",
+      "what_it_does": "Willassen: a hypothesised deviation d(t) must keep causally ordered timestamps monotone, and violation refutes the hypothesis (used to detect antedating). Roughtime: causally chained external times with radius allowance; an order violation is 'malfeasance'. Jaeger: a remote span must sit inside its parent, with a per-host skew capped by maxDelta, else a warning. Cristian/NTP: a remote reading is bracketed by local send/receive. Moon: causality as LP feasibility for skew.",
+      "what_it_does_not": "No opened work combines all four elements: (a) an unsigned identifier-embedded server clock as the remote time; (b) one constant offset per stream, solved existentially; (c) infeasibility as a per-record tamper flag in a post-hoc log; (d) no instrumentation. Willassen tests local-clock hypotheses with hand-built models. Roughtime is signed, active and blames the server. Jaeger and Zipkin correct rather than accuse and work per edge. Cristian, NTP and Moon estimate and assume honesty.",
+      "deciding_citation": "Willassen 2008, Theorem 2: 'ei -> ej => co(ei) - dh(t(ei)) <= co(ej) - dh(t(ej))' (opened). Roughtime draft-17 s8.2: 'the client MUST check that MIDP_i-RADI_i is less than or equal to MIDP_j+RADI_j' (opened). Jaeger clockskew.go doc comment (opened).",
+      "opened": true,
+      "verdict_reasoning": "The mathematics (interval feasibility under a constant offset) and its forensic use against antedating are taken. Our variant is a recombination, not a new principle. Claim it only as an application."
+    },
+    {
+      "id": "C5",
+      "claim": "Has anyone used an externally minted identifier's embedded time to bound a log event between causally ordered local events, with a skew allowance? (the orchestrator's question, as a conjunction)",
+      "verdict": "PARTIAL",
+      "closest_work": "Structural: Roughtime (external times + causal chain + radius). Forensic: Vanini 2024 time anchors with a Google-search example, plus Metaspike's IMAP UID order + Internal Date. Observability: Jaeger/Zipkin parent-span brackets with skew.",
+      "what_it_does": "Each covers two of the three ingredients. Identifier time + local-clock check: Vanini anchors (ei-based per abstract, unverified), Magnet AXIOM. Causal bracket + skew allowance: Jaeger, Cristian/NTP, Willassen. External times + causal order + allowance as misbehaviour proof: Roughtime (signed times, not ids).",
+      "what_it_does_not": "No opened source does all three on a recorded log: an id-embedded external time, a two-sided bound between causally ordered local events, and an explicit skew allowance. Closest candidate is Vanini 2024b, full text unread; it may use the Google ei time against local browser events, which would move this to TAKEN for forensics.",
+      "deciding_citation": "Absence across sources opened here. Strongest near-misses: Roughtime draft-17 s8.2; arXiv 2412.12814 time-anchor definition; Jaeger clockskew.go.",
+      "opened": true,
+      "verdict_reasoning": "Do not claim the technique as novel. Every ingredient is published and the combination is one step from Vanini's time anchors. Novelty is at most the domain application in C6. Upgrade to TAKEN if Vanini 2024b's full text shows a causal bracket with tolerance."
+    },
+    {
+      "id": "C6",
+      "claim": "Domain application: use LLM-provider request ids (Anthropic req_ ids decoding as UUIDv7) as the external clock bounding agent tool-log stamps, and as a single-response binding test.",
+      "verdict": "NOVEL",
+      "closest_work": "None found. Nearest are generic GenAI observability (OpenTelemetry gen_ai.response.id records the provider id for correlation only) and the debug-claude-session skill, which explicitly avoids request ids.",
+      "what_it_does": "OpenTelemetry GenAI conventions store a provider response id for correlation (search-result level). debug-claude-session correlates transcripts with server logs by time window, not by id.",
+      "what_it_does_not": "Neither decodes time from the id or uses it to bound or verify tool-call stamps.",
+      "deciding_citation": "https://claudskills.com/skills/debug-claude-session/SKILL.md (opened): 'Correlate by time + model, not request id.' Plus null results from WebSearch ('verify agent transcript tool call timestamps using provider request id ...'; 'Anthropic request id req_ UUIDv7 timestamp decode') and alphaXiv discover_papers (UUIDv7/Snowflake/request-ID/backdating).",
+      "opened": true,
+      "verdict_reasoning": "NOVEL only within this search. The agent-domain sweep here is shallow, and sibling B2 tasks own it. The claim is narrow. It inherits every limitation in limitations_for_design."
+    },
+    {
+      "id": "C7",
+      "claim": "Secure audit logging / forward-secure logging / tamper-evident logs already provide witness-free time verification of an uninstrumented log.",
+      "verdict": "N/A",
+      "closest_work": "Schneier & Kelsey 1999; Ma & Tsudik 2008 (FssAgg); Crosby & Wallach 2009.",
+      "what_it_does": "Integrity, forward security and fork detection, using keys or commitments created at write time. Schneier-Kelsey's cross-peer step checks a peer timestamp is 'approximately correct'. Crosby-Wallach brackets an event between published round commitments.",
+      "what_it_does_not": "All require instrumentation at write time. None checks a log's own stamps against a clock embedded in an external identifier after the fact.",
+      "deciding_citation": "Schneier & Kelsey cross-peer step 4 and limitation paragraph (opened); Crosby & Wallach s3.2 (opened).",
+      "opened": true,
+      "verdict_reasoning": "Contrast class, same as Pavlou & Snodgrass in the context file s5. They show what a witness buys, and our method gives that up."
+    },
+    {
+      "id": "C8",
+      "claim": "Multi-clock causal-consistency checking of distributed logs/traces under clock skew.",
+      "verdict": "TAKEN",
+      "closest_work": "Lamport 1978 (IR2' with minimum delay mu); Mattern 1989; Elle 2020 (realtime + server timestamp dependencies); Sharma et al. 2026 arXiv 2604.21361 (negative spans in AI inference pipelines); Jaeger/Zipkin.",
+      "what_it_does": "Detects or prevents causality violations across clocks, using timestamps plus minimum delays or skew bounds.",
+      "what_it_does_not": "All assume benign skew and honest records. Elle blames the database, not the record. 2604.21361 says 'We do not consider adversarial clock manipulation'.",
+      "deciding_citation": "arXiv 2604.21361 s4.4 negative-span definition (opened); Elle s5.1 (opened); Lamport 1978 IR2' (opened).",
+      "opened": true,
+      "verdict_reasoning": "The detection primitive is standard. What differs in our use is the threat model (an adversarial record, not a benign clock)."
+    }
+  ],
+  "limitations_for_design": [
+    {
+      "source": "rfc9562_uuid",
+      "point": "RFC 9562 s6.1 says implementations 'MAY alter the actual timestamp' and gives 'no requirement or guarantee about how close the clock value needs to be to the actual time'. The bracket's validity is therefore empirical (FINDINGS: 155,067/155,267 agreement), not guaranteed even if the id is a conforming v7. Plus the vendor layout itself is undocumented (FINDINGS s5.7)."
+    },
+    {
+      "source": "rfc3161 / roughtime_draft17 / rfc6376_dkim",
+      "point": "Every standard trusted-time mechanism signs its time (TSA genTime, Roughtime MIDP/RADI, DKIM t=). Request ids are unsigned and re-mintable (RFC 9562 s8). The bracket can catch retiming or misbinding by an editor who does not re-mint ids, never a forger who infers the layout. State this as a threat-model boundary."
+    },
+    {
+      "source": "rfc3161",
+      "point": "RFC 3161 carries an explicit accuracy field. Request ids carry none, so the 2 s tolerance is a measured design parameter (FINDINGS: 18/7 inconsistent streams at 0 s/5 s). Report it as pre-registered, the same way TSA accuracy is a declared field."
+    },
+    {
+      "source": "haber_stornetta_1991",
+      "point": "H&S s6.2: a stamp constrains an event in both directions only if stamping is part of the event, otherwise only against back-dating. The request id stamps response generation, not tool execution. That matches the FINDINGS blind spots: late-stamping is invisible, and so is compression of call-to-result gaps inside one round."
+    },
+    {
+      "source": "schneier_kelsey_1999",
+      "point": "Their stated limitation (an attacker who controls the machine keeps writing valid entries) maps to in-band fabrication, which the harness stamps consistently. Every log-integrity scheme shares it, so cite it rather than present it as our weakness alone."
+    },
+    {
+      "source": "ntp / jaeger_clockskew",
+      "point": "Observability systems treat bracket violations as benign skew and correct them (Jaeger maxDelta, Zipkin latency/2). Our honest rate (10/3,674 swechat CC streams) sits against an ecosystem that expects violations from clock steps. Keep the FINDINGS FP list (client clock steps, re-stamped resume/fork copies) as the explanation set."
+    }
+  ],
+  "unverified_or_unopened": [
+    "Gladyshev & Patel 2005 IJDE 4(2): primary not opened (UCD repo HTTP 405; formalforensics.org TLS mismatch). Content verified only through Willassen 2008's description, which we opened.",
+    "Vanini et al. 2024b 'Was the clock correct?' (FSI:DI 49:301759): full text not opened (ScienceDirect 403, Augsburg ECONNREFUSED, DFRWS 403); abstract via OpenAlex only. Whether its Google-search example uses the server-minted ei time against causally ordered local events with a tolerance is UNVERIFIED. This is the main risk to the C5 PARTIAL verdict.",
+    "Dreier et al. 2024 'Beyond timestamps' (FSI:DI 49:301755): abstract only (OpenAlex, cris.fau.de).",
+    "Cristian 1989: primary PDF failed TLS verification; Berkeley summary and Wikipedia opened instead.",
+    "Schatz, Mohay & Clark 2006 and Buchholz & Tjaden 2007: DFRWS returned HTTP 403; Schatz known only via Willassen 2008.",
+    "Willassen 2008 ARES 'Finding evidence of antedating' (IEEE 4529317): landing page returned no content. Willassen PhD thesis: handle redirect to JS app, abstract only from a search snippet.",
+    "Bellare & Yee 1997 'Forward integrity for secure audit logs': not opened (Ma & Tsudik 2008 opened as representative).",
+    "Zipkin server-side CorrectForClockSkew.java: HTTP 404 at master (file absent from directory listing); zipkin-lens clock-skew.js opened instead.",
+    "Forensic Focus mirrors of Metaspike articles: HTTP 403; the originals on metaspike.com were opened.",
+    "OpenTelemetry GenAI gen_ai.response.id: seen only at search-result level, page not opened."
+  ],
+  "dead_ends_respected": "Did not cite thimble, TwinCheck, swarmtraces.org or any other item in CLAUDE_context_swarms.md s7. Did not re-research Hearsay, ACE, Tool Receipts, Pavlou-Snodgrass or other s5 items. Elle was opened only to check its internal use of real-time and server-timestamp dependencies.",
+  "sources": [
+    {
+      "id": "rfc3161",
+      "category": "trusted_timestamping",
+      "title": "RFC 3161: Internet X.509 PKI Time-Stamp Protocol (TSP)",
+      "venue_year": "IETF 2001",
+      "url": "https://www.rfc-editor.org/rfc/rfc3161.txt",
+      "opened": true,
+      "how_opened": "WebFetch of RFC text",
+      "deciding_passage": [
+        "s2: 'A time-stamping service supports assertions of proof that a datum existed before a particular time.'",
+        "s2.4.2: 'accuracy represents the time deviation around the UTC time contained in GeneralizedTime.'",
+        "s2.4.1: nonce 'allows the client to verify the timeliness of the response when no local clock is available.'"
+      ],
+      "what_it_does": "A trusted third party signs (hash, genTime, optional accuracy, optional nonce). Gives a signed upper bound on existence time, with an explicit +/- accuracy; nonce binds the token to one request.",
+      "what_it_does_not": "Does not bound an event between causally ordered local events; requires the client to submit a hash (instrumentation); the time is signed, unlike an unsigned request id. Not used to check a log's own stamps."
+    },
+    {
+      "id": "haber_stornetta_1991",
+      "category": "trusted_timestamping",
+      "title": "How to Time-Stamp a Digital Document (Haber & Stornetta)",
+      "venue_year": "J. Cryptology 3:99-111, 1991",
+      "url": "https://www.gwern.net/doc/bitcoin/1991-haber.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read s5.1 and s6.2",
+      "deciding_passage": [
+        "s6.1/6.2: 'The linking scheme only locates the time of a document between the times of the previous and the next requests'",
+        "s6.2: 'if the time-stamping event can be made part of the document creation event, then the constraint holds in both directions.'",
+        "s6.2: otherwise 'time-stamping should only be considered as evidence that a document has not been back-dated.'"
+      ],
+      "what_it_does": "Two-sided bracketing of an event's time by causal (hash) links to preceding and following requests; makes back- and forward-dating infeasible even with TSS collusion.",
+      "what_it_does_not": "Bracket is enforced cryptographically by hash links created at stamping time (instrumentation). No embedded-time identifiers, no clock-skew allowance, no post-hoc check of an uninstrumented log.",
+      "design_note": "s6.2 is the exact analog of our late-stamping blind spot: the request id stamps the response generation, not the tool execution, so it constrains only one direction unless stamping is part of the event."
+    },
+    {
+      "id": "schneier_kelsey_1999",
+      "category": "secure_audit_logging",
+      "title": "Secure Audit Logs to Support Computer Forensics (Schneier & Kelsey)",
+      "venue_year": "Counterpane tech paper; ACM TISSEC 1999 journal version",
+      "url": "https://www.schneier.com/wp-content/uploads/2016/02/paper-auditlogs.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; grep for timestamp",
+      "deciding_passage": [
+        "Cross-peer linking step 4: 'U1 receives this message, and verifies that the timestamp is approximately correct.' If not, U1 logs an error entry containing both d0 and d1.",
+        "Limitation: 'an attacker can sieze control of an insecure machine and simply continue creating log entries'"
+      ],
+      "what_it_does": "Hash-chained, evolving-key MAC log on an untrusted machine with a trusted verifier T; cross-peer protocol checks a peer's timestamp is 'approximately correct' against the receiver's clock at write time and logs both.",
+      "what_it_does_not": "Requires keys and protocol at write time (instrumentation). The cross-peer check compares two clocks at one instant; it does not bound an event between causally ordered events post hoc, and uses no identifier-embedded time.",
+      "design_note": "Its stated limitation (attacker keeps writing well-formed entries) is our in-band fabrication blind spot."
+    },
+    {
+      "id": "ma_tsudik_2008",
+      "category": "secure_audit_logging",
+      "title": "A New Approach to Secure Logging (Ma & Tsudik; FssAgg)",
+      "venue_year": "IFIP DBSec 2008",
+      "url": "https://dl.ifip.org/index.html/db/conf/dbsec/dbsec2008/MaT08.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read abstract, grep timestamp",
+      "deciding_passage": [
+        "Abstract: forward-secure sequential aggregate (FssAgg) authentication 'without any reliance on on-line trusted third parties or secure hardware'; defends 'truncation attack'."
+      ],
+      "what_it_does": "Forward-secure aggregate MAC/signature over log entries; detects deletion/truncation/modification of pre-compromise entries.",
+      "what_it_does_not": "Integrity only; timestamps appear only inside certificates. No time bounding, no external clock, needs keys at write time.",
+      "note": "Bellare & Yee 1997 'Forward integrity for secure audit logs' (UCSD TR) was NOT opened; Ma-Tsudik opened as the representative forward-secure scheme."
+    },
+    {
+      "id": "crosby_wallach_2009",
+      "category": "secure_audit_logging",
+      "title": "Efficient Data Structures for Tamper-Evident Logging (Crosby & Wallach)",
+      "venue_year": "USENIX Security 2009",
+      "url": "https://www.usenix.org/legacy/event/sec09/tech/full_papers/crosby.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read s3 time-stamping paragraph and s7",
+      "deciding_passage": [
+        "s3.2 'Tree history time-stamping service': publishing round commitments lets a client 'prove that Xj was submitted in the round and its order within that round, without the cooperation of the logger.'",
+        "Merkle aggregation over 'internal timestamps, generated by the client, arriving at the logger out of order' supports time-range queries (s4), not verification of those timestamps."
+      ],
+      "what_it_does": "History tree with auditor gossip; detects a Byzantine logger forking/removing events; round-based time-stamping brackets an event between published commitments.",
+      "what_it_does_not": "Requires the logger to build the tree and publish commitments (instrumentation). Client-supplied event timestamps are indexed, never checked against an external clock. No skew model."
+    },
+    {
+      "id": "lamport_1978",
+      "category": "distributed_clocks",
+      "title": "Time, Clocks, and the Ordering of Events in a Distributed System (Lamport)",
+      "venue_year": "CACM 21(7), 1978",
+      "url": "https://lamport.azurewebsites.net/pubs/time-clocks.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read 'Physical Clocks' section",
+      "deciding_passage": [
+        "IR2': 'Upon receiving a message m at time t', process Pj sets Cj(t') equal to maximum (Cj(t' - 0), Tm + mu_m)', mu_m a known minimum delay.",
+        "'Anomalous Behavior': precedence 'based on messages external to the system' cannot be captured by internal clocks alone."
+      ],
+      "what_it_does": "Clock condition: a message's embedded send timestamp plus a minimum delay lower-bounds the receive time; physical clocks kept within epsilon.",
+      "what_it_does_not": "A synchronization rule enforced at run time, not a forensic consistency test of a recorded log; no external identifier clock; not adversarial."
+    },
+    {
+      "id": "mattern_1989",
+      "category": "distributed_clocks",
+      "title": "Virtual Time and Global States of Distributed Systems (Mattern)",
+      "venue_year": "Parallel and Distributed Algorithms 1989",
+      "url": "https://pages.cs.wisc.edu/~remzi/Classes/739/Fall2018/Papers/mattern89.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read abstract",
+      "deciding_passage": [
+        "Abstract: vectors of clocks so that 'the structure of causality is represented in an isomorphic way'."
+      ],
+      "what_it_does": "Vector clocks capture causality exactly (logical time).",
+      "what_it_does_not": "No physical time, no skew, no external clock, no tamper model. Irrelevant to bounding by physical server time except as the causal-order substrate."
+    },
+    {
+      "id": "cristian_1989",
+      "category": "clock_sync",
+      "title": "Probabilistic Clock Synchronization (Cristian)",
+      "venue_year": "Distributed Computing 3:146-158, 1989",
+      "url": "https://web.eecs.umich.edu/~manosk/assets/papers/Cristian.pdf",
+      "opened": false,
+      "how_opened": "Primary PDF failed (TLS 'unable to verify the first certificate'). Secondary opened: https://people.eecs.berkeley.edu/~fox/summaries/distribsys/prob_clock.html and https://en.wikipedia.org/wiki/Cristian%27s_algorithm",
+      "deciding_passage": [
+        "Berkeley summary: 'if P measures the round-trip time of the request/reply pair as 2D, the value displayed by Q's clock when it sends its reply is T ... then the best guess by P ... with maximum error' bounded by the round trip."
+      ],
+      "what_it_does": "A remote server's clock reading is bracketed by the client's send and receive times (round trip), giving offset with known maximum error.",
+      "what_it_does_not": "Assumes honest timestamps and estimates offset; never uses bracket infeasibility as evidence of tampering; protocol field, not identifier-embedded time."
+    },
+    {
+      "id": "rfc5905_ntp",
+      "category": "clock_sync",
+      "title": "RFC 5905: Network Time Protocol Version 4",
+      "venue_year": "IETF 2010",
+      "url": "https://www.rfc-editor.org/rfc/rfc5905.html",
+      "opened": true,
+      "how_opened": "WebFetch of RFC",
+      "deciding_passage": [
+        "s8: 'theta = T(B) - T(A) = 1/2 * [(T2-T1) + (T3-T4)]', 'delta = T(ABA) = (T4-T1) - (T3-T2)'",
+        "s11.2.1: selection algorithm 'uses Byzantine fault detection principles to discard the presumably incorrect candidates called falsetickers'."
+      ],
+      "what_it_does": "Two-sided on-wire bracket (server receive/transmit stamps between client origin/receive stamps) yields offset and delay; interval intersection flags inconsistent remote clocks (falsetickers).",
+      "what_it_does_not": "Trusts the local clock and tests remote clocks (the mirror image of our use, which trusts the provider clock and tests the local record). Timestamps are protocol fields, not ids; no post-hoc log audit."
+    },
+    {
+      "id": "moon_skelly_towsley_1998",
+      "category": "clock_skew_estimation",
+      "title": "Estimation and Removal of Clock Skew from Network Delay Measurements (Moon, Skelly, Towsley)",
+      "venue_year": "UMass TR 98-43 (1998); INFOCOM 1999",
+      "url": "https://web.cs.umass.edu/publication/docs/1998/UM-CS-1998-043.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read s5",
+      "deciding_passage": [
+        "s5: 'we still want the resulting end-to-end delay to be non-negative, after the skew is removed. When we formulate our skew estimation as a linear programming problem, this condition defines the feasible region'"
+      ],
+      "what_it_does": "Causality (one-way delay >= 0) as LP feasibility constraints over a skew+offset line fitted under all points; estimates skew across two unsynchronized clocks.",
+      "what_it_does_not": "One-sided constraint, estimation only; feasibility is assumed, never used as tamper evidence; no identifiers; network measurement, not logs."
+    },
+    {
+      "id": "kohno_2005",
+      "category": "clock_skew_estimation",
+      "title": "Remote Physical Device Fingerprinting (Kohno, Broido, claffy)",
+      "venue_year": "IEEE TDSC 2(2), 2005",
+      "url": "https://cryptosec.sysnet.ucsd.edu/miscpapers/YoshiTDSC05.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read abstract",
+      "deciding_passage": [
+        "Abstract: fingerprinting 'without the fingerprinted device's known cooperation' by exploiting 'clock skews'; 'Example applications include: computer forensics'."
+      ],
+      "what_it_does": "Passively estimates a remote device's clock skew from timestamps it embeds in traffic (TCP timestamps), uninstrumented, for forensics/attribution.",
+      "what_it_does_not": "Uses embedded remote timestamps to identify devices, not to bound or verify logged events; no causal bracket."
+    },
+    {
+      "id": "spanner_2012",
+      "category": "distributed_clocks",
+      "title": "Spanner: Google's Globally-Distributed Database (Corbett et al.)",
+      "venue_year": "OSDI 2012",
+      "url": "https://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read s4.1.2",
+      "deciding_passage": [
+        "s4.1.2 Start: commit timestamp s_i 'no less than the value of TT.now().latest, computed after e_i^server'; Commit Wait: 'ensures that s_i is less than the absolute commit time of Ti'."
+      ],
+      "what_it_does": "Protocol guarantees a server-minted timestamp lies between the request's arrival and its commit visibility, with an explicit uncertainty interval (TrueTime epsilon).",
+      "what_it_does_not": "Enforcement by the server at write time, not a post-hoc consistency check; not about agent logs or tampering."
+    },
+    {
+      "id": "elle_2020",
+      "category": "history_checking",
+      "title": "Elle: Inferring Isolation Anomalies from Experimental Observations (Kingsbury & Alvaro)",
+      "venue_year": "VLDB 2020; arXiv 2003.10554",
+      "url": "https://arxiv.org/abs/2003.10554",
+      "opened": true,
+      "how_opened": "alphaXiv get_paper_content fullText; grep real-time/timestamp",
+      "deciding_passage": [
+        "s5.1: 'Some snapshot-isolated databases expose transaction start and commit timestamps to clients. Where this information is available, we can use it to infer the time-precedes order'",
+        "s5.x: 'we may expand these definitions to allow process, realtime, version, and/or timestamp dependencies to count towards a cycle.'"
+      ],
+      "what_it_does": "Witness-free history checker; can combine client-observed real-time order with server-exposed timestamps; a dependency cycle is a proven anomaly.",
+      "what_it_does_not": "Assumes the history is truthful and blames the database; real-time edges come from one observer clock with no skew allowance; no identifier-embedded time. (Already in context file s5 as methodological ancestor; opened only to check the internal timestamp/real-time use.)"
+    },
+    {
+      "id": "jaeger_clockskew",
+      "category": "apm_internal_embodiment",
+      "title": "Jaeger ClockSkew adjuster (model/adjuster/clockskew.go)",
+      "venue_year": "jaegertracing/jaeger v1.60.0 (code)",
+      "url": "https://raw.githubusercontent.com/jaegertracing/jaeger/v1.60.0/model/adjuster/clockskew.go",
+      "opened": true,
+      "how_opened": "WebFetch of raw file and of https://github.com/jaegertracing/jaeger/blob/v1.60.0/model/adjuster/clockskew.go",
+      "deciding_passage": [
+        "Doc comment: 'modifies start time and log timestamps for spans that appear to be \"off\" with respect to the parent span due to clock skew on different servers. The main condition that it checks is that child spans do not start before or end after their parent spans.'",
+        "calculateSkew: 'if !child.span.StartTime.Before(parent.span.StartTime) && !childEndTime.After(parentEndTime) { // child already fits within the parent span, do not adjust'",
+        "warningMaxDeltaExceeded = 'max clock skew adjustment delta of %v exceeded; not applying calculated delta of %v'"
+      ],
+      "what_it_does": "Internally embodies the bracket: a remote host's span must sit inside the caller's span; computes a per-host skew, applies it if within maxDelta, else records a warning on the span.",
+      "what_it_does_not": "Corrects for display rather than flagging tampering; skew is per parent-child edge, not one constant per stream; remote time is a span timestamp, not identifier-embedded; no adversary model."
+    },
+    {
+      "id": "zipkin_clockskew",
+      "category": "apm_internal_embodiment",
+      "title": "Zipkin Lens clock-skew correction (zipkin-lens/src/zipkin/clock-skew.js)",
+      "venue_year": "openzipkin/zipkin master (code)",
+      "url": "https://raw.githubusercontent.com/openzipkin/zipkin/master/zipkin-lens/src/zipkin/clock-skew.js",
+      "opened": true,
+      "how_opened": "WebFetch of raw file. NOTE: server-side https://raw.githubusercontent.com/openzipkin/zipkin/master/zipkin/src/main/java/zipkin2/internal/CorrectForClockSkew.java returned 404, and the directory listing at https://github.com/openzipkin/zipkin/tree/master/zipkin/src/main/java/zipkin2/internal has no such file.",
+      "deciding_passage": [
+        "Header: 'Uses span kind to determine if there's clock skew.'",
+        "'if (serverTimestamp > clientTimestamp) return undefined;' / 'latency = (clientDuration - serverDuration) / 2;' / 'if (ipsMatch(server, client)) return undefined;'"
+      ],
+      "what_it_does": "Detects a server span that appears to start before its client span across different hosts and shifts it by an estimated skew (latency/2).",
+      "what_it_does_not": "Only corrects, never invalidates; per-RPC; no identifier-embedded time; not a tamper test."
+    },
+    {
+      "id": "aws_xray_traceid",
+      "category": "apm_internal_embodiment",
+      "title": "AWS X-Ray: Sending trace data / Generating trace IDs",
+      "venue_year": "AWS docs (current)",
+      "url": "https://docs.aws.amazon.com/xray/latest/devguide/xray-api-sendingdata.html",
+      "opened": true,
+      "how_opened": "WebFetch",
+      "deciding_passage": [
+        "Trace id contains 'The time of the original request in Unix epoch time using 8 hexadecimal digits.'",
+        "'if the date in the trace ID is too far in the past, you see an error like the following ... \"ErrorCode\": \"InvalidTraceId\"'"
+      ],
+      "what_it_does": "A documented identifier layout with embedded time; the ingest service validates the id's embedded time against its own clock and rejects ids that are too old.",
+      "what_it_does_not": "One-sided window check against 'now' at ingest; the id is client-minted, so this checks the client, not the log; no causal bracket."
+    },
+    {
+      "id": "rfc9111_http_age",
+      "category": "protocol_internal_embodiment",
+      "title": "RFC 9111: HTTP Caching, s4.2.3 Calculating Age",
+      "venue_year": "IETF 2022",
+      "url": "https://www.rfc-editor.org/rfc/rfc9111.html",
+      "opened": true,
+      "how_opened": "WebFetch of RFC",
+      "deciding_passage": [
+        "'apparent_age = max(0, response_time - date_value)'; 'response_delay = response_time - request_time'; 'corrected_age_value = age_value + response_delay'"
+      ],
+      "what_it_does": "Interprets a server-minted time (Date) relative to the local request/response bracket, with a max(0, .) guard for clock skew.",
+      "what_it_does_not": "Estimates freshness, assumes honesty; not a consistency or tamper test."
+    },
+    {
+      "id": "rfc7519_jwt",
+      "category": "protocol_internal_embodiment",
+      "title": "RFC 7519: JSON Web Token, s4.1.4-4.1.6",
+      "venue_year": "IETF 2015",
+      "url": "https://www.rfc-editor.org/rfc/rfc7519.html",
+      "opened": true,
+      "how_opened": "WebFetch of RFC",
+      "deciding_passage": [
+        "s4.1.4/4.1.5: 'Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew.'"
+      ],
+      "what_it_does": "Standard practice for validating issuer-minted embedded times against the verifier clock with an explicit skew leeway.",
+      "what_it_does_not": "Validity window against 'now', not a bound between two causally ordered recorded events; token is signed."
+    },
+    {
+      "id": "rfc6376_dkim",
+      "category": "protocol_internal_embodiment",
+      "title": "RFC 6376: DKIM Signatures, s3.5 t= tag",
+      "venue_year": "IETF 2011",
+      "url": "https://www.rfc-editor.org/rfc/rfc6376.html",
+      "opened": true,
+      "how_opened": "WebFetch of RFC",
+      "deciding_passage": [
+        "t= 'The time that this signature was created.' ... 'Implementations MAY ignore signatures that have a timestamp in the future.'"
+      ],
+      "what_it_does": "A signer-minted, signed creation time that verifiers may reject if in the future (one-sided).",
+      "what_it_does_not": "No skew leeway specified, no causal bracket, signed (unlike request ids)."
+    },
+    {
+      "id": "roughtime_draft17",
+      "category": "trusted_time_with_causal_chain",
+      "title": "draft-ietf-ntp-roughtime-17 (Roughtime)",
+      "venue_year": "IETF Internet-Draft, Feb 2026",
+      "url": "https://www.ietf.org/archive/id/draft-ietf-ntp-roughtime-17.html",
+      "opened": true,
+      "how_opened": "WebFetch of draft HTML",
+      "deciding_passage": [
+        "s8.2: second query nonce is 'H(resp || rand)' where 'resp is the entire response to the first probe'.",
+        "s8.2: 'For each pair of responses (i, j), where i was received before j, the client MUST check that MIDP_i-RADI_i is less than or equal to MIDP_j+RADI_j'; failure means 'there has been a malfeasance.'",
+        "s5.3.5: 'RADI ... the server's estimate of the accuracy of MIDP in seconds'."
+      ],
+      "what_it_does": "Structurally the closest analog: externally minted times, causal order established by chaining, an explicit uncertainty radius as the skew allowance, and an order violation treated as proof of misbehavior.",
+      "what_it_does_not": "Times are signed and nonce-bound (not unsigned ids); the test blames a time server, not a log; requires active chained queries at run time; no local event is bounded."
+    },
+    {
+      "id": "ai_inference_skew_2026",
+      "category": "distributed_clocks",
+      "title": "Time, Causality, and Observability Failures in Distributed AI Inference Systems (Sharma et al.)",
+      "venue_year": "arXiv 2604.21361, Apr 2026",
+      "url": "https://arxiv.org/abs/2604.21361",
+      "opened": true,
+      "how_opened": "alphaXiv get_paper_content (full report)",
+      "deciding_passage": [
+        "s4.4: 'A negative span is recorded when timestamps imply impossible causal relationships, such as events being received before they were sent.'",
+        "s3: 'We do not consider adversarial clock manipulation; skew arises from benign and unavoidable system effects.'"
+      ],
+      "what_it_does": "Detects causal-order violations across per-stage clocks in an LLM inference pipeline (send/receive stamps) and exposes a causality_health flag.",
+      "what_it_does_not": "Benign skew only, no adversary; stage timestamps, not identifier-embedded provider time; no agent tool logs; requires instrumented pipeline."
+    },
+    {
+      "id": "gladyshev_patel_2005",
+      "category": "forensic_time_bounding",
+      "title": "Formalising Event Time Bounding in Digital Investigations (Gladyshev & Patel)",
+      "venue_year": "Int. J. Digital Evidence 4(2), 2005",
+      "url": "(no open copy located; UCD repository https://researchrepository.ucd.ie/entities/publication/4263b040-0f09-4bc5-9cac-695bb31f366d returned HTTP 405; formalforensics.org thesis host has a TLS cert mismatch)",
+      "opened": false,
+      "how_opened": "Primary NOT opened. Content verified through Willassen 2008 (opened, see willassen_2008), which describes it, and through search-result snippets.",
+      "deciding_passage": [
+        "Willassen 2008 s2 (opened): 'Gladyshev [4] studied the use of causality properties to establish a time period during which an event may have occurred. In his approach, time boundaries can be established when an event that occurred at an unknown or uncertain time is causally preceded and succeeded by events whose times of occurrence are known. When investigating a target computer, the events whose occurrence times are known must come from external sources.'"
+      ],
+      "what_it_does": "(per Willassen's description) Bounds an untimed event between causally preceding and succeeding events with known (externally sourced) times, inside the FSM event-reconstruction theory.",
+      "what_it_does_not": "(per description) No identifier-embedded clock, no skew model stated in what was read; manual per-case modelling. Full text UNVERIFIED by us."
+    },
+    {
+      "id": "willassen_2008",
+      "category": "forensic_clock_hypothesis",
+      "title": "Hypothesis-Based Investigation of Digital Timestamps (Willassen)",
+      "venue_year": "Advances in Digital Forensics IV (IFIP WG 11.9), 2008, pp. 75-86",
+      "url": "https://dl.ifip.org/db/conf/ifip11-9/df2008/Willassen08.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read s1-s3.7 and conclusion",
+      "deciding_passage": [
+        "Abstract: 'a formalism for defining clock hypotheses based on historical adjustments to clocks, and for testing the consistency of the hypotheses with respect to stored timestamps.'",
+        "s3.6: 'A clock function c(t) has two components, an ideal clock function b(t) and a function d(t) that represents the deviation from the ideal clock'",
+        "Theorem 2: in a correct clock hypothesis, causally connected events satisfy 'ei -> ej => co(ei) - dh(t(ei)) <= co(ej) - dh(t(ej))'."
+      ],
+      "what_it_does": "Formal skew-tolerant consistency test: a hypothesized clock deviation (constant or piecewise) must make every causally ordered pair of timestamps monotone; a violation refutes the hypothesis and can expose antedating.",
+      "what_it_does_not": "Tests hypotheses about the local clock's adjustment history from its own timestamps plus causality; does not use an identifier-embedded external clock as the anchor, does not test per-record binding to a server event, and requires a hand-built model of actions."
+    },
+    {
+      "id": "willassen_2008_eforensics",
+      "category": "forensic_clock_hypothesis",
+      "title": "Timestamp evidence correlation by model based clock hypothesis testing (Willassen)",
+      "venue_year": "e-Forensics 2008 (ICST), DOI 10.4108/e-forensics.2008.2637",
+      "url": "https://eudl.eu/doi/10.4108/e-forensics.2008.2637",
+      "opened": true,
+      "how_opened": "WebFetch of EUDL landing page (abstract only)",
+      "deciding_passage": [
+        "Abstract: 'This hypothesis can be tested for consistency with timestamp evidence ... The results can be used to correlate timestamp evidence from different sources, including identifying correct originators during network trace.'"
+      ],
+      "what_it_does": "Extends clock-hypothesis testing to correlating timestamps from different sources.",
+      "what_it_does_not": "Abstract only read; no evidence it uses identifier-embedded server time or bounds a specific record between causal neighbours."
+    },
+    {
+      "id": "willassen_thesis_2008",
+      "category": "forensic_clock_hypothesis",
+      "title": "Methods for Enhancement of Timestamp Evidence in Digital Investigations (Willassen, PhD NTNU)",
+      "venue_year": "2008",
+      "url": "https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/261472",
+      "opened": false,
+      "how_opened": "Handle redirects to a JS app (nva.sikt.no) that returned no content; abstract seen only in a WebSearch result snippet.",
+      "deciding_passage": [
+        "Search snippet: 'Previously, the checking of timestamps has relied upon the existence of timestamps from other evidence sources.' and an antedating experiment."
+      ],
+      "what_it_does": "(snippet) Clock hypothesis methods; an experiment where subjects antedate a document.",
+      "what_it_does_not": "Not opened; UNVERIFIED beyond the snippet."
+    },
+    {
+      "id": "weil_2002",
+      "category": "forensic_external_time",
+      "title": "Dynamic Time & Date Stamp Analysis (Weil)",
+      "venue_year": "Int. J. Digital Evidence 1(2), 2002",
+      "url": "https://www.utica.edu/academic/institutes/ecii/publications/articles/A048B1E4-B921-1DA3-EB227EE7F61F2053.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; read whole paper",
+      "deciding_passage": [
+        "'It was felt that external, independent sources of time could be used to standardize the system time and date. ... dynamic time and date stamps were identified within the body of HTML pages. The dynamic time and dates were correlated to the respective file's MAC times.'",
+        "Step 7: 'A range of date and times should now be calculated. If the range is minimal, an approximation can be used'"
+      ],
+      "what_it_does": "Uses server-generated times embedded in cached web pages to estimate the local clock offset as a range, and corrects local MAC times.",
+      "what_it_does_not": "Calibration, not tamper detection; no causal bracket; times are page content, not identifiers."
+    },
+    {
+      "id": "schatz_2006",
+      "category": "forensic_external_time",
+      "title": "A correlation method for establishing provenance of timestamps in digital evidence (Schatz, Mohay, Clark)",
+      "venue_year": "Digital Investigation 3S (DFRWS 2006)",
+      "url": "https://dfrws.org/presentation/a-correlation-method-for-establishing-provenance-of-timestamps-in-digital-evidence/",
+      "opened": false,
+      "how_opened": "DFRWS page and PDF returned HTTP 403. Described in Willassen 2008 (opened).",
+      "deciding_passage": [
+        "Willassen 2008 s2: 'Schatz and colleagues [6] ... suggest that clock drift can be mitigated by correlating timestamps stored in the web cache with records obtained from web servers.'"
+      ],
+      "what_it_does": "(per Willassen) Correlates local web-cache timestamps with server records to characterise local clock behaviour.",
+      "what_it_does_not": "Primary not opened; requires server-side records."
+    },
+    {
+      "id": "james_jang_2017",
+      "category": "forensic_time_bounding",
+      "title": "Update Thresholds of More Accurate Time Stamp for Event Reconstruction (James & Jang)",
+      "venue_year": "JIIBC 17(2), 2017; arXiv 1803.08205",
+      "url": "https://arxiv.org/abs/1803.08205",
+      "opened": true,
+      "how_opened": "alphaXiv get_paper_content fullText",
+      "deciding_passage": [
+        "s3.1: 'The time-span in which the action instance may be bound is denoted as (t2 - theta) <= i.tau <= t1'"
+      ],
+      "what_it_does": "Bounds an action's time between its earliest and latest trace stamps with an empirically measured update-delay allowance theta (95% normal limit).",
+      "what_it_does_not": "Single local clock; the allowance is write latency, not cross-clock skew; no external identifier."
+    },
+    {
+      "id": "vanini_2024_time_anchors",
+      "category": "forensic_external_time",
+      "title": "Was the clock correct? Exploring timestamp interpretation through time anchors for digital forensic event reconstruction (Vanini, Hargreaves, van Beek, Breitinger)",
+      "venue_year": "FSI: Digital Investigation 49, 301759, 2024 (DFRWS USA 2024)",
+      "url": "https://api.openalex.org/works/doi:10.1016/j.fsidi.2024.301759",
+      "opened": false,
+      "how_opened": "Full text NOT opened (ScienceDirect 403, Augsburg repository connection refused, DFRWS 403). Abstract read via OpenAlex API; definition of 'time anchor' read in Vanini et al. arXiv 2412.12814 (opened).",
+      "deciding_passage": [
+        "OpenAlex abstract: 'how to validate the correctness of recording timestamps and, if found incorrect, how to determine the system clock skew ... defines several important concepts such as time anchors, anchoring events, non-anchoring events, and anomalies ... Using two examples - a Google search and a file creation'",
+        "arXiv 2412.12814 s2 (opened): 'an anchor is an artefact that contains two timestamps - one originating from the internal clock and one from an external source. If these timestamps do not match, this indicates tampering.'"
+      ],
+      "what_it_does": "Names and formalises the idea of an artifact carrying both a local-clock and an external-clock timestamp, used to detect tampering and estimate system clock skew; one worked example is a Google search.",
+      "what_it_does_not": "UNVERIFIED (full text unread): whether the Google example decodes the server-minted ei identifier, whether events are bounded between causal neighbours, and what skew tolerance is used. Not about agent logs."
+    },
+    {
+      "id": "vanini_2024_tamper_resistance",
+      "category": "forensic_external_time",
+      "title": "Evaluating tamper resistance of digital forensic artifacts during event reconstruction (Vanini, Hargreaves, Breitinger)",
+      "venue_year": "arXiv 2412.12814, Dec 2024",
+      "url": "https://arxiv.org/abs/2412.12814",
+      "opened": true,
+      "how_opened": "alphaXiv get_paper_content fullText; grep",
+      "deciding_passage": [
+        "'time anchors as discussed by [19] where an anchor is an artefact that contains two timestamps - one originating from the internal clock and one from an external source. If these timestamps do not match, this indicates tampering.'"
+      ],
+      "what_it_does": "Surveys niche backdating detectors: digital stratigraphy, time anchors, hyper timelines.",
+      "what_it_does_not": "Scoring framework; does not itself implement a bracket test."
+    },
+    {
+      "id": "dreier_2024_hyper_timelines",
+      "category": "forensic_time_bounding",
+      "title": "Beyond timestamps: Integrating implicit timing information into digital forensic timelines (Dreier, Vanini, Hargreaves, Breitinger, Freiling)",
+      "venue_year": "FSI: Digital Investigation 49, 301755, 2024",
+      "url": "https://api.openalex.org/works/doi:10.1016/j.fsidi.2024.301755",
+      "opened": false,
+      "how_opened": "Full text NOT opened (ScienceDirect 403, Augsburg refused). Abstract via OpenAlex API and https://cris.fau.de/publications/327000098 (both opened).",
+      "deciding_passage": [
+        "OpenAlex abstract: 'separating sources of distinct time domains, each with its own timeline, and then connecting these timelines based on relations observed within digital evidence ... a \"rich\" partial order, which we call hyper timeline ... identify and characterize timestamp inconsistencies, e.g., those that arise from timestamp tampering.'"
+      ],
+      "what_it_does": "Multiple time domains (including sequence numbers / record order) joined into one partial order; inconsistencies flag tampering.",
+      "what_it_does_not": "UNVERIFIED beyond the abstract: whether it handles cross-clock skew or identifier-embedded external time."
+    },
+    {
+      "id": "vanini_2024_tampering_userstudy",
+      "category": "forensic_time_bounding",
+      "title": "Strategies and Challenges of Timestamp Tampering for Improved Digital Forensic Event Reconstruction (Vanini et al.)",
+      "venue_year": "arXiv 2501.00175, Dec 2024",
+      "url": "https://arxiv.org/abs/2501.00175",
+      "opened": true,
+      "how_opened": "alphaXiv get_paper_content fullText; grep",
+      "deciding_passage": [
+        "Related work: detection by 'violation ... of causal relationships between timestamps (Willassen, 2008; Marrington et al., 2011) or inconsistent relations to implicit timing information like sequence numbers (Dreier et al., 2024)'.",
+        "Participant 6: 'I feared that contacting the mail server could easily reveal a manipulation of the receive-timestamp'."
+      ],
+      "what_it_does": "User study of live timestamp tampering; confirms the forensic community treats causal-order violations and externally held copies as tamper evidence.",
+      "what_it_does_not": "No bracket algorithm; no identifiers."
+    },
+    {
+      "id": "breitinger_2025_sok",
+      "category": "forensic_time_bounding",
+      "title": "SoK: Timeline based event reconstruction for digital forensics (Breitinger, Studiawan, Hargreaves et al.)",
+      "venue_year": "arXiv 2504.18131, Apr 2025",
+      "url": "https://arxiv.org/abs/2504.18131",
+      "opened": true,
+      "how_opened": "alphaXiv get_paper_content fullText; grep",
+      "deciding_passage": [
+        "s6.1.1 'Clock skew: Skew refers to the difference in time readings between different systems' citing Schatz 2006, Buchholz & Tjaden 2007.",
+        "Future work: 'Automated timeline verification: Willassen (2008c) introduced a hypothesis-based approach ... Vanini et al. (2024b) suggested using time anchors ... Research efforts need to continue to build verification methods'"
+      ],
+      "what_it_does": "States, as of 2025, that automated timeline verification with clock hypotheses and time anchors is an open research need.",
+      "what_it_does_not": "No mention found of identifier-embedded time (grep 'identifier', 'UUID' returned only unrelated hits)."
+    },
+    {
+      "id": "rfc9562_uuid",
+      "category": "time_in_identifier",
+      "title": "RFC 9562: Universally Unique IDentifiers (UUIDs)",
+      "venue_year": "IETF 2024",
+      "url": "https://www.rfc-editor.org/rfc/rfc9562.html",
+      "opened": true,
+      "how_opened": "WebFetch of RFC",
+      "deciding_passage": [
+        "s5.7: UUIDv7 carries a '48-bit big-endian unsigned number of the Unix Epoch timestamp in milliseconds'.",
+        "s6.1: 'Implementations MAY alter the actual timestamp' and 'This specification makes no requirement or guarantee about how close the clock value needs to be to the actual time.'",
+        "s8: 'Timestamps embedded in the UUID do pose a very small attack surface'; UUIDs 'MUST NOT be used as security capabilities'."
+      ],
+      "what_it_does": "Standardises the embedded-time layout we inferred for Anthropic ids.",
+      "what_it_does_not": "Guarantees nothing about the embedded time's accuracy; offers no integrity. Limitation for our design: the bracket rests on an empirical, not a specified, clock fidelity."
+    },
+    {
+      "id": "unfurl",
+      "category": "time_in_identifier",
+      "title": "Unfurl (obsidianforensics/unfurl) README",
+      "venue_year": "GitHub, current",
+      "url": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/README.md",
+      "opened": true,
+      "how_opened": "WebFetch of raw README",
+      "deciding_passage": [
+        "'Unfurl takes a URL and expands (\"unfurls\") it into a directed graph, extracting every bit of information from the URL and exposing the obscured.' Example decodes a Twitter snowflake id to 'Timestamp: 1576167751484'."
+      ],
+      "what_it_does": "DFIR tool that decodes times embedded in identifiers (snowflakes, UUIDs, timestamps in URLs).",
+      "what_it_does_not": "Decoding only; README describes no comparison of decoded times against other timestamps or any event bounding."
+    },
+    {
+      "id": "dfdatetime_uuid",
+      "category": "time_in_identifier",
+      "title": "dfdatetime uuid_time module (log2timeline ecosystem)",
+      "venue_year": "readthedocs, current",
+      "url": "https://dfdatetime.readthedocs.io/en/stable/_modules/dfdatetime/uuid_time.html",
+      "opened": true,
+      "how_opened": "WebFetch",
+      "deciding_passage": [
+        "Class docstring: 'The UUID version 1 timestamp is an unsigned 60-bit value that contains the number of 100th nano seconds intervals since 1582-10-15 00:00:00.'"
+      ],
+      "what_it_does": "Forensic timeline library parses UUIDv1 embedded time as a first-class timestamp type.",
+      "what_it_does_not": "Parsing only; no consistency test."
+    },
+    {
+      "id": "magnet_google_url_timestamps",
+      "category": "time_in_identifier",
+      "title": "Analyzing Timestamps in Google Search URLs (Magnet Forensics)",
+      "venue_year": "Magnet Forensics resource page (AXIOM 3.10 era)",
+      "url": "https://www.magnetforensics.com/resources/analyzing-timestamps-in-google-search-urls/",
+      "opened": true,
+      "how_opened": "WebFetch",
+      "deciding_passage": [
+        "ei= is 'Search Session Start Date/Time' and 'is placed in the URL straight from Google'; value stressed for its 'independence from the user's system'."
+      ],
+      "what_it_does": "Commercial forensic suite decodes server-minted times inside Google identifiers, valued because they are independent of the local clock.",
+      "what_it_does_not": "Page does not describe bounding events or detecting clock manipulation with them."
+    },
+    {
+      "id": "tweetedat_2019",
+      "category": "time_in_identifier",
+      "title": "TweetedAt: Finding Tweet Timestamps for Pre and Post Snowflake Tweet IDs (Siddique & Alam, ODU WS-DL)",
+      "venue_year": "Blog/tool, 2019-08-03",
+      "url": "https://ws-dl.blogspot.com/2019/08/2019-08-03-tweetedat-finding-tweet.html",
+      "opened": true,
+      "how_opened": "WebFetch",
+      "deciding_passage": [
+        "Post-snowflake: shift the id right by 22 bits and add epoch 1288834974657; pre-snowflake ids interpolated with 'approximate error of 1 hour'."
+      ],
+      "what_it_does": "Recovers creation time of (deleted) tweets from server-minted ids, with an explicit error bound for pre-snowflake ids.",
+      "what_it_does_not": "Dating only; no causal bracket; no log verification."
+    },
+    {
+      "id": "metaspike_imap_internal_date",
+      "category": "time_in_identifier",
+      "title": "Using IMAP Internal Date for Forensic Email Authentication (Gungor, Metaspike)",
+      "venue_year": "2018-06-25",
+      "url": "https://www.metaspike.com/imap-internal-date-forensic-email-authentication/",
+      "opened": true,
+      "how_opened": "WebFetch (Forensic Focus mirror returned 403)",
+      "deciding_passage": [
+        "'UID values are assigned in a strictly ascending manner.'",
+        "'if our message with the fraudulent date was added to the mailbox after the fact, it should have a larger UID value compared to other genuine messages from the same time period.'"
+      ],
+      "what_it_does": "Combines a server-assigned time (Internal Date) and server-assigned monotone ids (UID order among neighbouring messages) to show a message's claimed Date is inconsistent, i.e. backdating.",
+      "what_it_does_not": "No explicit skew tolerance (the example gap is ~1.5 years); UIDs carry order, not time; manual per case."
+    },
+    {
+      "id": "metaspike_gmail_manipulated",
+      "category": "time_in_identifier",
+      "title": "Forensic Examination of Manipulated Email in Gmail (Gungor, Metaspike)",
+      "venue_year": "2019-01-24",
+      "url": "https://www.metaspike.com/forensic-examination-manipulated-email-gmail/",
+      "opened": true,
+      "how_opened": "WebFetch",
+      "deciding_passage": [
+        "'the last part of the new MIME boundary delimiter ... is a FILETIME value. Decoding the FILETIME value results in 01/23/2019 21:41:12.6780000.'"
+      ],
+      "what_it_does": "Decodes a time embedded in an identifier (MIME boundary) to show when an edited message was actually re-created, contradicting its claimed date.",
+      "what_it_does_not": "Identifier minted by the editing client, not a server; no tolerance discussed; manual."
+    },
+    {
+      "id": "debug_claude_session_skill",
+      "category": "agent_domain_check",
+      "title": "debug-claude-session SKILL.md (third-party Claude Code skill)",
+      "venue_year": "claudskills.com, current",
+      "url": "https://claudskills.com/skills/debug-claude-session/SKILL.md",
+      "opened": true,
+      "how_opened": "WebFetch",
+      "deciding_passage": [
+        "'Correlate by time + model, not request id. The local transcript has UTC timestamps (`timestamp` field); request IDs are often absent.'"
+      ],
+      "what_it_does": "Agent-tooling example that correlates Claude Code transcripts with server logs by time window.",
+      "what_it_does_not": "Explicitly does not use request ids or decode their time; evidence that the agent-tooling space we searched is not using id-embedded time."
+    }
+  ]
+}

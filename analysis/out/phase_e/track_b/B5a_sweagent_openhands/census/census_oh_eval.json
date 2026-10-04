@@ -1,0 +1,748 @@
+{
+ "root": "C:/Swarms/data/acquired/openhands-evaluation-outputs",
+ "n_runs": 19,
+ "totals": {
+  "instances": 5695,
+  "events": 318298,
+  "ts_ok": 312115,
+  "agent_tool_actions": 145702,
+  "events_with_tcm": 167976,
+  "actions_with_usage": 84730,
+  "observations": 145966,
+  "obs_cause_joined": 145631,
+  "obs_exit_code": 42866,
+  "obs_trunc_marker": 3057,
+  "obs_error": 457
+ },
+ "per_run": {
+  "SWE-bench_Lite-test/CodeActAgent/claude-3-5-haiku-20241022_maxiter_100_N_v2.1-no-hint": {
+   "counts": {
+    "instances": 299,
+    "events": 28091,
+    "ts_ok": 28091,
+    "agent_tool_actions": 9334,
+    "events_with_tcm": 18834,
+    "actions_with_usage": 9500,
+    "observations": 9466,
+    "obs_cause_joined": 9334,
+    "obs_exit_code": 4271,
+    "obs_trunc_marker": 378,
+    "obs_error": 179
+   },
+   "history_format": {
+    "flat": 28091
+   },
+   "models": {
+    "anthropic/claude-3-5-haiku-20241022": 299
+   },
+   "event_ts_range": [
+    "2024-11-04T22:03:05.668268",
+    "2024-11-05T19:49:12.005716"
+   ],
+   "tool_call_id_shapes": [
+    [
+     "<x<n>>",
+     9500
+    ]
+   ],
+   "model_response_id_shapes": [
+    [
+     "chatcmpl-<uuid>",
+     9500
+    ]
+   ],
+   "action_ts_minus_created_s": {
+    "n": 9500,
+    "p0": 0.004,
+    "p5": 0.056,
+    "p50": 0.516,
+    "p95": 0.953,
+    "p100": 1.006,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet-20241022_maxiter_100_N_v2.1-no-hint": {
+   "counts": {
+    "instances": 300,
+    "events": 16988,
+    "ts_ok": 16988,
+    "agent_tool_actions": 7997,
+    "events_with_tcm": 16274,
+    "actions_with_usage": 8277,
+    "observations": 8015,
+    "obs_cause_joined": 7997,
+    "obs_exit_code": 3575,
+    "obs_trunc_marker": 391,
+    "obs_error": 21
+   },
+   "history_format": {
+    "flat": 16988
+   },
+   "models": {
+    "anthropic/claude-3-5-sonnet-20241022": 300
+   },
+   "event_ts_range": [
+    "2024-10-28T18:11:29.246075",
+    "2024-10-28T22:31:07.442982"
+   ],
+   "tool_call_id_shapes": [
+    [
+     "<x<n>>",
+     8277
+    ]
+   ],
+   "model_response_id_shapes": [
+    [
+     "chatcmpl-<uuid>",
+     8277
+    ]
+   ],
+   "action_ts_minus_created_s": {
+    "n": 8277,
+    "p0": 0.003,
+    "p5": 0.049,
+    "p50": 0.494,
+    "p95": 0.95,
+    "p100": 1.005,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet-20241022_maxiter_100_N_v2.2-no-hint": {
+   "counts": {
+    "instances": 299,
+    "events": 16088,
+    "ts_ok": 16088,
+    "agent_tool_actions": 7531,
+    "events_with_tcm": 15339,
+    "actions_with_usage": 7808,
+    "observations": 7553,
+    "obs_cause_joined": 7531,
+    "obs_exit_code": 3448,
+    "obs_trunc_marker": 380,
+    "obs_error": 35
+   },
+   "history_format": {
+    "flat": 16088
+   },
+   "models": {
+    "litellm_proxy/claude-3-5-sonnet-20241022": 299
+   },
+   "event_ts_range": [
+    "2024-10-31T20:07:01.869872",
+    "2024-10-31T22:58:29.422629"
+   ],
+   "tool_call_id_shapes": [
+    [
+     "<x<n>>",
+     7808
+    ]
+   ],
+   "model_response_id_shapes": [
+    [
+     "chatcmpl-<uuid>",
+     7808
+    ]
+   ],
+   "action_ts_minus_created_s": {
+    "n": 7808,
+    "p0": 0.01,
+    "p5": 0.064,
+    "p50": 0.519,
+    "p95": 0.968,
+    "p100": 2.128,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet-20241022_maxiter_30_N_v1.9-no-hint": {
+   "counts": {
+    "instances": 300,
+    "events": 13149,
+    "ts_ok": 13149,
+    "agent_tool_actions": 6274,
+    "observations": 6348,
+    "obs_cause_joined": 6273,
+    "obs_exit_code": 2173,
+    "obs_error": 80
+   },
+   "history_format": {
+    "flat": 13149
+   },
+   "models": {
+    "anthropic/claude-3-5-sonnet-20241022": 300
+   },
+   "event_ts_range": [
+    "2024-10-22T16:03:31.291106",
+    "2024-10-22T19:51:18.310038"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet@20240620_maxiter_30_N_v1.9-no-hint-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 14218,
+    "ts_ok": 13721,
+    "agent_tool_actions": 6612,
+    "observations": 6612,
+    "obs_cause_joined": 6612,
+    "obs_exit_code": 1701,
+    "obs_error": 11
+   },
+   "history_format": {
+    "pair": 7109
+   },
+   "models": {
+    "openai/claude-3-5-sonnet@20240620": 300
+   },
+   "event_ts_range": [
+    "2024-09-14T15:01:27.974099",
+    "2024-09-16T04:07:48.358119"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/deepseek-chat_maxiter_100_N_v2.2-no-hint-main-non-fncall-run_1": {
+   "counts": {
+    "instances": 300,
+    "events": 17336,
+    "ts_ok": 17336,
+    "agent_tool_actions": 8459,
+    "events_with_tcm": 16990,
+    "actions_with_usage": 8531,
+    "observations": 8467,
+    "obs_cause_joined": 8459,
+    "obs_exit_code": 3977,
+    "obs_trunc_marker": 251,
+    "obs_error": 8
+   },
+   "history_format": {
+    "flat": 17336
+   },
+   "models": {
+    "deepseek/deepseek-chat": 300
+   },
+   "event_ts_range": [
+    "2024-11-08T18:50:44.674042",
+    "2024-11-09T22:21:43.424873"
+   ],
+   "tool_call_id_shapes": [
+    [
+     "toolu_<n>",
+     8531
+    ]
+   ],
+   "model_response_id_shapes": [
+    [
+     "<uuid>",
+     8531
+    ]
+   ],
+   "action_ts_minus_created_s": {
+    "n": 8531,
+    "p0": 2.16,
+    "p5": 3.718,
+    "p50": 6.972,
+    "p95": 18.269,
+    "p100": 216.014,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/deepseek-v2.5_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 11874,
+    "ts_ok": 11474,
+    "agent_tool_actions": 5537,
+    "observations": 5537,
+    "obs_cause_joined": 5537,
+    "obs_exit_code": 1059,
+    "obs_error": 3
+   },
+   "history_format": {
+    "pair": 5937
+   },
+   "models": {
+    "deepseek/deepseek-coder": 300
+   },
+   "event_ts_range": [
+    "2024-09-28T06:02:46.561663",
+    "2024-09-29T21:59:31.944706"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/gemini-1.5-pro-002_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+   "counts": {
+    "instances": 300,
+    "events": 15278,
+    "ts_ok": 15278,
+    "agent_tool_actions": 7236,
+    "events_with_tcm": 14747,
+    "actions_with_usage": 7511,
+    "observations": 7253,
+    "obs_cause_joined": 7236,
+    "obs_exit_code": 2892,
+    "obs_error": 17,
+    "obs_trunc_marker": 376
+   },
+   "history_format": {
+    "flat": 15278
+   },
+   "models": {
+    "litellm_proxy/gemini-1.5-pro-002": 300
+   },
+   "event_ts_range": [
+    "2024-11-09T22:13:35.463832",
+    "2024-11-10T17:42:29.775850"
+   ],
+   "tool_call_id_shapes": [
+    [
+     "toolu_<n>",
+     7511
+    ]
+   ],
+   "model_response_id_shapes": [
+    [
+     "chatcmpl-<uuid>",
+     7511
+    ]
+   ],
+   "action_ts_minus_created_s": {
+    "n": 7511,
+    "p0": 1.154,
+    "p5": 2.053,
+    "p50": 4.674,
+    "p95": 62.04,
+    "p100": 264.751,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/gemini-1.5-pro-002_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 10554,
+    "ts_ok": 9859,
+    "agent_tool_actions": 4610,
+    "observations": 4582,
+    "obs_cause_joined": 4582,
+    "obs_exit_code": 506
+   },
+   "history_format": {
+    "pair": 5277
+   },
+   "models": {
+    "gemini/gemini-1.5-pro-002": 300
+   },
+   "event_ts_range": [
+    "2024-09-30T04:48:23.195684",
+    "2024-10-02T01:29:47.826390"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/gpt-4o-2024-05-13_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 15034,
+    "ts_ok": 14626,
+    "agent_tool_actions": 7109,
+    "observations": 7109,
+    "obs_cause_joined": 7109,
+    "obs_exit_code": 2185
+   },
+   "history_format": {
+    "pair": 7517
+   },
+   "models": {
+    "openai/gpt-4o-2024-05-13": 220,
+    "openai/neulab/gpt-4o-2024-05-13": 80
+   },
+   "event_ts_range": [
+    "2024-09-29T18:17:31.191558",
+    "2024-10-02T13:04:33.805798"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/gpt-4o-mini-2024-07-18_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 14128,
+    "ts_ok": 13718,
+    "agent_tool_actions": 6654,
+    "observations": 6654,
+    "obs_cause_joined": 6654,
+    "obs_exit_code": 2267
+   },
+   "history_format": {
+    "pair": 7064
+   },
+   "models": {
+    "openai/gpt-4o-mini-2024-07-18": 300
+   },
+   "event_ts_range": [
+    "2024-10-01T03:03:25.054752",
+    "2024-10-02T02:12:41.921915"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/llama-3.1-405b-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 11204,
+    "ts_ok": 10618,
+    "agent_tool_actions": 5049,
+    "observations": 5016,
+    "obs_cause_joined": 5016,
+    "obs_exit_code": 501,
+    "obs_error": 1
+   },
+   "history_format": {
+    "pair": 5602
+   },
+   "models": {
+    "openai/accounts/fireworks/models/llama-v3p1-405b-instruct": 300
+   },
+   "event_ts_range": [
+    "2024-09-28T18:06:37.820007",
+    "2024-09-29T03:32:34.040258"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/llama-3.1-70b-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 11476,
+    "ts_ok": 10897,
+    "agent_tool_actions": 5162,
+    "observations": 5159,
+    "obs_cause_joined": 5159,
+    "obs_exit_code": 1028,
+    "obs_error": 5
+   },
+   "history_format": {
+    "pair": 5738
+   },
+   "models": {
+    "openrouter/meta-llama/llama-3.1-70b-instruct": 300
+   },
+   "event_ts_range": [
+    "2024-09-28T17:57:57.721458",
+    "2024-09-30T02:59:38.423376"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/llama-3.2-90b-vision-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+   "counts": {
+    "instances": 297,
+    "events": 11626,
+    "ts_ok": 11120,
+    "agent_tool_actions": 5311,
+    "observations": 5307,
+    "obs_cause_joined": 5307,
+    "obs_exit_code": 935,
+    "obs_error": 14
+   },
+   "history_format": {
+    "pair": 5813
+   },
+   "models": {
+    "openai/accounts/fireworks/models/llama-v3p2-90b-vision-instruct": 297
+   },
+   "event_ts_range": [
+    "2024-09-30T03:44:40.935971",
+    "2024-10-01T07:17:28.985369"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/llama-v3p1-405b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+   "counts": {
+    "instances": 300,
+    "events": 25467,
+    "ts_ok": 25467,
+    "agent_tool_actions": 12484,
+    "events_with_tcm": 25138,
+    "actions_with_usage": 12654,
+    "observations": 12503,
+    "obs_cause_joined": 12484,
+    "obs_trunc_marker": 425,
+    "obs_exit_code": 2724,
+    "obs_error": 19
+   },
+   "history_format": {
+    "flat": 25467
+   },
+   "models": {
+    "fireworks_ai/accounts/fireworks/models/llama-v3p1-405b-instruct": 300
+   },
+   "event_ts_range": [
+    "2024-11-10T18:02:58.873735",
+    "2024-11-10T21:17:54.615951"
+   ],
+   "tool_call_id_shapes": [
+    [
+     "toolu_<n>",
+     12654
+    ]
+   ],
+   "model_response_id_shapes": [
+    [
+     "<uuid>",
+     12654
+    ]
+   ],
+   "action_ts_minus_created_s": {
+    "n": 12654,
+    "p0": 0.303,
+    "p5": 1.323,
+    "p50": 5.037,
+    "p95": 17.295,
+    "p100": 93.669,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/llama-v3p1-70b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+   "counts": {
+    "instances": 300,
+    "events": 32407,
+    "ts_ok": 32407,
+    "agent_tool_actions": 15981,
+    "events_with_tcm": 32073,
+    "actions_with_usage": 16092,
+    "observations": 16001,
+    "obs_cause_joined": 15981,
+    "obs_exit_code": 3802,
+    "obs_trunc_marker": 426,
+    "obs_error": 20
+   },
+   "history_format": {
+    "flat": 32407
+   },
+   "models": {
+    "fireworks_ai/accounts/fireworks/models/llama-v3p1-70b-instruct": 300
+   },
+   "event_ts_range": [
+    "2024-11-09T19:42:18.384428",
+    "2024-11-09T22:21:02.404866"
+   ],
+   "tool_call_id_shapes": [
+    [
+     "toolu_<n>",
+     16092
+    ]
+   ],
+   "model_response_id_shapes": [
+    [
+     "<uuid>",
+     16092
+    ]
+   ],
+   "action_ts_minus_created_s": {
+    "n": 16092,
+    "p0": -0.159,
+    "p5": 0.361,
+    "p50": 1.233,
+    "p95": 3.171,
+    "p100": 23.385,
+    "n_negative": 26
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/llama-v3p3-70b-instruct_maxiter_100_N_v0.15.0-no-hint-run_1": {
+   "counts": {
+    "instances": 300,
+    "events": 28904,
+    "ts_ok": 28904,
+    "agent_tool_actions": 14224,
+    "events_with_tcm": 28581,
+    "actions_with_usage": 14357,
+    "observations": 14248,
+    "obs_cause_joined": 14224,
+    "obs_exit_code": 3717,
+    "obs_trunc_marker": 430,
+    "obs_error": 24
+   },
+   "history_format": {
+    "flat": 28904
+   },
+   "models": {
+    "fireworks_ai/accounts/fireworks/models/llama-v3p3-70b-instruct": 299,
+    "null": 1
+   },
+   "event_ts_range": [
+    "2024-12-06T19:29:36.949918",
+    "2024-12-07T19:21:56.314531"
+   ],
+   "tool_call_id_shapes": [
+    [
+     "toolu_<n>",
+     14357
+    ]
+   ],
+   "model_response_id_shapes": [
+    [
+     "<uuid>",
+     14357
+    ]
+   ],
+   "action_ts_minus_created_s": {
+    "n": 14357,
+    "p0": -0.15,
+    "p5": 0.243,
+    "p50": 0.981,
+    "p95": 2.333,
+    "p100": 10.036,
+    "n_negative": 83
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/o1-mini-2024-09-12_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 10486,
+    "ts_ok": 9747,
+    "agent_tool_actions": 4505,
+    "observations": 4504,
+    "obs_cause_joined": 4504,
+    "obs_exit_code": 943
+   },
+   "history_format": {
+    "pair": 5243
+   },
+   "models": {
+    "openai/neulab/o1-mini": 300
+   },
+   "event_ts_range": [
+    "2024-10-02T18:52:31.149696",
+    "2024-10-03T15:19:38.835914"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  },
+  "SWE-bench_Lite-test/CodeActAgent/qwen-2.5-72b-instruct_maxiter_30_N_v1.9-no-hint-non-fncall-eval-24sep": {
+   "counts": {
+    "instances": 300,
+    "events": 13990,
+    "ts_ok": 12627,
+    "agent_tool_actions": 5633,
+    "observations": 5632,
+    "obs_cause_joined": 5632,
+    "obs_exit_code": 1162,
+    "obs_error": 20
+   },
+   "history_format": {
+    "pair": 6995
+   },
+   "models": {
+    "openrouter/qwen/qwen-2.5-72b-instruct": 300
+   },
+   "event_ts_range": [
+    "2024-09-28T06:03:23.555863",
+    "2024-09-30T15:13:33.388149"
+   ],
+   "tool_call_id_shapes": {},
+   "model_response_id_shapes": [],
+   "action_ts_minus_created_s": {
+    "n": 0,
+    "p0": null,
+    "p5": null,
+    "p50": null,
+    "p95": null,
+    "p100": null,
+    "n_negative": 0
+   }
+  }
+ }
+}

@@ -1,0 +1,223 @@
+{
+  "key": "B2a_provider_id_facts",
+  "task": "Phase E Track B, B2 part a: facts about provider request/response ids (Anthropic, OpenAI, Google Gemini/Vertex). Is a timestamp embedded? Is the layout documented officially? Is it stable? Do the SDKs parse ids?",
+  "date": "2026-10-04",
+  "scope_note": "Public docs, official SDK source and official example outputs only, plus read-only aggregate checks on the aiv_cu raw file (data/ai-village/computer_use_turns.jsonl.gz). Nothing swarm-related was read. No transcripts generated. No paid API calls.",
+
+  "bottom_line": [
+    "No provider documents the internal layout of any id we decode. Every id-embedded clock we use is reverse-engineered from data and examples. This is a MATERIAL LIMITATION and has to appear in DESIGN.md.",
+    "Two of the three vendors explicitly reserve the right to change id formats. Anthropic's SDK docstring for Message.id says 'The format and length of IDs may change over time.' OpenAI's API overview lists 'Changing the length or format of opaque strings, like resource identifiers' as a backwards-compatible change. Google's Vertex proto names the source of response_id ('the encoding of the event_id') but gives no layout. The Gemini Developer API proto says nothing about structure.",
+    "Formats have changed without notice. Anthropic msg_ ids went from random to UUIDv7 on 2026-07-06 (our data), and the API release notes for 2026-07-01 to 2026-07-15 contain no id entry. Anthropic toolu_ ids recently took a UUIDv4 shape (our data). OpenAI Responses item ids used three layouts in about 7 months: 32-hex time-first (2025-02, cookbook), 48-hex time-first (2025-05 to 2025-08, cookbook; 2025-08/09, aiv_cu) and 50-hex with a 16-hex per-session prefix (2025-09 on, aiv_cu).",
+    "Anthropic req_ ids: in our data they are UUIDv7 (48-bit unix ms) in base58 after 'req_01' (swechat 154,815/154,815; cc_local 31,085/31,085). The real-looking example in the official errors doc, req_011CSHoEeqs5C35K2UUqR7Fy, decodes as v7 at 2025-08-19T21:43:15.444Z. That is the same date as the release note that added request_id to error bodies, so the layout has been observed from 2025-08-19 through our latest data. It is not documented. The doc's other example, req_018EeWyXxfu5pfWkrYcMdjWG, is not v7 (version nibble 9) and is reused as a placeholder.",
+    "NEW (OpenAI): chatcmpl- ids embed the documented `created` second. The first 5 base62 chars (0-9A-Za-z) decode to created - 1,576,800,000 (custom epoch 2019-12-20T00:00:00Z). This holds exactly in 12/12 official examples from 2023-11-26 to 2025-03-10 (openai-cookbook outputs and the openai-openapi spec). The offset was fit on 1 example, so 11 are out-of-sample. For a random prefix, chance agreement is about 62^-5 per id. The resolution is 1 s, and the id carries the same value as the documented `created` field.",
+    "OpenAI resp_ ids: in both official cookbook examples that print created_at, the first 8 hex digits equal created_at (1740465465 in 2025-02; 1746989954 in 2025-05). The documented server clock fields are `created`/`created_at` (1 s) and the `openai-processing-ms` header. x-request-id is documented only as a 'Unique identifier for this API request'. The only official example is 'req_123', and no corpus of ours stores it, so whether it embeds time is UNKNOWN.",
+    "NEW (Google): Gemini responseId follows Google's 'ei'/EventId layout: 4 bytes of little-endian unix seconds, then 3 varints. 20,000/20,000 aiv_cu responseIds parse exactly this way with 0 trailing bytes. Varint 1 is below 1e6 in 20,000/20,000 and is uniform (mean/1e6 = 0.5001), which fits microseconds. A pre-stated test against the DB row clock supports it as a real sub-second fraction. Adding it lowers the residual variance by 0.199 s^2 (95% CI [0.105, 0.296]; the prediction was 0.167). A random fraction raises it by 0.215 [0.122, 0.305]; n = 9,532 consecutive pairs. Phase C treated this clock as 1 s resolution (FINDINGS 4.2.1/5.7). It is plausibly microsecond resolution, so the Gemini bracket could be tightened. The layout is documented only for Google Search's 'ei' parameter, by third parties (Kevin Jones 2013; Unfurl). Vertex's proto says response_id 'is the encoding of the event_id'.",
+    "Google header facts (aiv_cu, Gemini Developer API, 5,000 rows): 12 header keys. None is a request id and none is x-goog-*. `server-timing: gfet4t7; dur=N` is an undocumented Google Front End token, and `date` has 1 s resolution. Vertex documents a server timestamp in the body, createTime ('Timestamp when the request is made to the server'). The Gemini Developer API has none: it is absent from the proto, and 0/5,000 rows carry it.",
+    "All official SDKs checked pass ids through as opaque strings and never parse, validate or decode them: anthropic-sdk-python and -typescript, openai-python and openai-node, google-genai python. Proxies re-mint ids. LiteLLM's resp_ is base64 of 'litellm:custom_llm_provider:...;model_id:...;response_id:...', and our corpora show chatcmpl-<ms> and msg_<YYYYMMDDhhmmss> from proxies. A decoder must therefore validate the id family before trusting the clock."
+  ],
+
+  "material_limitation_for_design": "The request-id clock bracket (FINDINGS 4.3 rank 1) and any Gemini or OpenAI id clock rest on undocumented, vendor-mutable id layouts. Each vendor states, or is entitled by its versioning policy, that ids are opaque and may change format or length without a version bump. At least 3 undocumented format changes are observed: Anthropic msg_ on 2026-07-06, Anthropic toolu_ to a UUIDv4 shape, and OpenAI item ids in 2025-02, 2025-05 and 2025-09. The design must (1) gate every decode on a per-family format check (version/variant bits for Anthropic, exact 4B+3-varint parse for Gemini, hex length/position for OpenAI items) and return `unconstrained`, not `contradicted`, when the check fails; (2) treat a format change as a coverage loss, not a detection; (3) state in the threat model that the ids are unsigned and that the layout is public knowledge once anyone reverse-engineers it, so a forger can re-mint consistent ids; (4) prefer DOCUMENTED server clocks where they exist: OpenAI created/created_at (1 s), Vertex createTime, the HTTP Date header (RFC 9110, 1 s), and the documented openai-processing-ms duration. Only Anthropic has no documented per-response server timestamp in the Messages body (the Message type has no created field). Its only per-response server clocks are the undocumented req_/msg_ time and the HTTP Date header, if a harness records it.",
+
+  "providers": {
+    "anthropic": {
+      "request_id": {
+        "where": "`request-id` response header; also `request_id` in error bodies since 2025-08-19 (release note); the SDKs expose it as `_request_id`. Claude Platform on AWS adds `x-amzn-requestid` as the primary id.",
+        "timestamp_embedded": "YES (inferred from data, not documented): 'req_' + '01' + 22 base58 chars (bitcoin alphabet) = a 128-bit value laid out as RFC 9562 UUIDv7 (48-bit unix ms, version 7 at bits 76-79, variant 2 at bits 62-63). swechat 154,815/154,815 and cc_local 31,085/31,085 (FINDINGS 4.2.1; notes/ids_and_clocks_in_ids.md A1). Doc example req_011CSHoEeqs5C35K2UUqR7Fy decodes as v7 at 2025-08-19T21:43:15.444Z (decode_anthropic_doc_examples.jsonl).",
+        "documented": "NO. The errors page documents the header and gives 2 example values with no format statement. The release notes mention request ids once (2025-08-19, error bodies), with no layout.",
+        "stable": "Observed stable from 2025-08-19 (doc example) through swechat (2026 Jan-Apr) and cc_local (both sides of the 2026-07-06 msg-id switch). Vendor guarantee: none. The Message.id docstring says 'The format and length of IDs may change over time.' The versioning page promises only to preserve existing input/output parameters.",
+        "sdk_parsing": "None. Python `_response.py`: `return self.http_response.headers.get(\"request-id\")`; TypeScript `parse.ts`: `_request_id: { value: response.headers.get('request-id'), enumerable: false }`."
+      },
+      "message_id_msg_": {
+        "timestamp_embedded": "Before 2026-07-06: NO (uniform 128-bit). After: YES, UUIDv7 in base58 (cc_local 30,680/30,680; aiv_cu 8,232/8,240). Switch on 2026-07-06, first v7 at 20:23:44 UTC (FINDINGS 4.2.1, IX ids/O4).",
+        "documented": "NO. The SDK type docstring says only 'Unique object identifier. The format and length of IDs may change over time.' The release notes for 2026-07-01 to 2026-07-15 have no id entry.",
+        "doc_examples": "msg_014p7gG3wDgGV9EUtLvnow3U (streaming page) is not v7 (old random format). msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY (streaming page, model claude-opus-5-5) lacks the '01' marker and is a placeholder."
+      },
+      "tool_use_id_toolu_": {
+        "timestamp_embedded": "NO. Random 128-bit; the latest months carry a UUIDv4 shape (cc_local 20,415 v4-shaped vs 16,123 other; aiv_cu 2026-09 1,003 v4-shaped), which is still no time.",
+        "documented": "NO. The SDK ToolUseBlock declares `id: str` with no docstring. The doc example toolu_01A09q90qw90lq917835lq9 contains characters outside base58 ('0', 'l') and is a placeholder."
+      },
+      "documented_server_time": "No created/timestamp field on Message (anthropic-sdk-python types/message.py fields: id, container, content, diagnostics, model, role, stop_details, stop_reason, stop_sequence, type, usage). The rate-limit `*-reset` headers are documented as RFC 3339 replenish times, not mint times."
+    },
+    "openai": {
+      "x_request_id": {
+        "timestamp_embedded": "UNKNOWN. No official example beyond 'req_123' (SDK READMEs), and no corpus of ours stores it (aiv_cu first 400,000 rows: 0 lines contain 'x-request-id' or 'request-id').",
+        "documented": "Only as 'Unique identifier for this API request (used in troubleshooting)' (developers.openai.com/api/reference/overview). The client-supplied X-Client-Request-Id is documented (ASCII, <= 512 chars).",
+        "sdk_parsing": "None. openai-python `_response.py`: `return self.http_response.headers.get(\"x-request-id\")`; openai-node `parse.ts`: `value: response.headers.get('x-request-id')`."
+      },
+      "chatcmpl_": {
+        "timestamp_embedded": "YES (inferred from official examples, not documented): base62(id[9:14]) + 1,576,800,000 == `created` in 12/12 official examples from 2023-11-26 to 2025-03-10 (chatcmpl_epoch_official_examples.jsonl). Resolution 1 s. Same information as the documented `created` field. Not checked after 2025-03 and not checked in any corpus: aiv_cu holds no OpenAI-minted chatcmpl ids, and swechat's chatcmpl-<13 digits> are proxy-minted ms.",
+        "documented": "NO. ChatCompletion.id: 'A unique identifier for the chat completion.' created: 'The Unix timestamp (in seconds) of when the chat completion was created.'"
+      },
+      "responses_ids_resp_msg_fc_rs_ws_ctc": {
+        "timestamp_embedded": "YES (inferred): time-first hex. resp_ hex[0:8] == created_at in 2/2 official cookbook examples (openai_item_examples.jsonl). Items of the same response share the trailing 16 hex (48-hex layout) and a constant '8191'/'8199' at hex[12:16]. In aiv_cu, OpenAI item ids carry time in 2 layouts (hex48_time_first 2025-08/09; hex50_prefix16_00_time from 2025-09; FINDINGS 4.2.1/5.7) and agree with the event clock, 0 violations in 14,038 ids.",
+        "documented": "NO. Response.id: 'Unique identifier for this Response.' created_at: 'Unix timestamp (in seconds) of when this Response was created.' completed_at: 'Unix timestamp (in seconds) of when this Response was completed. Only present when the status is `completed`.'",
+        "stable": "NO. 32 hex (2025-02) -> 48 hex (2025-05..2025-08) -> 50 hex with a per-session 16-hex prefix and the time at hex[18:26] (2025-09+)."
+      },
+      "call_": {
+        "timestamp_embedded": "NO evidence. 'call_' + 24 base62 chars; positional entropy 142.8 bits in aiv_cu (notes A1); cookbook examples look random.",
+        "documented": "NO. call_id: 'The unique ID of the function tool call generated by the model.'"
+      },
+      "vendor_stability_statement": "developers.openai.com/api/reference/overview, Backward compatibility: 'Changing the length or format of opaque strings, like resource identifiers' is listed as backwards-compatible.",
+      "documented_server_time": "created / created_at / completed_at (unix seconds), and the openai-processing-ms response header ('Time taken processing your API request'). The 1 s resolution of `created` causes real ordering inversions against client stamps (pydantic-ai issue #2071)."
+    },
+    "google": {
+      "responseId": {
+        "timestamp_embedded": "YES (inferred): Google EventId/'ei' layout = uint32 LE unix seconds + varint (microseconds) + 2 further varints. Parse succeeds exactly for 20,000/20,000 aiv_cu responseIds (lengths 15-17 bytes explained by varint lengths). The microsecond field is a real sub-second clock per the pre-stated variance test (gemini_frac_test.json). Phase C had decoded only bytes 0-3 (seconds).",
+        "documented": "PARTIAL for Vertex: the proto says '// Output only. response_id is used to identify each response. It is the // encoding of the event_id.' (google/cloud/aiplatform/v1/prediction_service.proto, field 13). event_id itself is not publicly specified. Gemini Developer API: '// Output only. response_id is used to identify each response.' (generativelanguage/v1beta/generative_service.proto, field 5), nothing more. Layout knowledge comes from third-party reverse engineering of Google Search 'ei' (Kevin Jones 2013; Unfurl parse_ei).",
+        "stable": "Unknown. No vendor statement found. aiv_cu covers 2025-12..2026-09 for the header-bearing rows sampled, with gemini-2.5-pro, 3-pro-preview, 3.1-pro-preview, 3.5-flash and 3.8-flash."
+      },
+      "headers": "aiv_cu Gemini Developer API rows (5,000): date, vary, server ('scaffolding on HTTPServer2'), alt-svc, content-type, server-timing ('gfet4t7; dur=N'), x-frame-options, content-encoding, x-xss-protection, transfer-encoding, x-content-type-options, x-gemini-service-tier. No request-id header and no x-goog-* header. google-genai keeps all headers unfiltered (`HttpResponse(response.headers, ...)`), so the absence is probably real unless AI Village filtered them (unverified). 'gfet4t7' has no public documentation (search found nothing).",
+      "documented_server_time": "Vertex: createTime ('Timestamp when the request is made to the server', proto field 12). Gemini Developer API: none in the body. The HTTP Date header has 1 s resolution.",
+      "sdk_parsing": "None in google-genai `_api_client.py` (only `x-goog-upload-status` is read, for uploads)."
+    }
+  },
+
+  "items": [
+    {"claim": "FACT: Anthropic request ids embed a ms timestamp (UUIDv7 in base58 after 'req_01'), and the layout is officially documented", "verdict": "N/A",
+     "closest_work": "Anthropic Claude API errors doc (Request ID section) + anthropic-sdk-python/_response.py",
+     "what_it_does": "Documents that every response has a unique `request-id` header and gives example values req_018EeWyXxfu5pfWkrYcMdjWG and req_011CSHoEeqs5C35K2UUqR7Fy. The SDK reads the header as an opaque string.",
+     "what_it_does_not": "Says nothing about format, structure or time. The timestamp is our inference: 154,815/154,815 swechat + 31,085/31,085 cc_local v7, and the doc example decodes to 2025-08-19T21:43:15.444Z. The other doc example is not v7. Layout UNDOCUMENTED: material limitation.",
+     "deciding_citation": "https://platform.claude.com/docs/en/api/errors : 'Every API response includes a unique `request-id` header. This header contains a value such as `req_018EeWyXxfu5pfWkrYcMdjWG`.'", "opened": true},
+    {"claim": "FACT: Anthropic id formats are stable / guaranteed", "verdict": "N/A",
+     "closest_work": "anthropic-sdk-python src/anthropic/types/message.py (Message.id docstring); platform.claude.com/docs/en/api/versioning; release notes",
+     "what_it_does": "The docstring states the format and length of IDs may change. The versioning page preserves only existing input/output parameters.",
+     "what_it_does_not": "Gives no stability guarantee. It did not announce the observed 2026-07-06 msg_ switch to UUIDv7 or the toolu_ UUIDv4 shape (the release notes for July 1-15 2026 have no id entry).",
+     "deciding_citation": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/message.py : 'Unique object identifier. The format and length of IDs may change over time.'", "opened": true},
+    {"claim": "FACT: OpenAI x-request-id embeds a timestamp", "verdict": "UNVERIFIED",
+     "closest_work": "developers.openai.com/api/reference/overview (Debugging requests); openai-python README",
+     "what_it_does": "Documents x-request-id as a unique troubleshooting id. The SDKs expose `_request_id`, with example 'req_123'.",
+     "what_it_does_not": "Gives no format. No corpus of ours stores x-request-id (aiv_cu first 400,000 rows: 0 lines). Whether it embeds time cannot be determined here.",
+     "deciding_citation": "https://developers.openai.com/api/reference/overview : x-request-id 'Unique identifier for this API request (used in troubleshooting)'", "opened": true},
+    {"claim": "FACT: OpenAI chatcmpl- ids embed the `created` second (base62 of id[9:14] + 1,576,800,000)", "verdict": "N/A",
+     "closest_work": "Official OpenAI examples: openai-openapi openapi.yaml examples; openai-cookbook notebook outputs (How_to_stream_completions, How_to_format_inputs_to_ChatGPT_models, How_to_handle_rate_limits)",
+     "what_it_does": "Prints real chatcmpl ids next to their `created` values. 12/12 match the decode exactly, 2023-11-26..2025-03-10.",
+     "what_it_does_not": "None of these sources describes the encoding; the field docs say only 'A unique identifier'. Searches found no public description of this layout. Resolution is 1 s and adds nothing beyond the documented `created`, except binding created to the id. Not checked after 2025-03.",
+     "deciding_citation": "https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml : example 'chatcmpl-B9MBs8CjcvOU2jLn4n570S5qMJKcT' with created 1741569952 (decode = 1741569952)", "opened": true},
+    {"claim": "FACT: OpenAI Responses ids (resp_/msg_/fc_/rs_) embed creation seconds in a time-first hex layout that has changed at least twice", "verdict": "N/A",
+     "closest_work": "openai-cookbook examples/responses_api/responses_example.ipynb and reasoning_items.ipynb; aiv_cu item ids (FINDINGS 4.2.1)",
+     "what_it_does": "The official outputs show resp_ hex[0:8] == created_at in 2/2 (1740465465; 1746989954). The 32-hex layout appears in 2025-02 and the 48-hex in 2025-05..08. Our aiv_cu data adds the 50-hex prefix16 layout from 2025-09.",
+     "what_it_does_not": "OpenAI documents only 'Unique identifier for this Response' and states that the format/length of opaque identifiers may change (backwards-compatible).",
+     "deciding_citation": "https://developers.openai.com/api/reference/overview : backwards-compatible changes include 'Changing the length or format of opaque strings, like resource identifiers'", "opened": true},
+    {"claim": "FACT: Gemini responseId embeds a timestamp; layout documented", "verdict": "N/A",
+     "closest_work": "googleapis/googleapis google/cloud/aiplatform/v1/prediction_service.proto (Vertex) and google/ai/generativelanguage/v1beta/generative_service.proto (Gemini API)",
+     "what_it_does": "Vertex says response_id 'is the encoding of the event_id' and documents a separate create_time ('Timestamp when the request is made to the server').",
+     "what_it_does_not": "Gives no event_id layout. The Gemini Developer API proto gives no structure and has no create_time. Our parse: uint32 LE seconds + varint microseconds + 2 varints, 20,000/20,000. Undocumented: material limitation.",
+     "deciding_citation": "https://raw.githubusercontent.com/googleapis/googleapis/master/google/cloud/aiplatform/v1/prediction_service.proto : '// Output only. response_id is used to identify each response. It is the // encoding of the event_id.'", "opened": true},
+    {"claim": "PRIOR ART: Gemini responseId follows Google's 'ei'/EventId layout with a microsecond field", "verdict": "PARTIAL",
+     "closest_work": "Kevin Jones, 'Decoding the ei parameter' (2013) and obsidianforensics/unfurl parse_google.parse_ei",
+     "what_it_does": "Reverse-engineers Google Search's ei parameter as 4 LE bytes of unix seconds + 3 varints, the second conjectured to be microseconds. Unfurl decodes it routinely in DFIR.",
+     "what_it_does_not": "Does not connect the layout to Gemini/Vertex responseId, does not validate the microsecond field against an independent clock, and does not use it for agent logs. Our test does all three: 20,000/20,000 parse, and variance reduction 0.199 s^2 [0.105, 0.296] against the DB clock.",
+     "deciding_citation": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/unfurl/parsers/parse_google.py : '# grab 1st 4 bytes and treat as LE unsigned int' / timestamp = struct.unpack('<i', decoded[0:4])[0]", "opened": true},
+    {"claim": "PRIOR ART: reading creation time out of opaque identifiers (UUIDv1/v6/v7, Snowflake, ULID, KSUID, Google ei)", "verdict": "TAKEN",
+     "closest_work": "obsidianforensics/unfurl (parse_uuid, parse_twitter, parse_ulid, parse_ksuid, parse_sonyflake, parse_google)",
+     "what_it_does": "Extracts timestamps from many id families, including UUIDv7 ('timestamp = int(u.hex[:12], 16)').",
+     "what_it_does_not": "Has no parser for LLM-provider ids. parse_uuid accepts hyphenated hex only, and parse_base58 does not reinterpret decoded bytes as UUIDs, so it would not decode 'req_01...' unaided. Not applied to agent tool logs. The narrower B2 claim (provider id as an external clock bracketing agent log stamps) is for B2b/B2c to judge.",
+     "deciding_citation": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/unfurl/parsers/parse_uuid.py : version 7 'timestamp = int(u.hex[:12], 16)'", "opened": true},
+    {"claim": "FACT: official SDKs parse or decode provider ids", "verdict": "N/A",
+     "closest_work": "anthropic-sdk-python _response.py/_models.py; anthropic-sdk-typescript core/api-promise.ts, internal/parse.ts; openai-python _response.py; openai-node internal/parse.ts; google-genai _api_client.py",
+     "what_it_does": "Each reads the request-id / x-request-id header verbatim and attaches it to the response object. google-genai keeps all headers in sdk_http_response.",
+     "what_it_does_not": "None parses, validates or decodes any id, so SDK source cannot serve as layout documentation.",
+     "deciding_citation": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/_response.py : 'return self.http_response.headers.get(\"request-id\")'", "opened": true},
+    {"claim": "FACT: ids in logs are always provider-minted", "verdict": "N/A",
+     "closest_work": "BerriAI/litellm litellm/responses/utils.py",
+     "what_it_does": "Re-mints resp_ ids as base64 of 'litellm:custom_llm_provider:{};model_id:{};response_id:{}' (the original id is preserved inside).",
+     "what_it_does_not": "Its ids carry no time. Our corpora also show proxy ids chatcmpl-<13-digit ms> and msg_<YYYYMMDDhhmmss> (UTC+8 wall clock). A decoder must validate the family before use.",
+     "deciding_citation": "https://raw.githubusercontent.com/BerriAI/litellm/main/litellm/responses/utils.py : 'base64_encoded_id ... return f\"resp_{base64_encoded_id}\"'", "opened": true}
+  ],
+
+  "local_measurements": {
+    "note": "Read-only aggregates on data/ai-village/computer_use_turns.jsonl.gz (aiv_cu raw), in file order without split filtering. No ids are written to any output.",
+    "split_exposure_disclosure": "The 20,000-row Gemini scans touched 517 rows / 270 sessions of held-out split H, 542/269 of E, 502/263 of B, 47/28 of A and 18,392/9,366 outside every split (split_exposure.json). They computed id-format structure only; no detection threshold was tuned. The orchestrator should judge whether this counts as reading H.",
+    "files": {
+      "B2a_provider_id_facts/decode_anthropic_doc_examples.jsonl": "decode of Anthropic doc example ids (decode_examples.py)",
+      "B2a_provider_id_facts/chatcmpl_epoch_official_examples.jsonl": "12/12 chatcmpl decode matches (chatcmpl_epoch.py)",
+      "B2a_provider_id_facts/openai_item_examples.jsonl": "resp_/item hex decode of cookbook ids (openai_item_examples.py)",
+      "B2a_provider_id_facts/gemini_header_census.json": "header keys and value shapes, 5,000 Gemini rows",
+      "B2a_provider_id_facts/gemini_header_literals.json": "structural header literals, modelVersion, responseId lengths",
+      "B2a_provider_id_facts/gemini_rid_ei_layout.json": "ei-layout parse on 20,000 responseIds",
+      "B2a_provider_id_facts/gemini_frac_test.json": "pre-stated variance test for the microsecond field",
+      "B2a_provider_id_facts/reqid_presence.json": "request-id-like key presence in the first 400,000 aiv_cu lines",
+      "B2a_provider_id_facts/split_exposure.json": "split hygiene disclosure"
+    },
+    "gemini_rid_ei_layout": {"n": 20000, "parsed_4B_plus_3_varints_zero_trailing": 20000, "varint1_lt_1e6": 20000, "varint1_mean_over_1e6": 0.50013, "http_date_minus_decoded_min_s": -0.983, "http_date_minus_decoded_lt_minus1": 0},
+    "gemini_frac_test": {"prestated_prediction": "true fraction: var(full)-var(sec) about -1/6 s^2; noise: about +1/6", "pairs": 9532, "var_full_minus_sec": -0.199, "ci95": [-0.296, -0.105], "var_rand_minus_sec": 0.215, "ci95_rand": [0.122, 0.305], "result": "supports a real sub-second (microsecond) fraction"},
+    "aiv_cu_presence_first_400k_lines": {"x-request-id": 0, "request-id": 0, "req_011C": 0, "x-goog-*": 0, "resp_<hex>": 0, "createTime": 0, "chatcmpl-": "56 lines, all text mentions (4/8/32-char bodies), none an OpenAI-minted 29-char id"}
+  },
+
+  "verdict_reasoning": {
+    "VERDICT_REASONING_documentation": "Documented = an official vendor doc, API reference, proto or changelog that states the layout. For all three vendors no such statement exists for request/response ids. The nearest official statements are disclaimers (Anthropic, OpenAI) or the bare 'encoding of the event_id' (Vertex). SDK source treats every id as opaque. Hence UNDOCUMENTED everywhere, and a material limitation.",
+    "VERDICT_REASONING_stability": "Stable = no observed layout change plus a vendor commitment. No vendor commits to stability, and two disclaim it. Observed changes: Anthropic msg_ (2026-07-06), Anthropic toolu_ (UUIDv4 shape, 2026-08/09), OpenAI items (2025-02 -> 2025-05 -> 2025-09). Anthropic req_ has had no observed change since 2025-08-19, which is an absence of evidence and not a guarantee.",
+    "VERDICT_REASONING_prior_art": "Decoding time from ids is standard DFIR (Unfurl): TAKEN for the general technique. Google's ei layout is public, but its identity with Gemini responseId and the validated microsecond field are not: PARTIAL. The chatcmpl epoch layout has no public description found in 3 web searches. It is a fact of low independent value (it duplicates `created`), so it is reported as N/A rather than claimed NOVEL."
+  },
+
+  "sources": [
+    {"url": "https://docs.anthropic.com/en/api/errors", "opened": true, "saw": "301 redirect to platform.claude.com/docs/en/api/errors"},
+    {"url": "https://platform.claude.com/docs/en/api/errors", "opened": true, "saw": "'Every API response includes a unique `request-id` header. This header contains a value such as `req_018EeWyXxfu5pfWkrYcMdjWG`.' Error-shape example 'request_id': 'req_011CSHoEeqs5C35K2UUqR7Fy'. Python and TypeScript SDKs expose `_request_id`. No format statement."},
+    {"url": "https://platform.claude.com/docs/en/api/versioning", "opened": true, "saw": "Anthropic preserves existing input and output parameters and may add values. Nothing about id formats."},
+    {"url": "https://platform.claude.com/docs/en/release-notes/api", "opened": true, "saw": "2025-08-19: 'Request IDs are now included directly in error response bodies alongside the existing `request-id` header.' No entry documents id formats. The July 1-15 2026 entries (Jul 1, 2, 8, 10, 14, 15) do not mention ids. Read via the fetch tool's summary."},
+    {"url": "https://platform.claude.com/docs/en/api/rate-limits", "opened": true, "saw": "Placeholder req_018EeWyXxfu5pfWkrYcMdjWG reused in a 2026-09 spend-cap example. `anthropic-ratelimit-*-reset` headers: 'provided in RFC 3339 format'."},
+    {"url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview", "opened": true, "saw": "Example 'toolu_01A09q90qw90lq917835lq9' (contains non-base58 '0'/'l': placeholder)"},
+    {"url": "https://platform.claude.com/docs/en/build-with-claude/streaming", "opened": true, "saw": "Example ids msg_1nZdL29xx5MUA1yADyHTEsnR8uuvGzszyY, msg_014p7gG3wDgGV9EUtLvnow3U, srvtoolu_014hJH82Qum7Td6UV8gDXThB, toolu_01T1x1fJ34qAmk2tNTrN7Up6. None decodes as v7."},
+    {"url": "https://platform.claude.com/docs/en/api/messages/create", "opened": true, "saw": "The fetched content held request parameters only, with no response-schema id descriptions."},
+    {"url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/README.md", "opened": true, "saw": "Short README with no id-format content."},
+    {"url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/_response.py", "opened": true, "saw": "`return self.http_response.headers.get(\"request-id\")`; `add_response_ids(parsed, request_id=self.request_id, ...)`. Opaque."},
+    {"url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/_models.py", "opened": true, "saw": "`_request_id: Optional[str] = None` docstring 'The ID of the request, returned via the `request-id` header...' example `message._request_id  # req_xxx`. Opaque."},
+    {"url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/message.py", "opened": true, "saw": "`id: str` 'Unique object identifier. The format and length of IDs may change over time.' No created/timestamp field."},
+    {"url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/tool_use_block.py", "opened": true, "saw": "`id: str` with no docstring."},
+    {"url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-typescript/main/src/core/api-promise.ts", "opened": true, "saw": "`request_id: response.headers.get('request-id')`. Opaque."},
+    {"url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-typescript/main/src/internal/parse.ts", "opened": true, "saw": "`_request_id: { value: response.headers.get('request-id'), enumerable: false }`. Opaque."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-python/main/README.md", "opened": true, "saw": "'All object responses in the SDK provide a `_request_id` property which is added from the `x-request-id` response header'; example `# req_123`."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-python/main/src/openai/_response.py", "opened": true, "saw": "`return self.http_response.headers.get(\"x-request-id\")`. Opaque."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-python/main/src/openai/types/responses/response.py", "opened": true, "saw": "id 'Unique identifier for this Response.'; created_at 'Unix timestamp (in seconds) of when this Response was created.'; completed_at likewise."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-python/main/src/openai/types/chat/chat_completion.py", "opened": true, "saw": "id 'A unique identifier for the chat completion.'; created 'The Unix timestamp (in seconds) of when the chat completion was created.'"},
+    {"url": "https://raw.githubusercontent.com/openai/openai-python/main/src/openai/types/responses/response_function_tool_call.py", "opened": true, "saw": "call_id 'The unique ID of the function tool call generated by the model.'"},
+    {"url": "https://raw.githubusercontent.com/openai/openai-node/master/README.md", "opened": true, "saw": "Same `_request_id` text; example `// req_123`."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-node/master/src/internal/parse.ts", "opened": true, "saw": "`value: response.headers.get('x-request-id')` assigned to `_request_id`. Opaque."},
+    {"url": "https://platform.openai.com/docs/api-reference/debugging-requests", "opened": false, "saw": "HTTP 403"},
+    {"url": "https://developers.openai.com/api/reference/overview", "opened": true, "saw": "Headers openai-organization, openai-processing-ms, openai-version, x-request-id ('Unique identifier for this API request (used in troubleshooting)'). Backwards-compatible changes include 'Changing the length or format of opaque strings, like resource identifiers'."},
+    {"url": "https://developers.openai.com/api/docs/api-reference/responses/create.md", "opened": true, "saw": "No example ids in the fetched content."},
+    {"url": "https://developers.openai.com/api/docs/api-reference/responses/object.md", "opened": true, "saw": "No example ids in the fetched content."},
+    {"url": "https://developers.openai.com/api/reference/resources/responses/methods/create", "opened": true, "saw": "The fetch tool summarised it with no verbatim ids. Not relied on."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml", "opened": true, "saw": "Examples chatcmpl-B9MBs8CjcvOU2jLn4n570S5qMJKcT created 1741569952; chatcmpl-B9MHDbslfkBeAs8l4bebGdFOJ6PeG created 1741570283; chatcmpl-AyPNinnUqUDYo9SAdA52NobMflmj2 created 1738960610."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/responses_api/responses_example.ipynb", "opened": true, "saw": "resp_67bd65392a088191a3b802a61f4fba14 with created_at 1740465465.0; msg_/ws_ 32-hex ids."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/responses_api/reasoning_items.ipynb", "opened": true, "saw": "resp_6820f382ee1c8191bc096bee70894d040ac5ba57aafcbac7 with created_at 1746989954.0; rs_/msg_/fc_ 48-hex ids; call_9ylqPOZUyFEwhxvBwgpNDqPT."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/gpt-5/gpt-5_new_params_and_tools.ipynb", "opened": true, "saw": "rs_6894e31b1f8081999d18325e5ceffcfe0861a2e1728d1664, ctc_6894e31c66f08199abd622bb5ac3c4260861a2e1728d1664, call_Gnqod2MwPvayp2JdNyA0z0Ah."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/How_to_stream_completions.ipynb", "opened": true, "saw": "chatcmpl-9lMgdoiMfxVHPDNVCtvXuTWcQ2GGb created=1721075651; chatcmpl-9lMgfRSWPHcw51s6wxKT1YEO2CKpd created=1721075653."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb", "opened": true, "saw": "chatcmpl-8dee9DuEFcg2QILtT2a6EBXZnpirM created 1704461729."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/How_to_handle_rate_limits.ipynb", "opened": true, "saw": "6 chatcmpl ids with created values (2023-11-26, 2025-01-15/16/22)."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/How_to_call_functions_with_chat_models.ipynb", "opened": true, "saw": "8 call_ ids (24 base62 chars) and no chatcmpl ids."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/Using_logprobs.ipynb", "opened": true, "saw": "No chatcmpl ids."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/Structured_Outputs_Intro.ipynb", "opened": true, "saw": "No chatcmpl ids."},
+    {"url": "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/Getting_started_with_azure_openai_chat.ipynb", "opened": false, "saw": "HTTP 404"},
+    {"url": "https://github.com/pydantic/pydantic-ai/issues/2071", "opened": true, "saw": "OpenAI response timestamp rounded to seconds sorts before the preceding user prompt; closed as a duplicate of #1996."},
+    {"url": "https://raw.githubusercontent.com/BerriAI/litellm/main/litellm/responses/utils.py", "opened": true, "saw": "Re-mints resp_ = base64('litellm:custom_llm_provider:{};model_id:{};response_id:{}')."},
+    {"url": "https://ai.google.dev/api/generate-content", "opened": true, "saw": "responseId 'Output only. responseId is used to identify each response.' No createTime."},
+    {"url": "https://cloud.google.com/vertex-ai/generative-ai/docs/reference/rest/v1/GenerateContentResponse", "opened": true, "saw": "301 to docs.cloud.google.com"},
+    {"url": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/reference/rest/v1/GenerateContentResponse", "opened": true, "saw": "Navigation only in the fetched content; no field text."},
+    {"url": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/reference/rest/v1/projects.locations.endpoints/generateContent", "opened": true, "saw": "Navigation only."},
+    {"url": "https://docs.cloud.google.com/dotnet/docs/reference/Google.Cloud.AIPlatform.V1/latest/Google.Cloud.AIPlatform.V1.GenerateContentResponse", "opened": true, "saw": "Navigation only."},
+    {"url": "https://docs.cloud.google.com/java/docs/reference/google-cloud-vertexai/latest/com.google.cloud.vertexai.api.GenerateContentResponse", "opened": true, "saw": "Navigation only."},
+    {"url": "https://raw.githubusercontent.com/googleapis/googleapis/master/google/cloud/aiplatform/v1/prediction_service.proto", "opened": true, "saw": "'// Output only. Timestamp when the request is made to the server.' create_time = 12; '// Output only. response_id is used to identify each response. It is the // encoding of the event_id.' response_id = 13."},
+    {"url": "https://raw.githubusercontent.com/googleapis/googleapis/master/google/ai/generativelanguage/v1beta/generative_service.proto", "opened": true, "saw": "'// Output only. response_id is used to identify each response.' response_id = 5; no create_time."},
+    {"url": "https://googleapis.github.io/kotlin-genai/google-genai-kotlin/com.google.genai.kotlin.types/-generate-content-response/index.html", "opened": true, "saw": "responseId 'Output only. response_id is used to identify each response. It is the encoding of the event_id.'; createTime 'Timestamp when the request is made to the server.'"},
+    {"url": "https://raw.githubusercontent.com/googleapis/python-genai/main/google/genai/types.py", "opened": true, "saw": "The fetch tool reported response_id 'Output only. A unique identifier for the response.' and create_time 'Output only. The creation time of the response.' This wording conflicts with the Kotlin SDK and the proto. The file is very large, so the extraction is not independently verified and is not relied on."},
+    {"url": "https://raw.githubusercontent.com/googleapis/python-genai/main/google/genai/_api_client.py", "opened": true, "saw": "`return HttpResponse(response.headers, ...)`, with all headers kept. The only x-goog header read is `x-goog-upload-status`. No id parsing."},
+    {"url": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/unfurl/parsers/parse_google.py", "opened": true, "saw": "parse_ei: '# grab 1st 4 bytes and treat as LE unsigned int'; credits Adrian Leong's google-ei-time.py and Kevin Jones."},
+    {"url": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/unfurl/parsers/parse_uuid.py", "opened": true, "saw": "v1/v6/v7 timestamp extraction; v7 'timestamp = int(u.hex[:12], 16)'; hex-only regex."},
+    {"url": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/unfurl/parsers/parse_base58.py", "opened": true, "saw": "Decodes base58 to ASCII or bytes and does not interpret the result as UUID or time."},
+    {"url": "https://github.com/obsidianforensics/unfurl/tree/main/unfurl/parsers", "opened": true, "saw": "Parser list (uuid, ulid, ksuid, sonyflake, twitter, discord, google, ...) with no OpenAI/Anthropic/Gemini parser."},
+    {"url": "https://raw.githubusercontent.com/obsidianforensics/unfurl/main/README.md", "opened": true, "saw": "'more generic parsers (timestamps, UUIDs, etc)'; Snowflake timestamp example."},
+    {"url": "https://deedpolloffice.com/blog/articles/decoding-ei-parameter", "opened": true, "saw": "Kevin Jones, 23 Dec 2013: ei = '4 bytes, in little-endian order' (unix timestamp) + 3 varints; the second is conjectured microseconds, 'always seems to be 6 digits (or under)'."},
+    {"url": "https://raw.githubusercontent.com/cheeky4n6monkey/4n6-scripts/master/google-ei-time.py", "opened": false, "saw": "HTTP 404 at this path (cited by Unfurl; not used as evidence)."},
+    {"url": "https://raw.githubusercontent.com/ryoppippi/ccusage/main/src/data-loader.ts", "opened": false, "saw": "HTTP 404 at this path (was checking whether ccusage uses requestId; not cited)."},
+    {"url": "WebSearch queries", "opened": true, "saw": "No public analysis of Anthropic id layout ('req_011C' base58; msg_01 ULID/sortable; Anthropic msg id format change 2026), no public description of the chatcmpl epoch ('1576800000' epoch openai id; chatcmpl timestamp base62), no documentation of 'gfet4t7'."}
+  ],
+
+  "not_done": [
+    "Did not check Anthropic ids on Bedrock/Vertex (msg_bdrk_/req_vrtx_). Phase C notes that 50 Vertex ids were mixed into swechat message ids.",
+    "Did not check whether Anthropic responses carry server-timing. No corpus stores Anthropic response headers other than request-id.",
+    "Did not test the chatcmpl epoch layout after 2025-03, and did not test it on any corpus (none holds OpenAI-minted chatcmpl ids).",
+    "Did not verify python-genai types.py wording independently (file too large for exact quoting via the available tools).",
+    "Raw curl/GitHub API downloads were denied by permissions, so all web evidence comes through WebFetch's extraction, which may paraphrase. Ids and numbers quoted from it were cross-checked by decoding: an id whose decode matches its printed created value exactly cannot be a paraphrase artefact."
+  ]
+}

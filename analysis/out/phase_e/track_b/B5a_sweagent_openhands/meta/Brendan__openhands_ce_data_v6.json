@@ -1,0 +1,188 @@
+{
+ "id": "Brendan/openhands_ce_data_v6",
+ "sha": "7aebe62d411a7a6295dbd767ca0b08af6b8eea6d",
+ "gated": false,
+ "private": false,
+ "lastModified": "2026-09-10T17:48:11.000Z",
+ "license_tags": [],
+ "cardData_license": null,
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "valid",
+     "path": "data/valid-*"
+    }
+   ]
+  }
+ ],
+ "dataset_info": {
+  "features": [
+   {
+    "name": "instance_id",
+    "dtype": "string"
+   },
+   {
+    "name": "patch",
+    "dtype": "string"
+   },
+   {
+    "name": "FAIL_TO_PASS",
+    "list": "string"
+   },
+   {
+    "name": "PASS_TO_PASS",
+    "list": "string"
+   },
+   {
+    "name": "image_name",
+    "dtype": "string"
+   },
+   {
+    "name": "repo",
+    "dtype": "string"
+   },
+   {
+    "name": "problem_statement",
+    "dtype": "string"
+   },
+   {
+    "name": "task_id",
+    "dtype": "string"
+   },
+   {
+    "name": "domain",
+    "dtype": "string"
+   },
+   {
+    "name": "system_prompt",
+    "dtype": "string"
+   },
+   {
+    "name": "user_prompt",
+    "dtype": "string"
+   },
+   {
+    "name": "selected_tools",
+    "list": "string"
+   },
+   {
+    "name": "restricted_tools",
+    "list": "null"
+   },
+   {
+    "name": "mcp_endpoint",
+    "dtype": "string"
+   },
+   {
+    "name": "number_of_runs",
+    "dtype": "int64"
+   },
+   {
+    "name": "reset_database_between_runs",
+    "dtype": "bool"
+   },
+   {
+    "name": "gym_servers_config",
+    "dtype": "string"
+   },
+   {
+    "name": "verifiers",
+    "dtype": "string"
+   },
+   {
+    "name": "benchmark",
+    "dtype": "string"
+   },
+   {
+    "name": "enterprise_ops_test_result",
+    "dtype": "string"
+   },
+   {
+    "name": "skillsbench_test_result",
+    "dtype": "string"
+   },
+   {
+    "name": "instruction",
+    "dtype": "string"
+   },
+   {
+    "name": "num_actions",
+    "dtype": "int64"
+   },
+   {
+    "name": "conversation_archive_path",
+    "dtype": "string"
+   },
+   {
+    "name": "benchmark_run_name",
+    "dtype": "string"
+   },
+   {
+    "name": "resolved",
+    "dtype": "bool"
+   },
+   {
+    "name": "model_pred_patch",
+    "dtype": "string"
+   },
+   {
+    "name": "model",
+    "dtype": "string"
+   },
+   {
+    "name": "eval_report",
+    "dtype": "string"
+   },
+   {
+    "name": "eval_test_output",
+    "dtype": "string"
+   },
+   {
+    "name": "prompt_tokens",
+    "dtype": "int64"
+   },
+   {
+    "name": "reasoning_tokens",
+    "dtype": "int64"
+   },
+   {
+    "name": "completion_tokens",
+    "dtype": "int64"
+   }
+  ],
+  "splits": [
+   {
+    "name": "valid",
+    "num_bytes": 50306120,
+    "num_examples": 379
+   }
+  ],
+  "download_size": 21634283,
+  "dataset_size": 50306120
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2504,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 1630,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "data/valid-00000-of-00001.parquet",
+   "size": 21634283,
+   "type": "file",
+   "lfs_sha256": "a40a4098f732fe9c95e18d6ee02ed293efeccd2ce3eed524e3fb902e604d4b55"
+  }
+ ],
+ "total_bytes": 21638417,
+ "n_files": 3,
+ "readme_bytes": 1630
+}

@@ -1,0 +1,196 @@
+{
+ "id": "nvidia/SWE-Hero-openhands-trajectories",
+ "sha": "150bc119e52c647216fce285fd801f16b6fd745b",
+ "gated": false,
+ "private": false,
+ "lastModified": "2026-05-08T17:10:16.000Z",
+ "license_tags": [
+  "license:cc-by-4.0"
+ ],
+ "cardData_license": "cc-by-4.0",
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "train",
+     "path": "data/*.parquet"
+    }
+   ]
+  }
+ ],
+ "dataset_info": {
+  "features": [
+   {
+    "name": "instance_id",
+    "dtype": "string"
+   },
+   {
+    "name": "repo",
+    "dtype": "string"
+   },
+   {
+    "name": "license",
+    "dtype": "string"
+   },
+   {
+    "name": "trajectory_id",
+    "dtype": "string"
+   },
+   {
+    "name": "trajectory",
+    "list": [
+     {
+      "name": "content",
+      "dtype": "string"
+     },
+     {
+      "name": "role",
+      "dtype": "string"
+     },
+     {
+      "name": "tool_calls",
+      "list": [
+       {
+        "name": "function",
+        "struct": [
+         {
+          "name": "arguments",
+          "dtype": "string"
+         },
+         {
+          "name": "name",
+          "dtype": "string"
+         }
+        ]
+       },
+       {
+        "name": "id",
+        "dtype": "string"
+       },
+       {
+        "name": "type",
+        "dtype": "string"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "model_patch",
+    "dtype": "string"
+   },
+   {
+    "name": "dataset",
+    "dtype": "string"
+   }
+  ]
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2504,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 5622,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "data/train-00000-of-00014.parquet",
+   "size": 151791408,
+   "type": "file",
+   "lfs_sha256": "5149ba06dc7bcfe2fc01a20036e35cd535fde91840253c15bc070d95cf217be6"
+  },
+  {
+   "path": "data/train-00001-of-00014.parquet",
+   "size": 151548338,
+   "type": "file",
+   "lfs_sha256": "93eea922fc3b77176541ff51e4a7774a910332008c99a885ec9dfe6c3a501803"
+  },
+  {
+   "path": "data/train-00002-of-00014.parquet",
+   "size": 151438507,
+   "type": "file",
+   "lfs_sha256": "82fa1c11dcb959bf7442a013202a0e2d0e13b010fa8f43a8374961734759fc59"
+  },
+  {
+   "path": "data/train-00003-of-00014.parquet",
+   "size": 157662607,
+   "type": "file",
+   "lfs_sha256": "8951f4d4d2e3fc4c3355fbce296a774320be92d9a1a06fc4fe40ed5c9efca58a"
+  },
+  {
+   "path": "data/train-00004-of-00014.parquet",
+   "size": 157992475,
+   "type": "file",
+   "lfs_sha256": "a086aea4c6e1336612cbe33ed381913aa2b3af8833b8f6880fc6b10f3f8c7f3f"
+  },
+  {
+   "path": "data/train-00005-of-00014.parquet",
+   "size": 157021081,
+   "type": "file",
+   "lfs_sha256": "368086731fbc2be0325504dea98b2da246748a741bf7407c14a469334365519b"
+  },
+  {
+   "path": "data/train-00006-of-00014.parquet",
+   "size": 175925246,
+   "type": "file",
+   "lfs_sha256": "a74b60b8eacdf5fe57b77dc90bcaf7498fc936d762c73e741d681e4c5089eaff"
+  },
+  {
+   "path": "data/train-00007-of-00014.parquet",
+   "size": 168067123,
+   "type": "file",
+   "lfs_sha256": "c4cbe1709237ba81499de533b90d0007578797bebf61be571eba42f7bd88d123"
+  },
+  {
+   "path": "data/train-00008-of-00014.parquet",
+   "size": 171348241,
+   "type": "file",
+   "lfs_sha256": "b523c6f9db86fc289d872558210db619b2ab3736f0592fdb4c56449efb4adc26"
+  },
+  {
+   "path": "data/train-00009-of-00014.parquet",
+   "size": 208247441,
+   "type": "file",
+   "lfs_sha256": "e608a33f616ce1c5322c6e72981fc78cf9eb4e56ac3ccf8950099e2bfac299d3"
+  },
+  {
+   "path": "data/train-00010-of-00014.parquet",
+   "size": 245825405,
+   "type": "file",
+   "lfs_sha256": "bf5e920077bf721832ab9fc34d1ea9275ed4cb8b5a2355bff2b6b2f598c199de"
+  },
+  {
+   "path": "data/train-00011-of-00014.parquet",
+   "size": 163740812,
+   "type": "file",
+   "lfs_sha256": "2f80d4bdba8ca57af6f8740ebc6185c1d691afd39c92430a2cc18cadb58f0f8e"
+  },
+  {
+   "path": "data/train-00012-of-00014.parquet",
+   "size": 200489804,
+   "type": "file",
+   "lfs_sha256": "529244ce0c3465c022565e8c6eeb3ef3d6b2981cabfb76dbed4f02c4f782722d"
+  },
+  {
+   "path": "data/train-00013-of-00014.parquet",
+   "size": 140913929,
+   "type": "file",
+   "lfs_sha256": "936b195ed11b2b9be2e60cf9cb274dfc2f31d07745cbd6144658da988ce295a9"
+  },
+  {
+   "path": "tools.json",
+   "size": 10749,
+   "type": "file",
+   "lfs_sha256": null
+  }
+ ],
+ "total_bytes": 2402031292,
+ "n_files": 17,
+ "readme_bytes": 5622
+}

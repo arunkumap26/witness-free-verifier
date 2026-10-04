@@ -1,0 +1,1623 @@
+{
+ "key": "B5d_hf_search",
+ "task": "Phase E Track B5 source d: HuggingFace dataset search for agent trajectories / tool-use logs / coding-agent sessions; field audit; download what passes (public, research licence, <=5 GB/corpus, <=25 GB total); skip SWE-chat, AI Village, Who&When.",
+ "date": "2026-10-04",
+ "scope_note": "Nothing related to the local Qwen swarm was read or run. No agent transcripts were generated. No paid API calls. CLAUDE_context_swarms.md s.6-7 were respected (no dead end cited). SWE-chat, AI Village and Who&When were skipped; cfahlgren1/agent-sessions-list (unlicensed) shares files with lhoestq/agent-traces-example and was not checked against SWE-chat.",
+ "DOWNLOAD_STATUS": {
+  "downloaded": [],
+  "why_nothing_was_downloaded": "Saving a third-party corpus to disk needs explicit approval from the user in chat. Instructions relayed through the workflow harness do not count as that approval, and the permission system refused a `curl -o` save of a schema file in this session. Field audits were run on in-memory range reads (first 400-600 kB of 1-4 files per dataset) and parquet footers, and the audit statistics were kept. Every recommended corpus has an exact pinned `hf download` command so a human can approve and run it.",
+  "data_acquired_du_at_check": "13G (C:/Swarms/data/acquired, written by other B5 agents: openhands-evaluation-outputs 4.5G, terminal-bench-2-leaderboard 5.6G, osworld_verified_trajs 1.7G, sweagent-combo2-rl-rollouts 425M, miniswe-v2-qwen3-30b-swebv-tarsur385 216M, openhands-feedback 109M, webarena_infinity_trajs 108M, glm52-nf3-tb21-traces 102M)",
+  "headroom_GB": 12.0,
+  "recommended_priority_A_GB": 4.12,
+  "recommended_priority_B_GB": 3.1,
+  "recommended_priority_C_GB": 0.1,
+  "after_download_record": "for each corpus: `git -C <dir> log` is not available for hf download; record the revision passed and run `find <dir> -type f -print0 | xargs -0 sha256sum > <dir>/SHA256SUMS` (Git Bash). Never execute files in the download."
+ },
+ "headline": [
+  "The HF Hub has a first-class 'agent traces' format: raw Claude Code, Codex and Pi session JSONL render in a trace viewer. 505 datasets carry the format:agent-traces tag. In their sampled files, 468 have per-event timestamps and 268 also have a call/result id join. That makes it the largest source of uninstrumented, harness-native agent logs this search found.",
+  "Of 561 candidates audited, 276 pass the mechanical field audit. Only 84 of those carry a licence (3.722 GB); 192 are unlicensed and listed only. Licence is the binding constraint, not schema.",
+  "Request-id coverage (B2/B4): 125 datasets carry provider request ids in their sampled file, 106 of them Anthropic-shaped. Deduplicated, 1512/1596 distinct ids agree with the carrying event clock under the B4 band. Licensed groups: 261/261 over 15 groups. Every disagreement is in an unlicensed set, and one shows events stamped 28 to 42 s before request minting. Coverage stays one harness, one provider.",
+  "New multi-harness corpora that pass and permit research: Exgentic (OTel spans, 5 harnesses, us timestamps, call/response ids, provider response ids), AgentBRANE v14 (Claude Code / Codex / Pi on SWE-bench Lite; only the Claude Code third has timestamps), MCPHunt (per-tool-call epoch-us timestamps + latency_ms + result_chars + truncation flag + workspace snapshot), Trace Commons (raw donated Claude Code sessions with request ids). AgentLogs (Copilot cloud agent, 64M log entries, CC BY 4.0) passes at schema level but is 56.7 GB, so take a shard subset.",
+  "Incidental prior art for B1/B3, not previously cited: Dubey 2608.02464 uses step latency only as an unconditioned monitor feature and drops it from the shipped config (N1a/N1b untouched). Its tool_contract check partially covers result-shape validation. Its corpus has tool-layer corruption injected at known steps, the labeled positives we lack, but no absolute timestamps."
+ ],
+ "method": {
+  "search": "HF Hub API keyword search (40 queries incl. the brief's 'agent trajectories', 'tool calls', 'claude code', 'codex', 'opencode', 'trajectory', 'function calling logs') -> 3,249 distinct datasets; enumeration of the format:agent-traces tag (505); manual triage of non-tag hits into 56 extras.",
+  "metadata": "huggingface_hub.dataset_info(files_metadata=True) per candidate: revision sha, gated, card licence, file list with sizes (meta.py).",
+  "field_audit": "audit.py: HTTP Range read of the first 400 kB of 1-2 data files per dataset (parquet: datasets-server first-rows or footer + first batch); parse records; detect format; per-record timestamp-valued fields at depth<=2; call ids vs result ids across tool_use/tool_result, function_call/function_call_output, toolCall/toolCallId, tool_calls/tool_call_id; request-id keys and req_* values; token, error and truncation keys. classify.py applies fixed pass rules. Targeted re-audits for files the generic picker misses (targeted1-3.json), pyarrow probe for Exgentic, structural parse for MCPHunt.",
+  "request_id_census": "Decoder and agreement band copied from B2a decode_examples.py::anth and B4 probe (analysis/probes/phase_e_b4_inventory.py L31, L236): off = first carrying event timestamp - top-48-bit ms of the base58 body; agrees iff -2 s <= off <= +600 s. Counted over DISTINCT request ids in each dataset's sampled file only (first 400 kB of one file), not over whole datasets.",
+  "dedupe": "dup_groups.json: union of datasets sharing >=3 data-file sizes covering >=50% of the smaller dataset; reqcensus dedupe on identical sampled-id signatures.",
+  "limits": "Samples are file prefixes, not whole datasets. Pass/fail is per sampled file and can flip on other files (seen for Fable-5-traces pi copies, hf-coding-tools, jedisct1). Licence read from card metadata; 'other' licences were read by hand only for the datasets named here."
+ },
+ "funnel": {
+  "search_queries": 40,
+  "distinct_datasets_from_keyword_search": 3249,
+  "datasets_tagged_format_agent_traces": 505,
+  "candidates_audited": 561,
+  "candidates_from_tag": 505,
+  "by_licence_class": {
+   "none": 390,
+   "permissive": 122,
+   "other": 27,
+   "research_only": 22
+  },
+  "gated": [
+   "Aeonthic/Agentic-SFT",
+   "Datoric/computer-use-agent-traces-250k",
+   "genlabs/OpenTraces",
+   "pablo85318/ml-intern-sessions",
+   "seekbot/seek-sessions"
+  ],
+  "mechanical_field_audit_pass_all": 276,
+  "mechanical_field_audit_pass_licensed": 84,
+  "mechanical_field_audit_pass_licensed_GB": 3.722,
+  "mechanical_field_audit_pass_unlicensed": 192,
+  "formats_of_passing": {
+   "codex": 69,
+   "other": 13,
+   "claude_code": 127,
+   "pi_or_sts_message": 66,
+   "messages_list": 1
+  },
+  "note": "Mechanical pass rule (classify.py docstring): >=50% of sampled records carry a timestamp-valued field at depth<=2 AND >=80% of sampled call ids have a matching result id. One or two files per dataset, first 400 kB. Targeted re-audits (targeted1-3.json, exgentic_probe_stats.json) override the mechanical verdict where named below; parquet-only and single-JSON-array datasets are not parsed by the mechanical pass."
+ },
+ "request_id_findings": {
+  "rule": "Decoder and agreement band copied from B2a decode_examples.py::anth and B4 probe (analysis/probes/phase_e_b4_inventory.py L31, L236): off = first carrying event timestamp - top-48-bit ms of the base58 body; agrees iff -2 s <= off <= +600 s. Counted over DISTINCT request ids in each dataset's sampled file only (first 400 kB of one file), not over whole datasets.",
+  "datasets_whose_sample_carries_request_ids": 125,
+  "by_licence_class": {
+   "none": 89,
+   "permissive": 32,
+   "other": 2,
+   "research_only": 2
+  },
+  "record_families": {
+   "anthropic_first_party_shape": 4694,
+   "req_hex": 12,
+   "req_other": 1713
+  },
+  "datasets_with_anthropic_shaped_ids": 106,
+  "anthropic_shaped_distinct_ids_all_datasets": 2098,
+  "uuidv7_version_and_variant_bits_ok": 2098,
+  "agree_all_datasets": 2014,
+  "dedup_note": "Datasets whose sampled file gives identical (distinct-id count, offset quantiles) are counted once (copies such as the 24-member claude-fable-5 group).",
+  "dedup_groups": 77,
+  "dedup_distinct_ids": 1596,
+  "dedup_agree": 1512,
+  "licensed_groups": 15,
+  "licensed_distinct_ids": 261,
+  "licensed_agree": 261,
+  "licence_other_groups": [
+   [
+    "ultralazr/claude-code-traces"
+   ],
+   [
+    "JohnBeanerson/strudel-coder"
+   ]
+  ],
+  "licence_other_distinct_ids": 83,
+  "licence_other_agree": 83,
+  "unlicensed_groups": 60,
+  "unlicensed_distinct_ids": 1252,
+  "unlicensed_agree": 1168,
+  "disagreements": [
+   {
+    "id": "MarxistLeninist/repro-fast-and-scalable-analytical-diffusion-traces",
+    "licence_class": "none",
+    "distinct_ids": 15,
+    "agree": 6,
+    "off_s_min_med_max": [
+     -5.655,
+     -2.398,
+     9.346
+    ]
+   },
+   {
+    "id": "MarxistLeninist/repro-skill-neologisms-traces",
+    "licence_class": "none",
+    "distinct_ids": 27,
+    "agree": 2,
+    "off_s_min_med_max": [
+     -7.351,
+     -5.426,
+     0.516
+    ]
+   },
+   {
+    "id": "MarxistLeninist/repro-learning-to-bet-horizon-aware-traces",
+    "licence_class": "none",
+    "distinct_ids": 21,
+    "agree": 0,
+    "off_s_min_med_max": [
+     -7.5,
+     -6.302,
+     -2.877
+    ]
+   },
+   {
+    "id": "MarxistLeninist/repro-ambient-dataloops-traces",
+    "licence_class": "none",
+    "distinct_ids": 9,
+    "agree": 2,
+    "off_s_min_med_max": [
+     -26.632,
+     -20.313,
+     10.512
+    ]
+   },
+   {
+    "id": "DedeProGames/claude-code-traces-pt-br",
+    "licence_class": "none",
+    "distinct_ids": 22,
+    "agree": 0,
+    "off_s_min_med_max": [
+     -42.337,
+     -38.807,
+     -28.036
+    ]
+   }
+  ],
+  "observations": [
+   "Every disagreement sits in an unlicensed dataset; all licensed groups agree. In three MarxistLeninist repro-* sets the median offset is a few seconds negative (-2.4 to -6.3 s), and in a fourth (repro-ambient-dataloops) it is -20.3 s. A client clock running behind the provider would produce exactly this. In DedeProGames/claude-code-traces-pt-br the events are stamped 28 to 42 s BEFORE their request id was minted. Neither card explains it. Client clock skew is the simplest candidate and was not investigated. This is a false-positive source the request-id check must budget for: a per-session constant offset.",
+   "Non-Anthropic request ids appear in Claude-Code-format files produced by other endpoints: `req_<hex>` (Xiaomi MiMo via Claude Code, choucsan/mimo-*), and `req_other` shapes in Infatoshi/kernelbench-* (gpt-5.5, kimi via Claude Code) and the clem/davidkling hf-coding-tools family (gpt-4.1 / sonnet-4.6 through some gateway, msg ids `msg_<hex>`). None decodes to a time with the Anthropic layout."
+  ],
+  "consequence_for_B2_B4": "B4 found one public corpus with provider request ids (swechat claude_code). The HF Hub adds licensed Claude Code session sets whose ids decode and agree with the carrying event clock (counts above). Coverage still covers only one harness and one provider (Claude Code to Anthropic first-party). Codex, Pi, OpenCode and Cursor files on HF carry no provider request id."
+ },
+ "duplication_findings": {
+  "multi_member_groups": [
+   [
+    "1izailizai1m1/gpt-5.5-agent",
+    "Quaxicron/gpt-5.5-agent",
+    "armand0e/gpt-5.5-agent",
+    "mofazzelhmorshed/agent"
+   ],
+   [
+    "ArkhAngelLifeJiggy/claude-fable-5-claude-code",
+    "AyoubChLin/claude-fable-5-claude-code",
+    "Nemesispro/claude-fable-5-claude-code",
+    "Poumrm/claude-fable-5-claude-code",
+    "Pq234/claude-fable-5-claude-code",
+    "Quaxicron/claude-fable-5-claude-code",
+    "Rights4AI/claude-fable-5-claude-code",
+    "Sayyam6565/claude-fable-5-claude-code",
+    "Sexyeinstein/Agent",
+    "ShaunGves/claude-fable-5-claude-code",
+    "TerraBytes/claude-fable-5-claude-code-traces",
+    "Thugshake54323/claude-fable-5-claude-code",
+    "Thugshake54323/claude-fable-5-claude-codeg",
+    "abyss5912/claude",
+    "ansulev/claude-fable-5-claude-code",
+    "armand0e/claude-fable-5-claude-code",
+    "bh890/claude-fable-5-claude-code",
+    "developerjeremylive/claude-fable-5-claude-code-etheroi",
+    "eishaanand/claude-fable-5-claude-code",
+    "owenqwenllmwine/claude-fable-5-claude-code",
+    "paperworkmg/claude-fable-5-claude-code",
+    "ronaldcmz/claude-fable-5-claude-code",
+    "rumeshprasanga6/claude-fable-5-claude-code",
+    "yrrhall/claude-fable-5-claude-code"
+   ],
+   [
+    "Auenchanters/repro-conservation-laws-for-modern-neural-architectures-traces",
+    "Auenchanters/repro-towards-optimal-robustness-in-learning-augmented-paging-traces"
+   ],
+   [
+    "Auenchanters/repro-improved-distribution-estimation-in-ell-infty-traces",
+    "Auenchanters/repro-score-a-unified-framework-for-overshoot-refund-in-online-fdr-control-traces"
+   ],
+   [
+    "Eishaan/repro-revisiting-zeroth-order-hessian-approximation-policy-lens-traces",
+    "Eishaan/repro-revisiting-zeroth-order-hessian-approximation-traces"
+   ],
+   [
+    "LarsEckart/approvaltests-java-sessions",
+    "MaxDevv/real-pi-coding-agent-traces-sessions",
+    "aaaaliou/pi-synthetic",
+    "badlogicgames/pi-diff-review",
+    "cfahlgren1/pi-diff-review",
+    "julien-c/pi-sessions",
+    "kaofelix/video-scissors-sessions",
+    "moikapy/0xKobolds",
+    "thomasmustier/clean-slides-sessions",
+    "thomasmustier/economist-tui-sessions",
+    "thomasmustier/pi-extensions-sessions",
+    "thomasmustier/pi-for-excel-sessions",
+    "thomasmustier/pi-mono-sessions",
+    "thomasmustier/pi-nes-sessions",
+    "thomasmustier/pine-of-glass-sessions",
+    "woxQAQ/pi-web"
+   ],
+   [
+    "Quaxicron/Fable-5-traces",
+    "cfahlgren1/Fable-5-traces"
+   ],
+   [
+    "Quaxicron/claude-opus-4.8-pi-traces",
+    "armand0e/claude-opus-4.8-pi-traces"
+   ],
+   [
+    "TeichAI/DeepSeek-v4-Pro-Agent",
+    "armand0e/minimax-m2.7-agent",
+    "armand0e/qwen3.7-max-pi-traces",
+    "armand0e/teich-test-v1",
+    "championswimmer/pi-coding-sessions",
+    "hardcoremoore/DeepSeek-v4-Pro-Agent",
+    "ororai/ORORAi",
+    "owenqwenllmwine/bigpi-1",
+    "ronaldcmz/DeepSeek-v4-Pro-Agent"
+   ],
+   [
+    "cfahlgren1/agent-sessions-list",
+    "lhoestq/agent-traces-example"
+   ],
+   [
+    "cfahlgren1/factory-traces",
+    "lhoestq/factory-traces-tmp"
+   ],
+   [
+    "cfahlgren1/model-toolcall-research",
+    "evalstate/model-toolcall-research"
+   ],
+   [
+    "codemaivanngu/repro-adversarial-dual-on-policy-distillation-traces",
+    "codemaivanngu/repro-flashsinkhorn-io-aware-entropic-optimal-transport-on-gpu-traces",
+    "codemaivanngu/repro-flashsinkhorn-traces",
+    "codemaivanngu/repro-self-distillation-enables-continual-learning-traces"
+   ]
+  ],
+  "note": "Copies are common: one claude-fable-5 capture exists in 24 repos (3 licensed MIT); Fable-5-traces pi/agpl copies in 17+ repos; compilations (MaxDevv, beomi) re-host many single-project sets. Dedupe on session uuid / file sha before any count. Resumed Claude Code sessions repeat earlier lines across files (armand0e sample: two files share their first 400 kB)."
+ },
+ "corpora_recommended_pending_approval": [
+  {
+   "name": "Exgentic multi-benchmark OTel agent traces",
+   "repo": "Exgentic/agent-llm-traces",
+   "url": "https://huggingface.co/datasets/Exgentic/agent-llm-traces",
+   "revision": "70036b93a04e61b0ea2706a68b962f4f26774587",
+   "licence": "cdla-permissive-2.0 (card front-matter `license: cdla-permissive-2.0`; permits use, modification and sharing incl. research; no NC clause)",
+   "MB": 983.6,
+   "sessions": "1,781 traces (README); 5 harnesses (claude_code, openai_solo, tool_calling, tool_calling_with_shortlisting, smolagents_code); 6 benchmarks; 5 models",
+   "field_audit": {
+    "verdict": "PASS",
+    "evidence_file": "B5d_hf_search/exgentic_probe_stats.json",
+    "ms_timestamps": "YES per LLM call: span start_time/end_time ISO-8601 with microseconds (e.g. 2026-04-20T08:41:55.462818+00:00). Tool executions are not spans; a tool's wall interval is the gap between span k end and span k+1 start.",
+    "call_result_join": "YES: OTel GenAI message parts tool_call.id <-> tool_call_response.id; sampled rows joined 4/5, 19/20, 10/11, 7/8, 31/32, 22/23 (the last call of each session has no response)",
+    "provider_request_ids": "gen_ai.response.id per span (sampled Azure DeepSeek-V3.2 rows: 32-hex, e.g. a9ddbeb4640e4ed3aacb46f7106b7402; no known time layout). claude_code-harness rows not sampled, so their id shape is UNVERIFIED.",
+    "caveats": "only 6 rows of shard 3 (harness tool_calling, appworld) were sampled; one sampled session has 12 negative inter-span gaps (overlapping LLM calls), so ordering by start time is not safe without checking. The open-agent-leaderboard/traces repo (unlicensed) appears to hold the same benchmarks as raw jsonl."
+   },
+   "schema_note": "row = session {harness, benchmark, models[], max_tokens, total_tokens, session_id, collected_at, spans[]}; span {span_id, trace_id, name 'chat <model>', kind, type 'llm_call', start_time, end_time, attributes{gen_ai.operation.name, gen_ai.request.model, gen_ai.response.model, gen_ai.usage.input_tokens, gen_ai.usage.output_tokens, gen_ai.response.id, gen_ai.response.finish_reasons[], gen_ai.input.messages (JSON string), gen_ai.output.messages (JSON string), gen_ai.tool.definitions}, resource_attributes{telemetry.sdk.*, service.*}, status{code, message}, harness, benchmark, session_id}. 39 parquet shards.",
+   "command": "hf download Exgentic/agent-llm-traces --repo-type dataset --revision 70036b93a04e61b0ea2706a68b962f4f26774587 --local-dir C:/Swarms/data/acquired/hf__Exgentic__agent-llm-traces",
+   "priority": "A"
+  },
+  {
+   "name": "AgentBRANE SWE-bench Lite v14 harness-native traces",
+   "repo": "melissapan/swe-bench-lite-agent-traces-v14",
+   "url": "https://huggingface.co/datasets/melissapan/swe-bench-lite-agent-traces-v14",
+   "revision": "2cdf7f3c08052508330cf99dc600c6a00ea89bff",
+   "licence": "cc-by-4.0 (README: 'The original compilation and metadata are CC BY 4.0 and are intended to support open research.')",
+   "MB": 2087.6,
+   "sessions": "1,890 published traces (README), 1,908 trace.jsonl files on disk; harnesses claude-code, codex, pi; 7 model slugs (fable, haiku, kimi, luna, opus, sol, sonnet); 3 replicates",
+   "field_audit": {
+    "verdict": "PASS for the Claude Code third only",
+    "ms_timestamps": "Claude Code (SDK stream-json): timestamp ISO ms on 95% of records (38/40). Codex (`codex exec --json` events: type/item/thread_id): NO timestamps. Pi (json-mode stream): timestamps on 17% of records (message objects only; tool_execution_* events unstamped).",
+    "call_result_join": "Claude Code tool_use.id <-> tool_result.tool_use_id 11/11 in sample; Pi toolCallId 6/6; Codex items carry ids and exit_code but no timestamps",
+    "provider_request_ids": "NONE: Claude Code went through a gateway and the traces carry no requestId; gateway receipts.jsonl exclude provider request ids and carry no timestamps (route, outcome, byte counts, sha256 digests only)",
+    "caveats": "Gateway receipts are a third record per call (byte counts + digests of request/response bodies) that could be cross-checked against the trace, but they carry no clock and no id join to trace events."
+   },
+   "schema_note": "data/traces.jsonl rows {observation_id, cell_id, harness, model_slug, task_id, replicate, attempt_id, resolved, turns, input/output/cache tokens, trace_path, trace_sha256, trace_bytes, trace_events, trace_format (claude-code-native-jsonl | codex-native-jsonl | pi-native-jsonl), gateway_receipts_path, gateway_receipt_count, ...}; per attempt dir: trace.jsonl, gateway/receipts.jsonl, model.patch, result.json, report.json, test_output.txt.zst, bundle-manifest.json.",
+   "command": "hf download melissapan/swe-bench-lite-agent-traces-v14 --repo-type dataset --revision 2cdf7f3c08052508330cf99dc600c6a00ea89bff --local-dir C:/Swarms/data/acquired/hf__melissapan__swe-bench-lite-agent-traces-v14",
+   "priority": "A"
+  },
+  {
+   "name": "MCPHunt agent traces (MCP data-propagation benchmark)",
+   "repo": "lihaonan0716/mcphunt-agent-traces",
+   "url": "https://huggingface.co/datasets/lihaonan0716/mcphunt-agent-traces",
+   "revision": "c4c69322bf9ed7690f5265577365709dad5dd454",
+   "licence": "cc-by-4.0 (card front-matter)",
+   "MB": 593.5,
+   "sessions": "3,615 main + 2,706 mitigation + 387 live-guard + 78 browser-replication traces (README); 5 models",
+   "field_audit": {
+    "verdict": "PASS (structural parse of the first trace of mitigation/deepseek_m0_rv1.json)",
+    "ms_timestamps": "YES per tool call: events[].timestamp epoch seconds with microseconds (e.g. 1777219294.977868) plus events[].latency_ms",
+    "call_result_join": "YES: assistant tool_calls[].id <-> tool message tool_call_id 8/8 in the parsed trace; events[] has one record per call in order (8 events for 8 calls)",
+    "provider_request_ids": "NONE seen",
+    "caveats": "One trace parsed structurally; the other 31 files were not. Tool results are MCP servers in a controlled workspace; env_snapshot gives the workspace state (files, db tables, git commits), which is a world-state reference for consistency checks."
+   },
+   "schema_note": "file = {schema_version, pipeline_git_commit, task_taxonomy_version, labeling_rules_version, traces[]}; trace keys: trace_id, task_id, task_prompt, task_category, risk_mechanism, sink_policy, env_type, mitigation(_level), model, wire_api, num_turns, num_events, turn_log[{turn, finish_reason, n_tool_calls, prompt_tokens, completion_tokens, has_text}], tool_errors, task_completed, truncated, api_errors, duration_s, events[{turn, server, tool, args, result_preview, result_full, result_chars, result_truncated, success, error, canary_in_result, canary_visible_to_llm, canary_in_args, latency_ms, timestamp}], messages[OpenAI chat], labeling{...}, completion_checks{...}, env_snapshot{...}, measurement{prompt/completion/total tokens, api_retries, ...}, collection_timestamp.",
+   "command": "hf download lihaonan0716/mcphunt-agent-traces --repo-type dataset --revision c4c69322bf9ed7690f5265577365709dad5dd454 --local-dir C:/Swarms/data/acquired/hf__lihaonan0716__mcphunt-agent-traces",
+   "priority": "A"
+  },
+  {
+   "name": "Trace Commons (raw multi-harness donated sessions)",
+   "repo": "trace-commons/agent-traces",
+   "url": "https://huggingface.co/datasets/trace-commons/agent-traces",
+   "revision": "112ebd4d03ce852b00e935d523107c3d0c9a65bf",
+   "licence": "cc-by-4.0 (README: 'The Trace Commons compilation ... is released under CC-BY-4.0'; contents keep their own licences, contributor-certified)",
+   "MB": 127.4,
+   "sessions": "28 Claude Code jsonl (57.1 MB), 1 OpenCode json, 1 Cursor jsonl; codex/ and pi/ hold only .gitkeep at this revision",
+   "field_audit": {
+    "verdict": "PASS (Claude Code files); OpenCode PASS on timestamps (epoch-ms time.start/end per part), join not machine-checked; Cursor FAIL (no timestamps)",
+    "ms_timestamps": "Claude Code timestamp ISO ms on 87.5% of records in sample",
+    "call_result_join": "tool_use/tool_result 69/70 in sample",
+    "provider_request_ids": "YES Anthropic `req_011C...` (72 distinct in the sampled 600 kB)",
+    "caveats": "Small. The parquet table under data/ is a re-shaped view; use sessions/ (README: 'The raw sessions/ files remain the source of truth')."
+   },
+   "schema_note": "sessions/claude_code/*.jsonl = native Claude Code (type, sessionId, uuid, parentUuid, timestamp, message{content[tool_use|tool_result|text|thinking], usage, model, id}, requestId, toolUseResult); sessions/opencode/*.json = opencode export {info{id, time{created, updated}, tokens}, messages[{info{role, time{created, completed}}, parts[{type, callID?, state{time{start, end}}}]]}.",
+   "command": "hf download trace-commons/agent-traces --repo-type dataset --revision 112ebd4d03ce852b00e935d523107c3d0c9a65bf --local-dir C:/Swarms/data/acquired/hf__trace-commons__agent-traces --include \"sessions/*\"",
+   "priority": "A"
+  },
+  {
+   "name": "Claude Code sessions with Anthropic request ids, licensed, deduplicated",
+   "repo": "(family, one representative per duplicate group)",
+   "url": "see members",
+   "licence": "per member (mit, apache-2.0, cc-by-4.0, cc0-1.0, agpl-3.0)",
+   "MB": 328.3,
+   "members": [
+    {
+     "repo": "ArkhAngelLifeJiggy/claude-fable-5-claude-code",
+     "copies_in_group": 24,
+     "licence": "mit",
+     "MB": 75.1,
+     "revision": "ffec57310b813358876c4f10ec4a9d8723df38b6",
+     "distinct_ids_in_sample": 16,
+     "agree": 16,
+     "off_s_min_med_max": [
+      5.842,
+      7.849,
+      47.352
+     ],
+     "models": [
+      "claude-fable-5"
+     ],
+     "command": "hf download ArkhAngelLifeJiggy/claude-fable-5-claude-code --repo-type dataset --revision ffec57310b813358876c4f10ec4a9d8723df38b6 --local-dir C:/Swarms/data/acquired/hf__ArkhAngelLifeJiggy__claude-fable-5-claude-code"
+    },
+    {
+     "repo": "aibengineering/beat-the-game-minecraft",
+     "copies_in_group": 1,
+     "licence": "cc-by-4.0",
+     "MB": 100.6,
+     "revision": "de4bfb91972d263e592276c3a33a8b49d3e75d81",
+     "distinct_ids_in_sample": 20,
+     "agree": 20,
+     "off_s_min_med_max": [
+      -1.088,
+      0.279,
+      1.935
+     ],
+     "models": [
+      "claude-opus-5"
+     ],
+     "command": "hf download aibengineering/beat-the-game-minecraft --repo-type dataset --revision de4bfb91972d263e592276c3a33a8b49d3e75d81 --local-dir C:/Swarms/data/acquired/hf__aibengineering__beat-the-game-minecraft"
+    },
+    {
+     "repo": "gabegoodhart/traces.claude-code.mlx-lm-granitemoehybrid",
+     "copies_in_group": 1,
+     "licence": "apache-2.0",
+     "MB": 1.5,
+     "revision": "8717352ccbf29731901ed6f00282cb4ce64bffe0",
+     "distinct_ids_in_sample": 32,
+     "agree": 32,
+     "off_s_min_med_max": [
+      2.292,
+      3.202,
+      69.342
+     ],
+     "models": [
+      "claude-sonnet-4-20250514"
+     ],
+     "command": "hf download gabegoodhart/traces.claude-code.mlx-lm-granitemoehybrid --repo-type dataset --revision 8717352ccbf29731901ed6f00282cb4ce64bffe0 --local-dir C:/Swarms/data/acquired/hf__gabegoodhart__traces.claude-code.mlx-lm-granitemoehybrid"
+    },
+    {
+     "repo": "victor/fable-5-boeing-747-trace",
+     "copies_in_group": 1,
+     "licence": "mit",
+     "MB": 31.6,
+     "revision": "e146afb46a99b3873a1a61e12454ba3cd2fff299",
+     "distinct_ids_in_sample": 11,
+     "agree": 11,
+     "off_s_min_med_max": [
+      3.487,
+      5.671,
+      220.672
+     ],
+     "models": [
+      "claude-fable-5"
+     ],
+     "command": "hf download victor/fable-5-boeing-747-trace --repo-type dataset --revision e146afb46a99b3873a1a61e12454ba3cd2fff299 --local-dir C:/Swarms/data/acquired/hf__victor__fable-5-boeing-747-trace"
+    },
+    {
+     "repo": "build-small-hackathon/kirana-detective-build-traces",
+     "copies_in_group": 1,
+     "licence": "mit",
+     "MB": 9.4,
+     "revision": "d61ca08eac929e80086a0ae04f4b8e56e3e561f2",
+     "distinct_ids_in_sample": 24,
+     "agree": 24,
+     "off_s_min_med_max": [
+      2.505,
+      7.125,
+      57.858
+     ],
+     "models": [
+      "claude-sonnet-4-6"
+     ],
+     "command": "hf download build-small-hackathon/kirana-detective-build-traces --repo-type dataset --revision d61ca08eac929e80086a0ae04f4b8e56e3e561f2 --local-dir C:/Swarms/data/acquired/hf__build-small-hackathon__kirana-detective-build-traces"
+    },
+    {
+     "repo": "LanguaMan/claude-fable-worldcup-2026-session",
+     "copies_in_group": 2,
+     "licence": "cc-by-4.0",
+     "MB": 0.1,
+     "revision": "3ba0f88bf21a5499cb155a0ba3f7a25697cb8a65",
+     "distinct_ids_in_sample": 7,
+     "agree": 7,
+     "off_s_min_med_max": [
+      5.383,
+      10.042,
+      165.632
+     ],
+     "models": [
+      "claude-fable-5"
+     ],
+     "command": "hf download LanguaMan/claude-fable-worldcup-2026-session --repo-type dataset --revision 3ba0f88bf21a5499cb155a0ba3f7a25697cb8a65 --local-dir C:/Swarms/data/acquired/hf__LanguaMan__claude-fable-worldcup-2026-session"
+    },
+    {
+     "repo": "naazimsnh02/tutordesk-agent-traces",
+     "copies_in_group": 1,
+     "licence": "mit",
+     "MB": 5.8,
+     "revision": "4d538090ddd302ff632f53645db5cd606dd94c0b",
+     "distinct_ids_in_sample": 33,
+     "agree": 33,
+     "off_s_min_med_max": [
+      1.339,
+      4.596,
+      37.995
+     ],
+     "models": [
+      "claude-sonnet-4-6"
+     ],
+     "command": "hf download naazimsnh02/tutordesk-agent-traces --repo-type dataset --revision 4d538090ddd302ff632f53645db5cd606dd94c0b --local-dir C:/Swarms/data/acquired/hf__naazimsnh02__tutordesk-agent-traces"
+    },
+    {
+     "repo": "Quaxicron/Fable-5-traces",
+     "copies_in_group": 2,
+     "licence": "agpl-3.0",
+     "MB": 62.1,
+     "revision": "35b9e1f8cc75030398fea687c92a13f5c61bbaf8",
+     "distinct_ids_in_sample": 36,
+     "agree": 36,
+     "off_s_min_med_max": [
+      1.55,
+      3.074,
+      52.908
+     ],
+     "models": [
+      "claude-opus-4-8"
+     ],
+     "command": "hf download Quaxicron/Fable-5-traces --repo-type dataset --revision 35b9e1f8cc75030398fea687c92a13f5c61bbaf8 --local-dir C:/Swarms/data/acquired/hf__Quaxicron__Fable-5-traces"
+    },
+    {
+     "repo": "yellowbeeblackbee/claude-traces",
+     "copies_in_group": 1,
+     "licence": "cc0-1.0",
+     "MB": 4.1,
+     "revision": "0cad5c49dfb886c77b1636d24c46b691969585b8",
+     "distinct_ids_in_sample": 22,
+     "agree": 22,
+     "off_s_min_med_max": [
+      4.072,
+      6.506,
+      65.037
+     ],
+     "models": [
+      "claude-fable-5"
+     ],
+     "command": "hf download yellowbeeblackbee/claude-traces --repo-type dataset --revision 0cad5c49dfb886c77b1636d24c46b691969585b8 --local-dir C:/Swarms/data/acquired/hf__yellowbeeblackbee__claude-traces"
+    },
+    {
+     "repo": "thomwolf/am-session-sharing-design",
+     "copies_in_group": 2,
+     "licence": "apache-2.0",
+     "MB": 1.9,
+     "revision": "36dd5850a4f05de14f99fb7c9aa6c42203513bf1",
+     "distinct_ids_in_sample": 25,
+     "agree": 25,
+     "off_s_min_med_max": [
+      2.333,
+      3.798,
+      71.826
+     ],
+     "models": [
+      "claude-opus-5"
+     ],
+     "command": "hf download thomwolf/am-session-sharing-design --repo-type dataset --revision 36dd5850a4f05de14f99fb7c9aa6c42203513bf1 --local-dir C:/Swarms/data/acquired/hf__thomwolf__am-session-sharing-design"
+    },
+    {
+     "repo": "thomwolf/am-session-claude-code-1-c3cc0a",
+     "copies_in_group": 1,
+     "licence": "apache-2.0",
+     "MB": 0.0,
+     "revision": "037d661cb58d4785f9523205350143d8b9af6a7d",
+     "distinct_ids_in_sample": 2,
+     "agree": 2,
+     "off_s_min_med_max": [
+      1.862,
+      2.621,
+      2.621
+     ],
+     "models": [
+      "claude-opus-5"
+     ],
+     "command": "hf download thomwolf/am-session-claude-code-1-c3cc0a --repo-type dataset --revision 037d661cb58d4785f9523205350143d8b9af6a7d --local-dir C:/Swarms/data/acquired/hf__thomwolf__am-session-claude-code-1-c3cc0a"
+    },
+    {
+     "repo": "thomwolf/am-session-claude-code-1-a66490",
+     "copies_in_group": 1,
+     "licence": "apache-2.0",
+     "MB": 0.0,
+     "revision": "e8a022e9f8bfd279e50336f86a55e96dad7b4ddb",
+     "distinct_ids_in_sample": 1,
+     "agree": 1,
+     "off_s_min_med_max": [
+      7.227,
+      7.227,
+      7.227
+     ],
+     "models": [
+      "claude-opus-5"
+     ],
+     "command": "hf download thomwolf/am-session-claude-code-1-a66490 --repo-type dataset --revision e8a022e9f8bfd279e50336f86a55e96dad7b4ddb --local-dir C:/Swarms/data/acquired/hf__thomwolf__am-session-claude-code-1-a66490"
+    },
+    {
+     "repo": "cfahlgren1/web-fetch-harness-traces",
+     "copies_in_group": 1,
+     "licence": "mit",
+     "MB": 0.1,
+     "revision": "b05bc8a5c858b454273319d91738080cac5b9478",
+     "distinct_ids_in_sample": 2,
+     "agree": 2,
+     "off_s_min_med_max": [
+      2.144,
+      7.207,
+      7.207
+     ],
+     "models": [
+      "claude-opus-5"
+     ],
+     "command": "hf download cfahlgren1/web-fetch-harness-traces --repo-type dataset --revision b05bc8a5c858b454273319d91738080cac5b9478 --local-dir C:/Swarms/data/acquired/hf__cfahlgren1__web-fetch-harness-traces"
+    },
+    {
+     "repo": "crispwisp/wisp-claude-code-sessions",
+     "copies_in_group": 1,
+     "licence": "mit",
+     "MB": 25.3,
+     "revision": "c2c90b59174318ab0b163ec9c9ac82bb879288ce",
+     "distinct_ids_in_sample": 2,
+     "agree": 2,
+     "off_s_min_med_max": [
+      5.952,
+      9.204,
+      9.204
+     ],
+     "models": [
+      "claude-fable-5"
+     ],
+     "command": "hf download crispwisp/wisp-claude-code-sessions --repo-type dataset --revision c2c90b59174318ab0b163ec9c9ac82bb879288ce --local-dir C:/Swarms/data/acquired/hf__crispwisp__wisp-claude-code-sessions"
+    },
+    {
+     "repo": "rs545837/entity-native-agent-sessions",
+     "copies_in_group": 1,
+     "licence": "mit",
+     "MB": 10.7,
+     "revision": "d5575a8e0d85d3f41071d27c4e587b5a0807f3b4",
+     "distinct_ids_in_sample": 28,
+     "agree": 28,
+     "off_s_min_med_max": [
+      0.79,
+      2.039,
+      14.238
+     ],
+     "models": [
+      "claude-sonnet-5"
+     ],
+     "command": "hf download rs545837/entity-native-agent-sessions --repo-type dataset --revision d5575a8e0d85d3f41071d27c4e587b5a0807f3b4 --local-dir C:/Swarms/data/acquired/hf__rs545837__entity-native-agent-sessions"
+    }
+   ],
+   "field_audit": {
+    "verdict": "PASS (each member passed the mechanical audit; ids decoded with the B2a decoder)",
+    "ms_timestamps": "ISO ms per entry",
+    "call_result_join": "tool_use.id <-> tool_result.tool_use_id",
+    "provider_request_ids": "YES: 261 distinct ids in samples, 261 agree with the B4 band",
+    "caveats": "Many are distillation captures (teich) or hackathon build logs. The claude-fable-5 group has 24 copies on the Hub, 3 of them licensed. Sessions resumed from earlier sessions repeat earlier lines, so dedupe on uuid."
+   },
+   "schema_note": "native Claude Code jsonl (see Trace Commons)",
+   "command": "one `hf download` per member (members[].command)",
+   "priority": "A"
+  },
+  {
+   "name": "KernelBench agent traces (Infatoshi)",
+   "repo": "Infatoshi/kernelbench-hard-traces (+ kernelbench-mega-traces)",
+   "url": "https://huggingface.co/datasets/Infatoshi/kernelbench-hard-traces",
+   "revision": "50bafe65a0cb9f29b09859c4f127cee1c4f42b38",
+   "licence": "mit (both)",
+   "MB": 728.8,
+   "sessions": "692 + 132 jsonl, one per (harness, model, problem)",
+   "field_audit": {
+    "verdict": "PASS",
+    "ms_timestamps": "ISO ms on ~99% of records",
+    "call_result_join": "100% in 4 sampled files (69-154 calls each)",
+    "provider_request_ids": "present but NOT Anthropic-shaped in the sampled codex/kimi files (`req_other` family); Anthropic-shaped in the claude-fable-5 file (targeted3)",
+    "caveats": "Several harnesses (claude, codex, kimi-claude) appear rendered into Claude Code jsonl schema, so non-Claude files are a conversion and their timestamps may not be native. UNVERIFIED which."
+   },
+   "schema_note": "Claude Code jsonl schema",
+   "command": "hf download Infatoshi/kernelbench-hard-traces --repo-type dataset --revision 50bafe65a0cb9f29b09859c4f127cee1c4f42b38 --local-dir C:/Swarms/data/acquired/hf__Infatoshi__kernelbench-hard-traces ; hf download Infatoshi/kernelbench-mega-traces --repo-type dataset --revision 8614b76ec8aca6b9c80b9071438940b20d831358 --local-dir C:/Swarms/data/acquired/hf__Infatoshi__kernelbench-mega-traces",
+   "priority": "B"
+  },
+  {
+   "name": "Swival security-audit traces (Claude-Code-compatible export from a different harness)",
+   "repo": "jedisct1/security-audits",
+   "url": "https://huggingface.co/datasets/jedisct1/security-audits",
+   "revision": "6d527ff0081eec6704c2a4f00e1ef8d308ae7366",
+   "licence": "mit",
+   "MB": 1685.2,
+   "sessions": "35219 jsonl",
+   "field_audit": {
+    "verdict": "PASS on 1 of 4 sampled files (the others are tool-free stubs)",
+    "ms_timestamps": "ISO 6dp",
+    "call_result_join": "15/15 in the dlang file",
+    "provider_request_ids": "NONE",
+    "caveats": "README: 'generated with Swival (**not** Claude Code ...)' and 'Swival's Claude Code compatible trace export'. A different harness that writes the same schema is a natural cross-harness transfer test. Many files are short and have no tool calls."
+   },
+   "schema_note": "Claude Code jsonl schema written by Swival",
+   "command": "hf download jedisct1/security-audits --repo-type dataset --revision 6d527ff0081eec6704c2a4f00e1ef8d308ae7366 --local-dir C:/Swarms/data/acquired/hf__jedisct1__security-audits",
+   "priority": "B"
+  },
+  {
+   "name": "Pi coding-agent sessions (real, pi-share-hf exports), MIT/Apache/BSD/CC-BY",
+   "repo": "(family)",
+   "url": "see members",
+   "licence": "per member",
+   "MB": 567.8,
+   "members": [
+    {
+     "repo": "thomasmustier/pi-for-excel-sessions",
+     "licence": "mit",
+     "MB": 299.9,
+     "n_jsonl": 173,
+     "revision": "052a7c665480f9fd1e63ac78433c3ac1244b6550",
+     "command": "hf download thomasmustier/pi-for-excel-sessions --repo-type dataset --revision 052a7c665480f9fd1e63ac78433c3ac1244b6550 --local-dir C:/Swarms/data/acquired/hf__thomasmustier__pi-for-excel-sessions"
+    },
+    {
+     "repo": "woxQAQ/pi-web",
+     "licence": "mit",
+     "MB": 60.6,
+     "n_jsonl": 109,
+     "revision": "1928c53ba9e285e660190fca030676b832a036c9",
+     "command": "hf download woxQAQ/pi-web --repo-type dataset --revision 1928c53ba9e285e660190fca030676b832a036c9 --local-dir C:/Swarms/data/acquired/hf__woxQAQ__pi-web"
+    },
+    {
+     "repo": "dacorvo/transformers-coding-session-pi-traces",
+     "licence": "apache-2.0",
+     "MB": 43.3,
+     "n_jsonl": 177,
+     "revision": "4a37658db70418a51189938d00775e0a1f28a94b",
+     "command": "hf download dacorvo/transformers-coding-session-pi-traces --repo-type dataset --revision 4a37658db70418a51189938d00775e0a1f28a94b --local-dir C:/Swarms/data/acquired/hf__dacorvo__transformers-coding-session-pi-traces"
+    },
+    {
+     "repo": "thomasmustier/pi-extensions-sessions",
+     "licence": "mit",
+     "MB": 43.0,
+     "n_jsonl": 119,
+     "revision": "17e22c5903cb95d9e7bcac345d81df69f0a4cce3",
+     "command": "hf download thomasmustier/pi-extensions-sessions --repo-type dataset --revision 17e22c5903cb95d9e7bcac345d81df69f0a4cce3 --local-dir C:/Swarms/data/acquired/hf__thomasmustier__pi-extensions-sessions"
+    },
+    {
+     "repo": "thomasmustier/pine-of-glass-sessions",
+     "licence": "mit",
+     "MB": 24.4,
+     "n_jsonl": 20,
+     "revision": "b9a6b263895cb7ab8d53924d1ba2fe50a71604ea",
+     "command": "hf download thomasmustier/pine-of-glass-sessions --repo-type dataset --revision b9a6b263895cb7ab8d53924d1ba2fe50a71604ea --local-dir C:/Swarms/data/acquired/hf__thomasmustier__pine-of-glass-sessions"
+    },
+    {
+     "repo": "championswimmer/pi-coding-sessions",
+     "licence": "mit",
+     "MB": 18.9,
+     "n_jsonl": 27,
+     "revision": "f655c6c2aabf742c19217ce4de180e9124799901",
+     "command": "hf download championswimmer/pi-coding-sessions --repo-type dataset --revision f655c6c2aabf742c19217ce4de180e9124799901 --local-dir C:/Swarms/data/acquired/hf__championswimmer__pi-coding-sessions"
+    },
+    {
+     "repo": "thomasmustier/pi-mono-sessions",
+     "licence": "mit",
+     "MB": 17.4,
+     "n_jsonl": 105,
+     "revision": "d0895347aaac586876f53bd5d71b2209ab275dca",
+     "command": "hf download thomasmustier/pi-mono-sessions --repo-type dataset --revision d0895347aaac586876f53bd5d71b2209ab275dca --local-dir C:/Swarms/data/acquired/hf__thomasmustier__pi-mono-sessions"
+    },
+    {
+     "repo": "dacorvo/hf-hub-session-pi-traces",
+     "licence": "apache-2.0",
+     "MB": 16.7,
+     "n_jsonl": 210,
+     "revision": "54094d0a27d31fe288ea82c1935d37c7f84eb599",
+     "command": "hf download dacorvo/hf-hub-session-pi-traces --repo-type dataset --revision 54094d0a27d31fe288ea82c1935d37c7f84eb599 --local-dir C:/Swarms/data/acquired/hf__dacorvo__hf-hub-session-pi-traces"
+    },
+    {
+     "repo": "thomasmustier/clean-slides-sessions",
+     "licence": "mit",
+     "MB": 13.1,
+     "n_jsonl": 12,
+     "revision": "0ecc915c7d3223b5d6c049cda242e8cacd65e85b",
+     "command": "hf download thomasmustier/clean-slides-sessions --repo-type dataset --revision 0ecc915c7d3223b5d6c049cda242e8cacd65e85b --local-dir C:/Swarms/data/acquired/hf__thomasmustier__clean-slides-sessions"
+    },
+    {
+     "repo": "moikapy/0xKobolds",
+     "licence": "mit",
+     "MB": 7.0,
+     "n_jsonl": 21,
+     "revision": "50d5828c62757953a90a25328ad2450f646fc987",
+     "command": "hf download moikapy/0xKobolds --repo-type dataset --revision 50d5828c62757953a90a25328ad2450f646fc987 --local-dir C:/Swarms/data/acquired/hf__moikapy__0xKobolds"
+    },
+    {
+     "repo": "thomasmustier/economist-tui-sessions",
+     "licence": "mit",
+     "MB": 4.0,
+     "n_jsonl": 11,
+     "revision": "95b6dba5c1398052972beeb083812d78a68cc4f9",
+     "command": "hf download thomasmustier/economist-tui-sessions --repo-type dataset --revision 95b6dba5c1398052972beeb083812d78a68cc4f9 --local-dir C:/Swarms/data/acquired/hf__thomasmustier__economist-tui-sessions"
+    },
+    {
+     "repo": "thomasmustier/pi-nes-sessions",
+     "licence": "mit",
+     "MB": 3.9,
+     "n_jsonl": 13,
+     "revision": "47d55a2545e0db79909b74f61e3a5dd06fcf8680",
+     "command": "hf download thomasmustier/pi-nes-sessions --repo-type dataset --revision 47d55a2545e0db79909b74f61e3a5dd06fcf8680 --local-dir C:/Swarms/data/acquired/hf__thomasmustier__pi-nes-sessions"
+    },
+    {
+     "repo": "xhochy/conda-forge-agent-traces",
+     "licence": "bsd-3-clause",
+     "MB": 3.9,
+     "n_jsonl": 16,
+     "revision": "046e1aff399803cc767fc76d91860ffd65b24add",
+     "command": "hf download xhochy/conda-forge-agent-traces --repo-type dataset --revision 046e1aff399803cc767fc76d91860ffd65b24add --local-dir C:/Swarms/data/acquired/hf__xhochy__conda-forge-agent-traces"
+    },
+    {
+     "repo": "julien-c/pi-sessions",
+     "licence": "cc-by-4.0",
+     "MB": 2.3,
+     "n_jsonl": 17,
+     "revision": "700416886204bcdbca133373daed3d2504c853cf",
+     "command": "hf download julien-c/pi-sessions --repo-type dataset --revision 700416886204bcdbca133373daed3d2504c853cf --local-dir C:/Swarms/data/acquired/hf__julien-c__pi-sessions"
+    },
+    {
+     "repo": "rgruchalski/combust-labs_pi-mono-docker",
+     "licence": "apache-2.0",
+     "MB": 2.2,
+     "n_jsonl": 26,
+     "revision": "7829c4a27427bb57ccf03fdaf21f43de0b8075cc",
+     "command": "hf download rgruchalski/combust-labs_pi-mono-docker --repo-type dataset --revision 7829c4a27427bb57ccf03fdaf21f43de0b8075cc --local-dir C:/Swarms/data/acquired/hf__rgruchalski__combust-labs_pi-mono-docker"
+    },
+    {
+     "repo": "abidlabs/gradio-pi-sessions",
+     "licence": "mit",
+     "MB": 2.1,
+     "n_jsonl": 5,
+     "revision": "7af63c1cf3cb8a92c8a96abaa5d46c233c25f6a0",
+     "command": "hf download abidlabs/gradio-pi-sessions --repo-type dataset --revision 7af63c1cf3cb8a92c8a96abaa5d46c233c25f6a0 --local-dir C:/Swarms/data/acquired/hf__abidlabs__gradio-pi-sessions"
+    },
+    {
+     "repo": "thomasmustier/pi-session-hud-sessions",
+     "licence": "mit",
+     "MB": 2.1,
+     "n_jsonl": 2,
+     "revision": "041268c03fd24623bb659b6e68558025845d5419",
+     "command": "hf download thomasmustier/pi-session-hud-sessions --repo-type dataset --revision 041268c03fd24623bb659b6e68558025845d5419 --local-dir C:/Swarms/data/acquired/hf__thomasmustier__pi-session-hud-sessions"
+    },
+    {
+     "repo": "thomasmustier/heypocket-reader-sessions",
+     "licence": "mit",
+     "MB": 1.1,
+     "n_jsonl": 9,
+     "revision": "70f6d07dfb7b0617098e4082702a5e8e091a95d9",
+     "command": "hf download thomasmustier/heypocket-reader-sessions --repo-type dataset --revision 70f6d07dfb7b0617098e4082702a5e8e091a95d9 --local-dir C:/Swarms/data/acquired/hf__thomasmustier__heypocket-reader-sessions"
+    },
+    {
+     "repo": "thomasmustier/pi-symphony-sessions",
+     "licence": "mit",
+     "MB": 0.6,
+     "n_jsonl": 8,
+     "revision": "0697350f9654d0cd98cc81c37aab1ab8d58d345e",
+     "command": "hf download thomasmustier/pi-symphony-sessions --repo-type dataset --revision 0697350f9654d0cd98cc81c37aab1ab8d58d345e --local-dir C:/Swarms/data/acquired/hf__thomasmustier__pi-symphony-sessions"
+    },
+    {
+     "repo": "abidlabs/trackio-pi-sessions",
+     "licence": "mit",
+     "MB": 0.4,
+     "n_jsonl": 1,
+     "revision": "4c1420de7fdd76b023916f382174ca3ff6cd1346",
+     "command": "hf download abidlabs/trackio-pi-sessions --repo-type dataset --revision 4c1420de7fdd76b023916f382174ca3ff6cd1346 --local-dir C:/Swarms/data/acquired/hf__abidlabs__trackio-pi-sessions"
+    },
+    {
+     "repo": "owao/qwen38-27B",
+     "licence": "mit",
+     "MB": 0.4,
+     "n_jsonl": 1,
+     "revision": "2998889fe3f2ea229f668d8ff28f014ebbc6cb23",
+     "command": "hf download owao/qwen38-27B --repo-type dataset --revision 2998889fe3f2ea229f668d8ff28f014ebbc6cb23 --local-dir C:/Swarms/data/acquired/hf__owao__qwen38-27B"
+    },
+    {
+     "repo": "merve/hf-find-traces",
+     "licence": "apache-2.0",
+     "MB": 0.3,
+     "n_jsonl": 3,
+     "revision": "650d439f6d9059633b859462a3c782b05f63e48d",
+     "command": "hf download merve/hf-find-traces --repo-type dataset --revision 650d439f6d9059633b859462a3c782b05f63e48d --local-dir C:/Swarms/data/acquired/hf__merve__hf-find-traces"
+    },
+    {
+     "repo": "dacorvo/funes-recall-session-pi-traces",
+     "licence": "apache-2.0",
+     "MB": 0.2,
+     "n_jsonl": 6,
+     "revision": "4e2b658ea3dea3e1e6e1b70f1bba0a89882ce552",
+     "command": "hf download dacorvo/funes-recall-session-pi-traces --repo-type dataset --revision 4e2b658ea3dea3e1e6e1b70f1bba0a89882ce552 --local-dir C:/Swarms/data/acquired/hf__dacorvo__funes-recall-session-pi-traces"
+    },
+    {
+     "repo": "merve/agent_traces",
+     "licence": "apache-2.0",
+     "MB": 0.0,
+     "n_jsonl": 1,
+     "revision": "2e1b3fcebf283ea6ba0f15aebfc0b216959dac5d",
+     "command": "hf download merve/agent_traces --repo-type dataset --revision 2e1b3fcebf283ea6ba0f15aebfc0b216959dac5d --local-dir C:/Swarms/data/acquired/hf__merve__agent_traces"
+    },
+    {
+     "repo": "OmarRabhI/pi-sessions",
+     "licence": "apache-2.0",
+     "MB": 0.0,
+     "n_jsonl": 7,
+     "revision": "d3d60fea09149d36a61b228f39e5ac4fcdc81012",
+     "command": "hf download OmarRabhI/pi-sessions --repo-type dataset --revision d3d60fea09149d36a61b228f39e5ac4fcdc81012 --local-dir C:/Swarms/data/acquired/hf__OmarRabhI__pi-sessions"
+    }
+   ],
+   "field_audit": {
+    "verdict": "PASS (mechanical, each member)",
+    "ms_timestamps": "entry timestamp ISO ms + message.timestamp epoch ms",
+    "call_result_join": "content[type=toolCall].id <-> toolResult message toolCallId",
+    "provider_request_ids": "NONE (pi format has none)",
+    "caveats": "pi-share-hf exports pass deterministic redaction + LLM review. MaxDevv/real-pi-coding-agent-traces-sessions compiles many of these plus pi-mono (licence 'other', no text), so download the members, not the compilation."
+   },
+   "schema_note": "pi session format: header {type:'session', version, id, timestamp, cwd}; entries {type, id, parentId, timestamp, message{role, content[text|thinking|toolCall{id,name,arguments}], usage, timestamp(ms), model, provider}} ; tool results role 'toolResult' with toolCallId, toolName, isError",
+   "command": "members[].command",
+   "priority": "B"
+  },
+  {
+   "name": "Codex CLI rollouts (native ~/.codex/sessions), licensed",
+   "repo": "(family)",
+   "url": "see members",
+   "licence": "per member",
+   "MB": 121.5,
+   "members": [
+    {
+     "repo": "kingkw1/read-along-ai-agent-traces",
+     "licence": "mit",
+     "MB": 27.6,
+     "n_jsonl": 21,
+     "revision": "0bee208f7b132645aa9c8410248ec7aa3be375ca",
+     "command": "hf download kingkw1/read-along-ai-agent-traces --repo-type dataset --revision 0bee208f7b132645aa9c8410248ec7aa3be375ca --local-dir C:/Swarms/data/acquired/hf__kingkw1__read-along-ai-agent-traces"
+    },
+    {
+     "repo": "build-small-hackathon/TinyNarrator-agent-traces",
+     "licence": "mit",
+     "MB": 26.4,
+     "n_jsonl": 1,
+     "revision": "0222953b606925ce7d90f923ecc76245bee8a50d",
+     "command": "hf download build-small-hackathon/TinyNarrator-agent-traces --repo-type dataset --revision 0222953b606925ce7d90f923ecc76245bee8a50d --local-dir C:/Swarms/data/acquired/hf__build-small-hackathon__TinyNarrator-agent-traces"
+    },
+    {
+     "repo": "drdavidtang/build-small-agent-trace",
+     "licence": "mit",
+     "MB": 21.3,
+     "n_jsonl": 16,
+     "revision": "af8e727914b9bda8aeabe8753206b4eb54eb03c7",
+     "command": "hf download drdavidtang/build-small-agent-trace --repo-type dataset --revision af8e727914b9bda8aeabe8753206b4eb54eb03c7 --local-dir C:/Swarms/data/acquired/hf__drdavidtang__build-small-agent-trace"
+    },
+    {
+     "repo": "build-small-hackathon/pit-wall-chaos-traces",
+     "licence": "cc-by-4.0",
+     "MB": 18.0,
+     "n_jsonl": 4,
+     "revision": "60bd7c2609d7a0adb31fb31236caadf596c62c11",
+     "command": "hf download build-small-hackathon/pit-wall-chaos-traces --repo-type dataset --revision 60bd7c2609d7a0adb31fb31236caadf596c62c11 --local-dir C:/Swarms/data/acquired/hf__build-small-hackathon__pit-wall-chaos-traces"
+    },
+    {
+     "repo": "build-small-hackathon/hackathon-advisor-codex-traces",
+     "licence": "apache-2.0",
+     "MB": 15.3,
+     "n_jsonl": 1,
+     "revision": "c7a79f391597b1e0a0b3ee8d89f2c436adb23210",
+     "command": "hf download build-small-hackathon/hackathon-advisor-codex-traces --repo-type dataset --revision c7a79f391597b1e0a0b3ee8d89f2c436adb23210 --local-dir C:/Swarms/data/acquired/hf__build-small-hackathon__hackathon-advisor-codex-traces"
+    },
+    {
+     "repo": "nielsr/r3al-vit-quantization-codex-trace",
+     "licence": "mit",
+     "MB": 6.1,
+     "n_jsonl": 1,
+     "revision": "364ab50da7fc81f9789b4ea84be5d83c712cd3b6",
+     "command": "hf download nielsr/r3al-vit-quantization-codex-trace --repo-type dataset --revision 364ab50da7fc81f9789b4ea84be5d83c712cd3b6 --local-dir C:/Swarms/data/acquired/hf__nielsr__r3al-vit-quantization-codex-trace"
+    },
+    {
+     "repo": "ravi2505/homeroom-copilot-open-traces",
+     "licence": "mit",
+     "MB": 2.7,
+     "n_jsonl": 6,
+     "revision": "3e53bfb74293f9c71aa60452bb934be15c8b6604",
+     "command": "hf download ravi2505/homeroom-copilot-open-traces --repo-type dataset --revision 3e53bfb74293f9c71aa60452bb934be15c8b6604 --local-dir C:/Swarms/data/acquired/hf__ravi2505__homeroom-copilot-open-traces"
+    },
+    {
+     "repo": "build-small-hackathon/clue-vibes-traces",
+     "licence": "cc-by-4.0",
+     "MB": 2.4,
+     "n_jsonl": 3,
+     "revision": "fe8ba2792ec5415f9cc8014e00979e7f1e287028",
+     "command": "hf download build-small-hackathon/clue-vibes-traces --repo-type dataset --revision fe8ba2792ec5415f9cc8014e00979e7f1e287028 --local-dir C:/Swarms/data/acquired/hf__build-small-hackathon__clue-vibes-traces"
+    },
+    {
+     "repo": "build-small-hackathon/sense-garden-traces",
+     "licence": "cc-by-4.0",
+     "MB": 1.7,
+     "n_jsonl": 1,
+     "revision": "1a13d90deb699faf7b385a4eedb32937d7fb589f",
+     "command": "hf download build-small-hackathon/sense-garden-traces --repo-type dataset --revision 1a13d90deb699faf7b385a4eedb32937d7fb589f --local-dir C:/Swarms/data/acquired/hf__build-small-hackathon__sense-garden-traces"
+    }
+   ],
+   "field_audit": {
+    "verdict": "PASS (mechanical, each member)",
+    "ms_timestamps": "line timestamp ISO ms",
+    "call_result_join": "response_item function_call.call_id <-> function_call_output.call_id",
+    "provider_request_ids": "NONE (codex rollouts carry none; B4 found a turn_context trace_id of unknown provenance in swechat codex)",
+    "caveats": "Mostly hackathon build logs; small."
+   },
+   "schema_note": "codex rollout jsonl {timestamp, type: session_meta|turn_context|response_item|event_msg, payload}",
+   "command": "members[].command",
+   "priority": "B"
+  },
+  {
+   "name": "Other licensed Claude Code sessions without Anthropic-shaped request ids",
+   "repo": "(family)",
+   "url": "see members",
+   "licence": "per member",
+   "MB": 105.0,
+   "members": [
+    {
+     "repo": "AlinCiocan/fable-5-claude-code-traces",
+     "licence": "cc-by-4.0",
+     "MB": 49.9,
+     "revision": "e33ebbca230ae258b2c28aeee9fe3429e7fbeab6",
+     "command": "hf download AlinCiocan/fable-5-claude-code-traces --repo-type dataset --revision e33ebbca230ae258b2c28aeee9fe3429e7fbeab6 --local-dir C:/Swarms/data/acquired/hf__AlinCiocan__fable-5-claude-code-traces"
+    },
+    {
+     "repo": "choucsan/mimo-claude-code-traces-1k",
+     "licence": "mit",
+     "MB": 40.9,
+     "revision": "39cc3fc3ed608fff800220445bad9eb1738516f8",
+     "command": "hf download choucsan/mimo-claude-code-traces-1k --repo-type dataset --revision 39cc3fc3ed608fff800220445bad9eb1738516f8 --local-dir C:/Swarms/data/acquired/hf__choucsan__mimo-claude-code-traces-1k"
+    },
+    {
+     "repo": "INONONO/tarkov-customs-trajectory",
+     "licence": "mit",
+     "MB": 9.5,
+     "revision": "a0557bb951af86ec6c27b1153214edf794cb1399",
+     "command": "hf download INONONO/tarkov-customs-trajectory --repo-type dataset --revision a0557bb951af86ec6c27b1153214edf794cb1399 --local-dir C:/Swarms/data/acquired/hf__INONONO__tarkov-customs-trajectory"
+    },
+    {
+     "repo": "jedisct1/agent-traces-flashmania",
+     "licence": "mit",
+     "MB": 2.7,
+     "revision": "978b00094cc3e8c13e3bcca83a41ee45da109793",
+     "command": "hf download jedisct1/agent-traces-flashmania --repo-type dataset --revision 978b00094cc3e8c13e3bcca83a41ee45da109793 --local-dir C:/Swarms/data/acquired/hf__jedisct1__agent-traces-flashmania"
+    },
+    {
+     "repo": "INONONO/fable-5.1-mario-trajectory",
+     "licence": "mit",
+     "MB": 1.2,
+     "revision": "210c7cea2e7599145e99dbd3c3d04238319ea365",
+     "command": "hf download INONONO/fable-5.1-mario-trajectory --repo-type dataset --revision 210c7cea2e7599145e99dbd3c3d04238319ea365 --local-dir C:/Swarms/data/acquired/hf__INONONO__fable-5.1-mario-trajectory"
+    },
+    {
+     "repo": "davanstrien/agent-race-traces",
+     "licence": "cc-by-4.0",
+     "MB": 0.8,
+     "revision": "4a8ac15d62c37aad4402c8f2021a2cef074c3806",
+     "command": "hf download davanstrien/agent-race-traces --repo-type dataset --revision 4a8ac15d62c37aad4402c8f2021a2cef074c3806 --local-dir C:/Swarms/data/acquired/hf__davanstrien__agent-race-traces"
+    }
+   ],
+   "field_audit": {
+    "verdict": "PASS (mechanical)",
+    "ms_timestamps": "ISO ms/us",
+    "call_result_join": "tool_use/tool_result",
+    "provider_request_ids": "NONE in sample",
+    "caveats": "includes 'other'-licensed only if licence_class allowed; see members"
+   },
+   "schema_note": "Claude Code jsonl",
+   "command": "members[].command",
+   "priority": "C"
+  }
+ ],
+ "corpora_listed_for_human": [
+  {
+   "name": "AgentLogs (GitHub Copilot cloud agent)",
+   "repo": "risenlab/agentlogs",
+   "url": "https://huggingface.co/datasets/risenlab/agentlogs",
+   "revision": "04013a44d3432c6654bca1dcd4a01218a9406b80",
+   "licence": "cc-by-4.0 (DATA_LICENSE)",
+   "MB": 56747.0,
+   "why_listed": "56.7 GB is over the 5 GB per-corpus cap. A subset fits: agent_session_logs is 276 shards of ~200 MB, so 10 to 20 shards (2 to 4 GB) plus agent_sessions (225 MB).",
+   "field_audit": "schema-level PASS (docs/schema/agent_session_log_entry.md via WebFetch: data.created datetime, data.timestamp, data.callId / toolCallId / tool_call_id, choices[].message.tool_calls[].id, usage.*, modelCallDurationMs, error.*, truncateResult{...}); the first row group (197 MB) was too large to sample rows. 64,255,174 log entries, 549,239 sessions, 307,416 tasks (README). A second real-world harness at scale.",
+   "subset_command": "hf download risenlab/agentlogs --repo-type dataset --revision 04013a44d3432c6654bca1dcd4a01218a9406b80 --local-dir C:/Swarms/data/acquired/hf__risenlab__agentlogs --include \"agent_sessions/*\" ; hf download risenlab/agentlogs --repo-type dataset --revision 04013a44d3432c6654bca1dcd4a01218a9406b80 --local-dir C:/Swarms/data/acquired/hf__risenlab__agentlogs --include \"agent_session_logs/part_0000[0-9]_of_00276.parquet\"",
+   "provider_request_ids": "UNVERIFIED: data.id and data.object fields exist (chat-completion objects with content_filter_results suggest Azure OpenAI `chatcmpl` ids, which have no known time layout); 'created' (server epoch seconds in chat.completion objects) would be a provider-side clock if present. Not sampled."
+  },
+  {
+   "name": "AgentTrajectorySentinel",
+   "repo": "sunnydubey1111/agent-trajectory-sentinel",
+   "url": "https://huggingface.co/datasets/sunnydubey1111/agent-trajectory-sentinel",
+   "revision": "91daa8406c34ada15e78123f2fc1f51b3380944d",
+   "licence": "other: card says Apache-2.0 for project code/format, model outputs under the model licences (Qwen Apache-2.0, Llama 3.1 Community, Gemini API terms); paper appendix: MIT repo",
+   "MB": 70.1,
+   "why_listed": "Strict audit FAIL: no absolute per-event timestamps (steps carry latency_s, output_tokens, error; tool_events carry result, result_chars, result_truncated, is_error, latency_s) and tool_events[].id is empty, so call/result pairing is structural (same step record). High value anyway: 3,581 episodes with deterministic tool-layer fault injection (context_corruption, i.e. corrupted tool results) at a verified onset step tau, plus organic 'hallucinated' labels. Those are labeled positives of the kind our corpora lack. Human decision: accept a no-timestamp labeled set for result-level checks?",
+   "field_audit": "targeted1.json: traces/autogen/autogen-context_corruption-000.jsonl, 4 records, keys text/token_logprobs/action/latency_s/output_tokens/error/task/tool_events/schema",
+   "command": "hf download sunnydubey1111/agent-trajectory-sentinel --repo-type dataset --revision 91daa8406c34ada15e78123f2fc1f51b3380944d --local-dir C:/Swarms/data/acquired/hf__sunnydubey1111__agent-trajectory-sentinel"
+  },
+  {
+   "name": "Real Pi sessions compilation",
+   "repo": "MaxDevv/real-pi-coding-agent-traces-sessions",
+   "url": "https://huggingface.co/datasets/MaxDevv/real-pi-coding-agent-traces-sessions",
+   "revision": "8c593252ddad7dca08a0afc07896195fa73f2d6e",
+   "licence": "other (README: 'This is a compilation; each session remains under the license of its source dataset')",
+   "MB": 777.9,
+   "why_listed": "Passes the field audit, but 626 of 1,291 sessions come from badlogicgames/pi-mono (licence 'other', no licence text on the card) and 38 from aaaaliou/pi-synthetic (synthetic, despite the card's 'hand-filtered to exclude synthetic'). Download the MIT members directly (pi family above). pi-mono itself needs a human to ask its author for terms."
+  },
+  {
+   "name": "Unlicensed passing datasets (do not download; ask authors)",
+   "count": 192,
+   "largest": [
+    {
+     "repo": "nlile/misc-merged-claude-code-traces-v1",
+     "MB": 1158.0,
+     "format": "other",
+     "request_ids_in_sample": 10
+    },
+    {
+     "repo": "open-agent-leaderboard/traces",
+     "MB": 1095.0,
+     "format": "claude_code",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "basedlsg/codex-assistant-rollouts",
+     "MB": 816.4,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "AletheiaResearch/GPT-5.5-Codex",
+     "MB": 729.7,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "DedeProGames/codex-traces-pt-br",
+     "MB": 484.2,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "owenqwenllmwine/bigpi-1",
+     "MB": 374.3,
+     "format": "pi_or_sts_message",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "hardcoremoore/DeepSeek-v4-Pro-Agent",
+     "MB": 307.8,
+     "format": "pi_or_sts_message",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "TeichAI/DeepSeek-v4-Pro-Agent",
+     "MB": 279.5,
+     "format": "pi_or_sts_message",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "ororai/ORORAi",
+     "MB": 279.5,
+     "format": "pi_or_sts_message",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "ronaldcmz/DeepSeek-v4-Pro-Agent",
+     "MB": 279.5,
+     "format": "pi_or_sts_message",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "yalesunxiatao/agentic_vbench_rollouts",
+     "MB": 270.6,
+     "format": "other",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "SabaPivot/repro-attention-fw-traces",
+     "MB": 240.5,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "datavorous/astrazeneca-rollouts",
+     "MB": 208.6,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "DedeProGames/claude-code-traces-pt-br",
+     "MB": 185.1,
+     "format": "claude_code",
+     "request_ids_in_sample": 22
+    },
+    {
+     "repo": "Infatoshi/kernelbench-cuda-traces",
+     "MB": 176.0,
+     "format": "claude_code",
+     "request_ids_in_sample": 46
+    },
+    {
+     "repo": "SabaPivot/repro-randomized-feasibility-traces",
+     "MB": 145.6,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "SabaPivot/repro-sngd-traces",
+     "MB": 145.2,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "SabaPivot/repro-a-sketch-and-project-analysis-of-subsampled-natural-gradient-algorithms-traces",
+     "MB": 145.1,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "SabaPivot/repro-online-newton-traces",
+     "MB": 144.6,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "SabaPivot/repro-alignment-esd-traces",
+     "MB": 143.6,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "SabaPivot/repro-p2e-traces",
+     "MB": 142.2,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "SabaPivot/sag-saga-iag-traces",
+     "MB": 127.4,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "AletheiaResearch/GLM-5.2-Agent",
+     "MB": 121.1,
+     "format": "pi_or_sts_message",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "AletheiaResearch/GPT-5.3-Codex-Spark-Codex",
+     "MB": 117.5,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    },
+    {
+     "repo": "evalstate/all-defects",
+     "MB": 115.2,
+     "format": "codex",
+     "request_ids_in_sample": 0
+    }
+   ],
+   "why_listed": "No licence in card metadata, so do not download (task rule)."
+  },
+  {
+   "name": "Unlicensed large corpora that did not pass or were not parseable",
+   "items": [
+    {
+     "repo": "nlile/misc-merged-claude-code-traces-v1",
+     "MB": 1158.0,
+     "note": "32,133 rows with `timestamp` and `request_id` columns plus raw `claude_log` (datasets-server /info). No licence. WhitzardAgent/ClaudeCode-* (apache-2.0) are format conversions of it, which drop timestamps and request ids. A licence relabel on a derivative does not license the source."
+    },
+    {
+     "repo": "agent-evals/hal_traces",
+     "MB": 113072.9,
+     "note": "HAL harness zips, 113 GB, no licence, over cap"
+    },
+    {
+     "repo": "Wejh/ninja-agent-traces",
+     "MB": 27726.9,
+     "note": "no licence, over cap"
+    },
+    {
+     "repo": "VonEquinox/efficient-agent-experiment-logs",
+     "MB": 153638.3,
+     "note": "npy/pt experiment artifacts, not transcripts"
+    },
+    {
+     "repo": "open-agent-leaderboard/traces",
+     "MB": 1095.0,
+     "note": "same benchmarks as Exgentic as raw jsonl; no licence"
+    },
+    {
+     "repo": "badlogicgames/pi-mono",
+     "MB": 224.8,
+     "note": "licence 'other' with no licence text (WebFetch of card); 626 real pi sessions by the pi author"
+    },
+    {
+     "repo": "TeichAI/DeepSeek-v4-Pro-Agent",
+     "MB": 279.5,
+     "note": "the HF docs' own example dataset; teich distillation captures; no licence"
+    }
+   ]
+  },
+  {
+   "name": "Gated (needs a human to accept terms)",
+   "items": [
+    {
+     "repo": "Aeonthic/Agentic-SFT",
+     "gated": "manual",
+     "licence": "none",
+     "MB": 46.5
+    },
+    {
+     "repo": "Datoric/computer-use-agent-traces-250k",
+     "gated": "manual",
+     "licence": "other",
+     "MB": 9.6
+    },
+    {
+     "repo": "genlabs/OpenTraces",
+     "gated": "manual",
+     "licence": "none",
+     "MB": 1051.4
+    },
+    {
+     "repo": "pablo85318/ml-intern-sessions",
+     "gated": "auto",
+     "licence": "other",
+     "MB": 0.0
+    },
+    {
+     "repo": "seekbot/seek-sessions",
+     "gated": "auto",
+     "licence": "cc-by-4.0",
+     "MB": 3.2
+    }
+   ]
+  }
+ ],
+ "corpora_failed_or_out_of_scope": [
+  {
+   "repo": "ibm-research/codex_swebenchpro_traces_Otel",
+   "licence": "cc-by-nc-4.0",
+   "MB": 6164.5,
+   "reason": "timestamps synthetic. README: 'Timestamps are synthetic: spans within a trace are spaced with random 1-10 second delays (no real wall-clock timing data was available in the source).' Assistant outputs are lorem ipsum."
+  },
+  {
+   "repo": "ibm-research/lmcache-agentic-traces_Otel",
+   "licence": "cc-by-nc-4.0",
+   "MB": 2682.2,
+   "reason": "OTel re-rendering of sammshen/lmcache-agentic-traces; same conversion pipeline as the codex OTel set, so synthetic timing assumed (README not read in full: UNVERIFIED)"
+  },
+  {
+   "repo": "Inferact/codex_swebenchpro_traces",
+   "licence": "mit",
+   "MB": 218.7,
+   "reason": "one 218 MB JSON of ShareGPT-style {conversations:[{from, value}]}; no timestamp or id keys in the first 300 kB; assistant turns redacted to lorem ipsum (per the IBM derivative's README). README timing tables are summary statistics, not per-event fields."
+  },
+  {
+   "repo": "sammshen/lmcache-agentic-traces",
+   "licence": "cc-by-4.0",
+   "MB": 2370.7,
+   "reason": "per-iteration `pre_gap` (s between last token of response N-1 and request N) and cumulative OpenAI messages; no absolute per-event timestamps, no per-tool duration. PARTIAL: pre_gap is a real client-side tool+think interval per LLM call (README)."
+  },
+  {
+   "repo": "netpreme/coding_agent_traces",
+   "licence": "mit",
+   "MB": 7368.5,
+   "reason": "per-turn ISL/OSL token counts (+ raw text for gpt-oss configs); no timestamps; 7.4 GB"
+  },
+  {
+   "repo": "Jakumetsu/mcpmark-trajectory-log",
+   "licence": "mit",
+   "MB": 2809.2,
+   "reason": "task-level time.start/end only (meta.json); messages.json has call_id joins but no per-event timestamps; execution.log is plain text"
+  },
+  {
+   "repo": "WhitzardAgent/ClaudeCode-* (Anthropic, OpenAI, Hermes, OpenHands, AgentIR)",
+   "licence": "apache-2.0",
+   "MB": 5067.4,
+   "reason": "format conversions of nlile/misc-merged-claude-code-traces-v1 into SFT message formats; timestamps and request ids dropped"
+  },
+  {
+   "repo": "thoughtworks/agentic-coding-trajectories",
+   "licence": "other (derivative-multi-source)",
+   "MB": 325.6,
+   "reason": "normalized/tokenized SWE-agent, OpenHands, Klear trajectories; no timestamps"
+  },
+  {
+   "repo": "beomi/agent-traces",
+   "licence": "other (mixed-upstream-licenses)",
+   "MB": 1204.3,
+   "reason": "62,812 deduplicated conversations normalized to OpenAI SFT format from 493 HF agent-trace repos; joins kept, timestamps dropped"
+  },
+  {
+   "repo": "PotatoHD/github-pr-agent-trajectories",
+   "licence": "other",
+   "MB": 2326.0,
+   "reason": "plan/subagent diffs, no events"
+  },
+  {
+   "repo": "clem/davidkling/cfahlgren1 hf-coding-tools-traces family",
+   "licence": "cc-by-4.0",
+   "MB": 42.1,
+   "reason": "Claude Code schema with timestamps and request ids but zero tool calls in 6 sampled files (question-answer runs)"
+  },
+  {
+   "repo": "melissapan/swe-bench-lite-agent-traces-v14 (codex part)",
+   "licence": "cc-by-4.0",
+   "MB": null,
+   "reason": "codex exec --json event stream has no timestamps"
+  },
+  {
+   "repo": "cline/incident-traces",
+   "licence": "cc-by-4.0",
+   "MB": 0.0,
+   "reason": "only manifest.jsonl + docs at this revision; no sessions uploaded yet (ATIF + Cline messages promised). Re-check later."
+  },
+  {
+   "repo": "harry1332/hpca2027-agentic-validated-traces-20260711",
+   "licence": "mit",
+   "MB": 7927.2,
+   "reason": "out of scope: DynamoRIO CPU instruction traces of agent workloads, not tool logs"
+  },
+  {
+   "repo": "marco-bazzani/concealed-fabrication-agentic",
+   "licence": "other",
+   "MB": null,
+   "reason": "62 synthetic Qwen3-8B episodes where the agent fabricates a value in its deliverable after a failed lookup; tool results are genuine; no timestamps or ids (card via WebFetch). Narration-layer fabrication, not our threat model."
+  },
+  {
+   "repo": "Lightcap/agent-runtime-telemetry-small",
+   "licence": "cc-by-4.0",
+   "MB": 3.3,
+   "reason": "technically PASS (event_time_utc us, request_id joins tool_requests/tool_results, duration_ms) but payloads replaced by sha256 + byte counts and it is a single developer's MCP runtime with no model transcript. Low value; listed, not recommended."
+  }
+ ],
+ "incidental_prior_art": [
+  {
+   "item": "Dubey 2026, 'Real-Time Detection and Repair of LLM Agent Failures' (arXiv 2608.02464) and its corpus sunnydubey1111/agent-trajectory-sentinel",
+   "relevant_to": [
+    "B1 (N1a duration residual)",
+    "B3 (fabricated tool-result / result-level checks)"
+   ],
+   "what_it_does": "One-class ESN+CUSUM monitor over per-step telemetry (hash embedding, token surprisal, action metadata incl. log latency) trained on healthy runs; deterministic checks: total_consistency (recompute the stated total from tool results received), required_coverage, and tool_contract ('asks whether a result matched any shape its tool can return'); injected tool-layer faults (context_corruption, malformed_json, wrong_document).",
+   "what_it_does_not": "Treats tool results as ground truth for its fabrication class ('every figure asserted must trace to a tool result received'). Latency is a raw feature, not conditioned on workload, and 'wall-clock latency features are machine-specific and are excluded from the shipped configuration' (s.11(6)). No result-to-result consistency, no provider-side clock, no output-size discriminator.",
+   "verdict_for_our_claims": {
+    "N1a workload-conditioned duration residual": "NOVEL vs this work (latency used only as an unconditioned monitor feature, then dropped)",
+    "N1b corr(residual, output_size)": "NOVEL vs this work",
+    "tool-result shape / contract validation (N5 well-formedness items)": "PARTIAL: tool_contract validates result shape against the tool's possible returns on mock tools (0 of 1,825 healthy flagged; 46% of injected context corruption)",
+    "fabricated-tool-result detection from logs": "PARTIAL at most: their injected context corruption is tool-result corruption, detected by content-grounding telemetry plus tool_contract. Their 'fabrication' class is narration."
+   },
+   "opened": true,
+   "how": "alphaXiv get_paper_content fullText",
+   "url": "https://arxiv.org/abs/2608.02464",
+   "deciding_passages": [
+    "'wall-clock latency features are machine-specific and are excluded from the shipped configuration.'",
+    "'tool_contract asks whether a result matched any shape its tool can return'",
+    "'every figure asserted must trace to a tool result received (s.9)'"
+   ],
+   "flag": "Not cited in B1d_agent_eval.json. Give it to the B1/B3 synthesizers. The 'Adversarial limit' artifacts (adversarial_evasion.csv, tamper_check.csv) are listed in its provenance table but were NOT opened: UNVERIFIED."
+  },
+  {
+   "item": "AgentBRANE gateway receipts (melissapan/swe-bench-lite-agent-traces-v14)",
+   "relevant_to": [
+    "B2",
+    "B6"
+   ],
+   "what_it_does": "Records a gateway-side receipt per provider call next to the harness trace (route, outcome, decoded byte counts and sha256 of request and response bodies).",
+   "what_it_does_not": "The public projection drops provider request ids and headers and carries no timestamps, so it cannot act as a clock.",
+   "verdict_for_our_claims": {
+    "provider-minted request-id clock (B2)": "not taken by this release; it is evidence that even an instrumented release strips the field B2 needs"
+   },
+   "opened": true,
+   "url": "https://huggingface.co/datasets/melissapan/swe-bench-lite-agent-traces-v14/blob/main/SCHEMA.md",
+   "deciding_passages": [
+    "README: 'Gateway authentication/request/response headers and raw request/response bodies are not released; projected receipts retain route, outcome, byte-count, and digest evidence.'"
+   ]
+  },
+  {
+   "item": "OpenTelemetry GenAI conventions as carried in Exgentic/agent-llm-traces",
+   "relevant_to": [
+    "B2"
+   ],
+   "what_it_does": "Each LLM-call span carries gen_ai.response.id, a provider-minted response id, plus start/end time.",
+   "what_it_does_not": "The sampled ids (Azure DeepSeek) are 32-hex with no time layout. Nothing cross-checks the id against the span clock.",
+   "verdict_for_our_claims": {
+    "B2 request-id clock": "not taken here; the convention preserves provider ids, which widens potential coverage where the provider embeds time"
+   },
+   "opened": true,
+   "url": "https://huggingface.co/datasets/Exgentic/agent-llm-traces",
+   "deciding_passages": [
+    "schema field list from datasets-server /info: 'spans[].attributes.gen_ai.response.id:string'"
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "url": "https://huggingface.co/api/datasets?search=<q>&limit=200&full=true",
+   "opened": true,
+   "what": "40 keyword queries; counts in B5d_hf_search/search_query_counts.json; 3,249 distinct datasets"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets?filter=format:agent-traces&limit=1000&full=true",
+   "opened": true,
+   "what": "505 datasets tagged format:agent-traces"
+  },
+  {
+   "url": "https://huggingface.co/docs/hub/en/agent-traces",
+   "opened": true,
+   "passage": "Agent traces from Claude Code, Codex, and Pi Agent are natively supported on the Hugging Face Hub. Upload the raw JSONL sessions"
+  },
+  {
+   "url": "https://huggingface.co/docs/hub/en/session-traces-format",
+   "opened": true,
+   "passage": "`timestamp` | no | epoch milliseconds ; `toolCallId` on a role: 'tool' message links the result to the toolCalls[].id it answers"
+  },
+  {
+   "url": "https://huggingface.co/datasets/risenlab/agentlogs (README at rev 04013a44)",
+   "opened": true,
+   "passage": "Log entries ... 64,255,174 ... 56.0 GB ... [CC BY 4.0](DATA_LICENSE)"
+  },
+  {
+   "url": "https://huggingface.co/datasets/risenlab/agentlogs/blob/main/docs/schema/agent_session_log_entry.md",
+   "opened": true,
+   "how": "WebFetch (small-model extraction)",
+   "passage": "data.created datetime; data.callId; data.toolCallId; data.tool_call_id; data.modelCallDurationMs; data.truncateResult"
+  },
+  {
+   "url": "https://arxiv.org/abs/2608.29204",
+   "opened": true,
+   "passage": "AgentLogs: A Dataset for Opening the Black Box of GitHub's Cloud Agent ... 64,255,174 session log entries that record each agent run step by step"
+  },
+  {
+   "url": "https://huggingface.co/datasets/ibm-research/codex_swebenchpro_traces_Otel (README)",
+   "opened": true,
+   "passage": "Timestamps are synthetic: spans within a trace are spaced with random 1-10 second delays (no real wall-clock timing data was available in the source)."
+  },
+  {
+   "url": "https://huggingface.co/datasets/Inferact/codex_swebenchpro_traces (README + first 300 kB of data)",
+   "opened": true,
+   "passage": "This is a dataset generated by real swebenchpro agentic workload trace + codex agent. Data keys seen: conversations, from, value"
+  },
+  {
+   "url": "https://huggingface.co/datasets/sammshen/lmcache-agentic-traces (README)",
+   "opened": true,
+   "passage": "`pre_gap` | float | Seconds between the previous iteration's response completing (last streamed token) and this iteration's request being sent."
+  },
+  {
+   "url": "https://huggingface.co/datasets/netpreme/coding_agent_traces (README)",
+   "opened": true,
+   "passage": "ISL, OSL and ISL_new ... Token counts are obtained from vLLM's prometheus loggers"
+  },
+  {
+   "url": "https://huggingface.co/datasets/Exgentic/agent-llm-traces (README + datasets-server /info + shard 3 probe)",
+   "opened": true,
+   "passage": "Timing Information: Precise start and end timestamps for each operation; Tool Calls & Results: Complete records of tool invocations"
+  },
+  {
+   "url": "https://huggingface.co/datasets/melissapan/swe-bench-lite-agent-traces-v14 (README, SCHEMA.md via WebFetch, 5 files sampled)",
+   "opened": true,
+   "passage": "1,890 harness-native agent traces ... Claude Code, Codex, and Pi sessions across seven models and three replicates"
+  },
+  {
+   "url": "https://huggingface.co/datasets/lihaonan0716/mcphunt-agent-traces (README + one trace parsed)",
+   "opened": true,
+   "passage": "3,615 traces from 5 models across 147 tasks and 7 environment variants"
+  },
+  {
+   "url": "https://huggingface.co/datasets/trace-commons/agent-traces (README + 3 files sampled)",
+   "opened": true,
+   "passage": "Every session is preserved as its agent's raw, unmodified session file (only anonymized, never reshaped)"
+  },
+  {
+   "url": "https://huggingface.co/datasets/cline/incident-traces (README + file listing)",
+   "opened": true,
+   "passage": "sessions/<session_hash>/ ... trajectory.json ATIF-v1.7 ... (no session folders present at this revision)"
+  },
+  {
+   "url": "https://huggingface.co/datasets/MaxDevv/real-pi-coding-agent-traces-sessions (README)",
+   "opened": true,
+   "passage": "This is a compilation; each session remains under the license of its source dataset."
+  },
+  {
+   "url": "https://huggingface.co/datasets/badlogicgames/pi-mono",
+   "opened": true,
+   "how": "WebFetch",
+   "passage": "License: 'other' (no specific license text provided on the page)"
+  },
+  {
+   "url": "https://huggingface.co/datasets/sunnydubey1111/agent-trajectory-sentinel",
+   "opened": true,
+   "how": "WebFetch",
+   "passage": "Injected episodes use deterministic tool-layer injection; organic episodes are labelled after the fact, objectively and by script"
+  },
+  {
+   "url": "https://arxiv.org/abs/2608.02464",
+   "opened": true,
+   "how": "alphaXiv full text",
+   "passage": "wall-clock latency features are machine-specific and are excluded from the shipped configuration."
+  },
+  {
+   "url": "https://huggingface.co/datasets/marco-bazzani/concealed-fabrication-agentic",
+   "opened": true,
+   "how": "WebFetch",
+   "passage": "Each example is a synthetic agentic episode in which a language model (Qwen3-8B) ... silently fabricates one value in its final deliverable."
+  },
+  {
+   "url": "https://huggingface.co/datasets/DedeProGames/claude-code-traces-pt-br",
+   "opened": true,
+   "how": "WebFetch",
+   "passage": "This dataset was generated using teich ... Teich normalizes split assistant fragments during trace copy and conversion"
+  },
+  {
+   "url": "https://huggingface.co/datasets/MarxistLeninist/repro-learning-to-bet-horizon-aware-traces",
+   "opened": true,
+   "how": "WebFetch",
+   "passage": "card has no production or licence text"
+  },
+  {
+   "url": "READMEs of Jakumetsu/mcpmark-trajectory-log, WhitzardAgent/ClaudeCode-Anthropic, thoughtworks/agentic-coding-trajectories, beomi/agent-traces, PotatoHD/github-pr-agent-trajectories, harry1332/hpca2027-*, jedisct1/security-audits, Lightcap/agent-runtime-telemetry-small, julien-c/synthtraces, Samarth0710/traceweave, Infatoshi/kernelbench-hard-traces, Jadson/ox-alpha-pi-traces-emacs-bridge, thomasmustier/pi-for-excel-sessions, kingkw1/read-along-ai-agent-traces, aibengineering/beat-the-game-minecraft, cfahlgren1/Fable-5-traces, armand0e/claude-fable-5-claude-code, naazimsnh02/tutordesk-agent-traces, rs545837/entity-native-agent-sessions, woxQAQ/pi-web",
+   "opened": true,
+   "how": "README.md at pinned revision"
+  },
+  {
+   "url": "analysis/probes/phase_e_b4_inventory.py (local)",
+   "opened": true,
+   "passage": "L31: 'agrees' = first carrying event's ts minus embedded time in [-2 s, +600 s]"
+  },
+  {
+   "url": "analysis/out/phase_e/track_b/B2a_provider_id_facts/decode_examples.py (local)",
+   "opened": true,
+   "passage": "anth(): body '01' + base58; top48 = v >> 80 (ms)"
+  }
+ ],
+ "unverified_or_unopened": [
+  "Exgentic claude_code-harness rows: response-id shape and timing not sampled",
+  "AgentLogs rows: no row sampled (row group too large); provider id shape and 'created' presence UNVERIFIED",
+  "ibm-research/lmcache-agentic-traces_Otel README not read in full; synthetic timing inferred from the sibling codex OTel README",
+  "Dubey 2608.02464 artifacts adversarial_evasion.csv and tamper_check.csv: not opened",
+  "Glint-Research/Fable-5-traces (named in the armand0e card) returns 404 via the HF API",
+  "whether Infatoshi non-Claude files are native or converted"
+ ],
+ "notes_and_flags": [
+  "For the B4/B7 inventory, field coverage by harness on the HF Hub: Claude Code native jsonl has per-entry ISO-ms timestamps, tool_use/tool_result ids, usage tokens, is_error, and requestId when the endpoint is Anthropic first-party (stripped behind gateways, e.g. AgentBRANE). Codex rollouts (~/.codex/sessions) have ms timestamps, call_id joins and token counts but no provider id. `codex exec --json` streams have no timestamps. Pi sessions have ms timestamps and toolCallId joins but no provider id. Cursor exports carry no timestamps.",
+  "Several 'agent-traces' datasets are conversions that keep the schema but not the provenance (Samarth0710/traceweave 'rehydrated into the Claude Code JSONL schema', Jadson/ox-alpha re-ran tool calls, Infatoshi renders codex/kimi runs in Claude Code schema, Swival writes Claude-Code-compatible files). A schema match does not establish native timestamps. Record the producing harness per file.",
+  "Licence relabel risk: WhitzardAgent/ClaudeCode-* are tagged apache-2.0 but are conversions of nlile/misc-merged-claude-code-traces-v1, which has no licence.",
+  "CC BY-NC sets (ibm-research OTel) permit research use but would block a CC BY / MIT release under B7. They also fail the audit."
+ ],
+ "dead_ends_respected": "No s.7 dead end cited (thimble, TwinCheck, swarmtraces, 2604.01151, 2609.22600). SWE-chat, AI Village, Who&When skipped as instructed.",
+ "full_table": "B5d_hf_search/classified.json (one row per audited dataset: revision, licence, gated, size, format, ts coverage, join rate, request ids, pass)"
+}

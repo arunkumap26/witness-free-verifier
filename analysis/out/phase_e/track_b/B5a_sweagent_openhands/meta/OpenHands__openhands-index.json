@@ -1,0 +1,78 @@
+{
+ "id": "OpenHands/openhands-index",
+ "sha": "db6504dfbb2ac2c905c71f73f430bf9cfdc55018",
+ "gated": false,
+ "private": false,
+ "lastModified": "2026-06-30T15:36:51.000Z",
+ "license_tags": [
+  "license:apache-2.0"
+ ],
+ "cardData_license": "apache-2.0",
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "test",
+     "path": "test.parquet"
+    }
+   ]
+  },
+  {
+   "config_name": "instances",
+   "data_files": [
+    {
+     "split": "test",
+     "path": "instances.parquet"
+    }
+   ]
+  }
+ ],
+ "dataset_info": [
+  {
+   "config_name": "default",
+   "version": "2026.6.30",
+   "description": "Snapshot of the OpenHands Index leaderboard built from openhands-index-results commit 3015ac612e7196f428e6e8a3948965d32d9a3331 on 2026-06-30 15:36:50 UTC."
+  },
+  {
+   "config_name": "instances",
+   "version": "2026.6.30",
+   "description": "Per-instance benchmark outcomes (resolved/cost) for every model in the `default` config, sourced from `results/<model>/instance_results/*.json` sidecars at commit 3015ac612e7196f428e6e8a3948965d32d9a3331."
+  }
+ ],
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2504,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": ".source_hash",
+   "size": 64,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 5226,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "instances.parquet",
+   "size": 435757,
+   "type": "file",
+   "lfs_sha256": "f456e937771bdd45815cacd6458433e0e750be0a2a6bcd5daf91670b151968a5"
+  },
+  {
+   "path": "test.parquet",
+   "size": 44323,
+   "type": "file",
+   "lfs_sha256": "966544ad62ba160fec79c73bdd5295df521743c733f9fbcca1ed0f82833d827a"
+  }
+ ],
+ "total_bytes": 487874,
+ "n_files": 5,
+ "readme_bytes": 5226
+}

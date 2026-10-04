@@ -1,0 +1,488 @@
+{
+ "key": "B3b_reaction_concurrency_determinism",
+ "task": "Phase E Track B, B3 items (4), (5), (6). (4) Reaction-time scaling (N3): the gap between a tool result arriving and the next call is reading time and should scale with result size; if the agent authored the result no reading is needed; test corr(next_call_gap, result_bytes). (5) Concurrency-contention scaling (N4): parallel real calls contend for CPU/disk/network and inflate together; generated calls contend for the inference engine, a different scaling signature. (6) Repeat-command determinism (N5 battery item): the same command twice with no intervening write should return byte-identical output; sampling makes fabricated repeats drift.",
+ "date": "2026-10-04",
+ "scope_note": "Literature and public documentation only. No corpus data was read or measured, nothing swarm-related was read, no transcripts were generated, no paid API calls. Sources were opened with the alphaXiv PDF reader (answer_pdf_queries), WebFetch, or local pypdf text extraction of a PDF that WebFetch saved; the method is recorded per source. A source is opened=true only if its text, or the named page, was actually retrieved. Quotes are kept short. Fields whose names begin with VERDICT_REASONING or INTERPRETATION hold judgement; every other field is copied from a source. Items in CLAUDE_context_swarms.md sections 6-7 were not re-researched; section 5 systems were not re-opened (cited as settled where used).",
+ "bottom_line": [
+  "All three are PARTIAL. In each case the underlying technique is old and documented outside agents, and in each case no source found applies it, passively, to recorded agent tool logs to decide whether a tool result was fabricated. None is TAKEN; none is cleanly NOVEL.",
+  "(4) Reaction-time scaling. TAKEN as a technique in human-behaviour measurement: survey 'speeding' is defined as answering faster than 300 ms per word times the question's word count (Zhang & Conrad 2014), and a 2005 Google patent uses reading speed against document length to 'detect automated surfing systems'. Agent-adjacent: Palisade's LLM Agent Honeypot (arXiv 2410.13919) uses the response gap after an output (under ~1.7 s) to separate LLM agents from humans, but does not condition on output size. No source tests corr(next_call_gap, result_bytes) in agent logs. Material caveat (INTERPRETATION): for an LLM the 'reading' is prefill of appended tokens, which a fabricated result returned through the harness also pays, so the premise does not hold under the project's own threat model.",
+  "(5) Concurrency-contention scaling. TAKEN as a technique: inferring which physical resource a set of operations shares from correlated latency inflation is classic. Rubenstein/Kurose/Towsley (SIGMETRICS 2000) decide from end-host delays alone whether two flows share a point of congestion. Ristenpart et al. (CCS 2009) detect VM co-residence from load-induced timing. RAFT (Bowers et al., CCS 2011) verifies a provider's claimed physical layout (number of drives) from the timing of parallel reads. Google's CPI2 (described in PANDA, arXiv 2511.08803) correlates a victim's slowdown with co-located usage in production. No source applies contention coupling to decide whether agent tool results were executed or generated.",
+  "(6) Repeat-command determinism. Closest and strongest prior art of the three. The LLM-honeypot literature already knows that LLM-fabricated shell output drifts on repeated commands. AdvancedShelLM (arXiv 2606.27990) participants caught the honeypot because 'I did an ls in /var/ twice, and got different results'. shelLM prompts the model to return the same output for repeated commands, and Galah, StableToolBench and Ragsdale & Boppana (via SoK) cache responses so that identical requests return identical output. ToolEmu makes 'consistency with previous trajectory' a Critical emulator requirement, checked by human annotators. The logic is Berenson et al.'s 1995 non-repeatable read (P2/A2) checked from history, as Elle does. The premise that sampling drifts is SelfCheckGPT's. What is not found is an automated, passive check over recorded agent tool logs: an identical read-only command, no intervening logged write, byte-different output, flagged as fabrication. Present it as 'Adya/Elle repeatable-read for tool logs', not as a new idea.",
+  "Design-relevant limits (INTERPRETATION, detail in INTERPRETATION_design_implications). (4) is physically weak under execution-path compromise and will likely return a null. (5) needs within-session concurrency, which is sparse: TraceLab reports 1.2 tool calls per step on average. It only fires if the fabricator calls an inference engine at tool time. (6) is defeated by a response cache keyed on the command, which deployed LLM honeypots and tool simulators already use. It also needs a no-unlogged-writer assumption, which background processes break, and real outputs that embed timestamps, PIDs or ordering are not byte-stable."
+ ],
+ "items": [
+  {
+   "claim": "(4) Reaction-time scaling (N3): the gap between a tool result's arrival and the agent's next call reflects reading time and should scale with result size; an agent-authored (fabricated) result needs no reading, so per-session corr(next_call_gap, result_bytes) separates real from fabricated results.",
+   "verdict": "PARTIAL",
+   "closest_work": "Zhang & Conrad 2014, 'Speeding in Web Surveys' (Survey Research Methods 8(2):127-135): content-length-scaled reading-time floor. Google patent US8271865 (priority 2005-09-19): reading speed vs document markers to detect automated surfing. Agent-adjacent: Reworr & Volkov, 'LLM Agent Honeypot' (arXiv 2410.13919, Palisade): response-gap timing to separate LLM agents from humans. Physics: Song et al., 'Early Bird Catches the Leak' (arXiv 2409.20002) and Zhu et al., TraceLab (arXiv 2606.30560): prefill time scales with uncached appended tokens.",
+   "what_it_does": "Zhang & Conrad flag a response as unread when its time falls below 300 ms per word times the number of words in the question, i.e. a gap normalised by content size, explicitly as a reading-time floor. The Google patent measures reading speed from markers inside a rendered document and states it can detect automated surfing systems. Palisade's honeypot measures the time between its output (with an embedded prompt injection) and the attacker's next command and labels sub-~1.7 s responders as LLM agents. Early Bird shows that on commodity LLM APIs TTFT is flat in request length on a cache hit and grows almost linearly on a miss. TraceLab shows each agent step prefills only newly appended tokens (tool results), and that Claude re-sends prior output as appended input ('output-resend') while gpt-5.4 caches it.",
+   "what_it_does_not": "None asks whether a tool result was authored by the reader rather than delivered by the environment. Zhang & Conrad and the patent test whether a human read content; Palisade tests who the reader is (LLM vs human) with an unconditioned threshold; Early Bird and TraceLab characterise serving latency and never use the gap for verification. TraceLab's released trace holds per-step timestamps and character counts (the inputs N3 needs) but analyses timing only against total context length, not append size. No source computes corr(next_call_gap, result_bytes) on agent logs.",
+   "deciding_citation": "Zhang & Conrad 2014 (https://ojs.ub.uni-konstanz.de/srm/article/view/5453/5344, p.129): 'we set the speeding threshold as 300 milliseconds (msec) per word ... multiplied by the number of words in the question'; 'when response times are faster than likely reading times, respondents are unlikely to have given the question adequate thought.' Agent-adjacent: arXiv 2410.13919 s3.2.1: 'We assume that LLMs respond quickly, while humans need time to read, process, and answer prompt injections.'",
+   "opened": true
+  },
+  {
+   "claim": "(5) Concurrency-contention scaling (N4): durations of concurrent real tool calls inflate together because they share CPU, disk and network; generated (fabricated) results contend for the inference engine instead, so duration-vs-concurrency scaling is a fabrication signal.",
+   "verdict": "PARTIAL",
+   "closest_work": "Rubenstein, Kurose & Towsley, 'Detecting Shared Congestion of Flows Via End-to-end Measurement' (UMass TR 99-66; SIGMETRICS 2000; IEEE/ACM ToN 2002). Ristenpart, Tromer, Shacham & Savage, 'Hey, You, Get Off of My Cloud' (CCS 2009), s8.2 load-based co-residence detection. Bowers, van Dijk, Juels, Oprea & Rivest, RAFT, 'How to tell if your cloud files are vulnerable to drive crashes' (CCS 2011; ePrint 2010/214). CPI2 (Zhang et al., EuroSys 2013) as described in PANDA (arXiv 2511.08803).",
+   "what_it_does": "Rubenstein et al. decide, from end-host loss or delay observations only, whether two flows are congested at the same network resource, by comparing a cross-flow correlation ('cross-measure') with a within-flow correlation ('auto-measure'). Ristenpart et al. show two VMs are co-resident when load driven on one changes timing samples on the other, and that non-co-resident pairs show no change. RAFT verifies a cloud provider's claim about physical storage layout by timing parallel block reads: more distinct drives, faster response. CPI2/Proctor/PANDA identify which co-located job degrades a victim from the correlation between the victim's slowdown and co-runners' usage, in Google production traces. Physics for the agent setting: Ask the Tool (arXiv 2609.18849) shows adding busy neighbours makes most replayed SWE-bench commands several times slower (median 3.83x oversubscribed); NVIDIA NIM docs state LLM latency 'steadily increases' with concurrency once throughput saturates.",
+   "what_it_does_not": "None applies contention coupling to agent tool logs, and none uses it to distinguish executed from generated tool results. RAFT is the only one that uses contention timing to verify a claim made by an untrusted party, and it needs a verifier-chosen challenge (parallel reads it issues), which a passive log verifier cannot issue. The network and datacenter methods attribute shared bottlenecks for performance diagnosis, assuming the timing records are honest; they do not consider that some of the 'operations' may never have run.",
+   "deciding_citation": "Rubenstein, Kurose & Towsley (https://web.cs.umass.edu/publication/docs/1999/UM-CS-1999-066.pdf, abstract): 'we present techniques based on loss or delay observations at end-hosts to infer whether or not two flows experiencing congestion are congested at the same network resources.' RAFT (https://eprint.iacr.org/2010/214): 'The key technique in a RAFT is to measure the time taken for a server to respond to a read request for a collection of file blocks.'",
+   "opened": true
+  },
+  {
+   "claim": "(6) Repeat-command determinism (N5 battery): the same command run twice with no intervening write should return byte-identical output; LLM sampling makes fabricated repeats drift, so byte-different repeats of an identical read-only command with no intervening logged write are a fabrication check.",
+   "verdict": "PARTIAL",
+   "closest_work": "Sladic et al., AdvancedShelLM (arXiv 2606.27990) and shelLM (arXiv 2309.00155); Galah (github.com/0x4D31/galah) and Ragsdale & Boppana via the SoK (arXiv 2510.25939): response caching in LLM honeypots. Ruan et al., ToolEmu (arXiv 2309.15817, ICLR 2024): consistency as a Critical emulator requirement. Guo et al., StableToolBench (arXiv 2403.07714): cache 'to ensure consistency'. Logic ancestors: Berenson et al. 1995 (P2/A2 non-repeatable read, arXiv cs/0701157) and Kingsbury & Alvaro, Elle (arXiv 2003.10554). Premise ancestor: Manakul et al., SelfCheckGPT (arXiv 2303.08896).",
+   "what_it_does": "In AdvancedShelLM's blind human study, participants who unmasked the LLM honeypot cited inconsistent output across repeated commands ('I did an ls in /var/ twice, and got different results') and uniform latency regardless of command complexity; the design responds by storing filesystem state outside the conversation. shelLM states the same command may not return the same response because of LLM non-determinism and prompts the model to generate the same output for most commands (temperature 0). Galah caches LLM responses for identical requests; StableToolBench caches API responses keyed on (category, tool, API name, arguments) 'to ensure consistency'; the SoK records Ragsdale & Boppana's caching of deterministic responses and the canonical Deterministic Responder component. ToolEmu requires emulated outputs to be 'consistent with those in previous trajectory' and grades violations Critical via human annotators. Berenson et al. define the non-repeatable read: T1 reads x, T2 writes x and commits, T1 re-reads and gets a different value; Elle infers such anomalies passively from client-observed histories, including 'internal inconsistency'. SelfCheckGPT's premise: for hallucinated content, 'stochastically sampled responses are likely to diverge and contradict one another'.",
+   "what_it_does_not": "The honeypot evidence is live, attacker-side and anecdotal (human free-text reasons); nobody publishes an automated repeat-consistency detector, and the defenders' response is to defeat it. ToolEmu checks consistency by human annotation of its own emulator, not as a detector on third-party logs. StableToolBench and Galah enforce determinism; they do not test for it. Berenson/Elle check database histories under a designed workload (Elle needs list-append objects so reads reveal version history) and assume the history is truthful, blaming the database, not the record. SelfCheckGPT actively draws N new samples; it does not use repeats already present in a log. EC-Agent (arXiv 2610.00327) does compare deterministic trace digests across an execution rerun, but it is active, instrumented re-execution with a trusted runner. No source runs the passive check: identical read-only command, no intervening logged write, byte-different output, flagged.",
+   "deciding_citation": "AdvancedShelLM (https://arxiv.org/abs/2606.27990, s5.3): participants cited 'inconsistent output across repeated commands (“I did an ‘ls’ in /var/ twice, and got different results”)'. shelLM (https://arxiv.org/abs/2309.00155, s3.3): 'Due to the non-deterministic nature of LLMs sometimes the same command might not return the same response'. Logic: Berenson et al. 1995 (https://arxiv.org/abs/cs/0701157), 'A2: r1[x]...w2[x]...c2...r1[x]...c1 (Fuzzy or Non-Repeatable Read)'.",
+   "opened": true
+  }
+ ],
+ "verdict_reasoning": {
+  "VERDICT_REASONING_4": "PARTIAL. TAKEN as a general technique: a content-length-normalised minimum reading time used to infer that content was not actually read (survey speeding, Zhang & Conrad 2014; Google's reading-speed patent for detecting automated surfing). Agent-adjacent: response-gap timing is already used in LLM-agent security, but to classify the reader (Palisade), unconditioned on size. The specific inversion is not found. N3 uses reading-time scaling to infer that the reader authored the content, and no source does this in agent logs. NOVEL is not warranted, because a reviewer will correctly say 'this is the survey speeding / rapid-guessing floor applied to tool results'. A stronger problem than novelty is physical (see INTERPRETATION_4). For an LLM agent, 'reading' is prefill of uncached appended tokens (Early Bird; TraceLab). A fabricated result that comes back through the harness as a tool_result is prefilled exactly like a real one. Under Claude's output-resend accounting, even model-authored text is re-prefilled. So the human-cognition premise ('authored text needs no reading') does not transfer to the threat model the project states.",
+  "VERDICT_REASONING_5": "PARTIAL. TAKEN as a general technique: inferring the identity of a shared physical resource from co-varying latency of concurrent operations. Passive end-to-end versions exist (Rubenstein et al. 2000; CPI2/PANDA in production), and so does an adversarial verification version (RAFT 2011, which checks an untrusted provider's claim about physical layout from contention timing). Ristenpart et al. 2009 is the security-folklore instance (co-residence from load-induced timing). No source applies it to agent tool logs or to the executed-vs-generated question, and no agent harness or eval framework found (B1d also found none) checks durations against concurrency. RAFT is the conceptually closest and the reviewer's likely citation. It differs because it needs a verifier-issued challenge, while N4 must work on whatever concurrency the agent happened to produce.",
+  "VERDICT_REASONING_6": "PARTIAL, closest to TAKEN of the three. The fabrication-detection idea itself, that LLM-generated tool or shell output drifts when the same command is repeated, is documented in the LLM-honeypot line: AdvancedShelLM's participants used exactly this tell; shelLM, Galah, StableToolBench, Ragsdale & Boppana (via SoK) and HoneyGPT (via SoK) all engineer around it; ToolEmu treats it as a critical emulator defect. The checking logic is Berenson's non-repeatable read and Elle's passive history checking. What keeps it from TAKEN is that every instance is (a) live and attacker-side or human-judged, (b) a design requirement for the fabricator, or (c) a database-history check that assumes the record is truthful. None is an automated passive verifier over recorded agent tool logs with the no-intervening-logged-write condition. The defensible framing is 'Elle-style repeatable-read checking of the tool log', with the honeypot results cited as evidence that the tell is real for LLM fabricators and that it is already being evaded.",
+  "VERDICT_REASONING_internal_embodiment_checks": "Asked of each: does an existing harness, eval framework, APM product or observability SDK already do this internally? (4) TraceLab's pipeline computes exactly N3's inputs (t_input = latest tool_result before first model output; per-step append tokens and char counts) but only for serving characterisation. Palisade's honeypot does timing analysis on response gaps. Neither verifies authorship. B1d_agent_eval found that agent harnesses check time only against budgets and timeouts. (5) Datacenter interference systems (CPI2, Proctor, PANDA) internally embody contention-coupling inference, but for antagonist attribution with trusted counters. Ask the Tool and agent-serving schedulers (Continuum, CacheWise, as listed in its Table 1) model tool durations for KV-cache retention, not verification. (6) StableToolBench, Galah and HoneyGPT internally embody the inverse: they enforce repeat-consistency so a simulator passes. ToolEmu internally checks consistency by human review of emulated trajectories. EC-Agent internally compares rerun digests and logs a 'tool-nondeterminism' reason code. None of these is a passive check on recorded agent logs."
+ },
+ "INTERPRETATION_design_implications": {
+  "INTERPRETATION_4_reaction_time": [
+   "Expect a null, and pre-register it as low prior. Three reasons. (i) Under execution-path compromise, the fake result enters the model's context as a tool_result, i.e. as appended input tokens, so its prefill cost is the same as a real result of the same size (TraceLab s3.2, s5.3; Early Bird s4-D). (ii) Under Claude's 'output-resend' accounting (TraceLab s5.3), even text the model itself produced earlier is re-sent as appended input and re-prefilled, so 'authored means no reading' fails even for inline-to-tool laundering. (iii) Prefill of a typical result is small against the gap. TraceLab's median append is 857 tokens for Claude. Early Bird's best-case prefill miss is about 0.045 ms/token on a 7B model, about 0.45 ms/token on a 70B INT4. FINDINGS s4.2.6 already shows the gap before the next tool_use is dominated by streaming the next call's arguments (median 174.7 arg chars/s; rho 0.809 on CC B). That is a confound N3 must partial out.",
+   "Where N3 could still discriminate: only when a recorded result never reached the model's context, e.g. a log rewritten after the fact. In that case the next-call gap still reflects the original result's size, not the recorded one. This is log tampering, which DESIGN.md's threat model puts out of scope. Inline fabrication (the model prints tool-output-looking text with no tool call, as in claude-code issue #7381) has no tool_result record and no 'result arrival' event, so N3 cannot see it. That class belongs to N2 token accounting (see B3a).",
+   "If Track A runs N3 anyway, condition on the next call's argument length and on cache state (cache_read vs cache_creation tokens where present) before reading corr(gap, result_bytes). Report it stratified by provider accounting regime (output-resend vs output-cached)."
+  ],
+  "INTERPRETATION_5_concurrency": [
+   "Coverage is the binding constraint. N4 needs within-session variation in the number of concurrently running calls. TraceLab reports 1.2 tool calls per step on average and says parallel tool calling 'is not pervasive'. Report the share of calls that overlap another call before anything else; it bounds the mechanism, as the repeat rate bounds N1.",
+   "The 'generated calls contend for the inference engine' premise holds only for fabricators that call an LLM at tool time (LLM-honeypot style, ToolEmu/StableToolBench-style simulators). METR's case, where an agent-written script replaced the execution layer, runs on the same machine as real tools, so it shares the CPU/disk contention signature. Precomputed or cached fake outputs have no contention signature at all.",
+   "Noise is large. PANDA's twin-task analysis shows identical tasks in identical conditions still differ by 0.59x the between-task SD. Ask the Tool shows idle replay at a median 0.12x of recorded duration, and Kendall tau(recorded, replay) = -0.04 for long calls. Use Rubenstein's comparison test as the template: within a session, compare the co-variation of durations of temporally overlapping calls (cross-measure) with that of non-overlapping calls of the same command class (auto-measure). It needs no absolute threshold.",
+   "The #67730 class (settled in CLAUDE_context_swarms.md s6) had zero tool_use entries in the fabricated subagents, so there are no tool durations to test. N4 could reach it only at subagent granularity (subagent wall time against the number of concurrent subagents), which is a different measurement and must be pre-registered separately."
+  ],
+  "INTERPRETATION_6_repeat_determinism": [
+   "This is the strongest of the three to build, and the cheapest. Frame it as an Elle/Adya repeatable-read check over the tool log. State up front that it catches only naive fabrication: a response cache keyed on the command defeats it, and that defence is already deployed (Galah; StableToolBench; Ragsdale & Boppana and HoneyGPT via SoK). So does a fabricator that copies its earlier output from context (shelLM prompts for exactly that).",
+   "The no-intervening-write premise is Berenson's P2 with a possibly unobserved T2. Background processes, daemons, concurrent subagents and mtime churn are unlogged writers. A byte difference with no logged write is 'contradicted' only for commands whose output is a pure function of logged state, e.g. git show <sha>, cat of a file only the session writes, or sha256sum of such a file. Otherwise it is 'unconstrained'. This also mirrors CLAUDE_context_swarms.md s8 objection 5.",
+   "Known sources of real-output nondeterminism to exclude or normalise: timestamps, timezones, locales, randomness, build paths, archive metadata, unstable ordering (reproducible-builds.org docs headings), PIDs and timing lines in test output. In EC-Agent's own frozen setting, execution reruns failed in 8-15 of 7,650 executions per policy (0.10-0.20%), and 4-7 of those failures were tool or environment nondeterminism. NovaFabric's tool-workload replay rate of 2/10 (settled in context s5) shows how large real nondeterminism can be outside frozen setups.",
+   "The tell is two-sided and depends on the fabricator. LLM fabricators drift. Static emulators are too deterministic where real output must change: Rouxii's models flag 'Repetitive response ... regardless of probe', and the SoK lists a static top table. A complete check should also flag identical outputs for commands whose real output must change between calls (date, uptime, ps, timing lines).",
+   "Coverage bound: report the within-session rate of identical read-only command repeats with no intervening logged write before any detection number, as N1 does for its repeat rate."
+  ]
+ },
+ "sources": [
+  {
+   "id": "S01",
+   "title": "Zhang, C. & Conrad, F. G. (2014). Speeding in Web Surveys: The tendency to answer very fast and its association with straightlining. Survey Research Methods 8(2):127-135.",
+   "url": "https://ojs.ub.uni-konstanz.de/srm/article/view/5453/5344",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf (9 pages).",
+   "saw": "p.129 (as extracted): 'we set the speeding threshold as 300 milliseconds (msec) per word, a rough estimate of reading speed, multiplied by the number of words in the question.' 'when response times are faster than likely reading times, respondents are unlikely to have given the question adequate thought.'",
+   "relevance": [
+    "4"
+   ]
+  },
+  {
+   "id": "S02",
+   "title": "US8271865, 'Detection and utilization of document reading speed' (Google LLC; priority 2005-09-19).",
+   "url": "https://patents.google.com/patent/US8271865",
+   "opened": true,
+   "how_opened": "WebFetch",
+   "saw": "Reading speed from markers in a rendered document 'may also be used to detect automated surfing systems from actual users that are reading a document'; also 'to detect and avoid bots ... on pay-per-click web pages'.",
+   "relevance": [
+    "4"
+   ]
+  },
+  {
+   "id": "S03",
+   "title": "CRAN package 'aberrance', detect_rg documentation (rapid-guessing detection).",
+   "url": "https://rdrr.io/cran/aberrance/man/detect_rg.html",
+   "opened": true,
+   "how_opened": "WebFetch",
+   "saw": "Custom threshold method (Wise et al. 2004; Wise & Kong 2005) and normative threshold NT (Wise & Ma 2012; percentage of mean item time). The page does not mention item length or reading load. Wise & Kong 2005 itself was NOT opened, so any claim that its thresholds scale with item length is UNVERIFIED and not used.",
+   "relevance": [
+    "4"
+   ]
+  },
+  {
+   "id": "S04",
+   "title": "Reworr & Volkov, 'LLM Agent Honeypot: Monitoring AI Hacking Agents in the Wild', arXiv 2410.13919 (Palisade Research).",
+   "url": "https://arxiv.org/abs/2410.13919",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s3.1.2: internal GPT-4o agents 'typically replied within 1.7 second' (median 1.06 s); s3.2.1: 'We assume that LLMs respond quickly, while humans need time to read, process, and answer prompt injections.' Timing is not conditioned on output size.",
+   "relevance": [
+    "4"
+   ]
+  },
+  {
+   "id": "S05",
+   "title": "Song et al., 'The Early Bird Catches the Leak: Unveiling Timing Side Channels in LLM Serving Systems', arXiv 2409.20002 v5.",
+   "url": "https://arxiv.org/abs/2409.20002",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s4-D: 'when the cache is hit, the TTFT remains consistent, regardless of the request length, whereas when the cache is missed, TTFT increases almost linearly as the length of the request grows.' PSA background section: prefill miss about 0.045 ms/token (7B, A100, best case); about 0.45 ms/token (70B INT4).",
+   "relevance": [
+    "4"
+   ]
+  },
+  {
+   "id": "S06",
+   "title": "Zhu et al., 'TraceLab: Characterizing Coding Agent Workloads for LLM Serving', arXiv 2606.30560 v2.",
+   "url": "https://arxiv.org/abs/2606.30560",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries (two passes)",
+   "saw": "'each step only needs to prefill newly appended tokens'; median Claude step 126k prefix, 857 append tokens; s5.3 'Claude primarily uses output-resend', gpt-5.4 'mostly output-cached'; s5.4 t_input = latest user_message or tool_result timestamp before the first model output; timing plotted against total input context only; 1.2 tool calls per step, parallel calling 'not pervasive'; released trace keeps timestamps, token usage and character counts (raw text dropped). GitHub uw-syfi/TraceLab not opened.",
+   "relevance": [
+    "4",
+    "5"
+   ]
+  },
+  {
+   "id": "S07",
+   "title": "anthropics/claude-code issue #7381, '[BUG] The LLM is hallucinating Claude Code command line tool output'.",
+   "url": "https://github.com/anthropics/claude-code/issues/7381",
+   "opened": true,
+   "how_opened": "WebFetch",
+   "saw": "Inline fabrication: the model printed Bash(...) blocks with outputs, but no tool executed (no approval prompt; file absent on disk). Closed as not planned.",
+   "relevance": [
+    "4"
+   ]
+  },
+  {
+   "id": "S08",
+   "title": "Rubenstein, Kurose & Towsley, 'Detecting Shared Congestion of Flows Via End-to-end Measurement', UMass CS TR 99-66 (1999); SIGMETRICS 2000; IEEE/ACM ToN 10(3) 2002.",
+   "url": "https://web.cs.umass.edu/publication/docs/1999/UM-CS-1999-066.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf (27 pages).",
+   "saw": "Abstract: 'techniques based on loss or delay observations at end-hosts to infer whether or not two flows experiencing congestion are congested at the same network resources.' s1: 'the measure between flows is greater than the measure within a flow if and only if the flows share the same POC' (the 'comparison test'). The techniques assume co-located sources or receivers.",
+   "relevance": [
+    "5"
+   ]
+  },
+  {
+   "id": "S09",
+   "title": "Ristenpart, Tromer, Shacham & Savage, 'Hey, You, Get Off of My Cloud: Exploring Information Leakage in Third-Party Compute Clouds', ACM CCS 2009.",
+   "url": "https://www.cs.princeton.edu/courses/archive/spring13/cos598C/cloudsec-ccs09.pdf",
+   "opened": true,
+   "how_opened": "WebFetch saved the PDF; text extracted locally with pypdf (14 pages).",
+   "saw": "s8.2 'Load-based co-residence detection': load samples taken while a third system drives HTTP GETs at the target differ for co-resident pairs; for a non-co-resident pair 'the load sample timings are, as expected, very similar.' Hard-disk contention covert channel 'was used in Section 6 for establishing co-residence'.",
+   "relevance": [
+    "5"
+   ]
+  },
+  {
+   "id": "S10",
+   "title": "Bowers, van Dijk, Juels, Oprea & Rivest, 'How to tell if your cloud files are vulnerable to drive crashes' (RAFT), ACM CCS 2011; IACR ePrint 2010/214.",
+   "url": "https://eprint.iacr.org/2010/214",
+   "opened": true,
+   "how_opened": "WebFetch of the ePrint abstract page only (full PDF not read).",
+   "saw": "'The key technique in a RAFT is to measure the time taken for a server to respond to a read request for a collection of file blocks'; 'The larger the number of hard drives across which a file is distributed, the faster the read-request response.'",
+   "relevance": [
+    "5"
+   ]
+  },
+  {
+   "id": "S11",
+   "title": "Zhou, Deng, Rzadca, Lin & Hu, 'PANDA: Noise-Resilient Antagonist Identification in Production Datacenters', arXiv 2511.08803 v3 (Purdue, Google).",
+   "url": "https://arxiv.org/abs/2511.08803",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s2.1: CPI2 (Zhang et al. 2013) and Proctor (Kannan et al. 2018) 'infer antagonists directly from correlation between the victim's performance degradation and the colocated tasks' resource usage'; s2.2 twin-task analysis: identical tasks still differ by 0.59x the random-pair SD. CPI2 (EuroSys 2013) itself NOT opened; described via PANDA.",
+   "relevance": [
+    "5"
+   ]
+  },
+  {
+   "id": "S12",
+   "title": "Liu, Zhang, Li & Zhang, 'Ask the Tool, Don't Guess: Agent Tool Calls Hold Their Progress, and the Serving System Should Read It', arXiv 2609.18849.",
+   "url": "https://arxiv.org/abs/2609.18849",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s2.1: 'Adding busy neighbours, however, made most calls several times slower (Figure 3b)'; Fig. 3b medians 1.00x / 1.20x / 3.83x; Fig. 3a replay/recorded median 0.12x; Fig. 3c Kendall tau recorded-to-replay -0.04. Table 1 lists serving systems that model tool durations (Continuum, CacheWise, ...) for KV retention.",
+   "relevance": [
+    "5"
+   ]
+  },
+  {
+   "id": "S13",
+   "title": "NVIDIA NIM for LLMs benchmarking guide, 'Parameters and Best Practices'.",
+   "url": "https://docs.nvidia.com/nim/benchmarking/llm/latest/parameters.html",
+   "opened": true,
+   "how_opened": "WebFetch",
+   "saw": "'Throughput generally saturates near the max batch size while latency steadily increases.' When concurrency exceeds max batch size times replicas, requests queue.",
+   "relevance": [
+    "5"
+   ]
+  },
+  {
+   "id": "S14",
+   "title": "Sladic, Alibalic, Valeros, Catania & Garcia, 'AdvancedShelLM: A Stateful Multi-Agent LLM Honeypot for SSH Deception', arXiv 2606.27990.",
+   "url": "https://arxiv.org/abs/2606.27990",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s1: prior LLM honeypots 'present inconsistent output over time'. s5.3 human study (n=7 on AdvancedShelLM): participants cited 'uniform response latency regardless of command complexity' and 'inconsistent output across repeated commands (“I did an ‘ls’ in /var/ twice, and got different results”)'. Design keeps the filesystem as JSON outside the conversation.",
+   "relevance": [
+    "6",
+    "4"
+   ]
+  },
+  {
+   "id": "S15",
+   "title": "Sladic, Valeros, Catania & Garcia, 'LLM in the Shell: Generative Honeypots' (shelLM), EuroS&PW 2024, arXiv 2309.00155 v3.",
+   "url": "https://arxiv.org/abs/2309.00155",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s3.3: temperature 0; 'Due to the non-deterministic nature of LLMs sometimes the same command might not return the same response'; 'for most commands, the model is prompted to generate the same output every time.' s7: answer latency 'might be an indicator of a honeypot'.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S16",
+   "title": "Bridges, Mitchell, Munoz & Henriksson, 'SoK: Honeypots & LLMs, More Than the Sum of Their Parts?', arXiv 2510.25939 (v2 and v4 read).",
+   "url": "https://arxiv.org/abs/2510.25939",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s3.1.1: Guan et al. problem type 'the LLM responds in a manner inconsistent with history'. s3.1.2: the top command producing a static table as a tell; 'timing remains a critical and unresolved challenge'. s3.2.3: Ragsdale & Boppana 'propose caching deterministic responses'; HoneyGPT routes simple commands 'to traditional emulators or a cache'. Fig. 1: Deterministic Responder for cached responses. Ragsdale & Boppana (IEEE Access 2023) itself NOT opened; the lookup returned the SoK.",
+   "relevance": [
+    "6",
+    "4"
+   ]
+  },
+  {
+   "id": "S17",
+   "title": "Galah, LLM-powered web honeypot (Adel Karimi), README.",
+   "url": "https://github.com/0x4D31/galah",
+   "opened": true,
+   "how_opened": "alphaXiv read_files_from_github_repository (README.md)",
+   "saw": "'Responses generated by the LLM are cached for a configurable period to prevent repetitive generation for identical requests, reducing API costs.' Note: may be identifiable via 'prolonged response times'.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S18",
+   "title": "Ruan et al., 'Identifying the Risks of LM Agents with an LM-Emulated Sandbox' (ToolEmu), ICLR 2024, arXiv 2309.15817.",
+   "url": "https://arxiv.org/abs/2309.15817",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s3 core requirement '(iii) consistency: the emulated trajectory must maintain a consistent state transition and ensure there are no discrepancies in emulated outputs'. Table A.1: Consistency, 'Emulated outputs must be consistent with those in previous trajectory', design Prompt, if violated Critical. Compliance validated by human annotators.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S19",
+   "title": "Guo et al., 'StableToolBench: Towards Stable Large-Scale Benchmarking on Tool Learning of Large Language Models', arXiv 2403.07714 v5.",
+   "url": "https://arxiv.org/abs/2403.07714",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s3.1: 'a caching system that stores responses of all API callings to ensure consistency', keys 'composed of their category, tool, API name, and arguments'; cache hit is served first, then the real API, then the GPT-4 simulator. s4.4: simulated APIs, 5 calls with different arguments each, only 2 of 60 gave identical responses in any 2 calls.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S20",
+   "title": "Manakul, Liusie & Gales, 'SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models', EMNLP 2023, arXiv 2303.08896.",
+   "url": "https://arxiv.org/abs/2303.08896",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "Abstract: 'for hallucinated facts, stochastically sampled responses are likely to diverge and contradict one another.' s5: draws N further stochastic samples (active resampling, N=20 at T=1.0).",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S21",
+   "title": "Berenson, Bernstein, Gray, Melton, O'Neil & O'Neil, 'A Critique of ANSI SQL Isolation Levels', SIGMOD 1995 (MSR-TR-95-51), arXiv cs/0701157.",
+   "url": "https://arxiv.org/abs/cs/0701157",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "P2 (Non-repeatable or Fuzzy Read): 'Transaction T1 reads a data item. Another transaction T2 then modifies or deletes that data item and commits. If T1 then attempts to reread the data item, it receives a modified value'. A2: r1[x]...w2[x]...c2...r1[x]...c1.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S22",
+   "title": "Kingsbury & Alvaro, 'Elle: Inferring Isolation Anomalies from Experimental Observations', VLDB 2020, arXiv 2003.10554.",
+   "url": "https://arxiv.org/abs/2003.10554",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "Infers anomalies from client observations; works 'by carefully selecting database objects and operations when generating histories'. s6.1 'Internal inconsistency: A transaction reads some value of an object which is incompatible with its own prior reads and writes.' Elle is already a settled ancestor in CLAUDE_context_swarms.md s5/s8.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S23",
+   "title": "Hu et al., 'Actions with Receipts: Jointly Binding Claims, Evidence, and Execution for Replayable Tool-Agent Auditing' (EC-Agent), arXiv 2610.00327.",
+   "url": "https://arxiv.org/abs/2610.00327",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s3: 'a separate execution-rerun pass compares fresh deterministic trace digests'; 'the runner and observation logger are trusted during execution'. Table 23 reason codes include 'tool-nondeterminism' and 'environment-drift'; rerun failures 8-15 of 7,650 per policy, of which 4-7 are tool/env.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S24",
+   "title": "Reproducible Builds project, documentation index.",
+   "url": "https://reproducible-builds.org/docs/",
+   "opened": true,
+   "how_opened": "WebFetch",
+   "saw": "Documented sources of output variance: Timestamps, Timezones, Locales, Randomness, Build path, Archive metadata, Stable order for inputs/outputs, System images.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S25",
+   "title": "Cordeiro, Mongardini & Vasilomanolakis, 'Rouxii: Exploiting Honeypots with Deception-Aware AI Pentesters', arXiv 2609.26555.",
+   "url": "https://arxiv.org/abs/2609.26555",
+   "opened": true,
+   "how_opened": "alphaXiv answer_pdf_queries",
+   "saw": "s5.4: models flag honeypots from inconsistencies, including 'a static response invariant to the probe'; QuoteBox 5 'Repetitive response ... regardless of probe'. The opposite tell: static emulators are too deterministic.",
+   "relevance": [
+    "6"
+   ]
+  },
+  {
+   "id": "S26",
+   "title": "Project-internal: analysis/FINDINGS.md s4.2.6 (Behavioural regularities).",
+   "url": "file:analysis/FINDINGS.md",
+   "opened": true,
+   "how_opened": "local read",
+   "saw": "'Block streaming clock: the gap before a tool_use block tracks its argument length', median 174.7 arg chars/s, rho 0.809 [0.793, 0.824] on CC B. A confound for N3's next_call_gap.",
+   "relevance": [
+    "4"
+   ]
+  },
+  {
+   "id": "S27",
+   "title": "Project-internal: CLAUDE_context_swarms.md s5 (NovaFabric 2609.12582: 'tool workloads 2/10' replay) and s6 (claude-code #67730: fabricated subagents with zero tool_use, 63-second window at peak concurrency).",
+   "url": "file:C:/Swarms/CLAUDE_context_swarms.md",
+   "opened": true,
+   "how_opened": "local read; settled facts, deliberately not re-researched",
+   "saw": "As stated in the context file; papers not re-opened here.",
+   "relevance": [
+    "5",
+    "6"
+   ]
+  },
+  {
+   "id": "S28",
+   "title": "AWS dev.to post, 'Detect AI Agent Hallucinations: Zero-Shot Methods'.",
+   "url": "https://dev.to/aws/detect-ai-agent-hallucinations-zero-shot-methods-5g81",
+   "opened": true,
+   "how_opened": "WebFetch",
+   "saw": "Opened to check for a repeat-output consistency method; it describes single-pass methods (LSC, claim decomposition), not repeated tool outputs. Not relevant; recorded as a null.",
+   "relevance": [
+    "6"
+   ]
+  }
+ ],
+ "search_log": [
+  {
+   "tool": "alphaXiv discover_papers",
+   "query": "detecting fabricated or simulated tool outputs from LLM agents by checking whether repeated identical commands return identical output, or by response timing",
+   "result": "Tool-failure/fabrication benchmarks (2609.14758, 2609.35732, 2607.04686), ChronosAttack (delay attack, not detection). None uses repeat-determinism or reaction timing."
+  },
+  {
+   "tool": "alphaXiv discover_papers",
+   "query": "LLM-based honeypots ... detection through inconsistent responses to repeated commands, caching",
+   "result": "AdvancedShelLM 2606.27990, shelLM 2309.00155, Rouxii 2609.26555, ShellGames 2606.17986 (already in B1a), others. Opened the first three plus the SoK."
+  },
+  {
+   "tool": "alphaXiv discover_papers",
+   "query": "agent serving: next LLM call latency after a tool returns grows with tool output length (prefill)",
+   "result": "TraceLab 2606.30560 (opened), Ask the Tool 2609.18849 (opened), several serving papers (not opened; serving, not verification)."
+  },
+  {
+   "tool": "alphaXiv discover_papers",
+   "query": "inferring shared physical resource from correlated delay under concurrency; co-residency",
+   "result": "PANDA 2511.08803 (opened), SchedBlame 2609.02052 and noisy-neighbour papers (not opened; same diagnosis family)."
+  },
+  {
+   "tool": "alphaXiv discover_papers",
+   "query": "detecting LLM/emulator-generated responses from latency scaling under concurrent load",
+   "result": "LLM serving multi-tenancy and KV side-channel papers only. No fabrication detection. Null."
+  },
+  {
+   "tool": "alphaXiv discover_papers",
+   "query": "LLM-simulated tools: consistent outputs for repeated calls; caching; inconsistency as sign of simulation",
+   "result": "ToolEmu 2309.15817, StableToolBench 2403.07714 (both opened), MirrorAPI 2503.20527 (not opened), EC-Agent 2610.00327 (opened)."
+  },
+  {
+   "tool": "alphaXiv discover_papers",
+   "query": "time gap between tool result and agent's next action as verification or anomaly signal",
+   "result": "Runtime monitors, ChronosAttack, browser-agent bot detection 2607.26935 (not opened). None conditions the gap on result size. Null."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "Rubenstein Kurose Towsley 'Detecting shared congestion of flows via end-to-end measurement'",
+   "result": "UMass TR PDF found and opened."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "Bowers van Dijk Juels Oprea Rivest RAFT timing",
+   "result": "ePrint 2010/214 opened (abstract)."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "Ristenpart ... co-residence detection cache contention timing",
+   "result": "CCS'09 PDF opened via Princeton course mirror."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "LLM inference benchmarking inter-token latency increases with concurrency",
+   "result": "NVIDIA NIM docs opened."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "Wise Kong 2005 response time effort rapid guessing threshold item length",
+   "result": "aberrance docs opened; original paper not opened (UNVERIFIED for length scaling)."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "Zhang Conrad 2014 speeding in web surveys 300 ms per word",
+   "result": "SRM PDF opened via local extraction; threshold confirmed verbatim."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "Berenson ... 'A Critique of ANSI SQL Isolation Levels' P2 definition",
+   "result": "arXiv cs/0701157 opened."
+  },
+  {
+   "tool": "WebSearch (extended)",
+   "query": "agent transcript same command twice different output detect fabricated or hallucinated tool output",
+   "result": "claude-code #7381 (opened), #67730 (settled), HMAC receipts issue, blog posts. No repeat-determinism detector."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "bot detection reading time proportional to page content length",
+   "result": "Google patent US8271865 (opened); dwell-time pages (not used)."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "LLM agent tool call durations under concurrent parallel calls contention signature detect simulated or fake tool execution",
+   "result": "Performance blogs and AWS docs on parallel tool calls. No detection use. Null."
+  },
+  {
+   "tool": "WebSearch",
+   "query": "correlation between tool output length and time until next LLM agent action prefill latency",
+   "result": "Blog posts restating that prefill grows with context. No verification use. Null."
+  }
+ ],
+ "unverified_or_unopened": [
+  "Wise & Kong 2005 (Applied Measurement in Education 18(2)): not opened. Only the aberrance documentation was read, and it does not mention item-length scaling. Not used as a deciding citation.",
+  "Ragsdale & Boppana 2023 (IEEE Access 11): not opened; the lookup resolved to the SoK. Its caching of deterministic responses is cited via the SoK (S16) only.",
+  "HoneyGPT (Wang et al.): cited via the SoK only.",
+  "CPI2 (Zhang et al., EuroSys 2013) and Proctor (Kannan et al. 2018): described via PANDA (S11) only.",
+  "RAFT: only the ePrint abstract was read, not the full paper.",
+  "TraceLab GitHub repository and dataset (uw-syfi/TraceLab): not opened. Its schema (timestamps, token usage, character counts, no raw text) is taken from the paper's s3.3. It may matter for B5: it is a public trace on which N3's inputs exist, but it has no tool-output text.",
+  "Exgentic/agent-llm-traces (HF, OpenTelemetry traces cited by Ask the Tool): not opened."
+ ],
+ "not_done": [
+  "No corpus measurement. The repeat rate, the overlap (concurrency) rate and corr(next_call_gap, result_bytes) are Track A's job (N3, N4, N5) and must be pre-registered there.",
+  "Section 5 systems (Hearsay, ACE, Tracekit, Tool Receipts, AFR, NovaFabric, BenchShield, OverclaimBench, Plans They Abandon) were not re-opened, per CLAUDE.md. Their settled descriptions contain nothing about reaction timing, contention scaling or passive repeat-consistency. B1d_agent_eval independently found that harnesses check time only against budgets and timeouts.",
+  "The IR dwell-time literature (dwell time normalised by document length) was not opened. It would add another human-domain instance to item (4) without changing the verdict."
+ ]
+}

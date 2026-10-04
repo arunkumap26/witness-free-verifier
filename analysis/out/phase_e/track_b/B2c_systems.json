@@ -1,0 +1,796 @@
+{
+  "key": "B2c_systems",
+  "task": "Phase E Track B, B2 part c: do EXISTING SYSTEMS (LLM observability, agent eval harnesses, Claude Code/Codex logging, capture-side systems of CLAUDE_context_swarms.md §5) record provider request ids AND use them to verify, order or bound anything?",
+  "date": "2026-10-04",
+  "scope_note": "Systems only. The literature on request-id structure and trusted timestamping belongs to B2a/B2b (sibling files). Everything here comes from reading source at pinned commits or vendor docs, plus the six §5 papers via alphaXiv. Nothing related to the local Qwen swarm was read. No transcripts were generated. No paid API calls. Dead ends (§7) not cited.",
+  "question": "Does any existing system record provider request ids and use them to verify, order or bound anything?",
+  "answer": {
+    "bottom_line": "No. Of 25 systems examined in 23 table rows (19 open or documented products, harnesses and standards, one row covering SWE-bench, SWE-agent and mini-swe-agent, plus 6 capture-side papers, with code where released), none uses a provider-minted request id, or any other provider-side clock, to verify, order or bound anything. Recording is common; using it for time is absent.",
+    "counts": {
+      "systems_examined": 25,
+      "table_rows": 23,
+      "record_provider_transport_request_id": "6 (Langfuse ai-gateway; W&B Weave for the OpenAI SDK; Codex, only in opt-in rollout-trace, feedback tags and auth OTel events; Claude Code transcript and OTel; LiteLLM, exposed as llm_provider-* headers with persistence unverified; Vivaria, semantics undocumented, counted as unclear). Read-only consumers of Claude Code's requestId: ccusage, Braintrust bt-daemon, Harbor's Claude Code adapter.",
+      "record_provider_response_or_message_id_only": "LangSmith, OpenLLMetry, OTel GenAI semconv, Inspect (raw body), mini-swe-agent (raw body + `created`), OpenHands SDK, Tracekit, NovaFabric; Helicone keeps the provider body only (not verified field-level)",
+      "use_provider_id_for_correlation_or_support": "Claude Code OTel ('message-level reconstruction'), Codex feedback tags, Langfuse metadata, Braintrust errors.py (its own API)",
+      "use_provider_id_for_dedupe_or_grouping": "ccusage, Harbor (Devin dedupe, Claude Code bundling), Braintrust bt-daemon, OpenHands batch atomicity, Tracekit, LiteLLM SpendLogs PK",
+      "use_provider_id_or_provider_clock_to_verify_order_or_bound": 0
+    },
+    "nearest_things": [
+      "Langfuse ai-gateway and Codex rollout-trace each store the provider request id next to their own wall clock in one record. They hold the bracket's ingredients but never relate them.",
+      "ccusage recognises a response copied into several Claude Code session transcripts by (message.id, requestId), the same resume/fork phenomenon as FINDINGS ids/O7. It deduplicates and does not compare times.",
+      "NovaFabric orders events by self-minted ULIDs and explicitly disclaims that this is independent of the emitter's clock: exactly the property a provider-minted id would add.",
+      "Hearsay names 'the model provider's own request log' as the next witness out and does not build it. Its own ledger timestamps are explicitly not bound as evidence.",
+      "Adjacent, not request ids: Anthropic's API internally verifies that the conversation prefix (system, tools, all prior messages including tool_results) is unchanged before it accepts a replayed thinking block (new accounts from 2026-08-31; Fable 5.1, Opus 5.5, Sonnet 5.5). It is server-side only, needs paid calls, and catches post-hoc edits, not execution-path fabrication."
+    ]
+  },
+  "systems": [
+    {
+      "system": "Langfuse (ai-gateway, Rust; plus Python SDK)",
+      "category": "LLM observability",
+      "source_read": "langfuse/langfuse@f75c661dbe8c (2026-10-02): ai-gateway/src/capture/facts.rs, capture/anthropic_messages.rs, telemetry/mapping.rs, observability/metrics.rs, observability/http.rs, ai-gateway/README.md; code search over langfuse/langfuse-python",
+      "records_provider_request_id": "YES, gateway only. anthropic_messages.rs L232-236 reads the Anthropic `request-id` response header into `provider_request_id`; mapping.rs L183-189 emits it as span metadata `langfuse.gateway.upstream.request.id`; README L372 documents it as 'Provider request ID from the upstream `x-request-id` (OpenAI) or `request-id` (Anthropic) header'. The Python SDK: code search for request_id hits only tests/unit/test_utils.py.",
+      "records_provider_response_id": "YES (`langfuse.gateway.response.id`, mapping.rs L183)",
+      "co_records_own_clock": "YES: InferenceFacts carries start_time_unix_ms, duration_ms, first_byte_ms, completion_start_ms next to provider_request_id (facts.rs)",
+      "uses_provider_id_to_verify_order_or_bound": "NO. The only consumers are the span metadata mapping (mapping.rs) and metrics.rs L96-99, which copies it onto an operational tracing span field (`provider_request_id`). No decode, no ordering, no comparison with the gateway clock.",
+      "note": "The one system found that keeps all the bracket's ingredients (gateway wall clock, first-byte time, provider request id) in one record, and does nothing with their relation."
+    },
+    {
+      "system": "LangSmith (langsmith-sdk wrappers)",
+      "category": "LLM observability",
+      "source_read": "langchain-ai/langsmith-sdk@61793baa489b (2026-10-02): python/langsmith/wrappers/_anthropic.py, _openai.py",
+      "records_provider_request_id": "NO. _anthropic.py L381-383 only re-exposes `request_id` as a pass-through property on the stream wrapper (`return self._wrapped.request_id`); it is not written to the run.",
+      "records_provider_response_id": "YES, implicitly: outputs = message.model_dump() (L191-193), which keeps the Message `id` (msg_...)",
+      "co_records_own_clock": "run start/end times (SDK clock)",
+      "uses_provider_id_to_verify_order_or_bound": "NO",
+      "note": "Server side is closed source; per Hearsay App. I, the only tamper-resistance LangSmith documents is for administrative audit logs."
+    },
+    {
+      "system": "Helicone (proxy + ClickHouse)",
+      "category": "LLM observability / gateway",
+      "source_read": "Helicone/helicone@067d9290acb4 (2026-09-16): worker/src/lib/dbLogger/DBLoggable.ts, clickhouse/migrations/schema_41_request_response_replacing_merge_tree.sql, docs/features/hql.mdx; code search for x-request-id / request-id / provider_request_id returned 0 hits",
+      "records_provider_request_id": "NO dedicated field. request_response_rmt has `request_id UUID` and `response_id Nullable(UUID)`, both Helicone-minted (DBLoggable.ts L202: `requestId: providerRequestHeaders.requestId ?? crypto.randomUUID()`, i.e. the client's Helicone-Request-Id header or a random UUID). The provider body is stored in `response_body` (TTL 3 months), so a provider body `id` survives there; not verified field-level.",
+      "records_provider_response_id": "only inside the stored response body (not verified)",
+      "co_records_own_clock": "YES: request_created_at, response_created_at, latency, time_to_first_token (gateway clock)",
+      "uses_provider_id_to_verify_order_or_bound": "NO",
+      "note": ""
+    },
+    {
+      "system": "Braintrust (braintrust-sdk-javascript, braintrust-sdk-python, lingua, braintrust-coding-agent-plugins bt-daemon)",
+      "category": "LLM observability / eval",
+      "source_read": "braintrust-sdk-javascript@c1138e71 js/src/wrappers/oai.ts; braintrust-sdk-python py/src/braintrust/api/errors.py; braintrustdata/lingua@13429841 crates/lingua/src/universal/trajectory.rs, processing/trajectory/stream.rs; braintrustdata/braintrust-coding-agent-plugins@36535a14 bt-daemon/src/translate/claude.rs",
+      "records_provider_request_id": "PARTIAL. oai.ts L340-359 passes OpenAI `request_id` through to the caller only. errors.py reads x-request-id/request-id from Braintrust's own API errors (support). lingua's Turn.request_id is a Braintrust span id: trajectory.rs 'Each of these is the id of the corresponding span'. bt-daemon (Claude Code translator) reads Claude Code `message.id`, falling back to top-level `requestId`, then `uuid` (claude.rs L1439-1449).",
+      "records_provider_response_id": "bt-daemon: uses message.id as the LLM-call key",
+      "co_records_own_clock": "hook timestamps (bt-daemon: 'Hook events own lifecycle and timing')",
+      "uses_provider_id_to_verify_order_or_bound": "NO for time. bt-daemon uses the id only as a GROUPING key: transcript_segments() starts a new segment when the assistant request id changes (claude.rs L1414-1436), and parse_transcript() merges streamed assistant rows that share it into one LLM call (L1474-1501). lingua orders turns by span start_time (stream.rs L1202), not by any provider id.",
+      "note": ""
+    },
+    {
+      "system": "W&B Weave",
+      "category": "LLM observability",
+      "source_read": "wandb/weave@9c633e8d (2026-10-02): weave/integrations/openai/openai_sdk.py; code search request_id / _request_id",
+      "records_provider_request_id": "YES for OpenAI SDK calls: openai_sdk.py L182-183 `if hasattr(value, \"_request_id\"): dump[\"request_id\"] = value._request_id` (also L774-775 for Responses API)",
+      "records_provider_response_id": "YES (model_dump of the response)",
+      "co_records_own_clock": "call start/end, time_to_first_token (SDK clock)",
+      "uses_provider_id_to_verify_order_or_bound": "NO consumer found (other hits are tests/mocks)",
+      "note": ""
+    },
+    {
+      "system": "Arize Phoenix / OpenInference",
+      "category": "LLM observability",
+      "source_read": "Arize-ai/openinference@19363a0a js/packages/openinference-instrumentation-anthropic/src/instrumentation.ts; code search over Arize-ai/phoenix and Arize-ai/openinference",
+      "records_provider_request_id": "NO. instrumentation.ts L356-360 re-implements the SDK's withResponse() and returns `request_id: response.headers.get(\"request-id\")` to the caller; no span attribute is set from it. Phoenix hits are a docs guide and a test.",
+      "records_provider_response_id": "not checked field-level",
+      "co_records_own_clock": "span times",
+      "uses_provider_id_to_verify_order_or_bound": "NO",
+      "note": ""
+    },
+    {
+      "system": "OpenTelemetry GenAI semantic conventions",
+      "category": "standard",
+      "source_read": "open-telemetry/semantic-conventions-genai@e07f4eba (2026-10-02): model/gen-ai/registry.yaml, model/gen-ai/spans.yaml, model/openai/registry.yaml; open-telemetry/semantic-conventions@a0dab2b8 model/http/registry.yaml",
+      "records_provider_request_id": "NO attribute for the transport request id. Only `gen_ai.response.id` ('The unique identifier for the completion.', example 'chatcmpl-123', stability development, requirement 'recommended' on inference spans). Generic HTTP instrumentation can capture `http.response.header.<key>`, which 'SHOULD require an explicit configuration of which headers are to be captured.'",
+      "records_provider_response_id": "YES (gen_ai.response.id)",
+      "co_records_own_clock": "span start/end",
+      "uses_provider_id_to_verify_order_or_bound": "NO (a vocabulary, defines no checks)",
+      "note": "The GenAI conventions moved out of the main semconv repo into semantic-conventions-genai; the main repo's model/gen-ai holds only deprecated/."
+    },
+    {
+      "system": "OpenLLMetry (traceloop)",
+      "category": "LLM observability",
+      "source_read": "traceloop/openllmetry@be498301 (2026-09-29): packages/opentelemetry-instrumentation-anthropic/.../span_utils.py; packages/opentelemetry-semantic-conventions-ai/.../__init__.py",
+      "records_provider_request_id": "NO. The `_request_id` hits are MCP (`MCP_REQUEST_ID = \"mcp.request.id\"`).",
+      "records_provider_response_id": "YES: span_utils.py L352/L376 `set_span_attribute(span, GenAIAttributes.GEN_AI_RESPONSE_ID, response.get(\"id\"))`",
+      "co_records_own_clock": "span start/end",
+      "uses_provider_id_to_verify_order_or_bound": "NO",
+      "note": ""
+    },
+    {
+      "system": "UK AISI Inspect (inspect_ai)",
+      "category": "agent eval harness",
+      "source_read": "UKGovernmentBEIS/inspect_ai@9f6accda (2026-10-04): src/inspect_ai/model/_providers/util/hooks.py, _providers/anthropic.py, openai_responses.py, openai_completions.py, google.py, model/_model_call.py",
+      "records_provider_request_id": "NO. Inspect mints its OWN request id: hooks.py L70 `REQUEST_ID_HEADER = \"x-irid\"`, L83-86 `request_id = uuid()`, used to time retries with time.monotonic(). anthropic.py L724-725: 'allocate request_id (so we can see it from ModelCall)'.",
+      "records_provider_response_id": "YES, implicitly: ModelCall stores the raw response dict (`response: dict[str, JsonValue]`, _model_call.py L47), which carries the provider `id`",
+      "co_records_own_clock": "ModelCall.time ('Time taken for underlying model call'), event timestamps",
+      "uses_provider_id_to_verify_order_or_bound": "NO",
+      "note": ""
+    },
+    {
+      "system": "METR Vivaria",
+      "category": "agent eval harness",
+      "source_read": "METR/vivaria@20a6c290 (2026-02-15): shared/src/types.ts, pyhooks/pyhooks/types.py, shared/src/types.test.ts",
+      "records_provider_request_id": "UNCLEAR. MiddlemanModelOutput has `request_id: z.string().nullish()` (types.ts L244; pyhooks types.py L41). Middleman (METR's LLM proxy) is closed source, so whether this is the provider id or Middleman's own is undocumented.",
+      "records_provider_response_id": "see left",
+      "co_records_own_clock": "trace entry timestamps",
+      "uses_provider_id_to_verify_order_or_bound": "NO consumer in the repo. Code search hits only the type definitions and a parse test.",
+      "note": ""
+    },
+    {
+      "system": "SWE-bench harness; SWE-agent; mini-swe-agent",
+      "category": "agent eval harness",
+      "source_read": "SWE-bench/SWE-bench@02e7a74f swebench/inference/run_api.py (+ harness file list); SWE-agent/SWE-agent@3ea751c0 sweagent/agent/models.py; SWE-agent/mini-swe-agent@04d809ce src/minisweagent/models/litellm_model.py",
+      "records_provider_request_id": "NO in all three. Code search for request_id returns 0 in each repo.",
+      "records_provider_response_id": "SWE-bench: no; the harness grades patches in Docker and makes no LLM calls. SWE-agent: no id capture in models.py. mini-swe-agent: YES, implicitly: each message's extra holds `response.model_dump()` plus a client `timestamp: time.time()` (litellm_model.py L99-105), so trajectories carry the provider response `id` and `created`.",
+      "co_records_own_clock": "mini-swe-agent: client timestamp per message",
+      "uses_provider_id_to_verify_order_or_bound": "NO",
+      "note": "mini-swe-agent trajectories are a B4/B5 lead: provider response id and `created` next to a client timestamp."
+    },
+    {
+      "system": "OpenHands (software-agent-sdk)",
+      "category": "agent harness",
+      "source_read": "OpenHands/software-agent-sdk@b347047e (2026-10-03): openhands-sdk/openhands/sdk/event/llm_convertible/action.py, context/view/properties/batch_atomicity.py, agent/agent.py, agent/response_dispatch.py, llm/llm_response.py, llm/utils/telemetry.py, conversation/stuck_detector.py",
+      "records_provider_request_id": "NO (code search request_id: 2 test hits)",
+      "records_provider_response_id": "YES: ActionEvent.llm_response_id, 'Completion or Response ID of the LLM response that generated this event' (action.py L58-64); LLMResponse.id is 'the response ID from the underlying LLM response' (llm_response.py L48-57)",
+      "co_records_own_clock": "event timestamps; telemetry.py records per-response latency keyed by response_id (L207-208)",
+      "uses_provider_id_to_verify_order_or_bound": "GROUPING only. batch_atomicity.py: 'Ensures all events from the same batch (sharing the same llm_response_id) form an atomic unit', so that condensation drops a parallel-tool-call batch whole or not at all. stuck_detector.py L341 explicitly ignores llm_response_id. No time or verification use.",
+      "note": ""
+    },
+    {
+      "system": "Terminal-Bench / Harbor (harbor-framework/harbor; terminal-bench-1)",
+      "category": "agent eval harness",
+      "source_read": "harbor-framework/harbor@3e30cca0 (2026-10-04): src/harbor/agents/installed/devin.py, cursor_cli.py, claude_code.py, llms/lite_llm.py, models/trajectories/step.py, utils/trajectory_validator.py, docs-mintlify/agents/atif.mdx; harbor-framework/terminal-bench-1 code search",
+      "records_provider_request_id": "PARTIAL. claude_code.py L1279 copies `requestId` into a step's `extra`, but it reads it from inside `message`; in Claude Code JSONL `requestId` is a top-level row field, so this may rarely fire (not tested). cursor_cli.py L444-445 stores the Cursor request_id in extra. The ATIF schema has no provider-id field. terminal-bench-1 hits are task data (an LLM-batching task).",
+      "records_provider_response_id": "claude_code.py groups by message.id (L1245-1300)",
+      "co_records_own_clock": "Step.timestamp (ISO 8601)",
+      "uses_provider_id_to_verify_order_or_bound": "DEDUPE/GROUPING only. devin.py L331-354 `seen_request_ids` keeps usage metrics from being double-counted; claude_code.py bundles one inference per message.id into one ATIF step. The validator's timestamp check is format-only (step.py L93-102: 'Validate that timestamp is a valid ISO 8601 string').",
+      "note": ""
+    },
+    {
+      "system": "OpenAI Codex CLI (logging, OTel, rollout-trace)",
+      "category": "agent harness logging",
+      "source_read": "openai/codex@ab452649 (2026-10-04): codex-rs/rollout-trace/{README.md, src/raw_event.rs, src/inference.rs, src/reducer/inference.rs, src/reducer/mod.rs, src/writer.rs}, codex-rs/core/src/client.rs, codex-rs/otel/src/events/session_telemetry.rs, codex-rs/response-debug-context/src/lib.rs, codex-rs/codex-api/src/sse/responses.rs",
+      "records_provider_request_id": "YES, but only in opt-in diagnostics. raw_event.rs L105-108: `/// Provider transport request id, such as x-request-id. upstream_request_id: Option<String>` on InferenceCompleted/Failed/Cancelled. The reducer stores it on the reduced InferenceCall (reducer/inference.rs L211-217). client.rs L2405-2407 also writes `feedback_tags!(last_model_request_id = ...)`. OTel auth events carry `auth.request_id` and `auth.cf_ray`. A code search for `upstream_request_id` finds no use in the standard rollout/protocol path. The rollout trace is written only when CODEX_ROLLOUT_TRACE_ROOT is set (README: 'not telemetry').",
+      "records_provider_response_id": "YES (`response_id`, used for previous_response_id)",
+      "co_records_own_clock": "YES: every raw event has `wall_time_unix_ms` ('Use for display/latency') and a writer-assigned contiguous `seq`",
+      "uses_provider_id_to_verify_order_or_bound": "NO. The reducer is 'strict where the raw evidence should be self-consistent' (events replayed in seq order; payload files must exist before events refer to them), but upstream_request_id is stored, never checked. Ordering comes from `seq`, not from any provider id.",
+      "note": "Adjacent (B3, dual rendering): the reducer keeps model-visible ConversationItems apart from runtime ToolCall payloads and states 'runtime payloads are evidence, not proof that the model saw the same bytes'. I did not verify whether it ever compares the two."
+    },
+    {
+      "system": "Claude Code (transcripts and OTel monitoring)",
+      "category": "agent harness logging (closed source)",
+      "source_read": "https://code.claude.com/docs/en/monitoring-usage (opened twice; verbatim quotes requested); anthropics/claude-code repo is plugins/issues only (no licence, no core source)",
+      "records_provider_request_id": "YES. OTel `request_id`: 'Server-assigned ID of the API request, read from the `request-id` response header, such as `req_011...`.' Present on api_request, api_error, api_refusal, assistant_response, api_response_body. Also 'persisted as `requestId` on the transcript's assistant entries'. Separately `client_request_id`, a client UUID sent as x-client-request-id.",
+      "records_provider_response_id": "YES (`message.id` on api_response_body, v2.1.274+; `message.id` inside transcript rows)",
+      "co_records_own_clock": "event.timestamp; event.sequence ('per-process counter for ordering events'); duration_ms",
+      "uses_provider_id_to_verify_order_or_bound": "NO, per docs. Documented use is correlation: 'For message-level reconstruction, each event class carries a key that matches a field in the session transcript.' Asked directly, the page says nothing about using request ids to verify, order or check timing.",
+      "note": ""
+    },
+    {
+      "system": "ccusage (Claude Code usage analyzer, ~18.9k stars)",
+      "category": "Claude Code log consumer",
+      "source_read": "ccusage/ccusage@8904e880 (2026-10-04): rust/adapters/claude/src/README.md, rust/adapters/claude/src/lib.rs",
+      "records_provider_request_id": "READS requestId from Claude Code JSONL",
+      "records_provider_response_id": "READS message.id",
+      "co_records_own_clock": "uses transcript timestamps",
+      "uses_provider_id_to_verify_order_or_bound": "DEDUPE only, and the closest functional neighbour of our resume/fork handling. README: 'When `requestId` is present, both loaders deduplicate matching message and request IDs across sessions because Claude Code can copy one response into multiple session transcripts.' Sidechain replays carry 'the same message ID but a different request ID'. lib.rs usage_dedupe_hash(message_id, request_id, session_id, timestamp) hashes session and timestamp only when request_id is absent. No decode of time from the id; no check that a copy's timestamp matches the original.",
+      "note": "Same phenomenon as our FINDINGS ids/O7 (re-stamped resume/fork copies). Recognising copies by request id is existing practice; detecting the RE-STAMPING by comparing the copy's client stamp with the id's embedded time is not done here."
+    },
+    {
+      "system": "LiteLLM (SDK + proxy)",
+      "category": "gateway (used by OpenHands, Harbor/Terminal-Bench, mini-swe-agent)",
+      "source_read": "BerriAI/litellm@984b4134 (2026-10-04): litellm/litellm_core_utils/core_helpers.py, litellm/proxy/spend_tracking/spend_tracking_utils.py",
+      "records_provider_request_id": "EXPOSED, persistence not verified. process_response_headers() returns every raw provider header prefixed `llm_provider-` (so `llm_provider-request-id` / `llm_provider-x-request-id`) in _hidden_params additional_headers. I did not verify whether these headers reach SpendLogs or other persistent logs.",
+      "records_provider_response_id": "YES: SpendLogs `request_id` = provider response `id` first (get_spend_logs_id candidate order: response_obj.get('id'), standard_logging_payload id, litellm_call_id); comment 'SpendLogs does not allow duplicate request_id'",
+      "co_records_own_clock": "startTime/endTime in spend logs",
+      "uses_provider_id_to_verify_order_or_bound": "PRIMARY-KEY / dedupe only",
+      "note": "Not on the task list. Added because three listed harnesses route model calls through it."
+    },
+    {
+      "system": "Tool Receipts / NabaOS (arXiv 2603.10060)",
+      "category": "capture-side (instrumentation)",
+      "source_read": "arXiv 2603.10060v1 via alphaXiv full pages; GitHub nabaos/nabaos@d0a96fa9 src/runtime/receipt.rs",
+      "records_provider_request_id": "NO. Receipt = {id: UUID, tool_name, input_hash, output_hash, result_count, facts, timestamp_ms, duration_ms, signature: HMAC-SHA256(id|tool_name|input_hash|output_hash|timestamp_ms, SECRET_KEY)}. id and time are minted by the runtime.",
+      "records_provider_response_id": "NO",
+      "co_records_own_clock": "runtime timestamp_ms",
+      "uses_provider_id_to_verify_order_or_bound": "NO provider id. The receipt is verified with the runtime's own HMAC key. receipt.rs adds a staleness bound against the verifier's own clock: `MAX_RECEIPT_AGE_MS = 5*60*1000`, reject if now - timestamp_ms exceeds it. Deep-agent cross-checking includes 'Temporal consistency' of dates in the output text, not of log clocks.",
+      "note": "CLAUDE_context §5 says 'No public code found'. nabaos/nabaos (MIT, created 2026-02-27) has src/runtime/receipt.rs with a ToolReceipt struct matching the paper's listing field for field, but authorship is not confirmed: the README does not cite the paper."
+    },
+    {
+      "system": "Hearsay (arXiv 2609.32495)",
+      "category": "capture-side (second writer)",
+      "source_read": "arXiv 2609.32495v1 via alphaXiv pages 1-2, 4-5, 8-9, 13, 36-37, 40, 47-48",
+      "records_provider_request_id": "NO evidence of it. The environment-side writer logs model traffic through a logging proxy into a ledger keyed by `ref AS resp_sha` (App. G query). No provider request-id field is mentioned.",
+      "records_provider_response_id": "a response SHA (`resp_sha`), not a provider id",
+      "co_records_own_clock": "ledger `ts`; ledger head timestamped with RFC 3161",
+      "uses_provider_id_to_verify_order_or_bound": "NO. Time is explicitly NOT evidence: 'The row hash binds writer, sequence, kind, reference and body, but not the timestamp.' and 'its timestamp fixes only that an increment existed.' Hearsay names the provider as the next witness and does not build it: 'Our second writer stops at the operator's boundary (§7). The next writer out is the model provider's own request log, the one witness the operator does not run.' (App. I, p.48)",
+      "note": "Closest CONCEPTUAL prior art for treating the provider as a witness. Its witness is an instrumented proxy plus reconciliation (TAKEN for 'independent second writer'). It does not use provider-minted identifiers already present in a native record. One detection in the paper is clock-based: an idle 987 s run that its record reports as ordinary completion, caught by 'the environment's clock and process trace'."
+    },
+    {
+      "system": "ACE (arXiv 2609.28915)",
+      "category": "capture-side (kernel trace)",
+      "source_read": "arXiv 2609.28915v1 via alphaXiv pages 1-4, 18, 25-26, 29, 39, 49",
+      "records_provider_request_id": "NO. Transcript is Claude CLI `--output-format stream-json --verbose`; inference via Bedrock",
+      "records_provider_response_id": "not discussed",
+      "co_records_own_clock": "strace -ttt (absolute Unix time, microseconds)",
+      "uses_provider_id_to_verify_order_or_bound": "NO. Artifacts 'are timestamp-aligned and share a common session id'. Attribution is per container session ('sub-session per-tool-call attribution is a harder open problem out of scope'). Limitation (i): 'inter-call timing channels ... produce no signature on either evidence layer by construction'.",
+      "note": "Release 'upon acceptance' (no code to inspect)."
+    },
+    {
+      "system": "Tracekit (arXiv 2609.35659)",
+      "category": "capture-side (hooks + hash-chained ledger)",
+      "source_read": "arXiv 2609.35659v1 via alphaXiv pages 1-6, 8-12; GitHub LoopGlitch26/Tracekit@87f0db8f hook.py, view.py, common.py, verify.py",
+      "records_provider_request_id": "NO. hook.py L109-112 ingests transcript rows into model_turn events with `transcript_uuid`, `message_id`, `model`, `usage`; Claude Code's top-level `requestId` is dropped.",
+      "records_provider_response_id": "YES (message_id)",
+      "co_records_own_clock": "ledger record timestamp (hook time); external anchors of head hashes",
+      "uses_provider_id_to_verify_order_or_bound": "GROUPING only. view.py pass 1 'group model turns by message id'. Ordering: 'readers join model messages to actions by tool_use_id' instead of reordering the ledger.",
+      "note": "Paper: 'It cannot see effects below the tool-call boundary.' Threat model assumes 'the harness itself is trusted to invoke hooks faithfully'."
+    },
+    {
+      "system": "Agent Flight Recorder (arXiv 2609.01931)",
+      "category": "capture-side (hash chain, Merkle, on-chain anchor)",
+      "source_read": "arXiv 2609.01931v1 via alphaXiv pages 1-3, 5, 7-8; GitHub mpi-dsg/agent-flight-recorder@28ddcde9 afr/schema.py, afr/recorder.py, afr/verifier.py",
+      "records_provider_request_id": "NO. The eight-field schema (intent, policy, approval, execution, effects, context/code/delegation provenance) has no provider-id field.",
+      "records_provider_response_id": "NO",
+      "co_records_own_clock": "recorder time.time() (timestamp_ms); `logical_clock` ('a monotonic counter, not a vector clock'); event ids are 'UUIDv7-style ... 48-bit ms timestamp prefix' minted from the recorder's own clock (schema.py L11-19)",
+      "uses_provider_id_to_verify_order_or_bound": "NO. verifier.verify_chain checks prev_hash, sequence_number and logical_clock monotonicity. The on-chain anchor timestamp serves only as a presence flag (`if timestamp == 0: missing`) and is never compared with event timestamps.",
+      "note": "'An explicit non-goal is completeness: the recorder guarantees integrity of recorded events, not that all events reach the recorder.'"
+    },
+    {
+      "system": "NovaFabric (arXiv 2609.12582)",
+      "category": "capture-side (signed capsules, replay)",
+      "source_read": "arXiv 2609.12582v1 via alphaXiv pages 1-2, 10-13, 26-27, 39; GitHub MSKazemi/novafabric@7cc03a6a src/novafabric/capture/hooks/_anthropic.py, _openai.py, events.py, _httpx.py, forensics/timeline.py, replay/_dispatcher.py, diff/_align.py, replay/equivalence/trajectory.py",
+      "records_provider_request_id": "NO. capture/hooks/_anthropic.py L106-108 and _openai.py L141-143 record `gen_ai.response.id` from `response.id`; no request-id header capture in the hooks read.",
+      "records_provider_response_id": "YES (gen_ai.response.id)",
+      "co_records_own_clock": "event `started_at`; ULID event ids; RFC 3161 timestamp on the seal",
+      "uses_provider_id_to_verify_order_or_bound": "NO. It orders by its OWN time-sortable ids and disclaims independence: 'Identifiers are ULIDs ... lexicographically time-sortable, so a consumer can order an emitter's events without consulting a separate timestamp field. We are careful not to claim more: a ULID's leading field is a Unix millisecond reading from the emitting node's own clock, so this is a convenience of representation, not independence from that clock ... Ordering across emitters is not inferred from identifiers at all.' (§3.4). forensics/timeline.py orders by (sealed ts, source_capsule, seq).",
+      "note": "Closest to 'time inside ids', but with self-minted ids and an explicit disclaimer. That disclaimer is precisely the property a provider-minted id would add."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "B2 headline, systems view: an existing system already decodes the time in a provider-minted request id and uses it as a clock the agent does not control, to bound, order or verify agent tool-log timestamps (the skew bracket: id time between the stream's last input and the response's first output).",
+      "verdict": "NOVEL",
+      "closest_work": "Mechanically: Langfuse ai-gateway (langfuse/langfuse@f75c661d) and Codex rollout-trace (openai/codex@ab452649), which co-record the provider request id with their own wall clock. Conceptually: Hearsay (arXiv 2609.32495) App. I, which names the provider's request log as the next witness.",
+      "what_it_does": "Langfuse records `langfuse.gateway.upstream.request.id` next to start_time_unix_ms / first_byte_ms. Codex records `upstream_request_id` next to wall_time_unix_ms and a contiguous seq. Claude Code persists `requestId` beside each assistant row's timestamp. Hearsay argues the provider's own request log is 'the one witness the operator does not run'.",
+      "what_it_does_not": "None of the 25 systems examined decodes the request id, treats it as a clock, compares it with the harness/gateway clock, or uses it to order or bound anything. Hearsay does not implement its pointer, and its witness is an instrumented proxy, not an id already in the native record.",
+      "deciding_citation": "langfuse/langfuse ai-gateway/src/telemetry/mapping.rs L183-189 (`(\"upstream.request.id\", &facts.inference.provider_request_id)` inserted as metadata, no other consumer besides observability/metrics.rs L96-99); openai/codex codex-rs/rollout-trace/src/reducer/inference.rs L211-217 (stored only); Hearsay p.48 'The next writer out is the model provider's own request log, the one witness the operator does not run.'",
+      "opened": true,
+      "verdict_reasoning": "VERDICT REASONING: verdict scoped to SYSTEMS (B2 part c), not the literature (B2a/B2b). Every listed system was checked in source or docs at a pinned commit. Uses found are correlation, support lookup, dedupe and grouping. Zero uses for time, ordering or bounding. Residual risk: closed-source back ends (LangSmith server, Braintrust server, Helicone hosted, Claude Code core, METR Middleman, Anthropic's own systems) could do something internally; that cannot be checked from outside."
+    },
+    {
+      "id": "C2",
+      "claim": "Precondition: provider request ids already sit in records that exist without instrumenting the agent, so the mechanism can run on past logs.",
+      "verdict": "N/A",
+      "closest_work": "Claude Code transcripts and OTel (docs); Codex rollout-trace; Langfuse gateway; Weave; LiteLLM headers",
+      "what_it_does": "Present by default: Claude Code JSONL (`requestId` on assistant rows) and Claude Code OTel `request_id` (when telemetry is enabled). Present when a specific component is in the path: Langfuse ai-gateway (not the SDK); W&B Weave for OpenAI SDK calls; LiteLLM `_hidden_params` additional_headers as `llm_provider-request-id` (persistence not verified); Codex only in opt-in rollout-trace bundles (CODEX_ROLLOUT_TRACE_ROOT) and feedback tags; Vivaria `request_id` with undocumented semantics.",
+      "what_it_does_not": "Not recorded: Inspect (mints its own x-irid), Helicone (own UUIDs), LangSmith SDK, OpenLLMetry and OTel GenAI (response id only), OpenInference, SWE-bench, SWE-agent, mini-swe-agent (response id and `created` only), OpenHands SDK (response id only), Harbor ATIF (only via `extra`, for Devin/Cursor/Claude Code adapters), Tracekit (drops requestId), AFR, NovaFabric (response id only), ACE, Hearsay, Tool Receipts.",
+      "deciding_citation": "code.claude.com/docs/en/monitoring-usage: '`request_id` on the API events, persisted as `requestId` on the transcript's assistant entries'; openai/codex rollout-trace/src/raw_event.rs L105-108; Inspect hooks.py L70 `REQUEST_ID_HEADER = \"x-irid\"`.",
+      "opened": true,
+      "verdict_reasoning": "VERDICT REASONING: a factual coverage item, not a novelty claim, so N/A. It bounds the B4 request-id column: by default only Claude Code writes the provider request id into its native transcript. Every other source needs a specific gateway or SDK, or opt-in diagnostics."
+    },
+    {
+      "id": "C3",
+      "claim": "Using provider-minted ids (request id / message id / response id) as join, dedupe or grouping keys over agent logs, including recognising one response copied into several session transcripts (our resume/fork copy handling, FINDINGS ids/O7).",
+      "verdict": "TAKEN",
+      "closest_work": "ccusage (ccusage/ccusage@8904e880)",
+      "what_it_does": "Deduplicates Claude Code usage across sessions by (message.id, requestId) 'because Claude Code can copy one response into multiple session transcripts'. It also handles sidechain replays that keep the message id under a new request id. Similar grouping use: Harbor (devin.py seen_request_ids; claude_code.py one ATIF step per message.id), Braintrust bt-daemon (segment and merge by message.id/requestId), OpenHands (batch atomicity by llm_response_id), Tracekit (group model turns by message id), LiteLLM (SpendLogs primary key = response id).",
+      "what_it_does_not": "None of them reads time out of the id. None checks that the copy's client timestamp agrees with the original or with the id's embedded time, so none detects re-stamping or back-dating.",
+      "deciding_citation": "ccusage rust/adapters/claude/src/README.md: 'When `requestId` is present, both loaders deduplicate matching message and request IDs across sessions because Claude Code can copy one response into multiple session transcripts.'",
+      "opened": true,
+      "verdict_reasoning": "VERDICT REASONING: recognising resume/fork copies by request id is existing practice; cite ccusage rather than present copy dedupe as ours. The remaining delta is the time comparison."
+    },
+    {
+      "id": "C4",
+      "claim": "Ordering an agent's event log by time-ordered identifiers (UUIDv7/ULID) instead of a separate timestamp field.",
+      "verdict": "PARTIAL",
+      "closest_work": "NovaFabric (arXiv 2609.12582; MSKazemi/novafabric@7cc03a6a); Agent Flight Recorder (arXiv 2609.01931; mpi-dsg/agent-flight-recorder@28ddcde9)",
+      "what_it_does": "NovaFabric mints ULIDs (optionally UUIDv7) so an emitter's events sort by id. AFR mints 'UUIDv7-style' event ids (48-bit ms prefix from time.time()) and checks a monotonic logical_clock.",
+      "what_it_does_not": "Both mint ids from their OWN clock, and NovaFabric explicitly disclaims independence. Neither uses a third party's ids. Neither infers cross-emitter order from ids ('Ordering across emitters is not inferred from identifiers at all'). Neither bounds one clock with another.",
+      "deciding_citation": "NovaFabric §3.4: 'a ULID's leading field is a Unix millisecond reading from the emitting node's own clock, so this is a convenience of representation, not independence from that clock ... Ordering across emitters is not inferred from identifiers at all.'",
+      "opened": true,
+      "verdict_reasoning": "VERDICT REASONING: reading time out of ids is known practice. What our mechanism adds is a minter (the provider) independent of the party being checked, and NovaFabric's own disclaimer states exactly that missing property. PARTIAL, not TAKEN."
+    },
+    {
+      "id": "C5",
+      "claim": "Treating the model provider as an independent witness the operator/harness does not control, and reconciling it against the harness's record.",
+      "verdict": "PARTIAL",
+      "closest_work": "Hearsay (arXiv 2609.32495)",
+      "what_it_does": "Adds an environment-side second writer (logging proxy on all model traffic plus process and file capture) to an append-only, hash-chained ledger with an RFC 3161 head timestamp. A query and a reverse check reconcile it with the harness record: 28/28 write-time omissions and fabrications, and 98/115 edited copies, reported. Names the provider's request log as 'the one witness the operator does not run'.",
+      "what_it_does_not": "Requires instrumentation, so it cannot run on past logs. Its witness is operator-run, not provider-run. Its ledger timestamps are explicitly not evidence ('binds ... but not the timestamp'). It never uses provider-minted ids or provider clocks.",
+      "deciding_citation": "Hearsay App. I p.48: 'Our second writer stops at the operator's boundary (§7). The next writer out is the model provider's own request log, the one witness the operator does not run.'",
+      "opened": true,
+      "verdict_reasoning": "VERDICT REASONING: the idea of a provider-side witness is stated in prior art as a direction, so it should not be claimed as a new paradigm. Using provider-minted ids already in the native record as that witness, with no access to the provider's log and no instrumentation, is not implemented anywhere examined. PARTIAL."
+    },
+    {
+      "id": "C6",
+      "claim": "Any existing eval harness or observability product checks harness or tool timestamps against ANY provider-side clock (request-id time, OpenAI `created`, Google server-timing, HTTP Date, openai-processing-ms).",
+      "verdict": "NOVEL",
+      "closest_work": "Langfuse ai-gateway (retains `openai-processing-ms` and `x-request-id` in its upstream response-header allowlist, transport/mod.rs L99-100); mini-swe-agent (persists the provider `created` next to a client timestamp)",
+      "what_it_does": "Time handling found: own-clock latency (Helicone, Langfuse, Inspect with time.monotonic), ISO-format validation (Harbor step.py), staleness against the verifier's own clock (NabaOS receipt.rs MAX_RECEIPT_AGE_MS), anchor-timestamp presence only (AFR), RFC 3161 on a ledger head that 'fixes only that an increment existed' (Hearsay).",
+      "what_it_does_not": "None compares a provider-side clock with a harness or tool timestamp.",
+      "deciding_citation": "harbor src/harbor/models/trajectories/step.py L93-102 (timestamp validator is format-only); afr/verifier.py (`if timestamp == 0: missing.append(...)`, the anchor time is never compared); Hearsay App. G 'The row hash binds writer, sequence, kind, reference and body, but not the timestamp.'",
+      "opened": true,
+      "verdict_reasoning": "VERDICT REASONING: a negative result over the 25 systems examined, scoped like C1 (the same closed-source caveat applies)."
+    },
+    {
+      "id": "C7",
+      "claim": "No existing system verifies an agent transcript against state held by the model provider (adjacent finding, surfaced by the 'does it internally embody it' rule).",
+      "verdict": "PARTIAL",
+      "closest_work": "Anthropic Claude API thinking-block prefix binding ('Preserved thinking: prefix check')",
+      "what_it_does": "On Claude Fable 5.1, Opus 5.5 and Sonnet 5.5, a replayed thinking block 'stays valid only while everything you sent before it is unchanged': the top-level system prompt, the tool set, and every message before the block (so earlier tool_result content is included). A changed prefix is rejected with 400 'The block is bound to a different conversation.' Enforced by default for accounts created on or after 2026-08-31 00:00 UTC; for older accounts only when `thinking.block_binding.prefix_mismatch_behavior` is set (beta header thinking-binding-controls-2026-08-01). Claude Code transcripts keep the thinking signatures (Tracekit E4: thinking blocks persisted with 'only a signature').",
+      "what_it_does_not": "The signature is opaque and only the API verifies it, so no offline or third-party check exists. Checking needs a paid API call, and for Sonnet 5.5 the producing (or a linked) account. It covers only the prefix BEFORE each thinking block. It cannot catch execution-path fabrication, because a fake tool result was part of the prefix the model saw and is therefore 'valid'. It catches post-hoc editing of a stored transcript, not lying at write time.",
+      "deciding_citation": "platform.claude.com/docs/en/build-with-claude/preserved-thinking: 'a thinking block stays valid only while everything you sent before it is unchanged on later requests. The checked prefix has three parts: The top-level system prompt; The set of tools; Every message before the block'. platform.claude.com/docs/en/api/errors: 'Invalid `signature` in `thinking` block. The block is bound to a different conversation.'",
+      "opened": true,
+      "verdict_reasoning": "VERDICT REASONING: the provider internally verifies history integrity for its own purpose (thinking replay), which is a provider-held witness over records that already exist. It is not exposed as an audit tool, it costs API calls, and it targets a different threat (post-hoc edits) from ours (execution-path compromise). PARTIAL. Using it would break the no-paid-API constraint, so it is a morning human decision, not a build item."
+    }
+  ],
+  "limitations_for_design": [
+    {
+      "source": "C2 / Claude Code docs",
+      "point": "By default only Claude Code writes the provider request id into its native transcript. Every other harness needs a specific gateway or SDK, or opt-in diagnostics (Codex rollout-trace). The mechanism's coverage is the Claude Code family plus whatever B4/B5 find; say so in the headline."
+    },
+    {
+      "source": "C3 / ccusage",
+      "point": "Cite ccusage for recognising resume/fork copies by request id. Our delta is the time comparison (copy re-stamped vs id time), not the dedupe."
+    },
+    {
+      "source": "C4 / NovaFabric",
+      "point": "Use NovaFabric's own disclaimer to frame the contribution: self-minted time-ordered ids are a representation convenience; a provider-minted id is a clock the recording party does not control. Unsigned ids remain re-mintable by a forger who learns the layout (FINDINGS §4.3 rank 1 blind spots)."
+    },
+    {
+      "source": "C5 / Hearsay",
+      "point": "Related work must say Hearsay proposed the provider as the next witness. Our claim is the narrow, implemented version: provider-minted ids already in the native record, no instrumentation, no access to the provider's log."
+    },
+    {
+      "source": "C7 / Anthropic preserved-thinking docs",
+      "point": "Possible second provider-held witness (thinking-signature prefix binding) against post-hoc transcript edits. It needs paid API calls, the same or a linked account, and models from mid-2026 on. Morning human decision; not buildable under the no-paid-API rule."
+    },
+    {
+      "source": "Codex rollout-trace README",
+      "point": "For B3 (harness dual rendering): Codex keeps model-visible conversation and runtime tool payloads as separate objects and says 'runtime payloads are evidence, not proof that the model saw the same bytes'. Check whether its reducer compares them before claiming novelty for a dual-rendering recount."
+    }
+  ],
+  "search_log": {
+    "tool": "gh search code (GitHub code search, read-only, paced), plus gh api raw file reads",
+    "caveat": "GitHub code search indexes default branches only and skips some repos and files. NovaFabric was apparently unindexed: a search for `gen_ai.response.id` returned 0 hits although _anthropic.py L108 contains it. Zero-hit searches are therefore never used alone as evidence of absence; every 'NO' in the systems table rests on reading the relevant source files.",
+    "queries": [
+      [
+        "request_id repo:langfuse/langfuse-python",
+        1
+      ],
+      [
+        "_request_id repo:langfuse/langfuse",
+        7
+      ],
+      [
+        "x-request-id repo:langfuse/langfuse",
+        6
+      ],
+      [
+        "provider_request_id repo:langfuse/langfuse",
+        7
+      ],
+      [
+        "uuidv7 repo:langfuse/langfuse",
+        1
+      ],
+      [
+        "request_id repo:langchain-ai/langsmith-sdk",
+        10
+      ],
+      [
+        "request-id repo:langchain-ai/langsmith-sdk",
+        30
+      ],
+      [
+        "x-request-id repo:Helicone/helicone",
+        0
+      ],
+      [
+        "provider_request_id repo:Helicone/helicone",
+        0
+      ],
+      [
+        "Helicone-Id repo:Helicone/helicone",
+        14
+      ],
+      [
+        "request_id org:braintrustdata",
+        40
+      ],
+      [
+        "x-request-id org:braintrustdata",
+        40
+      ],
+      [
+        "request_id repo:wandb/weave",
+        8
+      ],
+      [
+        "_request_id repo:wandb/weave",
+        2
+      ],
+      [
+        "_request_id repo:traceloop/openllmetry",
+        2
+      ],
+      [
+        "GEN_AI_RESPONSE_ID repo:traceloop/openllmetry",
+        21
+      ],
+      [
+        "request_id repo:Arize-ai/openinference",
+        17
+      ],
+      [
+        "_request_id repo:Arize-ai/phoenix",
+        2
+      ],
+      [
+        "request_id repo:UKGovernmentBEIS/inspect_ai",
+        35
+      ],
+      [
+        "request-id repo:UKGovernmentBEIS/inspect_ai",
+        3
+      ],
+      [
+        "x-request-id repo:UKGovernmentBEIS/inspect_ai",
+        0
+      ],
+      [
+        "request_id repo:METR/vivaria",
+        3
+      ],
+      [
+        "x-request-id repo:METR/vivaria",
+        0
+      ],
+      [
+        "request_id repo:SWE-bench/SWE-bench",
+        0
+      ],
+      [
+        "request_id repo:SWE-agent/SWE-agent",
+        0
+      ],
+      [
+        "request_id repo:SWE-agent/mini-swe-agent",
+        0
+      ],
+      [
+        "request_id repo:OpenHands/software-agent-sdk",
+        2
+      ],
+      [
+        "response_id repo:OpenHands/software-agent-sdk",
+        40
+      ],
+      [
+        "request_id repo:harbor-framework/harbor",
+        3
+      ],
+      [
+        "request_id repo:harbor-framework/terminal-bench-1",
+        8
+      ],
+      [
+        "x-request-id repo:openai/codex",
+        17
+      ],
+      [
+        "x-oai-request-id repo:openai/codex",
+        3
+      ],
+      [
+        "upstream_request_id repo:openai/codex",
+        15
+      ],
+      [
+        "requestId repo:ccusage/ccusage",
+        11
+      ],
+      [
+        "req_011 base58",
+        0
+      ],
+      [
+        "msg_01 base58",
+        0
+      ],
+      [
+        "anthropic request id uuid7",
+        0
+      ],
+      [
+        "toolu_01 base58",
+        0
+      ],
+      [
+        "gen_ai.response.id repo:MSKazemi/novafabric",
+        0
+      ],
+      [
+        "request_id repo:MSKazemi/novafabric",
+        0
+      ],
+      [
+        "request_id repo:mpi-dsg/agent-flight-recorder",
+        0
+      ]
+    ],
+    "web_searches": [
+      "LLM observability reconcile logged responses against provider request-id verify agent transcript integrity (no system found doing it)",
+      "Anthropic API request-id \"req_011\" format timestamp decode (no public decoding found; Maxim utils page opened, irrelevant)"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://github.com/langfuse/langfuse/tree/f75c661dbe8c6b85523c81486b39e8403ac2c141/ai-gateway",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "anthropic_messages.rs L232-236: `self.facts.provider_request_id = headers.get(\"request-id\")...`; mapping.rs L183-189: `(\"upstream.request.id\", &facts.inference.provider_request_id)`; README L372: '| `upstream.request.id` | Provider request ID from the upstream `x-request-id` (OpenAI) or `request-id` (Anthropic) header |'"
+    },
+    {
+      "url": "https://github.com/langchain-ai/langsmith-sdk/blob/61793baa489b316c55a53705da7332a80c2e5db0/python/langsmith/wrappers/_anthropic.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L381-383 `def request_id(self) -> str | None: return self._wrapped.request_id` (pass-through); L191-193 `outputs = message.model_dump()`"
+    },
+    {
+      "url": "https://github.com/Helicone/helicone/blob/067d9290acb4f1fc9320e902fc67b4b399b50363/clickhouse/migrations/schema_41_request_response_replacing_merge_tree.sql",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "columns `response_id Nullable(UUID)`, `request_id UUID`, `request_created_at`, `response_created_at`, `latency`, `time_to_first_token`; no provider request-id column"
+    },
+    {
+      "url": "https://github.com/Helicone/helicone/blob/067d9290acb4f1fc9320e902fc67b4b399b50363/worker/src/lib/dbLogger/DBLoggable.ts",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L202 `requestId: providerRequestHeaders.requestId ?? crypto.randomUUID()`"
+    },
+    {
+      "url": "https://github.com/wandb/weave/blob/9c633e8d0dbd9037f7d6f1e34116d00de1e0f7aa/weave/integrations/openai/openai_sdk.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L182-183 `if hasattr(value, \"_request_id\"): dump[\"request_id\"] = value._request_id`"
+    },
+    {
+      "url": "https://github.com/braintrustdata/lingua/blob/13429841171759f0dede5b2384ff77b632385ea8/crates/lingua/src/universal/trajectory.rs",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "Turn { // Each of these is the id of the corresponding span  pub request_id: String, ... }"
+    },
+    {
+      "url": "https://github.com/braintrustdata/braintrust-coding-agent-plugins/blob/36535a145841a693b16b4f00b176d0f1619758ab/bt-daemon/src/translate/claude.rs",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L1439-1449 assistant_request_id(): message.id, else requestId, else uuid; L1414-1436 transcript_segments() splits when it changes"
+    },
+    {
+      "url": "https://github.com/braintrustdata/braintrust-sdk-javascript/blob/c1138e71150db4ab1c4b18ab1773db4a7e439dc8/js/src/wrappers/oai.ts",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L340-359 `return { data: data as C, response, request_id }` (pass-through)"
+    },
+    {
+      "url": "https://github.com/Arize-ai/openinference/blob/19363a0a6d978b8200ed5f73a00609f3f6cdf772/js/packages/openinference-instrumentation-anthropic/src/instrumentation.ts",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L356-360 `request_id: response.headers.get(\"request-id\")` returned from re-implemented withResponse(); no span attribute set"
+    },
+    {
+      "url": "https://github.com/open-telemetry/semantic-conventions-genai/blob/e07f4ebacb08f56db8c4c882d117720333fbca04/model/gen-ai/registry.yaml",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "`gen_ai.response.id` brief: 'The unique identifier for the completion.' examples ['chatcmpl-123']; no request-id attribute"
+    },
+    {
+      "url": "https://github.com/open-telemetry/semantic-conventions/blob/a0dab2b810d9dd990294ca9e36c05983f88005c5/model/http/registry.yaml",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "`http.response.header` template: 'Instrumentations SHOULD require an explicit configuration of which headers are to be captured.'"
+    },
+    {
+      "url": "https://github.com/traceloop/openllmetry/blob/be498301c40c55155e6d0678b63943093cda14d1/packages/opentelemetry-instrumentation-anthropic/opentelemetry/instrumentation/anthropic/span_utils.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L352/L376 `set_span_attribute(span, GenAIAttributes.GEN_AI_RESPONSE_ID, response.get(\"id\"))`"
+    },
+    {
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai/blob/9f6accda8dce5ccd754e6be1a22fbcee96042e82/src/inspect_ai/model/_providers/util/hooks.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L70 `REQUEST_ID_HEADER = \"x-irid\"`; L83-86 `request_id = uuid(); self._requests[request_id] = RequestInfo(0, time.monotonic())`"
+    },
+    {
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai/blob/9f6accda8dce5ccd754e6be1a22fbcee96042e82/src/inspect_ai/model/_model_call.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "ModelCall: `request: dict` 'Raw data posted to model'; `response: dict | None` 'Raw response data from model'; `time: float | None` 'Time taken for underlying model call.'"
+    },
+    {
+      "url": "https://github.com/METR/vivaria/blob/20a6c290c3c11f701af95a559d9d0c64dd6105d4/shared/src/types.ts",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L244 MiddlemanModelOutput `request_id: z.string().nullish()`"
+    },
+    {
+      "url": "https://github.com/SWE-bench/SWE-bench/blob/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/inference/run_api.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "no response id / request id / created handling (grep empty); code search request_id in repo: 0 hits"
+    },
+    {
+      "url": "https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/agent/models.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "no response-id capture (grep for .id/request_id/_hidden_params empty except extra_headers for User-Agent and anthropic-beta)"
+    },
+    {
+      "url": "https://github.com/SWE-agent/mini-swe-agent/blob/04d809ceab9df28f9adaed044884180159172930/src/minisweagent/models/litellm_model.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L99-105 `message[\"extra\"] = {..., \"response\": response.model_dump(), ..., \"timestamp\": time.time()}`"
+    },
+    {
+      "url": "https://github.com/OpenHands/software-agent-sdk/blob/b347047e2dcdd8f4b2be810aa8bc6632bc756d41/openhands-sdk/openhands/sdk/event/llm_convertible/action.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "llm_response_id: 'Completion or Response ID of the LLM response that generated this event. E.g., Can be used to group related actions from same LLM response.'"
+    },
+    {
+      "url": "https://github.com/OpenHands/software-agent-sdk/blob/b347047e2dcdd8f4b2be810aa8bc6632bc756d41/openhands-sdk/openhands/sdk/context/view/properties/batch_atomicity.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "'Ensures all events from the same batch (sharing the same llm_response_id) form an atomic unit.'"
+    },
+    {
+      "url": "https://github.com/harbor-framework/harbor/blob/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/agents/installed/devin.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L331-354 `seen_request_ids` so usage is attached 'only once per request so totals are not double-counted'"
+    },
+    {
+      "url": "https://github.com/harbor-framework/harbor/blob/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/agents/installed/claude_code.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L1279 `for key in (\"stop_reason\", \"stop_sequence\", \"requestId\"): value = message.get(key)`; L1245-1300 bundle per message.id"
+    },
+    {
+      "url": "https://github.com/harbor-framework/harbor/blob/3e30cca047a4d0dc1fb209bf5a74ff761b794b90/src/harbor/models/trajectories/step.py",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L93-102 'Validate that timestamp is a valid ISO 8601 string.'"
+    },
+    {
+      "url": "https://github.com/openai/codex/tree/ab45264919aaeb8a421cc156f1a5459ef9d60b72/codex-rs/rollout-trace",
+      "opened": true,
+      "how_opened": "gh api raw contents (README.md, raw_event.rs, inference.rs, reducer/inference.rs, reducer/mod.rs, writer.rs, bundle.rs, model/runtime.rs)",
+      "deciding_passage": "raw_event.rs L105-108 '/// Provider transport request id, such as `x-request-id`. upstream_request_id: Option<String>'; L36-37 '/// Unix wall-clock timestamp in milliseconds. Use for display/latency.'; README 'Reducer Invariants: raw events are replayed in seq order; payload files must exist before events refer to them ... runtime payloads are evidence, not proof that the model saw the same bytes.'"
+    },
+    {
+      "url": "https://github.com/openai/codex/blob/ab45264919aaeb8a421cc156f1a5459ef9d60b72/codex-rs/core/src/client.rs",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "L2405-2407 `feedback_tags!(last_model_request_id = upstream_request_id)`"
+    },
+    {
+      "url": "https://code.claude.com/docs/en/monitoring-usage",
+      "opened": true,
+      "how_opened": "WebFetch twice (verbatim-quote prompt)",
+      "deciding_passage": "'Server-assigned ID of the API request, read from the `request-id` response header, such as `req_011...`.'; '`request_id` on the API events, persisted as `requestId` on the transcript's assistant entries'; the page has no statement about using request ids to verify, order or check timing"
+    },
+    {
+      "url": "https://github.com/ccusage/ccusage/blob/8904e880d04e4cb4d4223457615bbe94385ac675/rust/adapters/claude/src/README.md",
+      "opened": true,
+      "how_opened": "gh api raw contents (+ lib.rs)",
+      "deciding_passage": "'When `requestId` is present, both loaders deduplicate matching message and request IDs across sessions because Claude Code can copy one response into multiple session transcripts.'"
+    },
+    {
+      "url": "https://github.com/BerriAI/litellm/blob/984b4134be04fc407aabaf10363ce56d0701aa94/litellm/litellm_core_utils/core_helpers.py",
+      "opened": true,
+      "how_opened": "gh api raw contents (+ proxy/spend_tracking/spend_tracking_utils.py)",
+      "deciding_passage": "process_response_headers(): `additional_headers[\"{}-{}\".format(\"llm_provider\", k)] = v`; spend_tracking_utils get_spend_logs_id candidate order response_obj.get('id') first; 'SpendLogs does not allow duplicate request_id'"
+    },
+    {
+      "url": "https://arxiv.org/abs/2603.10060",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries (pages 1-3, 5-7, 9-14, 16)",
+      "deciding_passage": "ToolReceipt { id: UUID, tool_name, input_hash, output_hash, result_count, facts, timestamp_ms, duration_ms, signature: HMAC-SHA256(id|tool_name|input_hash|output_hash|timestamp_ms, SECRET_KEY) }"
+    },
+    {
+      "url": "https://github.com/nabaos/nabaos/blob/d0a96fa923ad94a956b42c99dca84c16ed1e76dc/src/runtime/receipt.rs",
+      "opened": true,
+      "how_opened": "gh api raw contents",
+      "deciding_passage": "`const MAX_RECEIPT_AGE_MS: u64 = 5 * 60 * 1000;` 'Check timestamp expiry first — reject stale receipts to prevent replay attacks'. Matches the paper's struct; authorship unconfirmed"
+    },
+    {
+      "url": "https://arxiv.org/abs/2609.32495",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries x2",
+      "deciding_passage": "p.48: 'The next writer out is the model provider's own request log, the one witness the operator does not run.'; p.37: 'The row hash binds writer, sequence, kind, reference and body, but not the timestamp.'; p.9: 'its timestamp fixes only that an increment existed.'"
+    },
+    {
+      "url": "https://arxiv.org/abs/2609.28915",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": "'The strace, transcript, and manifest are timestamp-aligned and share a common session id'; limitation (i) 'inter-call timing channels ... produce no signature on either evidence layer by construction'"
+    },
+    {
+      "url": "https://arxiv.org/abs/2609.35659",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": "'Rather than reorder the ledger ... readers join model messages to actions by tool_use_id'; 'It cannot see effects below the tool-call boundary.'"
+    },
+    {
+      "url": "https://github.com/LoopGlitch26/Tracekit/blob/87f0db8f51b5a629405e23f76cc08a5e455a6192/hook.py",
+      "opened": true,
+      "how_opened": "gh api raw contents (+ view.py, common.py, verify.py)",
+      "deciding_passage": "L109-112 model_turn event fields: transcript_uuid, message_id, model, usage, blocks (no requestId)"
+    },
+    {
+      "url": "https://arxiv.org/abs/2609.01931",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": "'Each event carries a logical_clock (a monotonic counter, not a vector clock)'; 'An explicit non-goal is completeness'"
+    },
+    {
+      "url": "https://github.com/mpi-dsg/agent-flight-recorder/blob/28ddcde9c133bd10e9a500cc7e38e3d70d8baa86/afr/verifier.py",
+      "opened": true,
+      "how_opened": "gh api raw contents (+ schema.py, recorder.py)",
+      "deciding_passage": "verify_chain checks prev_hash, sequence_number, logical_clock; anchor check `if timestamp == 0: missing.append(epoch.epoch_number)`; schema.py '# UUIDv7-style event ID: 48-bit ms timestamp prefix + 80-bit random suffix' from time.time()"
+    },
+    {
+      "url": "https://arxiv.org/abs/2609.12582",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": "§3.4: 'a ULID's leading field is a Unix millisecond reading from the emitting node's own clock, so this is a convenience of representation, not independence from that clock ... Ordering across emitters is not inferred from identifiers at all.'"
+    },
+    {
+      "url": "https://github.com/MSKazemi/novafabric/blob/7cc03a6a6457764feacb84c417dc1c14a68bae4a/src/novafabric/capture/hooks/_anthropic.py",
+      "opened": true,
+      "how_opened": "gh api raw contents (+ _openai.py, events.py, _httpx.py, forensics/timeline.py, replay/_dispatcher.py, diff/_align.py, replay/equivalence/trajectory.py)",
+      "deciding_passage": "L106-108 `response_id = getattr(response, \"id\", None); if response_id: record[\"gen_ai.response.id\"] = str(response_id)`; timeline.py orders by (ts, source_capsule, seq)"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/api/errors",
+      "opened": true,
+      "how_opened": "WebFetch (docs.claude.com 301 -> platform.claude.com)",
+      "deciding_passage": "'Every API response includes a unique `request-id` header. This header contains a value such as `req_018EeWyXxfu5pfWkrYcMdjWG`. ... When contacting support about a specific request, include this ID'; error example request_id 'req_011CSHoEeqs5C35K2UUqR7Fy'; no structure or timestamp documented"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking",
+      "opened": true,
+      "how_opened": "WebFetch (verbatim-quote prompt)",
+      "deciding_passage": "'a thinking block stays valid only while everything you sent before it is unchanged on later requests. The checked prefix has three parts: The top-level system prompt; The set of tools; Every message before the block'; 'The API enforces the prefix check by default for accounts created on or after August 31, 2026, 00:00 UTC.'"
+    },
+    {
+      "url": "https://www.getmaxim.ai/docs/sdk/python/references/logger/anthropic/utils.md",
+      "opened": true,
+      "how_opened": "WebFetch (surfaced by WebSearch)",
+      "deciding_passage": "no request-id handling on the page (irrelevant; recorded so it is not re-checked)"
+    }
+  ],
+  "unverified_or_unopened": [
+    "Closed-source back ends: LangSmith server, Braintrust server, Helicone hosted pipeline, Claude Code core, METR Middleman, Anthropic/OpenAI internal systems. Whether any of them uses request-id time internally cannot be checked.",
+    "Hearsay code release URL: the paper says it releases the benchmark, records, alteration pairs and preregistration, but the pages retrieved did not include a URL. Not located.",
+    "ACE code: 'Upon acceptance we will release...'. Nothing to inspect.",
+    "nabaos/nabaos as the Tool Receipts implementation: the struct matches the paper; authorship not confirmed.",
+    "LiteLLM: whether `llm_provider-request-id` headers persist into SpendLogs or callbacks was not verified.",
+    "Helicone: whether the stored response_body keeps the provider `id` field was not checked field-level.",
+    "Harbor claude_code.py reads `requestId` from inside `message`, where Claude Code does not normally put it. Whether this ever fires is untested.",
+    "Not examined (not on the task list): BenchShield (2609.11028), AgentOps, Portkey, Datadog LLM Observability, Maxim (one docs page opened, irrelevant), OpenPipe."
+  ],
+  "dead_ends_respected": "No §7 dead end cited (thimble, TwinCheck, swarmtraces, etc.). §5 systems were opened only for the internal-embodiment question this task asks."
+}

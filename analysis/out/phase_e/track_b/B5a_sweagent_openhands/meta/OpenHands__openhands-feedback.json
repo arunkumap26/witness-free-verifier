@@ -1,0 +1,111 @@
+{
+ "id": "OpenHands/openhands-feedback",
+ "sha": "facf45600d625510b98222ec584a8c9ac59272a2",
+ "gated": false,
+ "private": false,
+ "lastModified": "2024-12-14T02:49:38.000Z",
+ "license_tags": [
+  "license:mit"
+ ],
+ "cardData_license": "mit",
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "train",
+     "path": "data/train-*"
+    }
+   ]
+  }
+ ],
+ "dataset_info": {
+  "features": [
+   {
+    "name": "version",
+    "dtype": "string"
+   },
+   {
+    "name": "feedback",
+    "dtype": "string"
+   },
+   {
+    "name": "permissions",
+    "dtype": "string"
+   },
+   {
+    "name": "timestamp",
+    "dtype": "timestamp[us]"
+   },
+   {
+    "name": "trajectory",
+    "list": [
+     {
+      "name": "action",
+      "dtype": "string"
+     },
+     {
+      "name": "content",
+      "dtype": "string"
+     },
+     {
+      "name": "extras",
+      "dtype": "string"
+     },
+     {
+      "name": "id",
+      "dtype": "int64"
+     },
+     {
+      "name": "message",
+      "dtype": "string"
+     },
+     {
+      "name": "observation",
+      "dtype": "string"
+     },
+     {
+      "name": "source",
+      "dtype": "string"
+     },
+     {
+      "name": "timestamp",
+      "dtype": "timestamp[us]"
+     }
+    ]
+   }
+  ],
+  "splits": [
+   {
+    "name": "train",
+    "num_bytes": 326672884,
+    "num_examples": 275
+   }
+  ],
+  "download_size": 113686725,
+  "dataset_size": 326672884
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2461,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 5031,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "data/train-00000-of-00001.parquet",
+   "size": 113686725,
+   "type": "file",
+   "lfs_sha256": "f8176795f554d2e40296ad17154f1539a4eb20474dee71de3bb1b3f36d41a9a0"
+  }
+ ],
+ "total_bytes": 113694217,
+ "n_files": 3,
+ "readme_bytes": 5031
+}

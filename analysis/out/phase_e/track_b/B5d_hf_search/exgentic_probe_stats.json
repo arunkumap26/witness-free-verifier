@@ -1,0 +1,247 @@
+{
+ "repo": "Exgentic/agent-llm-traces",
+ "revision": "70036b93a04e61b0ea2706a68b962f4f26774587",
+ "file": "data/train-00003-of-00039.parquet",
+ "rows_in_file": 46,
+ "rows_sampled": 6,
+ "method": "pyarrow footer + first batch via HfFileSystem (pq_probe.py)",
+ "per_row": [
+  {
+   "harness": "tool_calling",
+   "benchmark": "appworld",
+   "models": [
+    "azure/DeepSeek-V3.2"
+   ],
+   "n_spans": 5,
+   "first_start": "2026-04-20T08:41:55.462818+00:00",
+   "first_end": "2026-04-20T08:42:01.907005+00:00",
+   "span_dur_s": [
+    6.444,
+    17.053,
+    4.771,
+    14.808,
+    4.549
+   ],
+   "inter_span_gap_s": [
+    58.541,
+    33.652,
+    56.801,
+    33.595
+   ],
+   "n_negative_gaps": 0,
+   "response_id_example": "a9ddbeb4640e4ed3aacb46f7106b7402",
+   "distinct_response_ids": 5,
+   "tool_call_ids": 5,
+   "tool_call_response_ids": 4,
+   "joined": 4
+  },
+  {
+   "harness": "tool_calling",
+   "benchmark": "appworld",
+   "models": [
+    "azure/DeepSeek-V3.2"
+   ],
+   "n_spans": 20,
+   "first_start": "2026-04-20T08:14:34.349702+00:00",
+   "first_end": "2026-04-20T08:14:51.636335+00:00",
+   "span_dur_s": [
+    17.287,
+    4.193,
+    16.93,
+    7.501,
+    17.458,
+    19.864,
+    14.369,
+    18.836,
+    15.705,
+    15.681,
+    23.725,
+    18.863
+   ],
+   "inter_span_gap_s": [
+    26.913,
+    57.79,
+    32.721,
+    49.411,
+    44.508,
+    34.75,
+    44.595,
+    36.549,
+    34.864,
+    50.206,
+    39.572,
+    29.919
+   ],
+   "n_negative_gaps": 0,
+   "response_id_example": "66201c53403349f6af68dd016873a07d",
+   "distinct_response_ids": 20,
+   "tool_call_ids": 20,
+   "tool_call_response_ids": 19,
+   "joined": 19
+  },
+  {
+   "harness": "tool_calling",
+   "benchmark": "appworld",
+   "models": [
+    "azure/DeepSeek-V3.2"
+   ],
+   "n_spans": 11,
+   "first_start": "2026-04-20T08:17:31.989229+00:00",
+   "first_end": "2026-04-20T08:17:50.084405+00:00",
+   "span_dur_s": [
+    18.095,
+    16.586,
+    18.923,
+    25.438,
+    22.799,
+    22.183,
+    19.567,
+    7.801,
+    17.14,
+    21.746,
+    16.689
+   ],
+   "inter_span_gap_s": [
+    38.919,
+    44.399,
+    47.063,
+    30.665,
+    37.104,
+    37.112,
+    27.891,
+    57.384,
+    50.486,
+    35.415
+   ],
+   "n_negative_gaps": 0,
+   "response_id_example": "582607653ec24a67b2fe45843382f3a2",
+   "distinct_response_ids": 11,
+   "tool_call_ids": 11,
+   "tool_call_response_ids": 10,
+   "joined": 10
+  },
+  {
+   "harness": "tool_calling",
+   "benchmark": "appworld",
+   "models": [
+    "azure/DeepSeek-V3.2"
+   ],
+   "n_spans": 8,
+   "first_start": "2026-04-20T08:34:08.980663+00:00",
+   "first_end": "2026-04-20T08:34:27.296703+00:00",
+   "span_dur_s": [
+    18.316,
+    16.866,
+    17.149,
+    19.912,
+    19.207,
+    13.777,
+    19.887,
+    6.335
+   ],
+   "inter_span_gap_s": [
+    36.589,
+    40.519,
+    41.891,
+    41.55,
+    39.932,
+    52.102,
+    34.867
+   ],
+   "n_negative_gaps": 0,
+   "response_id_example": "d033859111564c0884a6978c38ff0e81",
+   "distinct_response_ids": 8,
+   "tool_call_ids": 8,
+   "tool_call_response_ids": 7,
+   "joined": 7
+  },
+  {
+   "harness": "tool_calling",
+   "benchmark": "appworld",
+   "models": [
+    "azure/DeepSeek-V3.2"
+   ],
+   "n_spans": 32,
+   "first_start": "2026-04-20T08:12:09.876552+00:00",
+   "first_end": "2026-04-20T08:12:26.170398+00:00",
+   "span_dur_s": [
+    16.294,
+    24.285,
+    19.593,
+    5.413,
+    6.998,
+    20.657,
+    5.933,
+    19.887,
+    19.113,
+    19.442,
+    16.864,
+    19.539
+   ],
+   "inter_span_gap_s": [
+    50.302,
+    38.177,
+    24.011,
+    44.515,
+    58.259,
+    25.036,
+    54.31,
+    39.157,
+    44.044,
+    32.201,
+    40.156,
+    31.293
+   ],
+   "n_negative_gaps": 0,
+   "response_id_example": "7ddf242f3afb42139ca55b7b38587e25",
+   "distinct_response_ids": 32,
+   "tool_call_ids": 32,
+   "tool_call_response_ids": 31,
+   "joined": 31
+  },
+  {
+   "harness": "tool_calling",
+   "benchmark": "appworld",
+   "models": [
+    "azure/DeepSeek-V3.2"
+   ],
+   "n_spans": 23,
+   "first_start": "2026-04-19T10:19:50.032093+00:00",
+   "first_end": "2026-04-19T10:21:21.333845+00:00",
+   "span_dur_s": [
+    91.302,
+    86.261,
+    86.12,
+    74.963,
+    24.923,
+    51.472,
+    47.074,
+    28.674,
+    58.147,
+    22.74,
+    44.729,
+    22.045
+   ],
+   "inter_span_gap_s": [
+    -3.36,
+    1.658,
+    -8.268,
+    -42.065,
+    35.938,
+    2.393,
+    -12.451,
+    39.441,
+    -32.087,
+    25.585,
+    -19.035,
+    -12.822
+   ],
+   "n_negative_gaps": 12,
+   "response_id_example": "dd41e49b556d4dbdb2d20e44287342f3",
+   "distinct_response_ids": 23,
+   "tool_call_ids": 23,
+   "tool_call_response_ids": 22,
+   "joined": 22
+  }
+ ]
+}

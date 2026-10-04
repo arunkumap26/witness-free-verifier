@@ -1,0 +1,4229 @@
+{
+ "counts_from": {
+  "hf_format_agent_traces_listing": "meta/hf_format_agent_traces.json",
+  "census_summary": "census/hf_census_summary.json",
+  "dedupe": "census/dedupe_clusters.json",
+  "sample_audit": "census/sample_audit.json",
+  "pi_respid_decode": "census/pi_respid_decode.json",
+  "download_manifest_hf": "census/download_manifest.json",
+  "download_manifest_github": "census/download_manifest_github.json",
+  "population_census": "census/census_downloaded.json",
+  "marker_scan": "census/marker_scan.json",
+  "tracelab_census": "census/census_tracelab.json"
+ },
+ "hf_agent_traces_population": {
+  "n_format_agent_traces": 505,
+  "retrieved_utc": "2026-10-04T07:36:07Z",
+  "datasets_by_gate_and_licence": {
+   "open|none": 374,
+   "open|permissive_or_copyleft": 124,
+   "open|other_or_unknown": 19,
+   "gated|other_or_unknown": 1,
+   "open|noncommercial": 2,
+   "gated|none": 2,
+   "gated|permissive_or_copyleft": 1
+  },
+  "by_harness_class": {
+   "claude_code": {
+    "open|none|datasets": 133,
+    "open|none|files": 1378,
+    "open|none|bytes": 3760898795,
+    "open|permissive_or_copyleft|datasets": 39,
+    "open|permissive_or_copyleft|files": 38674,
+    "open|permissive_or_copyleft|bytes": 3273064495,
+    "open|other_or_unknown|datasets": 6,
+    "open|other_or_unknown|files": 109,
+    "open|other_or_unknown|bytes": 29640867,
+    "gated|other_or_unknown|datasets": 1,
+    "gated|other_or_unknown|files": 1,
+    "gated|other_or_unknown|bytes": 608
+   },
+   "claude_code_subagent": {
+    "open|none|datasets": 22,
+    "open|none|files": 175,
+    "open|none|bytes": 34086996,
+    "open|permissive_or_copyleft|datasets": 24,
+    "open|permissive_or_copyleft|files": 801,
+    "open|permissive_or_copyleft|bytes": 76800514
+   },
+   "codex": {
+    "open|none|datasets": 20,
+    "open|none|files": 1532,
+    "open|none|bytes": 2520281081,
+    "open|permissive_or_copyleft|datasets": 7,
+    "open|permissive_or_copyleft|files": 47,
+    "open|permissive_or_copyleft|bytes": 72635269,
+    "gated|none|datasets": 1,
+    "gated|none|files": 20,
+    "gated|none|bytes": 46508817,
+    "open|other_or_unknown|datasets": 1,
+    "open|other_or_unknown|files": 2,
+    "open|other_or_unknown|bytes": 337593
+   },
+   "pi": {
+    "open|none|datasets": 18,
+    "open|none|files": 19415,
+    "open|none|bytes": 1483205884,
+    "open|other_or_unknown|datasets": 12,
+    "open|other_or_unknown|files": 233,
+    "open|other_or_unknown|bytes": 154471112,
+    "open|permissive_or_copyleft|datasets": 29,
+    "open|permissive_or_copyleft|files": 8463,
+    "open|permissive_or_copyleft|bytes": 1156078181
+   },
+   "opencode": {
+    "open|permissive_or_copyleft|datasets": 4,
+    "open|permissive_or_copyleft|files": 414,
+    "open|permissive_or_copyleft|bytes": 54087846
+   },
+   "cline_roo_ui": {},
+   "atif": {},
+   "jsonl_other": {
+    "open|none|datasets": 211,
+    "open|none|files": 8887,
+    "open|none|bytes": 2014069273,
+    "open|permissive_or_copyleft|datasets": 79,
+    "open|permissive_or_copyleft|files": 84528,
+    "open|permissive_or_copyleft|bytes": 3850484677,
+    "open|other_or_unknown|datasets": 15,
+    "open|other_or_unknown|files": 15,
+    "open|other_or_unknown|bytes": 589703,
+    "open|noncommercial|datasets": 2,
+    "open|noncommercial|files": 615,
+    "open|noncommercial|bytes": 6296931162,
+    "gated|none|datasets": 1,
+    "gated|none|files": 3520,
+    "gated|none|bytes": 1046301256,
+    "gated|permissive_or_copyleft|datasets": 1,
+    "gated|permissive_or_copyleft|files": 21,
+    "gated|permissive_or_copyleft|bytes": 3198208
+   },
+   "json_other": {
+    "open|none|datasets": 236,
+    "open|none|files": 1828,
+    "open|none|bytes": 476797192,
+    "open|permissive_or_copyleft|datasets": 35,
+    "open|permissive_or_copyleft|files": 466,
+    "open|permissive_or_copyleft|bytes": 295296768,
+    "gated|none|datasets": 1,
+    "gated|none|files": 14,
+    "gated|none|bytes": 5107333
+   },
+   "parquet": {
+    "open|none|datasets": 2,
+    "open|none|files": 2,
+    "open|none|bytes": 87688754,
+    "open|permissive_or_copyleft|datasets": 3,
+    "open|permissive_or_copyleft|files": 184,
+    "open|permissive_or_copyleft|bytes": 71411471
+   }
+  },
+  "dedupe": {
+   "n_with_native": 266,
+   "n_canonical": 215,
+   "n_copies": 51,
+   "distinct_native_files_all_open": 55347
+  }
+ },
+ "corpora": {
+  "cli-trace-commons": {
+   "aggregate_by_format": {
+    "claude_code": {
+     "sessions": 28,
+     "ua_entries": 12174,
+     "ua_with_ts": 12174,
+     "ua_ts_iso_ms_z": 12174,
+     "assistant_entries": 7499,
+     "assistant_with_usage": 7499,
+     "req_ids": 7496,
+     "req_v7": 7496,
+     "req_agree": 7496,
+     "toolUseResult_copies": 4262,
+     "results_is_error": 269,
+     "tool_calls": 4264,
+     "tool_results": 4262,
+     "results_joined": 4262,
+     "calls_with_result": 4262,
+     "calls_with_requestId": 4264,
+     "entry_type": {
+      "assistant": 7499,
+      "user": 4675,
+      "ai-title": 1168,
+      "attachment": 1138,
+      "last-prompt": 1124,
+      "file-history-snapshot": 953,
+      "queue-operation": 642,
+      "mode": 338,
+      "permission-mode": 264,
+      "system": 188,
+      "pr-link": 2
+     },
+     "top_keys": {
+      "type": 17991,
+      "sessionId": 17038,
+      "timestamp": 14144,
+      "parentUuid": 13500,
+      "isSidechain": 13500,
+      "uuid": 13500,
+      "userType": 13500,
+      "entrypoint": 13500,
+      "cwd": 13500,
+      "version": 13500,
+      "gitBranch": 13500,
+      "message": 12174,
+      "requestId": 7496,
+      "promptId": 4675,
+      "toolUseResult": 4262
+     },
+     "cc_version": {
+      "2.1.145": 2100,
+      "2.1.179": 1776,
+      "2.1.168": 1735,
+      "2.1.162": 1658,
+      "2.1.141": 1001,
+      "2.1.172": 987,
+      "2.1.173": 944,
+      "2.1.144": 749,
+      "2.1.175": 690,
+      "2.1.131": 671,
+      "2.1.177": 423,
+      "2.1.158": 390,
+      "2.1.167": 294,
+      "2.1.159": 52,
+      "2.1.160": 19
+     },
+     "model": {
+      "claude-sonnet-4-6": 5512,
+      "claude-opus-4-8": 1979,
+      "<synthetic>": 8
+     },
+     "requestId_shape": {
+      "req_<24>": 7496,
+      "<missing>": 3
+     },
+     "tool_name": {
+      "Edit": 972,
+      "Read": 847,
+      "Bash": 794,
+      "Write": 641,
+      "PowerShell": 521,
+      "TodoWrite": 171,
+      "Grep": 156,
+      "Glob": 72,
+      "ToolSearch": 28,
+      "AskUserQuestion": 16,
+      "WebFetch": 13,
+      "Agent": 9,
+      "Skill": 6,
+      "WebSearch": 6,
+      "mcp__claude-in-chrome__computer": 5
+     },
+     "per_repo_quantiles_note": "quantiles are per repo (see census/census_downloaded.json); not pooled here"
+    },
+    "opencode": {
+     "sessions": 1,
+     "messages": 3,
+     "messages_with_time_created": 3,
+     "assistant_with_tokens": 2,
+     "tool_parts": 3,
+     "tool_parts_callID_output": 3,
+     "tool_parts_time_start_end": 3,
+     "top_keys": {
+      "info": 1,
+      "messages": 1
+     },
+     "part_type": {
+      "tool": 3,
+      "text": 2,
+      "step-start": 2,
+      "reasoning": 2,
+      "step-finish": 2
+     },
+     "model": {
+      "opencode/deepseek-v4-flash-free": 2
+     },
+     "tool_status": {
+      "completed": 3
+     },
+     "tool_name": {
+      "websearch": 3
+     },
+     "per_repo_quantiles_note": "quantiles are per repo (see census/census_downloaded.json); not pooled here"
+    }
+   },
+   "repos": [
+    {
+     "repo": "trace-commons/agent-traces",
+     "sha": "112ebd4d03ce852b00e935d523107c3d0c9a65bf",
+     "licence": "cc-by-4.0",
+     "bytes": 127438459,
+     "formats": {
+      "claude_code": 28,
+      "unknown": null,
+      "opencode": 1
+     },
+     "unparsed_files": {
+      ".parquet": 1,
+      "noext": 4,
+      "unknown": 1
+     }
+    }
+   ],
+   "bytes_on_disk": 127438459,
+   "download_records": [
+    {
+     "corpus": "cli-trace-commons",
+     "repo": "trace-commons/agent-traces",
+     "sha": "112ebd4d03ce852b00e935d523107c3d0c9a65bf",
+     "include": ".*",
+     "licence": "cc-by-4.0",
+     "started_utc": "2026-10-04T07:49:28Z",
+     "n_files": 36,
+     "bytes_planned": 127438459,
+     "acquired_total_before": 13343661162,
+     "corpus_bytes_before": 0,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-trace-commons\\trace-commons__agent-traces@112ebd4d",
+     "bytes": 127438459,
+     "lfs_checked": 2,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-trace-commons\\trace-commons__agent-traces@112ebd4d\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:49:47Z"
+    }
+   ]
+  },
+  "cli-claude-code-hf": {
+   "aggregate_by_format": {
+    "claude_code": {
+     "sessions": 377,
+     "ua_entries": 39686,
+     "ua_with_ts": 39686,
+     "ua_ts_iso_ms_z": 39686,
+     "assistant_entries": 24425,
+     "assistant_with_usage": 24425,
+     "req_ids": 21577,
+     "req_v7": 21575,
+     "req_agree": 21567,
+     "toolUseResult_copies": 12003,
+     "results_is_error": 612,
+     "tool_calls": 12997,
+     "tool_results": 12994,
+     "results_joined": 12994,
+     "calls_with_result": 12994,
+     "calls_with_requestId": 11561,
+     "entry_type": {
+      "assistant": 24425,
+      "user": 15261,
+      "attachment": 6239,
+      "last-prompt": 3274,
+      "mode": 3244,
+      "permission-mode": 2975,
+      "ai-title": 2754,
+      "file-history-snapshot": 2169,
+      "system": 1457,
+      "queue-operation": 1399,
+      "custom-title": 485,
+      "agent-name": 463,
+      "agent-color": 305,
+      "bridge-session": 290,
+      "atis-latch": 41
+     },
+     "top_keys": {
+      "type": 64795,
+      "sessionId": 62136,
+      "timestamp": 48793,
+      "parentUuid": 47382,
+      "isSidechain": 47382,
+      "uuid": 47382,
+      "userType": 46902,
+      "entrypoint": 46902,
+      "cwd": 46902,
+      "version": 46902,
+      "gitBranch": 46902,
+      "message": 39686,
+      "requestId": 21585,
+      "promptId": 14932,
+      "sourceToolAssistantUUID": 12845
+     },
+     "cc_version": {
+      "2.1.173": 13668,
+      "2.1.170": 9039,
+      "2.1.175": 7548,
+      "2.1.177": 4178,
+      "2.1.172": 4111,
+      "2.1.168": 3363,
+      "2.1.176": 2751,
+      "2.1.174": 1101,
+      "2.1.178": 373,
+      "2.1.252": 331,
+      "2.1.169": 266,
+      "2.1.220": 173
+     },
+     "model": {
+      "claude-fable-5": 18469,
+      "claude-opus-4-8": 3173,
+      "claude-sonnet-4-6": 2069,
+      "<synthetic>": 194,
+      "claude-fable-5-1": 146,
+      "claude-haiku-4-5-20251001": 114,
+      "qwen-fable5": 108,
+      "claude-opus-5": 95,
+      "Mini-Fable-5": 46,
+      "mini-fable-5": 11
+     },
+     "requestId_shape": {
+      "req_<24>": 21577,
+      "<missing>": 2848
+     },
+     "tool_name": {
+      "Bash": 5896,
+      "Edit": 2594,
+      "Read": 1859,
+      "Write": 1074,
+      "WebSearch": 218,
+      "PowerShell": 192,
+      "WebFetch": 158,
+      "TaskUpdate": 139,
+      "ToolSearch": 125,
+      "StructuredOutput": 124,
+      "TaskCreate": 93,
+      "mcp__Claude_Preview__preview_eval": 90,
+      "ScheduleWakeup": 61,
+      "mcp__Claude_Preview__preview_screenshot": 54,
+      "Skill": 44
+     },
+     "per_repo_quantiles_note": "quantiles are per repo (see census/census_downloaded.json); not pooled here"
+    }
+   },
+   "repos": [
+    {
+     "repo": "build-small-hackathon/kirana-detective-build-traces",
+     "sha": "d61ca08eac929e80086a0ae04f4b8e56e3e561f2",
+     "licence": "mit",
+     "bytes": 9360491,
+     "formats": {
+      "claude_code": 11
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "armand0e/claude-fable-5-claude-code",
+     "sha": "7388ef96f3179f23b6b3618b96572f1aa9b84510",
+     "licence": "mit",
+     "bytes": 75138044,
+     "formats": {
+      "claude_code": 63
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "naazimsnh02/tutordesk-agent-traces",
+     "sha": "4d538090ddd302ff632f53645db5cd606dd94c0b",
+     "licence": "mit",
+     "bytes": 5792308,
+     "formats": {
+      "claude_code": 7
+     },
+     "unparsed_files": {
+      ".parquet": 1
+     }
+    },
+    {
+     "repo": "cfahlgren1/Fable-5-traces",
+     "sha": "0ba6f53852f296f8389290b112054b47cec2dc1f",
+     "licence": "agpl-3.0",
+     "bytes": 62071770,
+     "formats": {
+      "claude_code": 115
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "yellowbeeblackbee/claude-traces",
+     "sha": "0cad5c49dfb886c77b1636d24c46b691969585b8",
+     "licence": "cc0-1.0",
+     "bytes": 4133451,
+     "formats": {
+      "claude_code": 4
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "thomwolf/am-session-sharing-design",
+     "sha": "36dd5850a4f05de14f99fb7c9aa6c42203513bf1",
+     "licence": "apache-2.0",
+     "bytes": 1870774,
+     "formats": {
+      "claude_code": 1
+     },
+     "unparsed_files": {
+      "json_other": 2
+     }
+    },
+    {
+     "repo": "thomwolf/am-session-claude-code-1-c3cc0a",
+     "sha": "037d661cb58d4785f9523205350143d8b9af6a7d",
+     "licence": "apache-2.0",
+     "bytes": 22769,
+     "formats": {
+      "claude_code": 1
+     },
+     "unparsed_files": {
+      "json_other": 2
+     }
+    },
+    {
+     "repo": "thomwolf/am-session-claude-code-1-a66490",
+     "sha": "e8a022e9f8bfd279e50336f86a55e96dad7b4ddb",
+     "licence": "apache-2.0",
+     "bytes": 20533,
+     "formats": {
+      "claude_code": 1
+     },
+     "unparsed_files": {
+      "json_other": 2
+     }
+    },
+    {
+     "repo": "crispwisp/wisp-claude-code-sessions",
+     "sha": "c2c90b59174318ab0b163ec9c9ac82bb879288ce",
+     "licence": "mit",
+     "bytes": 25282805,
+     "formats": {
+      "claude_code": 102,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 2
+     }
+    },
+    {
+     "repo": "AlinCiocan/fable-5-claude-code-traces",
+     "sha": "e33ebbca230ae258b2c28aeee9fe3429e7fbeab6",
+     "licence": "cc-by-4.0",
+     "bytes": 49901548,
+     "formats": {
+      "claude_code": 18
+     },
+     "unparsed_files": {
+      "json_other": 1
+     }
+    },
+    {
+     "repo": "INONONO/tarkov-customs-trajectory",
+     "sha": "a0557bb951af86ec6c27b1153214edf794cb1399",
+     "licence": "mit",
+     "bytes": 9460146,
+     "formats": {
+      "claude_code": 1
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "victor/claude-worldcup-2026-wallchart-traces",
+     "sha": "c2c03b28a499f4244e912b55d983870cf527055d",
+     "licence": "cc-by-4.0",
+     "bytes": 839864,
+     "formats": {
+      "claude_code": 53
+     },
+     "unparsed_files": {}
+    }
+   ],
+   "bytes_on_disk": 243894503,
+   "download_records": [
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "build-small-hackathon/kirana-detective-build-traces",
+     "sha": "d61ca08eac929e80086a0ae04f4b8e56e3e561f2",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:49:47Z",
+     "n_files": 12,
+     "bytes_planned": 9360491,
+     "acquired_total_before": 13471116509,
+     "corpus_bytes_before": 0,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\build-small-hackathon__kirana-detective-build-traces@d61ca08e",
+     "bytes": 9360491,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\build-small-hackathon__kirana-detective-build-traces@d61ca08e\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:49:58Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "armand0e/claude-fable-5-claude-code",
+     "sha": "7388ef96f3179f23b6b3618b96572f1aa9b84510",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:49:58Z",
+     "n_files": 64,
+     "bytes_planned": 75138044,
+     "acquired_total_before": 13480482859,
+     "corpus_bytes_before": 9366350,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\armand0e__claude-fable-5-claude-code@7388ef96",
+     "bytes": 75138044,
+     "lfs_checked": 1,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\armand0e__claude-fable-5-claude-code@7388ef96\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:50:23Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "naazimsnh02/tutordesk-agent-traces",
+     "sha": "4d538090ddd302ff632f53645db5cd606dd94c0b",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:50:23Z",
+     "n_files": 9,
+     "bytes_planned": 5792308,
+     "acquired_total_before": 13555649222,
+     "corpus_bytes_before": 84532713,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\naazimsnh02__tutordesk-agent-traces@4d538090",
+     "bytes": 5792308,
+     "lfs_checked": 1,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\naazimsnh02__tutordesk-agent-traces@4d538090\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:50:35Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "cfahlgren1/Fable-5-traces",
+     "sha": "0ba6f53852f296f8389290b112054b47cec2dc1f",
+     "include": ".*",
+     "licence": "agpl-3.0",
+     "started_utc": "2026-10-04T07:50:35Z",
+     "n_files": 116,
+     "bytes_planned": 62071770,
+     "acquired_total_before": 13561445919,
+     "corpus_bytes_before": 90329410,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\cfahlgren1__Fable-5-traces@0ba6f538",
+     "bytes": 62071770,
+     "lfs_checked": 1,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\cfahlgren1__Fable-5-traces@0ba6f538\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:51:16Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "yellowbeeblackbee/claude-traces",
+     "sha": "0cad5c49dfb886c77b1636d24c46b691969585b8",
+     "include": ".*",
+     "licence": "cc0-1.0",
+     "started_utc": "2026-10-04T07:51:16Z",
+     "n_files": 5,
+     "bytes_planned": 4133451,
+     "acquired_total_before": 13623569037,
+     "corpus_bytes_before": 152452528,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\yellowbeeblackbee__claude-traces@0cad5c49",
+     "bytes": 4133451,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\yellowbeeblackbee__claude-traces@0cad5c49\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:51:24Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "thomwolf/am-session-sharing-design",
+     "sha": "36dd5850a4f05de14f99fb7c9aa6c42203513bf1",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T07:51:24Z",
+     "n_files": 5,
+     "bytes_planned": 1870774,
+     "acquired_total_before": 13627704825,
+     "corpus_bytes_before": 156588316,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\thomwolf__am-session-sharing-design@36dd5850",
+     "bytes": 1870774,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\thomwolf__am-session-sharing-design@36dd5850\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:51:32Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "thomwolf/am-session-claude-code-1-c3cc0a",
+     "sha": "037d661cb58d4785f9523205350143d8b9af6a7d",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T07:51:32Z",
+     "n_files": 5,
+     "bytes_planned": 22769,
+     "acquired_total_before": 13629577795,
+     "corpus_bytes_before": 158461286,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\thomwolf__am-session-claude-code-1-c3cc0a@037d661c",
+     "bytes": 22769,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\thomwolf__am-session-claude-code-1-c3cc0a@037d661c\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:51:40Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "thomwolf/am-session-claude-code-1-a66490",
+     "sha": "e8a022e9f8bfd279e50336f86a55e96dad7b4ddb",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T07:51:40Z",
+     "n_files": 5,
+     "bytes_planned": 20533,
+     "acquired_total_before": 13629602790,
+     "corpus_bytes_before": 158486281,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\thomwolf__am-session-claude-code-1-a66490@e8a022e9",
+     "bytes": 20533,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\thomwolf__am-session-claude-code-1-a66490@e8a022e9\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:51:49Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "crispwisp/wisp-claude-code-sessions",
+     "sha": "c2c90b59174318ab0b163ec9c9ac82bb879288ce",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:51:49Z",
+     "n_files": 105,
+     "bytes_planned": 25282805,
+     "acquired_total_before": 13629625549,
+     "corpus_bytes_before": 158509040,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\crispwisp__wisp-claude-code-sessions@c2c90b59",
+     "bytes": 25282805,
+     "lfs_checked": 1,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\crispwisp__wisp-claude-code-sessions@c2c90b59\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:52:23Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "AlinCiocan/fable-5-claude-code-traces",
+     "sha": "e33ebbca230ae258b2c28aeee9fe3429e7fbeab6",
+     "include": ".*",
+     "licence": "cc-by-4.0",
+     "started_utc": "2026-10-04T07:52:23Z",
+     "n_files": 20,
+     "bytes_planned": 49901548,
+     "acquired_total_before": 13654973457,
+     "corpus_bytes_before": 183856948,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\AlinCiocan__fable-5-claude-code-traces@e33ebbca",
+     "bytes": 49901548,
+     "lfs_checked": 1,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\AlinCiocan__fable-5-claude-code-traces@e33ebbca\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:52:37Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "INONONO/tarkov-customs-trajectory",
+     "sha": "a0557bb951af86ec6c27b1153214edf794cb1399",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:52:37Z",
+     "n_files": 2,
+     "bytes_planned": 9460146,
+     "acquired_total_before": 13704884054,
+     "corpus_bytes_before": 233767545,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\INONONO__tarkov-customs-trajectory@a0557bb9",
+     "bytes": 9460146,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\INONONO__tarkov-customs-trajectory@a0557bb9\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:52:46Z"
+    },
+    {
+     "corpus": "cli-claude-code-hf",
+     "repo": "victor/claude-worldcup-2026-wallchart-traces",
+     "sha": "c2c03b28a499f4244e912b55d983870cf527055d",
+     "include": ".*",
+     "licence": "cc-by-4.0",
+     "started_utc": "2026-10-04T07:52:46Z",
+     "n_files": 55,
+     "bytes_planned": 839864,
+     "acquired_total_before": 13714345243,
+     "corpus_bytes_before": 243228734,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\victor__claude-worldcup-2026-wallchart-traces@c2c03b28",
+     "bytes": 839864,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-claude-code-hf\\victor__claude-worldcup-2026-wallchart-traces@c2c03b28\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:53:09Z"
+    }
+   ]
+  },
+  "cli-codex-hf": {
+   "aggregate_by_format": {
+    "codex": {
+     "sessions": 46,
+     "lines": 17617,
+     "lines_with_ts": 17617,
+     "lines_ts_iso_ms_z": 17617,
+     "token_count_events": 2330,
+     "tool_calls": 3381,
+     "tool_outputs": 3381,
+     "outputs_joined": 3381,
+     "payload_type": {
+      "response_item/function_call": 2933,
+      "response_item/function_call_output": 2933,
+      "response_item/message": 2473,
+      "event_msg/token_count": 2330,
+      "event_msg/agent_message": 1941,
+      "response_item/reasoning": 1696,
+      "response_item/custom_tool_call": 448,
+      "response_item/custom_tool_call_output": 448,
+      "event_msg/patch_apply_end": 439,
+      "event_msg/user_message": 352,
+      "turn_context/None": 351,
+      "event_msg/task_started": 349,
+      "event_msg/task_complete": 333,
+      "session_meta/None": 228,
+      "event_msg/web_search_end": 144
+     },
+     "cli_version": {
+      "0.140.0-alpha.2": 174,
+      "0.138.0-alpha.7": 30,
+      "0.135.0-alpha.1": 9,
+      "0.137.0": 7,
+      "0.137.0-alpha.4": 7,
+      "0.139.0": 1
+     },
+     "originator": {
+      "codex_vscode": 130,
+      "Codex Desktop": 90,
+      "codex-tui": 8
+     },
+     "model_provider": {
+      "openai": 228
+     },
+     "payload_keys": {
+      "type": 17036,
+      "call_id": 7391,
+      "phase": 3883,
+      "name": 3381,
+      "output": 3381,
+      "arguments": 2940,
+      "content": 2586,
+      "role": 2473,
+      "info": 2330,
+      "rate_limits": 2330,
+      "message": 2295,
+      "summary": 2047,
+      "memory_citation": 1941,
+      "encrypted_content": 1696,
+      "turn_id": 1490
+     },
+     "model": {
+      "gpt-5.5": 254,
+      "codex-auto-review": 81,
+      "gpt-5.4-mini": 16
+     },
+     "tool_name": {
+      "exec_command": 2041,
+      "shell_command": 674,
+      "apply_patch": 448,
+      "write_stdin": 134,
+      "view_image": 27,
+      "js": 17,
+      "load_workspace_dependencies": 11,
+      "docs_mcp_search_gradio_docs": 10,
+      "update_plan": 10,
+      "update_goal": 3,
+      "js_reset": 1,
+      "docs_mcp_load_gradio_docs": 1,
+      "js_add_node_module_dir": 1,
+      "create_goal": 1,
+      "_search_prs": 1
+     },
+     "per_repo_quantiles_note": "quantiles are per repo (see census/census_downloaded.json); not pooled here"
+    }
+   },
+   "repos": [
+    {
+     "repo": "build-small-hackathon/sense-garden-traces",
+     "sha": "1a13d90deb699faf7b385a4eedb32937d7fb589f",
+     "licence": "cc-by-4.0",
+     "bytes": 1719850,
+     "formats": {
+      "codex": 1
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "build-small-hackathon/pit-wall-chaos-traces",
+     "sha": "60bd7c2609d7a0adb31fb31236caadf596c62c11",
+     "licence": "cc-by-4.0",
+     "bytes": 18023926,
+     "formats": {
+      "codex": 4
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "build-small-hackathon/clue-vibes-traces",
+     "sha": "fe8ba2792ec5415f9cc8014e00979e7f1e287028",
+     "licence": "cc-by-4.0",
+     "bytes": 2358958,
+     "formats": {
+      "codex": 3
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "drdavidtang/build-small-agent-trace",
+     "sha": "af8e727914b9bda8aeabe8753206b4eb54eb03c7",
+     "licence": "mit",
+     "bytes": 21297560,
+     "formats": {
+      "codex": 16
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "kingkw1/read-along-ai-agent-traces",
+     "sha": "0bee208f7b132645aa9c8410248ec7aa3be375ca",
+     "licence": "mit",
+     "bytes": 27557307,
+     "formats": {
+      "codex": 21
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "build-small-hackathon/MatchWise-agent-trace",
+     "sha": "10606ddabd1288a204ffed62d664ccb05ea17b50",
+     "licence": "mit",
+     "bytes": 1644357,
+     "formats": {
+      "codex": 1
+     },
+     "unparsed_files": {}
+    }
+   ],
+   "bytes_on_disk": 72601958,
+   "download_records": [
+    {
+     "corpus": "cli-codex-hf",
+     "repo": "build-small-hackathon/sense-garden-traces",
+     "sha": "1a13d90deb699faf7b385a4eedb32937d7fb589f",
+     "include": ".*",
+     "licence": "cc-by-4.0",
+     "started_utc": "2026-10-04T07:53:09Z",
+     "n_files": 2,
+     "bytes_planned": 1719850,
+     "acquired_total_before": 13715212642,
+     "corpus_bytes_before": 0,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-codex-hf\\build-small-hackathon__sense-garden-traces@1a13d90d",
+     "bytes": 1719850,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-codex-hf\\build-small-hackathon__sense-garden-traces@1a13d90d\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:53:16Z"
+    },
+    {
+     "corpus": "cli-codex-hf",
+     "repo": "build-small-hackathon/pit-wall-chaos-traces",
+     "sha": "60bd7c2609d7a0adb31fb31236caadf596c62c11",
+     "include": ".*",
+     "licence": "cc-by-4.0",
+     "started_utc": "2026-10-04T07:53:16Z",
+     "n_files": 5,
+     "bytes_planned": 18023926,
+     "acquired_total_before": 13716933599,
+     "corpus_bytes_before": 1720957,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-codex-hf\\build-small-hackathon__pit-wall-chaos-traces@60bd7c26",
+     "bytes": 18023926,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-codex-hf\\build-small-hackathon__pit-wall-chaos-traces@60bd7c26\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:53:24Z"
+    },
+    {
+     "corpus": "cli-codex-hf",
+     "repo": "build-small-hackathon/clue-vibes-traces",
+     "sha": "fe8ba2792ec5415f9cc8014e00979e7f1e287028",
+     "include": ".*",
+     "licence": "cc-by-4.0",
+     "started_utc": "2026-10-04T07:53:24Z",
+     "n_files": 4,
+     "bytes_planned": 2358958,
+     "acquired_total_before": 13734960160,
+     "corpus_bytes_before": 19747518,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-codex-hf\\build-small-hackathon__clue-vibes-traces@fe8ba279",
+     "bytes": 2358958,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-codex-hf\\build-small-hackathon__clue-vibes-traces@fe8ba279\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:53:32Z"
+    },
+    {
+     "corpus": "cli-codex-hf",
+     "repo": "drdavidtang/build-small-agent-trace",
+     "sha": "af8e727914b9bda8aeabe8753206b4eb54eb03c7",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:53:32Z",
+     "n_files": 17,
+     "bytes_planned": 21297560,
+     "acquired_total_before": 13737321223,
+     "corpus_bytes_before": 22108581,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-codex-hf\\drdavidtang__build-small-agent-trace@af8e7279",
+     "bytes": 21297560,
+     "lfs_checked": 1,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-codex-hf\\drdavidtang__build-small-agent-trace@af8e7279\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:53:46Z"
+    },
+    {
+     "corpus": "cli-codex-hf",
+     "repo": "kingkw1/read-along-ai-agent-traces",
+     "sha": "0bee208f7b132645aa9c8410248ec7aa3be375ca",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:53:46Z",
+     "n_files": 22,
+     "bytes_planned": 27557307,
+     "acquired_total_before": 13859567472,
+     "corpus_bytes_before": 43415108,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-codex-hf\\kingkw1__read-along-ai-agent-traces@0bee208f",
+     "bytes": 27557307,
+     "lfs_checked": 1,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-codex-hf\\kingkw1__read-along-ai-agent-traces@0bee208f\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:54:00Z"
+    },
+    {
+     "corpus": "cli-codex-hf",
+     "repo": "build-small-hackathon/MatchWise-agent-trace",
+     "sha": "10606ddabd1288a204ffed62d664ccb05ea17b50",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:54:00Z",
+     "n_files": 2,
+     "bytes_planned": 1644357,
+     "acquired_total_before": 13887136466,
+     "corpus_bytes_before": 70983507,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-codex-hf\\build-small-hackathon__MatchWise-agent-trace@10606dda",
+     "bytes": 1644357,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-codex-hf\\build-small-hackathon__MatchWise-agent-trace@10606dda\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:54:07Z"
+    }
+   ]
+  },
+  "cli-pi-hf": {
+   "aggregate_by_format": {
+    "pi": {
+     "sessions": 530,
+     "entries": 55175,
+     "entries_with_ts": 55175,
+     "messages_with_epoch_ms": 50107,
+     "assistant_messages": 23315,
+     "results_isError_true": 1364,
+     "tool_calls": 23974,
+     "tool_results": 23928,
+     "results_joined": 23928,
+     "respid_within_5s::openai_resp_hex50": 4877,
+     "respid_within_5s::openrouter_gen_secs": 42,
+     "entry_type": {
+      "message": 50107,
+      "custom": 2761,
+      "thinking_level_change": 923,
+      "model_change": 737,
+      "session": 530,
+      "compaction": 54,
+      "custom_message": 51,
+      "session_info": 8,
+      "label": 3,
+      "branch_summary": 1
+     },
+     "session_version": {
+      "3": 530
+     },
+     "provider": {
+      "openai-codex": 7221,
+      "anthropic": 4812,
+      "openai": 4671,
+      "ollama": 2235,
+      "deepseek": 1550,
+      "myproxy": 888,
+      "github-copilot": 636,
+      "LlamaBarn": 403,
+      "ds4": 267,
+      "xiaomi": 158,
+      "llama-cpp": 109,
+      "google-gemini-cli": 100,
+      "huggingface": 62,
+      "google-antigravity": 60,
+      "tensorx": 56
+     },
+     "model": {
+      "gpt-5.2-codex": 4672,
+      "gpt-5.4": 3943,
+      "claude-opus-4-5": 3125,
+      "gpt-5.3-codex": 2473,
+      "kimi-k2.5:cloud": 1514,
+      "deepseek-v4-pro": 1441,
+      "gpt-5.5": 1091,
+      "claude-fable-5": 994,
+      "glm-5.1:cloud": 722,
+      "claude-opus-4-6": 505,
+      "mlx-community/MiniMax-M2.7-8bit": 487,
+      "unsloth/Qwen3.6-27B-GGUF:Q8_0": 383,
+      "deepseek-v4-flash": 376,
+      "mlx-community/gpt-oss-120b-MXFP4-Q8": 348,
+      "gemini-3.1-pro-preview": 231
+     },
+     "responseId_family": {
+      "<missing>": 11741,
+      "openai_resp_hex50": 5452,
+      "uuid": 2434,
+      "chatcmpl": 1548,
+      "anthropic_msg": 1265,
+      "other": 832,
+      "openrouter_gen_secs": 42,
+      "openai_resp_other": 1
+     },
+     "tool_name": {
+      "bash": 12059,
+      "read": 6972,
+      "edit": 3744,
+      "write": 741,
+      "fetch_content": 78,
+      "subagent": 61,
+      "perplexity_perplexity_search": 34,
+      "web_search": 33,
+      "mcp": 31,
+      "pi_messenger": 26,
+      "get_search_content": 24,
+      "ralph_start": 20,
+      "gateway_broadcast": 20,
+      "ralph_done": 16,
+      "grep": 14
+     },
+     "per_repo_quantiles_note": "quantiles are per repo (see census/census_downloaded.json); not pooled here"
+    }
+   },
+   "repos": [
+    {
+     "repo": "thomasmustier/pi-nes-sessions",
+     "sha": "47d55a2545e0db79909b74f61e3a5dd06fcf8680",
+     "licence": "mit",
+     "bytes": 3926914,
+     "formats": {
+      "pi": 12,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/pine-of-glass-sessions",
+     "sha": "b9a6b263895cb7ab8d53924d1ba2fe50a71604ea",
+     "licence": "mit",
+     "bytes": 24436417,
+     "formats": {
+      "pi": 19,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/pi-session-hud-sessions",
+     "sha": "041268c03fd24623bb659b6e68558025845d5419",
+     "licence": "mit",
+     "bytes": 2060010,
+     "formats": {
+      "pi": 1,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/pi-computer-use-sessions",
+     "sha": "8353644936ee6cf1a718aec251c250a5773fd257",
+     "licence": "mit",
+     "bytes": 2976699,
+     "formats": {
+      "pi": 6,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/heypocket-reader-sessions",
+     "sha": "70f6d07dfb7b0617098e4082702a5e8e091a95d9",
+     "licence": "mit",
+     "bytes": 1109309,
+     "formats": {
+      "pi": 8,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/pi-extensions-sessions",
+     "sha": "17e22c5903cb95d9e7bcac345d81df69f0a4cce3",
+     "licence": "mit",
+     "bytes": 42976758,
+     "formats": {
+      "pi": 118,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/pi-mono-sessions",
+     "sha": "d0895347aaac586876f53bd5d71b2209ab275dca",
+     "licence": "mit",
+     "bytes": 17372199,
+     "formats": {
+      "pi": 104,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/economist-tui-sessions",
+     "sha": "95b6dba5c1398052972beeb083812d78a68cc4f9",
+     "licence": "mit",
+     "bytes": 3988290,
+     "formats": {
+      "pi": 10,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/clean-slides-sessions",
+     "sha": "0ecc915c7d3223b5d6c049cda242e8cacd65e85b",
+     "licence": "mit",
+     "bytes": 13056307,
+     "formats": {
+      "pi": 11,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "thomasmustier/pi-symphony-sessions",
+     "sha": "0697350f9654d0cd98cc81c37aab1ab8d58d345e",
+     "licence": "mit",
+     "bytes": 569468,
+     "formats": {
+      "pi": 7,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "championswimmer/pi-coding-sessions",
+     "sha": "f655c6c2aabf742c19217ce4de180e9124799901",
+     "licence": "mit",
+     "bytes": 18907216,
+     "formats": {
+      "pi": 26,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "woxQAQ/pi-web",
+     "sha": "1928c53ba9e285e660190fca030676b832a036c9",
+     "licence": "mit",
+     "bytes": 60601397,
+     "formats": {
+      "pi": 108,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "abidlabs/gradio-pi-sessions",
+     "sha": "7af63c1cf3cb8a92c8a96abaa5d46c233c25f6a0",
+     "licence": "mit",
+     "bytes": 2114871,
+     "formats": {
+      "pi": 5
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "abidlabs/trackio-pi-sessions",
+     "sha": "4c1420de7fdd76b023916f382174ca3ff6cd1346",
+     "licence": "mit",
+     "bytes": 440746,
+     "formats": {
+      "pi": 1
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "Becks723/pi-traces",
+     "sha": "70163ead1b50ed22f3986bcaa67e1e47d4457142",
+     "licence": "mit",
+     "bytes": 39388,
+     "formats": {
+      "pi": 4
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "merve/hf-find-traces",
+     "sha": "650d439f6d9059633b859462a3c782b05f63e48d",
+     "licence": "apache-2.0",
+     "bytes": 298763,
+     "formats": {
+      "pi": 3
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "merve/agent_traces",
+     "sha": "2e1b3fcebf283ea6ba0f15aebfc0b216959dac5d",
+     "licence": "apache-2.0",
+     "bytes": 25861,
+     "formats": {
+      "pi": 1
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "OmarRabhI/pi-sessions",
+     "sha": "d3d60fea09149d36a61b228f39e5ac4fcdc81012",
+     "licence": "apache-2.0",
+     "bytes": 40645,
+     "formats": {
+      "pi": 6,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "rgruchalski/combust-labs_pi-mono-docker",
+     "sha": "7829c4a27427bb57ccf03fdaf21f43de0b8075cc",
+     "licence": "apache-2.0",
+     "bytes": 2194430,
+     "formats": {
+      "pi": 26
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "julien-c/pi-sessions",
+     "sha": "700416886204bcdbca133373daed3d2504c853cf",
+     "licence": "cc-by-4.0",
+     "bytes": 2287281,
+     "formats": {
+      "pi": 17
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "moikapy/0xKobolds",
+     "sha": "50d5828c62757953a90a25328ad2450f646fc987",
+     "licence": "mit",
+     "bytes": 7026593,
+     "formats": {
+      "pi": 20,
+      "unknown": null
+     },
+     "unparsed_files": {
+      "unknown": 1
+     }
+    },
+    {
+     "repo": "xhochy/conda-forge-agent-traces",
+     "sha": "046e1aff399803cc767fc76d91860ffd65b24add",
+     "licence": "bsd-3-clause",
+     "bytes": 3916430,
+     "formats": {
+      "pi": 16
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "lucacorbucci/llm_timeline_deepseek_v4_flash-pi",
+     "sha": "b46eaa8c12b4b30207ec05401dc9dd9d747ee51a",
+     "licence": "mit",
+     "bytes": 395675,
+     "formats": {
+      "pi": 1
+     },
+     "unparsed_files": {
+      "error:JSONDecodeError": 1
+     }
+    }
+   ],
+   "bytes_on_disk": 210761667,
+   "download_records": [
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/pi-nes-sessions",
+     "sha": "47d55a2545e0db79909b74f61e3a5dd06fcf8680",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:54:07Z",
+     "n_files": 14,
+     "bytes_planned": 3926914,
+     "acquired_total_before": 13888781928,
+     "corpus_bytes_before": 0,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-nes-sessions@47d55a25",
+     "bytes": 3926914,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-nes-sessions@47d55a25\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:54:18Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/pine-of-glass-sessions",
+     "sha": "b9a6b263895cb7ab8d53924d1ba2fe50a71604ea",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:54:18Z",
+     "n_files": 21,
+     "bytes_planned": 24436417,
+     "acquired_total_before": 13892715611,
+     "corpus_bytes_before": 3933683,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pine-of-glass-sessions@b9a6b263",
+     "bytes": 24436417,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pine-of-glass-sessions@b9a6b263\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:54:32Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/pi-session-hud-sessions",
+     "sha": "041268c03fd24623bb659b6e68558025845d5419",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:54:32Z",
+     "n_files": 3,
+     "bytes_planned": 2060010,
+     "acquired_total_before": 13917162353,
+     "corpus_bytes_before": 28380425,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-session-hud-sessions@041268c0",
+     "bytes": 2060010,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-session-hud-sessions@041268c0\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:54:39Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/pi-computer-use-sessions",
+     "sha": "8353644936ee6cf1a718aec251c250a5773fd257",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:54:39Z",
+     "n_files": 8,
+     "bytes_planned": 2976699,
+     "acquired_total_before": 13919223830,
+     "corpus_bytes_before": 30441902,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-computer-use-sessions@83536449",
+     "bytes": 2976699,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-computer-use-sessions@83536449\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:54:49Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/heypocket-reader-sessions",
+     "sha": "70f6d07dfb7b0617098e4082702a5e8e091a95d9",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:54:49Z",
+     "n_files": 10,
+     "bytes_planned": 1109309,
+     "acquired_total_before": 13922204471,
+     "corpus_bytes_before": 33422543,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__heypocket-reader-sessions@70f6d07d",
+     "bytes": 1109309,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__heypocket-reader-sessions@70f6d07d\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:55:00Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/pi-extensions-sessions",
+     "sha": "17e22c5903cb95d9e7bcac345d81df69f0a4cce3",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:55:00Z",
+     "n_files": 120,
+     "bytes_planned": 42976758,
+     "acquired_total_before": 13923318723,
+     "corpus_bytes_before": 34536795,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-extensions-sessions@17e22c59",
+     "bytes": 42976758,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-extensions-sessions@17e22c59\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:55:46Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/pi-mono-sessions",
+     "sha": "d0895347aaac586876f53bd5d71b2209ab275dca",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:55:46Z",
+     "n_files": 106,
+     "bytes_planned": 17372199,
+     "acquired_total_before": 13966354477,
+     "corpus_bytes_before": 77572549,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-mono-sessions@d0895347",
+     "bytes": 17372199,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-mono-sessions@d0895347\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:56:24Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/economist-tui-sessions",
+     "sha": "95b6dba5c1398052972beeb083812d78a68cc4f9",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:56:24Z",
+     "n_files": 12,
+     "bytes_planned": 3988290,
+     "acquired_total_before": 13983778044,
+     "corpus_bytes_before": 94996116,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__economist-tui-sessions@95b6dba5",
+     "bytes": 3988290,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__economist-tui-sessions@95b6dba5\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:56:38Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/clean-slides-sessions",
+     "sha": "0ecc915c7d3223b5d6c049cda242e8cacd65e85b",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:56:38Z",
+     "n_files": 13,
+     "bytes_planned": 13056307,
+     "acquired_total_before": 13987772230,
+     "corpus_bytes_before": 98990302,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__clean-slides-sessions@0ecc915c",
+     "bytes": 13056307,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__clean-slides-sessions@0ecc915c\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:56:52Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "thomasmustier/pi-symphony-sessions",
+     "sha": "0697350f9654d0cd98cc81c37aab1ab8d58d345e",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:56:52Z",
+     "n_files": 9,
+     "bytes_planned": 569468,
+     "acquired_total_before": 14000834914,
+     "corpus_bytes_before": 112052986,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-symphony-sessions@0697350f",
+     "bytes": 569468,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\thomasmustier__pi-symphony-sessions@0697350f\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:57:04Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "championswimmer/pi-coding-sessions",
+     "sha": "f655c6c2aabf742c19217ce4de180e9124799901",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:57:04Z",
+     "n_files": 29,
+     "bytes_planned": 18907216,
+     "acquired_total_before": 14001408765,
+     "corpus_bytes_before": 112626837,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\championswimmer__pi-coding-sessions@f655c6c2",
+     "bytes": 18907216,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\championswimmer__pi-coding-sessions@f655c6c2\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:57:25Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "woxQAQ/pi-web",
+     "sha": "1928c53ba9e285e660190fca030676b832a036c9",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:57:25Z",
+     "n_files": 111,
+     "bytes_planned": 60601397,
+     "acquired_total_before": 14020330974,
+     "corpus_bytes_before": 131549046,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\woxQAQ__pi-web@1928c53b",
+     "bytes": 60601397,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\woxQAQ__pi-web@1928c53b\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:58:13Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "abidlabs/gradio-pi-sessions",
+     "sha": "7af63c1cf3cb8a92c8a96abaa5d46c233c25f6a0",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:58:13Z",
+     "n_files": 6,
+     "bytes_planned": 2114871,
+     "acquired_total_before": 14080987896,
+     "corpus_bytes_before": 192205968,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\abidlabs__gradio-pi-sessions@7af63c1c",
+     "bytes": 2114871,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\abidlabs__gradio-pi-sessions@7af63c1c\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:58:24Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "abidlabs/trackio-pi-sessions",
+     "sha": "4c1420de7fdd76b023916f382174ca3ff6cd1346",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:58:24Z",
+     "n_files": 2,
+     "bytes_planned": 440746,
+     "acquired_total_before": 14083105910,
+     "corpus_bytes_before": 194323982,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\abidlabs__trackio-pi-sessions@4c1420de",
+     "bytes": 440746,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\abidlabs__trackio-pi-sessions@4c1420de\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:58:34Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "Becks723/pi-traces",
+     "sha": "70163ead1b50ed22f3986bcaa67e1e47d4457142",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:58:34Z",
+     "n_files": 5,
+     "bytes_planned": 39388,
+     "acquired_total_before": 14083547744,
+     "corpus_bytes_before": 194765816,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\Becks723__pi-traces@70163ead",
+     "bytes": 39388,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\Becks723__pi-traces@70163ead\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:58:44Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "merve/hf-find-traces",
+     "sha": "650d439f6d9059633b859462a3c782b05f63e48d",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T07:58:44Z",
+     "n_files": 4,
+     "bytes_planned": 298763,
+     "acquired_total_before": 14083589785,
+     "corpus_bytes_before": 194807857,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\merve__hf-find-traces@650d439f",
+     "bytes": 298763,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\merve__hf-find-traces@650d439f\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:58:56Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "merve/agent_traces",
+     "sha": "2e1b3fcebf283ea6ba0f15aebfc0b216959dac5d",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T07:58:56Z",
+     "n_files": 2,
+     "bytes_planned": 25861,
+     "acquired_total_before": 14083890531,
+     "corpus_bytes_before": 195108603,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\merve__agent_traces@2e1b3fce",
+     "bytes": 25861,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\merve__agent_traces@2e1b3fce\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:59:07Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "OmarRabhI/pi-sessions",
+     "sha": "d3d60fea09149d36a61b228f39e5ac4fcdc81012",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T07:59:07Z",
+     "n_files": 9,
+     "bytes_planned": 40645,
+     "acquired_total_before": 14083917369,
+     "corpus_bytes_before": 195135441,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\OmarRabhI__pi-sessions@d3d60fea",
+     "bytes": 40645,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\OmarRabhI__pi-sessions@d3d60fea\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:59:19Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "rgruchalski/combust-labs_pi-mono-docker",
+     "sha": "7829c4a27427bb57ccf03fdaf21f43de0b8075cc",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T07:59:19Z",
+     "n_files": 27,
+     "bytes_planned": 2194430,
+     "acquired_total_before": 14083962402,
+     "corpus_bytes_before": 195180474,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\rgruchalski__combust-labs_pi-mono-docker@7829c4a2",
+     "bytes": 2194430,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\rgruchalski__combust-labs_pi-mono-docker@7829c4a2\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:59:38Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "julien-c/pi-sessions",
+     "sha": "700416886204bcdbca133373daed3d2504c853cf",
+     "include": ".*",
+     "licence": "cc-by-4.0",
+     "started_utc": "2026-10-04T07:59:38Z",
+     "n_files": 18,
+     "bytes_planned": 2287281,
+     "acquired_total_before": 14086170282,
+     "corpus_bytes_before": 197388354,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\julien-c__pi-sessions@70041688",
+     "bytes": 2287281,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\julien-c__pi-sessions@70041688\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T07:59:55Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "moikapy/0xKobolds",
+     "sha": "50d5828c62757953a90a25328ad2450f646fc987",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T07:59:55Z",
+     "n_files": 23,
+     "bytes_planned": 7026593,
+     "acquired_total_before": 14088466429,
+     "corpus_bytes_before": 199684501,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\moikapy__0xKobolds@50d5828c",
+     "bytes": 7026593,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\moikapy__0xKobolds@50d5828c\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:00:11Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "xhochy/conda-forge-agent-traces",
+     "sha": "046e1aff399803cc767fc76d91860ffd65b24add",
+     "include": ".*",
+     "licence": "bsd-3-clause",
+     "started_utc": "2026-10-04T08:00:11Z",
+     "n_files": 17,
+     "bytes_planned": 3916430,
+     "acquired_total_before": 14095504449,
+     "corpus_bytes_before": 206722521,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\xhochy__conda-forge-agent-traces@046e1aff",
+     "bytes": 3916430,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\xhochy__conda-forge-agent-traces@046e1aff\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:00:26Z"
+    },
+    {
+     "corpus": "cli-pi-hf",
+     "repo": "lucacorbucci/llm_timeline_deepseek_v4_flash-pi",
+     "sha": "b46eaa8c12b4b30207ec05401dc9dd9d747ee51a",
+     "include": ".*",
+     "licence": "mit",
+     "started_utc": "2026-10-04T08:00:26Z",
+     "n_files": 4,
+     "bytes_planned": 395675,
+     "acquired_total_before": 14099429257,
+     "corpus_bytes_before": 210647329,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\cli-pi-hf\\lucacorbucci__llm_timeline_deepseek_v4_flash-pi@b46eaa8c",
+     "bytes": 395675,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\cli-pi-hf\\lucacorbucci__llm_timeline_deepseek_v4_flash-pi@b46eaa8c\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:00:48Z"
+    }
+   ]
+  },
+  "agentcap-dacorvo": {
+   "aggregate_by_format": {
+    "opencode": {
+     "sessions": 411,
+     "messages": 7175,
+     "messages_with_time_created": 7175,
+     "assistant_with_tokens": 5636,
+     "tool_parts": 4694,
+     "tool_parts_callID_output": 3934,
+     "tool_parts_time_start_end": 4685,
+     "tool_parts_error_field": 751,
+     "top_keys": {
+      "info": 411,
+      "messages": 411
+     },
+     "part_type": {
+      "step-start": 5671,
+      "step-finish": 5603,
+      "text": 5105,
+      "tool": 4694,
+      "reasoning": 2518,
+      "compaction": 52
+     },
+     "model": {
+      "local/unsloth/GLM-4.7-Flash-GGUF": 1254,
+      "local/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF": 1117,
+      "local/zai-org/GLM-4.6": 891,
+      "local/ggml-org/Qwen3.6-35B-A3B-GGUF": 733,
+      "local/ggml-org/gemma-4-26B-A4B-it-GGUF": 664,
+      "local/google/gemma-4-12B-it-qat-q4_0-gguf": 653,
+      "local/ggml-org/gemma-4-E4B-it-GGUF": 313,
+      "local/GLM-4.5-Air": 11
+     },
+     "tool_status": {
+      "completed": 3934,
+      "error": 751,
+      "running": 8,
+      "pending": 1
+     },
+     "tool_name": {
+      "bash": 1697,
+      "read": 1219,
+      "grep": 373,
+      "write": 333,
+      "edit": 238,
+      "glob": 227,
+      "skill": 173,
+      "task": 170,
+      "webfetch": 170,
+      "todowrite": 81,
+      "funes_recall": 7,
+      "funes_get": 4,
+      "invalid": 2
+     },
+     "per_repo_quantiles_note": "quantiles are per repo (see census/census_downloaded.json); not pooled here"
+    },
+    "pi": {
+     "sessions": 393,
+     "entries": 17326,
+     "entries_with_ts": 17326,
+     "messages_with_epoch_ms": 16073,
+     "assistant_messages": 7773,
+     "tool_calls": 6805,
+     "tool_results": 6804,
+     "results_joined": 6804,
+     "results_isError_true": 991,
+     "entry_type": {
+      "message": 16073,
+      "session": 393,
+      "model_change": 393,
+      "thinking_level_change": 393,
+      "compaction": 74
+     },
+     "session_version": {
+      "3": 393
+     },
+     "provider": {
+      "local": 7773
+     },
+     "model": {
+      "unsloth/GLM-4.7-Flash-GGUF": 1981,
+      "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF": 1654,
+      "ggml-org/Qwen3.6-35B-A3B-GGUF": 1644,
+      "ggml-org/gemma-4-26B-A4B-it-GGUF": 832,
+      "google/gemma-4-12B-it-qat-q4_0-gguf": 740,
+      "ggml-org/gemma-4-E4B-it-GGUF": 450,
+      "zai-org/GLM-4.6": 450,
+      "GLM-4.5-Air": 22
+     },
+     "responseId_family": {
+      "chatcmpl": 7219,
+      "other": 449,
+      "<missing>": 105
+     },
+     "tool_name": {
+      "bash": 3562,
+      "read": 1731,
+      "write": 917,
+      "edit": 583,
+      "recall": 7,
+      "get": 5
+     },
+     "per_repo_quantiles_note": "quantiles are per repo (see census/census_downloaded.json); not pooled here"
+    },
+    "captures": {
+     "capture_files": 31,
+     "capture_rows": 18885,
+     "capture_rows_run_in_traces": 0,
+     "sse_with_created": 15829,
+     "sse_with_sla_ts_us": 2006,
+     "capture_columns": {
+      "request_id": 31,
+      "model": 31,
+      "captured_at": 31,
+      "task_id": 31,
+      "turn": 31,
+      "request": 31,
+      "response": 31,
+      "served_by": 31,
+      "served_build_info": 31,
+      "served_model": 31,
+      "provider": 31,
+      "upstream_url": 31,
+      "run_id": 31,
+      "label": 4
+     },
+     "capture_run_ids": {
+      "opencode-local-20260601-172213": 2193,
+      "pi-local-20260602-200936": 1430,
+      "opencode-local-20260602-195521": 1353,
+      "pi-local-20260602-030454": 1255,
+      "opencode-local-20260601-200130": 1233,
+      "opencode-hf-router-20260604-033019": 1025,
+      "pi-local-20260602-091017": 1006,
+      "opencode-local-20260601-155411": 940,
+      "opencode-local-20260602-103705": 860,
+      "opencode-local-20260601-223556": 667,
+      "pi-local-20260602-073755": 664,
+      "pi-local-20260602-154324": 573,
+      "pi-local-20260608-081102": 535,
+      "opencode-hf-router-20260604-062026": 530,
+      "opencode-local-20260608-112210": 494
+     },
+     "capture_provider": {
+      "local": 16873,
+      "hf-router": 2012
+     },
+     "sse_id_shape": {
+      "chatcmpl-<32>": 13823,
+      "<missing>": 3056,
+      "<str32>": 2006
+     },
+     "per_repo_quantiles_note": "quantiles are per repo (see census/census_downloaded.json); not pooled here"
+    }
+   },
+   "repos": [
+    {
+     "repo": "dacorvo/transformers-coding-session-opencode-traces",
+     "sha": "ac0f520927b11039c41810eda38f6f99c5092361",
+     "licence": "apache-2.0",
+     "bytes": 40515989,
+     "formats": {
+      "opencode": 209
+     },
+     "unparsed_files": {
+      "error:JSONDecodeError": 1
+     }
+    },
+    {
+     "repo": "dacorvo/hf-hub-session-opencode-traces",
+     "sha": "228a481c53d7492c49313373acccc709a0f244b7",
+     "licence": "apache-2.0",
+     "bytes": 13259479,
+     "formats": {
+      "opencode": 196
+     },
+     "unparsed_files": {
+      "error:JSONDecodeError": 1
+     }
+    },
+    {
+     "repo": "dacorvo/funes-recall-session-opencode-traces",
+     "sha": "bedb923bc2b6d14de7b6604947dfd7b71ef432a8",
+     "licence": "apache-2.0",
+     "bytes": 216733,
+     "formats": {
+      "opencode": 6
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "dacorvo/transformers-coding-session-pi-traces",
+     "sha": "4a37658db70418a51189938d00775e0a1f28a94b",
+     "licence": "apache-2.0",
+     "bytes": 43316181,
+     "formats": {
+      "pi": 177
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "dacorvo/hf-hub-session-pi-traces",
+     "sha": "54094d0a27d31fe288ea82c1935d37c7f84eb599",
+     "licence": "apache-2.0",
+     "bytes": 16695023,
+     "formats": {
+      "pi": 210
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "dacorvo/funes-recall-session-pi-traces",
+     "sha": "4e2b658ea3dea3e1e6e1b70f1bba0a89882ce552",
+     "licence": "apache-2.0",
+     "bytes": 210657,
+     "formats": {
+      "pi": 6
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "dacorvo/transformers-coding-session-captures",
+     "sha": "ebf80ae3016c39616ccb08066198102eb8b16ed6",
+     "licence": "apache-2.0",
+     "bytes": 549189466,
+     "formats": {
+      "captures": 11547
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "dacorvo/hf-hub-session-captures",
+     "sha": "86fdbab89ace017cf82ba8a5a6c00baf818c41de",
+     "licence": "apache-2.0",
+     "bytes": 189105083,
+     "formats": {
+      "captures": 7287
+     },
+     "unparsed_files": {}
+    },
+    {
+     "repo": "dacorvo/funes-recall-session-captures",
+     "sha": "7d86201b7bf8f3e60331baf6d1d656251a5490b6",
+     "licence": "apache-2.0",
+     "bytes": 4775122,
+     "formats": {
+      "captures": 51
+     },
+     "unparsed_files": {}
+    }
+   ],
+   "bytes_on_disk": 857283733,
+   "download_records": [
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/transformers-coding-session-opencode-traces",
+     "sha": "ac0f520927b11039c41810eda38f6f99c5092361",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:00:48Z",
+     "n_files": 211,
+     "bytes_planned": 40515989,
+     "acquired_total_before": 14099826916,
+     "corpus_bytes_before": 0,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__transformers-coding-session-opencode-traces@ac0f5209",
+     "bytes": 40515989,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__transformers-coding-session-opencode-traces@ac0f5209\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:02:16Z"
+    },
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/hf-hub-session-opencode-traces",
+     "sha": "228a481c53d7492c49313373acccc709a0f244b7",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:02:16Z",
+     "n_files": 198,
+     "bytes_planned": 13259479,
+     "acquired_total_before": 14140451895,
+     "corpus_bytes_before": 40624979,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__hf-hub-session-opencode-traces@228a481c",
+     "bytes": 13259479,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__hf-hub-session-opencode-traces@228a481c\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:03:41Z"
+    },
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/funes-recall-session-opencode-traces",
+     "sha": "bedb923bc2b6d14de7b6604947dfd7b71ef432a8",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:03:41Z",
+     "n_files": 7,
+     "bytes_planned": 216733,
+     "acquired_total_before": 14153810973,
+     "corpus_bytes_before": 53984057,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__funes-recall-session-opencode-traces@bedb923b",
+     "bytes": 216733,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__funes-recall-session-opencode-traces@bedb923b\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:04:15Z"
+    },
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/transformers-coding-session-pi-traces",
+     "sha": "4a37658db70418a51189938d00775e0a1f28a94b",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:04:15Z",
+     "n_files": 178,
+     "bytes_planned": 43316181,
+     "acquired_total_before": 14154031356,
+     "corpus_bytes_before": 54204440,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__transformers-coding-session-pi-traces@4a37658d",
+     "bytes": 43316181,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__transformers-coding-session-pi-traces@4a37658d\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:05:36Z"
+    },
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/hf-hub-session-pi-traces",
+     "sha": "54094d0a27d31fe288ea82c1935d37c7f84eb599",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:05:36Z",
+     "n_files": 211,
+     "bytes_planned": 16695023,
+     "acquired_total_before": 14197447495,
+     "corpus_bytes_before": 97620579,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__hf-hub-session-pi-traces@54094d0a",
+     "bytes": 16695023,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__hf-hub-session-pi-traces@54094d0a\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:07:05Z"
+    },
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/funes-recall-session-pi-traces",
+     "sha": "4e2b658ea3dea3e1e6e1b70f1bba0a89882ce552",
+     "include": ".*",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:07:05Z",
+     "n_files": 7,
+     "bytes_planned": 210657,
+     "acquired_total_before": 14214258300,
+     "corpus_bytes_before": 114431384,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__funes-recall-session-pi-traces@4e2b658e",
+     "bytes": 210657,
+     "lfs_checked": 0,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__funes-recall-session-pi-traces@4e2b658e\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:07:29Z"
+    },
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/transformers-coding-session-captures",
+     "sha": "ebf80ae3016c39616ccb08066198102eb8b16ed6",
+     "include": "(^README\\.md$|^data/train-(opencode|pi)-.*\\.parquet$)",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:07:29Z",
+     "n_files": 14,
+     "bytes_planned": 549189466,
+     "acquired_total_before": 14214472871,
+     "corpus_bytes_before": 114645955,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__transformers-coding-session-captures@ebf80ae3",
+     "bytes": 549189466,
+     "lfs_checked": 13,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__transformers-coding-session-captures@ebf80ae3\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:08:21Z"
+    },
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/hf-hub-session-captures",
+     "sha": "86fdbab89ace017cf82ba8a5a6c00baf818c41de",
+     "include": "(^README\\.md$|^data/train-(opencode|pi)-.*\\.parquet$)",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:08:21Z",
+     "n_files": 15,
+     "bytes_planned": 189105083,
+     "acquired_total_before": 14763670570,
+     "corpus_bytes_before": 663843654,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__hf-hub-session-captures@86fdbab8",
+     "bytes": 189105083,
+     "lfs_checked": 14,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__hf-hub-session-captures@86fdbab8\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:09:02Z"
+    },
+    {
+     "corpus": "agentcap-dacorvo",
+     "repo": "dacorvo/funes-recall-session-captures",
+     "sha": "7d86201b7bf8f3e60331baf6d1d656251a5490b6",
+     "include": "(^README\\.md$|^data/train-(opencode|pi)-.*\\.parquet$)",
+     "licence": "apache-2.0",
+     "started_utc": "2026-10-04T08:09:02Z",
+     "n_files": 5,
+     "bytes_planned": 4775122,
+     "acquired_total_before": 14952784229,
+     "corpus_bytes_before": 852957313,
+     "status": "DOWNLOADED",
+     "dest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__funes-recall-session-captures@7d86201b",
+     "bytes": 4775122,
+     "lfs_checked": 4,
+     "lfs_mismatch": 0,
+     "size_mismatch": 0,
+     "manifest": "C:/Swarms/data/acquired\\agentcap-dacorvo\\dacorvo__funes-recall-session-captures@7d86201b\\_b5e_manifest.json",
+     "finished_utc": "2026-10-04T08:09:41Z"
+    }
+   ]
+  }
+ },
+ "provider_clock_coverage": {
+  "cli-trace-commons/claude_code": {
+   "assistant_entries_with_anthropic_req_id": {
+    "k": 7496,
+    "n": 7499,
+    "rate": 0.9996
+   },
+   "tool_calls_whose_response_has_requestId": {
+    "k": 4264,
+    "n": 4264,
+    "rate": 1.0
+   },
+   "req_ids_decoding_as_uuidv7": {
+    "k": 7496,
+    "n": 7496,
+    "rate": 1.0
+   },
+   "decoded_ids_within_minus2s_plus600s_of_entry_ts": {
+    "k": 7496,
+    "n": 7496,
+    "rate": 1.0
+   },
+   "requestId_shapes": {
+    "req_<24>": 7496,
+    "<missing>": 3
+   }
+  },
+  "cli-trace-commons/opencode": {
+   "provider_request_or_response_ids": "none in the native export (sample audit id_like_keys empty)"
+  },
+  "cli-claude-code-hf/claude_code": {
+   "assistant_entries_with_anthropic_req_id": {
+    "k": 21577,
+    "n": 24425,
+    "rate": 0.8834
+   },
+   "tool_calls_whose_response_has_requestId": {
+    "k": 11561,
+    "n": 12997,
+    "rate": 0.88951
+   },
+   "req_ids_decoding_as_uuidv7": {
+    "k": 21575,
+    "n": 21577,
+    "rate": 0.99991
+   },
+   "decoded_ids_within_minus2s_plus600s_of_entry_ts": {
+    "k": 21567,
+    "n": 21575,
+    "rate": 0.99963
+   },
+   "requestId_shapes": {
+    "req_<24>": 21577,
+    "<missing>": 2848
+   }
+  },
+  "cli-codex-hf/codex": {
+   "provider_request_or_response_ids": "none found: rollout response_item entries carry no id; no requestId-like key (sample audit id_like_keys empty)"
+  },
+  "cli-pi-hf/pi": {
+   "assistant_messages": 23315,
+   "responseId_family_counts": {
+    "<missing>": 11741,
+    "openai_resp_hex50": 5452,
+    "uuid": 2434,
+    "chatcmpl": 1548,
+    "anthropic_msg": 1265,
+    "other": 832,
+    "openrouter_gen_secs": 42,
+    "openai_resp_other": 1
+   },
+   "openai_resp_hex50_within_5s_of_message_ts": {
+    "k": 4877,
+    "n": 5452,
+    "rate": 0.89453
+   },
+   "openrouter_gen_secs_within_5s": {
+    "k": 42,
+    "n": 42,
+    "rate": 1.0
+   }
+  },
+  "agentcap-dacorvo/pi": {
+   "assistant_messages": 7773,
+   "responseId_family_counts": {
+    "chatcmpl": 7219,
+    "other": 449,
+    "<missing>": 105
+   },
+   "openai_resp_hex50_within_5s_of_message_ts": {
+    "k": 0,
+    "n": 0,
+    "rate": null
+   },
+   "openrouter_gen_secs_within_5s": {
+    "k": 0,
+    "n": 0,
+    "rate": null
+   }
+  },
+  "agentcap-dacorvo/opencode": {
+   "provider_request_or_response_ids": "none in the native export (sample audit id_like_keys empty)"
+  },
+  "agentcap-dacorvo/captures": {
+   "rows": 18885,
+   "sse_first_chunk_id_shapes": {
+    "chatcmpl-<32>": 13823,
+    "<missing>": 3056,
+    "<str32>": 2006
+   },
+   "rows_with_sse_created": 15829,
+   "rows_with_sla_metrics_ts_us": 2006,
+   "capture_provider": {
+    "local": 16873,
+    "hf-router": 2012
+   },
+   "note": "request_id column is minted by the capture proxy (README), not the provider; provider ids live in the SSE body"
+  },
+  "per_repo_decode_deltas": {
+   "cli-trace-commons::trace-commons/agent-traces": {
+    "claude_code_req": {
+     "req_ids": 7496,
+     "assistant_entries": 7499,
+     "v7": 7496,
+     "within_m2s_p600s": 7496,
+     "delta_ms": {
+      "n": 7496,
+      "min": -1814.0,
+      "p05": 1096.0,
+      "p50": 4647.0,
+      "p95": 40322.0,
+      "max": 267728.0
+     }
+    }
+   },
+   "cli-claude-code-hf::build-small-hackathon/kirana-detective-build-traces": {
+    "claude_code_req": {
+     "req_ids": 882,
+     "assistant_entries": 882,
+     "v7": 882,
+     "within_m2s_p600s": 882,
+     "delta_ms": {
+      "n": 882,
+      "min": 1937.0,
+      "p05": 3001.0,
+      "p50": 8227.0,
+      "p95": 100304.0,
+      "max": 436896.0
+     }
+    }
+   },
+   "cli-claude-code-hf::armand0e/claude-fable-5-claude-code": {
+    "claude_code_req": {
+     "req_ids": 7481,
+     "assistant_entries": 7490,
+     "v7": 7481,
+     "within_m2s_p600s": 7478,
+     "delta_ms": {
+      "n": 7481,
+      "min": 137.0,
+      "p05": 4465.0,
+      "p50": 9653.0,
+      "p95": 53608.0,
+      "max": 683841.0
+     }
+    }
+   },
+   "cli-claude-code-hf::naazimsnh02/tutordesk-agent-traces": {
+    "claude_code_req": {
+     "req_ids": 708,
+     "assistant_entries": 708,
+     "v7": 708,
+     "within_m2s_p600s": 708,
+     "delta_ms": {
+      "n": 708,
+      "min": 1300.0,
+      "p05": 2293.0,
+      "p50": 6139.0,
+      "p95": 48823.0,
+      "max": 383797.0
+     }
+    }
+   },
+   "cli-claude-code-hf::cfahlgren1/Fable-5-traces": {
+    "claude_code_req": {
+     "req_ids": 7659,
+     "assistant_entries": 7835,
+     "v7": 7657,
+     "within_m2s_p600s": 7657,
+     "delta_ms": {
+      "n": 7657,
+      "min": 122.0,
+      "p05": 2624.0,
+      "p50": 8282.0,
+      "p95": 41876.0,
+      "max": 327295.0
+     }
+    }
+   },
+   "cli-claude-code-hf::yellowbeeblackbee/claude-traces": {
+    "claude_code_req": {
+     "req_ids": 248,
+     "assistant_entries": 248,
+     "v7": 248,
+     "within_m2s_p600s": 243,
+     "delta_ms": {
+      "n": 248,
+      "min": 4072.0,
+      "p05": 4737.0,
+      "p50": 12376.0,
+      "p95": 110456.0,
+      "max": 931584.0
+     }
+    }
+   },
+   "cli-claude-code-hf::thomwolf/am-session-sharing-design": {
+    "claude_code_req": {
+     "req_ids": 92,
+     "assistant_entries": 92,
+     "v7": 92,
+     "within_m2s_p600s": 92,
+     "delta_ms": {
+      "n": 92,
+      "min": 2333.0,
+      "p05": 3135.0,
+      "p50": 6673.0,
+      "p95": 40853.0,
+      "max": 128886.0
+     }
+    }
+   },
+   "cli-claude-code-hf::thomwolf/am-session-claude-code-1-c3cc0a": {
+    "claude_code_req": {
+     "req_ids": 2,
+     "assistant_entries": 2,
+     "v7": 2,
+     "within_m2s_p600s": 2,
+     "delta_ms": {
+      "n": 2,
+      "min": 1862.0,
+      "p05": 1862.0,
+      "p50": 2621.0,
+      "p95": 2621.0,
+      "max": 2621.0
+     }
+    }
+   },
+   "cli-claude-code-hf::thomwolf/am-session-claude-code-1-a66490": {
+    "claude_code_req": {
+     "req_ids": 1,
+     "assistant_entries": 1,
+     "v7": 1,
+     "within_m2s_p600s": 1,
+     "delta_ms": {
+      "n": 1,
+      "min": 7227.0,
+      "p05": 7227.0,
+      "p50": 7227.0,
+      "p95": 7227.0,
+      "max": 7227.0
+     }
+    }
+   },
+   "cli-claude-code-hf::crispwisp/wisp-claude-code-sessions": {
+    "claude_code_req": {
+     "req_ids": 4233,
+     "assistant_entries": 4247,
+     "v7": 4233,
+     "within_m2s_p600s": 4233,
+     "delta_ms": {
+      "n": 4233,
+      "min": 167.0,
+      "p05": 2936.0,
+      "p50": 9838.0,
+      "p95": 35317.0,
+      "max": 184595.0
+     }
+    }
+   },
+   "cli-claude-code-hf::AlinCiocan/fable-5-claude-code-traces": {
+    "claude_code_req": {
+     "req_ids": 271,
+     "assistant_entries": 2506,
+     "v7": 271,
+     "within_m2s_p600s": 271,
+     "delta_ms": {
+      "n": 271,
+      "min": 280.0,
+      "p05": 4424.0,
+      "p50": 12790.0,
+      "p95": 47186.0,
+      "max": 57725.0
+     }
+    }
+   },
+   "cli-claude-code-hf::INONONO/tarkov-customs-trajectory": {
+    "claude_code_req": {
+     "req_ids": 0,
+     "assistant_entries": 146
+    }
+   },
+   "cli-claude-code-hf::victor/claude-worldcup-2026-wallchart-traces": {
+    "claude_code_req": {
+     "req_ids": 0,
+     "assistant_entries": 268
+    }
+   },
+   "cli-pi-hf::thomasmustier/pi-nes-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 49,
+     "within_5s": 48,
+     "delta_ms": {
+      "n": 49,
+      "min": -9311,
+      "p05": -2861,
+      "p50": -1945,
+      "p95": 417,
+      "max": 465
+     }
+    }
+   },
+   "cli-pi-hf::thomasmustier/pine-of-glass-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 600,
+     "within_5s": 600,
+     "delta_ms": {
+      "n": 600,
+      "min": -2597,
+      "p05": -554,
+      "p50": 241,
+      "p95": 776,
+      "max": 878
+     }
+    }
+   },
+   "cli-pi-hf::thomasmustier/pi-session-hud-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 134,
+     "within_5s": 134,
+     "delta_ms": {
+      "n": 134,
+      "min": -3886,
+      "p05": -626,
+      "p50": 200,
+      "p95": 768,
+      "max": 875
+     }
+    }
+   },
+   "cli-pi-hf::thomasmustier/pi-computer-use-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 21,
+     "within_5s": 21,
+     "delta_ms": {
+      "n": 21,
+      "min": -581,
+      "p05": -386,
+      "p50": 82,
+      "p95": 402,
+      "max": 417
+     }
+    }
+   },
+   "cli-pi-hf::thomasmustier/heypocket-reader-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 29,
+     "within_5s": 29,
+     "delta_ms": {
+      "n": 29,
+      "min": -2245,
+      "p05": -2121,
+      "p50": 287,
+      "p95": 666,
+      "max": 688
+     }
+    }
+   },
+   "cli-pi-hf::thomasmustier/pi-extensions-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 33,
+     "within_5s": 33,
+     "delta_ms": {
+      "n": 33,
+      "min": -2615,
+      "p05": -571,
+      "p50": 114,
+      "p95": 634,
+      "max": 670
+     }
+    }
+   },
+   "cli-pi-hf::thomasmustier/pi-mono-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 20,
+     "within_5s": 20,
+     "delta_ms": {
+      "n": 20,
+      "min": -932,
+      "p05": -418,
+      "p50": 196,
+      "p95": 564,
+      "max": 567
+     }
+    }
+   },
+   "cli-pi-hf::thomasmustier/economist-tui-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 21,
+     "within_5s": 21,
+     "delta_ms": {
+      "n": 21,
+      "min": -896,
+      "p05": -674,
+      "p50": 123,
+      "p95": 494,
+      "max": 494
+     }
+    }
+   },
+   "cli-pi-hf::thomasmustier/pi-symphony-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 45,
+     "within_5s": 45,
+     "delta_ms": {
+      "n": 45,
+      "min": -2379,
+      "p05": -1405,
+      "p50": -36,
+      "p95": 512,
+      "max": 590
+     }
+    }
+   },
+   "cli-pi-hf::championswimmer/pi-coding-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 437,
+     "within_5s": 437,
+     "delta_ms": {
+      "n": 437,
+      "min": -2696,
+      "p05": -524,
+      "p50": 153,
+      "p95": 646,
+      "max": 850
+     }
+    },
+    "pi_openrouter_gen_secs": {
+     "n": 37,
+     "within_5s": 37,
+     "delta_ms": {
+      "n": 37,
+      "min": 0,
+      "p05": 41,
+      "p50": 575,
+      "p95": 878,
+      "max": 889
+     }
+    }
+   },
+   "cli-pi-hf::woxQAQ/pi-web": {
+    "pi_openai_resp_hex50": {
+     "n": 3794,
+     "within_5s": 3220,
+     "delta_ms": {
+      "n": 3794,
+      "min": -632552,
+      "p05": -15724,
+      "p50": -762,
+      "p95": 271,
+      "max": 571
+     }
+    }
+   },
+   "cli-pi-hf::abidlabs/gradio-pi-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 226,
+     "within_5s": 226,
+     "delta_ms": {
+      "n": 226,
+      "min": -2042,
+      "p05": -515,
+      "p50": 199,
+      "p95": 675,
+      "max": 881
+     }
+    }
+   },
+   "cli-pi-hf::abidlabs/trackio-pi-sessions": {
+    "pi_openai_resp_hex50": {
+     "n": 39,
+     "within_5s": 39,
+     "delta_ms": {
+      "n": 39,
+      "min": -3565,
+      "p05": -581,
+      "p50": 406,
+      "p95": 807,
+      "max": 838
+     }
+    }
+   },
+   "cli-pi-hf::Becks723/pi-traces": {
+    "pi_openai_resp_hex50": {
+     "n": 4,
+     "within_5s": 4,
+     "delta_ms": {
+      "n": 4,
+      "min": -882,
+      "p05": -882,
+      "p50": -666,
+      "p95": 263,
+      "max": 263
+     }
+    },
+    "pi_openrouter_gen_secs": {
+     "n": 5,
+     "within_5s": 5,
+     "delta_ms": {
+      "n": 5,
+      "min": -129,
+      "p05": -129,
+      "p50": 514,
+      "p95": 812,
+      "max": 812
+     }
+    }
+   }
+  }
+ },
+ "agentcap_run_join": {
+  "trace_run_folders": 31,
+  "capture_run_ids": 31,
+  "capture_run_ids_matching_a_trace_folder": 31,
+  "capture_rows_in_matching_runs": 18885,
+  "capture_rows_total": 18885,
+  "unmatched_capture_run_ids": [],
+  "trace_folders_without_capture": []
+ },
+ "tracelab": {
+  "download": [
+   {
+    "url": "https://github.com/uw-syfi/TraceLab/releases/download/v0.0.2/syfi_coding_trace.jsonl.gz",
+    "expected_sha256": "11ce51ec0a25e3d1d95b025bca2f7d1647e47571eb7cc968acd5fc64d4b4fb65",
+    "size": 100939722,
+    "acquired_total_before": 13737321223,
+    "corpus_bytes_before": 0,
+    "started_utc": "2026-10-04T07:53:39Z",
+    "state": "downloaded",
+    "status": "DOWNLOADED",
+    "dest": "C:/Swarms/data/acquired/tracelab-uw/v0.0.2\\syfi_coding_trace.jsonl.gz",
+    "sha256": "11ce51ec0a25e3d1d95b025bca2f7d1647e47571eb7cc968acd5fc64d4b4fb65",
+    "sha256_match": true,
+    "bytes": 100939722,
+    "finished_utc": "2026-10-04T07:53:41Z"
+   }
+  ],
+  "census": {
+   "by_provider": {
+    "claude": {
+     "rounds": 305445,
+     "timing_events": 986460,
+     "timing_events_iso_ms": 986460,
+     "tools": 305005,
+     "tools_with_call_id": 305005,
+     "tools_emitted_and_result_at": 304290,
+     "tools_result_chars": 304290,
+     "tools_internal_latency": 1974,
+     "tools_wall_latency": 304290,
+     "tools_is_error_true": 14031,
+     "tools_exit_code": 0,
+     "tools_wall_lt_internal": 0,
+     "sessions": 5319,
+     "models": {
+      "claude-opus-4-8": 141747,
+      "claude-opus-4-7": 93236,
+      "claude-opus-4-6": 20149,
+      "claude-haiku-4-5-20251001": 18479,
+      "claude-sonnet-4-6": 12799,
+      "claude-fable-5": 10297,
+      "claude-sonnet-5": 3789,
+      "claude-sonnet-4-5-20250929": 3583
+     },
+     "timing_event_types": {
+      "user_message": 57168,
+      "text": 194602,
+      "reasoning": 125058,
+      "tool_call": 305005,
+      "tool_result": 304627
+     }
+    },
+    "codex": {
+     "rounds": 360008,
+     "timing_events": 1702369,
+     "timing_events_iso_ms": 1702369,
+     "tools": 438814,
+     "tools_with_call_id": 438814,
+     "tools_emitted_and_result_at": 438760,
+     "tools_result_chars": 438760,
+     "tools_internal_latency": 343549,
+     "tools_wall_latency": 438760,
+     "tools_is_error_true": 21422,
+     "tools_exit_code": 247509,
+     "tools_wall_lt_internal": 5381,
+     "sessions": 2739,
+     "models": {
+      "gpt-5.5": 165365,
+      "gpt-5.6-sol": 66294,
+      "gpt-5.4": 59980,
+      "gpt-5.3-codex": 29712,
+      "codex-auto-review": 13389,
+      "gpt-5.2-codex": 7436,
+      "gpt-5-codex": 5604,
+      "gpt-5.3-codex-spark": 4272
+     },
+     "timing_event_types": {
+      "user_message": 38278,
+      "usage_report": 360008,
+      "tool_result": 438595,
+      "reasoning": 267574,
+      "tool_call": 438814,
+      "text": 159100
+     }
+    }
+   },
+   "row_keys": {
+    "provider": 665453,
+    "project": 305445,
+    "session_id": 665453,
+    "round_index": 665453,
+    "round_id": 665453,
+    "model": 665453,
+    "input_tokens_total": 665453,
+    "prefix_tokens": 665453,
+    "newly_append_tokens": 665453,
+    "claude_uncached_input_tokens": 665453,
+    "claude_cache_creation_input_tokens": 665453,
+    "claude_cache_read_input_tokens": 665453,
+    "output_tokens": 665453,
+    "reasoning_output_tokens": 665453,
+    "timing_events": 665453,
+    "tools": 665453,
+    "current_input_event_count": 665453,
+    "current_user_message_count": 665453,
+    "current_tool_result_count": 665453,
+    "current_user_message_chars": 665453,
+    "current_tool_result_chars": 665453,
+    "current_input_chars": 665453,
+    "first_input_event_type": 665453,
+    "user": 665453,
+    "store": 665453,
+    "trace_key": 665453,
+    "turn_id": 360008
+   },
+   "tool_keys": {
+    "tool_index": 743819,
+    "tool_name": 743819,
+    "tool_call_id": 743819,
+    "emitted_at": 743819,
+    "input_chars": 743819,
+    "result_chars": 743819,
+    "tool_wall_latency_ms": 743819,
+    "tool_internal_latency_ms": 743819,
+    "is_error": 743819,
+    "result_at": 743819,
+    "executables": 423280,
+    "executable_parse_status": 423280,
+    "executable_parse_reason": 423280,
+    "command_skeleton": 423280,
+    "command_status": 327552,
+    "command_exit_code": 247509,
+    "continuation_of_tool_call_id": 75488
+   },
+   "request_or_response_id_keys": {}
+  }
+ },
+ "marker_scan": {
+  "cli-trace-commons::trace-commons/agent-traces": {
+   "counts": {
+    "cc:tool_results": 4262,
+    "cc:is_error_true": 269,
+    "cc:exit_code_word": 218,
+    "cc:truncated_word": 20,
+    "oc:tool_parts": 3,
+    "oc:status_error": 0
+   },
+   "cc_toolUseResult_keys": {
+    "filePath": 1587,
+    "structuredPatch": 1587,
+    "originalFile": 1587,
+    "userModified": 1587,
+    "type": 1467,
+    "stdout": 1086,
+    "stderr": 1086,
+    "interrupted": 1086,
+    "isImage": 1073,
+    "oldString": 956,
+    "newString": 956,
+    "replaceAll": 956,
+    "file": 836,
+    "content": 786,
+    "noOutputExpected": 705,
+    "numFiles": 227,
+    "filenames": 227,
+    "oldTodos": 171,
+    "newTodos": 171,
+    "mode": 155,
+    "numLines": 146,
+    "durationMs": 85,
+    "truncated": 72,
+    "backgroundTaskId": 40,
+    "query": 34,
+    "matches": 28,
+    "total_deferred_tools": 28,
+    "gitOperation": 19,
+    "assistantAutoBackgrounded": 16,
+    "questions": 14
+   },
+   "oc_state_metadata_keys": {
+    "provider": 3,
+    "truncated": 3
+   }
+  },
+  "cli-claude-code-hf::build-small-hackathon/kirana-detective-build-traces": {
+   "counts": {
+    "cc:tool_results": 456,
+    "cc:is_error_true": 20,
+    "cc:exit_code_word": 15,
+    "cc:truncated_word": 2
+   },
+   "cc_toolUseResult_keys": {
+    "filePath": 212,
+    "originalFile": 212,
+    "structuredPatch": 212,
+    "userModified": 212,
+    "type": 182,
+    "oldString": 164,
+    "newString": 164,
+    "replaceAll": 164,
+    "file": 134,
+    "content": 70,
+    "stdout": 38,
+    "stderr": 38,
+    "interrupted": 38,
+    "isImage": 36,
+    "noOutputExpected": 31,
+    "filenames": 27,
+    "numFiles": 27,
+    "durationMs": 23,
+    "mode": 19,
+    "numLines": 16,
+    "bytes": 15,
+    "code": 15,
+    "codeText": 15,
+    "result": 15,
+    "url": 15,
+    "truncated": 8,
+    "status": 6,
+    "prompt": 6,
+    "agentId": 6,
+    "agentType": 6
+   }
+  },
+  "cli-claude-code-hf::armand0e/claude-fable-5-claude-code": {
+   "counts": {
+    "cc:tool_results": 4166,
+    "cc:is_error_true": 191,
+    "cc:exit_code_word": 92,
+    "cc:truncated_word": 20
+   },
+   "cc_toolUseResult_keys": {
+    "stdout": 1602,
+    "stderr": 1602,
+    "interrupted": 1602,
+    "isImage": 1593,
+    "noOutputExpected": 1482,
+    "filePath": 1311,
+    "structuredPatch": 1311,
+    "originalFile": 1311,
+    "userModified": 1311,
+    "oldString": 973,
+    "newString": 973,
+    "replaceAll": 973,
+    "type": 801,
+    "file": 463,
+    "content": 344,
+    "backgroundTaskId": 104,
+    "query": 82,
+    "taskId": 77,
+    "success": 70,
+    "updatedFields": 63,
+    "statusChange": 63,
+    "matches": 43,
+    "total_deferred_tools": 43,
+    "task": 39,
+    "results": 39,
+    "durationSeconds": 39,
+    "searchCount": 39,
+    "durationMs": 35,
+    "bytes": 31,
+    "code": 31
+   }
+  },
+  "cli-claude-code-hf::naazimsnh02/tutordesk-agent-traces": {
+   "counts": {
+    "cc:tool_results": 410,
+    "cc:is_error_true": 9,
+    "cc:exit_code_word": 6,
+    "cc:truncated_word": 1
+   },
+   "cc_toolUseResult_keys": {
+    "filePath": 207,
+    "structuredPatch": 207,
+    "originalFile": 207,
+    "userModified": 207,
+    "type": 182,
+    "oldString": 113,
+    "newString": 113,
+    "replaceAll": 113,
+    "content": 96,
+    "file": 88,
+    "stdout": 37,
+    "stderr": 37,
+    "interrupted": 37,
+    "isImage": 37,
+    "noOutputExpected": 25,
+    "durationMs": 25,
+    "filenames": 21,
+    "numFiles": 21,
+    "truncated": 21,
+    "query": 15,
+    "success": 15,
+    "taskId": 15,
+    "updatedFields": 15,
+    "statusChange": 15,
+    "gitOperation": 12,
+    "results": 11,
+    "durationSeconds": 11,
+    "searchCount": 11,
+    "task": 8,
+    "matches": 4
+   }
+  },
+  "cli-claude-code-hf::cfahlgren1/Fable-5-traces": {
+   "counts": {
+    "cc:tool_results": 4185,
+    "cc:is_error_true": 201,
+    "cc:truncated_word": 39,
+    "cc:exit_code_word": 91
+   },
+   "cc_toolUseResult_keys": {
+    "stdout": 1777,
+    "stderr": 1777,
+    "interrupted": 1777,
+    "isImage": 1777,
+    "noOutputExpected": 1777,
+    "filePath": 1178,
+    "originalFile": 1178,
+    "structuredPatch": 1178,
+    "userModified": 1178,
+    "oldString": 886,
+    "newString": 886,
+    "replaceAll": 886,
+    "type": 737,
+    "file": 445,
+    "content": 300,
+    "backgroundTaskId": 136,
+    "query": 69,
+    "taskId": 56,
+    "success": 44,
+    "updatedFields": 38,
+    "statusChange": 38,
+    "results": 37,
+    "durationSeconds": 37,
+    "searchCount": 37,
+    "matches": 32,
+    "total_deferred_tools": 32,
+    "task": 27,
+    "bytes": 26,
+    "code": 26,
+    "codeText": 26
+   }
+  },
+  "cli-claude-code-hf::yellowbeeblackbee/claude-traces": {
+   "counts": {
+    "cc:tool_results": 130,
+    "cc:is_error_true": 2,
+    "cc:truncated_word": 1,
+    "cc:exit_code_word": 1
+   },
+   "cc_toolUseResult_keys": {
+    "filePath": 86,
+    "structuredPatch": 86,
+    "originalFile": 86,
+    "userModified": 86,
+    "type": 51,
+    "oldString": 49,
+    "newString": 49,
+    "replaceAll": 49,
+    "content": 38,
+    "stdout": 27,
+    "stderr": 27,
+    "interrupted": 27,
+    "isImage": 24,
+    "file": 14,
+    "backgroundTaskId": 3,
+    "mode": 1,
+    "numFiles": 1,
+    "filenames": 1,
+    "numLines": 1
+   }
+  },
+  "cli-claude-code-hf::thomwolf/am-session-sharing-design": {
+   "counts": {
+    "cc:tool_results": 40,
+    "cc:is_error_true": 1,
+    "cc:exit_code_word": 1
+   },
+   "cc_toolUseResult_keys": {
+    "stdout": 22,
+    "stderr": 22,
+    "interrupted": 22,
+    "isImage": 22,
+    "noOutputExpected": 22,
+    "type": 7,
+    "file": 6,
+    "query": 5,
+    "results": 4,
+    "durationSeconds": 4,
+    "searchCount": 4,
+    "bytes": 4,
+    "code": 4,
+    "codeText": 4,
+    "result": 4,
+    "durationMs": 4,
+    "url": 4,
+    "success": 1,
+    "commandName": 1,
+    "matches": 1,
+    "total_deferred_tools": 1,
+    "filePath": 1,
+    "content": 1,
+    "structuredPatch": 1,
+    "originalFile": 1,
+    "userModified": 1
+   }
+  },
+  "cli-claude-code-hf::thomwolf/am-session-claude-code-1-c3cc0a": {
+   "counts": {}
+  },
+  "cli-claude-code-hf::thomwolf/am-session-claude-code-1-a66490": {
+   "counts": {}
+  },
+  "cli-claude-code-hf::crispwisp/wisp-claude-code-sessions": {
+   "counts": {
+    "cc:tool_results": 2207,
+    "cc:is_error_true": 103,
+    "cc:exit_code_word": 57,
+    "cc:truncated_word": 1
+   },
+   "cc_toolUseResult_keys": {
+    "stdout": 1143,
+    "stderr": 1143,
+    "interrupted": 1143,
+    "isImage": 1143,
+    "noOutputExpected": 1143,
+    "filePath": 361,
+    "originalFile": 361,
+    "structuredPatch": 361,
+    "userModified": 361,
+    "type": 264,
+    "oldString": 232,
+    "newString": 232,
+    "replaceAll": 232,
+    "file": 135,
+    "content": 129,
+    "backgroundTaskId": 45,
+    "gitOperation": 44,
+    "task": 33,
+    "bytes": 28,
+    "code": 28,
+    "codeText": 28,
+    "result": 28,
+    "durationMs": 28,
+    "url": 28,
+    "success": 26,
+    "taskId": 25,
+    "updatedFields": 23,
+    "statusChange": 23,
+    "retrieval_status": 20,
+    "query": 11
+   }
+  },
+  "cli-claude-code-hf::AlinCiocan/fable-5-claude-code-traces": {
+   "counts": {
+    "cc:tool_results": 1170,
+    "cc:is_error_true": 57,
+    "cc:exit_code_word": 32,
+    "cc:truncated_word": 2
+   },
+   "cc_toolUseResult_keys": {
+    "stdout": 627,
+    "stderr": 627,
+    "interrupted": 627,
+    "isImage": 627,
+    "noOutputExpected": 627,
+    "type": 327,
+    "file": 247,
+    "filePath": 167,
+    "structuredPatch": 165,
+    "originalFile": 165,
+    "userModified": 165,
+    "oldString": 85,
+    "newString": 85,
+    "replaceAll": 85,
+    "content": 80,
+    "backgroundTaskId": 74,
+    "success": 24,
+    "commandName": 24,
+    "query": 18,
+    "scheduledFor": 13,
+    "clampedDelaySeconds": 13,
+    "wasClamped": 13,
+    "matches": 12,
+    "total_deferred_tools": 12,
+    "bytes": 8,
+    "code": 8,
+    "codeText": 8,
+    "result": 8,
+    "durationMs": 8,
+    "url": 8
+   }
+  },
+  "cli-claude-code-hf::INONONO/tarkov-customs-trajectory": {
+   "counts": {
+    "cc:tool_results": 81,
+    "cc:is_error_true": 1,
+    "cc:exit_code_word": 1
+   },
+   "cc_toolUseResult_keys": {
+    "stdout": 41,
+    "stderr": 41,
+    "interrupted": 41,
+    "isImage": 41,
+    "noOutputExpected": 41,
+    "type": 28,
+    "filePath": 22,
+    "structuredPatch": 22,
+    "originalFile": 22,
+    "userModified": 22,
+    "file": 17,
+    "content": 11,
+    "oldString": 11,
+    "newString": 11,
+    "replaceAll": 11
+   }
+  },
+  "cli-claude-code-hf::victor/claude-worldcup-2026-wallchart-traces": {
+   "counts": {
+    "cc:tool_results": 149,
+    "cc:is_error_true": 27
+   }
+  },
+  "cli-codex-hf::build-small-hackathon/sense-garden-traces": {
+   "counts": {
+    "codex:outputs": 150,
+    "codex:wall_time": 147,
+    "codex:exit_code_word": 145,
+    "codex:total_output_lines": 1,
+    "codex:truncated_word": 1
+   }
+  },
+  "cli-codex-hf::build-small-hackathon/pit-wall-chaos-traces": {
+   "counts": {
+    "codex:outputs": 377,
+    "codex:wall_time": 366,
+    "codex:exit_code_word": 353,
+    "codex:total_output_lines": 4,
+    "codex:truncated_word": 7
+   }
+  },
+  "cli-codex-hf::build-small-hackathon/clue-vibes-traces": {
+   "counts": {
+    "codex:outputs": 296,
+    "codex:wall_time": 292,
+    "codex:exit_code_word": 288,
+    "codex:total_output_lines": 5,
+    "codex:truncated_word": 5
+   }
+  },
+  "cli-codex-hf::drdavidtang/build-small-agent-trace": {
+   "counts": {
+    "codex:outputs": 787,
+    "codex:wall_time": 759,
+    "codex:process_exited": 594,
+    "codex:original_token_count": 660,
+    "codex:chunk_id": 660,
+    "codex:exit_code_word": 87,
+    "codex:truncated_word": 9,
+    "codex:total_output_lines": 8
+   }
+  },
+  "cli-codex-hf::kingkw1/read-along-ai-agent-traces": {
+   "counts": {
+    "codex:outputs": 1712,
+    "codex:wall_time": 1690,
+    "codex:process_exited": 1386,
+    "codex:original_token_count": 1453,
+    "codex:chunk_id": 1453,
+    "codex:exit_code_word": 238,
+    "codex:total_output_lines": 10,
+    "codex:truncated_word": 10
+   }
+  },
+  "cli-codex-hf::build-small-hackathon/MatchWise-agent-trace": {
+   "counts": {
+    "codex:outputs": 59,
+    "codex:wall_time": 55,
+    "codex:process_exited": 49,
+    "codex:original_token_count": 53,
+    "codex:chunk_id": 53,
+    "codex:total_output_lines": 2,
+    "codex:truncated_word": 2,
+    "codex:exit_code_word": 2
+   }
+  },
+  "cli-pi-hf::thomasmustier/pi-nes-sessions": {
+   "counts": {
+    "pi:tool_results": 411,
+    "pi:isError_true": 13
+   },
+   "pi_details_keys": {
+    "diff": 55,
+    "firstChangedLine": 55
+   }
+  },
+  "cli-pi-hf::thomasmustier/pine-of-glass-sessions": {
+   "counts": {
+    "pi:tool_results": 1705,
+    "pi:isError_true": 71,
+    "pi:truncated_word": 56
+   },
+   "pi_details_keys": {
+    "diff": 241,
+    "patch": 241,
+    "firstChangedLine": 241,
+    "truncation": 26,
+    "mode": 20,
+    "results": 20,
+    "fullOutputPath": 18,
+    "runId": 11,
+    "queries": 9,
+    "queryCount": 9,
+    "successfulQueries": 9,
+    "totalResults": 9,
+    "includeContent": 9,
+    "fetchId": 9,
+    "searchId": 9,
+    "artifacts": 8,
+    "urls": 8,
+    "urlCount": 8,
+    "successful": 8,
+    "title": 8,
+    "responseId": 8,
+    "totalChars": 6,
+    "truncated": 4,
+    "hasImage": 4,
+    "imageCount": 4,
+    "url": 4,
+    "contentLength": 4,
+    "asyncId": 3,
+    "asyncDir": 3,
+    "error": 2
+   }
+  },
+  "cli-pi-hf::thomasmustier/pi-session-hud-sessions": {
+   "counts": {
+    "pi:tool_results": 189,
+    "pi:isError_true": 9,
+    "pi:truncated_word": 16
+   },
+   "pi_details_keys": {
+    "diff": 21,
+    "patch": 21,
+    "firstChangedLine": 21,
+    "mode": 16,
+    "results": 16,
+    "runId": 5,
+    "truncation": 4,
+    "artifacts": 4,
+    "fullOutputPath": 3,
+    "asyncId": 1,
+    "asyncDir": 1
+   }
+  },
+  "cli-pi-hf::thomasmustier/pi-computer-use-sessions": {
+   "counts": {
+    "pi:tool_results": 16,
+    "pi:isError_true": 4
+   },
+   "pi_details_keys": {
+    "tool": 12,
+    "target": 12,
+    "capture": 12,
+    "axTargets": 12,
+    "activation": 12,
+    "execution": 12,
+    "status": 12,
+    "config": 12,
+    "imageReason": 12
+   }
+  },
+  "cli-pi-hf::thomasmustier/heypocket-reader-sessions": {
+   "counts": {
+    "pi:tool_results": 102,
+    "pi:isError_true": 3
+   },
+   "pi_details_keys": {
+    "diff": 2,
+    "firstChangedLine": 2,
+    "query": 1,
+    "count": 1,
+    "country": 1,
+    "fetchContent": 1,
+    "results": 1
+   }
+  },
+  "cli-pi-hf::thomasmustier/pi-extensions-sessions": {
+   "counts": {
+    "pi:tool_results": 5321,
+    "pi:isError_true": 220,
+    "pi:truncated_word": 113,
+    "pi:omitted_lines": 9,
+    "pi:exit_code_word": 1
+   },
+   "pi_details_keys": {
+    "diff": 1203,
+    "firstChangedLine": 1203,
+    "truncation": 59,
+    "fullOutputPath": 35,
+    "mode": 4,
+    "results": 4,
+    "artifacts": 3
+   }
+  },
+  "cli-pi-hf::thomasmustier/pi-mono-sessions": {
+   "counts": {
+    "pi:tool_results": 1402,
+    "pi:isError_true": 57,
+    "pi:truncated_word": 71,
+    "pi:exit_code_word": 1,
+    "pi:omitted_lines": 1
+   },
+   "pi_details_keys": {
+    "diff": 132,
+    "firstChangedLine": 132,
+    "truncation": 35,
+    "fullOutputPath": 26
+   }
+  },
+  "cli-pi-hf::thomasmustier/economist-tui-sessions": {
+   "counts": {
+    "pi:tool_results": 774,
+    "pi:isError_true": 43,
+    "pi:truncated_word": 5,
+    "pi:exit_code_word": 1
+   },
+   "pi_details_keys": {
+    "diff": 108,
+    "firstChangedLine": 108,
+    "query": 3,
+    "count": 3,
+    "country": 3,
+    "fetchContent": 3,
+    "results": 3,
+    "truncation": 1,
+    "urls": 1,
+    "urlCount": 1,
+    "successful": 1,
+    "totalChars": 1,
+    "title": 1,
+    "responseId": 1,
+    "truncated": 1,
+    "hasImage": 1,
+    "imageCount": 1
+   }
+  },
+  "cli-pi-hf::thomasmustier/clean-slides-sessions": {
+   "counts": {
+    "pi:tool_results": 1263,
+    "pi:isError_true": 80,
+    "pi:truncated_word": 3,
+    "pi:exit_code_word": 3
+   },
+   "pi_details_keys": {
+    "diff": 147,
+    "firstChangedLine": 147,
+    "mode": 14,
+    "truncation": 11,
+    "server": 11,
+    "fullOutputPath": 9,
+    "mcpResult": 9,
+    "tool": 9,
+    "count": 4,
+    "engine": 2,
+    "nodeCount": 2,
+    "edgeCount": 2,
+    "savedPath": 2,
+    "format": 2,
+    "tools": 2,
+    "matches": 2,
+    "query": 2,
+    "error": 1
+   }
+  },
+  "cli-pi-hf::thomasmustier/pi-symphony-sessions": {
+   "counts": {
+    "pi:tool_results": 58,
+    "pi:isError_true": 1
+   }
+  },
+  "cli-pi-hf::championswimmer/pi-coding-sessions": {
+   "counts": {
+    "pi:tool_results": 1695,
+    "pi:isError_true": 135,
+    "pi:omitted_lines": 1,
+    "pi:truncated_word": 2
+   },
+   "pi_details_keys": {
+    "diff": 180,
+    "firstChangedLine": 180,
+    "server": 66,
+    "mode": 63,
+    "tool": 60,
+    "title": 49,
+    "urls": 36,
+    "urlCount": 36,
+    "successful": 36,
+    "totalChars": 36,
+    "responseId": 36,
+    "truncated": 30,
+    "hasImage": 30,
+    "imageCount": 30,
+    "results": 20,
+    "error": 19,
+    "url": 19,
+    "contentLength": 19,
+    "sent": 13,
+    "failed": 13,
+    "artifacts": 7,
+    "mcpResult": 6,
+    "peerCount": 6,
+    "query": 5,
+    "count": 4,
+    "name": 4,
+    "location": 4,
+    "peers": 4,
+    "truncation": 4,
+    "fullOutputPath": 4
+   }
+  },
+  "cli-pi-hf::woxQAQ/pi-web": {
+   "counts": {
+    "pi:tool_results": 6753,
+    "pi:isError_true": 448,
+    "pi:truncated_word": 53,
+    "pi:exit_code_word": 49
+   },
+   "pi_details_keys": {
+    "diff": 821,
+    "firstChangedLine": 821,
+    "truncation": 75,
+    "fullOutputPath": 46
+   }
+  },
+  "cli-pi-hf::abidlabs/gradio-pi-sessions": {
+   "counts": {
+    "pi:tool_results": 225,
+    "pi:isError_true": 13,
+    "pi:truncated_word": 1
+   },
+   "pi_details_keys": {
+    "diff": 10,
+    "patch": 10,
+    "firstChangedLine": 10,
+    "truncation": 1
+   }
+  },
+  "cli-pi-hf::abidlabs/trackio-pi-sessions": {
+   "counts": {
+    "pi:tool_results": 41,
+    "pi:isError_true": 2
+   },
+   "pi_details_keys": {
+    "diff": 7,
+    "patch": 7,
+    "firstChangedLine": 7
+   }
+  },
+  "cli-pi-hf::Becks723/pi-traces": {
+   "counts": {
+    "pi:tool_results": 7,
+    "pi:isError_true": 0
+   }
+  },
+  "cli-pi-hf::merve/hf-find-traces": {
+   "counts": {
+    "pi:tool_results": 37,
+    "pi:isError_true": 5
+   },
+   "pi_details_keys": {
+    "diff": 1,
+    "patch": 1,
+    "firstChangedLine": 1,
+    "truncation": 1,
+    "fullOutputPath": 1
+   }
+  },
+  "cli-pi-hf::merve/agent_traces": {
+   "counts": {
+    "pi:tool_results": 7,
+    "pi:isError_true": 0,
+    "pi:truncated_word": 1
+   },
+   "pi_details_keys": {
+    "status": 5,
+    "tool": 4,
+    "error": 4,
+    "results": 2,
+    "provider": 2,
+    "citations": 2,
+    "mode": 2,
+    "url": 1,
+    "finalUrl": 1,
+    "contentType": 1,
+    "title": 1,
+    "extractMode": 1,
+    "extractor": 1,
+    "externalContent": 1,
+    "truncated": 1,
+    "length": 1,
+    "rawLength": 1,
+    "wrappedLength": 1,
+    "fetchedAt": 1,
+    "tookMs": 1,
+    "text": 1
+   }
+  },
+  "cli-pi-hf::OmarRabhI/pi-sessions": {
+   "counts": {
+    "pi:tool_results": 18,
+    "pi:isError_true": 3
+   }
+  },
+  "cli-pi-hf::rgruchalski/combust-labs_pi-mono-docker": {
+   "counts": {
+    "pi:tool_results": 713,
+    "pi:isError_true": 42
+   },
+   "pi_details_keys": {
+    "diff": 99,
+    "firstChangedLine": 99,
+    "mode": 1,
+    "agentScope": 1,
+    "projectAgentsDir": 1,
+    "results": 1,
+    "article": 1
+   }
+  },
+  "cli-pi-hf::julien-c/pi-sessions": {
+   "counts": {
+    "pi:tool_results": 338,
+    "pi:isError_true": 25
+   },
+   "pi_details_keys": {
+    "diff": 26,
+    "firstChangedLine": 26,
+    "truncation": 1
+   }
+  },
+  "cli-pi-hf::moikapy/0xKobolds": {
+   "counts": {
+    "pi:tool_results": 2276,
+    "pi:isError_true": 148,
+    "pi:exit_code_word": 1,
+    "pi:truncated_word": 3
+   },
+   "pi_details_keys": {
+    "diff": 425,
+    "firstChangedLine": 425,
+    "error": 13,
+    "truncation": 9,
+    "fullOutputPath": 8,
+    "root": 8,
+    "mode": 8,
+    "packages": 8,
+    "org": 8,
+    "prefix": 8,
+    "pattern": 8,
+    "received": 6,
+    "clients": 5,
+    "sessionId": 3,
+    "status": 2,
+    "tools": 2,
+    "orchestration": 2,
+    "gateway": 2,
+    "ollama": 2,
+    "learn": 2,
+    "commands": 2
+   }
+  },
+  "cli-pi-hf::xhochy/conda-forge-agent-traces": {
+   "counts": {
+    "pi:tool_results": 486,
+    "pi:isError_true": 37,
+    "pi:truncated_word": 5,
+    "pi:exit_code_word": 1
+   },
+   "pi_details_keys": {
+    "urls": 33,
+    "urlCount": 33,
+    "successful": 33,
+    "totalChars": 33,
+    "responseId": 33,
+    "title": 32,
+    "truncated": 31,
+    "hasImage": 31,
+    "imageCount": 31,
+    "diff": 27,
+    "patch": 27,
+    "firstChangedLine": 27,
+    "queries": 18,
+    "queryCount": 18,
+    "successfulQueries": 18,
+    "totalResults": 18,
+    "includeContent": 18,
+    "fetchId": 18,
+    "searchId": 18,
+    "query": 6,
+    "maxTokens": 6,
+    "mode": 6,
+    "truncation": 5,
+    "fullOutputPath": 5,
+    "prompt": 1,
+    "url": 1,
+    "contentLength": 1
+   }
+  },
+  "cli-pi-hf::lucacorbucci/llm_timeline_deepseek_v4_flash-pi": {
+   "counts": {
+    "pi:tool_results": 91,
+    "pi:isError_true": 5,
+    "error:JSONDecodeError": 1
+   },
+   "pi_details_keys": {
+    "diff": 11,
+    "patch": 11,
+    "firstChangedLine": 11
+   }
+  },
+  "agentcap-dacorvo::dacorvo/transformers-coding-session-opencode-traces": {
+   "counts": {
+    "oc:tool_parts": 3355,
+    "oc:status_error": 381,
+    "oc:truncated_word": 105,
+    "error:JSONDecodeError": 1,
+    "oc:exit_code_word": 1
+   },
+   "oc_state_metadata_keys": {
+    "truncated": 2966,
+    "output": 1174,
+    "exit": 1174,
+    "description": 1174,
+    "preview": 1015,
+    "loaded": 1015,
+    "diagnostics": 369,
+    "diff": 206,
+    "filediff": 206,
+    "matches": 176,
+    "filepath": 163,
+    "exists": 163,
+    "parentSessionId": 108,
+    "sessionId": 108,
+    "model": 108,
+    "todos": 73,
+    "count": 57,
+    "outputPath": 17,
+    "interrupted": 1
+   }
+  },
+  "agentcap-dacorvo::dacorvo/hf-hub-session-opencode-traces": {
+   "counts": {
+    "oc:tool_parts": 1328,
+    "oc:status_error": 370,
+    "oc:truncated_word": 6,
+    "error:JSONDecodeError": 1
+   },
+   "oc_state_metadata_keys": {
+    "truncated": 957,
+    "output": 514,
+    "exit": 514,
+    "description": 514,
+    "preview": 170,
+    "loaded": 170,
+    "diagnostics": 170,
+    "filepath": 161,
+    "exists": 161,
+    "count": 20,
+    "parentSessionId": 15,
+    "sessionId": 15,
+    "model": 15,
+    "matches": 9,
+    "diff": 9,
+    "filediff": 9,
+    "todos": 8,
+    "outputPath": 2
+   }
+  },
+  "agentcap-dacorvo::dacorvo/funes-recall-session-opencode-traces": {
+   "counts": {
+    "oc:tool_parts": 11,
+    "oc:status_error": 0,
+    "oc:truncated_word": 11
+   },
+   "oc_state_metadata_keys": {
+    "truncated": 11
+   }
+  },
+  "agentcap-dacorvo::dacorvo/transformers-coding-session-pi-traces": {
+   "counts": {
+    "pi:tool_results": 4606,
+    "pi:isError_true": 654,
+    "pi:truncated_word": 46,
+    "pi:exit_code_word": 8
+   },
+   "pi_details_keys": {
+    "diff": 250,
+    "firstChangedLine": 250,
+    "truncation": 137,
+    "fullOutputPath": 12
+   }
+  },
+  "agentcap-dacorvo::dacorvo/hf-hub-session-pi-traces": {
+   "counts": {
+    "pi:tool_results": 2176,
+    "pi:isError_true": 337,
+    "pi:exit_code_word": 1,
+    "pi:truncated_word": 1
+   },
+   "pi_details_keys": {
+    "diff": 89,
+    "firstChangedLine": 89,
+    "truncation": 6,
+    "fullOutputPath": 5
+   }
+  },
+  "agentcap-dacorvo::dacorvo/funes-recall-session-pi-traces": {
+   "counts": {
+    "pi:tool_results": 22,
+    "pi:isError_true": 0,
+    "pi:truncated_word": 12
+   }
+  }
+ },
+ "pi_respid_sample_decode": {
+  "thomasmustier/pi-for-excel-sessions::pi": {},
+  "thomasmustier/pi-nes-sessions::pi": {
+   "openai_resp_hex50": {
+    "n": 14,
+    "decoded": 14,
+    "example_prefix": "resp_0b075316a...",
+    "delta_ms_p50": -70,
+    "delta_ms_min": -629,
+    "delta_ms_max": 465,
+    "within_m2s_p600s": 14
+   },
+   "openai_resp_len55": {
+    "n": 1,
+    "decoded": 0,
+    "example_prefix": "resp_0b075316a..."
+   }
+  },
+  "championswimmer/pi-coding-sessions::pi": {
+   "openai_resp_hex50": {
+    "n": 39,
+    "decoded": 39,
+    "example_prefix": "resp_0165e5a92...",
+    "delta_ms_p50": 188,
+    "delta_ms_min": -753,
+    "delta_ms_max": 752,
+    "within_m2s_p600s": 39
+   }
+  },
+  "moikapy/0xKobolds::pi": {
+   "other": {
+    "n": 13,
+    "decoded": 0,
+    "example_prefix": "chatcmpl-807..."
+   }
+  },
+  "merve/agent_traces::claude_code": {
+   "other": {
+    "n": 7,
+    "decoded": 0,
+    "example_prefix": "oecZfVf-2dTqGa..."
+   }
+  },
+  "julien-c/pi-sessions::pi": {
+   "other": {
+    "n": 27,
+    "decoded": 0,
+    "example_prefix": "chatcmpl-oYPSG..."
+   }
+  },
+  "rgruchalski/combust-labs_pi-mono-docker::pi": {
+   "other": {
+    "n": 29,
+    "decoded": 0,
+    "example_prefix": "66333f16-2e2b-..."
+   }
+  },
+  "thomasmustier/pi-mono-sessions::pi": {},
+  "thomasmustier/pi-extensions-sessions::pi": {},
+  "thomasmustier/economist-tui-sessions::pi": {},
+  "thomasmustier/clean-slides-sessions::pi": {},
+  "OmarRabhI/pi-sessions::pi": {
+   "other": {
+    "n": 15,
+    "decoded": 0,
+    "example_prefix": "chatcmpl-QCPeM..."
+   }
+  },
+  "woxQAQ/pi-web::pi": {
+   "openai_resp_hex50": {
+    "n": 29,
+    "decoded": 29,
+    "example_prefix": "resp_0e5187619...",
+    "delta_ms_p50": -264,
+    "delta_ms_min": -3593,
+    "delta_ms_max": 539,
+    "within_m2s_p600s": 27
+   }
+  },
+  "dacorvo/hf-hub-session-pi-traces::pi": {
+   "other": {
+    "n": 11,
+    "decoded": 0,
+    "example_prefix": "chatcmpl-HLHJr..."
+   }
+  },
+  "dacorvo/transformers-coding-session-pi-traces::pi": {
+   "other": {
+    "n": 29,
+    "decoded": 0,
+    "example_prefix": "chatcmpl-3IVdK..."
+   }
+  },
+  "julien-c/synthtraces::pi": {
+   "other": {
+    "n": 12,
+    "decoded": 0,
+    "example_prefix": "77e036a3fbf735..."
+   }
+  },
+  "abidlabs/gradio-pi-sessions::pi": {
+   "openai_resp_hex50": {
+    "n": 36,
+    "decoded": 36,
+    "example_prefix": "resp_001cc9de6...",
+    "delta_ms_p50": 342,
+    "delta_ms_min": -1665,
+    "delta_ms_max": 881,
+    "within_m2s_p600s": 36
+   }
+  },
+  "abidlabs/trackio-pi-sessions::pi": {
+   "openai_resp_hex50": {
+    "n": 39,
+    "decoded": 39,
+    "example_prefix": "resp_01e48510a...",
+    "delta_ms_p50": 406,
+    "delta_ms_min": -3565,
+    "delta_ms_max": 838,
+    "within_m2s_p600s": 38
+   }
+  },
+  "thomasmustier/pine-of-glass-sessions::pi": {
+   "openai_resp_hex50": {
+    "n": 39,
+    "decoded": 39,
+    "example_prefix": "resp_02270e2bd...",
+    "delta_ms_p50": 355,
+    "delta_ms_min": -2242,
+    "delta_ms_max": 803,
+    "within_m2s_p600s": 38
+   }
+  },
+  "thomasmustier/pi-session-hud-sessions::pi": {
+   "openai_resp_hex50": {
+    "n": 134,
+    "decoded": 134,
+    "example_prefix": "resp_0c61d70c6...",
+    "delta_ms_p50": 196,
+    "delta_ms_min": -3886,
+    "delta_ms_max": 875,
+    "within_m2s_p600s": 131
+   },
+   "anthropic_msg_not_v7": {
+    "n": 9,
+    "decoded": 0,
+    "example_prefix": "msg_01CwpnQAFP..."
+   }
+  },
+  "Samarth0710/traceweave-viewer-test::claude_code": {},
+  "xhochy/conda-forge-agent-traces::pi": {
+   "other": {
+    "n": 31,
+    "decoded": 0,
+    "example_prefix": "chatcmpl-865..."
+   }
+  },
+  "thomasmustier/pi-computer-use-sessions::pi": {
+   "openai_resp_hex50": {
+    "n": 4,
+    "decoded": 4,
+    "example_prefix": "resp_0f6535017...",
+    "delta_ms_p50": 362,
+    "delta_ms_min": 197,
+    "delta_ms_max": 402,
+    "within_m2s_p600s": 4
+   }
+  },
+  "thomasmustier/pi-symphony-sessions::pi": {
+   "anthropic_msg_not_v7": {
+    "n": 2,
+    "decoded": 0,
+    "example_prefix": "msg_01TJtzzyUR..."
+   },
+   "anthropic_msg_v7": {
+    "n": 1,
+    "decoded": 1,
+    "example_prefix": "msg_01S5LbHkdF...",
+    "delta_ms_p50": -221493549016322,
+    "delta_ms_min": -221493549016322,
+    "delta_ms_max": -221493549016322,
+    "within_m2s_p600s": 0
+   }
+  },
+  "thomasmustier/heypocket-reader-sessions::pi": {
+   "openai_resp_hex50": {
+    "n": 16,
+    "decoded": 16,
+    "example_prefix": "resp_03a66db67...",
+    "delta_ms_p50": 198,
+    "delta_ms_min": -2245,
+    "delta_ms_max": 688,
+    "within_m2s_p600s": 14
+   }
+  },
+  "lucacorbucci/llm_timeline_deepseek_v4_flash-pi::pi": {
+   "other": {
+    "n": 87,
+    "decoded": 0,
+    "example_prefix": "765d6de6-7fef-..."
+   }
+  },
+  "vedalken/merchantscroll-traces::claude_code": {},
+  "dacorvo/funes-recall-session-pi-traces::pi": {
+   "other": {
+    "n": 3,
+    "decoded": 0,
+    "example_prefix": "chatcmpl-O7YQ5..."
+   }
+  },
+  "Becks723/pi-traces::pi": {
+   "openai_resp_hex50": {
+    "n": 3,
+    "decoded": 3,
+    "example_prefix": "resp_03dfbc640...",
+    "delta_ms_p50": -666,
+    "delta_ms_min": -882,
+    "delta_ms_max": 263,
+    "within_m2s_p600s": 3
+   }
+  },
+  "merve/hf-find-traces::pi": {
+   "other": {
+    "n": 23,
+    "decoded": 0,
+    "example_prefix": "chatcmpl-RrpLQ..."
+   }
+  },
+  "owao/qwen38-27B::pi": {
+   "openrouter_gen_other": {
+    "n": 92,
+    "decoded": 0,
+    "example_prefix": "gen-1786888033..."
+   }
+  },
+  "Jadson/ox-alpha-pi-traces-emacs-bridge::pi": {
+   "openrouter_gen_secs": {
+    "n": 13,
+    "decoded": 13,
+    "example_prefix": "gen-1787554454...",
+    "delta_ms_p50": 556,
+    "delta_ms_min": 21,
+    "delta_ms_max": 928,
+    "within_m2s_p600s": 13
+   }
+  }
+ }
+}

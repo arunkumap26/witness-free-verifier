@@ -1,0 +1,93 @@
+{
+ "request_ids_in_claude_code_jsonl": {
+  "swechat_claude_code_calls_with_request_id": {
+   "k": 380855,
+   "n": 388605,
+   "rate": 0.98006,
+   "ci95_session_clustered": [
+    0.97279,
+    0.98708
+   ],
+   "n_sessions": 3303
+  },
+  "swechat_claude_code_responses_with_request_id": {
+   "k": 307479,
+   "n": 314821,
+   "rate": 0.97668,
+   "ci95_session_clustered": [
+    0.96916,
+    0.98355
+   ],
+   "n_sessions": 3348
+  },
+  "swechat_claude_code_distinct_request_ids": 305727,
+  "swechat_claude_code_v7_decodable": 305727,
+  "swechat_bedrock_calls_without_request_id": 3575,
+  "cc_local_calls_with_request_id": {
+   "k": 41707,
+   "n": 41707,
+   "rate": 1.0,
+   "ci95_session_clustered": [
+    1.0,
+    1.0
+   ],
+   "n_sessions": 281
+  },
+  "cc_local_responses_with_request_id": {
+   "k": 35381,
+   "n": 35391,
+   "rate": 0.99972,
+   "ci95_session_clustered": [
+    0.999,
+    0.99987
+   ],
+   "n_sessions": 309
+  },
+  "cc_local_distinct_request_ids": 35379,
+  "corpora_with_request_ids_strict": {
+   "count_strict": 2,
+   "of_corpora_audited": 7,
+   "which": [
+    "swechat (claude_code format only)",
+    "cc_local (private, aggregates only)"
+   ],
+   "public_count": 1,
+   "public_which": "swechat claude_code raw transcripts (data/swe-chat-pinned/transcripts/*.jsonl). The documented SWE-chat tables do not carry it as a column; it survives in the raw transcripts' `requestId` field.",
+   "provider_and_harness": "both are Claude Code talking to Anthropic (first-party API, plus Vertex `req_vrtx_`). One harness, one provider. Bedrock-backed Claude Code calls in swechat carry no request id."
+  },
+  "source": "analysis/out/phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST"
+ },
+ "mean_responses_per_session": {
+  "swechat_claude_code": 94.0,
+  "swechat_n_responses": 314821,
+  "swechat_n_sessions": 3348,
+  "cc_local": 114.5,
+  "cc_local_n_responses": 35391,
+  "cc_local_n_sessions": 309,
+  "note": "Means over sessions as B4 counted them (cc_local counts subagent files as sessions). Descriptive only; a benchmark task is not a human session."
+ },
+ "committed_phase_c_decode": {
+  "swechat_req_v7": 154815,
+  "swechat_req_n": 154815,
+  "cc_local_req_v7": 31085,
+  "cc_local_req_n": 31085,
+  "source": "analysis/out/phase_c/ids_and_clocks_in_ids.json#bits.<corpus>.anthropic_req.time_format (commit 15324cc)"
+ },
+ "public_hf_raw_claude_code_files_B5e": {
+  "permissive_licence_datasets": 39,
+  "permissive_licence_files": 38674,
+  "permissive_licence_bytes": 3273064495,
+  "no_licence_datasets": 133,
+  "no_licence_files": 1378,
+  "request_id_presence_audited": false,
+  "source": "analysis/out/phase_e/track_b/B5e_cli_traces/census/hf_census_summary.json#by_harness_class.claude_code (B5e in progress; file-format census only, requestId presence not yet audited)"
+ },
+ "local_codex_rollouts_key_census": {
+  "files": 792,
+  "lines": 633470,
+  "unparsable": 0,
+  "files_with_any_request_or_trace_or_header_key": 0,
+  "files_with_rate_limits": 789,
+  "source": "analysis/out/phase_e/track_b/B6_assess/codex_keycensus.json (script codex_keycensus.py; key names only)"
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "root": "C:/Swarms/data/acquired/miniswe-v2-qwen3-30b-swebv-tarsur385",
+ "counts": {
+  "trajectories": 499,
+  "assistant": 13884,
+  "assistant_ts": 13884,
+  "tool_calls": 13887,
+  "assistant_with_usage": 13884,
+  "tool_results": 13664,
+  "tool_ts": 13664,
+  "tool_joined": 13664,
+  "tool_returncode": 13664,
+  "tool_nonzero_rc": 3547
+ },
+ "roles": {
+  "system": 499,
+  "user": 4016,
+  "assistant": 13884,
+  "tool": 13664,
+  "exit": 499
+ },
+ "mini_versions": {
+  "2.2.8": 499
+ },
+ "models": {
+  "hosted_vllm/Qwen/Qwen3-30B-A3B-Instruct-2507": 499
+ },
+ "exit_status": {
+  "Submitted": 223,
+  "LimitsExceeded": 276
+ },
+ "response_id_shapes": [
+  [
+   "chatcmpl-<hex16>",
+   13884
+  ]
+ ],
+ "assistant_ts_minus_created_s": {
+  "n": 13884,
+  "p0": 0.597,
+  "p5": 2.654,
+  "p50": 6.926,
+  "p95": 23.474,
+  "p100": 102.916
+ },
+ "tool_ts_minus_assistant_ts_s": {
+  "n": 13664,
+  "p0": 0.011,
+  "p5": 0.034,
+  "p50": 0.197,
+  "p95": 0.729,
+  "p100": 60.209,
+  "n_negative": 0
+ }
+}

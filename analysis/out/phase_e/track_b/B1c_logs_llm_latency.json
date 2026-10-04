@@ -1,0 +1,544 @@
+{
+  "key": "B1c_logs_llm_latency",
+  "task": "Phase E Track B, B1 (prior art for N1, the conditional duration model), angles assigned to this agent: (i) log anomaly detection (DeepLog, LogAnomaly, LogBERT, LogRobust, PLELog and successors): does any of them model DURATION rather than event sequence; (ii) LLM inference latency modelling (TTFT, TPOT, output-length-proportional latency); (iii) machine-generated-text detection using generation-time or timing signals. Internal-embodiment checks were extended to agent-serving systems that model tool-call duration, because they surfaced under angle (ii).",
+  "date": "2026-10-04",
+  "scope_note": "Literature only. Nothing under swarm/, data/swarm/ or .claude/worktrees/swarm was read. No transcripts were generated. No paid APIs. The only project files read were analysis/PHASE_E_PROMPT.md, analysis/PHASE_E_PLAN.md, CLAUDE_context_swarms.md s5-s7, analysis/FINDINGS.md s3.1 and the sibling JSON B2b_timestamping_lit.json (for format). Sibling B1 agents own the other angles: covert/timing side channels, APM, runtime prediction, fraud velocity and agent harnesses. Where this agent touched them (psychometric response-time residuals, agent KV-cache serving), it says so and does not claim completeness.",
+  "question": "N1 claims (a) a residual of tool-call duration against an expected-workload baseline (built from within-session repeats of the same command) is a fabrication signal in agent logs, and (b) corr(residual, output_bytes) separates work-bound from generation-bound latency. Is either sub-claim taken?",
+  "answer": {
+    "short": "Neither sub-claim is TAKEN as stated, and neither is NOVEL as a mechanism. Both are PARTIAL. Novelty is limited to the domain and the exact statistic. (a) Residual-of-duration against a per-event-type learned baseline is standard log anomaly detection (DeepLog 2017; Fu et al. 2009). Separating actor speed from item work to flag dishonest response times is standard psychometrics (van der Linden & Guo 2008). Agent-serving systems already model expected tool-call duration from the command and same-user/project history (CacheWise 2026, Continuum 2025), but only for KV-cache scheduling. None uses the residual as a fabrication or verification signal. (b) The physics, generation latency of TTFT + TPOT x n_tokens, is textbook (DistServe 2024) and has been measured (Pearson >= 0.987 locally, 0.370 for remote GPT-4o; Time Will Tell 2024). The cache-timing literature already notes that 'computed' latency scales with length while 'retrieved' latency stays flat (Early Bird 2024, input side, threshold-based). Keystroke provenance work uses production time relative to text produced to detect AI-generated text. No opened work computes corr(duration residual, output size) or applies it to agent tool calls. Timing-only provenance is known to be forgeable (Condrey 2026: >= 99.8% evasion; Jones & Bergen 2024 pad AI replies by about 0.3 s per character). N1(b) therefore detects only non-adaptive fabrication.",
+    "ingredient_map": {
+      "duration residual vs learned per-event-type baseline as anomaly signal (logs)": "TAKEN (DeepLog CCS 2017 s3.2/s5.2; Fu et al. ICDM 2009 s5; LogSed/TraceAnomaly/Nedelkoski via Soldani & Brogi survey)",
+      "hold the actor/machine constant when estimating expected duration": "TAKEN as statistical design (van der Linden & Guo 2008: separate person speed from item time intensity; Fu 2009: per-machine capacity parameter; CacheWise: history from same user/project)",
+      "expected duration of an AGENT tool call from command/args/history": "TAKEN as a prediction problem for KV-cache scheduling (Continuum 2511.02230; CacheWise 2606.16824; InferCept as described by both). Not used for verification.",
+      "duration residual as a FABRICATION/dishonesty signal": "TAKEN outside agents (psychometric aberrant response times, van der Linden & Guo 2008). Not found for agent tool logs in any opened source.",
+      "generation latency proportional to output tokens": "TAKEN (DistServe 2401.09670 footnote 1; Time Will Tell 2412.15431 s2.1 and s6.3)",
+      "length-scaling of latency separates computed from retrieved/cached output": "PARTIAL (Early Bird 2409.20002 s4-D, input length, threshold classifier; Gu et al. 2502.07776 controls for prompt length)",
+      "production-time vs produced-text as AI-text provenance": "TAKEN for human writing (Mehta/Kundu keystroke 2511.12468; Davalos & Zhang 2609.17883; Crossley 2024 cited); forgeable (Condrey 2601.17280)",
+      "corr(residual, output_bytes) on agent tool calls": "not found in any opened source; novel only as a domain application and specific statistic"
+    },
+    "what_PRIOR_ART_md_should_say_for_B1_from_these_angles": "N1 is a workload-conditioned duration-residual test, a technique established in log anomaly detection (DeepLog; Fu et al. 2009) and psychometric cheating detection (van der Linden & Guo 2008). Its discriminator rests on the textbook decode-time identity latency = TTFT + TPOT x n (DistServe; measured in Time Will Tell). Expected tool-call durations are already modelled by agent serving systems (Continuum, CacheWise), but for scheduling, not verification. New: using the residual, and its correlation with output size, to separate executed from generated tool results in agent logs. Known limit: timing-only provenance is forgeable by an adversary who controls timing (Condrey 2026; Jones & Bergen 2024)."
+  },
+  "claims": [
+    {
+      "id": "B1c-1",
+      "sub_claim": "(a) general mechanism",
+      "claim": "A residual of an event's duration against a learned per-event-type baseline is a usable anomaly signal in system logs.",
+      "verdict": "TAKEN",
+      "closest_work": "DeepLog (Du, Li, Zheng, Srikumar; ACM CCS 2017) parameter-value/performance-anomaly model; Fu, Lou, Wang, Li (ICDM 2009) transition-time model.",
+      "what_it_does": "DeepLog keeps, per log key, a vector of parameter values that includes the time elapsed since the previous entry. An LSTM predicts the next vector, and the MSE between prediction and observation is compared with a Gaussian fitted on validation MSEs. On OpenStack it flagged throttled VM creations from unusually large elapsed times. Fu et al. fit a Gaussian per FSA state transition per machine, with the mean proportional to a machine capacity parameter. They flag a transition slower than mean + lambda x sd (Hadoop example: learned mean 12.32 s vs observed 42.53 s).",
+      "what_it_does_not": "Neither conditions expected duration on the work the event claims to have done (output size, command content). Neither tests correlation between residual and output size. Both are one-sided and flag only 'too slow' performance anomalies; a fabricated tool result may instead be too fast (no work done). Neither concerns fabricated records: both assume the log is truthful and blame the system.",
+      "deciding_citation": "https://users.cs.utah.edu/~lifeifei/papers/deeplog.pdf (s3.2, s5.2); https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/DM790-CR.pdf (s V)",
+      "opened": true,
+      "verdict_reasoning": "Both primaries opened in full (PDF text extracted). The general mechanism in (a) is at least 9 years old in logs (17 for Fu)."
+    },
+    {
+      "id": "B1c-2",
+      "sub_claim": "(a) baseline design",
+      "claim": "Build the expected-duration baseline so that the actor, machine and load are held constant (N1: within-session repeats of the same command), rather than from a global model.",
+      "verdict": "TAKEN",
+      "closest_work": "van der Linden & Guo (Psychometrika 2008, 73(3):365-384), lognormal response-time model with separate person-speed and item time-intensity parameters, for flagging aberrant response times. Also Fu et al. 2009 (per-machine capacity scaling) and CacheWise 2606.16824 (duration history from 'same user, same project').",
+      "what_it_does": "van der Linden & Guo separate how fast a test taker works from how long each item needs, then flag response times that are aberrant given both. They ran a power study on simulated cheating. CacheWise conditions agent tool-duration estimates on tool name, TF-IDF-clustered arguments and same-user/project history.",
+      "what_it_does_not": "None uses within-session exact-command repeats as the baseline, and none applies this to agent tool-call fabrication. van der Linden & Guo work on test items, not commands.",
+      "deciding_citation": "https://www.cambridge.org/core/journals/psychometrika/article/abs/bayesian-procedures-for-identifying-aberrant-responsetime-patterns-in-adaptive-testing/85CFBD47811965DD943573EB7905CD37 (abstract); https://arxiv.org/abs/2606.16824 (s5.2)",
+      "opened": true,
+      "verdict_reasoning": "The design principle of separating actor speed from task work before reading a residual is published. Only the exact-repeat operationalisation is ours. Empirical support for needing it comes from Ask the Tool 2609.18849 Fig. 3: recorded vs idle-replay durations of the same SWE-bench commands have Kendall tau = -0.04, and the median replay/recorded ratio is 0.12x. A cross-environment or global duration model does not transfer."
+    },
+    {
+      "id": "B1c-3",
+      "sub_claim": "(a) internal embodiment in agent systems",
+      "claim": "Modelling the expected duration of an agent's tool call from the command (tool name, arguments, history) in agent logs or traces.",
+      "verdict": "TAKEN",
+      "closest_work": "CacheWise (Tiwari et al., arXiv 2606.16824); Continuum (Li et al., arXiv 2511.02230, PVLDB 2027); InferCept (described by both, not opened).",
+      "what_it_does": "Continuum keeps a per-tool empirical CDF of past tool-call durations, using the first word of the bash command as the tool name and the server-side inter-request gap as the duration. It sets KV-cache time-to-live from that CDF. CacheWise clusters bash arguments with TF-IDF/KMeans and predicts remaining tool time from per-cluster duration distributions. Its Table 3 reports python -c P50 0.1 s vs mypy P50 10 s vs docker compose P50 22 s.",
+      "what_it_does_not": "Both use the predicted duration only to schedule or evict KV cache. Neither computes a residual of observed vs expected duration, flags a call, or relates duration to the size of the tool's output. Neither treats the tool result as possibly fabricated. Ask the Tool 2609.18849 s5.3 does treat tool-originated timing reports as untrusted and caps a lying session with a credit ledger, but for scheduling gain, not result verification.",
+      "deciding_citation": "https://arxiv.org/abs/2511.02230 (s4.2, s5.1); https://arxiv.org/abs/2606.16824 (s5.2, Table 3)",
+      "opened": true,
+      "verdict_reasoning": "An agent system already internally embodies the expected-duration half of (a), without the verification use. This is the 'does a system already do it internally' risk the standing rule warns about; it surfaced here and must be cited."
+    },
+    {
+      "id": "B1c-4",
+      "sub_claim": "(a) as stated",
+      "claim": "A duration-vs-expected-workload residual is a fabrication signal in agent tool logs.",
+      "verdict": "PARTIAL",
+      "closest_work": "DeepLog (logs, duration residual); van der Linden & Guo 2008 (residual as a dishonesty signal); CacheWise/Continuum (agent tool-call expected duration).",
+      "what_it_does": "Each covers one ingredient: the residual mechanism (DeepLog, Fu), its use against dishonesty (van der Linden & Guo), or the agent-domain duration model (CacheWise, Continuum).",
+      "what_it_does_not": "No opened source in log anomaly detection, LLM latency modelling, MGT detection or agent serving uses a tool-call duration residual to flag fabricated or simulated tool results. The 2026 agent-auditing papers checked (LEDGER 2608.18398; Trofimov & Novikov 2609.15397) use no timing check: LEDGER's trace records carry timing information but its audit never tests it.",
+      "deciding_citation": "https://arxiv.org/abs/2608.18398 (s3.1: trace records 'retaining ... timing information', no timing-based check); https://arxiv.org/abs/2609.15397 (effect-history anomalies, no duration signal)",
+      "opened": true,
+      "verdict_reasoning": "PARTIAL, not NOVEL: the mechanism and the dishonesty use are both published; only the conjunction with agent tool-result fabrication is unfound. Sibling angles (APM, runtime prediction, fraud, agent harnesses, timing side channels) could still find a closer match, so this verdict is conditional on them."
+    },
+    {
+      "id": "B1c-5",
+      "sub_claim": "(b) physics",
+      "claim": "Generation-bound latency is proportional to the number of generated tokens (latency = TTFT + TPOT x n), so a result the model generated should take time that scales with its length.",
+      "verdict": "TAKEN",
+      "closest_work": "DistServe (Zhong et al., OSDI 2024, arXiv 2401.09670); Time Will Tell (Zhang, Saileshwar, Lie, arXiv 2412.15431).",
+      "what_it_does": "DistServe footnote 1 states request latency is TTFT plus TPOT times generated tokens. Time Will Tell states T(X_n) proportional to n and measures Pearson(time, tokens) = 1.000 (Tower), 0.990 (M2M100), 0.989 (MBart50), 0.987 (Gemma2) locally, but 0.370 for GPT-4o over the OpenAI API. It then infers output token count from response time to leak the output class (74.7% on remote GPT-4o).",
+      "what_it_does_not": "Uses the relation to infer what was generated, not whether something was generated. No residual against an execution baseline; no agent tool calls.",
+      "deciding_citation": "https://arxiv.org/abs/2401.09670 (s1 footnote 1); https://arxiv.org/abs/2412.15431 (s2.1, s6.3 Table 3)",
+      "opened": true,
+      "verdict_reasoning": "Textbook serving physics, measured directly. Our own FINDINGS s3.1 already replicates the size-latency contrast at the global level: G pairs rho = 0.496/0.695/0.751 vs swechat CC W rho = -0.013. That is a replication of known physics, not a contribution."
+    },
+    {
+      "id": "B1c-6",
+      "sub_claim": "(b) as stated",
+      "claim": "corr(residual, output_size) discriminates work-bound (executed) from generation-bound (fabricated) tool-call latency.",
+      "verdict": "PARTIAL",
+      "closest_work": "The Early Bird Catches the Leak (Song et al., arXiv 2409.20002) s4-D; Time Will Tell 2412.15431; keystroke provenance (Mehta et al. 2511.12468; Davalos & Zhang 2609.17883).",
+      "what_it_does": "Early Bird observes, on commodity APIs, that TTFT stays constant regardless of request length on a cache hit and grows almost linearly with length on a miss. A document-cache attack separates hits from misses with a 2.0 s threshold (89% accuracy, FPR 0.05). This is the same 'flat means retrieved, scaling means computed' logic, but on the input (prefill) side. Keystroke work asks whether production time is consistent with the text produced: AI-delegated text arrives in bursts far larger than the author's own (Davalos & Zhang: simulated delegation F1 >= 0.997), and timing features separate transcription from composition (Mehta et al.: F1 64-96%).",
+      "what_it_does_not": "None computes a correlation between a duration residual and output size. None applies length-scaling to decide whether a recorded tool result was executed or generated. Early Bird uses input length and absolute or relative thresholds, not output-size correlation. Keystroke work concerns human typing, where honest time scales with length, the reverse of N1, where honest tool time should not scale with output length.",
+      "deciding_citation": "https://arxiv.org/abs/2409.20002 (s4-D 'Measurement Study on Commodity LLMs'; Fig. 11 document hit/miss vs length)",
+      "opened": true,
+      "verdict_reasoning": "The discriminating principle (does latency scale with size at a generation rate) is published in adjacent forms. The specific statistic and its use on agent tool results are not found. Name it as an application, not a new principle."
+    },
+    {
+      "id": "B1c-7",
+      "sub_claim": "angle (i) factual",
+      "claim": "Do log anomaly detectors (DeepLog, LogAnomaly, LogBERT, LogRobust, PLELog and successors) model duration rather than event sequence?",
+      "verdict": "N/A",
+      "closest_work": "Landauer et al., 'Deep Learning for Anomaly Detection in Log Data: A Survey' (MLWA 2023, arXiv 2207.03820) Table II; logpai/deep-loglizer code.",
+      "what_it_does": "Of the 62 deep-learning approaches in Landauer et al.'s Table II, 5 use event interval time (EI): DeepLog, SwissLog, ATT-GRU (Xie et al.), LogNL (Zhu et al.) and Studiawan et al. LogAnomaly is ES+EC (sequence plus template counts; 'quantitative' means counts). LogBERT, LogRobust and PLELog are ES only. The survey concludes only few approaches consider parameters or inter-arrival times, and lists 'changes of parameter value correlations' as future work. The widely used benchmark harness logpai/deep-loglizer offers only feature_type sequentials, semantics or quantitatives (window template counts). Its HDFS loader keeps only EventTemplate, and its timestamp sort is commented out. So the reference 'DeepLog' implementation drops DeepLog's elapsed-time model. ADALog 2505.13496 strips timestamps during cleaning.",
+      "what_it_does_not": "The survey does not say whether any EI-based method conditions duration on a size parameter. No opened log-AD paper relates duration to output size.",
+      "deciding_citation": "https://arxiv.org/abs/2207.03820 (Table II; s5 RQ1); https://github.com/logpai/deep-loglizer/blob/main/deeploglizer/common/preprocess.py (FeatureExtractor docstring and transform); https://github.com/logpai/deep-loglizer/blob/main/deeploglizer/common/dataloader.py (load_HDFS)",
+      "opened": true,
+      "verdict_reasoning": "Factual item. Answer: among the five named systems, only DeepLog models duration, and only in its secondary parameter-value model. The common re-implementation drops even that. Duration modelling is a minority branch (5/62) of deep log-AD."
+    },
+    {
+      "id": "B1c-8",
+      "sub_claim": "angle (iii)",
+      "claim": "Timing or production-process signals detect machine-generated or delegated text.",
+      "verdict": "TAKEN",
+      "closest_work": "Mehta, Kumar et al. 'Detecting LLM-Assisted Academic Dishonesty using Keystroke Dynamics' (arXiv 2511.12468, IEEE T-BIOM 2026; extends Kundu et al. IJCB 2024, arXiv 2406.15335); Davalos & Zhang 'Does AI Assistance Leave a Temporal Fingerprint?' (arXiv 2609.17883, AHFE 2026).",
+      "what_it_does": "Mehta et al. classify bona fide vs AI-transcribed or paraphrased typing from keystroke timing (dwell, flight) plus text features; F1 64-96% on unseen writers and text. Davalos & Zhang show AI insertions arrive in bursts far beyond the author's own baseline (writing d_z = 1.13, code d_z = 3.54). Simulated wholesale delegation is separable at F1 >= 0.997 with <= 0.5% of real work misclassified. Veselovsky et al. 2306.07899 validated LLM-use estimates on MTurk (33-46%) using logged paste events, not timing.",
+      "what_it_does_not": "All concern human writing or coding telemetry, not agent tool results. None uses a duration residual against an execution baseline or a correlation with output size.",
+      "deciding_citation": "https://arxiv.org/abs/2609.17883 (Results, Table 2); https://arxiv.org/abs/2511.12468 (s1-s3)",
+      "opened": true,
+      "verdict_reasoning": "The generation-time or production-process angle to MGT detection is an active, published line. It supports N1's intuition by analogy but covers a different domain."
+    },
+    {
+      "id": "B1c-9",
+      "sub_claim": "limitation: evasion",
+      "claim": "A timing-based generated-vs-executed check can be defeated by an adversary who controls timing (padding latency to match what honest work or human typing would take).",
+      "verdict": "TAKEN",
+      "closest_work": "Condrey, 'On the Insecurity of Keystroke-Based AI Authorship Detection: Timing-Forgery Attacks' (arXiv 2601.17280); Jones & Bergen, 'People cannot distinguish GPT-4 from a human in a Turing test' (arXiv 2405.08007); Westwood, PNAS 2025 (via 404 Media).",
+      "what_it_does": "Condrey: three timing-forgery generators plus a copy-type attack achieve >= 99.8% evasion against five classifiers, which still reach AUC = 1.000 against naive injection. He proves timing-only provenance is non-identifiable under copy-type and concludes provenance needs signals bound to semantic content. Jones & Bergen: AI replies were delayed by 1 + N(0.3, 0.03) x n_char + N(0.03, 0.003) x n_char_prev + Gamma(2.5, 0.25) seconds, so the length-proportional tell was deliberately forged; interrogators still cited 'responses too fast/slow' as reasons. Westwood's synthetic respondent 'simulates realistic reading times calibrated to the persona's education level'.",
+      "what_it_does_not": "None is about agent tool logs.",
+      "deciding_citation": "https://arxiv.org/abs/2601.17280 (abstract; s5 Table II; Theorem 1); https://arxiv.org/abs/2405.08007 (s4.1 delay formula)",
+      "opened": true,
+      "verdict_reasoning": "Under the Phase E threat model (agent controls what a tool returns; harness stamps the clock honestly) a fabricator can sleep before returning. N1(b) therefore catches only non-adaptive fabrication. DESIGN.md must state this as an accepted limitation."
+    }
+  ],
+  "limitations_for_design": [
+    "Remote-API noise: Time Will Tell measured Pearson(time, output tokens) of only 0.370 for GPT-4o over the API, vs >= 0.987 for local models. The concurrent-profiling fix needed server-load probes we do not have. For API-served agents the generation-side slope that N1(b) expects will be weak. Size the pre-registered threshold on corr(residual, output_bytes) accordingly.",
+    "Per-token time is content-dependent under speculative or parallel decoding (Carlini & Nasr 2410.17175: topic inference at 90%+ precision from inter-token timing on open-source efficient-inference methods). Generated-result duration is therefore not exactly length-proportional.",
+    "Durations do not transfer across environments: Ask the Tool 2609.18849 Fig. 3 shows idle replay of recorded SWE-bench commands at median 0.12x of recorded time, Kendall tau(recorded, replay) = -0.04 for long calls, and up to 3.83x median slowdown under oversubscription. This supports N1's within-session baseline, but within-session contention changes (cf. our 13.5% mid-session floor shift) will inflate residual variance.",
+    "Honest residual-size correlation is not uniformly zero in our own data: FINDINGS s3.1 audit gives cc_local W rho = +0.164 [0.076, 0.292]. N1(b)'s null of 'honest residual uncorrelated with output_bytes' needs a per-harness calibration, not an assumed 0. Shell is also legitimately size-correlated: commands that print more often did more work.",
+    "Log-AD convention is one-sided (flag slow). A fabricated tool result can be too fast (no work) as well as too slow (generation time). The psychometric precedent (van der Linden & Guo) flags aberrantly fast responses as item pre-knowledge, so the check should be two-sided.",
+    "Evasion: timing-only provenance is forgeable (Condrey 2026; Jones & Bergen 2024; Westwood 2025). DESIGN.md must list 'fabricator pads latency to the expected duration' as an accepted, undetectable case for N1."
+  ],
+  "unverified_or_unopened": [
+    "LogAnomaly (IJCAI 2019), LogBERT (IJCNN 2021), LogRobust (FSE 2019), PLELog (ICSE 2021) primaries NOT opened: the alphaXiv title lookups resolved to other papers (RationAnomaly 2509.14693 for SwissLog; ADALog 2505.13496 for LogAnomaly). Their feature classification rests on Landauer et al. Table II (opened). LogAnomaly's 'quantitative' = template counts is corroborated by deep-loglizer's __windows2quantitative (opened code).",
+    "SwissLog, ATT-GRU (Xie et al.), LogNL (Zhu et al.), Studiawan et al.: EI usage known only from Landauer Table II; primaries not opened. Whether any conditions interval time on a size parameter is UNVERIFIED.",
+    "TraceAnomaly (ISSRE 2020), Nedelkoski et al. multimodal LSTM (IEEE CLOUD 2019), LogSed (CLOUD 2017): described from Soldani & Brogi survey arXiv 2105.12378 (opened); primaries not opened.",
+    "Kundu et al. IJCB 2024 (arXiv 2406.15335) and Crossley et al. EDM 2024: not opened directly; described through Mehta et al. 2511.12468 (its extension), Davalos & Zhang 2609.17883 and Condrey 2601.17280.",
+    "Westwood, PNAS 2025 'The potential existential threat of large language models to online survey research': primary NOT opened; the timing-simulation claim is from the 404 Media article (opened).",
+    "van der Linden & Guo 2008: abstract opened (Cambridge Core); full text not opened. Whether the Bayesian procedure is two-sided is not verified from the full text.",
+    "InferCept (arXiv 2402.01869): not opened; its session-local moving-average duration estimate is as described by Continuum and CacheWise.",
+    "Distalyzer (Nagaraj et al., NSDI 2012): only the USENIX abstract page was opened. It compares good vs bad log sets to find the event durations and state variables most associated with performance; whether it computes duration-vs-size residuals is UNVERIFIED.",
+    "Cai et al. 2504.04715 (model substitution auditing): opened, but sub-sections 4.1.3 and 4.1.5 were not in the returned pages. 'No timing-based method' is verified only for the sections read."
+  ],
+  "dead_ends_respected": "Did not cite thimble, TwinCheck, swarmtraces.org or any CLAUDE_context_swarms.md s7 item. Did not re-research s5 items (Hearsay, ACE, Tool Receipts, OverclaimBench, etc.). No swarm files touched.",
+  "sources": [
+    {
+      "id": "deeplog",
+      "category": "log_anomaly_detection",
+      "title": "DeepLog: Anomaly Detection and Diagnosis from System Logs through Deep Learning (Du, Li, Zheng, Srikumar)",
+      "venue_year": "ACM CCS 2017",
+      "url": "https://users.cs.utah.edu/~lifeifei/papers/deeplog.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; text extracted with pdftotext (redirect from www.cs.utah.edu followed)",
+      "deciding_passage": [
+        "s1: stores parameter values 'as well as the time elapsed between e and its predecessor, into a vector'",
+        "s3.2: parameter value vectors 'for the same log key' form a sequence; a 'slow down' performance anomaly is detectable",
+        "s5.2: abnormal vectors for key 53 'are due to unusually large elapsed time values'"
+      ],
+      "what_it_does": "Per-log-key LSTM regression over parameter vectors that include inter-entry elapsed time; Gaussian on validation MSE sets the confidence interval.",
+      "what_it_does_not": "No conditioning on output size; no correlation test; one-sided slowness; log assumed truthful."
+    },
+    {
+      "id": "fu2009",
+      "category": "log_anomaly_detection",
+      "title": "Execution Anomaly Detection in Distributed Systems through Unstructured Log Analysis (Fu, Lou, Wang, Li)",
+      "venue_year": "IEEE ICDM 2009",
+      "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/07/DM790-CR.pdf",
+      "opened": true,
+      "how_opened": "WebFetch saved PDF; pdftotext; s V read",
+      "deciding_passage": [
+        "s V: 'transition time low performance' when the interval between states is much longer than normal",
+        "s V-A: per-transition Gaussian per machine, mean proportional to machine computing-capacity parameter",
+        "s VI-A: threshold = mean + lambda x standard deviation; Hadoop example 12.32 s learned vs 42.53 s observed"
+      ],
+      "what_it_does": "Learns an FSA from log keys plus a per-transition, per-machine Gaussian duration model; flags slow transitions and excessive loop counts.",
+      "what_it_does_not": "No work/size conditioning; one-sided; no fabrication model."
+    },
+    {
+      "id": "landauer2023",
+      "category": "log_anomaly_detection_survey",
+      "title": "Deep Learning for Anomaly Detection in Log Data: A Survey (Landauer, Onder, Skopik, Wurzenberger)",
+      "venue_year": "Machine Learning with Applications 12 (2023); arXiv 2207.03820",
+      "url": "https://arxiv.org/abs/2207.03820",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries (pages 1, 6, 7, 16, 19)",
+      "deciding_passage": [
+        "Table II PP-2 column: EI (event interval time) appears for DeepLog, SwissLog, Studiawan et al., ATT-GRU, LogNL (5 of 62)",
+        "Table II: LogAnomaly ES, EC; LogBERT ES; LogRobust ES; PLELog ES",
+        "s5 RQ1: 'only few consider event parameters or inter-arrival times for detection'"
+      ],
+      "what_it_does": "Systematic classification of 62 deep log-AD approaches by input features and detection method.",
+      "what_it_does_not": "Does not evaluate whether interval-time methods condition on size parameters."
+    },
+    {
+      "id": "deeploglizer",
+      "category": "log_anomaly_detection_benchmark_harness",
+      "title": "logpai/deep-loglizer (Chen, Liu, Gu, Su, Lyu; experience report arXiv 2107.05908)",
+      "venue_year": "GitHub, Apache-2.0",
+      "url": "https://github.com/logpai/deep-loglizer",
+      "opened": true,
+      "how_opened": "alphaXiv read_files_from_github_repository: '/', deeploglizer/common/preprocess.py, deeploglizer/common/dataloader.py",
+      "deciding_passage": [
+        "preprocess.py FeatureExtractor docstring: feature_type: \"sequentials\", \"semantics\", \"quantitatives\"",
+        "preprocess.py __windows2quantitative: counts log ids per window (no time)",
+        "dataloader.py load_HDFS: appends only EventTemplate; '# struct_log.sort_values(by=[\"Date\", \"Time\"], inplace=True)' commented out"
+      ],
+      "what_it_does": "Reference implementations of DeepLog, LogAnomaly, LogRobust, etc. used in benchmark studies.",
+      "what_it_does_not": "Implements no elapsed-time or duration feature: the benchmark version of DeepLog omits the original paper's parameter/time model."
+    },
+    {
+      "id": "adalog",
+      "category": "log_anomaly_detection",
+      "title": "ADALog: Adaptive Unsupervised Anomaly detection in Logs with Self-attention Masked Language Model",
+      "venue_year": "arXiv 2505.13496 (2025)",
+      "url": "https://arxiv.org/abs/2505.13496",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries (returned when querying LogAnomaly by title)",
+      "deciding_passage": [
+        "s4-A: raw logs cleaned by 'formatting the logs to remove unnecessary information such as time stamps'"
+      ],
+      "what_it_does": "Transformer MLM on individual log lines; illustrates that current log-AD pipelines discard timestamps.",
+      "what_it_does_not": "No duration modelling."
+    },
+    {
+      "id": "soldani_brogi",
+      "category": "trace_and_log_anomaly_survey",
+      "title": "Anomaly Detection and Failure Root Cause Analysis in (Micro)Service-Based Cloud Applications: A Survey (Soldani, Brogi)",
+      "venue_year": "arXiv 2105.12378 (2021); ACM CSUR 2022",
+      "url": "https://arxiv.org/abs/2105.12378",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s3.1: LogSed flags a performance anomaly 'when it logs an expected event significantly later than when expected'",
+        "s3.2.1: Nedelkoski et al. train a second network 'to predict the probability distribution of the response times for a service invocation'",
+        "s3.2.1: TraceAnomaly flags a performance anomaly when trace likelihood under a deep Bayesian network falls below threshold"
+      ],
+      "what_it_does": "Documents that trace/log AD conditions expected response time on event type or call path.",
+      "what_it_does_not": "No surveyed technique conditions on output size or targets fabricated records."
+    },
+    {
+      "id": "distalyzer",
+      "category": "log_performance_diagnosis",
+      "title": "Structured Comparative Analysis of Systems Logs to Diagnose Performance Problems (Nagaraj, Killian, Neville)",
+      "venue_year": "USENIX NSDI 2012",
+      "url": "https://www.usenix.org/conference/nsdi12/technical-sessions/presentation/nagaraj",
+      "opened": true,
+      "how_opened": "WebFetch of USENIX abstract page only",
+      "deciding_passage": [
+        "abstract: compares good and bad log sets to 'infer the strongest associations between system components and performance'"
+      ],
+      "what_it_does": "Finds event durations and variable values whose distributions diverge most across good vs bad runs.",
+      "what_it_does_not": "Diagnosis between two labelled sets, not per-call verification; size-conditioned residual not verified (full text unread)."
+    },
+    {
+      "id": "distserve",
+      "category": "llm_serving_latency",
+      "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving (Zhong et al.)",
+      "venue_year": "OSDI 2024; arXiv 2401.09670",
+      "url": "https://arxiv.org/abs/2401.09670",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s1 footnote 1: 'overall request latency equals TTFT plus TPOT times the number of generated tokens'"
+      ],
+      "what_it_does": "Defines TTFT/TPOT and the linear latency identity; optimises serving for both SLOs.",
+      "what_it_does_not": "Not about detection or provenance."
+    },
+    {
+      "id": "time_will_tell",
+      "category": "llm_timing_side_channel",
+      "title": "Time Will Tell: Timing Side Channels via Output Token Count in Large Language Models (Zhang, Saileshwar, Lie)",
+      "venue_year": "arXiv 2412.15431 (2024)",
+      "url": "https://arxiv.org/abs/2412.15431",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries (pages 1-2, 9-13)",
+      "deciding_passage": [
+        "s2.1: execution time to generate n tokens 'scales linearly with the number of output tokens'",
+        "s6.3 Table 3: Pearson(time, tokens) Tower 1.000, M2M100 0.990, MBart50 0.989, Gemma2 0.987, GPT-4o 0.370",
+        "s6.6: concurrent TTFT/TPOT profiling needed because TPOT on GPT-4o varied by more than 2x"
+      ],
+      "what_it_does": "Infers output token count from response time to leak target language or output class; 74.7% success against remote GPT-4o.",
+      "what_it_does_not": "Never asks whether text was generated vs retrieved/executed; no residual; no agents."
+    },
+    {
+      "id": "early_bird",
+      "category": "llm_timing_side_channel",
+      "title": "The Early Bird Catches the Leak: Unveiling Timing Side Channels in LLM Serving Systems (Song, Pang, Wang et al.)",
+      "venue_year": "arXiv 2409.20002 v5 (2025)",
+      "url": "https://arxiv.org/abs/2409.20002",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries (pages 1, 5-6, 8, 11-12)",
+      "deciding_passage": [
+        "s4-D: on cache hit 'the TTFT remains consistent, regardless of the request length'; on miss it 'increases almost linearly'",
+        "s4-C: document cache hits 'remained consistently fast across different document lengths'; 2.0 s threshold, 89% accuracy, FPR 0.05"
+      ],
+      "what_it_does": "Detects KV/semantic cache hits (retrieved) vs misses (computed) from TTFT, noting length-independence of hits vs length-scaling of misses.",
+      "what_it_does_not": "Input/prefill length, not output length; threshold classifier, not a residual-size correlation; privacy attack, not fabrication detection."
+    },
+    {
+      "id": "gu_prompt_cache_audit",
+      "category": "llm_timing_audit",
+      "title": "Auditing Prompt Caching in Language Model APIs (Gu, Li, Kuditipudi, Liang, Hashimoto)",
+      "venue_year": "ICML 2025; arXiv 2502.07776",
+      "url": "https://arxiv.org/abs/2502.07776",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s2.1: cache hits have faster TTFT than misses '(after accounting for prompt length)'",
+        "s3.1-3.2: one-sided two-sample KS test on hit vs miss TTFT distributions; s4.2: caching detected in 8 of 17 providers, global sharing in 7"
+      ],
+      "what_it_does": "Statistical audit of whether a provider served a response from cache, from timing alone, with valid p-values.",
+      "what_it_does_not": "Audits provider caching, not whether a tool result was executed; no output-size residual."
+    },
+    {
+      "id": "carlini_nasr_timing",
+      "category": "llm_timing_side_channel",
+      "title": "Remote Timing Attacks on Efficient Language Model Inference (Carlini, Nasr)",
+      "venue_year": "arXiv 2410.17175 (2024)",
+      "url": "https://arxiv.org/abs/2410.17175",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "abstract: data-dependent timing from speculative/parallel decoding lets a network observer learn conversation topic (90%+ precision on open-source systems)",
+        "s4.1 footnote: requested exactly 150 output tokens 'to ensure that our attack is relying only on timing characteristics and not ... the length'"
+      ],
+      "what_it_does": "Shows per-token decode time depends on content under efficient-inference methods.",
+      "what_it_does_not": "Not provenance or fabrication detection; matters to N1 only as a noise source on the generation slope."
+    },
+    {
+      "id": "llms_have_rhythm",
+      "category": "llm_timing_fingerprint",
+      "title": "LLMs Have Rhythm: Fingerprinting Large Language Models Using Inter-Token Times and Network Traffic Analysis (Alhazbi, Hussain, Oligeri, Papadimitratos)",
+      "venue_year": "arXiv 2502.20589 (2025)",
+      "url": "https://arxiv.org/abs/2502.20589",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "abstract: inter-token times 'can identify different language models with high accuracy' across local, LAN, remote and VPN; 16 SLMs, 10 proprietary LLMs"
+      ],
+      "what_it_does": "Identifies which model generated a stream from inter-token timing.",
+      "what_it_does_not": "Assumes the stream is generated; does not separate generated from executed output; no residual against work."
+    },
+    {
+      "id": "model_substitution_audit",
+      "category": "llm_api_audit",
+      "title": "Are You Getting What You Pay For? Auditing Model Substitution in LLM APIs (Cai, Shi, Zhao, Song)",
+      "venue_year": "arXiv 2504.04715 v2 (2025)",
+      "url": "https://arxiv.org/abs/2504.04715",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries (pages 1-4, 6, 8-10, 13-14)",
+      "deciding_passage": [
+        "s4: evaluated methods are text classifiers, identity prompting, MMD, benchmarks, logprobs, TopLoc activations and TEEs; no timing-based method in the sections returned"
+      ],
+      "what_it_does": "Black-box verification of the served model; concludes software signals are fragile and recommends TEEs.",
+      "what_it_does_not": "Does not use latency as evidence (in the sections read)."
+    },
+    {
+      "id": "mehta_keystroke",
+      "category": "mgt_detection_timing",
+      "title": "Detecting LLM-Assisted Academic Dishonesty using Keystroke Dynamics (Mehta, Kumar, Singla, Bisht, Singla, Shah)",
+      "venue_year": "arXiv 2511.12468 v2; IEEE T-BIOM 2026 (extends Kundu et al. IJCB 2024)",
+      "url": "https://arxiv.org/abs/2511.12468",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s1: keystroke+text models 'achieve F1 scores between 64% and 96% on unseen writers and unseen text'",
+        "s3.2.3: features are dwell time and flight time per window plus window-level text statistics"
+      ],
+      "what_it_does": "Detects AI-assisted (transcribed or paraphrased) writing from typing timing.",
+      "what_it_does_not": "Human typing domain; no duration residual vs execution; no output-size correlation."
+    },
+    {
+      "id": "davalos_temporal_fingerprint",
+      "category": "mgt_detection_timing",
+      "title": "Does AI Assistance Leave a Temporal Fingerprint? Detecting Overreliance in AI-Assisted Writing and Programming (Davalos, Zhang)",
+      "venue_year": "arXiv 2609.17883; AHFE 2026",
+      "url": "https://arxiv.org/abs/2609.17883",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "Results: simulated delegation F1 0.998 (writing) / 0.997 (code); 1 of 1,447 real writing sessions misclassified as delegation",
+        "Limitations: 'paced retyping would evade timing-only features entirely'"
+      ],
+      "what_it_does": "Detects wholesale AI delegation from production-burst size and pause structure relative to the author's own baseline.",
+      "what_it_does_not": "Human process telemetry; positives are simulated; not agent tool logs."
+    },
+    {
+      "id": "condrey_timing_forgery",
+      "category": "mgt_detection_evasion",
+      "title": "On the Insecurity of Keystroke-Based AI Authorship Detection: Timing-Forgery Attacks Against Motor-Signal Verification (Condrey)",
+      "venue_year": "arXiv 2601.17280 (2026)",
+      "url": "https://arxiv.org/abs/2601.17280",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "abstract: 'all attacks achieve >= 99.8% evasion rates against five classifiers'",
+        "s6 Theorem 1: mutual information between timing features and provenance is zero under copy-type",
+        "abstract: provenance requires architectures 'that bind the observed writing process to the semantic content'"
+      ],
+      "what_it_does": "Shows timing-only provenance detectors are forgeable and formally non-identifiable under copy-type attack.",
+      "what_it_does_not": "Not about agents; does not evaluate residual-vs-work tests."
+    },
+    {
+      "id": "jones_bergen_turing",
+      "category": "mgt_detection_timing_evasion",
+      "title": "People cannot distinguish GPT-4 from a human in a Turing test (Jones, Bergen)",
+      "venue_year": "arXiv 2405.08007 (2024)",
+      "url": "https://arxiv.org/abs/2405.08007",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s4.1: AI messages delayed by 1 + N(0.3,0.03) x n_char + N(0.03,0.003) x n_char_prev + Gamma(2.5,0.25) s",
+        "Appendix Table 2: 'Responses too fast' / 'Responses too slow' are coded reasons for AI verdicts"
+      ],
+      "what_it_does": "Pads AI reply latency in proportion to message length so response timing does not reveal the machine.",
+      "what_it_does_not": "Not a detector; demonstrates that the timing-vs-length tell is known and routinely forged."
+    },
+    {
+      "id": "westwood_404media",
+      "category": "mgt_detection_timing_evasion",
+      "title": "404 Media: 'A researcher made an AI that completely breaks the online surveys scientists rely on' (on Westwood, PNAS 2025)",
+      "venue_year": "404 Media 2025 (secondary source)",
+      "url": "https://www.404media.co/a-researcher-made-an-ai-that-completely-breaks-the-online-surveys-scientists-rely-on/",
+      "opened": true,
+      "how_opened": "WebFetch",
+      "deciding_passage": [
+        "'simulates realistic reading times calibrated to the persona's education level' and types keystroke by keystroke"
+      ],
+      "what_it_does": "Reports an LLM survey agent that forges timing to pass bot detection.",
+      "what_it_does_not": "Secondary source; PNAS primary not opened."
+    },
+    {
+      "id": "veselovsky_gpturk",
+      "category": "mgt_detection_process",
+      "title": "Artificial Artificial Artificial Intelligence: Crowd Workers Widely Use Large Language Models for Text Production Tasks (Veselovsky, Horta Ribeiro, West)",
+      "venue_year": "arXiv 2306.07899 (2023)",
+      "url": "https://arxiv.org/abs/2306.07899",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "abstract: 'combination of keystroke detection and synthetic text classification' estimates 33-46% LLM use",
+        "s3.2 post-hoc validation uses paste events and overlap with the source abstract, not timing"
+      ],
+      "what_it_does": "Uses logged paste actions as process evidence of LLM use.",
+      "what_it_does_not": "No duration model."
+    },
+    {
+      "id": "vanderlinden_guo_2008",
+      "category": "psychometrics_response_time",
+      "title": "Bayesian Procedures for Identifying Aberrant Response-Time Patterns in Adaptive Testing (van der Linden, Guo)",
+      "venue_year": "Psychometrika 73(3):365-384, 2008; doi 10.1007/s11336-007-9046-8",
+      "url": "https://www.cambridge.org/core/journals/psychometrika/article/abs/bayesian-procedures-for-identifying-aberrant-responsetime-patterns-in-adaptive-testing/85CFBD47811965DD943573EB7905CD37",
+      "opened": true,
+      "how_opened": "WebFetch of Cambridge Core abstract page (abstract only)",
+      "deciding_passage": [
+        "abstract: 'separate the speed at which the test taker operates from the time the items require'",
+        "abstract: power study 'using simulated cheating behavior on an adaptive test'"
+      ],
+      "what_it_does": "Residual of log response time against item time-intensity and person speed, used to flag dishonest (aberrant) responding.",
+      "what_it_does_not": "Test items, not tool calls; no output-size correlation. Outside this agent's assigned angles; included because it decides (a)'s abstract form."
+    },
+    {
+      "id": "ask_the_tool",
+      "category": "agent_serving_tool_duration",
+      "title": "Ask the Tool, Don't Guess: Agent Tool Calls Hold Their Progress, and the Serving System Should Read It (Liu, Zhang, Li, Zhang)",
+      "venue_year": "arXiv 2609.18849 (2026)",
+      "url": "https://arxiv.org/abs/2609.18849",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s2.1 Fig. 3: idle replay of recorded SWE-bench commands at median 0.12x; Kendall tau(recorded, idle replay) = -0.04 for long calls",
+        "s2.1: duration 'is not a property of the command itself'; history helps only if collected in the same environment",
+        "s5.3: tool-originated progress/timing treated as untrusted; credit ledger bounds a lying session"
+      ],
+      "what_it_does": "Measures that agent tool-call durations are environment-bound and unpredictable from the command; replaces prediction with live progress for KV-cache decisions.",
+      "what_it_does_not": "No fabrication detection; no residual-size correlation."
+    },
+    {
+      "id": "continuum",
+      "category": "agent_serving_tool_duration",
+      "title": "Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live (Li, He, Mang et al.)",
+      "venue_year": "arXiv 2511.02230 v7; PVLDB 20(1) 2027",
+      "url": "https://arxiv.org/abs/2511.02230",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s4.2: P(tau, f) estimated 'using the empirical CDF derived from historical tool-call records S[f]'",
+        "s5.1: tool name = first word of the bash string; duration = server-side inter-request interval"
+      ],
+      "what_it_does": "Per-tool empirical duration distributions from agent traces, used to set KV-cache TTL.",
+      "what_it_does_not": "No anomaly flag, no residual, no output size, no verification."
+    },
+    {
+      "id": "cachewise",
+      "category": "agent_serving_tool_duration",
+      "title": "CacheWise: Understanding Workloads and Optimizing KVCache Management for Efficiently Serving LLM Coding Agents (Tiwari et al.)",
+      "venue_year": "arXiv 2606.16824 (2026)",
+      "url": "https://arxiv.org/abs/2606.16824",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s5.2: per-cluster duration distributions from TF-IDF/KMeans clusters of tool arguments, from sessions with 'same user, same project'",
+        "Table 3: bash duration P50 python -c 0.1 s, mypy 10 s, docker compose 22 s, git 0.1 s (P90 34 s)"
+      ],
+      "what_it_does": "Command-and-argument-conditioned expected duration for coding-agent tool calls (the expected-workload half of N1a), for eviction ordering.",
+      "what_it_does_not": "Uses predictions only for scheduling; never compares observed to expected to flag a call; no output-size term."
+    },
+    {
+      "id": "ledger",
+      "category": "agent_auditing",
+      "title": "LEDGER: Claim-to-Evidence Trace Graphs for Auditing LLM Agents (Kim, Miao, Liu)",
+      "venue_year": "arXiv 2608.18398 (2026)",
+      "url": "https://arxiv.org/abs/2608.18398",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s3.1: Trace Records retain message content, tool calls and results, 'timing information', and transcript links",
+        "s3.3/s6: graph links claims to tool outputs as evidence; no timing-based or fabrication check described"
+      ],
+      "what_it_does": "Evidence-centred review graph over captured agent sessions.",
+      "what_it_does_not": "Treats tool outputs as evidence; no duration check."
+    },
+    {
+      "id": "trofimov_novikov",
+      "category": "agent_tool_boundary",
+      "title": "When Tool Calls Succeed but Workflows Fail: Anomalies at the Agent-Tool Boundary (Trofimov, Novikov)",
+      "venue_year": "arXiv 2609.15397 (2026)",
+      "url": "https://arxiv.org/abs/2609.15397",
+      "opened": true,
+      "how_opened": "alphaXiv answer_pdf_queries",
+      "deciding_passage": [
+        "s3 Table 2: eight external-effect anomalies (duplicated, missing, orphaned, residue, premature, contaminated, conflicting, phantom); none timing-based"
+      ],
+      "what_it_does": "Transactional anomaly catalog and MCP annotation census.",
+      "what_it_does_not": "No duration signal; no fabricated tool output."
+    }
+  ]
+}

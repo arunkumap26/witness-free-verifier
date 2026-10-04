@@ -1,0 +1,3733 @@
+{
+ "thomasmustier/pi-for-excel-sessions::pi": {
+  "dataset": "thomasmustier/pi-for-excel-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "052a7c665480f9fd1e63ac78433c3ac1244b6550",
+  "sample_path": "2026-02-18T22-26-12-872Z_8b71e852-2334-4201-9335-945b58c56ad5.jsonl",
+  "sample_file_size": 832382,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/pi-for-excel-sessions/resolve/052a7c665480f9fd1e63ac78433c3ac1244b6550/2026-02-18T22-26-12-872Z_8b71e852-2334-4201-9335-945b58c56ad5.jsonl",
+  "bytes_read": 832382,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 219,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 213,
+    "custom_message": 3
+   },
+   "message_entries": 213,
+   "entries_with_timestamp": 219,
+   "ts_example": "2026-02-18T22:26:12.872Z",
+   "message_ts_epoch_ms": 213,
+   "roles": {
+    "user": 9,
+    "assistant": 105,
+    "toolResult": 99
+   },
+   "tool_calls": 99,
+   "tool_results": 99,
+   "results_joined_to_call": 99,
+   "results_with_isError_field": 99,
+   "models": {
+    "gpt-5.3-codex": 105
+   },
+   "providers": {
+    "openai-codex": 105
+   },
+   "assistant_responseId_shapes": {
+    "<missing>": 105
+   },
+   "assistant_with_usage": 105,
+   "call_to_result_gap_s": {
+    "n": 99,
+    "p50": 4.008,
+    "min": 1.509,
+    "max": 24.222
+   }
+  },
+  "id_like_keys": {}
+ },
+ "thomasmustier/pi-nes-sessions::pi": {
+  "dataset": "thomasmustier/pi-nes-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "47d55a2545e0db79909b74f61e3a5dd06fcf8680",
+  "sample_path": "2026-04-07T13-24-32-201Z_abcdaa36-4ffe-4c24-8384-96eeee5db003.jsonl",
+  "sample_file_size": 165931,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/pi-nes-sessions/resolve/47d55a2545e0db79909b74f61e3a5dd06fcf8680/2026-04-07T13-24-32-201Z_abcdaa36-4ffe-4c24-8384-96eeee5db003.jsonl",
+  "bytes_read": 165931,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 33,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 30
+   },
+   "message_entries": 30,
+   "entries_with_timestamp": 33,
+   "ts_example": "2026-04-07T13:24:32.201Z",
+   "message_ts_epoch_ms": 30,
+   "roles": {
+    "user": 1,
+    "assistant": 15,
+    "toolResult": 14
+   },
+   "tool_calls": 14,
+   "tool_results": 14,
+   "results_joined_to_call": 14,
+   "results_with_isError_field": 14,
+   "models": {
+    "gpt-5.4": 15
+   },
+   "providers": {
+    "openai-codex": 15
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 14,
+    "resp_<55>": 1
+   },
+   "assistant_with_usage": 15,
+   "call_to_result_gap_s": {
+    "n": 14,
+    "p50": 14.573,
+    "min": 4.07,
+    "max": 80.988
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 14,
+    "resp_<55>": 1
+   }
+  }
+ },
+ "championswimmer/pi-coding-sessions::pi": {
+  "dataset": "championswimmer/pi-coding-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "f655c6c2aabf742c19217ce4de180e9124799901",
+  "sample_path": "_upload_staging/2026-04-03T16-21-52-424Z_0fe99c8d-b8d7-4a8f-9093-b64541ed9494.jsonl",
+  "sample_file_size": 554044,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/championswimmer/pi-coding-sessions/resolve/f655c6c2aabf742c19217ce4de180e9124799901/_upload_staging/2026-04-03T16-21-52-424Z_0fe99c8d-b8d7-4a8f-9093-b64541ed9494.jsonl",
+  "bytes_read": 554044,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 92,
+   "entry_types": {
+    "session": 1,
+    "model_change": 2,
+    "thinking_level_change": 1,
+    "message": 79,
+    "custom": 9
+   },
+   "message_entries": 79,
+   "entries_with_timestamp": 92,
+   "ts_example": "2026-04-03T16:21:52.424Z",
+   "message_ts_epoch_ms": 79,
+   "roles": {
+    "user": 1,
+    "assistant": 39,
+    "toolResult": 39
+   },
+   "tool_calls": 39,
+   "tool_results": 39,
+   "results_joined_to_call": 39,
+   "results_with_isError_field": 39,
+   "models": {
+    "gpt-5.3-codex": 39
+   },
+   "providers": {
+    "openai": 39
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 39
+   },
+   "assistant_with_usage": 39,
+   "call_to_result_gap_s": {
+    "n": 39,
+    "p50": 4.027,
+    "min": 1.622,
+    "max": 41.522
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 39
+   },
+   ".message.details.responseId": {
+    "<str14>": 8
+   },
+   ".message.content.#.arguments.responseId": {
+    "<str14>": 6
+   }
+  }
+ },
+ "jedisct1/security-audits::claude_code": {
+  "dataset": "jedisct1/security-audits",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "6d527ff0081eec6704c2a4f00e1ef8d308ae7366",
+  "sample_path": "misc/46/466cd55c-d7b1-453d-a51d-dc9a657ecbf1.jsonl",
+  "sample_file_size": 20003,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/jedisct1/security-audits/resolve/6d527ff0081eec6704c2a4f00e1ef8d308ae7366/misc/46/466cd55c-d7b1-453d-a51d-dc9a657ecbf1.jsonl",
+  "bytes_read": 20003,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 4,
+   "entry_types": {
+    "system": 1,
+    "user": 1,
+    "assistant": 1,
+    "last-prompt": 1
+   },
+   "user_assistant_entries": 2,
+   "ua_with_timestamp": 2,
+   "ts_iso_ms_z": 0,
+   "ts_example": "2026-04-16T22:03:45.700131+00:00",
+   "tool_use_blocks": 0,
+   "tool_result_blocks": 0,
+   "results_joined_to_call": 0,
+   "calls_with_result": 0,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 0,
+   "assistant_with_usage": 0,
+   "requestId_shapes": {
+    "<missing>": 1
+   },
+   "message_id_shapes": {
+    "<uuid>": 1
+   },
+   "models": {
+    "gpt-5.4": 1
+   },
+   "cc_versions": {
+    "1.0.2": 3
+   },
+   "anthropic_request_id_decode": {
+    "n": 0,
+    "decoded": 0,
+    "v7": 0,
+    "agree_m2_p600": 0
+   }
+  },
+  "id_like_keys": {}
+ },
+ "moikapy/0xKobolds::pi": {
+  "dataset": "moikapy/0xKobolds",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "50d5828c62757953a90a25328ad2450f646fc987",
+  "sample_path": "_upload_staging/2026-04-07T17-20-29-947Z_8612bc0a-5ba1-44b2-a97b-375d9a374454.jsonl",
+  "sample_file_size": 35174,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/moikapy/0xKobolds/resolve/50d5828c62757953a90a25328ad2450f646fc987/_upload_staging/2026-04-07T17-20-29-947Z_8612bc0a-5ba1-44b2-a97b-375d9a374454.jsonl",
+  "bytes_read": 35174,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 32,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 29
+   },
+   "message_entries": 29,
+   "entries_with_timestamp": 32,
+   "ts_example": "2026-04-07T17:20:29.947Z",
+   "message_ts_epoch_ms": 29,
+   "roles": {
+    "user": 2,
+    "assistant": 13,
+    "toolResult": 14
+   },
+   "tool_calls": 14,
+   "tool_results": 14,
+   "results_joined_to_call": 14,
+   "results_with_isError_field": 14,
+   "models": {
+    "kimi-k2.5:cloud": 13
+   },
+   "providers": {
+    "ollama": 13
+   },
+   "assistant_responseId_shapes": {
+    "chatcmpl-<3>": 12,
+    "chatcmpl-<2>": 1
+   },
+   "assistant_with_usage": 13,
+   "call_to_result_gap_s": {
+    "n": 14,
+    "p50": 8.07,
+    "min": 2.929,
+    "max": 20.572
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "chatcmpl-<3>": 12,
+    "chatcmpl-<2>": 1
+   }
+  }
+ },
+ "merve/agent_traces::claude_code": {
+  "dataset": "merve/agent_traces",
+  "class": "claude_code",
+  "licence": "apache-2.0",
+  "sha": "2e1b3fcebf283ea6ba0f15aebfc0b216959dac5d",
+  "sample_path": "3b0d95a2-a2cb-41b3-9e0f-cca05e649e14.jsonl",
+  "sample_file_size": 25830,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/merve/agent_traces/resolve/2e1b3fcebf283ea6ba0f15aebfc0b216959dac5d/3b0d95a2-a2cb-41b3-9e0f-cca05e649e14.jsonl",
+  "bytes_read": 25830,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 24,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "custom": 4,
+    "message": 17
+   },
+   "message_entries": 17,
+   "entries_with_timestamp": 24,
+   "ts_example": "2026-04-10T18:58:27.465Z",
+   "message_ts_epoch_ms": 17,
+   "roles": {
+    "user": 3,
+    "assistant": 7,
+    "toolResult": 7
+   },
+   "tool_calls": 7,
+   "tool_results": 7,
+   "results_joined_to_call": 7,
+   "results_with_isError_field": 7,
+   "models": {
+    "moonshotai/Kimi-K2.5": 7
+   },
+   "providers": {
+    "huggingface": 7
+   },
+   "assistant_responseId_shapes": {
+    "<str31>": 4,
+    "oecZfVf-<23>": 1,
+    "oecZhGa-<23>": 1,
+    "oecZvEq-<23>": 1
+   },
+   "assistant_with_usage": 7,
+   "call_to_result_gap_s": {
+    "n": 7,
+    "p50": 6.043,
+    "min": 4.531,
+    "max": 9.405
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "<str31>": 4,
+    "oecZfVf-<23>": 1,
+    "oecZhGa-<23>": 1
+   }
+  }
+ },
+ "julien-c/pi-sessions::pi": {
+  "dataset": "julien-c/pi-sessions",
+  "class": "pi",
+  "licence": "cc-by-4.0",
+  "sha": "700416886204bcdbca133373daed3d2504c853cf",
+  "sample_path": "2026-04-24T08-55-06-439Z_019dbeb3-2bc6-7168-b61c-bc831188d0c3.jsonl",
+  "sample_file_size": 81372,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/julien-c/pi-sessions/resolve/700416886204bcdbca133373daed3d2504c853cf/2026-04-24T08-55-06-439Z_019dbeb3-2bc6-7168-b61c-bc831188d0c3.jsonl",
+  "bytes_read": 81372,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 61,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 57,
+    "compaction": 1
+   },
+   "message_entries": 57,
+   "entries_with_timestamp": 61,
+   "ts_example": "2026-04-24T08:55:06.439Z",
+   "message_ts_epoch_ms": 57,
+   "roles": {
+    "user": 1,
+    "assistant": 29,
+    "toolResult": 27
+   },
+   "tool_calls": 27,
+   "tool_results": 27,
+   "results_joined_to_call": 27,
+   "results_with_isError_field": 27,
+   "models": {
+    "unsloth/Qwen3.6-27B-GGUF:Q8_0": 29
+   },
+   "providers": {
+    "LlamaBarn": 29
+   },
+   "assistant_responseId_shapes": {
+    "chatcmpl-<32>": 27,
+    "<missing>": 2
+   },
+   "assistant_with_usage": 29,
+   "call_to_result_gap_s": {
+    "n": 27,
+    "p50": 6.194,
+    "min": 3.387,
+    "max": 19.752
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "chatcmpl-<32>": 27
+   }
+  }
+ },
+ "rgruchalski/combust-labs_pi-mono-docker::pi": {
+  "dataset": "rgruchalski/combust-labs_pi-mono-docker",
+  "class": "pi",
+  "licence": "apache-2.0",
+  "sha": "7829c4a27427bb57ccf03fdaf21f43de0b8075cc",
+  "sample_path": "2026-04-22T20-10-22-942Z_019db6d0-af5d-7031-9764-3b319046fcf0.jsonl",
+  "sample_file_size": 58530,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/rgruchalski/combust-labs_pi-mono-docker/resolve/7829c4a27427bb57ccf03fdaf21f43de0b8075cc/2026-04-22T20-10-22-942Z_019db6d0-af5d-7031-9764-3b319046fcf0.jsonl",
+  "bytes_read": 58530,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 61,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 58
+   },
+   "message_entries": 58,
+   "entries_with_timestamp": 61,
+   "ts_example": "2026-04-22T20:10:22.942Z",
+   "message_ts_epoch_ms": 58,
+   "roles": {
+    "user": 10,
+    "assistant": 29,
+    "toolResult": 19
+   },
+   "tool_calls": 19,
+   "tool_results": 19,
+   "results_joined_to_call": 19,
+   "results_with_isError_field": 19,
+   "models": {
+    "mlx-community/MiniMax-M2.7-8bit": 29
+   },
+   "providers": {
+    "myproxy": 29
+   },
+   "assistant_responseId_shapes": {
+    "<uuid>": 29
+   },
+   "assistant_with_usage": 29,
+   "call_to_result_gap_s": {
+    "n": 19,
+    "p50": 5.563,
+    "min": 2.469,
+    "max": 18.025
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "<uuid>": 29
+   }
+  }
+ },
+ "thomasmustier/pi-mono-sessions::pi": {
+  "dataset": "thomasmustier/pi-mono-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "d0895347aaac586876f53bd5d71b2209ab275dca",
+  "sample_path": "2026-01-08T10-15-01-781Z_212436f4-136b-4270-9137-e33bdd75387f.jsonl",
+  "sample_file_size": 24085,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/pi-mono-sessions/resolve/d0895347aaac586876f53bd5d71b2209ab275dca/2026-01-08T10-15-01-781Z_212436f4-136b-4270-9137-e33bdd75387f.jsonl",
+  "bytes_read": 24085,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 15,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 3,
+    "message": 10
+   },
+   "message_entries": 10,
+   "entries_with_timestamp": 15,
+   "ts_example": "2026-01-08T10:15:01.781Z",
+   "message_ts_epoch_ms": 10,
+   "roles": {
+    "user": 3,
+    "assistant": 5,
+    "toolResult": 2
+   },
+   "tool_calls": 2,
+   "tool_results": 2,
+   "results_joined_to_call": 2,
+   "results_with_isError_field": 2,
+   "models": {
+    "gemini-3-flash-preview": 5
+   },
+   "providers": {
+    "google-gemini-cli": 5
+   },
+   "assistant_responseId_shapes": {
+    "<missing>": 5
+   },
+   "assistant_with_usage": 5,
+   "call_to_result_gap_s": {
+    "n": 2,
+    "p50": 4.159,
+    "min": 3.211,
+    "max": 5.106
+   }
+  },
+  "id_like_keys": {}
+ },
+ "thomasmustier/pi-extensions-sessions::pi": {
+  "dataset": "thomasmustier/pi-extensions-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "17e22c5903cb95d9e7bcac345d81df69f0a4cce3",
+  "sample_path": "2026-01-11T23-42-04-622Z_fdbcda49-429e-42b7-87e9-002a6a5a6b06.jsonl",
+  "sample_file_size": 111427,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/pi-extensions-sessions/resolve/17e22c5903cb95d9e7bcac345d81df69f0a4cce3/2026-01-11T23-42-04-622Z_fdbcda49-429e-42b7-87e9-002a6a5a6b06.jsonl",
+  "bytes_read": 111427,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 51,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 48
+   },
+   "message_entries": 48,
+   "entries_with_timestamp": 51,
+   "ts_example": "2026-01-11T23:42:04.622Z",
+   "message_ts_epoch_ms": 48,
+   "roles": {
+    "user": 2,
+    "assistant": 24,
+    "toolResult": 22
+   },
+   "tool_calls": 22,
+   "tool_results": 22,
+   "results_joined_to_call": 22,
+   "results_with_isError_field": 22,
+   "models": {
+    "gpt-5.2-codex": 24
+   },
+   "providers": {
+    "openai-codex": 24
+   },
+   "assistant_responseId_shapes": {
+    "<missing>": 24
+   },
+   "assistant_with_usage": 24,
+   "call_to_result_gap_s": {
+    "n": 22,
+    "p50": 3.728,
+    "min": 1.678,
+    "max": 34.921
+   }
+  },
+  "id_like_keys": {}
+ },
+ "thomasmustier/economist-tui-sessions::pi": {
+  "dataset": "thomasmustier/economist-tui-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "95b6dba5c1398052972beeb083812d78a68cc4f9",
+  "sample_path": "2026-01-23T18-01-28-662Z_f92e3555-629d-4f7a-aae6-3a48e00d9db9.jsonl",
+  "sample_file_size": 318756,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/economist-tui-sessions/resolve/95b6dba5c1398052972beeb083812d78a68cc4f9/2026-01-23T18-01-28-662Z_f92e3555-629d-4f7a-aae6-3a48e00d9db9.jsonl",
+  "bytes_read": 318756,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 150,
+   "entry_types": {
+    "session": 1,
+    "model_change": 2,
+    "thinking_level_change": 2,
+    "message": 127,
+    "custom": 18
+   },
+   "message_entries": 127,
+   "entries_with_timestamp": 150,
+   "ts_example": "2026-01-23T18:01:28.662Z",
+   "message_ts_epoch_ms": 127,
+   "roles": {
+    "bashExecution": 2,
+    "user": 7,
+    "assistant": 62,
+    "toolResult": 56
+   },
+   "tool_calls": 56,
+   "tool_results": 56,
+   "results_joined_to_call": 56,
+   "results_with_isError_field": 56,
+   "models": {
+    "gpt-5.2-codex": 62
+   },
+   "providers": {
+    "openai-codex": 62
+   },
+   "assistant_responseId_shapes": {
+    "<missing>": 62
+   },
+   "assistant_with_usage": 62,
+   "call_to_result_gap_s": {
+    "n": 56,
+    "p50": 3.397,
+    "min": 1.167,
+    "max": 113.984
+   }
+  },
+  "id_like_keys": {}
+ },
+ "thomasmustier/clean-slides-sessions::pi": {
+  "dataset": "thomasmustier/clean-slides-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "0ecc915c7d3223b5d6c049cda242e8cacd65e85b",
+  "sample_path": "2026-02-11T12-27-35-861Z_603b8ba1-c79a-4b9d-933c-26f8af58d821.jsonl",
+  "sample_file_size": 954430,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/clean-slides-sessions/resolve/0ecc915c7d3223b5d6c049cda242e8cacd65e85b/2026-02-11T12-27-35-861Z_603b8ba1-c79a-4b9d-933c-26f8af58d821.jsonl",
+  "bytes_read": 954430,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 275,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 272
+   },
+   "message_entries": 272,
+   "entries_with_timestamp": 275,
+   "ts_example": "2026-02-11T12:27:35.861Z",
+   "message_ts_epoch_ms": 272,
+   "roles": {
+    "user": 10,
+    "assistant": 135,
+    "toolResult": 127
+   },
+   "tool_calls": 127,
+   "tool_results": 127,
+   "results_joined_to_call": 127,
+   "results_with_isError_field": 127,
+   "models": {
+    "gpt-5.3-codex": 135
+   },
+   "providers": {
+    "openai-codex": 135
+   },
+   "assistant_responseId_shapes": {
+    "<missing>": 135
+   },
+   "assistant_with_usage": 135,
+   "call_to_result_gap_s": {
+    "n": 127,
+    "p50": 4.568,
+    "min": 1.623,
+    "max": 305.997
+   }
+  },
+  "id_like_keys": {}
+ },
+ "OmarRabhI/pi-sessions::pi": {
+  "dataset": "OmarRabhI/pi-sessions",
+  "class": "pi",
+  "licence": "apache-2.0",
+  "sha": "d3d60fea09149d36a61b228f39e5ac4fcdc81012",
+  "sample_path": "_upload_staging/2026-04-25T08-56-12-423Z_019dc3da-8986-76be-85a6-2cf787cea61e.jsonl",
+  "sample_file_size": 21292,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/OmarRabhI/pi-sessions/resolve/d3d60fea09149d36a61b228f39e5ac4fcdc81012/_upload_staging/2026-04-25T08-56-12-423Z_019dc3da-8986-76be-85a6-2cf787cea61e.jsonl",
+  "bytes_read": 21292,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 33,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 30
+   },
+   "message_entries": 30,
+   "entries_with_timestamp": 33,
+   "ts_example": "2026-04-25T08:56:12.423Z",
+   "message_ts_epoch_ms": 30,
+   "roles": {
+    "user": 2,
+    "assistant": 15,
+    "toolResult": 13
+   },
+   "tool_calls": 13,
+   "tool_results": 13,
+   "results_joined_to_call": 13,
+   "results_with_isError_field": 13,
+   "models": {
+    "Qwen3.6-35B-A3B-APEX-I-Balanced": 15
+   },
+   "providers": {
+    "llama-cpp": 15
+   },
+   "assistant_responseId_shapes": {
+    "chatcmpl-<32>": 15
+   },
+   "assistant_with_usage": 15,
+   "call_to_result_gap_s": {
+    "n": 13,
+    "p50": 1.683,
+    "min": 0.881,
+    "max": 3.671
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "chatcmpl-<32>": 15
+   }
+  }
+ },
+ "woxQAQ/pi-web::pi": {
+  "dataset": "woxQAQ/pi-web",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "1928c53ba9e285e660190fca030676b832a036c9",
+  "sample_path": "_upload_staging/2026-05-06T19-39-06-569Z_019dfecd-15c6-76cd-b0e3-de95b424416c.jsonl",
+  "sample_file_size": 340909,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/woxQAQ/pi-web/resolve/1928c53ba9e285e660190fca030676b832a036c9/_upload_staging/2026-05-06T19-39-06-569Z_019dfecd-15c6-76cd-b0e3-de95b424416c.jsonl",
+  "bytes_read": 340909,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 88,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "custom": 15,
+    "message": 70
+   },
+   "message_entries": 70,
+   "entries_with_timestamp": 88,
+   "ts_example": "2026-05-06T19:39:06.569Z",
+   "message_ts_epoch_ms": 70,
+   "roles": {
+    "user": 7,
+    "assistant": 30,
+    "toolResult": 33
+   },
+   "tool_calls": 33,
+   "tool_results": 33,
+   "results_joined_to_call": 33,
+   "results_with_isError_field": 33,
+   "models": {
+    "gpt-5.4": 30
+   },
+   "providers": {
+    "openai": 30
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 29,
+    "<missing>": 1
+   },
+   "assistant_with_usage": 30,
+   "call_to_result_gap_s": {
+    "n": 33,
+    "p50": 7.857,
+    "min": 3.815,
+    "max": 55.003
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 29
+   }
+  }
+ },
+ "jedisct1/agent-traces-flashmania::claude_code": {
+  "dataset": "jedisct1/agent-traces-flashmania",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "978b00094cc3e8c13e3bcca83a41ee45da109793",
+  "sample_path": "mimo-2.5-pro/6c4f9a0e-d158-4cec-ac4f-fbc4cb5d0f3b.jsonl",
+  "sample_file_size": 271966,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/jedisct1/agent-traces-flashmania/resolve/978b00094cc3e8c13e3bcca83a41ee45da109793/mimo-2.5-pro/6c4f9a0e-d158-4cec-ac4f-fbc4cb5d0f3b.jsonl",
+  "bytes_read": 271966,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 113,
+   "entry_types": {
+    "system": 1,
+    "user": 61,
+    "assistant": 50,
+    "last-prompt": 1
+   },
+   "user_assistant_entries": 111,
+   "ua_with_timestamp": 111,
+   "ts_iso_ms_z": 0,
+   "ts_example": "2026-05-19T20:29:22.057660+00:00",
+   "tool_use_blocks": 49,
+   "tool_result_blocks": 49,
+   "results_joined_to_call": 49,
+   "calls_with_result": 49,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 49,
+   "assistant_with_usage": 0,
+   "requestId_shapes": {
+    "<missing>": 50
+   },
+   "message_id_shapes": {
+    "<uuid>": 50
+   },
+   "models": {
+    "gpt-5.5": 50
+   },
+   "cc_versions": {
+    "1.0.18": 112
+   },
+   "call_to_result_gap_s": {
+    "n": 49,
+    "p50": 0.0,
+    "min": 0.0,
+    "max": 0.004
+   },
+   "anthropic_request_id_decode": {
+    "n": 0,
+    "decoded": 0,
+    "v7": 0,
+    "agree_m2_p600": 0
+   }
+  },
+  "id_like_keys": {}
+ },
+ "dacorvo/hf-hub-session-pi-traces::pi": {
+  "dataset": "dacorvo/hf-hub-session-pi-traces",
+  "class": "pi",
+  "licence": "apache-2.0",
+  "sha": "54094d0a27d31fe288ea82c1935d37c7f84eb599",
+  "sample_path": "data/pi-local-20260608-120326/2026-06-08T12-31-28-270Z_019ea737-6e0a-7399-b6e3-b686867dc315.jsonl",
+  "sample_file_size": 62948,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/dacorvo/hf-hub-session-pi-traces/resolve/54094d0a27d31fe288ea82c1935d37c7f84eb599/data/pi-local-20260608-120326/2026-06-08T12-31-28-270Z_019ea737-6e0a-7399-b6e3-b686867dc315.jsonl",
+  "bytes_read": 62948,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 25,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 22
+   },
+   "message_entries": 22,
+   "entries_with_timestamp": 25,
+   "ts_example": "2026-06-08T12:31:28.270Z",
+   "message_ts_epoch_ms": 22,
+   "roles": {
+    "user": 4,
+    "assistant": 11,
+    "toolResult": 7
+   },
+   "tool_calls": 7,
+   "tool_results": 7,
+   "results_joined_to_call": 7,
+   "results_with_isError_field": 7,
+   "models": {
+    "google/gemma-4-12B-it-qat-q4_0-gguf": 11
+   },
+   "providers": {
+    "local": 11
+   },
+   "assistant_responseId_shapes": {
+    "chatcmpl-<32>": 11
+   },
+   "assistant_with_usage": 11,
+   "call_to_result_gap_s": {
+    "n": 7,
+    "p50": 6.401,
+    "min": 1.347,
+    "max": 14.652
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "chatcmpl-<32>": 11
+   }
+  }
+ },
+ "dacorvo/transformers-coding-session-pi-traces::pi": {
+  "dataset": "dacorvo/transformers-coding-session-pi-traces",
+  "class": "pi",
+  "licence": "apache-2.0",
+  "sha": "4a37658db70418a51189938d00775e0a1f28a94b",
+  "sample_path": "data/pi-local-20260602-091017/2026-06-02T09-37-01-952Z_019e87b1-91ff-762e-944f-f94f19672621.jsonl",
+  "sample_file_size": 212687,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/dacorvo/transformers-coding-session-pi-traces/resolve/4a37658db70418a51189938d00775e0a1f28a94b/data/pi-local-20260602-091017/2026-06-02T09-37-01-952Z_019e87b1-91ff-762e-944f-f94f19672621.jsonl",
+  "bytes_read": 212687,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 61,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 58
+   },
+   "message_entries": 58,
+   "entries_with_timestamp": 61,
+   "ts_example": "2026-06-02T09:37:01.952Z",
+   "message_ts_epoch_ms": 58,
+   "roles": {
+    "user": 4,
+    "assistant": 29,
+    "toolResult": 25
+   },
+   "tool_calls": 25,
+   "tool_results": 25,
+   "results_joined_to_call": 25,
+   "results_with_isError_field": 25,
+   "models": {
+    "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF": 29
+   },
+   "providers": {
+    "local": 29
+   },
+   "assistant_responseId_shapes": {
+    "chatcmpl-<32>": 29
+   },
+   "assistant_with_usage": 29,
+   "call_to_result_gap_s": {
+    "n": 25,
+    "p50": 1.227,
+    "min": 0.471,
+    "max": 34.338
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "chatcmpl-<32>": 29
+   }
+  }
+ },
+ "julien-c/synthtraces::pi": {
+  "dataset": "julien-c/synthtraces",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "2641d21a28fc9765f262d193e8fe8caec3b2347d",
+  "sample_path": "sessions/huggingface.js/2026-06-03T16-16-19-019Z_019e8e45-7c4b-7f34-bf27-3ef31a458baf.jsonl",
+  "sample_file_size": 38753,
+  "sample_lfs_sha256": "fa1a8aec87a63f1472b964c327caf066dc7f6a94210e17ae44b87b52eab7f86c",
+  "url": "https://huggingface.co/datasets/julien-c/synthtraces/resolve/2641d21a28fc9765f262d193e8fe8caec3b2347d/sessions/huggingface.js/2026-06-03T16-16-19-019Z_019e8e45-7c4b-7f34-bf27-3ef31a458baf.jsonl",
+  "bytes_read": 38753,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 29,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 26
+   },
+   "message_entries": 26,
+   "entries_with_timestamp": 29,
+   "ts_example": "2026-06-03T16:16:19.019Z",
+   "message_ts_epoch_ms": 26,
+   "roles": {
+    "user": 5,
+    "assistant": 12,
+    "toolResult": 9
+   },
+   "tool_calls": 9,
+   "tool_results": 9,
+   "results_joined_to_call": 9,
+   "results_with_isError_field": 9,
+   "models": {
+    "Qwen/Qwen3-Coder-Next": 12
+   },
+   "providers": {
+    "huggingface": 12
+   },
+   "assistant_responseId_shapes": {
+    "<str32>": 12
+   },
+   "assistant_with_usage": 12,
+   "call_to_result_gap_s": {
+    "n": 9,
+    "p50": 2.271,
+    "min": 2.03,
+    "max": 3.719
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "<str32>": 12
+   }
+  }
+ },
+ "abidlabs/gradio-pi-sessions::pi": {
+  "dataset": "abidlabs/gradio-pi-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "7af63c1cf3cb8a92c8a96abaa5d46c233c25f6a0",
+  "sample_path": "sessions/gradio/2026-06-10T17-00-41-416Z_019eb27a-a048-7021-b915-0768c4d0f825.jsonl",
+  "sample_file_size": 190430,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/abidlabs/gradio-pi-sessions/resolve/7af63c1cf3cb8a92c8a96abaa5d46c233c25f6a0/sessions/gradio/2026-06-10T17-00-41-416Z_019eb27a-a048-7021-b915-0768c4d0f825.jsonl",
+  "bytes_read": 190430,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 76,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 73
+   },
+   "message_entries": 73,
+   "entries_with_timestamp": 76,
+   "ts_example": "2026-06-10T17:00:41.416Z",
+   "message_ts_epoch_ms": 73,
+   "roles": {
+    "user": 4,
+    "assistant": 36,
+    "toolResult": 33
+   },
+   "tool_calls": 34,
+   "tool_results": 33,
+   "results_joined_to_call": 33,
+   "results_with_isError_field": 33,
+   "models": {
+    "gpt-5.5": 36
+   },
+   "providers": {
+    "openai-codex": 36
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 36
+   },
+   "assistant_with_usage": 36,
+   "call_to_result_gap_s": {
+    "n": 33,
+    "p50": 3.669,
+    "min": 1.308,
+    "max": 17.567
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 36
+   }
+  }
+ },
+ "abidlabs/trackio-pi-sessions::pi": {
+  "dataset": "abidlabs/trackio-pi-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "4c1420de7fdd76b023916f382174ca3ff6cd1346",
+  "sample_path": "sessions/trackio/2026-06-10T17-17-06-380Z_019eb289-a7cc-76a5-bff9-aa0f777c9f7c.jsonl",
+  "sample_file_size": 440372,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/abidlabs/trackio-pi-sessions/resolve/4c1420de7fdd76b023916f382174ca3ff6cd1346/sessions/trackio/2026-06-10T17-17-06-380Z_019eb289-a7cc-76a5-bff9-aa0f777c9f7c.jsonl",
+  "bytes_read": 440372,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 91,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 88
+   },
+   "message_entries": 88,
+   "entries_with_timestamp": 91,
+   "ts_example": "2026-06-10T17:17:06.380Z",
+   "message_ts_epoch_ms": 88,
+   "roles": {
+    "user": 7,
+    "assistant": 40,
+    "toolResult": 41
+   },
+   "tool_calls": 42,
+   "tool_results": 41,
+   "results_joined_to_call": 41,
+   "results_with_isError_field": 41,
+   "models": {
+    "gpt-5.5": 40
+   },
+   "providers": {
+    "openai-codex": 40
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 39,
+    "<missing>": 1
+   },
+   "assistant_with_usage": 40,
+   "call_to_result_gap_s": {
+    "n": 41,
+    "p50": 5.631,
+    "min": 1.326,
+    "max": 28.838
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 39
+   }
+  }
+ },
+ "build-small-hackathon/kirana-detective-build-traces::claude_code": {
+  "dataset": "build-small-hackathon/kirana-detective-build-traces",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "d61ca08eac929e80086a0ae04f4b8e56e3e561f2",
+  "sample_path": "sessions/d1cfb9da-4fdc-4945-a5b7-a6c24b9a9794.jsonl",
+  "sample_file_size": 558612,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/build-small-hackathon/kirana-detective-build-traces/resolve/d61ca08eac929e80086a0ae04f4b8e56e3e561f2/sessions/d1cfb9da-4fdc-4945-a5b7-a6c24b9a9794.jsonl",
+  "bytes_read": 558612,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 240,
+   "entry_types": {
+    "last-prompt": 15,
+    "mode": 15,
+    "permission-mode": 15,
+    "attachment": 8,
+    "file-history-snapshot": 24,
+    "user": 55,
+    "ai-title": 15,
+    "assistant": 80,
+    "system": 13
+   },
+   "user_assistant_entries": 135,
+   "ua_with_timestamp": 135,
+   "ts_iso_ms_z": 135,
+   "ts_example": "2026-06-10T11:51:28.210Z",
+   "tool_use_blocks": 47,
+   "tool_result_blocks": 47,
+   "results_joined_to_call": 47,
+   "calls_with_result": 47,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 47,
+   "assistant_with_usage": 80,
+   "requestId_shapes": {
+    "req_<24>": 80
+   },
+   "message_id_shapes": {
+    "msg_<24>": 80
+   },
+   "models": {
+    "claude-sonnet-4-6": 80
+   },
+   "cc_versions": {
+    "2.1.170": 156
+   },
+   "call_to_result_gap_s": {
+    "n": 47,
+    "p50": 0.041,
+    "min": 0.008,
+    "max": 0.12
+   },
+   "anthropic_request_id_decode": {
+    "n": 80,
+    "decoded": 80,
+    "v7": 80,
+    "agree_m2_p600": 80,
+    "delta_ms_p50": 7368,
+    "delta_ms_min": 2726,
+    "delta_ms_max": 48291
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 80
+   }
+  }
+ },
+ "armand0e/claude-fable-5-claude-code::claude_code": {
+  "dataset": "armand0e/claude-fable-5-claude-code",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "7388ef96f3179f23b6b3618b96572f1aa9b84510",
+  "sample_path": "58344d60-96b2-4ff5-8987-08b3e4f6f515.jsonl",
+  "sample_file_size": 740207,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/armand0e/claude-fable-5-claude-code/resolve/7388ef96f3179f23b6b3618b96572f1aa9b84510/58344d60-96b2-4ff5-8987-08b3e4f6f515.jsonl",
+  "bytes_read": 740207,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 95,
+   "entry_types": {
+    "queue-operation": 2,
+    "user": 16,
+    "attachment": 5,
+    "ai-title": 22,
+    "assistant": 30,
+    "last-prompt": 4,
+    "mode": 16
+   },
+   "user_assistant_entries": 46,
+   "ua_with_timestamp": 46,
+   "ts_iso_ms_z": 46,
+   "ts_example": "2026-06-11T19:06:02.730Z",
+   "tool_use_blocks": 14,
+   "tool_result_blocks": 14,
+   "results_joined_to_call": 14,
+   "calls_with_result": 14,
+   "results_is_error_true": 1,
+   "user_entries_with_toolUseResult": 14,
+   "assistant_with_usage": 30,
+   "requestId_shapes": {
+    "req_<24>": 30
+   },
+   "message_id_shapes": {
+    "msg_<24>": 30
+   },
+   "models": {
+    "claude-fable-5": 30
+   },
+   "cc_versions": {
+    "2.1.170": 51
+   },
+   "call_to_result_gap_s": {
+    "n": 14,
+    "p50": 0.368,
+    "min": 0.008,
+    "max": 63.636
+   },
+   "anthropic_request_id_decode": {
+    "n": 30,
+    "decoded": 30,
+    "v7": 30,
+    "agree_m2_p600": 30,
+    "delta_ms_p50": 9399,
+    "delta_ms_min": 4903,
+    "delta_ms_max": 36205
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 30
+   }
+  }
+ },
+ "armand0e/claude-fable-5-claude-code::claude_code_subagent": {
+  "dataset": "armand0e/claude-fable-5-claude-code",
+  "class": "claude_code_subagent",
+  "licence": "mit",
+  "sha": "7388ef96f3179f23b6b3618b96572f1aa9b84510",
+  "sample_path": "agent-aa3612085487e6586.jsonl",
+  "sample_file_size": 221592,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/armand0e/claude-fable-5-claude-code/resolve/7388ef96f3179f23b6b3618b96572f1aa9b84510/agent-aa3612085487e6586.jsonl",
+  "bytes_read": 221592,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 34,
+   "entry_types": {
+    "user": 12,
+    "attachment": 2,
+    "assistant": 20
+   },
+   "user_assistant_entries": 32,
+   "ua_with_timestamp": 32,
+   "ts_iso_ms_z": 32,
+   "ts_example": "2026-06-12T12:47:34.468Z",
+   "tool_use_blocks": 11,
+   "tool_result_blocks": 11,
+   "results_joined_to_call": 11,
+   "calls_with_result": 11,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 0,
+   "assistant_with_usage": 20,
+   "requestId_shapes": {
+    "req_<24>": 20
+   },
+   "message_id_shapes": {
+    "msg_<24>": 20
+   },
+   "models": {
+    "claude-fable-5": 20
+   },
+   "cc_versions": {
+    "2.1.173": 34
+   },
+   "call_to_result_gap_s": {
+    "n": 11,
+    "p50": 0.012,
+    "min": 0.002,
+    "max": 0.304
+   },
+   "anthropic_request_id_decode": {
+    "n": 20,
+    "decoded": 20,
+    "v7": 20,
+    "agree_m2_p600": 20,
+    "delta_ms_p50": 7920,
+    "delta_ms_min": 3561,
+    "delta_ms_max": 93445
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 20
+   }
+  }
+ },
+ "build-small-hackathon/sense-garden-traces::codex": {
+  "dataset": "build-small-hackathon/sense-garden-traces",
+  "class": "codex",
+  "licence": "cc-by-4.0",
+  "sha": "1a13d90deb699faf7b385a4eedb32937d7fb589f",
+  "sample_path": "rollout-2026-06-06T23-59-15-019e9ef2-8a01-7840-ab67-883b5e5895c9.jsonl",
+  "sample_file_size": 1719675,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/build-small-hackathon/sense-garden-traces/resolve/1a13d90deb699faf7b385a4eedb32937d7fb589f/rollout-2026-06-06T23-59-15-019e9ef2-8a01-7840-ab67-883b5e5895c9.jsonl",
+  "bytes_read": 1719675,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "codex",
+  "metrics": {
+   "format": "codex_rollout_jsonl",
+   "n_lines": 744,
+   "with_timestamp": 744,
+   "ts_iso_ms_z": 744,
+   "ts_example": "2026-06-06T21:59:16.876Z",
+   "payload_types": {
+    "response_item/function_call": 119,
+    "response_item/function_call_output": 119,
+    "response_item/message": 91,
+    "event_msg/token_count": 90,
+    "response_item/reasoning": 85,
+    "event_msg/agent_message": 78,
+    "response_item/custom_tool_call": 31,
+    "response_item/custom_tool_call_output": 31,
+    "event_msg/patch_apply_end": 29,
+    "event_msg/web_search_end": 19,
+    "response_item/web_search_call": 19,
+    "event_msg/user_message": 8,
+    "event_msg/task_started": 7,
+    "turn_context/None": 7,
+    "event_msg/task_complete": 7,
+    "event_msg/mcp_tool_call_end": 2,
+    "session_meta/None": 1,
+    "event_msg/thread_rolled_back": 1
+   },
+   "session_meta": {
+    "cli_version": "0.135.0-alpha.1",
+    "originator": "Codex Desktop",
+    "model_provider": "openai",
+    "source": "vscode"
+   },
+   "tool_calls": 150,
+   "tool_outputs": 150,
+   "outputs_joined_to_call": 150,
+   "call_item_id_shapes": {
+    "<missing>": 150
+   },
+   "exec_command_end": 0,
+   "exec_end_with_duration": 0,
+   "exec_end_with_exit_code": 0,
+   "token_count_events": 90,
+   "call_to_output_gap_s": {
+    "n": 150,
+    "p50": 1.186,
+    "min": 0.066,
+    "max": 69.685
+   }
+  },
+  "id_like_keys": {}
+ },
+ "build-small-hackathon/pit-wall-chaos-traces::codex": {
+  "dataset": "build-small-hackathon/pit-wall-chaos-traces",
+  "class": "codex",
+  "licence": "cc-by-4.0",
+  "sha": "60bd7c2609d7a0adb31fb31236caadf596c62c11",
+  "sample_path": "rollout-2026-06-03T18-05-32-019e8e3b-a089-7fe1-aa0c-e464a84d4c2f.jsonl",
+  "sample_file_size": 5439816,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/build-small-hackathon/pit-wall-chaos-traces/resolve/60bd7c2609d7a0adb31fb31236caadf596c62c11/rollout-2026-06-03T18-05-32-019e8e3b-a089-7fe1-aa0c-e464a84d4c2f.jsonl",
+  "bytes_read": 3000000,
+  "truncated": true,
+  "bad_lines": 0,
+  "sniffed": "codex",
+  "metrics": {
+   "format": "codex_rollout_jsonl",
+   "n_lines": 91,
+   "with_timestamp": 91,
+   "ts_iso_ms_z": 91,
+   "ts_example": "2026-06-03T16:07:27.902Z",
+   "payload_types": {
+    "response_item/function_call": 22,
+    "response_item/function_call_output": 21,
+    "response_item/message": 10,
+    "response_item/reasoning": 10,
+    "event_msg/agent_message": 7,
+    "event_msg/token_count": 7,
+    "event_msg/mcp_tool_call_end": 4,
+    "event_msg/web_search_end": 3,
+    "response_item/web_search_call": 3,
+    "session_meta/None": 1,
+    "event_msg/task_started": 1,
+    "turn_context/None": 1,
+    "event_msg/user_message": 1
+   },
+   "session_meta": {
+    "cli_version": "0.135.0-alpha.1",
+    "originator": "Codex Desktop",
+    "model_provider": "openai",
+    "source": "vscode"
+   },
+   "tool_calls": 22,
+   "tool_outputs": 21,
+   "outputs_joined_to_call": 21,
+   "call_item_id_shapes": {
+    "<missing>": 22
+   },
+   "exec_command_end": 0,
+   "exec_end_with_duration": 0,
+   "exec_end_with_exit_code": 0,
+   "token_count_events": 7,
+   "call_to_output_gap_s": {
+    "n": 21,
+    "p50": 16.151,
+    "min": 0.243,
+    "max": 146.075
+   }
+  },
+  "id_like_keys": {}
+ },
+ "build-small-hackathon/clue-vibes-traces::codex": {
+  "dataset": "build-small-hackathon/clue-vibes-traces",
+  "class": "codex",
+  "licence": "cc-by-4.0",
+  "sha": "fe8ba2792ec5415f9cc8014e00979e7f1e287028",
+  "sample_path": "rollout-2026-06-07T14-36-54-019ea216-0e47-7fd0-b791-2c14d47e5b66.jsonl",
+  "sample_file_size": 752375,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/build-small-hackathon/clue-vibes-traces/resolve/fe8ba2792ec5415f9cc8014e00979e7f1e287028/rollout-2026-06-07T14-36-54-019ea216-0e47-7fd0-b791-2c14d47e5b66.jsonl",
+  "bytes_read": 752375,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "codex",
+  "metrics": {
+   "format": "codex_rollout_jsonl",
+   "n_lines": 430,
+   "with_timestamp": 430,
+   "ts_iso_ms_z": 430,
+   "ts_example": "2026-06-07T12:36:56.467Z",
+   "payload_types": {
+    "response_item/function_call": 68,
+    "response_item/function_call_output": 68,
+    "response_item/reasoning": 61,
+    "response_item/message": 53,
+    "event_msg/token_count": 49,
+    "event_msg/agent_message": 41,
+    "event_msg/web_search_end": 15,
+    "response_item/web_search_call": 15,
+    "response_item/custom_tool_call": 11,
+    "event_msg/patch_apply_end": 11,
+    "response_item/custom_tool_call_output": 11,
+    "event_msg/task_started": 5,
+    "turn_context/None": 5,
+    "event_msg/user_message": 5,
+    "event_msg/task_complete": 4,
+    "event_msg/mcp_tool_call_end": 2,
+    "response_item/tool_search_call": 2,
+    "response_item/tool_search_output": 2,
+    "session_meta/None": 1,
+    "event_msg/turn_aborted": 1
+   },
+   "session_meta": {
+    "cli_version": "0.135.0-alpha.1",
+    "originator": "Codex Desktop",
+    "model_provider": "openai",
+    "source": "vscode"
+   },
+   "tool_calls": 79,
+   "tool_outputs": 79,
+   "outputs_joined_to_call": 79,
+   "call_item_id_shapes": {
+    "<missing>": 79
+   },
+   "exec_command_end": 0,
+   "exec_end_with_duration": 0,
+   "exec_end_with_exit_code": 0,
+   "token_count_events": 49,
+   "call_to_output_gap_s": {
+    "n": 79,
+    "p50": 1.598,
+    "min": 0.084,
+    "max": 4037.196
+   }
+  },
+  "id_like_keys": {}
+ },
+ "naazimsnh02/tutordesk-agent-traces::claude_code": {
+  "dataset": "naazimsnh02/tutordesk-agent-traces",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "4d538090ddd302ff632f53645db5cd606dd94c0b",
+  "sample_path": "build_sessions/37fc77e2-8af1-428a-baba-7b7841a0e675.jsonl",
+  "sample_file_size": 508678,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/naazimsnh02/tutordesk-agent-traces/resolve/4d538090ddd302ff632f53645db5cd606dd94c0b/build_sessions/37fc77e2-8af1-428a-baba-7b7841a0e675.jsonl",
+  "bytes_read": 508678,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 185,
+   "entry_types": {
+    "last-prompt": 12,
+    "mode": 12,
+    "permission-mode": 12,
+    "attachment": 9,
+    "file-history-snapshot": 13,
+    "user": 45,
+    "ai-title": 12,
+    "assistant": 65,
+    "system": 5
+   },
+   "user_assistant_entries": 110,
+   "ua_with_timestamp": 110,
+   "ts_iso_ms_z": 110,
+   "ts_example": "2026-06-13T16:10:11.988Z",
+   "tool_use_blocks": 38,
+   "tool_result_blocks": 38,
+   "results_joined_to_call": 38,
+   "calls_with_result": 38,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 38,
+   "assistant_with_usage": 65,
+   "requestId_shapes": {
+    "req_<24>": 65
+   },
+   "message_id_shapes": {
+    "msg_<24>": 65
+   },
+   "models": {
+    "claude-sonnet-4-6": 65
+   },
+   "cc_versions": {
+    "2.1.177": 124
+   },
+   "call_to_result_gap_s": {
+    "n": 38,
+    "p50": 0.022,
+    "min": 0.007,
+    "max": 0.075
+   },
+   "anthropic_request_id_decode": {
+    "n": 65,
+    "decoded": 65,
+    "v7": 65,
+    "agree_m2_p600": 65,
+    "delta_ms_p50": 5211,
+    "delta_ms_min": 1445,
+    "delta_ms_max": 118388
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 65
+   }
+  }
+ },
+ "drdavidtang/build-small-agent-trace::codex": {
+  "dataset": "drdavidtang/build-small-agent-trace",
+  "class": "codex",
+  "licence": "mit",
+  "sha": "af8e727914b9bda8aeabe8753206b4eb54eb03c7",
+  "sample_path": "2026/06/14/rollout-2026-06-14T14-37-10-019ec659-be3c-77b3-b2f1-f42b671de4f1.jsonl",
+  "sample_file_size": 300340,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/drdavidtang/build-small-agent-trace/resolve/af8e727914b9bda8aeabe8753206b4eb54eb03c7/2026/06/14/rollout-2026-06-14T14-37-10-019ec659-be3c-77b3-b2f1-f42b671de4f1.jsonl",
+  "bytes_read": 300340,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "codex",
+  "metrics": {
+   "format": "codex_rollout_jsonl",
+   "n_lines": 117,
+   "with_timestamp": 117,
+   "ts_iso_ms_z": 117,
+   "ts_example": "2026-06-14T13:37:35.906Z",
+   "payload_types": {
+    "response_item/message": 21,
+    "event_msg/token_count": 17,
+    "response_item/function_call": 16,
+    "response_item/function_call_output": 16,
+    "event_msg/agent_message": 13,
+    "response_item/reasoning": 6,
+    "session_meta/None": 5,
+    "event_msg/task_started": 5,
+    "turn_context/None": 5,
+    "event_msg/user_message": 5,
+    "event_msg/task_complete": 5,
+    "response_item/custom_tool_call": 1,
+    "event_msg/patch_apply_end": 1,
+    "response_item/custom_tool_call_output": 1
+   },
+   "session_meta": {
+    "cli_version": "0.140.0-alpha.2",
+    "originator": "Codex Desktop",
+    "model_provider": "openai",
+    "source": "vscode"
+   },
+   "tool_calls": 17,
+   "tool_outputs": 17,
+   "outputs_joined_to_call": 17,
+   "call_item_id_shapes": {
+    "<missing>": 17
+   },
+   "exec_command_end": 0,
+   "exec_end_with_duration": 0,
+   "exec_end_with_exit_code": 0,
+   "token_count_events": 17,
+   "call_to_output_gap_s": {
+    "n": 17,
+    "p50": 0.096,
+    "min": 0.068,
+    "max": 30.002
+   }
+  },
+  "id_like_keys": {}
+ },
+ "kingkw1/read-along-ai-agent-traces::codex": {
+  "dataset": "kingkw1/read-along-ai-agent-traces",
+  "class": "codex",
+  "licence": "mit",
+  "sha": "0bee208f7b132645aa9c8410248ec7aa3be375ca",
+  "sample_path": "rollout-2026-06-12T23-19-26-019ebefd-d39b-7ef2-a1e6-ec90d41e4f33.jsonl",
+  "sample_file_size": 592624,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/kingkw1/read-along-ai-agent-traces/resolve/0bee208f7b132645aa9c8410248ec7aa3be375ca/rollout-2026-06-12T23-19-26-019ebefd-d39b-7ef2-a1e6-ec90d41e4f33.jsonl",
+  "bytes_read": 592624,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "codex",
+  "metrics": {
+   "format": "codex_rollout_jsonl",
+   "n_lines": 396,
+   "with_timestamp": 396,
+   "ts_iso_ms_z": 396,
+   "ts_example": "2026-06-13T03:19:26.436Z",
+   "payload_types": {
+    "response_item/function_call": 84,
+    "response_item/function_call_output": 84,
+    "event_msg/token_count": 58,
+    "response_item/message": 47,
+    "response_item/reasoning": 45,
+    "event_msg/agent_message": 40,
+    "response_item/custom_tool_call": 6,
+    "event_msg/patch_apply_end": 6,
+    "response_item/custom_tool_call_output": 6,
+    "session_meta/None": 4,
+    "event_msg/task_started": 4,
+    "turn_context/None": 4,
+    "event_msg/user_message": 4,
+    "event_msg/task_complete": 4
+   },
+   "session_meta": {
+    "cli_version": "0.140.0-alpha.2",
+    "originator": "codex_vscode",
+    "model_provider": "openai",
+    "source": "vscode"
+   },
+   "tool_calls": 90,
+   "tool_outputs": 90,
+   "outputs_joined_to_call": 90,
+   "call_item_id_shapes": {
+    "<missing>": 90
+   },
+   "exec_command_end": 0,
+   "exec_end_with_duration": 0,
+   "exec_end_with_exit_code": 0,
+   "token_count_events": 58,
+   "call_to_output_gap_s": {
+    "n": 90,
+    "p50": 0.163,
+    "min": 0.048,
+    "max": 32.416
+   }
+  },
+  "id_like_keys": {}
+ },
+ "build-small-hackathon/MatchWise-agent-trace::codex": {
+  "dataset": "build-small-hackathon/MatchWise-agent-trace",
+  "class": "codex",
+  "licence": "mit",
+  "sha": "10606ddabd1288a204ffed62d664ccb05ea17b50",
+  "sample_path": "rollout-2026-06-15T10-42-38-019ec9b2-3132-7811-a8d5-c5c6cb776843.jsonl",
+  "sample_file_size": 1644336,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/build-small-hackathon/MatchWise-agent-trace/resolve/10606ddabd1288a204ffed62d664ccb05ea17b50/rollout-2026-06-15T10-42-38-019ec9b2-3132-7811-a8d5-c5c6cb776843.jsonl",
+  "bytes_read": 1644336,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "codex",
+  "metrics": {
+   "format": "codex_rollout_jsonl",
+   "n_lines": 245,
+   "with_timestamp": 245,
+   "ts_iso_ms_z": 245,
+   "ts_example": "2026-06-15T05:15:31.333Z",
+   "payload_types": {
+    "response_item/function_call": 56,
+    "response_item/function_call_output": 56,
+    "event_msg/token_count": 33,
+    "response_item/reasoning": 30,
+    "response_item/message": 29,
+    "event_msg/agent_message": 24,
+    "response_item/custom_tool_call": 3,
+    "response_item/custom_tool_call_output": 3,
+    "event_msg/task_started": 2,
+    "turn_context/None": 2,
+    "event_msg/user_message": 2,
+    "event_msg/task_complete": 2,
+    "event_msg/patch_apply_end": 2,
+    "session_meta/None": 1
+   },
+   "session_meta": {
+    "cli_version": "0.140.0-alpha.2",
+    "originator": "codex_vscode",
+    "model_provider": "openai",
+    "source": "vscode"
+   },
+   "tool_calls": 59,
+   "tool_outputs": 59,
+   "outputs_joined_to_call": 59,
+   "call_item_id_shapes": {
+    "<missing>": 59
+   },
+   "exec_command_end": 0,
+   "exec_end_with_duration": 0,
+   "exec_end_with_exit_code": 0,
+   "token_count_events": 33,
+   "call_to_output_gap_s": {
+    "n": 59,
+    "p50": 0.139,
+    "min": 0.054,
+    "max": 5.003
+   }
+  },
+  "id_like_keys": {}
+ },
+ "thomasmustier/pine-of-glass-sessions::pi": {
+  "dataset": "thomasmustier/pine-of-glass-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "b9a6b263895cb7ab8d53924d1ba2fe50a71604ea",
+  "sample_path": "2026-06-05T12-01-35-002Z_019e97a8-fd1a-7541-978e-03501c70a697.jsonl",
+  "sample_file_size": 288336,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/pine-of-glass-sessions/resolve/b9a6b263895cb7ab8d53924d1ba2fe50a71604ea/2026-06-05T12-01-35-002Z_019e97a8-fd1a-7541-978e-03501c70a697.jsonl",
+  "bytes_read": 288336,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 99,
+   "entry_types": {
+    "session": 1,
+    "model_change": 5,
+    "thinking_level_change": 8,
+    "custom": 2,
+    "message": 83
+   },
+   "message_entries": 83,
+   "entries_with_timestamp": 99,
+   "ts_example": "2026-06-05T12:01:35.002Z",
+   "message_ts_epoch_ms": 83,
+   "roles": {
+    "user": 4,
+    "assistant": 39,
+    "toolResult": 40
+   },
+   "tool_calls": 40,
+   "tool_results": 40,
+   "results_joined_to_call": 40,
+   "results_with_isError_field": 40,
+   "models": {
+    "gpt-5.5": 39
+   },
+   "providers": {
+    "openai-codex": 39
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 39
+   },
+   "assistant_with_usage": 39,
+   "call_to_result_gap_s": {
+    "n": 40,
+    "p50": 7.633,
+    "min": 2.342,
+    "max": 32.292
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 39
+   }
+  }
+ },
+ "thomasmustier/pi-session-hud-sessions::pi": {
+  "dataset": "thomasmustier/pi-session-hud-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "041268c03fd24623bb659b6e68558025845d5419",
+  "sample_path": "2026-06-10T21-36-27-024Z_019eb377-1790-7365-af18-eb8793e54bd6.jsonl",
+  "sample_file_size": 2057604,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/pi-session-hud-sessions/resolve/041268c03fd24623bb659b6e68558025845d5419/2026-06-10T21-36-27-024Z_019eb377-1790-7365-af18-eb8793e54bd6.jsonl",
+  "bytes_read": 2057604,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 420,
+   "entry_types": {
+    "session": 1,
+    "model_change": 47,
+    "thinking_level_change": 18,
+    "custom": 10,
+    "message": 343,
+    "custom_message": 1
+   },
+   "message_entries": 343,
+   "entries_with_timestamp": 420,
+   "ts_example": "2026-06-10T21:36:27.024Z",
+   "message_ts_epoch_ms": 343,
+   "roles": {
+    "user": 11,
+    "assistant": 143,
+    "toolResult": 189
+   },
+   "tool_calls": 189,
+   "tool_results": 189,
+   "results_joined_to_call": 189,
+   "results_with_isError_field": 189,
+   "models": {
+    "gpt-5.5": 134,
+    "claude-fable-5": 9
+   },
+   "providers": {
+    "openai-codex": 134,
+    "anthropic": 9
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 134,
+    "msg_<24>": 9
+   },
+   "assistant_with_usage": 143,
+   "call_to_result_gap_s": {
+    "n": 189,
+    "p50": 11.695,
+    "min": 1.834,
+    "max": 309.849
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 134,
+    "msg_<24>": 9
+   }
+  }
+ },
+ "cfahlgren1/Fable-5-traces::claude_code": {
+  "dataset": "cfahlgren1/Fable-5-traces",
+  "class": "claude_code",
+  "licence": "agpl-3.0",
+  "sha": "0ba6f53852f296f8389290b112054b47cec2dc1f",
+  "sample_path": "sessions/e735714a-93cf-4ccb-9ce4-6be482b2e736.jsonl",
+  "sample_file_size": 56302,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/cfahlgren1/Fable-5-traces/resolve/0ba6f53852f296f8389290b112054b47cec2dc1f/sessions/e735714a-93cf-4ccb-9ce4-6be482b2e736.jsonl",
+  "bytes_read": 56302,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 63,
+   "entry_types": {
+    "last-prompt": 3,
+    "mode": 3,
+    "permission-mode": 3,
+    "attachment": 6,
+    "file-history-snapshot": 7,
+    "user": 15,
+    "assistant": 18,
+    "system": 5,
+    "ai-title": 3
+   },
+   "user_assistant_entries": 33,
+   "ua_with_timestamp": 33,
+   "ts_iso_ms_z": 33,
+   "ts_example": "2026-06-10T20:45:34.251Z",
+   "tool_use_blocks": 4,
+   "tool_result_blocks": 4,
+   "results_joined_to_call": 4,
+   "calls_with_result": 4,
+   "results_is_error_true": 4,
+   "user_entries_with_toolUseResult": 4,
+   "assistant_with_usage": 18,
+   "requestId_shapes": {
+    "<missing>": 18
+   },
+   "message_id_shapes": {
+    "msg_<24>": 18
+   },
+   "models": {
+    "Mini-Fable-5": 18
+   },
+   "cc_versions": {
+    "2.1.172": 44
+   },
+   "call_to_result_gap_s": {
+    "n": 4,
+    "p50": 0.001,
+    "min": 0.0,
+    "max": 0.002
+   },
+   "anthropic_request_id_decode": {
+    "n": 0,
+    "decoded": 0,
+    "v7": 0,
+    "agree_m2_p600": 0
+   }
+  },
+  "id_like_keys": {}
+ },
+ "cfahlgren1/Fable-5-traces::claude_code_subagent": {
+  "dataset": "cfahlgren1/Fable-5-traces",
+  "class": "claude_code_subagent",
+  "licence": "agpl-3.0",
+  "sha": "0ba6f53852f296f8389290b112054b47cec2dc1f",
+  "sample_path": "sessions/agent-a9c1f64b3300617da.jsonl",
+  "sample_file_size": 65808,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/cfahlgren1/Fable-5-traces/resolve/0ba6f53852f296f8389290b112054b47cec2dc1f/sessions/agent-a9c1f64b3300617da.jsonl",
+  "bytes_read": 65808,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 27,
+   "entry_types": {
+    "user": 10,
+    "attachment": 2,
+    "assistant": 15
+   },
+   "user_assistant_entries": 25,
+   "ua_with_timestamp": 25,
+   "ts_iso_ms_z": 25,
+   "ts_example": "2026-06-13T14:41:50.817Z",
+   "tool_use_blocks": 9,
+   "tool_result_blocks": 9,
+   "results_joined_to_call": 9,
+   "calls_with_result": 9,
+   "results_is_error_true": 1,
+   "user_entries_with_toolUseResult": 1,
+   "assistant_with_usage": 15,
+   "requestId_shapes": {
+    "req_<24>": 15
+   },
+   "message_id_shapes": {
+    "msg_<24>": 15
+   },
+   "models": {
+    "claude-opus-4-8": 15
+   },
+   "cc_versions": {
+    "2.1.177": 27
+   },
+   "call_to_result_gap_s": {
+    "n": 9,
+    "p50": 0.073,
+    "min": 0.008,
+    "max": 0.732
+   },
+   "anthropic_request_id_decode": {
+    "n": 15,
+    "decoded": 15,
+    "v7": 15,
+    "agree_m2_p600": 15,
+    "delta_ms_p50": 4815,
+    "delta_ms_min": 2588,
+    "delta_ms_max": 67523
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 15
+   }
+  }
+ },
+ "Samarth0710/traceweave::claude_code": {
+  "dataset": "Samarth0710/traceweave",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "f5abd7e1c62389a29de7e920ae37ea82bf75bae0",
+  "sample_path": "sessions/copilot/23ede455-bbbd-459b-8dfe-5f26ac740998.jsonl",
+  "sample_file_size": 59304,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/Samarth0710/traceweave/resolve/f5abd7e1c62389a29de7e920ae37ea82bf75bae0/sessions/copilot/23ede455-bbbd-459b-8dfe-5f26ac740998.jsonl",
+  "bytes_read": 59304,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "codex",
+  "metrics": {
+   "format": "codex_rollout_jsonl",
+   "n_lines": 3,
+   "with_timestamp": 3,
+   "ts_iso_ms_z": 3,
+   "ts_example": "2026-06-16T20:12:31.476Z",
+   "payload_types": {
+    "session_meta/None": 1,
+    "event_msg/user_message": 1,
+    "response_item/message": 1
+   },
+   "session_meta": {},
+   "tool_calls": 0,
+   "tool_outputs": 0,
+   "outputs_joined_to_call": 0,
+   "call_item_id_shapes": {},
+   "exec_command_end": 0,
+   "exec_end_with_duration": 0,
+   "exec_end_with_exit_code": 0,
+   "token_count_events": 0
+  },
+  "id_like_keys": {}
+ },
+ "Samarth0710/traceweave-viewer-test::claude_code": {
+  "dataset": "Samarth0710/traceweave-viewer-test",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "363d34f32425be6582f63413a40908ab9db7909f",
+  "sample_path": "sessions/cursor/00ec6568-6878-4858-bd91-1be5d9080243.jsonl",
+  "sample_file_size": 17362,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/Samarth0710/traceweave-viewer-test/resolve/363d34f32425be6582f63413a40908ab9db7909f/sessions/cursor/00ec6568-6878-4858-bd91-1be5d9080243.jsonl",
+  "bytes_read": 17362,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 28,
+   "entry_types": {
+    "session": 1,
+    "message": 27
+   },
+   "message_entries": 27,
+   "entries_with_timestamp": 28,
+   "ts_example": "2026-06-17T18:27:31.527587Z",
+   "message_ts_epoch_ms": 0,
+   "roles": {
+    "user": 1,
+    "assistant": 26
+   },
+   "tool_calls": 0,
+   "tool_results": 0,
+   "results_joined_to_call": 0,
+   "results_with_isError_field": 0,
+   "models": {
+    "None": 26
+   },
+   "providers": {
+    "None": 26
+   },
+   "assistant_responseId_shapes": {
+    "<missing>": 26
+   },
+   "assistant_with_usage": 0
+  },
+  "id_like_keys": {}
+ },
+ "xhochy/conda-forge-agent-traces::pi": {
+  "dataset": "xhochy/conda-forge-agent-traces",
+  "class": "pi",
+  "licence": "bsd-3-clause",
+  "sha": "046e1aff399803cc767fc76d91860ffd65b24add",
+  "sample_path": "2026-07-01T18-38-01-450Z_019f1ef9-48ea-712a-8ab6-a2260a786c7a.jsonl",
+  "sample_file_size": 213412,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/xhochy/conda-forge-agent-traces/resolve/046e1aff399803cc767fc76d91860ffd65b24add/2026-07-01T18-38-01-450Z_019f1ef9-48ea-712a-8ab6-a2260a786c7a.jsonl",
+  "bytes_read": 213412,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 69,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 63,
+    "custom": 3
+   },
+   "message_entries": 63,
+   "entries_with_timestamp": 69,
+   "ts_example": "2026-07-01T18:38:01.450Z",
+   "message_ts_epoch_ms": 63,
+   "roles": {
+    "user": 1,
+    "assistant": 31,
+    "toolResult": 31
+   },
+   "tool_calls": 31,
+   "tool_results": 31,
+   "results_joined_to_call": 31,
+   "results_with_isError_field": 31,
+   "models": {
+    "deepseek-v4-flash": 31
+   },
+   "providers": {
+    "ds4": 31
+   },
+   "assistant_responseId_shapes": {
+    "chatcmpl-<3>": 31
+   },
+   "assistant_with_usage": 31,
+   "call_to_result_gap_s": {
+    "n": 31,
+    "p50": 17.019,
+    "min": 5.045,
+    "max": 263.691
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "chatcmpl-<3>": 31
+   },
+   ".message.details.responseId": {
+    "<str14>": 1
+   }
+  }
+ },
+ "thomasmustier/pi-computer-use-sessions::pi": {
+  "dataset": "thomasmustier/pi-computer-use-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "8353644936ee6cf1a718aec251c250a5773fd257",
+  "sample_path": "2026-04-25T17-22-06-275Z_019dc5a9-b342-7192-9a91-f474512facbe.jsonl",
+  "sample_file_size": 726935,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/pi-computer-use-sessions/resolve/8353644936ee6cf1a718aec251c250a5773fd257/2026-04-25T17-22-06-275Z_019dc5a9-b342-7192-9a91-f474512facbe.jsonl",
+  "bytes_read": 726935,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 11,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 8
+   },
+   "message_entries": 8,
+   "entries_with_timestamp": 11,
+   "ts_example": "2026-04-25T17:22:06.275Z",
+   "message_ts_epoch_ms": 8,
+   "roles": {
+    "user": 1,
+    "assistant": 4,
+    "toolResult": 3
+   },
+   "tool_calls": 3,
+   "tool_results": 3,
+   "results_joined_to_call": 3,
+   "results_with_isError_field": 3,
+   "models": {
+    "gpt-5.5": 4
+   },
+   "providers": {
+    "openai-codex": 4
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 4
+   },
+   "assistant_with_usage": 4,
+   "call_to_result_gap_s": {
+    "n": 3,
+    "p50": 2.794,
+    "min": 1.927,
+    "max": 4.075
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 4
+   }
+  }
+ },
+ "thomasmustier/pi-symphony-sessions::pi": {
+  "dataset": "thomasmustier/pi-symphony-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "0697350f9654d0cd98cc81c37aab1ab8d58d345e",
+  "sample_path": "2026-03-19T19-22-20-595Z_b6eafb35-d4ea-42ef-a303-2e888aaa58b8.jsonl",
+  "sample_file_size": 29246,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/pi-symphony-sessions/resolve/0697350f9654d0cd98cc81c37aab1ab8d58d345e/2026-03-19T19-22-20-595Z_b6eafb35-d4ea-42ef-a303-2e888aaa58b8.jsonl",
+  "bytes_read": 29246,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 13,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 9,
+    "custom": 1
+   },
+   "message_entries": 9,
+   "entries_with_timestamp": 13,
+   "ts_example": "2026-03-19T19:22:20.595Z",
+   "message_ts_epoch_ms": 9,
+   "roles": {
+    "user": 1,
+    "assistant": 3,
+    "toolResult": 5
+   },
+   "tool_calls": 5,
+   "tool_results": 5,
+   "results_joined_to_call": 5,
+   "results_with_isError_field": 5,
+   "models": {
+    "claude-opus-4-6": 3
+   },
+   "providers": {
+    "anthropic": 3
+   },
+   "assistant_responseId_shapes": {
+    "msg_<24>": 3
+   },
+   "assistant_with_usage": 3,
+   "call_to_result_gap_s": {
+    "n": 5,
+    "p50": 7.64,
+    "min": 5.807,
+    "max": 7.689
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "msg_<24>": 3
+   }
+  }
+ },
+ "thomasmustier/heypocket-reader-sessions::pi": {
+  "dataset": "thomasmustier/heypocket-reader-sessions",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "70f6d07dfb7b0617098e4082702a5e8e091a95d9",
+  "sample_path": "2026-03-26T09-00-45-568Z_265b8150-41a7-4cfd-9ac1-fcc0d3be83cd.jsonl",
+  "sample_file_size": 143719,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomasmustier/heypocket-reader-sessions/resolve/70f6d07dfb7b0617098e4082702a5e8e091a95d9/2026-03-26T09-00-45-568Z_265b8150-41a7-4cfd-9ac1-fcc0d3be83cd.jsonl",
+  "bytes_read": 143719,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 43,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 40
+   },
+   "message_entries": 40,
+   "entries_with_timestamp": 43,
+   "ts_example": "2026-03-26T09:00:45.568Z",
+   "message_ts_epoch_ms": 40,
+   "roles": {
+    "user": 2,
+    "assistant": 16,
+    "toolResult": 22
+   },
+   "tool_calls": 22,
+   "tool_results": 22,
+   "results_joined_to_call": 22,
+   "results_with_isError_field": 22,
+   "models": {
+    "gpt-5.4": 16
+   },
+   "providers": {
+    "openai-codex": 16
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 16
+   },
+   "assistant_with_usage": 16,
+   "call_to_result_gap_s": {
+    "n": 22,
+    "p50": 15.216,
+    "min": 4.071,
+    "max": 18.916
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 16
+   }
+  }
+ },
+ "lucacorbucci/llm_timeline_deepseek_v4_flash-pi::pi": {
+  "dataset": "lucacorbucci/llm_timeline_deepseek_v4_flash-pi",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "b46eaa8c12b4b30207ec05401dc9dd9d747ee51a",
+  "sample_path": "2026-06-18T15-39-08-116Z_019edb62-d5d4-7e02-8f75-e0be44a955f9.jsonl",
+  "sample_file_size": 367157,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/lucacorbucci/llm_timeline_deepseek_v4_flash-pi/resolve/b46eaa8c12b4b30207ec05401dc9dd9d747ee51a/2026-06-18T15-39-08-116Z_019edb62-d5d4-7e02-8f75-e0be44a955f9.jsonl",
+  "bytes_read": 367157,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 184,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 181
+   },
+   "message_entries": 181,
+   "entries_with_timestamp": 184,
+   "ts_example": "2026-06-18T15:39:08.116Z",
+   "message_ts_epoch_ms": 181,
+   "roles": {
+    "user": 3,
+    "assistant": 87,
+    "toolResult": 91
+   },
+   "tool_calls": 91,
+   "tool_results": 91,
+   "results_joined_to_call": 91,
+   "results_with_isError_field": 91,
+   "models": {
+    "deepseek-v4-flash": 87
+   },
+   "providers": {
+    "deepseek": 87
+   },
+   "assistant_responseId_shapes": {
+    "<uuid>": 87
+   },
+   "assistant_with_usage": 87,
+   "call_to_result_gap_s": {
+    "n": 91,
+    "p50": 4.34,
+    "min": 1.662,
+    "max": 58.727
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "<uuid>": 87
+   }
+  }
+ },
+ "vedalken/merchantscroll-traces::claude_code": {
+  "dataset": "vedalken/merchantscroll-traces",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "495c3ee7ba3ea38f7266c9702b66999972706a15",
+  "sample_path": "64a0586b-2dfc-477e-bbcd-3b6877b245dd.jsonl",
+  "sample_file_size": 66175,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/vedalken/merchantscroll-traces/resolve/495c3ee7ba3ea38f7266c9702b66999972706a15/64a0586b-2dfc-477e-bbcd-3b6877b245dd.jsonl",
+  "bytes_read": 66175,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 72,
+   "entry_types": {
+    "session": 1,
+    "message": 71
+   },
+   "message_entries": 71,
+   "entries_with_timestamp": 72,
+   "ts_example": "2026-06-08T16:28:52.521Z",
+   "message_ts_epoch_ms": 0,
+   "roles": {
+    "user": 11,
+    "assistant": 60
+   },
+   "tool_calls": 0,
+   "tool_results": 0,
+   "results_joined_to_call": 0,
+   "results_with_isError_field": 0,
+   "models": {
+    "None": 60
+   },
+   "providers": {
+    "None": 60
+   },
+   "assistant_responseId_shapes": {
+    "<missing>": 60
+   },
+   "assistant_with_usage": 0
+  },
+  "id_like_keys": {}
+ },
+ "AlinCiocan/fable-5-claude-code-traces::claude_code": {
+  "dataset": "AlinCiocan/fable-5-claude-code-traces",
+  "class": "claude_code",
+  "licence": "cc-by-4.0",
+  "sha": "e33ebbca230ae258b2c28aeee9fe3429e7fbeab6",
+  "sample_path": "77208e92-a8fb-4d62-bdf4-042517063012.jsonl",
+  "sample_file_size": 1091733,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/AlinCiocan/fable-5-claude-code-traces/resolve/e33ebbca230ae258b2c28aeee9fe3429e7fbeab6/77208e92-a8fb-4d62-bdf4-042517063012.jsonl",
+  "bytes_read": 1091733,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 842,
+   "entry_types": {
+    "last-prompt": 28,
+    "mode": 28,
+    "permission-mode": 28,
+    "attachment": 310,
+    "file-history-snapshot": 25,
+    "user": 116,
+    "system": 46,
+    "ai-title": 27,
+    "assistant": 200,
+    "queue-operation": 34
+   },
+   "user_assistant_entries": 316,
+   "ua_with_timestamp": 316,
+   "ts_iso_ms_z": 316,
+   "ts_example": "2026-06-11T10:28:44.741Z",
+   "tool_use_blocks": 89,
+   "tool_result_blocks": 89,
+   "results_joined_to_call": 89,
+   "calls_with_result": 89,
+   "results_is_error_true": 2,
+   "user_entries_with_toolUseResult": 89,
+   "assistant_with_usage": 200,
+   "requestId_shapes": {
+    "<missing>": 200
+   },
+   "message_id_shapes": {
+    "msg_<24>": 200
+   },
+   "models": {
+    "claude-fable-5": 200
+   },
+   "cc_versions": {
+    "2.1.173": 672
+   },
+   "call_to_result_gap_s": {
+    "n": 89,
+    "p50": 0.237,
+    "min": 0.023,
+    "max": 140.145
+   },
+   "anthropic_request_id_decode": {
+    "n": 0,
+    "decoded": 0,
+    "v7": 0,
+    "agree_m2_p600": 0
+   }
+  },
+  "id_like_keys": {}
+ },
+ "yellowbeeblackbee/claude-traces::claude_code": {
+  "dataset": "yellowbeeblackbee/claude-traces",
+  "class": "claude_code",
+  "licence": "cc0-1.0",
+  "sha": "0cad5c49dfb886c77b1636d24c46b691969585b8",
+  "sample_path": "581ccfae-8df9-4c5f-a6f0-3829b5f36a40.jsonl",
+  "sample_file_size": 417028,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/yellowbeeblackbee/claude-traces/resolve/0cad5c49dfb886c77b1636d24c46b691969585b8/581ccfae-8df9-4c5f-a6f0-3829b5f36a40.jsonl",
+  "bytes_read": 417028,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 200,
+   "entry_types": {
+    "last-prompt": 12,
+    "mode": 12,
+    "permission-mode": 12,
+    "attachment": 16,
+    "file-history-snapshot": 20,
+    "user": 42,
+    "assistant": 68,
+    "system": 3,
+    "ai-title": 12,
+    "queue-operation": 3
+   },
+   "user_assistant_entries": 110,
+   "ua_with_timestamp": 110,
+   "ts_iso_ms_z": 110,
+   "ts_example": "2026-06-09T19:37:40.109Z",
+   "tool_use_blocks": 38,
+   "tool_result_blocks": 38,
+   "results_joined_to_call": 38,
+   "calls_with_result": 38,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 38,
+   "assistant_with_usage": 68,
+   "requestId_shapes": {
+    "req_<24>": 68
+   },
+   "message_id_shapes": {
+    "msg_<24>": 68
+   },
+   "models": {
+    "claude-fable-5": 68
+   },
+   "cc_versions": {
+    "2.1.170": 129
+   },
+   "call_to_result_gap_s": {
+    "n": 38,
+    "p50": 0.044,
+    "min": 0.022,
+    "max": 112.032
+   },
+   "anthropic_request_id_decode": {
+    "n": 68,
+    "decoded": 68,
+    "v7": 68,
+    "agree_m2_p600": 68,
+    "delta_ms_p50": 10437,
+    "delta_ms_min": 4207,
+    "delta_ms_max": 446702
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 68
+   }
+  }
+ },
+ "dacorvo/funes-recall-session-pi-traces::pi": {
+  "dataset": "dacorvo/funes-recall-session-pi-traces",
+  "class": "pi",
+  "licence": "apache-2.0",
+  "sha": "4e2b658ea3dea3e1e6e1b70f1bba0a89882ce552",
+  "sample_path": "data/pi-local-20260701-113521/2026-07-01T11-37-24-999Z_019f1d78-3507-749c-b311-d84269e5f1a7.jsonl",
+  "sample_file_size": 30770,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/dacorvo/funes-recall-session-pi-traces/resolve/4e2b658ea3dea3e1e6e1b70f1bba0a89882ce552/data/pi-local-20260701-113521/2026-07-01T11-37-24-999Z_019f1d78-3507-749c-b311-d84269e5f1a7.jsonl",
+  "bytes_read": 30770,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 9,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 6
+   },
+   "message_entries": 6,
+   "entries_with_timestamp": 9,
+   "ts_example": "2026-07-01T11:37:24.999Z",
+   "message_ts_epoch_ms": 6,
+   "roles": {
+    "user": 1,
+    "assistant": 3,
+    "toolResult": 2
+   },
+   "tool_calls": 2,
+   "tool_results": 2,
+   "results_joined_to_call": 2,
+   "results_with_isError_field": 2,
+   "models": {
+    "GLM-4.5-Air": 3
+   },
+   "providers": {
+    "local": 3
+   },
+   "assistant_responseId_shapes": {
+    "chatcmpl-<32>": 3
+   },
+   "assistant_with_usage": 3,
+   "call_to_result_gap_s": {
+    "n": 2,
+    "p50": 12.126,
+    "min": 6.171,
+    "max": 18.081
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "chatcmpl-<32>": 3
+   }
+  }
+ },
+ "Becks723/pi-traces::pi": {
+  "dataset": "Becks723/pi-traces",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "70163ead1b50ed22f3986bcaa67e1e47d4457142",
+  "sample_path": "--Users-becks723--/2026-07-15T05-32-34-773Z_019f6443-3854-7885-830b-df8f3db77ac7.jsonl",
+  "sample_file_size": 17742,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/Becks723/pi-traces/resolve/70163ead1b50ed22f3986bcaa67e1e47d4457142/--Users-becks723--/2026-07-15T05-32-34-773Z_019f6443-3854-7885-830b-df8f3db77ac7.jsonl",
+  "bytes_read": 17742,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 9,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 6
+   },
+   "message_entries": 6,
+   "entries_with_timestamp": 9,
+   "ts_example": "2026-07-15T05:32:34.773Z",
+   "message_ts_epoch_ms": 6,
+   "roles": {
+    "user": 1,
+    "assistant": 3,
+    "toolResult": 2
+   },
+   "tool_calls": 2,
+   "tool_results": 2,
+   "results_joined_to_call": 2,
+   "results_with_isError_field": 2,
+   "models": {
+    "gpt-5.5": 3
+   },
+   "providers": {
+    "openai-codex": 3
+   },
+   "assistant_responseId_shapes": {
+    "resp_<50>": 3
+   },
+   "assistant_with_usage": 3,
+   "call_to_result_gap_s": {
+    "n": 2,
+    "p50": 3.391,
+    "min": 2.854,
+    "max": 3.927
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "resp_<50>": 3
+   }
+  }
+ },
+ "merve/hf-find-traces::pi": {
+  "dataset": "merve/hf-find-traces",
+  "class": "pi",
+  "licence": "apache-2.0",
+  "sha": "650d439f6d9059633b859462a3c782b05f63e48d",
+  "sample_path": "2026-07-21T11-20-55-756Z_019f8468-4ccc-7e45-89e8-08bf2ccb3d85.jsonl",
+  "sample_file_size": 83807,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/merve/hf-find-traces/resolve/650d439f6d9059633b859462a3c782b05f63e48d/2026-07-21T11-20-55-756Z_019f8468-4ccc-7e45-89e8-08bf2ccb3d85.jsonl",
+  "bytes_read": 83807,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 49,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 46
+   },
+   "message_entries": 46,
+   "entries_with_timestamp": 49,
+   "ts_example": "2026-07-21T11:20:55.756Z",
+   "message_ts_epoch_ms": 46,
+   "roles": {
+    "user": 5,
+    "assistant": 23,
+    "toolResult": 18
+   },
+   "tool_calls": 18,
+   "tool_results": 18,
+   "results_joined_to_call": 18,
+   "results_with_isError_field": 18,
+   "models": {
+    "Qwen/Qwen3.5-27B": 23
+   },
+   "providers": {
+    "huggingface": 23
+   },
+   "assistant_responseId_shapes": {
+    "chatcmpl-<24>": 23
+   },
+   "assistant_with_usage": 23,
+   "call_to_result_gap_s": {
+    "n": 18,
+    "p50": 2.573,
+    "min": 2.021,
+    "max": 37.595
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "chatcmpl-<24>": 23
+   }
+  }
+ },
+ "thomwolf/am-session-sharing-design::claude_code": {
+  "dataset": "thomwolf/am-session-sharing-design",
+  "class": "claude_code",
+  "licence": "apache-2.0",
+  "sha": "36dd5850a4f05de14f99fb7c9aa6c42203513bf1",
+  "sample_path": "edbfc11f-0e1f-4537-aa47-b269d416fec6.jsonl",
+  "sample_file_size": 1864041,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomwolf/am-session-sharing-design/resolve/36dd5850a4f05de14f99fb7c9aa6c42203513bf1/edbfc11f-0e1f-4537-aa47-b269d416fec6.jsonl",
+  "bytes_read": 1864041,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 213,
+   "entry_types": {
+    "mode": 14,
+    "permission-mode": 14,
+    "user": 48,
+    "attachment": 9,
+    "ai-title": 14,
+    "assistant": 92,
+    "last-prompt": 13,
+    "system": 9
+   },
+   "user_assistant_entries": 140,
+   "ua_with_timestamp": 140,
+   "ts_iso_ms_z": 140,
+   "ts_example": "2026-07-26T18:58:56.755Z",
+   "tool_use_blocks": 40,
+   "tool_result_blocks": 40,
+   "results_joined_to_call": 40,
+   "calls_with_result": 40,
+   "results_is_error_true": 1,
+   "user_entries_with_toolUseResult": 40,
+   "assistant_with_usage": 92,
+   "requestId_shapes": {
+    "req_<24>": 92
+   },
+   "message_id_shapes": {
+    "msg_<24>": 92
+   },
+   "models": {
+    "claude-opus-5": 92
+   },
+   "cc_versions": {
+    "2.1.220": 158
+   },
+   "call_to_result_gap_s": {
+    "n": 40,
+    "p50": 2.872,
+    "min": 0.01,
+    "max": 44.725
+   },
+   "anthropic_request_id_decode": {
+    "n": 92,
+    "decoded": 92,
+    "v7": 92,
+    "agree_m2_p600": 92,
+    "delta_ms_p50": 6652,
+    "delta_ms_min": 2333,
+    "delta_ms_max": 128886
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 92
+   }
+  }
+ },
+ "thomwolf/am-session-sharing-design-noimg::claude_code": {
+  "dataset": "thomwolf/am-session-sharing-design-noimg",
+  "class": "claude_code",
+  "licence": "apache-2.0",
+  "sha": "db6c12fe276659a1cf0dda1ce8c4657f2cd3fe4e",
+  "sample_path": "edbfc11f-0e1f-4537-aa47-b269d416fec6.jsonl",
+  "sample_file_size": 1234586,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomwolf/am-session-sharing-design-noimg/resolve/db6c12fe276659a1cf0dda1ce8c4657f2cd3fe4e/edbfc11f-0e1f-4537-aa47-b269d416fec6.jsonl",
+  "bytes_read": 1234586,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 213,
+   "entry_types": {
+    "mode": 14,
+    "permission-mode": 14,
+    "user": 48,
+    "attachment": 9,
+    "ai-title": 14,
+    "assistant": 92,
+    "last-prompt": 13,
+    "system": 9
+   },
+   "user_assistant_entries": 140,
+   "ua_with_timestamp": 140,
+   "ts_iso_ms_z": 140,
+   "ts_example": "2026-07-26T18:58:56.755Z",
+   "tool_use_blocks": 40,
+   "tool_result_blocks": 40,
+   "results_joined_to_call": 40,
+   "calls_with_result": 40,
+   "results_is_error_true": 1,
+   "user_entries_with_toolUseResult": 40,
+   "assistant_with_usage": 92,
+   "requestId_shapes": {
+    "req_<24>": 92
+   },
+   "message_id_shapes": {
+    "msg_<24>": 92
+   },
+   "models": {
+    "claude-opus-5": 92
+   },
+   "cc_versions": {
+    "2.1.220": 158
+   },
+   "call_to_result_gap_s": {
+    "n": 40,
+    "p50": 2.872,
+    "min": 0.01,
+    "max": 44.725
+   },
+   "anthropic_request_id_decode": {
+    "n": 92,
+    "decoded": 92,
+    "v7": 92,
+    "agree_m2_p600": 92,
+    "delta_ms_p50": 6652,
+    "delta_ms_min": 2333,
+    "delta_ms_max": 128886
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 92
+   }
+  }
+ },
+ "thomwolf/am-session-codex-check-d17941::codex": {
+  "dataset": "thomwolf/am-session-codex-check-d17941",
+  "class": "codex",
+  "licence": "apache-2.0",
+  "sha": "d89ae23edfef573e3038c82f7c4271c8802fa04b",
+  "sample_path": "rollout-2026-07-28T05-34-19-019fa737-7c2e-7393-89cf-9d9c60ea3899.jsonl",
+  "sample_file_size": 35761,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomwolf/am-session-codex-check-d17941/resolve/d89ae23edfef573e3038c82f7c4271c8802fa04b/rollout-2026-07-28T05-34-19-019fa737-7c2e-7393-89cf-9d9c60ea3899.jsonl",
+  "bytes_read": 35761,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "codex",
+  "metrics": {
+   "format": "codex_rollout_jsonl",
+   "n_lines": 14,
+   "with_timestamp": 14,
+   "ts_iso_ms_z": 14,
+   "ts_example": "2026-07-28T05:34:22.425Z",
+   "payload_types": {
+    "response_item/message": 6,
+    "session_meta/None": 1,
+    "event_msg/task_started": 1,
+    "world_state/None": 1,
+    "turn_context/None": 1,
+    "event_msg/user_message": 1,
+    "event_msg/agent_message": 1,
+    "event_msg/token_count": 1,
+    "event_msg/task_complete": 1
+   },
+   "session_meta": {
+    "cli_version": "0.145.0",
+    "originator": "codex-tui",
+    "model_provider": "openai",
+    "source": "cli"
+   },
+   "tool_calls": 0,
+   "tool_outputs": 0,
+   "outputs_joined_to_call": 0,
+   "call_item_id_shapes": {},
+   "exec_command_end": 0,
+   "exec_end_with_duration": 0,
+   "exec_end_with_exit_code": 0,
+   "token_count_events": 1
+  },
+  "id_like_keys": {}
+ },
+ "thomwolf/am-session-claude-code-1-c3cc0a::claude_code": {
+  "dataset": "thomwolf/am-session-claude-code-1-c3cc0a",
+  "class": "claude_code",
+  "licence": "apache-2.0",
+  "sha": "037d661cb58d4785f9523205350143d8b9af6a7d",
+  "sample_path": "c3cc0a1c-7826-48a6-8c7b-a0b811496e16.jsonl",
+  "sample_file_size": 19402,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomwolf/am-session-claude-code-1-c3cc0a/resolve/037d661cb58d4785f9523205350143d8b9af6a7d/c3cc0a1c-7826-48a6-8c7b-a0b811496e16.jsonl",
+  "bytes_read": 19402,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 12,
+   "entry_types": {
+    "mode": 1,
+    "permission-mode": 1,
+    "user": 2,
+    "attachment": 3,
+    "ai-title": 1,
+    "assistant": 2,
+    "system": 2
+   },
+   "user_assistant_entries": 4,
+   "ua_with_timestamp": 4,
+   "ts_iso_ms_z": 4,
+   "ts_example": "2026-07-29T17:49:21.314Z",
+   "tool_use_blocks": 0,
+   "tool_result_blocks": 0,
+   "results_joined_to_call": 0,
+   "calls_with_result": 0,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 0,
+   "assistant_with_usage": 2,
+   "requestId_shapes": {
+    "req_<24>": 2
+   },
+   "message_id_shapes": {
+    "msg_<24>": 2
+   },
+   "models": {
+    "claude-opus-5": 2
+   },
+   "cc_versions": {
+    "2.1.220": 9
+   },
+   "anthropic_request_id_decode": {
+    "n": 2,
+    "decoded": 2,
+    "v7": 2,
+    "agree_m2_p600": 2,
+    "delta_ms_p50": 2242,
+    "delta_ms_min": 1862,
+    "delta_ms_max": 2621
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 2
+   }
+  }
+ },
+ "thomwolf/am-session-claude-code-1-a66490::claude_code": {
+  "dataset": "thomwolf/am-session-claude-code-1-a66490",
+  "class": "claude_code",
+  "licence": "apache-2.0",
+  "sha": "e8a022e9f8bfd279e50336f86a55e96dad7b4ddb",
+  "sample_path": "a66490ab-ec0d-4734-99da-d6000a5ea954.jsonl",
+  "sample_file_size": 17175,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/thomwolf/am-session-claude-code-1-a66490/resolve/e8a022e9f8bfd279e50336f86a55e96dad7b4ddb/a66490ab-ec0d-4734-99da-d6000a5ea954.jsonl",
+  "bytes_read": 17175,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 9,
+   "entry_types": {
+    "mode": 1,
+    "permission-mode": 1,
+    "user": 1,
+    "attachment": 3,
+    "ai-title": 1,
+    "assistant": 1,
+    "system": 1
+   },
+   "user_assistant_entries": 2,
+   "ua_with_timestamp": 2,
+   "ts_iso_ms_z": 2,
+   "ts_example": "2026-07-29T20:05:34.984Z",
+   "tool_use_blocks": 0,
+   "tool_result_blocks": 0,
+   "results_joined_to_call": 0,
+   "calls_with_result": 0,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 0,
+   "assistant_with_usage": 1,
+   "requestId_shapes": {
+    "req_<24>": 1
+   },
+   "message_id_shapes": {
+    "msg_<24>": 1
+   },
+   "models": {
+    "claude-opus-5": 1
+   },
+   "cc_versions": {
+    "2.1.220": 6
+   },
+   "anthropic_request_id_decode": {
+    "n": 1,
+    "decoded": 1,
+    "v7": 1,
+    "agree_m2_p600": 1,
+    "delta_ms_p50": 7227,
+    "delta_ms_min": 7227,
+    "delta_ms_max": 7227
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 1
+   }
+  }
+ },
+ "owao/qwen38-27B::pi": {
+  "dataset": "owao/qwen38-27B",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "2998889fe3f2ea229f668d8ff28f014ebbc6cb23",
+  "sample_path": "2026-08-16T13-47-13-443Z_9f480193-b903-5f7a-b629-035994367a94.jsonl",
+  "sample_file_size": 411652,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/owao/qwen38-27B/resolve/2998889fe3f2ea229f668d8ff28f014ebbc6cb23/2026-08-16T13-47-13-443Z_9f480193-b903-5f7a-b629-035994367a94.jsonl",
+  "bytes_read": 411652,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 204,
+   "entry_types": {
+    "session": 1,
+    "message": 202,
+    "model_change": 1
+   },
+   "message_entries": 202,
+   "entries_with_timestamp": 204,
+   "ts_example": "2026-08-16T13:47:13.443Z",
+   "message_ts_epoch_ms": 201,
+   "roles": {
+    "developer": 1,
+    "user": 2,
+    "assistant": 92,
+    "toolResult": 107
+   },
+   "tool_calls": 107,
+   "tool_results": 107,
+   "results_joined_to_call": 107,
+   "results_with_isError_field": 107,
+   "models": {
+    "llama-swap/Qwen3.8-27B-Q4_K_XL_vision_150k_medium_preserve": 92
+   },
+   "providers": {
+    "None": 92
+   },
+   "assistant_responseId_shapes": {
+    "gen-<22>": 92
+   },
+   "assistant_with_usage": 92,
+   "call_to_result_gap_s": {
+    "n": 107,
+    "p50": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "gen-<22>": 92
+   }
+  }
+ },
+ "INONONO/tarkov-customs-trajectory::claude_code": {
+  "dataset": "INONONO/tarkov-customs-trajectory",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "a0557bb951af86ec6c27b1153214edf794cb1399",
+  "sample_path": "trajectory/5881b249-26a1-4c50-a720-1cee6e722991.jsonl",
+  "sample_file_size": 9459593,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/INONONO/tarkov-customs-trajectory/resolve/a0557bb951af86ec6c27b1153214edf794cb1399/trajectory/5881b249-26a1-4c50-a720-1cee6e722991.jsonl",
+  "bytes_read": 3000000,
+  "truncated": true,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 287,
+   "entry_types": {
+    "mode": 23,
+    "file-history-snapshot": 2,
+    "user": 46,
+    "system": 1,
+    "attachment": 56,
+    "ai-title": 23,
+    "atis-latch": 23,
+    "assistant": 81,
+    "last-prompt": 22,
+    "file-history-delta": 10
+   },
+   "user_assistant_entries": 127,
+   "ua_with_timestamp": 127,
+   "ts_iso_ms_z": 127,
+   "ts_example": "2026-09-01T19:03:10.443Z",
+   "tool_use_blocks": 44,
+   "tool_result_blocks": 43,
+   "results_joined_to_call": 43,
+   "calls_with_result": 43,
+   "results_is_error_true": 1,
+   "user_entries_with_toolUseResult": 43,
+   "assistant_with_usage": 81,
+   "requestId_shapes": {
+    "<missing>": 81
+   },
+   "message_id_shapes": {
+    "msg_<24>": 81
+   },
+   "models": {
+    "claude-fable-5-1": 81
+   },
+   "cc_versions": {
+    "2.1.252": 184
+   },
+   "call_to_result_gap_s": {
+    "n": 43,
+    "p50": 0.016,
+    "min": 0.007,
+    "max": 75.499
+   },
+   "anthropic_request_id_decode": {
+    "n": 0,
+    "decoded": 0,
+    "v7": 0,
+    "agree_m2_p600": 0
+   }
+  },
+  "id_like_keys": {}
+ },
+ "Jadson/ox-alpha-pi-traces-emacs-bridge::pi": {
+  "dataset": "Jadson/ox-alpha-pi-traces-emacs-bridge",
+  "class": "pi",
+  "licence": "mit",
+  "sha": "8fc3bf8eb8dc955b2586339bbc74c6665e573343",
+  "sample_path": "ipython/2026-08-24T06-54-14-446Z_01a0328c-5bad-72d4-9936-0a7c359a68c0.jsonl",
+  "sample_file_size": 48300,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/Jadson/ox-alpha-pi-traces-emacs-bridge/resolve/8fc3bf8eb8dc955b2586339bbc74c6665e573343/ipython/2026-08-24T06-54-14-446Z_01a0328c-5bad-72d4-9936-0a7c359a68c0.jsonl",
+  "bytes_read": 48300,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "pi",
+  "metrics": {
+   "format": "pi_session_jsonl",
+   "n_entries": 51,
+   "entry_types": {
+    "session": 1,
+    "model_change": 1,
+    "thinking_level_change": 1,
+    "message": 31,
+    "toolCall": 1,
+    "bridgePlan": 15,
+    "custom": 1
+   },
+   "message_entries": 31,
+   "entries_with_timestamp": 36,
+   "ts_example": "2026-08-24T06:54:14.446Z",
+   "message_ts_epoch_ms": 31,
+   "roles": {
+    "system": 1,
+    "user": 2,
+    "assistant": 13,
+    "toolResult": 15
+   },
+   "tool_calls": 15,
+   "tool_results": 15,
+   "results_joined_to_call": 15,
+   "results_with_isError_field": 15,
+   "models": {
+    "stealth/ox-alpha": 13
+   },
+   "providers": {
+    "openrouter": 13
+   },
+   "assistant_responseId_shapes": {
+    "gen-<31>": 13
+   },
+   "assistant_with_usage": 13,
+   "call_to_result_gap_s": {
+    "n": 15,
+    "p50": 10.821,
+    "min": 2.464,
+    "max": 35.306
+   }
+  },
+  "id_like_keys": {
+   ".message.responseId": {
+    "gen-<31>": 13
+   }
+  }
+ },
+ "trace-commons/agent-traces::claude_code": {
+  "dataset": "trace-commons/agent-traces",
+  "class": "claude_code",
+  "licence": "cc-by-4.0",
+  "sha": "112ebd4d03ce852b00e935d523107c3d0c9a65bf",
+  "sample_path": "sessions/claude_code/6a7964ed-6f92-4eee-ae5e-3f91a6445833.jsonl",
+  "sample_file_size": 1636028,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/trace-commons/agent-traces/resolve/112ebd4d03ce852b00e935d523107c3d0c9a65bf/sessions/claude_code/6a7964ed-6f92-4eee-ae5e-3f91a6445833.jsonl",
+  "bytes_read": 1636028,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 596,
+   "entry_types": {
+    "queue-operation": 16,
+    "user": 171,
+    "attachment": 53,
+    "file-history-snapshot": 25,
+    "ai-title": 44,
+    "assistant": 244,
+    "last-prompt": 42,
+    "system": 1
+   },
+   "user_assistant_entries": 415,
+   "ua_with_timestamp": 415,
+   "ts_iso_ms_z": 415,
+   "ts_example": "2026-05-24T10:03:07.721Z",
+   "tool_use_blocks": 164,
+   "tool_result_blocks": 164,
+   "results_joined_to_call": 164,
+   "calls_with_result": 164,
+   "results_is_error_true": 18,
+   "user_entries_with_toolUseResult": 164,
+   "assistant_with_usage": 244,
+   "requestId_shapes": {
+    "req_<24>": 244
+   },
+   "message_id_shapes": {
+    "msg_<24>": 243,
+    "<uuid>": 1
+   },
+   "models": {
+    "claude-sonnet-4-6": 243,
+    "<synthetic>": 1
+   },
+   "cc_versions": {
+    "2.1.145": 469
+   },
+   "call_to_result_gap_s": {
+    "n": 164,
+    "p50": 1.051,
+    "min": 0.001,
+    "max": 7243.589
+   },
+   "anthropic_request_id_decode": {
+    "n": 244,
+    "decoded": 244,
+    "v7": 244,
+    "agree_m2_p600": 244,
+    "delta_ms_p50": 3734,
+    "delta_ms_min": 306,
+    "delta_ms_max": 97878
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 244
+   }
+  }
+ },
+ "trace-commons/agent-traces::opencode": {
+  "dataset": "trace-commons/agent-traces",
+  "class": "opencode",
+  "licence": "cc-by-4.0",
+  "sha": "112ebd4d03ce852b00e935d523107c3d0c9a65bf",
+  "sample_path": "sessions/opencode/ses_129b55f7effeSKRtimLg9wxpXa.json",
+  "sample_file_size": 97897,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/trace-commons/agent-traces/resolve/112ebd4d03ce852b00e935d523107c3d0c9a65bf/sessions/opencode/ses_129b55f7effeSKRtimLg9wxpXa.json",
+  "bytes_read": 97897,
+  "truncated": false,
+  "metrics": {
+   "format": "opencode_export_json",
+   "n_messages": 3,
+   "session_time_keys": [
+    "created",
+    "updated"
+   ],
+   "messages_with_time_created": 3,
+   "tool_parts": 3,
+   "tool_parts_with_callID_and_output": 3,
+   "tool_state_time_start": 3,
+   "tool_state_time_end": 3,
+   "tool_status": {
+    "completed": 3
+   },
+   "callID_shapes": {
+    "call_<27>": 3
+   },
+   "models": {
+    "opencode/deepseek-v4-flash-free": 2
+   },
+   "tool_exec_duration_s": {
+    "n": 3,
+    "p50": 1.827,
+    "min": 1.624,
+    "max": 1.838
+   }
+  },
+  "id_like_keys": {}
+ },
+ "dacorvo/hf-hub-session-opencode-traces::opencode": {
+  "dataset": "dacorvo/hf-hub-session-opencode-traces",
+  "class": "opencode",
+  "licence": "apache-2.0",
+  "sha": "228a481c53d7492c49313373acccc709a0f244b7",
+  "sample_path": "data/opencode-local-20260608-141649/ses_1584116d8ffedB3FyJ887VznfZ.json",
+  "sample_file_size": 53563,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/dacorvo/hf-hub-session-opencode-traces/resolve/228a481c53d7492c49313373acccc709a0f244b7/data/opencode-local-20260608-141649/ses_1584116d8ffedB3FyJ887VznfZ.json",
+  "bytes_read": 53563,
+  "truncated": false,
+  "metrics": {
+   "format": "opencode_export_json",
+   "n_messages": 14,
+   "session_time_keys": [
+    "created",
+    "updated"
+   ],
+   "messages_with_time_created": 14,
+   "tool_parts": 6,
+   "tool_parts_with_callID_and_output": 1,
+   "tool_state_time_start": 6,
+   "tool_state_time_end": 6,
+   "tool_status": {
+    "error": 5,
+    "completed": 1
+   },
+   "callID_shapes": {
+    "<str32>": 6
+   },
+   "models": {
+    "local/google/gemma-4-12B-it-qat-q4_0-gguf": 10
+   },
+   "tool_exec_duration_s": {
+    "n": 6,
+    "p50": 0.175,
+    "min": 0.006,
+    "max": 0.242
+   }
+  },
+  "id_like_keys": {}
+ },
+ "dacorvo/transformers-coding-session-opencode-traces::opencode": {
+  "dataset": "dacorvo/transformers-coding-session-opencode-traces",
+  "class": "opencode",
+  "licence": "apache-2.0",
+  "sha": "ac0f520927b11039c41810eda38f6f99c5092361",
+  "sample_path": "data/opencode-local-20260608-112210/ses_1588ffe1effevbyQyRumciR2ep.json",
+  "sample_file_size": 140824,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/dacorvo/transformers-coding-session-opencode-traces/resolve/ac0f520927b11039c41810eda38f6f99c5092361/data/opencode-local-20260608-112210/ses_1588ffe1effevbyQyRumciR2ep.json",
+  "bytes_read": 140824,
+  "truncated": false,
+  "metrics": {
+   "format": "opencode_export_json",
+   "n_messages": 13,
+   "session_time_keys": [
+    "created",
+    "updated"
+   ],
+   "messages_with_time_created": 13,
+   "tool_parts": 5,
+   "tool_parts_with_callID_and_output": 5,
+   "tool_state_time_start": 5,
+   "tool_state_time_end": 5,
+   "tool_status": {
+    "completed": 5
+   },
+   "callID_shapes": {
+    "<str32>": 5
+   },
+   "models": {
+    "local/google/gemma-4-12B-it-qat-q4_0-gguf": 9
+   },
+   "tool_exec_duration_s": {
+    "n": 5,
+    "p50": 0.036,
+    "min": 0.021,
+    "max": 0.065
+   }
+  },
+  "id_like_keys": {}
+ },
+ "dacorvo/funes-recall-session-opencode-traces::opencode": {
+  "dataset": "dacorvo/funes-recall-session-opencode-traces",
+  "class": "opencode",
+  "licence": "apache-2.0",
+  "sha": "bedb923bc2b6d14de7b6604947dfd7b71ef432a8",
+  "sample_path": "data/opencode-local-20260701-115003/ses_0e27c3097ffe9TK6wbXy5B66ZZ.json",
+  "sample_file_size": 35571,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/dacorvo/funes-recall-session-opencode-traces/resolve/bedb923bc2b6d14de7b6604947dfd7b71ef432a8/data/opencode-local-20260701-115003/ses_0e27c3097ffe9TK6wbXy5B66ZZ.json",
+  "bytes_read": 35571,
+  "truncated": false,
+  "metrics": {
+   "format": "opencode_export_json",
+   "n_messages": 4,
+   "session_time_keys": [
+    "created",
+    "updated"
+   ],
+   "messages_with_time_created": 4,
+   "tool_parts": 2,
+   "tool_parts_with_callID_and_output": 2,
+   "tool_state_time_start": 2,
+   "tool_state_time_end": 2,
+   "tool_status": {
+    "completed": 2
+   },
+   "callID_shapes": {
+    "<str32>": 2
+   },
+   "models": {
+    "local/GLM-4.5-Air": 3
+   },
+   "tool_exec_duration_s": {
+    "n": 2,
+    "p50": 7.589,
+    "min": 0.551,
+    "max": 14.627
+   }
+  },
+  "id_like_keys": {}
+ },
+ "crispwisp/wisp-claude-code-sessions::claude_code": {
+  "dataset": "crispwisp/wisp-claude-code-sessions",
+  "class": "claude_code",
+  "licence": "mit",
+  "sha": "c2c90b59174318ab0b163ec9c9ac82bb879288ce",
+  "sample_path": "transcripts/-home-me-ht-hyprland-bench-results-20260612-143726-563908-nested-headless-pilot-claude-logs-tmp-inst-remove/f17cc3f3-9369-4d2c-83c6-4e34396f2faf.jsonl",
+  "sample_file_size": 21045,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/crispwisp/wisp-claude-code-sessions/resolve/c2c90b59174318ab0b163ec9c9ac82bb879288ce/transcripts/-home-me-ht-hyprland-bench-results-20260612-143726-563908-nested-headless-pilot-claude-logs-tmp-inst-remove/f17cc3f3-9369-4d2c-83c6-4e34396f2faf.jsonl",
+  "bytes_read": 21045,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 14,
+   "entry_types": {
+    "queue-operation": 2,
+    "user": 4,
+    "attachment": 2,
+    "assistant": 5,
+    "last-prompt": 1
+   },
+   "user_assistant_entries": 9,
+   "ua_with_timestamp": 9,
+   "ts_iso_ms_z": 9,
+   "ts_example": "2026-06-12T19:50:15.818Z",
+   "tool_use_blocks": 3,
+   "tool_result_blocks": 3,
+   "results_joined_to_call": 3,
+   "calls_with_result": 3,
+   "results_is_error_true": 1,
+   "user_entries_with_toolUseResult": 3,
+   "assistant_with_usage": 5,
+   "requestId_shapes": {
+    "req_<24>": 5
+   },
+   "message_id_shapes": {
+    "msg_<24>": 5
+   },
+   "models": {
+    "claude-fable-5": 5
+   },
+   "cc_versions": {
+    "2.1.168": 11
+   },
+   "call_to_result_gap_s": {
+    "n": 3,
+    "p50": 0.078,
+    "min": 0.046,
+    "max": 0.241
+   },
+   "anthropic_request_id_decode": {
+    "n": 5,
+    "decoded": 5,
+    "v7": 5,
+    "agree_m2_p600": 5,
+    "delta_ms_p50": 5417,
+    "delta_ms_min": 3868,
+    "delta_ms_max": 8519
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 5
+   }
+  }
+ },
+ "crispwisp/wisp-claude-code-sessions::claude_code_subagent": {
+  "dataset": "crispwisp/wisp-claude-code-sessions",
+  "class": "claude_code_subagent",
+  "licence": "mit",
+  "sha": "c2c90b59174318ab0b163ec9c9ac82bb879288ce",
+  "sample_path": "transcripts/-home-me/df04f351-9677-4723-b621-7fb5a597caba/subagents/workflows/wf_b2d918c5-2d2/agent-acc91f6d6bea6599b.jsonl",
+  "sample_file_size": 41317,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/crispwisp/wisp-claude-code-sessions/resolve/c2c90b59174318ab0b163ec9c9ac82bb879288ce/transcripts/-home-me/df04f351-9677-4723-b621-7fb5a597caba/subagents/workflows/wf_b2d918c5-2d2/agent-acc91f6d6bea6599b.jsonl",
+  "bytes_read": 41317,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 12,
+   "entry_types": {
+    "user": 4,
+    "attachment": 2,
+    "assistant": 6
+   },
+   "user_assistant_entries": 10,
+   "ua_with_timestamp": 10,
+   "ts_iso_ms_z": 10,
+   "ts_example": "2026-06-12T13:37:03.968Z",
+   "tool_use_blocks": 3,
+   "tool_result_blocks": 3,
+   "results_joined_to_call": 3,
+   "calls_with_result": 3,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 0,
+   "assistant_with_usage": 6,
+   "requestId_shapes": {
+    "req_<24>": 6
+   },
+   "message_id_shapes": {
+    "msg_<24>": 6
+   },
+   "models": {
+    "claude-sonnet-4-6": 6
+   },
+   "cc_versions": {
+    "2.1.168": 12
+   },
+   "call_to_result_gap_s": {
+    "n": 3,
+    "p50": 0.002,
+    "min": 0.001,
+    "max": 0.002
+   },
+   "anthropic_request_id_decode": {
+    "n": 6,
+    "decoded": 6,
+    "v7": 6,
+    "agree_m2_p600": 6,
+    "delta_ms_p50": 4562,
+    "delta_ms_min": 1834,
+    "delta_ms_max": 11468
+   }
+  },
+  "id_like_keys": {
+   ".requestId": {
+    "req_<24>": 6
+   }
+  }
+ },
+ "victor/claude-worldcup-2026-wallchart-traces::claude_code_subagent": {
+  "dataset": "victor/claude-worldcup-2026-wallchart-traces",
+  "class": "claude_code_subagent",
+  "licence": "cc-by-4.0",
+  "sha": "c2c03b28a499f4244e912b55d983870cf527055d",
+  "sample_path": "data/subagents/workflows/wf_ca8f400f-548/agent-a5e11a55547104e44.jsonl",
+  "sample_file_size": 21212,
+  "sample_lfs_sha256": null,
+  "url": "https://huggingface.co/datasets/victor/claude-worldcup-2026-wallchart-traces/resolve/c2c03b28a499f4244e912b55d983870cf527055d/data/subagents/workflows/wf_ca8f400f-548/agent-a5e11a55547104e44.jsonl",
+  "bytes_read": 21212,
+  "truncated": false,
+  "bad_lines": 0,
+  "sniffed": "claude_code",
+  "metrics": {
+   "format": "claude_code_jsonl",
+   "n_entries": 11,
+   "entry_types": {
+    "user": 5,
+    "assistant": 6
+   },
+   "user_assistant_entries": 11,
+   "ua_with_timestamp": 11,
+   "ts_iso_ms_z": 11,
+   "ts_example": "2026-06-11T19:17:22.634Z",
+   "tool_use_blocks": 4,
+   "tool_result_blocks": 4,
+   "results_joined_to_call": 4,
+   "calls_with_result": 4,
+   "results_is_error_true": 0,
+   "user_entries_with_toolUseResult": 0,
+   "assistant_with_usage": 6,
+   "requestId_shapes": {
+    "<missing>": 6
+   },
+   "message_id_shapes": {
+    "msg_<24>": 6
+   },
+   "models": {
+    "claude-sonnet-4-6": 6
+   },
+   "cc_versions": {},
+   "call_to_result_gap_s": {
+    "n": 4,
+    "p50": 3.711,
+    "min": 0.001,
+    "max": 10.268
+   },
+   "anthropic_request_id_decode": {
+    "n": 0,
+    "decoded": 0,
+    "v7": 0,
+    "agree_m2_p600": 0
+   }
+  },
+  "id_like_keys": {}
+ }
+}

@@ -1,0 +1,100 @@
+{
+ "anthropic_requestId": {
+  "ClaudeCode__GLM-4.7": {
+   "jsonl_files": 472,
+   "trials_with_jsonl": 439,
+   "sessions": 439,
+   "sessions_with_ge1_requestId": 0,
+   "models_assistant_entries": {
+    "glm-4.7": 35412,
+    "<synthetic>": 1
+   },
+   "entries_with_requestId": 0,
+   "distinct_requestIds": 0,
+   "v7_decodable_entries": 0,
+   "agree_event_minus_id_in_[-2s,+600s]": 0,
+   "event_minus_id_ms_quantiles": {
+    "0": null,
+    "0.01": null,
+    "0.05": null,
+    "0.5": null,
+    "0.95": null,
+    "0.99": null,
+    "1": null
+   }
+  },
+  "WozCode__Claude-Opus-4.6": {
+   "jsonl_files": 464,
+   "trials_with_jsonl": 444,
+   "sessions": 444,
+   "sessions_with_ge1_requestId": 444,
+   "models_assistant_entries": {
+    "claude-opus-4-6": 11913,
+    "claude-haiku-4-5-20251001": 414
+   },
+   "entries_with_requestId": 12327,
+   "distinct_requestIds": 7272,
+   "v7_decodable_entries": 12327,
+   "agree_event_minus_id_in_[-2s,+600s]": 12279,
+   "event_minus_id_ms_quantiles": {
+    "0": 548.0,
+    "0.01": 815.0,
+    "0.05": 2230.0,
+    "0.5": 4219.0,
+    "0.95": 46049.0,
+    "0.99": 228294.0,
+    "1": 1208529.0
+   }
+  },
+  "cchuter__minimax-m2.5": {
+   "jsonl_files": 443,
+   "trials_with_jsonl": 442,
+   "sessions": 442,
+   "sessions_with_ge1_requestId": 0,
+   "models_assistant_entries": {
+    "MiniMax-M2.5-Q8_0-00001-of-00006.gguf": 38003
+   },
+   "entries_with_requestId": 0,
+   "distinct_requestIds": 0,
+   "v7_decodable_entries": 0,
+   "agree_event_minus_id_in_[-2s,+600s]": 0,
+   "event_minus_id_ms_quantiles": {
+    "0": null,
+    "0.01": null,
+    "0.05": null,
+    "0.5": null,
+    "0.95": null,
+    "0.99": null,
+    "1": null
+   }
+  }
+ },
+ "openai_resp_id_hookele": {
+  "stream_summary_rows_with_response_id": 12804,
+  "layouts": {
+   "hex50_prefix16_00_sec": 12804
+  },
+  "id_sec_minus_llm_call_ts_s_quantiles": {
+   "0": 0.0,
+   "0.01": 0.0,
+   "0.05": 0.0,
+   "0.5": 0.0,
+   "0.95": 1.0,
+   "0.99": 2.0,
+   "1": 1037.0
+  },
+  "summary_ts_minus_id_sec_s_quantiles": {
+   "0": 0.0,
+   "0.01": 1.0,
+   "0.05": 1.0,
+   "0.5": 3.0,
+   "0.95": 21.0,
+   "0.99": 66.0,
+   "1": 413.0
+  },
+  "bracketed_within_1s": 12804,
+  "n_with_start": 12804,
+  "n": 12804,
+  "resolution": "1 s on both sides (hookele ts has no fractional seconds; id carries unix seconds)"
+ }
+}

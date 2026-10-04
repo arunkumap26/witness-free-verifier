@@ -1,0 +1,604 @@
+{
+  "key": "B1b_apm_runtime",
+  "task": "Phase E Track B, B1 for N1 (conditional duration model), angles: performance-regression and latency-anomaly detection in APM/observability (Datadog Watchdog, Dynatrace, New Relic, academic APM anomaly detection); runtime prediction (CI build duration, database query latency, HPC job runtime). Question: does any model condition duration on declared workload and treat residuals as evidence of falsified records?",
+  "date": "2026-10-04",
+  "scope_note": "Only public web pages, docs and papers were read. Nothing swarm-related was read or run. No agent transcripts generated. No paid API calls. PDFs fetched by WebFetch were converted to text with pypdf in the session scratchpad. That text is not committed, for copyright reasons. Every quote marked quote_method=pypdf_text was copied from that text; ligatures (fi, fl) are normalised and line-break hyphens joined. Quotes marked quote_method=webfetch_extract were returned verbatim by the WebFetch extraction model. They are close to verbatim, but a skeptic should re-open the URL before quoting them in the writeup.",
+
+  "sub_claims_as_defined": {
+    "a": "Duration-vs-expected-workload residuals as a fabrication signal in agent logs (PHASE_E_PROMPT.md, B1 bullet a; mechanism N1).",
+    "b": "corr(residual, output_size) as the discriminator between work-bound and generation-bound latency (PHASE_E_PROMPT.md, B1 bullet b; N1 second bullet)."
+  },
+
+  "bottom_line": [
+    "VERDICT (a) = PARTIAL. The general idea is prior art outside agents, and one deployed system implements it: compare a reported duration with the declared workload and treat a mismatch as evidence that the record was falsified. BOINC CreditNew multiplies the client-reported elapsed time by the host's peak FLOPS and compares the result with the job's declared FLOP bound (wu.fpops_bound). If the product exceeds the bound, the claim is discarded and the host is put under suspicion, and the same page names 'falsifying benchmark scores or elapsed time' as the cheat. Sekar & Maniatis (CCSW 2011) propose, but do not build, a client that predicts resource consumption from workload features in its own execution log and checks it against the provider's report. The narrower combination is not found in any APM or runtime-prediction source checked: agent tool-call logs, generated (fabricated) results as the threat, and a baseline taken from within-session repeats of the same command.",
+    "VERDICT (b) = NOVEL within these angles, with one anecdotal precedent and one design caveat. No APM, performance-regression or runtime-prediction source uses corr(residual, output size) to tell work-bound from generation-bound latency. The closest item is anecdotal and in the agent domain. In anthropics/claude-code issue #67847 (open; opened 2026-06-12), users observe that fabricating turns are 'unusually long thinking-heavy responses (3.9k–5.5k output tokens, 60–90s)'. That is inline fabrication with no tool_use, so it is the N2 class, and it involves no residual and no correlation test. Caveat: honest data-movement latency also scales with bytes (LogGP's per-byte parameter G), so the sign of the correlation alone cannot separate I/O-bound honest calls from generated ones. See design_notes.",
+    "The mechanism's ancestor is old and TAKEN. Kelly (WORLDS 2005) models aggregate response time as a function of transaction mix and deems an interval anomalous when the observed value 'disagree[s] substantially' with the fit. TraceAnomaly (ISSRE 2020) conditions response time on call path. A third, Cherkasova et al. (DSN 2008), regresses CPU on transactions; it is known only through a secondary description and stays UNVERIFIED. In every one of them the log is trusted and a residual means a performance fault, never a forged record.",
+    "No APM product checked runs a workload-conditioned check on agent tool-call durations. Datadog Watchdog, Dynatrace Davis and New Relic baselines are conditioned on history, seasonality and endpoint identity (service, resource or method), not on payload or work size. Datadog's LLM Observability agent evaluations (Tool Selection, Tool Argument Correctness, Goal Completeness, Hallucination) are LLM-as-a-judge evaluations, and the docs mention no timing. Dynatrace MCP observability tracks 'request counts, durations, and error rates' and makes no claim to verify results.",
+    "A benchmark harness already embodies an active timing audit. In MLPerf Inference TEST04, LoadGen re-runs the workload with duplicate sample ids and fails the submission if it is more than 10% faster than the standard run, which would mean results were cached rather than computed. TEST01 and TEST09 check output consistency and output length against throughput cheating. These are active re-runs of a live system, not passive residuals on a past log, but the writeup should cite TEST04 as precedent for a 'faster than the declared work allows' check and for its pre-set 10% tolerance.",
+    "N1's baseline design is standard practice; cite it rather than claim it. Per-endpoint baselines are the APM default (Dynatrace per service method; Datadog per service/resource). Tsafrir, Etsion & Feitelson (TPDS 2007) predict job runtime as 'the runtimes of the last two jobs by the same user' and report that 'using recent data is more important than mining the history for similar jobs'. That is the same reasoning as N1's within-session same-command baseline."
+  ],
+
+  "verdicts": {
+    "a": {
+      "verdict": "PARTIAL",
+      "taken_part": "The concept of comparing a reported duration or resource use with what the declared workload predicts, and treating a large mismatch as evidence of a falsified record. It is deployed in BOINC CreditNew (reported elapsed time against the declared FLOP bound) and proposed in Sekar & Maniatis 2011 (predicted against reported consumption). The residual-as-anomaly mechanism is TAKEN in APM: Kelly 2005, TraceAnomaly 2020.",
+      "not_found_part": "Applied to agent tool-call logs; the threat being a generated (fabricated) tool result rather than inflated billing or credit; a passive check on an existing transcript with no re-run and no instrumentation; a baseline from within-session repeats of the same command.",
+      "deciding_citations": ["S_BOINC_CREDITNEW", "S_SEKAR_MANIATIS_2011"],
+      "REASONING_not_citation": "BOINC CreditNew does what (a) needs at its core. A party that is not trusted (the volunteer client) reports a duration. The server holds a declared workload for the job (fpops_est/fpops_bound). A reported duration the workload cannot explain is treated as cheating. It differs from (a) in four ways. (1) It checks a one-sided upper bound, catching inflated time, not a fitted residual. (2) The falsified field is the time itself, not the result content. (3) The declared workload is set by the project ahead of time, not inferred from same-command repeats. (4) It is volunteer computing, not agent logs. Sekar & Maniatis state the general principle for cloud billing as a proposal with no evaluation. The novelty of (a) must therefore be stated as transferring the check to agent tool logs, with a repeat-command baseline and a two-sided residual, and both should be cited."
+    },
+    "b": {
+      "verdict": "NOVEL",
+      "scope_of_verdict": "NOVEL only for the APM, performance-regression and runtime-prediction angles assigned to this task. The LLM-inference-latency and machine-generated-text angles belong to other B1 agents and may change it.",
+      "closest": "anthropics/claude-code issue #67847, an anecdotal user observation that fabricating turns are long and output-token-heavy. MLPerf TEST09 checks output length against throughput cheating, but does no correlation.",
+      "deciding_citations": ["S_GH_67847", "S_MLPERF_TEST09", "S_LOGGP"],
+      "REASONING_not_citation": "No source in these angles regresses a duration residual on output size to decide which process (work or generation) produced the latency. The physical premise, that generation latency grows with output tokens, is common knowledge in LLM serving and is not novel; it belongs to the other angle. The discriminator as stated by N1 is not found. Design risk: LogGP-style models show that honest transfer, serialization and pagination latency is also proportional to bytes. corr>0 alone is therefore not diagnostic. The test should compare the fitted slope (seconds per KB) with a generation-rate prior, which is orders of magnitude slower per byte than honest I/O. That is reasoning, not a finding: Track A must measure it."
+    }
+  },
+
+  "items": [
+    {
+      "id": "I1",
+      "claim": "B1(a): duration-vs-expected-workload residuals as a fabrication signal in agent tool logs",
+      "verdict": "PARTIAL",
+      "closest_work": "BOINC CreditNew sanity check (deployed); Sekar & Maniatis, Verifiable Resource Accounting for Cloud Computing Services, CCSW 2011 (proposal)",
+      "what_it_does": "BOINC: PFC(J) = T * peak_flops(J), where T is the client-reported elapsed time. If PFC(J) > wu.fpops_bound, the claim is replaced by a default and excluded from statistics, and the host is treated with suspicion. The page names falsified elapsed time as the cheat. Sekar & Maniatis: a client predicts resource consumption from workload features in its own tamper-resistant log and checks it against the provider's report.",
+      "what_it_does_not": "Neither touches agent logs or fabricated tool results. BOINC uses a one-sided static bound, not a fitted residual, and the falsified field is time, not content. Sekar & Maniatis is a position paper with no implementation or evaluation of the prediction check. Neither uses within-session same-command repeats or output size.",
+      "deciding_citation": "https://raw.githubusercontent.com/wiki/BOINC/boinc/CreditNew.md : \"If `PFC(J) > wu.fpops_bound`, J is assigned a \\\"default PFC\\\" D and it's not used to update statistics.\"",
+      "opened": true
+    },
+    {
+      "id": "I2",
+      "claim": "B1(b): corr(residual, output_size) discriminates work-bound from generation-bound latency",
+      "verdict": "NOVEL",
+      "closest_work": "anthropics/claude-code issue #67847 (anecdote: fabricating turns are long and output-heavy); MLPerf TEST09 (output length against throughput cheating)",
+      "what_it_does": "#67847 reports fabricating turns of 3.9k–5.5k output tokens taking 60–90 s, and lists that as a pattern. TEST09 checks that the mean output token count stays near a reference mean, so that truncation cannot inflate throughput.",
+      "what_it_does_not": "#67847 has no residual, no conditioning on the claimed work and no correlation test, and it concerns inline fabrication with no tool_use (the N2 class), not tool-call latency. TEST09 does not relate latency to length per call. No APM or runtime-prediction source uses a residual-vs-size correlation to discriminate between processes.",
+      "deciding_citation": "https://github.com/anthropics/claude-code/issues/67847 : \"All fabricating turns: unusually long thinking-heavy responses (3.9k–5.5k output tokens, 60–90s), large context (133k–211k).\"",
+      "opened": true
+    },
+    {
+      "id": "I3",
+      "claim": "Mechanism ancestor: model latency as a function of the declared workload and flag large residuals as anomalies",
+      "verdict": "TAKEN",
+      "closest_work": "Kelly, Detecting Performance Anomalies in Global Applications, USENIX WORLDS 2005; also TraceAnomaly (Liu et al., ISSRE 2020) and Gow et al. 2013 (arXiv 1307.1743)",
+      "what_it_does": "Fits the sum of response times per interval as sum_j alpha_j N_ij over the transaction-type counts, and deems intervals where the fit disagrees substantially anomalous. TraceAnomaly encodes response time per call path and scores traces by likelihood.",
+      "what_it_does_not": "The logs are trusted. Anomalies are attributed to performance faults such as a misconfigured database connection pool. Nothing addresses forged, falsified or generated records, and nothing uses output size.",
+      "deciding_citation": "https://static.usenix.org/events/worlds05/tech/full_papers/kelly/kelly_html/anomdet.html : \"if the ŷᵢ agree closely with the corresponding yᵢ for most time intervals i, but disagree substantially for some i, deem the latter cases anomalous.\"",
+      "opened": true
+    },
+    {
+      "id": "I4",
+      "claim": "A benchmark harness internally uses timing against the declared workload to detect results that were not actually computed",
+      "verdict": "TAKEN",
+      "closest_work": "MLPerf Inference compliance TEST04 (caching detection), with TEST01 and TEST09; Reddi et al., MLPerf Inference Benchmark, arXiv 1911.02549, section 'Result Review'",
+      "what_it_does": "Runs the workload a second time with duplicate sample indices. If that run is significantly faster (more than 10%) than the run with unique samples, the system was caching instead of computing, and the submission fails.",
+      "what_it_does_not": "It is an active audit that re-runs a live system under a changed workload. It is not a passive residual on a historical log, it does not apply to agent tool calls, and it does not use output size.",
+      "deciding_citation": "https://github.com/mlcommons/inference/blob/master/compliance/TEST04/README.md : \"Performance of TEST04 should not be faster than the standard performance run in a statistically significant way. To account for noise, TEST04 can be at most 10% faster than the standard performance run.\"",
+      "opened": true
+    },
+    {
+      "id": "I5",
+      "claim": "An APM or LLM-observability product already embodies a workload-conditioned duration check on agent tool calls (the 'internally embodies' test)",
+      "verdict": "NOVEL",
+      "closest_work": "Datadog Watchdog and Datadog LLM Observability agent evaluations; Dynatrace Davis multidimensional baselining and MCP observability; New Relic anomaly detection",
+      "what_it_does": "Watchdog builds latency, error-rate and hit baselines per service and resource from at least 2 weeks of history. Dynatrace builds median and p90 references per service method. New Relic builds seasonal history baselines. Datadog's agent evaluations (Tool Selection, Tool Argument Correctness, Goal Completeness, Hallucination) are LLM-as-a-judge. Dynatrace MCP observability records tool-call durations.",
+      "what_it_does_not": "None of them conditions expected latency on the size of the claimed work or output, and none uses tool-call timing to judge whether a result is genuine. The docs fetched do not mention fabrication detection by timing.",
+      "deciding_citation": "https://docs.datadoghq.com/watchdog/alerts/ : \"Watchdog scans all services and resources to look for anomalies on the following metrics: Error rate, Latency, Hits (request rate)\"",
+      "opened": true
+    },
+    {
+      "id": "I6",
+      "claim": "N1 design element: baseline from recent repeats of the same command, not a global model",
+      "verdict": "PARTIAL",
+      "closest_work": "Tsafrir, Etsion & Feitelson, Backfilling Using System-Generated Predictions Rather Than User Runtime Estimates, IEEE TPDS 2007; per-endpoint baselines in Dynatrace and Datadog",
+      "what_it_does": "Predicts a job's runtime as the mean of the same user's last two completed jobs and finds that recency beats similarity mining. APM products baseline per service method or resource.",
+      "what_it_does_not": "Used for scheduling and alerting, not for verification. The gap between the user's estimate and the actual runtime is treated as inaccuracy, never as falsification.",
+      "deciding_citation": "https://www.cs.huji.ac.il/~feit/papers/Pred07TPDS.pdf : \"Notably, this is based on a very simple runtime predictor that just averages the runtimes of the last two jobs by the same user; counterintuitively, our results indicate that using recent data is more important than mining the history for similar jobs.\"",
+      "opened": true
+    },
+    {
+      "id": "I7",
+      "claim": "Run duration (with command identity) as a feature separating two processes that generate records in CI",
+      "verdict": "PARTIAL",
+      "closest_work": "Haben et al., Discerning Legitimate Failures From False Alerts: A Study of Chromium's Continuous Integration (Fair), arXiv 2111.03382",
+      "what_it_does": "Uses run duration as the most important feature, with test command and code as static features, to classify a test-failure record as a legitimate failure or a flaky false alert (median 1.09 s against 0.41 s).",
+      "what_it_does_not": "There is no adversary and no falsified records. It uses raw duration, not a residual against same-command repeats, and not output size.",
+      "deciding_citation": "https://arxiv.org/pdf/2111.03382 : \"the median duration of test executions is 1.09 seconds for legitimate failures, but only 0.41 seconds for false alerts.\"",
+      "opened": true
+    },
+    {
+      "id": "I8",
+      "claim": "Premise behind (b): honest tool-call latency residuals are uncorrelated with output size",
+      "verdict": "N/A",
+      "closest_work": "LogGP (Alexandrov, Ionescu, Schauser, Scheiman, SPAA 1995): per-byte latency term G",
+      "what_it_does": "Models message time as fixed overhead plus a per-byte term. Honest data movement is size-proportional.",
+      "what_it_does_not": "It does not discuss fabrication. It is cited as a risk to (b), not as prior art: honest I/O-bound calls can also show residuals that correlate with size, so the slope magnitude (s/KB) has to be compared with a generation-rate prior.",
+      "deciding_citation": "https://cs.ucsb.edu/research/tech-reports/1995-09 : \"has one additional parameter, G, which captures the bandwidth obtained for long messages.\"",
+      "opened": true
+    }
+  ],
+
+  "sources": [
+    {
+      "id": "S_BOINC_CREDITNEW",
+      "title": "BOINC wiki: CreditNew",
+      "url": "https://raw.githubusercontent.com/wiki/BOINC/boinc/CreditNew.md",
+      "also_opened": "https://github.com/BOINC/boinc/wiki/CreditNew",
+      "opened": true,
+      "angle": "runtime prediction / job accounting (volunteer computing)",
+      "conditions_duration_on_declared_workload": true,
+      "treats_mismatch_as_falsification": true,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "When a client finishes a job and reports its elapsed time T, we define `peak_flop_count(J)`, or PFC(J) as `PFC(J) = T * peak_flops(J)`",
+        "If `PFC(J) > wu.fpops_bound`, J is assigned a \"default PFC\" D and it's not used to update statistics. D is determined as follows: If app.min_avg_pfc is defined then `D = app.min_avg_pfc * wu.fpops_est` Otherwise `D = wu.fpops_est`",
+        "Host normalization mostly eliminates the incentive to cheat by claiming excessive credit (i.e., by falsifying benchmark scores or elapsed time)",
+        "One-time cheats. For example, claiming a PFC of 1e304. This is handled by the sanity check mechanism, which grants a default amount of credit and treats the host with suspicion for a while."
+      ],
+      "does_not": "One-sided upper bound only, so it catches inflated durations, not generated results. Result correctness is handled separately by replication and validators. No output-size term. It is not a fitted residual.",
+      "note": "The wiki page shows no date. Not established here when the sanity check was introduced."
+    },
+    {
+      "id": "S_SEKAR_MANIATIS_2011",
+      "title": "Verifiable Resource Accounting for Cloud Computing Services",
+      "authors": "Vyas Sekar, Petros Maniatis (Intel Labs)",
+      "venue": "ACM CCSW 2011 (the PDF file name says 2011CCSW)",
+      "url": "https://users.ece.cmu.edu/~vsekar/assets/pdf/2011CCSW-AA.pdf",
+      "opened": true,
+      "angle": "runtime/resource prediction used for verification",
+      "conditions_duration_on_declared_workload": true,
+      "treats_mismatch_as_falsification": true,
+      "quote_method": "pypdf_text",
+      "passages": [
+        "Verifiability here means that cloud customers can be assured that (a) their applications indeed physically consumed the resources they were charged for and (b) that this consumption was justified based on an agreed policy.",
+        "The first option is to use resource prediction. While such tools are motivated by provisioning or scheduling applications, they can also provide basic verification checks. For example, the client can extract key features of the workload from its own tamper-resistant execution log and check if the predicted resource consumption roughly matches the reports from the provider.",
+        "Resource prediction is challenging because workloads are hard to characterize and there are many hidden factors."
+      ],
+      "does_not": "Position paper. The prediction check is one paragraph under 'Relaxing provider assistance', with no implementation or evaluation. The party under suspicion is the cloud provider over-reporting consumption, not an agent fabricating results. No output-size discriminator."
+    },
+    {
+      "id": "S_VERICOUNT",
+      "title": "VeriCount: Verifiable Resource Accounting Using Hardware and Software Isolation",
+      "authors": "Shruti Tople, Soyeon Park, Min Suk Kang, Prateek Saxena",
+      "venue": "ACNS 2018",
+      "url": "https://www.microsoft.com/en-us/research/?p=644997",
+      "opened": true,
+      "angle": "verifiable accounting (contrast case: instrumented)",
+      "conditions_duration_on_declared_workload": false,
+      "treats_mismatch_as_falsification": true,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "both the cloud providers and the clients have the incentive to manipulate claims about resource usage.",
+        "leverages security features present in trusted computing solutions, such as Intel SGX, to measure user CPU time, memory, I/O bytes and network bandwidth while simultaneously detecting resource usage inflation attacks."
+      ],
+      "does_not": "Requires a TEE (SGX) witness, so it is instrumented. It does not predict expected consumption from the workload. Only the abstract was read; enough to classify it as instrumentation-based."
+    },
+    {
+      "id": "S_KELLY_2005",
+      "title": "Detecting Performance Anomalies in Global Applications",
+      "authors": "Terence Kelly (HP Labs)",
+      "venue": "USENIX WORLDS 2005",
+      "url": "https://static.usenix.org/events/worlds05/tech/full_papers/kelly/kelly_html/anomdet.html",
+      "also_opened": "https://static.usenix.org/events/worlds05/tech/full_papers/kelly/kelly_html/index.html",
+      "opened": true,
+      "angle": "academic APM anomaly detection",
+      "conditions_duration_on_declared_workload": true,
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "y_i = ∑_j T_ij = ∑_j α_j N_ij (model as rendered by the extractor: aggregate response time per interval as a weighted sum of per-type transaction counts)",
+        "if the ŷᵢ agree closely with the corresponding yᵢ for most time intervals i, but disagree substantially for some i, deem the latter cases anomalous.",
+        "An important concurrency parameter in the application server tier, the maximum number of simultaneous database connections, was set too low."
+      ],
+      "does_not": "Trusts the transaction log, and attributes anomalies to performance faults. The extractor reported no mention of falsified or forged records."
+    },
+    {
+      "id": "S_TRACEANOMALY_2020",
+      "title": "Unsupervised Detection of Microservice Trace Anomalies through Service-Level Deep Bayesian Networks (TraceAnomaly)",
+      "authors": "Ping Liu, Haowen Xu, Qianyu Ouyang, Rui Jiao, Zhekang Chen, Shenglin Zhang, Jiahai Yang, Linlin Mo, Jice Zeng, Wenman Xue, Dan Pei",
+      "venue": "ISSRE 2020",
+      "url": "https://netman.aiops.org/wp-content/uploads/2020/09/%E5%88%98%E5%B9%B3issre.pdf",
+      "opened": true,
+      "angle": "academic APM anomaly detection (traces)",
+      "conditions_duration_on_declared_workload": "partly: response time is conditioned on call path (what ran), not on payload or output size",
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "pypdf_text",
+      "passages": [
+        "3) the interdependency between the response times and invocation paths.",
+        "we encode the response time and invocation paths of a trace in a service into a vector (called service trace vector or STV hereinafter)"
+      ],
+      "does_not": "A grep of the full text for fabricat|forg|falsif|malicious|attack|security finds only a reference-list hit (DeepLog in CCS). The threat model is performance degradation. Traces are trusted."
+    },
+    {
+      "id": "S_GOW_2013",
+      "title": "\"The tail wags the dog\": A study of anomaly detection in commercial application performance",
+      "authors": "Richard Gow, Srikumar Venugopal, Pradeep Kumar Ray (UNSW)",
+      "venue": "arXiv 1307.1743 (2013)",
+      "url": "https://arxiv.org/pdf/1307.1743",
+      "opened": true,
+      "angle": "academic APM anomaly detection",
+      "conditions_duration_on_declared_workload": true,
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "pypdf_text",
+      "passages": [
+        "The first technique involved creating a resource consumption model of an application that, using regression, correlated processed transactions and consumed CPU time. The aim was to maintain a model that reflected resource consumption during normal operations. Significant changes in CPU resource consumption were then used to identify performance anomalies or application changes."
+      ],
+      "does_not": "Performance anomalies only. A grep for fraud|falsif|fabricat|forg|tamper|cheat|adversar|malicious finds nothing. The passage above describes Cherkasova et al. DSN 2008, which was not opened (see unverified)."
+    },
+    {
+      "id": "S_PIP_2006",
+      "title": "Pip: Detecting the Unexpected in Distributed Systems",
+      "authors": "Patrick Reynolds et al.",
+      "venue": "NSDI 2006",
+      "url": "https://static.usenix.org/event/nsdi06/tech/full_papers/reynolds/reynolds_html/index.html",
+      "opened": true,
+      "angle": "academic APM: declared expectations against traces",
+      "conditions_duration_on_declared_workload": "declared static limits per task/path, not a workload model",
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "Pip allows programmers to express, in a declarative language, expectations about the system's communications structure, timing, and resource consumption.",
+        "Programmers can express upper and lower limits on the resources that any task, message, or path can consume. Pip defines several metrics, including real time, CPU time, number of context switches, and message size and latency."
+      ],
+      "does_not": "Finds bugs and performance problems in trusted, self-instrumented traces. The extractor reported no discussion of forged annotations."
+    },
+    {
+      "id": "S_MAGPIE_2004",
+      "title": "Using Magpie for request extraction and workload modelling",
+      "authors": "Paul Barham, Austin Donnelly, Rebecca Isaacs, Richard Mortier",
+      "venue": "OSDI 2004",
+      "url": "https://static.usenix.org/events/osdi04/tech/full_papers/barham/barham_html/index.html",
+      "opened": true,
+      "angle": "academic APM: per-request resource models and outliers",
+      "conditions_duration_on_declared_workload": "clusters requests by control flow and resource use",
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "Other common causes of outlier requests include JIT compilation, loading shared libraries, cache misses and genuine performance anomalies."
+      ],
+      "does_not": "Outliers are benign or performance anomalies. Event logs are trusted."
+    },
+    {
+      "id": "S_DALY_2020",
+      "title": "Change Point Detection in Software Performance Testing",
+      "authors": "David Daly, William Brown, Henrik Ingo, Jim O'Leary, David Bradford (MongoDB)",
+      "venue": "ICPE 2020 (arXiv 2003.00584)",
+      "url": "https://arxiv.org/abs/2003.00584",
+      "opened": true,
+      "angle": "performance-regression detection",
+      "conditions_duration_on_declared_workload": "fixed benchmark per series; detects changes over commits",
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "The algorithm produces a list of change points representing significant changes from a given history of performance results."
+      ],
+      "does_not": "Regression detection over commits. No falsification threat. Only the abstract was read, which is enough because the topic is regression triage."
+    },
+    {
+      "id": "S_DATADOG_WATCHDOG",
+      "title": "Datadog Watchdog alerts docs",
+      "url": "https://docs.datadoghq.com/watchdog/alerts/",
+      "opened": true,
+      "angle": "APM product",
+      "conditions_duration_on_declared_workload": false,
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "Watchdog scans all services and resources to look for anomalies on the following metrics: Error rate, Latency, Hits (request rate)",
+        "Watchdog requires some data to establish a baseline of expected behavior. For metric anomalies, the minimum history is two weeks",
+        "Watchdog uses the same seasonal algorithms that power monitors and dashboards."
+      ],
+      "does_not": "The baseline comes from history and seasonality per service/resource. The extractor found no conditioning on payload or work size."
+    },
+    {
+      "id": "S_DYNATRACE_BASELINE",
+      "title": "Dynatrace docs: Automated multidimensional baselining",
+      "url": "https://docs.dynatrace.com/docs/shortlink/automated-baselining",
+      "opened": true,
+      "angle": "APM product",
+      "conditions_duration_on_declared_workload": false,
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "Dynatrace collects references for the median (above which are the slowest 50% of all callers) and the 90th percentile (the slowest 10% of all callers).",
+        "baselines are evaluated within 5-min and 15-min sliding time intervals."
+      ],
+      "does_not": "Baseline dimensions are user action, geolocation, browser and OS for applications, and service method and service method group for services. No work-size conditioning. No fabrication threat."
+    },
+    {
+      "id": "S_NEWRELIC_ANOMALY",
+      "title": "New Relic docs: anomaly detection",
+      "url": "https://docs.newrelic.com/docs/alerts/create-alert/set-thresholds/anomaly-detection/",
+      "opened": true,
+      "angle": "APM product",
+      "conditions_duration_on_declared_workload": false,
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "New Relic evaluates historical trends to build a predicted baseline and an acceptable variation zone (the gray band) around it",
+        "The algorithm looks for recurring, shorter-than-one-week patterns (like a Wednesday 1pm deploy or nightly batch jobs) and adjusts predictions to match."
+      ],
+      "does_not": "Univariate temporal baseline. No covariates."
+    },
+    {
+      "id": "S_DATADOG_LLMOBS_EVALS",
+      "title": "Datadog LLM Observability: agent evaluations / LLM-as-a-judge template evaluations; session-level evaluations",
+      "url": "https://docs.datadoghq.com/llm_observability/evaluations/managed_evaluations/agent_evaluations",
+      "also_opened": [
+        "https://docs.datadoghq.com/llm_observability/evaluations/managed_evaluations/session_level_evaluations",
+        "https://datadoghq.com/blog/llm-observability-hallucination-detection/"
+      ],
+      "opened": true,
+      "angle": "LLM/agent observability product (internally embodies?)",
+      "conditions_duration_on_declared_workload": false,
+      "treats_mismatch_as_falsification": "checks hallucination semantically with an LLM judge, not by timing",
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "Tool Argument Correctness — Verifies that arguments provided to a tool are correct and relevant based on the tool schema.",
+        "Tool Selection — Verifies that the tools chosen by the LLM align with the user's request and the set of available tools.",
+        "Goal Completeness — Checks whether the agent resolved the user's intent by analyzing full session spans.",
+        "Hallucination detection uses an LLM-as-a-judge approach along with novel techniques in prompt engineering and multi-stage reasoning."
+      ],
+      "does_not": "No evaluation uses span duration or tool-call latency (per the extractor on all three pages). The agent_evaluations URL served an LLM-as-a-judge template listing."
+    },
+    {
+      "id": "S_DYNATRACE_MCP",
+      "title": "Dynatrace Hub: MCP observability",
+      "url": "https://www.dynatrace.com/hub/detail/mcp-observability",
+      "opened": true,
+      "angle": "agent observability product",
+      "conditions_duration_on_declared_workload": false,
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "Detect bottlenecks by tracking real-time metrics, including request counts, durations, and error rates."
+      ],
+      "does_not": "Records tool-call durations for bottleneck detection. No verification of tool results."
+    },
+    {
+      "id": "S_MLPERF_PAPER",
+      "title": "MLPerf Inference Benchmark",
+      "authors": "Reddi et al.",
+      "venue": "arXiv 1911.02549 (ISCA 2020)",
+      "url": "https://arxiv.org/pdf/1911.02549",
+      "also_opened": "https://ar5iv.labs.arxiv.org/html/1911.02549",
+      "opened": true,
+      "angle": "benchmark harness (internally embodies)",
+      "conditions_duration_on_declared_workload": true,
+      "treats_mismatch_as_falsification": "treats 'faster than unique-sample run' as evidence of prohibited caching, i.e. results not computed",
+      "quote_method": "pypdf_text",
+      "passages": [
+        "In this test, results returned from the SUT to the LoadGen are logged randomly. The log is checked against the log generated in accuracy mode to ensure consistency.",
+        "The test has two parts: the first generates queries with unique sample indices, and the second generates queries with duplicate sample indices. It measures performance in each case. The way to detect caching is to determine whether the test with duplicate sample indices runs significantly faster than the test with unique sample indices."
+      ],
+      "does_not": "Active audit that requires re-running the system. Aggregate throughput, not per-call residuals. No output-size term."
+    },
+    {
+      "id": "S_MLPERF_TEST04",
+      "title": "mlcommons/inference compliance/TEST04 README",
+      "url": "https://github.com/mlcommons/inference/blob/master/compliance/TEST04/README.md",
+      "note_404": "The older path https://github.com/mlcommons/inference/blob/master/compliance/nvidia/TEST04/README.md returned HTTP 404. The current directory listing (https://github.com/mlcommons/inference/tree/master/compliance) shows TEST01, TEST04, TEST06, TEST07, TEST08, TEST09.",
+      "opened": true,
+      "angle": "benchmark harness",
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "The purpose of this test is to ensure that results are not cached on the fly when SUT sees duplicate sample IDs.",
+        "Performance of TEST04 should not be faster than the standard performance run in a statistically significant way. To account for noise, TEST04 can be at most 10% faster than the standard performance run."
+      ]
+    },
+    {
+      "id": "S_MLPERF_TEST01",
+      "title": "mlcommons/inference compliance/TEST01 README",
+      "url": "https://github.com/mlcommons/inference/blob/master/compliance/TEST01/README.md",
+      "opened": true,
+      "angle": "benchmark harness",
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "The purpose of this test is to ensure that valid inferences are being performed in performance mode.",
+        "The performance while running this test must match the performance of the submission within 10%."
+      ]
+    },
+    {
+      "id": "S_MLPERF_TEST09",
+      "title": "mlcommons/inference compliance/TEST09 README",
+      "url": "https://github.com/mlcommons/inference/blob/master/compliance/TEST09/README.md",
+      "also_opened": [
+        "https://github.com/mlcommons/inference/blob/master/compliance/TEST06/README.md",
+        "https://github.com/mlcommons/inference/blob/master/compliance/TEST07/README.md"
+      ],
+      "opened": true,
+      "angle": "benchmark harness (output length against throughput cheating)",
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "The purpose of this test is to ensure that models are generating outputs of expected length during performance runs. This prevents cheating by truncating outputs to artificially improve throughput metrics.",
+        "TEST06: The number of reported tokens should match with the length of output sequence."
+      ],
+      "does_not": "TEST09 bounds the mean output token count (the extractor gives ±10% of a reference mean for gpt-oss-120b). It does not correlate latency with length. TEST06 checks token-count consistency, which is relevant to N2, not N1."
+    },
+    {
+      "id": "S_TSAFRIR_2007",
+      "title": "Backfilling Using System-Generated Predictions Rather Than User Runtime Estimates",
+      "authors": "Dan Tsafrir, Yoav Etsion, Dror G. Feitelson",
+      "venue": "IEEE TPDS 2007",
+      "url": "https://www.cs.huji.ac.il/~feit/papers/Pred07TPDS.pdf",
+      "opened": true,
+      "angle": "HPC job runtime prediction",
+      "conditions_duration_on_declared_workload": "the user-declared estimate is compared with history; history (same user, last two jobs) is the predictor",
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "pypdf_text",
+      "passages": [
+        "Notably, this is based on a very simple runtime predictor that just averages the runtimes of the last two jobs by the same user; counterintuitively, our results indicate that using recent data is more important than mining the history for similar jobs.",
+        "empirical studies of traces from sites that actually use EASY show that user estimates are generally inaccurate"
+      ],
+      "does_not": "The gap between estimate and actual is treated as user inaccuracy for scheduling, never as misreporting. A grep for cheat|gaming|fraud|falsif finds nothing relevant."
+    },
+    {
+      "id": "S_BISONG_2017",
+      "title": "Built to Last or Built Too Fast? Evaluating Prediction Models for Build Times",
+      "authors": "Ekaba Bisong, Eric Tran, Olga Baysal",
+      "venue": "MSR 2017 (arXiv 1712.06796)",
+      "url": "https://arxiv.org/pdf/1712.06796",
+      "opened": true,
+      "angle": "CI build duration prediction",
+      "conditions_duration_on_declared_workload": true,
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "pypdf_text",
+      "passages": [
+        "We propose and analyze models that can predict the build time of a job."
+      ],
+      "does_not": "A full-text grep for fraud|falsif|fabricat|forg|tamper|cheat|adversar|malicious|anomal returns 0 matches. Prediction is for developer planning only."
+    },
+    {
+      "id": "S_MARCUS_2019",
+      "title": "Plan-Structured Deep Neural Network Models for Query Performance Prediction",
+      "authors": "Ryan Marcus, Olga Papaemmanouil",
+      "venue": "VLDB 2019 (arXiv 1902.00132)",
+      "url": "https://arxiv.org/pdf/1902.00132",
+      "opened": true,
+      "angle": "database query latency prediction",
+      "conditions_duration_on_declared_workload": true,
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "pypdf_text",
+      "passages": [
+        "Query performance prediction, the task of predicting the latency of a query, is one of the most challenging problem in database management systems."
+      ],
+      "does_not": "A full-text grep for fraud|falsif|fabricat|forg|tamper|cheat|adversar|malicious|anomal returns 0 matches. Latency is predicted from the plan structure only."
+    },
+    {
+      "id": "S_FAIR_2021",
+      "title": "Discerning Legitimate Failures From False Alerts: A Study of Chromium's Continuous Integration",
+      "authors": "Guillaume Haben, Sarra Habchi, Mike Papadakis, Maxime Cordy, Yves Le Traon",
+      "venue": "arXiv 2111.03382 (2021)",
+      "url": "https://arxiv.org/pdf/2111.03382",
+      "also_opened": "https://arxiv.org/abs/2111.03382",
+      "opened": true,
+      "angle": "CI (duration as a discriminator of the record-generating process)",
+      "conditions_duration_on_declared_workload": "uses test command and code as features alongside duration",
+      "treats_mismatch_as_falsification": false,
+      "quote_method": "pypdf_text",
+      "passages": [
+        "Our approach relies on dynamic features (e.g., stack-trace and run duration) and static features (e.g., test command and code) to discard false alerts while avoiding reruns and coverage computation.",
+        "When investigating the most important features used in the model's decisions, the run duration comes first",
+        "the median duration of test executions is 1.09 seconds for legitimate failures, but only 0.41 seconds for false alerts."
+      ],
+      "does_not": "No adversary. Separates flaky from real failures. Raw duration, not a residual. No output-size term."
+    },
+    {
+      "id": "S_TAXONOMIST_2018",
+      "title": "Taxonomist: Application Detection through Rich Monitoring Data",
+      "authors": "Emre Ates, Ozan Tuncer, Ata Turk, Vitus J. Leung, Jim Brandt, Manuel Egele, Ayse K. Coskun",
+      "venue": "Euro-Par 2018",
+      "url": "https://www.bu.edu/peaclab/files/2014/03/ates_europar18.preprint.pdf",
+      "opened": true,
+      "angle": "HPC misuse detection (does the observed behaviour match the claimed application?)",
+      "conditions_duration_on_declared_workload": false,
+      "treats_mismatch_as_falsification": "detects fraudulent use (cryptomining) from resource-usage signatures",
+      "quote_method": "pypdf_text",
+      "passages": [
+        "unwanted applications such as cryptocurrency mining or password cracking can be blocked",
+        "Knowing which applications are running on the system is a strong aid in addressing fraud, waste, and abuse problems."
+      ],
+      "does_not": "Uses node-level monitoring time series (instrumented), not duration conditioned on declared work. Does not check log records."
+    },
+    {
+      "id": "S_AIOPS_OOPS",
+      "title": "When AIOps Become 'AI Oops': Subverting LLM-driven IT Operations via Telemetry Manipulation",
+      "authors": "Dario Pasquini, Evgenios M. Kornaropoulos, Giuseppe Ateniese, Omer Akgul, Athanasios Theocharis, Petros Efstathopoulos",
+      "venue": "arXiv 2508.06394",
+      "url": "https://arxiv.org/html/2508.06394v2",
+      "opened": true,
+      "angle": "falsified telemetry in observability",
+      "conditions_duration_on_declared_workload": false,
+      "treats_mismatch_as_falsification": "defends against injected telemetry by sanitising fields, not by consistency or timing",
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "sanitizes any untrusted ones by replacing them with abstractions."
+      ],
+      "does_not": "The extractor reports no use of latency, workload-conditioned models or cross-signal consistency."
+    },
+    {
+      "id": "S_GH_67847",
+      "title": "anthropics/claude-code issue #67847: Opus 4.8 fabricates entire tool executions inside extended thinking — no tool_use emitted, model believes tools ran and reports fake results",
+      "url": "https://github.com/anthropics/claude-code/issues/67847",
+      "also_opened": "https://claudeissues.com/issue/67847-opus-4-8-fabricates-entire-tool-executions-inside-extended-thinking-no-tool-use",
+      "opened": true,
+      "angle": "agent domain (closest item for (b), anecdotal)",
+      "state_at_fetch": "Open; opened 2026-06-12 (per the GitHub page fetch)",
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "All fabricating turns: unusually long thinking-heavy responses (3.9k–5.5k output tokens, 60–90s), large context (133k–211k).",
+        "3,927 output tokens, ~60s generation",
+        "5,508 output tokens, ~82s"
+      ],
+      "does_not": "No residual against expected work and no correlation statistic. These are anecdotal per-turn totals. The fabrication is inline, with no tool_use emitted (the N2/token-accounting class), so there is no tool-call duration to test. Belongs with #67730 and its siblings (CLAUDE_context_swarms.md §6)."
+    },
+    {
+      "id": "S_LOGGP",
+      "title": "LogGP: Incorporating Long Messages into the LogP Model",
+      "authors": "Albert Alexandrov, Mihai F. Ionescu, Klaus E. Schauser, Chris Scheiman",
+      "venue": "UCSB tech report 1995-09 / SPAA 1995",
+      "url": "https://cs.ucsb.edu/research/tech-reports/1995-09",
+      "opened": true,
+      "angle": "standard latency model with a size-proportional term (risk for (b))",
+      "quote_method": "webfetch_extract",
+      "passages": [
+        "This combination, which we call the LogGP model of parallel computation, has one additional parameter, G, which captures the bandwidth obtained for long messages."
+      ],
+      "does_not": "Not about fabrication. Cited only to show that honest latency has a per-byte component."
+    }
+  ],
+
+  "cross_angle_pointers_for_synth": [
+    {
+      "id": "X_RAFT",
+      "note": "Timing-based verification of a claimed physical workload (timing/tamper angle, not this task's). Bowers, van Dijk, Juels, Oprea, Rivest, 'How to Tell if Your Cloud Files Are Vulnerable to Drive Crashes', CCS 2011 / IACR ePrint 2010/214. Response time to a challenge read must fit the claimed number of drives. Active challenge-response, not a passive log.",
+      "url": "https://eprint.iacr.org/2010/214",
+      "opened": true,
+      "quote_method": "webfetch_extract",
+      "passage": "The key technique in a RAFT is to measure the time taken for a server to respond to a read request for a collection of file blocks."
+    },
+    {
+      "id": "X_3DMARK_RTC",
+      "note": "A benchmark harness that internally checks its timers against a second clock to reject faked scores. Relevant to B2 (multi-clock) and timing-tamper detection, not to N1. Futuremark SystemInfo v4.20 release post by FM_Jarnis, 2013-09-04, on the HWBOT forum.",
+      "url": "https://community.hwbot.org/topic/83469-futuremark-systeminfo-v420-out",
+      "opened": true,
+      "quote_method": "webfetch_extract",
+      "passage": "Added Windows RTC clock verification, results with inaccurate time measurement can now be rejected on 3DMark.com"
+    }
+  ],
+
+  "unverified_or_not_opened": [
+    {
+      "item": "Cherkasova, Ozonat, Mi, Symons, Smirni, 'Anomaly? Application Change? or Workload Change? Towards Automated Detection of Application Performance Anomaly and Change', DSN 2008, pp. 452-461",
+      "status": "UNVERIFIED. The primary PDF was not found or opened. Known only through the description in Gow et al. 2013 (S_GOW_2013) and the search-result listing. Do not cite as primary."
+    },
+    {
+      "item": "BOINC ValidationSimple 'runtime outliers' section",
+      "status": "UNVERIFIED. https://raw.githubusercontent.com/wiki/BOINC/boinc/ValidationSimple.md returned 404, and https://github.com/BOINC/boinc/wiki/ValidationSimple rendered without content. A forum search snippet mentions it; not relied on."
+    },
+    {
+      "item": "OpenTelemetry GenAI semantic conventions, execute_tool span",
+      "status": "NOT READ. https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-spans/ now only points to https://github.com/open-telemetry/semantic-conventions-genai (repo README opened). Both https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-spans.md and the raw.githubusercontent.com copy were truncated before the execute_tool section. Nothing is claimed about it."
+    },
+    {
+      "item": "Older MLPerf path compliance/nvidia/TEST04/README.md",
+      "status": "HTTP 404 (moved). The current path compliance/TEST04/README.md was opened."
+    }
+  ],
+
+  "searched_without_relevant_hit": [
+    "web server log response time versus response size regression residual anomaly detection (results: Splunk MLTK outlier guide, an Isolation Forest on response size; nothing on discriminating generation-bound latency)",
+    "detect faked or forged CI test results build logs using execution duration plausibility (only hit: Fair, which is about flakiness, not forgery)",
+    "LLM observability detect hallucinated tool call fabricated tool output span duration latency anomaly (only generic blogs: latency is tracked, hallucination is judged semantically)",
+    "detecting falsified telemetry spoofed performance metrics consistency check AIOps (only hit: AIOpsShield, which sanitises rather than checking timing)"
+  ],
+
+  "design_notes_REASONING_not_findings": [
+    "Prior art to cite in DESIGN.md for N1. Kelly 2005 for the residual-as-anomaly mechanism. BOINC CreditNew and Sekar & Maniatis 2011 for the check of declared work against reported duration as a test for falsification. MLPerf TEST04 for a harness-level 'too fast for the claimed work' audit with a 10% tolerance. Tsafrir 2007 for the recent same-key baseline. The claim should be scoped to agent tool-call logs plus a passive check plus a two-sided residual plus the output-size discriminator.",
+    "Direction. BOINC checks a one-sided upper bound (inflated time), while MLPerf TEST04 checks the lower side (too fast). A fabricated tool result can fail either way: a generated 'pytest' that returns faster than real execution, or a generated large output that takes longer than a real 'cat'. N1's residual test should be two-sided, or split by output size.",
+    "Risk for (b). Honest latency also has a per-byte term (LogGP G: transfer, serialisation, pagination, terminal rendering). Honest corr(residual, output_bytes) will be positive for I/O-heavy commands, so the sign alone cannot discriminate. Compare the fitted slope (s/KB) with a generation-rate prior, since LLM decoding at tens of tokens per second is roughly 1e3 to 1e5 times slower per byte than local I/O. Track A has to measure this; it is not established here.",
+    "Coverage interaction. Within-session repeats of the same command often return byte-identical output, which leaves output_bytes with no variance and corr undefined for that group. The discriminator needs repeats whose output sizes differ (for example 'git log', 'pytest -x' after edits). That bounds (b)'s coverage below the repeat-command rate N1 already reports."
+  ],
+
+  "files_written": ["analysis/out/phase_e/track_b/B1b_apm_runtime.json"]
+}

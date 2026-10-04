@@ -1,0 +1,500 @@
+{
+ "produced_by": "analysis/out/phase_e/track_b/corpus_skeptic/request_id_scan.py",
+ "generated_utc": "2026-10-04T08:57:36Z",
+ "patterns": {
+  "ANTH": "req_(?:vrtx_|bdrk_)?01[1-9A-HJ-NP-Za-km-z]{22}(?![1-9A-HJ-NP-Za-km-z])",
+  "LOOSE": "req_[0-9A-Za-z]{20,}",
+  "KEYS": "\"(requestId|request_id|request-id|x-request-id|requestID|RequestId)\"\\s*:\\s*(\"([^\"]{0,80})\"|null|[0-9]+)",
+  "SK_ANT": "sk-ant- + >=20 key chars (count of files only; values never stored)"
+ },
+ "skips": [
+  ".git/",
+  ".cache/",
+  "terminal-bench-2-leaderboard/submissions/ (duplicates, checked in duplicates)"
+ ],
+ "per_corpus": {
+  "agentcap-dacorvo": {
+   "files": 855,
+   "bytes_scanned": 3837013580,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "cli-claude-code-hf": {
+   "files": 415,
+   "bytes_scanned": 244261716,
+   "anth_matches": 21629,
+   "anth_distinct": 7676,
+   "loose_matches": 21635,
+   "keys": {
+    "requestId|anthropic_req": 21604,
+    "requestId|req_other": 2
+   },
+   "files_with_anth": 282,
+   "anth_by_prefix": {
+    "cfahlgren1__Fable-5-traces@0ba6f538/sessions": 7693,
+    "crispwisp__wisp-claude-code-sessions@c2c90b59/transcripts": 4237,
+    "build-small-hackathon__kirana-detective-build-traces@d61ca08e/sessions": 882,
+    "naazimsnh02__tutordesk-agent-traces@4d538090/build_sessions": 708,
+    "armand0e__claude-fable-5-claude-code@7388ef96/602033e7-dc55-4b7f-909f-1c67135d8f4b.jsonl": 643,
+    "armand0e__claude-fable-5-claude-code@7388ef96/e3d0c93f-5cf8-4067-9a49-657ba5c67c80.jsonl": 539,
+    "armand0e__claude-fable-5-claude-code@7388ef96/f956721a-0af7-4bdc-8678-3a493d8fcd39.jsonl": 444,
+    "armand0e__claude-fable-5-claude-code@7388ef96/5eeb7e10-99a4-4d7d-a505-3ef47dcab480.jsonl": 365,
+    "armand0e__claude-fable-5-claude-code@7388ef96/7274969b-ab5c-461c-bc7c-8434eb9eb42e.jsonl": 309,
+    "armand0e__claude-fable-5-claude-code@7388ef96/c7c6924c-09c0-4c89-9ce1-a2080fd18f8f.jsonl": 305,
+    "armand0e__claude-fable-5-claude-code@7388ef96/6ae0aeed-340e-4b4d-9d74-f905a74ca2fc.jsonl": 303,
+    "armand0e__claude-fable-5-claude-code@7388ef96/68396a0d-8585-4d00-9321-54b2b00c07f4.jsonl": 280
+   },
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 2,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "cli-codex-hf": {
+   "files": 58,
+   "bytes_scanned": 72628969,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 1,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "cli-pi-hf": {
+   "files": 596,
+   "bytes_scanned": 211044988,
+   "anth_matches": 31,
+   "anth_distinct": 14,
+   "loose_matches": 31,
+   "keys": {},
+   "files_with_anth": 11,
+   "anth_by_prefix": {
+    "championswimmer__pi-coding-sessions@f655c6c2/_upload_staging": 16,
+    "thomasmustier__pine-of-glass-sessions@b9a6b263/2026-06-04T14-29-08-894Z_019e9309-ba9e-7e05-9c01-1f502b895276.jsonl": 3,
+    "thomasmustier__pi-extensions-sessions@17e22c59/2026-01-10T19-34-08-975Z_e2ebc249-bf94-4407-a64a-dd3556dc75c3.jsonl": 2,
+    "thomasmustier__pi-mono-sessions@d0895347/2026-01-15T21-53-47-573Z_6b002064-6813-4f5c-9bd0-2d5e56b2f377.jsonl": 2,
+    "thomasmustier__pine-of-glass-sessions@b9a6b263/2026-06-09T22-08-06-945Z_019eae6d-b921-71c2-92c7-c412e69e8798.jsonl": 2,
+    "thomasmustier__clean-slides-sessions@0ecc915c/2026-02-03T11-49-55-265Z_ae3526ce-73df-444f-b1fe-fd8ceae280c0.jsonl": 1,
+    "thomasmustier__pi-computer-use-sessions@83536449/2026-04-25T17-20-32-336Z_019dc5a8-4450-725e-b701-afed219ba6c6.jsonl": 1,
+    "thomasmustier__pi-extensions-sessions@17e22c59/2026-01-07T12-22-23-866Z_cd714c64-cf62-438e-b140-d3a5a284c260.jsonl": 1,
+    "thomasmustier__pi-mono-sessions@d0895347/2026-01-07T23-30-39-269Z_6fd15e5e-cb8a-4719-9f83-0a61ca2312c9.jsonl": 1,
+    "thomasmustier__pi-mono-sessions@d0895347/2026-01-11T18-11-03-967Z_89972297-a0b4-46d3-87e9-1e0163f760b0.jsonl": 1,
+    "thomasmustier__pi-symphony-sessions@0697350f/2026-03-16T00-16-57-617Z_b0547d97-1e7c-47eb-8d91-77c7fbc3d6a8.jsonl": 1
+   },
+   "files_with_sk_ant": 1,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {
+    "thomasmustier__pine-of-glass-sessions@b9a6b263/2026-06-04T14-15-37-417Z_019e92fd-58c9-7e88-adb6-5c5907e48f76.jsonl": 1
+   },
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "cli-trace-commons": {
+   "files": 37,
+   "bytes_scanned": 132387231,
+   "anth_matches": 15006,
+   "anth_distinct": 4352,
+   "loose_matches": 15006,
+   "keys": {
+    "requestId|anthropic_req": 7496,
+    "request-id|anthropic_req": 2,
+    "requestID|anthropic_req": 2,
+    "request_id|anthropic_req": 2
+   },
+   "files_with_anth": 29,
+   "anth_by_prefix": {
+    "trace-commons__agent-traces@112ebd4d/sessions": 7503,
+    "trace-commons__agent-traces@112ebd4d/data": 7503
+   },
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "glm52-nf3-tb21-traces": {
+   "files": 953,
+   "bytes_scanned": 89885543,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {
+    "request_id|other_len8": 5,
+    "request_id|other_len10": 5
+   },
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "miniswe-v2-qwen3-30b-swebv-tarsur385": {
+   "files": 505,
+   "bytes_scanned": 224191154,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "openhands-evaluation-outputs": {
+   "files": 93,
+   "bytes_scanned": 4608362185,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {
+    ".part": 1
+   }
+  },
+  "openhands-feedback": {
+   "files": 4,
+   "bytes_scanned": 366317459,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "osworld_verified_trajs": {
+   "files": 23213,
+   "bytes_scanned": 1705169711,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "sweagent-combo2-rl-rollouts": {
+   "files": 5,
+   "bytes_scanned": 5602727055,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "terminal-bench-2-leaderboard": {
+   "files": 52549,
+   "bytes_scanned": 4806700084,
+   "anth_matches": 12333,
+   "anth_distinct": 7278,
+   "loose_matches": 12331,
+   "keys": {
+    "requestId|anthropic_req": 12327,
+    "request_id|other_len8": 2
+   },
+   "files_with_anth": 470,
+   "anth_by_prefix": {
+    "hf_repo/submissions/terminal-bench/2.0/WozCode__Claude-Opus-4.6": 12327,
+    "hf_repo/submissions/terminal-bench/2.0/Meta-Harness__Claude-Opus-4.6": 3,
+    "hf_repo/submissions/terminal-bench/2.0/Terminus-KIRA__Claude-Opus-4.6": 2,
+    "hf_repo/submissions/terminal-bench/2.0/JJAgent__Multiple": 1
+   },
+   "files_with_sk_ant": 446,
+   "files_with_oauth_env": 449,
+   "sk_ant_by_prefix": {
+    "hf_repo/submissions/terminal-bench/2.0/pilot-real__claude-opus-4-6": 446
+   },
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "tracelab-uw": {
+   "files": 2,
+   "bytes_scanned": 1245532892,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  },
+  "webarena_infinity_trajs": {
+   "files": 1692,
+   "bytes_scanned": 104352799,
+   "anth_matches": 0,
+   "anth_distinct": 0,
+   "loose_matches": 0,
+   "keys": {},
+   "files_with_anth": 0,
+   "anth_by_prefix": {},
+   "files_with_sk_ant": 0,
+   "files_with_oauth_env": 0,
+   "sk_ant_by_prefix": {},
+   "errors": [],
+   "skipped_ext": {}
+  }
+ },
+ "claude_code_request_id_agreement": {
+  "terminal-bench-2-leaderboard/WozCode__Claude-Opus-4.6": {
+   "jsonl_files": 464,
+   "entries_with_req": 12327,
+   "entries_with_req_type_assistant": 12327,
+   "entries_agree_-2s_+600s": 12279,
+   "entries_event_after_id_by_gt_600s": 48,
+   "distinct_req_ids": 7272,
+   "distinct_req_ids_with_ge1_agreeing_entry": 7250,
+   "models_on_req_entries": {
+    "claude-opus-4-6": 11913,
+    "claude-haiku-4-5-20251001": 414
+   }
+  },
+  "terminal-bench-2-leaderboard/ClaudeCode__GLM-4.7": {
+   "jsonl_files": 472,
+   "distinct_req_ids": 0,
+   "distinct_req_ids_with_ge1_agreeing_entry": 0,
+   "models_on_req_entries": {}
+  },
+  "terminal-bench-2-leaderboard/cchuter__minimax-m2.5": {
+   "jsonl_files": 443,
+   "distinct_req_ids": 0,
+   "distinct_req_ids_with_ge1_agreeing_entry": 0,
+   "models_on_req_entries": {}
+  },
+  "cli-trace-commons": {
+   "jsonl_files": 29,
+   "entries_with_req": 7496,
+   "entries_with_req_type_assistant": 7496,
+   "entries_agree_-2s_+600s": 7496,
+   "distinct_req_ids": 4349,
+   "distinct_req_ids_with_ge1_agreeing_entry": 4349,
+   "models_on_req_entries": {
+    "claude-sonnet-4-6": 5512,
+    "claude-opus-4-8": 1979,
+    "<synthetic>": 5
+   }
+  },
+  "cli-claude-code-hf/AlinCiocan__fable-5-claude-code-traces@e33ebbca": {
+   "jsonl_files": 18,
+   "entries_with_req": 271,
+   "entries_with_req_type_assistant": 271,
+   "entries_agree_-2s_+600s": 271,
+   "distinct_req_ids": 95,
+   "distinct_req_ids_with_ge1_agreeing_entry": 95,
+   "models_on_req_entries": {
+    "claude-fable-5": 267,
+    "<synthetic>": 4
+   }
+  },
+  "cli-claude-code-hf/INONONO__tarkov-customs-trajectory@a0557bb9": {
+   "jsonl_files": 1,
+   "distinct_req_ids": 0,
+   "distinct_req_ids_with_ge1_agreeing_entry": 0,
+   "models_on_req_entries": {}
+  },
+  "cli-claude-code-hf/armand0e__claude-fable-5-claude-code@7388ef96": {
+   "jsonl_files": 63,
+   "entries_with_req": 7481,
+   "entries_with_req_type_assistant": 7481,
+   "entries_agree_-2s_+600s": 7478,
+   "entries_event_after_id_by_gt_600s": 3,
+   "distinct_req_ids": 3429,
+   "distinct_req_ids_with_ge1_agreeing_entry": 3428,
+   "models_on_req_entries": {
+    "claude-fable-5": 7431,
+    "<synthetic>": 50
+   }
+  },
+  "cli-claude-code-hf/build-small-hackathon__kirana-detective-build-traces@d61ca08e": {
+   "jsonl_files": 11,
+   "entries_with_req": 882,
+   "entries_with_req_type_assistant": 882,
+   "entries_agree_-2s_+600s": 882,
+   "distinct_req_ids": 451,
+   "distinct_req_ids_with_ge1_agreeing_entry": 451,
+   "models_on_req_entries": {
+    "claude-sonnet-4-6": 865,
+    "claude-haiku-4-5-20251001": 17
+   }
+  },
+  "cli-claude-code-hf/cfahlgren1__Fable-5-traces@0ba6f538": {
+   "jsonl_files": 115,
+   "entries_with_req": 7665,
+   "entries_with_req_type_assistant": 7659,
+   "entries_agree_-2s_+600s": 7663,
+   "entries_with_req_type_system": 6,
+   "entries_req_not_anthropic_layout": 2,
+   "distinct_req_ids": 3752,
+   "distinct_req_ids_with_ge1_agreeing_entry": 3750,
+   "models_on_req_entries": {
+    "claude-fable-5": 5139,
+    "claude-opus-4-8": 2340,
+    "claude-haiku-4-5-20251001": 95,
+    "<synthetic>": 85,
+    "None": 6
+   }
+  },
+  "cli-claude-code-hf/crispwisp__wisp-claude-code-sessions@c2c90b59": {
+   "jsonl_files": 104,
+   "entries_with_req": 4235,
+   "entries_with_req_type_assistant": 4233,
+   "entries_agree_-2s_+600s": 4235,
+   "entries_with_req_type_system": 2,
+   "bad_lines": 2,
+   "distinct_req_ids": 1965,
+   "distinct_req_ids_with_ge1_agreeing_entry": 1965,
+   "models_on_req_entries": {
+    "claude-fable-5": 3086,
+    "claude-opus-4-8": 619,
+    "claude-sonnet-4-6": 519,
+    "<synthetic>": 7,
+    "None": 2,
+    "claude-haiku-4-5-20251001": 2
+   }
+  },
+  "cli-claude-code-hf/naazimsnh02__tutordesk-agent-traces@4d538090": {
+   "jsonl_files": 7,
+   "entries_with_req": 708,
+   "entries_with_req_type_assistant": 708,
+   "entries_agree_-2s_+600s": 708,
+   "distinct_req_ids": 389,
+   "distinct_req_ids_with_ge1_agreeing_entry": 389,
+   "models_on_req_entries": {
+    "claude-sonnet-4-6": 494,
+    "claude-opus-4-8": 214
+   }
+  },
+  "cli-claude-code-hf/thomwolf__am-session-claude-code-1-a66490@e8a022e9": {
+   "jsonl_files": 1,
+   "entries_with_req": 1,
+   "entries_with_req_type_assistant": 1,
+   "entries_agree_-2s_+600s": 1,
+   "distinct_req_ids": 1,
+   "distinct_req_ids_with_ge1_agreeing_entry": 1,
+   "models_on_req_entries": {
+    "claude-opus-5": 1
+   }
+  },
+  "cli-claude-code-hf/thomwolf__am-session-claude-code-1-c3cc0a@037d661c": {
+   "jsonl_files": 1,
+   "entries_with_req": 2,
+   "entries_with_req_type_assistant": 2,
+   "entries_agree_-2s_+600s": 2,
+   "distinct_req_ids": 2,
+   "distinct_req_ids_with_ge1_agreeing_entry": 2,
+   "models_on_req_entries": {
+    "claude-opus-5": 2
+   }
+  },
+  "cli-claude-code-hf/thomwolf__am-session-sharing-design@36dd5850": {
+   "jsonl_files": 1,
+   "entries_with_req": 92,
+   "entries_with_req_type_assistant": 92,
+   "entries_agree_-2s_+600s": 92,
+   "distinct_req_ids": 38,
+   "distinct_req_ids_with_ge1_agreeing_entry": 38,
+   "models_on_req_entries": {
+    "claude-opus-5": 92
+   }
+  },
+  "cli-claude-code-hf/victor__claude-worldcup-2026-wallchart-traces@c2c03b28": {
+   "jsonl_files": 53,
+   "distinct_req_ids": 0,
+   "distinct_req_ids_with_ge1_agreeing_entry": 0,
+   "models_on_req_entries": {}
+  },
+  "cli-claude-code-hf/yellowbeeblackbee__claude-traces@0cad5c49": {
+   "jsonl_files": 4,
+   "entries_with_req": 248,
+   "entries_with_req_type_assistant": 248,
+   "entries_agree_-2s_+600s": 243,
+   "entries_event_after_id_by_gt_600s": 5,
+   "distinct_req_ids": 114,
+   "distinct_req_ids_with_ge1_agreeing_entry": 112,
+   "models_on_req_entries": {
+    "claude-fable-5": 248
+   }
+  },
+  "cli-claude-code-hf (union)": {
+   "jsonl_files": 379,
+   "entries_with_req": 21585,
+   "entries_with_req_type_assistant": 21577,
+   "entries_agree_-2s_+600s": 21575,
+   "entries_event_after_id_by_gt_600s": 8,
+   "entries_with_req_type_system": 8,
+   "entries_req_not_anthropic_layout": 2,
+   "bad_lines": 2,
+   "distinct_req_ids": 7660,
+   "distinct_req_ids_with_ge1_agreeing_entry": 7655,
+   "models_on_req_entries": {
+    "claude-fable-5": 16171,
+    "claude-opus-4-8": 3173,
+    "claude-sonnet-4-6": 1878,
+    "<synthetic>": 146,
+    "claude-haiku-4-5-20251001": 114,
+    "claude-opus-5": 95,
+    "None": 8
+   }
+  }
+ },
+ "duplicates": {
+  "tb2_early_copies": {
+   "files": 1766,
+   "byte_identical_to_hf_repo": 1766,
+   "missing_in_hf_repo": 0,
+   "differ": 0,
+   "differ_examples": [],
+   "bytes": 7520823
+  },
+  "openhands_part_files": [
+   {
+    "part": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet-20241022_maxiter_100_N_v2.1-no-hint/output.jsonl.part",
+    "bytes": 153841006,
+    "identical_to": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet-20241022_maxiter_100_N_v2.1-no-hint/output.jsonl"
+   }
+  ]
+ },
+ "seconds": 134.8
+}

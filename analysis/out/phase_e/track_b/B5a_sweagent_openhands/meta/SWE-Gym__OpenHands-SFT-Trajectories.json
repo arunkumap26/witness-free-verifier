@@ -1,0 +1,71 @@
+{
+ "id": "SWE-Gym/OpenHands-SFT-Trajectories",
+ "sha": "4aaa5a4a4b5861f4799d2336908760c190ac3b17",
+ "gated": false,
+ "private": false,
+ "lastModified": "2025-05-10T03:26:28.000Z",
+ "license_tags": [
+  "license:mit"
+ ],
+ "cardData_license": "mit",
+ "cardData_configs": [
+  {
+   "config_name": "default",
+   "data_files": [
+    {
+     "split": "train.success.oss",
+     "path": "data/train.success.oss-*"
+    }
+   ]
+  }
+ ],
+ "dataset_info": {
+  "features": [
+   {
+    "name": "messages",
+    "list": [
+     {
+      "name": "content",
+      "dtype": "string"
+     },
+     {
+      "name": "role",
+      "dtype": "string"
+     }
+    ]
+   }
+  ],
+  "splits": [
+   {
+    "name": "train.success.oss",
+    "num_bytes": 31805636,
+    "num_examples": 491
+   }
+  ],
+  "download_size": 10379409,
+  "dataset_size": 31805636
+ },
+ "files": [
+  {
+   "path": ".gitattributes",
+   "size": 2461,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "README.md",
+   "size": 397,
+   "type": "file",
+   "lfs_sha256": null
+  },
+  {
+   "path": "data/train.success.oss-00000-of-00001.parquet",
+   "size": 10379409,
+   "type": "file",
+   "lfs_sha256": "ea4bf37de020e165c5210bedddeef523d8834a89a35a8c65fec24f76f0eae4f1"
+  }
+ ],
+ "total_bytes": 10382267,
+ "n_files": 3,
+ "readme_bytes": 397
+}

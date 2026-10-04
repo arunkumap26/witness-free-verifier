@@ -1,0 +1,520 @@
+[
+ {
+  "id": "melissapan/swe-bench-lite-agent-traces-v14",
+  "path": "traces/00/attempt-0017659d895cdf7925b5a59bb5ef2713/trace.jsonl",
+  "bytes_read": 79465,
+  "parse": "jsonl",
+  "audit": {
+   "n_records": 40,
+   "format_votes": {
+    "other": 40
+   },
+   "top_keys": [
+    "type",
+    "session_id",
+    "uuid",
+    "message",
+    "parent_tool_use_id",
+    "timestamp",
+    "tool_use_result",
+    "subtype",
+    "fast_mode_state",
+    "fast_mode_disabled_reason",
+    "cwd",
+    "tools",
+    "mcp_servers",
+    "model",
+    "permissionMode"
+   ],
+   "events_with_ts_depth_le2": 38,
+   "ts_coverage": 0.95,
+   "ts_keys": {
+    "timestamp": 38
+   },
+   "ts_resolution": {
+    "iso_3dp": 38
+   },
+   "n_call_ids": 11,
+   "n_result_ids": 11,
+   "n_joined": 11,
+   "join_rate_calls": 1.0,
+   "request_id_keys": {},
+   "request_id_examples": [],
+   "n_request_id_values": 0,
+   "token_keys": {
+    "usage": 28,
+    "input_tokens": 28,
+    "cache_read_input_tokens": 28,
+    "output_tokens": 28,
+    "inputTokens": 1,
+    "outputTokens": 1
+   },
+   "error_keys": {
+    "is_error": 8
+   },
+   "records_mentioning_truncat": 0
+  },
+  "raw_scan": {
+   "timestamp": 38,
+   "tool_use_id": 11,
+   "input_tokens": 28,
+   "is_error": 8,
+   "req_values": 0
+  },
+  "first_record_keys": [
+   "type",
+   "subtype",
+   "cwd",
+   "session_id",
+   "tools",
+   "mcp_servers",
+   "model",
+   "permissionMode",
+   "slash_commands",
+   "apiKeySource",
+   "claude_code_version",
+   "output_style",
+   "agents",
+   "skills",
+   "plugins",
+   "capabilities",
+   "analytics_disabled",
+   "product_feedback_disabled",
+   "uuid",
+   "memory_paths"
+  ],
+  "first_record_excerpt": "{\"type\": \"system\", \"subtype\": \"init\", \"cwd\": \"/testbed\", \"session_id\": \"9e2b1513-bf57-467a-8f18-30651534bd10\", \"tools\": [\"Task\", \"Bash\", \"CronCreate\", \"CronDelete\", \"CronList\", \"DesignSync\", \"Edit\", \"EnterWorktree\", \"ExitWorktree\", \"NotebookEdit\", \"Read\", \"ReportFindings\", \"ScheduleWakeup\", \"SendMessage\", \"Skill\", \"TaskCreate\", \"TaskGet\", \"TaskList\", \"TaskOutput\", \"TaskStop\", \"TaskUpdate\", \"Workflow\", \"Write\"], \"mcp_servers\": [], \"model\": \"claude-opus-4-8\", \"permissionMode\": \"bypassPermissions\", \"slash_commands\": [\"deep-research\", \"design-sync\", \"dataviz\", \"update-config\", \"verify\", \"debug\", \"code-review\", \"simplify\", \"batch\", \"fewer-permission-prompts\", \"doctor\", \"loop\", \"claude-api\", \"run\""
+ },
+ {
+  "id": "melissapan/swe-bench-lite-agent-traces-v14",
+  "path": "traces/00/attempt-0017659d895cdf7925b5a59bb5ef2713/gateway/receipts.jsonl",
+  "bytes_read": 23898,
+  "parse": "jsonl",
+  "audit": {
+   "n_records": 14,
+   "format_votes": {
+    "other": 14
+   },
+   "top_keys": [
+    "attempt_id",
+    "body_payloads_removed",
+    "campaign_halt_required",
+    "completed_inference_responses_after",
+    "completed_inference_responses_before",
+    "export_receipt_sha256",
+    "headers_removed",
+    "kind",
+    "local_http_status",
+    "outcome",
+    "projection_version",
+    "provider_terminal_event",
+    "reason_code",
+    "request_body",
+    "request_content_encoding"
+   ],
+   "events_with_ts_depth_le2": 0,
+   "ts_coverage": 0.0,
+   "ts_keys": {},
+   "ts_resolution": {},
+   "n_call_ids": 0,
+   "n_result_ids": 0,
+   "n_joined": 0,
+   "join_rate_calls": null,
+   "request_id_keys": {},
+   "request_id_examples": [],
+   "n_request_id_values": 0,
+   "token_keys": {},
+   "error_keys": {},
+   "records_mentioning_truncat": 0
+  },
+  "raw_scan": {
+   "req_values": 0
+  },
+  "first_record_keys": [
+   "attempt_id",
+   "body_payloads_removed",
+   "campaign_halt_required",
+   "completed_inference_responses_after",
+   "completed_inference_responses_before",
+   "export_receipt_sha256",
+   "headers_removed",
+   "kind",
+   "local_http_status",
+   "outcome",
+   "projection_version",
+   "provider_terminal_event",
+   "reason_code",
+   "request_body",
+   "request_content_encoding",
+   "request_decoded_byte_count",
+   "request_decoded_sha256",
+   "requested_model",
+   "response_body",
+   "route"
+  ],
+  "first_record_excerpt": "{\"attempt_id\": \"attempt-0017659d895cdf7925b5a59bb5ef2713\", \"body_payloads_removed\": true, \"campaign_halt_required\": false, \"completed_inference_responses_after\": 0, \"completed_inference_responses_before\": 0, \"export_receipt_sha256\": \"sha256:a828cd3382f6cbdf69203758250e7485b783f6d0448090fce4476cbce4b15340\", \"headers_removed\": true, \"kind\": \"native-profile-gateway-receipt\", \"local_http_status\": 404, \"outcome\": \"local_probe\", \"projection_version\": 1, \"provider_terminal_event\": null, \"reason_code\": \"claude_local_discovery_probe\", \"request_body\": {\"byte_count\": 0, \"complete\": true, \"sha256\": \"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"request_content_encoding\": \"i"
+ },
+ {
+  "id": "melissapan/swe-bench-lite-agent-traces-v14",
+  "path": "traces/00/attempt-0047390d41f0901fe84daf2cd913f302/trace.jsonl",
+  "bytes_read": 600000,
+  "parse": "jsonl",
+  "audit": {
+   "n_records": 2133,
+   "format_votes": {
+    "other": 199,
+    "pi_header": 1
+   },
+   "top_keys": [
+    "type",
+    "usage",
+    "assistantMessageEvent",
+    "message",
+    "toolCallId",
+    "toolName",
+    "args",
+    "result",
+    "isError",
+    "toolResults",
+    "partialResult",
+    "version",
+    "id",
+    "timestamp",
+    "cwd"
+   ],
+   "events_with_ts_depth_le2": 36,
+   "ts_coverage": 0.017,
+   "ts_keys": {
+    "timestamp": 43
+   },
+   "ts_resolution": {
+    "iso_3dp": 1,
+    "epoch_ms": 42
+   },
+   "n_call_ids": 7,
+   "n_result_ids": 7,
+   "n_joined": 7,
+   "join_rate_calls": 1.0,
+   "request_id_keys": {},
+   "request_id_examples": [],
+   "n_request_id_values": 0,
+   "token_keys": {
+    "usage": 2090
+   },
+   "error_keys": {
+    "isError": 28
+   },
+   "records_mentioning_truncat": 0
+  },
+  "raw_scan": {
+   "timestamp": 43,
+   "toolCallId": 39,
+   "req_values": 0
+  },
+  "first_record_keys": [
+   "type",
+   "version",
+   "id",
+   "timestamp",
+   "cwd"
+  ],
+  "first_record_excerpt": "{\"type\": \"session\", \"version\": 3, \"id\": \"01a09bec-15e8-7583-ba17-ec3309969e63\", \"timestamp\": \"2026-09-13T17:58:55.720Z\", \"cwd\": \"/testbed\"}"
+ },
+ {
+  "id": "melissapan/swe-bench-lite-agent-traces-v14",
+  "path": "data/traces.jsonl",
+  "bytes_read": 600000,
+  "parse": "jsonl",
+  "audit": {
+   "n_records": 186,
+   "format_votes": {
+    "other": 186
+   },
+   "top_keys": [
+    "attempt_id",
+    "benchmark",
+    "bundle_manifest_path",
+    "bundle_manifest_sha256",
+    "cache_creation_tokens",
+    "cache_read_tokens",
+    "campaign_id",
+    "cell_id",
+    "cost_status",
+    "effective_route_id",
+    "evaluation_id",
+    "evaluation_provenance",
+    "evaluation_report_path",
+    "evaluation_result_path",
+    "evaluation_result_sha256"
+   ],
+   "events_with_ts_depth_le2": 0,
+   "ts_coverage": 0.0,
+   "ts_keys": {},
+   "ts_resolution": {},
+   "n_call_ids": 0,
+   "n_result_ids": 0,
+   "n_joined": 0,
+   "join_rate_calls": null,
+   "request_id_keys": {},
+   "request_id_examples": [],
+   "n_request_id_values": 0,
+   "token_keys": {
+    "input_tokens": 186,
+    "output_tokens": 186
+   },
+   "error_keys": {},
+   "records_mentioning_truncat": 0
+  },
+  "raw_scan": {
+   "input_tokens": 187,
+   "req_values": 0
+  },
+  "first_record_keys": [
+   "attempt_id",
+   "benchmark",
+   "bundle_manifest_path",
+   "bundle_manifest_sha256",
+   "cache_creation_tokens",
+   "cache_read_tokens",
+   "campaign_id",
+   "cell_id",
+   "cost_status",
+   "effective_route_id",
+   "evaluation_id",
+   "evaluation_provenance",
+   "evaluation_report_path",
+   "evaluation_result_path",
+   "evaluation_result_sha256",
+   "evaluation_test_output_path",
+   "gateway_receipt_count",
+   "gateway_receipts_path",
+   "gateway_receipts_sha256",
+   "harness"
+  ],
+  "first_record_excerpt": "{\"attempt_id\": \"attempt-0a29f5873484ec5347dc99c1f206e05d\", \"benchmark\": \"swe\", \"bundle_manifest_path\": \"traces/0a/attempt-0a29f5873484ec5347dc99c1f206e05d/bundle-manifest.json\", \"bundle_manifest_sha256\": \"sha256:66914c6d6f5afd1e76725a8b0fd196e59ad574018bc7742c4eb97c92a1169d36\", \"cache_creation_tokens\": 11979, \"cache_read_tokens\": 320723, \"campaign_id\": \"swe-bench-lite-native-arena-20260913-v14-shard20\", \"cell_id\": \"claude-code__fable\", \"cost_status\": \"complete\", \"effective_route_id\": \"arena-anthropic-messages\", \"evaluation_id\": \"5cd20a5fd7d87c5559d98f638baa874975190400a51fe3ba4309a65c2b2c4a0d\", \"evaluation_provenance\": \"sealed-attempt\", \"evaluation_report_path\": \"traces/0a/attempt-0a29f58734"
+ },
+ {
+  "id": "sunnydubey1111/agent-trajectory-sentinel",
+  "path": "traces/autogen/autogen-context_corruption-000.jsonl",
+  "bytes_read": 3201,
+  "parse": "jsonl",
+  "audit": {
+   "n_records": 4,
+   "format_votes": {
+    "other": 4
+   },
+   "top_keys": [
+    "text",
+    "token_logprobs",
+    "logprobs_available",
+    "action",
+    "latency_s",
+    "output_tokens",
+    "error",
+    "task",
+    "tool_events",
+    "schema"
+   ],
+   "events_with_ts_depth_le2": 0,
+   "ts_coverage": 0.0,
+   "ts_keys": {},
+   "ts_resolution": {},
+   "n_call_ids": 0,
+   "n_result_ids": 0,
+   "n_joined": 0,
+   "join_rate_calls": null,
+   "request_id_keys": {},
+   "request_id_examples": [],
+   "n_request_id_values": 0,
+   "token_keys": {
+    "output_tokens": 4
+   },
+   "error_keys": {
+    "error": 4,
+    "is_error": 4
+   },
+   "records_mentioning_truncat": 4
+  },
+  "raw_scan": {
+   "is_error": 4,
+   "req_values": 0
+  },
+  "first_record_keys": [
+   "text",
+   "token_logprobs",
+   "logprobs_available",
+   "action",
+   "latency_s",
+   "output_tokens",
+   "error",
+   "task",
+   "tool_events",
+   "schema"
+  ],
+  "first_record_excerpt": "{\"text\": \"[search_catalog({\\\"item\\\": \\\"item-1\\\"}) -> $71.7]\", \"token_logprobs\": [], \"logprobs_available\": false, \"action\": \"tool_call\", \"latency_s\": 0.4949, \"output_tokens\": 70, \"error\": false, \"task\": \"You are a booking assistant. Use the tools to gather every number you need; do not guess prices. Finish with a one-line answer. Task: Compute the total price of item-1, item-3 and item-6 with 8% tax added, using the catalog and the calculator. Report the total.\", \"tool_events\": [{\"id\": \"\", \"name\": \"search_catalog\", \"args\": {\"item\": \"item-1\"}, \"result\": \"$71.7\", \"result_chars\": 5, \"result_truncated\": false, \"is_error\": false, \"latency_s\": null}], \"schema\": 5}"
+ },
+ {
+  "id": "trace-commons/agent-traces",
+  "path": "sessions/claude_code/07b57159-218e-4330-a64e-0ec4b4355056.jsonl",
+  "bytes_read": 600000,
+  "parse": "jsonl",
+  "audit": {
+   "n_records": 255,
+   "format_votes": {
+    "claude_code": 151,
+    "other": 49
+   },
+   "top_keys": [
+    "type",
+    "sessionId",
+    "timestamp",
+    "parentUuid",
+    "isSidechain",
+    "uuid",
+    "userType",
+    "entrypoint",
+    "cwd",
+    "version",
+    "gitBranch",
+    "message",
+    "requestId",
+    "promptId",
+    "toolUseResult"
+   ],
+   "events_with_ts_depth_le2": 223,
+   "ts_coverage": 0.875,
+   "ts_keys": {
+    "timestamp": 223
+   },
+   "ts_resolution": {
+    "iso_3dp": 223
+   },
+   "n_call_ids": 70,
+   "n_result_ids": 69,
+   "n_joined": 69,
+   "join_rate_calls": 0.986,
+   "request_id_keys": {
+    "requestId": 108
+   },
+   "request_id_examples": [
+    "req_011CbxSC2PWfzsPQGnC7ZtyJ",
+    "req_011CbxSCDLpkEp8XCAxKdgfg",
+    "req_011CbxSJbxmfdDkqgdCqLAqK"
+   ],
+   "n_request_id_values": 72,
+   "token_keys": {
+    "usage": 108,
+    "input_tokens": 216,
+    "cache_read_input_tokens": 216,
+    "output_tokens": 216
+   },
+   "error_keys": {
+    "exitCode": 2,
+    "is_error": 25
+   },
+   "records_mentioning_truncat": 0
+  },
+  "raw_scan": {
+   "timestamp": 224,
+   "tool_use_id": 70,
+   "requestId": 108,
+   "input_tokens": 216,
+   "is_error": 25,
+   "req_values": 72
+  },
+  "first_record_keys": [
+   "type",
+   "operation",
+   "timestamp",
+   "sessionId"
+  ],
+  "first_record_excerpt": "{\"type\": \"queue-operation\", \"operation\": \"enqueue\", \"timestamp\": \"2026-06-12T00:40:34.790Z\", \"sessionId\": \"07b57159-218e-4330-a64e-0ec4b4355056\"}"
+ },
+ {
+  "id": "trace-commons/agent-traces",
+  "path": "sessions/opencode/ses_129b55f7effeSKRtimLg9wxpXa.json",
+  "bytes_read": 97897,
+  "parse": "json_obj[messages]",
+  "audit": {
+   "n_records": 4,
+   "format_votes": {
+    "opencode_export": 3,
+    "messages_list": 1
+   },
+   "top_keys": [
+    "info",
+    "parts",
+    "messages"
+   ],
+   "events_with_ts_depth_le2": 4,
+   "ts_coverage": 1.0,
+   "ts_keys": {
+    "start": 12,
+    "end": 12,
+    "created": 7,
+    "completed": 4
+   },
+   "ts_resolution": {
+    "epoch_ms": 35
+   },
+   "n_call_ids": 0,
+   "n_result_ids": 0,
+   "n_joined": 0,
+   "join_rate_calls": null,
+   "request_id_keys": {},
+   "request_id_examples": [],
+   "n_request_id_values": 0,
+   "token_keys": {},
+   "error_keys": {},
+   "records_mentioning_truncat": 2
+  },
+  "raw_scan": {
+   "req_values": 0
+  },
+  "first_record_keys": [
+   "info",
+   "messages"
+  ],
+  "first_record_excerpt": "{\"info\": {\"id\": \"ses_129b55f7effeSKRtimLg9wxpXa\", \"slug\": \"eager-lagoon\", \"projectID\": \"global\", \"directory\": \"/home/USER/Documents/Repositories\", \"path\": \"home/arodef/Documents/Repositories\", \"title\": \"Is kernel-level anticheat lazy or real?\", \"agent\": \"build\", \"model\": {\"id\": \"deepseek-v4-flash-free\", \"providerID\": \"opencode\"}, \"version\": \"1.17.7\", \"summary\": {\"additions\": 0, \"deletions\": 0, \"files\": 0}, \"cost\": 0, \"tokens\": {\"input\": 61628, \"output\": 12188, \"reasoning\": 7718, \"cache\": {\"read\": 4036096, \"write\": 0}}, \"time\": {\"created\": 1781711675521, \"updated\": 1781720538196}}, \"messages\": [{\"info\": {\"role\": \"user\", \"time\": {\"created\": 1781711675583}, \"agent\": \"build\", \"model\": {\"provider"
+ },
+ {
+  "id": "trace-commons/agent-traces",
+  "path": "sessions/cursor/debaa898-grafana-loki-monitoring.jsonl",
+  "bytes_read": 25429,
+  "parse": "jsonl",
+  "audit": {
+   "n_records": 20,
+   "format_votes": {
+    "other": 20
+   },
+   "top_keys": [
+    "role",
+    "message",
+    "type",
+    "status"
+   ],
+   "events_with_ts_depth_le2": 0,
+   "ts_coverage": 0.0,
+   "ts_keys": {},
+   "ts_resolution": {},
+   "n_call_ids": 0,
+   "n_result_ids": 0,
+   "n_joined": 0,
+   "join_rate_calls": null,
+   "request_id_keys": {},
+   "request_id_examples": [],
+   "n_request_id_values": 0,
+   "token_keys": {},
+   "error_keys": {},
+   "records_mentioning_truncat": 0
+  },
+  "raw_scan": {
+   "req_values": 0
+  },
+  "first_record_keys": [
+   "role",
+   "message"
+  ],
+  "first_record_excerpt": "{\"role\": \"user\", \"message\": {\"content\": [{\"type\": \"text\", \"text\": \"<user_query>\\nJ'aimerais que tu m'indiques \\u00e0 partir de quel log je peux monitorer l'utilisation de l'API document-ia ? Routes par routes. J'utilise Grafana, Loki pour effectuer mes dashboards\\n</user_query>\"}]}}"
+ }
+]

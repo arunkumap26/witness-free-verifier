@@ -1,0 +1,255 @@
+{
+ "script": "analysis/out/phase_e/track_b/B7/release_scan.py",
+ "splits_read": "A, B, E only (H never opened; cc_local and aiv_* not read)",
+ "fields_scanned": [
+  "text",
+  "args",
+  "command",
+  "stderr"
+ ],
+ "patterns": {
+  "aws_access_key_id": "\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b",
+  "github_token": "\\bgh[pousr]_[A-Za-z0-9]{36,}\\b|\\bgithub_pat_[A-Za-z0-9_]{60,}",
+  "anthropic_key": "sk-ant-[A-Za-z0-9_\\-]{30,}",
+  "openai_key": "\\bsk-(?:proj-|svcacct-)?[A-Za-z0-9_\\-]{40,}",
+  "slack_token": "\\bxox[abprs]-[A-Za-z0-9\\-]{10,}",
+  "google_api_key": "\\bAIza[0-9A-Za-z_\\-]{35}\\b",
+  "stripe_live_key": "\\b[sr]k_live_[0-9A-Za-z]{20,}",
+  "private_key_block": "-----BEGIN (?:[A-Z]+ )*PRIVATE KEY-----",
+  "jwt": "\\beyJ[A-Za-z0-9_\\-]{10,}\\.eyJ[A-Za-z0-9_\\-]{10,}\\.[A-Za-z0-9_\\-]{10,}",
+  "email_address": "\\b[A-Za-z0-9._%+\\-]{1,64}@[A-Za-z0-9\\-]{1,63}(?:\\.[A-Za-z0-9\\-]{1,63})*\\.[A-Za-z]{2,24}\\b"
+ },
+ "caveat": "candidate matches, not confirmed live secrets; values never stored or printed",
+ "wall_seconds": 26.8,
+ "corpora": {
+  "swechat": {
+   "files": [
+    "swechat_A",
+    "swechat_B",
+    "swechat_E"
+   ],
+   "rows": 1889377,
+   "sessions": 4024,
+   "events_by_kind": {
+    "meta": 830654,
+    "system": 24885,
+    "user": 28306,
+    "assistant": 149155,
+    "call": 429071,
+    "result": 427306
+   },
+   "events_with_REDACTED_marker": 20223,
+   "aws_documented_example_key_occurrences_excluded": 0,
+   "email_nonpersonal_distinct_excluded": 588,
+   "patterns": {
+    "aws_access_key_id": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "github_token": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "anthropic_key": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "openai_key": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "slack_token": {
+     "matches": 22,
+     "distinct_values": 3,
+     "events": 13,
+     "sessions": 6,
+     "events_by_kind": {
+      "result": 10,
+      "call": 3
+     },
+     "events_by_stratum": {
+      "Claude Code": 13
+     }
+    },
+    "google_api_key": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "stripe_live_key": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "private_key_block": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "jwt": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "email_address": {
+     "matches": 9427,
+     "distinct_values": 580,
+     "events": 4447,
+     "sessions": 1280,
+     "events_by_kind": {
+      "result": 2509,
+      "call": 1392,
+      "user": 385,
+      "assistant": 104,
+      "system": 57
+     },
+     "events_by_stratum": {
+      "Claude Code": 4062,
+      "Codex": 98,
+      "Gemini CLI": 16,
+      "unknown": 16,
+      "Agent": 20,
+      "other": 2,
+      "OpenCode": 233
+     }
+    }
+   },
+   "sessions_with_any_secret_candidate": 6
+  },
+  "whowhen": {
+   "files": [
+    "whowhen_A",
+    "whowhen_B"
+   ],
+   "rows": 4371,
+   "sessions": 184,
+   "events_by_kind": {
+    "assistant": 2359,
+    "system": 98,
+    "call": 968,
+    "result": 888,
+    "user": 58
+   },
+   "events_with_REDACTED_marker": 0,
+   "aws_documented_example_key_occurrences_excluded": 0,
+   "email_nonpersonal_distinct_excluded": 0,
+   "patterns": {
+    "aws_access_key_id": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "github_token": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "anthropic_key": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "openai_key": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "slack_token": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "google_api_key": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "stripe_live_key": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "private_key_block": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "jwt": {
+     "matches": 0,
+     "distinct_values": 0,
+     "events": 0,
+     "sessions": 0,
+     "events_by_kind": {},
+     "events_by_stratum": {}
+    },
+    "email_address": {
+     "matches": 26,
+     "distinct_values": 16,
+     "events": 20,
+     "sessions": 15,
+     "events_by_kind": {
+      "assistant": 2,
+      "result": 18
+     },
+     "events_by_stratum": {
+      "Algorithm-Generated": 10,
+      "Hand-Crafted": 10
+     }
+    }
+   },
+   "sessions_with_any_secret_candidate": 0
+  }
+ }
+}

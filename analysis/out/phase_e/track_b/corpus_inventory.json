@@ -1,0 +1,1130 @@
+{
+ "key": "corpus_inventory",
+ "task": "Phase E Track B: consolidate B4-B7 into analysis/CORPUS_INVENTORY.md and data/README.md acquired rows",
+ "produced_by": "analysis/out/phase_e/track_b/corpus_inventory/compose_inventory.py",
+ "generated_utc": "2026-10-04T08:37:17Z",
+ "inputs": {
+  "b4": {
+   "path": "phase_e/track_b/b4.json",
+   "sha256": "1d26d0a2dc1d8d99f8f894d0a0d6e43c84aab4722094a9389d890b1ab45b87b9"
+  },
+  "b4_probe": {
+   "path": "phase_e/b4_inventory.json",
+   "sha256": "a7ebe74db5c1dea9c1c14e255c168e03f9d34d6a57ea32c6230f732ee72ba09c"
+  },
+  "B5a": {
+   "path": "phase_e/track_b/B5a_sweagent_openhands.json",
+   "sha256": "8c482fba5ffeccc7c39912a03775e67d2518abb1e15b4a544e5c1fd5b20d9f2f"
+  },
+  "B5b": {
+   "path": "phase_e/track_b/B5b_aider_tbench_metr.json",
+   "sha256": "05f248a12a63d1627166f8ad58664ae57279ea971d0a278b93de250b0c31c856"
+  },
+  "B5b_idclock": {
+   "path": "phase_e/track_b/B5b_aider_tbench_metr/id_clock_checks.json",
+   "sha256": "f21d6f0d6f73eb3c817098a58d50aab016aa45a965b4ec37b74c9fd2dceb01d8"
+  },
+  "B5c": {
+   "path": "phase_e/track_b/B5c_web_os_agents.json",
+   "sha256": "4f1ac0a504c3a44e8d7afc88f4d64737e4a6a81e6763d1038eff8786e1d9d919"
+  },
+  "B5d": {
+   "path": "phase_e/track_b/B5d_hf_search.json",
+   "sha256": "abd4ddb692f55832e4ab5f6aaa00fa047415600562933cc989c2e92a35f3b052"
+  },
+  "B5e": {
+   "path": "phase_e/track_b/B5e_cli_traces.json",
+   "sha256": "f32e0862fcdb69cb9f7aa94530dcc2fde2760ea8f540c1b5c59451309112fa40"
+  },
+  "B5e_census": {
+   "path": "phase_e/track_b/B5e_cli_traces/census/census_downloaded.json",
+   "sha256": "32bf2a7cb96b15c4cba3e1cc3f9f01374cdfdede383e8cd34969b68f359729db"
+  },
+  "B6": {
+   "path": "phase_e/track_b/B6.json",
+   "sha256": "a5124880320ec332171826d51a3769cfb907cf431a967a9ed163ef1e64833855"
+  },
+  "B7": {
+   "path": "phase_e/track_b/B7.json",
+   "sha256": "e429718824c590a932780a4c6672e4a852e2e7b32ab3b93c0ab56d0122317f47"
+  }
+ },
+ "scope_note": "Reads Track B evidence JSONs and, read-only, data/acquired (directory metadata; Claude Code JSONL request-id/session-id fields only). No swarm data. swechat H split not read (swechat not rescanned).",
+ "disk": {
+  "root": "C:/Swarms/data/acquired",
+  "measured_utc": "2026-10-04T08:37:38Z",
+  "per_dir": {
+   "agentcap-dacorvo": {
+    "bytes": 857735277,
+    "GB": 0.858,
+    "files": 855,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 857735277,
+    "GB_excluding_git": 0.858,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "cli-claude-code-hf": {
+    "bytes": 244096133,
+    "GB": 0.244,
+    "files": 415,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 244096133,
+    "GB_excluding_git": 0.244,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "cli-codex-hf": {
+    "bytes": 72628969,
+    "GB": 0.073,
+    "files": 58,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 72628969,
+    "GB_excluding_git": 0.073,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "cli-pi-hf": {
+    "bytes": 211044988,
+    "GB": 0.211,
+    "files": 596,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 211044988,
+    "GB_excluding_git": 0.211,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "cli-trace-commons": {
+    "bytes": 127455347,
+    "GB": 0.127,
+    "files": 37,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 127455347,
+    "GB_excluding_git": 0.127,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "glm52-nf3-tb21-traces": {
+    "bytes": 104031201,
+    "GB": 0.104,
+    "files": 978,
+    "git_bytes": 14145658,
+    "git_GB": 0.014,
+    "bytes_excluding_git": 89885543,
+    "GB_excluding_git": 0.09,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "miniswe-v2-qwen3-30b-swebv-tarsur385": {
+    "bytes": 224243500,
+    "GB": 0.224,
+    "files": 1010,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 224243500,
+    "GB_excluding_git": 0.224,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "openhands-evaluation-outputs": {
+    "bytes": 4762213089,
+    "GB": 4.762,
+    "files": 185,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 4762213089,
+    "GB_excluding_git": 4.762,
+    "part_files": [
+     {
+      "path": "openhands-evaluation-outputs/outputs/SWE-bench_Lite-test/CodeActAgent/claude-3-5-sonnet-20241022_maxiter_100_N_v2.1-no-hint/output.jsonl.part",
+      "bytes": 153841006
+     }
+    ],
+    "part_GB": 0.154
+   },
+   "openhands-feedback": {
+    "bytes": 113695664,
+    "GB": 0.114,
+    "files": 8,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 113695664,
+    "GB_excluding_git": 0.114,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "osworld_verified_trajs": {
+    "bytes": 1705169711,
+    "GB": 1.705,
+    "files": 23213,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 1705169711,
+    "GB_excluding_git": 1.705,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "sweagent-combo2-rl-rollouts": {
+    "bytes": 445522917,
+    "GB": 0.446,
+    "files": 7,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 445522917,
+    "GB_excluding_git": 0.446,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "terminal-bench-2-leaderboard": {
+    "bytes": 5884289870,
+    "GB": 5.884,
+    "files": 59604,
+    "git_bytes": 1070068963,
+    "git_GB": 1.07,
+    "bytes_excluding_git": 4814220907,
+    "GB_excluding_git": 4.814,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "tracelab-uw": {
+    "bytes": 100940317,
+    "GB": 0.101,
+    "files": 2,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 100940317,
+    "GB_excluding_git": 0.101,
+    "part_files": [],
+    "part_GB": 0.0
+   },
+   "webarena_infinity_trajs": {
+    "bytes": 104495210,
+    "GB": 0.104,
+    "files": 3070,
+    "git_bytes": 0,
+    "git_GB": 0.0,
+    "bytes_excluding_git": 104495210,
+    "GB_excluding_git": 0.104,
+    "part_files": [],
+    "part_GB": 0.0
+   }
+  },
+  "n_dirs": 14,
+  "total_bytes": 14957562193,
+  "total_GB": 14.958,
+  "cap_total_GB": 25,
+  "cap_per_corpus_GB": 5,
+  "headroom_to_total_cap_GB": 10.042,
+  "dirs_over_per_corpus_cap_on_disk": [
+   "terminal-bench-2-leaderboard"
+  ],
+  "dirs_over_per_corpus_cap_excluding_git": [],
+  "note": "GB = 1e9 bytes. git_bytes counts files under any .git directory (git partial clones used by B5b)."
+ },
+ "request_id_scan_new_public_cc": {
+  "definition": "entry = one JSON object line in a .jsonl file; entries_with_req_id = entries whose top-level `requestId` is a string starting 'req_'; distinct ids/sessions are set sizes. Within-corpus union, so ids repeated across repos of one corpus count once at corpus level.",
+  "scope": "public raw Claude Code JSONL downloaded in Phase E B5 (TB2: hf_repo copy only, not the early duplicate copies under terminal-bench-2-leaderboard/submissions). swechat and cc_local not rescanned.",
+  "per_repo": {
+   "cli-trace-commons::trace-commons__agent-traces@112ebd4d": {
+    "jsonl_files": 29,
+    "entries": 18011,
+    "assistant_entries": 7499,
+    "entries_with_req_id": 7496,
+    "distinct_req_ids": 4349,
+    "distinct_session_ids": 28,
+    "corpus": "cli-trace-commons"
+   },
+   "cli-claude-code-hf::AlinCiocan__fable-5-claude-code-traces@e33ebbca": {
+    "jsonl_files": 18,
+    "entries": 9497,
+    "assistant_entries": 2506,
+    "entries_with_req_id": 271,
+    "distinct_req_ids": 95,
+    "distinct_session_ids": 18,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::INONONO__tarkov-customs-trajectory@a0557bb9": {
+    "jsonl_files": 1,
+    "entries": 509,
+    "assistant_entries": 146,
+    "distinct_req_ids": 0,
+    "distinct_session_ids": 1,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::armand0e__claude-fable-5-claude-code@7388ef96": {
+    "jsonl_files": 63,
+    "entries": 18370,
+    "assistant_entries": 7490,
+    "entries_with_req_id": 7481,
+    "distinct_req_ids": 3429,
+    "distinct_session_ids": 55,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::build-small-hackathon__kirana-detective-build-traces@d61ca08e": {
+    "jsonl_files": 11,
+    "entries": 2595,
+    "assistant_entries": 882,
+    "entries_with_req_id": 882,
+    "distinct_req_ids": 451,
+    "distinct_session_ids": 11,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::cfahlgren1__Fable-5-traces@0ba6f538": {
+    "jsonl_files": 115,
+    "entries": 19796,
+    "assistant_entries": 7835,
+    "entries_with_req_id": 7665,
+    "distinct_req_ids": 3752,
+    "distinct_session_ids": 79,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::crispwisp__wisp-claude-code-sessions@c2c90b59": {
+    "jsonl_files": 104,
+    "entries": 10698,
+    "assistant_entries": 4247,
+    "entries_with_req_id": 4235,
+    "bad_lines": 2,
+    "distinct_req_ids": 1965,
+    "distinct_session_ids": 61,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::naazimsnh02__tutordesk-agent-traces@4d538090": {
+    "jsonl_files": 7,
+    "entries": 1980,
+    "assistant_entries": 708,
+    "entries_with_req_id": 708,
+    "distinct_req_ids": 389,
+    "distinct_session_ids": 7,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::thomwolf__am-session-claude-code-1-a66490@e8a022e9": {
+    "jsonl_files": 1,
+    "entries": 9,
+    "assistant_entries": 1,
+    "entries_with_req_id": 1,
+    "distinct_req_ids": 1,
+    "distinct_session_ids": 1,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::thomwolf__am-session-claude-code-1-c3cc0a@037d661c": {
+    "jsonl_files": 1,
+    "entries": 12,
+    "assistant_entries": 2,
+    "entries_with_req_id": 2,
+    "distinct_req_ids": 2,
+    "distinct_session_ids": 1,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::thomwolf__am-session-sharing-design@36dd5850": {
+    "jsonl_files": 1,
+    "entries": 213,
+    "assistant_entries": 92,
+    "entries_with_req_id": 92,
+    "distinct_req_ids": 38,
+    "distinct_session_ids": 1,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::victor__claude-worldcup-2026-wallchart-traces@c2c03b28": {
+    "jsonl_files": 53,
+    "entries": 480,
+    "assistant_entries": 268,
+    "distinct_req_ids": 0,
+    "distinct_session_ids": 0,
+    "corpus": "cli-claude-code-hf"
+   },
+   "cli-claude-code-hf::yellowbeeblackbee__claude-traces@0cad5c49": {
+    "jsonl_files": 4,
+    "entries": 714,
+    "assistant_entries": 248,
+    "entries_with_req_id": 248,
+    "distinct_req_ids": 114,
+    "distinct_session_ids": 4,
+    "corpus": "cli-claude-code-hf"
+   },
+   "terminal-bench-2-leaderboard::WozCode__Claude-Opus-4.6": {
+    "jsonl_files": 464,
+    "entries": 23067,
+    "assistant_entries": 12327,
+    "entries_with_req_id": 12327,
+    "distinct_req_ids": 7272,
+    "distinct_session_ids": 444,
+    "corpus": "terminal-bench-2-leaderboard"
+   }
+  },
+  "per_corpus": {
+   "cli-trace-commons": {
+    "jsonl_files": 29,
+    "entries": 18011,
+    "assistant_entries": 7499,
+    "entries_with_req_id": 7496,
+    "bad_lines": 0,
+    "distinct_req_ids": 4349,
+    "distinct_session_ids": 28
+   },
+   "cli-claude-code-hf": {
+    "jsonl_files": 379,
+    "entries": 64873,
+    "assistant_entries": 24425,
+    "entries_with_req_id": 21585,
+    "bad_lines": 2,
+    "distinct_req_ids": 7660,
+    "distinct_session_ids": 210
+   },
+   "terminal-bench-2-leaderboard": {
+    "jsonl_files": 464,
+    "entries": 23067,
+    "assistant_entries": 12327,
+    "entries_with_req_id": 12327,
+    "bad_lines": 0,
+    "distinct_req_ids": 7272,
+    "distinct_session_ids": 444
+   }
+  },
+  "repo_pairs_with_any_overlap": [
+   {
+    "a": "cli-claude-code-hf::armand0e__claude-fable-5-claude-code@7388ef96",
+    "b": "cli-claude-code-hf::cfahlgren1__Fable-5-traces@0ba6f538",
+    "shared_req_ids": 2576,
+    "shared_session_ids": 29
+   }
+  ],
+  "corpus_pairs_overlap": [
+   {
+    "a": "cli-claude-code-hf",
+    "b": "cli-trace-commons",
+    "shared_req_ids": 0,
+    "shared_session_ids": 0
+   },
+   {
+    "a": "cli-claude-code-hf",
+    "b": "terminal-bench-2-leaderboard",
+    "shared_req_ids": 0,
+    "shared_session_ids": 0
+   },
+   {
+    "a": "cli-trace-commons",
+    "b": "terminal-bench-2-leaderboard",
+    "shared_req_ids": 0,
+    "shared_session_ids": 0
+   }
+  ],
+  "union_distinct_req_ids_new_public": 19281
+ },
+ "atif_request_id_scan": {
+  "terminal-bench-2-leaderboard": {
+   "atif_files": 9670,
+   "files_with_match": 5,
+   "matches": 5,
+   "files_with_match_by_submission": {
+    "Meta-Harness__Claude-Opus-4.6": 1,
+    "NexAU-AHE__gpt-5.5": 1,
+    "Simple-Codex__GPT-5.3-Codex": 1,
+    "terminus-2__AfterQuery-GPT-OSS-20B": 1,
+    "vix__claude-opus-4-7": 1
+   },
+   "files_with_match_by_task": {
+    "mteb-leaderboard": 5
+   }
+  },
+  "glm52-nf3-tb21-traces": {
+   "atif_files": 86,
+   "files_with_match": 0,
+   "matches": 0,
+   "files_with_match_by_submission": {},
+   "files_with_match_by_task": {}
+  },
+  "note": "Regex on raw text, so a match can sit inside task content or tool output rather than in a harness field; files_with_match_by_task shows where they are."
+ },
+ "agentcap_join": {
+  "method": "run_id counts from B5e census_downloaded.json captures.capture_run_ids (complete per repo: its row sum is checked against capture_rows); trace folder names = directories under agentcap-dacorvo/*-traces@*/data/. Folder-level match only: per-call alignment (turn/time) is NOT tested.",
+  "trace_folders": 31,
+  "per_capture_repo": {
+   "agentcap-dacorvo::dacorvo/transformers-coding-session-captures": {
+    "capture_rows": 11547,
+    "rows_in_run_id_counter": 11547,
+    "rows_whose_run_id_is_a_trace_folder": 11547,
+    "run_ids": 13,
+    "run_ids_matching_a_trace_folder": 13
+   },
+   "agentcap-dacorvo::dacorvo/hf-hub-session-captures": {
+    "capture_rows": 7287,
+    "rows_in_run_id_counter": 7287,
+    "rows_whose_run_id_is_a_trace_folder": 7287,
+    "run_ids": 14,
+    "run_ids_matching_a_trace_folder": 14
+   },
+   "agentcap-dacorvo::dacorvo/funes-recall-session-captures": {
+    "capture_rows": 51,
+    "rows_in_run_id_counter": 51,
+    "rows_whose_run_id_is_a_trace_folder": 51,
+    "run_ids": 4,
+    "run_ids_matching_a_trace_folder": 4
+   }
+  },
+  "capture_rows": 18885,
+  "capture_rows_matching_trace_folder": 18885,
+  "capture_run_ids": 31,
+  "capture_run_ids_matching_trace_folder": 31,
+  "why_B5e_reported_0": "census_downloaded.py L270-275 builds trace_runs from the capture repo's own data/ directory, which holds parquet files, not run folders; so capture_rows_run_in_traces is 0 by construction and says nothing about the join."
+ },
+ "registry": {
+  "definition": "provider request id = per-HTTP-request id minted by the LLM provider and stored by the harness (b4.json REQUEST_ID_COLUMN_FIRST/definition). Response/message/item ids are NOT counted here even when they embed time; they are listed under other_provider_ids_with_time.",
+  "unit": "corpus = one B4 corpus or one top-level directory under data/acquired (swechat mirror excluded: superseded, unaudited)",
+  "corpora": [
+   {
+    "name": "swechat",
+    "origin": "B4",
+    "public": true,
+    "carries_provider_request_ids": true,
+    "id_family": "Anthropic req_ (first-party + Vertex req_vrtx_), Claude Code format only",
+    "evidence": {
+     "calls_with_request_id_claude_code": {
+      "value": {
+       "k": 380855,
+       "n": 388605,
+       "rate": 0.98006,
+       "ci95_session_clustered": [
+        0.97279,
+        0.98708
+       ],
+       "n_sessions": 3303
+      },
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/swechat/claude_code/calls_with_request_id"
+     },
+     "distinct_request_ids_nonH": {
+      "value": 305727,
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/swechat/claude_code/distinct_request_ids"
+     },
+     "calls_with_request_id_all_formats": {
+      "value": {
+       "k": 380855,
+       "n": 429071,
+       "rate": 0.88763,
+       "ci95_session_clustered": [
+        0.86244,
+        0.90883
+       ],
+       "n_sessions": 3918
+      },
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/swechat/all_formats/calls_with_request_id"
+     }
+    }
+   },
+   {
+    "name": "cc_local",
+    "origin": "B4",
+    "public": false,
+    "carries_provider_request_ids": true,
+    "id_family": "Anthropic req_ (first-party)",
+    "evidence": {
+     "calls_with_request_id": {
+      "value": {
+       "k": 41707,
+       "n": 41707,
+       "rate": 1.0,
+       "ci95_session_clustered": [
+        1.0,
+        1.0
+       ],
+       "n_sessions": 281
+      },
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/cc_local/calls_with_request_id"
+     },
+     "distinct_request_ids": {
+      "value": 35379,
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/cc_local/distinct_request_ids"
+     }
+    }
+   },
+   {
+    "name": "aiv_cc",
+    "origin": "B4",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "calls_with_request_id": {
+      "value": {
+       "k": 0,
+       "n": 72225,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 201
+      },
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/aiv_cc/calls_with_request_id"
+     }
+    }
+   },
+   {
+    "name": "aiv_cu",
+    "origin": "B4",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "request_id_keys_in_raw_scan": {
+      "value": {},
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/aiv_cu/request_id_keys_in_raw_scan"
+     },
+     "raw_scan_rows": {
+      "value": {
+       "rows_read": 2510487,
+       "rows_skipped_H": 64219,
+       "rows_prefix_mismatch": 0
+      },
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/aiv_cu/raw_scan_rows"
+     }
+    },
+    "other_provider_ids_with_time": "Gemini responseId (1 s), OpenAI item ids (1 s), Anthropic msg_ (ms, post 2026-07-06) per b4.json"
+   },
+   {
+    "name": "whowhen",
+    "origin": "B4",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "calls_with_request_id": {
+      "value": {
+       "k": 0,
+       "n": 968,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 160
+      },
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/whowhen/calls_with_request_id"
+     }
+    }
+   },
+   {
+    "name": "collusion-wiki",
+    "origin": "B4",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "note": "external witness, no LLM calls",
+    "evidence": {
+     "note": {
+      "value": "no agent tool calls; no request-id key; its `request_time`/`reqlog` fields are the wiki server's HTTP request log, an external witness, not an LLM provider id",
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/collusion_wiki/note"
+     }
+    }
+   },
+   {
+    "name": "urlquery-agent-activity",
+    "origin": "B4",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "note": "external witness, no LLM calls",
+    "evidence": {
+     "note": {
+      "value": "no agent tool calls; report ids are UUIDv4 (no embedded time); no request-id key",
+      "from": "phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/urlquery/note"
+     }
+    }
+   },
+   {
+    "name": "terminal-bench-2-leaderboard",
+    "origin": "B5b",
+    "public": true,
+    "carries_provider_request_ids": true,
+    "id_family": "Anthropic req_ in 1 of 75 submissions (WozCode__Claude-Opus-4.6, Claude Code)",
+    "evidence": {
+     "entries_with_requestId": {
+      "value": 12327,
+      "from": "phase_e/track_b/B5b_aider_tbench_metr/id_clock_checks.json#anthropic_requestId/WozCode__Claude-Opus-4.6/entries_with_requestId"
+     },
+     "distinct_requestIds": {
+      "value": 7272,
+      "from": "phase_e/track_b/B5b_aider_tbench_metr/id_clock_checks.json#anthropic_requestId/WozCode__Claude-Opus-4.6/distinct_requestIds"
+     },
+     "sessions_with_ge1_requestId": {
+      "value": 444,
+      "from": "phase_e/track_b/B5b_aider_tbench_metr/id_clock_checks.json#anthropic_requestId/WozCode__Claude-Opus-4.6/sessions_with_ge1_requestId"
+     },
+     "agree": {
+      "value": 12279,
+      "from": "phase_e/track_b/B5b_aider_tbench_metr/id_clock_checks.json#anthropic_requestId/WozCode__Claude-Opus-4.6/agree_event_minus_id_in_[-2s,+600s]"
+     },
+     "glm_entries_with_requestId": {
+      "value": 0,
+      "from": "phase_e/track_b/B5b_aider_tbench_metr/id_clock_checks.json#anthropic_requestId/ClaudeCode__GLM-4.7/entries_with_requestId"
+     },
+     "cchuter_entries_with_requestId": {
+      "value": 0,
+      "from": "phase_e/track_b/B5b_aider_tbench_metr/id_clock_checks.json#anthropic_requestId/cchuter__minimax-m2.5/entries_with_requestId"
+     }
+    },
+    "other_provider_ids_with_time": "hookele OpenAI resp_ (1 s) 12,804 per B5b id_clock_checks.json"
+   },
+   {
+    "name": "cli-trace-commons",
+    "origin": "B5e",
+    "public": true,
+    "carries_provider_request_ids": true,
+    "id_family": "Anthropic req_ (Claude Code)",
+    "evidence": {
+     "assistant_entries_with_req_B5e": {
+      "value": 7496,
+      "from": "analysis/out/phase_e/track_b/B5e_cli_traces/census/census_downloaded.json#cli-trace-commons::*/claude_code/req_ids (sum)"
+     },
+     "assistant_entries_B5e": {
+      "value": 7499,
+      "from": "analysis/out/phase_e/track_b/B5e_cli_traces/census/census_downloaded.json#cli-trace-commons::*/claude_code/assistant_entries (sum)"
+     }
+    }
+   },
+   {
+    "name": "cli-claude-code-hf",
+    "origin": "B5e",
+    "public": true,
+    "carries_provider_request_ids": true,
+    "id_family": "Anthropic req_ (Claude Code), 10 of 12 repos",
+    "evidence": {
+     "assistant_entries_with_req_B5e": {
+      "value": 21577,
+      "from": "analysis/out/phase_e/track_b/B5e_cli_traces/census/census_downloaded.json#cli-claude-code-hf::*/claude_code/req_ids (sum)"
+     },
+     "assistant_entries_B5e": {
+      "value": 24425,
+      "from": "analysis/out/phase_e/track_b/B5e_cli_traces/census/census_downloaded.json#cli-claude-code-hf::*/claude_code/assistant_entries (sum)"
+     }
+    }
+   },
+   {
+    "name": "cli-codex-hf",
+    "origin": "B5e",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "headline": {
+      "value": "No provider request/response id in any downloaded Codex rollout or OpenCode export (sample id_like_keys empty; response_item entries carry no id).",
+      "from": "phase_e/track_b/B5e_cli_traces.json#headline/request_id_column/codex_and_opencode_native"
+     }
+    }
+   },
+   {
+    "name": "cli-pi-hf",
+    "origin": "B5e",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "other_provider_ids_with_time": "OpenAI resp_ hex50 responseId (1 s) and OpenRouter gen-<s>, per B5e headline",
+    "evidence": {
+     "pi_openai_responses": {
+      "value": "Pi sessions backed by the OpenAI Responses API store responseId resp_<50 hex>; 4877/5452 decode (B2a hex50 layout, 1 s resolution, UNVERIFIED) to within 5 s of the message's own epoch-ms timestamp; 574 of the 575 outside 5 s come from one repo (cli-pi-hf::woxQAQ/pi-web), where the id time falls up to minutes AFTER the message stamp (descriptive; cause not established). OpenRouter gen-<unix seconds>-...: 42/42 within 5 s. 11846/31088 Pi assistant messages carry no responseId (older Pi versions / providers). A second provider-clock family exists in public CLI traces, but only for Pi, not Codex rollouts.",
+      "from": "phase_e/track_b/B5e_cli_traces.json#headline/request_id_column/pi_openai_responses"
+     }
+    }
+   },
+   {
+    "name": "agentcap-dacorvo",
+    "origin": "B5e",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "note": "capture request_id is minted by the capture proxy; local models + HF-Router",
+    "evidence": {
+     "agentcap_wire_captures": {
+      "value": "18885 captured /v1/chat/completions calls; provider SSE body has id + created on 15829; HF-Router (GLM-4.6) responses add sla_metrics.ts_us (provider-side microsecond time) on 2006 rows. Captures store no general HTTP headers (only X-Served-By/X-Build-Info columns) and their request_id is minted by the capture proxy.",
+      "from": "phase_e/track_b/B5e_cli_traces.json#headline/request_id_column/agentcap_wire_captures"
+     }
+    }
+   },
+   {
+    "name": "tracelab-uw",
+    "origin": "B5e",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "field_audit": {
+      "value": false,
+      "from": "phase_e/track_b/B5e_cli_traces.json#corpora_downloaded/0/field_audit/provider_request_ids"
+     }
+    }
+   },
+   {
+    "name": "openhands-evaluation-outputs",
+    "origin": "B5a",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "note": "model_response.id + created per action in v2.x runs; no request id",
+    "evidence": {
+     "provider_request_ids": {
+      "value": "PARTIAL - no provider *request* ids; per-action model_response.id + created in v2.x runs only",
+      "from": "phase_e/track_b/B5a_sweagent_openhands.json#corpora_downloaded/0/field_audit/provider_request_ids/present"
+     }
+    }
+   },
+   {
+    "name": "openhands-feedback",
+    "origin": "B5a",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "provider_request_ids": {
+      "value": false,
+      "from": "phase_e/track_b/B5a_sweagent_openhands.json#corpora_downloaded/1/field_audit/provider_request_ids/present"
+     }
+    }
+   },
+   {
+    "name": "miniswe-v2-qwen3-30b-swebv-tarsur385",
+    "origin": "B5a",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "provider_request_ids": {
+      "value": false,
+      "from": "phase_e/track_b/B5a_sweagent_openhands.json#corpora_downloaded/2/field_audit/provider_request_ids/present"
+     }
+    }
+   },
+   {
+    "name": "sweagent-combo2-rl-rollouts",
+    "origin": "B5a",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "provider_request_ids": {
+      "value": false,
+      "from": "phase_e/track_b/B5a_sweagent_openhands.json#corpora_downloaded/3/field_audit/provider_request_ids/present"
+     }
+    }
+   },
+   {
+    "name": "glm52-nf3-tb21-traces",
+    "origin": "B5b",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "provider_request_ids": {
+      "value": "NO (self-hosted vLLM)",
+      "from": "phase_e/track_b/B5b_aider_tbench_metr.json#corpora/1/provider_request_ids"
+     }
+    }
+   },
+   {
+    "name": "osworld_verified_trajs",
+    "origin": "B5c",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "other_provider_ids_with_time": "Meta Muse Spark resp_ ids (8 hex Unix seconds), 1 of 20 downloaded submissions",
+    "evidence": {
+     "what_is_missing": {
+      "value": "no result-arrival timestamp (one stamp per step, taken before the action); no exit codes; result content of GUI calls is an image; no provider request ids.",
+      "from": "phase_e/track_b/B5c_web_os_agents.json#downloaded/osworld_verified_trajs/schema_note/what_is_missing"
+     }
+    }
+   },
+   {
+    "name": "webarena_infinity_trajs",
+    "origin": "B5c",
+    "public": true,
+    "carries_provider_request_ids": false,
+    "evidence": {
+     "note": "B5c corpora row provider_request_ids = none (see B5c_web_os_agents.json and the evidence summary)"
+    }
+   }
+  ],
+  "n_corpora_held": 21,
+  "n_B4": 7,
+  "n_acquired": 14,
+  "carriers": [
+   "swechat",
+   "cc_local",
+   "terminal-bench-2-leaderboard",
+   "cli-trace-commons",
+   "cli-claude-code-hf"
+  ],
+  "n_carriers": 5,
+  "carriers_public": [
+   "swechat",
+   "terminal-bench-2-leaderboard",
+   "cli-trace-commons",
+   "cli-claude-code-hf"
+  ],
+  "n_carriers_public": 4,
+  "harness_provider_pairs_among_carriers": [
+   "Claude Code -> Anthropic"
+  ],
+  "B4_baseline": {
+   "count_strict": 2,
+   "of": 7,
+   "public_count": 1,
+   "from": "analysis/out/phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/corpora_carrying_provider_request_ids"
+  }
+ },
+ "loaders": {
+  "reuse_with_adapter": [
+   {
+    "format": "Claude Code JSONL",
+    "corpora": [
+     "cli-trace-commons",
+     "cli-claude-code-hf",
+     "terminal-bench-2-leaderboard (WozCode, ClaudeCode__GLM-4.7, cchuter)"
+    ],
+    "existing_code": "analysis/lib/cc_jsonl.py (used by load_cc_local.py and load_swechat.parse_claude_code)"
+   },
+   {
+    "format": "Codex rollout JSONL",
+    "corpora": [
+     "cli-codex-hf"
+    ],
+    "existing_code": "analysis/loaders/load_swechat.py parse_codex (same session_meta/turn_context/response_item/event_msg envelope; CLI versions differ, untested)"
+   },
+   {
+    "format": "OpenCode export JSON {info, messages}",
+    "corpora": [
+     "agentcap-dacorvo (opencode traces)",
+     "cli-trace-commons (1 file)"
+    ],
+    "existing_code": "analysis/loaders/load_swechat.py parse_opencode (same envelope per B5e schema note; untested)"
+   },
+   {
+    "format": "Gemini-CLI chat JSON",
+    "corpora": [
+     "terminal-bench-2-leaderboard (Gemini_CLI submissions)"
+    ],
+    "existing_code": "analysis/loaders/load_swechat.py parse_gemini (B5b field list matches; untested)"
+   }
+  ],
+  "new_loaders": [
+   {
+    "format": "OpenHands eval output.jsonl (v1.9 pair list and v2.x flat event list)",
+    "corpora": [
+     "openhands-evaluation-outputs"
+    ]
+   },
+   {
+    "format": "OpenHands feedback parquet (trajectory[] per row, no cause column)",
+    "corpora": [
+     "openhands-feedback"
+    ]
+   },
+   {
+    "format": "mini-swe-agent v2 .traj.json",
+    "corpora": [
+     "miniswe-v2-qwen3-30b-swebv-tarsur385"
+    ]
+   },
+   {
+    "format": "combo2 RL rollout JSON inside tar.gz (stream, do not extract)",
+    "corpora": [
+     "sweagent-combo2-rl-rollouts"
+    ]
+   },
+   {
+    "format": "Harbor ATIF trajectory.json + trial result.json (api_request_times_msec)",
+    "corpora": [
+     "terminal-bench-2-leaderboard",
+     "glm52-nf3-tb21-traces"
+    ]
+   },
+   {
+    "format": "hookele .hookele/traj.jsonl",
+    "corpora": [
+     "terminal-bench-2-leaderboard (hookele)"
+    ]
+   },
+   {
+    "format": "OSWorld traj.jsonl (+ runtime.log for Claude/Muse Spark/klick ids and usage)",
+    "corpora": [
+     "osworld_verified_trajs"
+    ]
+   },
+   {
+    "format": "browser-use history.json",
+    "corpora": [
+     "webarena_infinity_trajs"
+    ]
+   },
+   {
+    "format": "TraceLab round rows (content-free)",
+    "corpora": [
+     "tracelab-uw"
+    ]
+   },
+   {
+    "format": "Pi session JSONL v3",
+    "corpora": [
+     "cli-pi-hf",
+     "agentcap-dacorvo (pi traces)"
+    ]
+   },
+   {
+    "format": "agentcap capture parquet (join-only side table)",
+    "corpora": [
+     "agentcap-dacorvo (captures)"
+    ]
+   }
+  ],
+  "optional_witness_loaders": [
+   {
+    "format": "asciinema v2 recording.cast (second terminal clock)",
+    "corpora": [
+     "terminal-bench-2-leaderboard (3 submissions)",
+     "glm52-nf3-tb21-traces"
+    ]
+   }
+  ],
+  "n_new_loaders": 11,
+  "n_reuse": 4,
+  "per_loader_hours_B7": [
+   2.0,
+   4.0
+  ],
+  "per_loader_hours_from": "analysis/out/phase_e/track_b/B7.json#hours_estimate/not_counted (\"~2-4 h each\", engineering judgement)",
+  "new_loader_hours_extrapolated": [
+   22.0,
+   44.0
+  ],
+  "label": "EXTRAPOLATION of B7's engineering judgement (not measured): n_new_loaders x 2-4 h. Reuse adapters and the optional cast loader are not included; the IR enum for corpus/ts_kind also needs extending."
+ },
+ "consistency_checks": {
+  "cli-trace-commons_entries_with_req": {
+   "this_scan": 7496,
+   "B5e": 7496
+  },
+  "cli-claude-code-hf_entries_with_req": {
+   "this_scan": 21585,
+   "B5e": 21577
+  },
+  "tb2_wozcode_entries_with_req": {
+   "this_scan": 12327,
+   "B5b": 12327
+  },
+  "tb2_wozcode_distinct": {
+   "this_scan": 7272,
+   "B5b": 7272
+  },
+  "note": "This scan counts entries of ANY type carrying requestId; B5e counted assistant entries only. B5e's own top_keys.requestId for cli-claude-code-hf is 21,585 (B5e_cli_traces.json corpora_downloaded/2/aggregate_by_format/claude_code/top_keys/requestId), equal to this scan, so the 8-entry gap is non-assistant entries carrying a requestId, not a parse difference."
+ },
+ "request_id_totals": {
+  "swechat_claude_code_distinct_nonH": 305727,
+  "swechat_from": "analysis/out/phase_e/track_b/b4.json#REQUEST_ID_COLUMN_FIRST/per_corpus/swechat/claude_code/distinct_request_ids",
+  "B5e_corpora_entries_with_req_id": 29081,
+  "B5e_corpora_distinct_req_ids": 12009,
+  "new_public_distinct_req_ids_union_incl_tb2": 19281,
+  "new_public_vs_swechat_distinct_ratio": 0.0631,
+  "correction_to_B5e_headline": "B5e's headline 'gains 29073 new public Anthropic request ids' counts assistant ENTRIES (Claude Code repeats one requestId on every content block of a response). Distinct ids in the two B5e corpora are B5e_corpora_distinct_req_ids; 2,576 of them are shared by armand0e/claude-fable-5-claude-code and cfahlgren1/Fable-5-traces (repo_pairs_with_any_overlap) and are counted once.",
+  "not_checked": "overlap of these ids with swechat (would require opening swechat transcripts incl. the H split) or with cc_local (private)."
+ },
+ "derived_sums": {
+  "tracelab_sessions": 8058,
+  "tracelab_tools": 743819,
+  "agentcap_sessions_opencode_plus_pi": 804,
+  "agentcap_tool_calls_opencode_parts_plus_pi_calls": 11499,
+  "from": "analysis/out/phase_e/track_b/B5e_cli_traces.json#corpora_downloaded/0/schema_note/counts_by_provider/{claude,codex}/{sessions,tools} and #corpora_downloaded/5/aggregate_by_format/{opencode,pi}",
+  "B5d_priority_A_not_downloaded_MB": {
+   "Exgentic": 983.6,
+   "AgentBRANE_v14": 2087.6,
+   "MCPHunt": 593.5,
+   "sum_MB": 3664.7,
+   "from": "analysis/out/phase_e/track_b/B5d_hf_search.json#corpora_recommended_pending_approval/{0,1,2}/MB (entries 3, 4, 7, 8 were downloaded, fully or in part, by B5e)"
+  },
+  "acquired_corpora_bytes_reported_by_B5_tasks": {
+   "B5a_downloaded_bytes": 5391625819,
+   "B5e_downloaded_bytes_total": 1612920042,
+   "note": "B5b and B5c report sizes per corpus (see their JSONs); on-disk truth is disk.per_dir above."
+  }
+ },
+ "sources": [
+  {
+   "url": "analysis/out/phase_e/track_b/b4.json",
+   "opened": true,
+   "used_for": "B4 inventory rows, request-id column, CIs"
+  },
+  {
+   "url": "analysis/out/phase_e/b4_inventory.json",
+   "opened": true,
+   "used_for": "B4 probe output (numbers behind b4.json)"
+  },
+  {
+   "url": "analysis/out/phase_e/track_b/B5a_sweagent_openhands.json",
+   "opened": true,
+   "used_for": "OpenHands/SWE-agent family acquisitions"
+  },
+  {
+   "url": "analysis/out/phase_e/track_b/B5b_aider_tbench_metr.json (+ id_clock_checks.json, tb2_stats_v2.json, glm_stats_v2.json)",
+   "opened": true,
+   "used_for": "TB2/GLM acquisitions, WozCode request ids, hookele resp_ clock"
+  },
+  {
+   "url": "analysis/out/phase_e/track_b/B5c_web_os_agents.json",
+   "opened": true,
+   "used_for": "OSWorld/WebArena acquisitions"
+  },
+  {
+   "url": "analysis/out/phase_e/track_b/B5d_hf_search.json",
+   "opened": true,
+   "used_for": "HF search funnel, pending-approval list"
+  },
+  {
+   "url": "analysis/out/phase_e/track_b/B5e_cli_traces.json (+ census/census_downloaded.json, scripts/census_downloaded.py)",
+   "opened": true,
+   "used_for": "CLI trace acquisitions; census bug in capture join counter (L270-275)"
+  },
+  {
+   "url": "analysis/out/phase_e/track_b/B6.json",
+   "opened": true,
+   "used_for": "B6 assessment"
+  },
+  {
+   "url": "analysis/out/phase_e/track_b/B7.json",
+   "opened": true,
+   "used_for": "B7 assessment"
+  },
+  {
+   "url": "analysis/PHASE_E_PROMPT.md, analysis/PHASE_E_PLAN.md, C:/Swarms/CLAUDE_context_swarms.md s5-7",
+   "opened": true,
+   "used_for": "brief, caps, dead ends"
+  },
+  {
+   "url": "analysis/loaders/load_swechat.py (docstring), analysis/lib/ir.py",
+   "opened": true,
+   "used_for": "which native formats existing loaders already parse; IR enums"
+  },
+  {
+   "url": "C:/Swarms/data/acquired/** (directory metadata; Claude Code JSONL requestId/sessionId/type fields)",
+   "opened": true,
+   "used_for": "disk census, distinct request-id census, agentcap folder names"
+  },
+  {
+   "url": "https://huggingface.co/datasets/sammshen/wildclaw-opus-traces (README)",
+   "opened": false,
+   "opened_by": "B6",
+   "passage_recorded_by_sibling": "'Full agentic traces from running WildClawBench tasks through Claude Opus 4.6 via an instrumented reverse proxy.'",
+   "used_for": "B6 method TAKEN"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/harbor-framework/harbor/main/src/harbor/models/trajectories/step.py",
+   "opened": false,
+   "opened_by": "B7 (and B5b for the ATIF validator)",
+   "used_for": "schema TAKEN / join validation PARTIAL"
+  },
+  {
+   "url": "arXiv 2510.24702 (Agent Data Protocol)",
+   "opened": false,
+   "opened_by": "B7 via alphaXiv",
+   "used_for": "pooled dataset PARTIAL; coverage table NOVEL as far as searched"
+  },
+  {
+   "url": "https://github.com/uw-syfi/TraceLab (release v0.0.2, LICENSE-DATASET.md @11b8b14c)",
+   "opened": false,
+   "opened_by": "B5e (asset sha256 matched GitHub digest)",
+   "used_for": "TraceLab licence and provenance"
+  }
+ ],
+ "INTERPRETATION": {
+  "label": "INTERPRETATION (reasoning, not measurement). Numbers it relies on are in the sections above or in the cited sibling files.",
+  "request_id_headline": "The request-id mechanism still runs on one harness/provider pair (Claude Code -> Anthropic). B5 added public corpora and independent operators (TB2 WozCode, Trace Commons donors, 10 HF uploaders) but no second harness or provider with request ids. Cross-harness transfer of the bracket cannot be shown with held data; the nearest substitutes are 1 s response-id clocks (OpenAI resp_, Muse Spark, Gemini).",
+  "B6_after_B5e": "B6 made P1/P2 wait on B5e's audit of public raw Claude Code JSONL. That audit is in: public files do keep requestId (registry: cli-trace-commons, cli-claude-code-hf). So generating a corpus for request-id COVERAGE is unnecessary. What generation would still add is a documented server clock (HTTP Date) and a wire clock outside the agent process (B6 P0), and possibly a non-Anthropic first-party request id. B6's blocking decisions H1-H3 are unchanged.",
+  "B7_after_B5": "B7's licence matrix covered only the B4 corpora and concluded that only SWE-chat data is cleanly redistributable. The 14 acquired corpora declare permissive or attribution licences on their cards (MIT, Apache-2.0, CC BY 4.0, CC0, BSD-3-Clause; one AGPL-3.0 repo), so a data release is no longer SWE-chat-only in principle, but none has had B7's per-corpus pass (contents licences, secrets, personal data). Known hazards: TB2 upstream OAuth tokens (B5b), openhands-feedback real-user content (B5a), usernames in Pi folder names, AGPL member in cli-claude-code-hf."
+ }
+}

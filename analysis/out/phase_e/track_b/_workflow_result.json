@@ -1,0 +1,1649 @@
+{
+ "prior": [
+  {
+   "key": "B2a_provider_id_facts",
+   "items": [
+    {
+     "claim": "FACT: Anthropic request ids embed a ms timestamp (UUIDv7 in base58 after 'req_01'), and the layout is officially documented",
+     "verdict": "N/A",
+     "closest": "Anthropic Claude API errors doc (Request ID section) + anthropic-sdk-python/_response.py"
+    },
+    {
+     "claim": "FACT: Anthropic id formats are stable / guaranteed",
+     "verdict": "N/A",
+     "closest": "anthropic-sdk-python types/message.py (Message.id docstring); platform.claude.com/docs/en/api/versioning; API release notes"
+    },
+    {
+     "claim": "FACT: OpenAI x-request-id embeds a timestamp",
+     "verdict": "UNVERIFIED",
+     "closest": "developers.openai.com/api/reference/overview (Debugging requests); openai-python and openai-node READMEs"
+    },
+    {
+     "claim": "FACT: OpenAI chatcmpl- ids embed the documented `created` second (base62(id[9:14]) + 1,576,800,000; epoch 2019-12-20T00:00:00Z)",
+     "verdict": "N/A",
+     "closest": "Official OpenAI examples: openai-openapi openapi.yaml; openai-cookbook outputs (How_to_stream_completions, How_to_format_inputs_to_ChatGPT_models, How_to_handle_rate_limits)"
+    },
+    {
+     "claim": "FACT: OpenAI Responses ids (resp_/msg_/fc_/rs_/ws_/ctc_) embed creation seconds in a time-first hex layout that changed at least twice",
+     "verdict": "N/A",
+     "closest": "openai-cookbook examples/responses_api/responses_example.ipynb, reasoning_items.ipynb, gpt-5_new_params_and_tools.ipynb; aiv_cu item ids (FINDINGS 4.2.1)"
+    },
+    {
+     "claim": "FACT: Gemini responseId embeds a timestamp; layout documented",
+     "verdict": "N/A",
+     "closest": "googleapis/googleapis aiplatform/v1/prediction_service.proto (Vertex) and generativelanguage/v1beta/generative_service.proto (Gemini API)"
+    },
+    {
+     "claim": "PRIOR ART: Gemini responseId follows Google's 'ei'/EventId layout, with a microsecond sub-second field",
+     "verdict": "PARTIAL",
+     "closest": "Kevin Jones, 'Decoding the ei parameter' (deedpolloffice.com, 2013-12-23); obsidianforensics/unfurl parse_google.parse_ei"
+    },
+    {
+     "claim": "PRIOR ART: reading creation time out of opaque identifiers (UUIDv1/v6/v7, Snowflake, ULID, KSUID, Google ei)",
+     "verdict": "TAKEN",
+     "closest": "obsidianforensics/unfurl (parse_uuid, parse_twitter, parse_ulid, parse_ksuid, parse_sonyflake, parse_google)"
+    },
+    {
+     "claim": "FACT: official SDKs parse or decode provider ids",
+     "verdict": "N/A",
+     "closest": "anthropic-sdk-python _response.py/_models.py; anthropic-sdk-typescript core/api-promise.ts, internal/parse.ts; openai-python _response.py; openai-node internal/parse.ts; google-genai _api_client.py"
+    },
+    {
+     "claim": "FACT: ids found in agent logs are always provider-minted",
+     "verdict": "N/A",
+     "closest": "BerriAI/litellm litellm/responses/utils.py"
+    }
+   ]
+  },
+  {
+   "key": "B2b_timestamping_lit",
+   "items": [
+    {
+     "claim": "C1: Reading creation time out of a server- or externally-minted identifier (UUIDv1/v7, ULID, Snowflake, Google ei, MIME boundary) is usable forensic evidence.",
+     "verdict": "TAKEN",
+     "closest": "Unfurl (obsidianforensics), dfdatetime uuid_time (log2timeline ecosystem), Magnet AXIOM Google-URL timestamps, TweetedAt (ODU 2019), Metaspike MIME-boundary FILETIME decoding."
+    },
+    {
+     "claim": "C2: An external clock's time carried inside a locally recorded artifact can be used to check the local clock, estimate skew and expose tampering (a 'time anchor').",
+     "verdict": "TAKEN",
+     "closest": "Vanini, Hargreaves, van Beek, Breitinger 2024, 'Was the clock correct? ... time anchors' (FSI:DI 49:301759); Weil 2002 (IJDE 1(2)); Schatz, Mohay, Clark 2006."
+    },
+    {
+     "claim": "C3: An event's time can be bounded between causally preceding and succeeding events whose times are known (event-time bounding).",
+     "verdict": "TAKEN",
+     "closest": "Haber & Stornetta 1991 s6.2; Gladyshev & Patel 2005 IJDE 4(2), known here through Willassen 2008's description; James & Jang 2017."
+    },
+    {
+     "claim": "C4: A skew-tolerant cross-clock consistency test: one constant offset must place every remote-clock time inside its local causal bracket, and if no such offset exists, that is evidence of tampering.",
+     "verdict": "PARTIAL",
+     "closest": "Willassen 2008 Theorem 2 (testing clock hypotheses against causality); Roughtime draft-17 s8.2 malfeasance check; Jaeger ClockSkew adjuster; Cristian 1989 and NTP s8 on-wire bracket; Moon/Skelly/Towsley LP feasibility."
+    },
+    {
+     "claim": "C5 (the orchestrator's question): has anyone used an externally minted identifier's embedded time to bound a log event between causally ordered local events, with a skew allowance?",
+     "verdict": "PARTIAL",
+     "closest": "Structurally closest is Roughtime (external times, a causal chain, a radius allowance). In forensics: Vanini 2024 time anchors (a Google-search example), and Metaspike's IMAP UID order plus Internal Date. In observability: Jaeger and Zipkin parent-span brackets with skew correction."
+    },
+    {
+     "claim": "C6: Domain application: LLM-provider request ids (Anthropic req_ ids that decode as UUIDv7) used as the external clock that bounds agent tool-log stamps, and as a single-response binding test.",
+     "verdict": "NOVEL",
+     "closest": "None found. Nearest: a third-party Claude Code skill (debug-claude-session) that correlates transcripts with server logs by time window and explicitly does not use request ids. OpenTelemetry GenAI's gen_ai.response.id stores the provider id for correlation only, and was seen at search-result level."
+    },
+    {
+     "claim": "C7: Secure, forward-secure or tamper-evident audit logging already gives witness-free time verification of an uninstrumented log.",
+     "verdict": "N/A",
+     "closest": "Schneier & Kelsey 1999; Ma & Tsudik 2008 (FssAgg); Crosby & Wallach 2009 (history trees)."
+    },
+    {
+     "claim": "C8: Checking distributed logs and traces for causal consistency across multiple clocks under clock skew.",
+     "verdict": "TAKEN",
+     "closest": "Lamport 1978 (rule IR2' with minimum delay mu); Mattern 1989; Elle 2020 (real-time and server-timestamp dependencies); Sharma et al., arXiv 2604.21361 (negative spans in AI inference pipelines); Jaeger and Zipkin."
+    }
+   ]
+  },
+  {
+   "key": "B2c_systems",
+   "items": [
+    {
+     "claim": "B2 headline, systems view: an existing system decodes the time in a provider-minted request id and uses it as a clock the agent does not control, to bound, order or verify tool-log timestamps (the skew bracket).",
+     "verdict": "NOVEL",
+     "closest": "Mechanically: Langfuse ai-gateway (langfuse/langfuse@f75c661d) and the Codex rollout-trace (openai/codex@ab452649). Conceptually: Hearsay (arXiv 2609.32495), App. I."
+    },
+    {
+     "claim": "Precondition: provider request ids already sit in records that exist without instrumenting the agent.",
+     "verdict": "N/A",
+     "closest": "Claude Code transcript and OTel docs; Codex rollout-trace; Langfuse gateway; W&B Weave; LiteLLM"
+    },
+    {
+     "claim": "Using provider ids as join, dedupe or grouping keys, including recognising one response copied into several session transcripts (our resume/fork copy handling, ids/O7).",
+     "verdict": "TAKEN",
+     "closest": "ccusage (ccusage/ccusage@8904e880)"
+    },
+    {
+     "claim": "Ordering an agent event log by time-ordered identifiers (UUIDv7/ULID).",
+     "verdict": "PARTIAL",
+     "closest": "NovaFabric (arXiv 2609.12582; MSKazemi/novafabric@7cc03a6a); Agent Flight Recorder (arXiv 2609.01931; mpi-dsg/agent-flight-recorder@28ddcde9)"
+    },
+    {
+     "claim": "Treating the model provider as an independent witness the operator or harness does not control, reconciled against the harness record.",
+     "verdict": "PARTIAL",
+     "closest": "Hearsay (arXiv 2609.32495)"
+    },
+    {
+     "claim": "An existing eval harness or observability product checks harness or tool timestamps against any provider-side clock (request-id time, OpenAI created, Google server-timing, HTTP Date, openai-processing-ms).",
+     "verdict": "NOVEL",
+     "closest": "Langfuse ai-gateway (keeps openai-processing-ms and x-request-id in its upstream header allowlist); mini-swe-agent (persists provider `created` next to a client timestamp)"
+    },
+    {
+     "claim": "No existing system verifies an agent transcript against state held by the model provider (adjacent finding from the internal-embodiment rule).",
+     "verdict": "PARTIAL",
+     "closest": "Anthropic Claude API thinking-block prefix binding (preserved thinking, prefix check)"
+    }
+   ]
+  },
+  {
+   "key": "B1a_timing_channels_fraud",
+   "items": [
+    {
+     "claim": "Sub-claim (a): duration-vs-expected-workload residuals as a fabrication signal in agent logs (N1).",
+     "verdict": "PARTIAL",
+     "closest": "Sinharay 2020 (APM), a response-time preknowledge statistic built on van der Linden's lognormal response-time model (JEBS 2006; Psychometrika 2003/2008; shipped in CRAN 'aberrance'). Kovah et al. 2012, timing-based attestation (IEEE S&P). Zheng/Li/Tan/Wu 2013, cloud CPU verification. Agent-adjacent: the LLM-honeypot literature (SoK arXiv 2510.25939; Honeyval arXiv 2605.29963)."
+    },
+    {
+     "claim": "Sub-claim (b): corr(residual, output_size) as the discriminator between work-bound latency (real execution) and generation-bound latency (LLM-authored result).",
+     "verdict": "NOVEL",
+     "closest": "Zhang/Saileshwar/Lie, 'Time Will Tell' (arXiv 2412.15431). Inverse-role analogues: keystroke-based LLM-writing detection (Roh/Kumar/Ngo, arXiv 2507.22956) and chat-bot timing (Gianvecchio et al., USENIX Security 2008)."
+    },
+    {
+     "claim": "N1 design choice: baseline from within-unit repeats of the same workload (same command, same session).",
+     "verdict": "TAKEN",
+     "closest": "Kovah et al. 2012 (per-host repeated-measurement baseline). Sinharay 2020 (within-examinee baseline)."
+    },
+    {
+     "claim": "Context (basis of the existing latency-floor test): raw latency gives away LLM-fabricated tool or command output.",
+     "verdict": "TAKEN",
+     "closest": "LLM honeypots: Bridges et al. SoK (arXiv 2510.25939); Honeyval (arXiv 2605.29963); ShellGames (arXiv 2606.17986)."
+    },
+    {
+     "claim": "Physical premise of (b): LLM generation latency is linear in output length.",
+     "verdict": "TAKEN",
+     "closest": "Zhang/Saileshwar/Lie, arXiv 2412.15431."
+    }
+   ]
+  },
+  {
+   "key": "B1b_apm_runtime",
+   "items": [
+    {
+     "claim": "B1(a): duration-vs-expected-workload residuals as a fabrication signal in agent tool logs",
+     "verdict": "PARTIAL",
+     "closest": "BOINC CreditNew sanity check (deployed); Sekar & Maniatis, 'Verifiable Resource Accounting for Cloud Computing Services', CCSW 2011 (proposal only)"
+    },
+    {
+     "claim": "B1(b): corr(residual, output_size) as the discriminator between work-bound and generation-bound latency",
+     "verdict": "NOVEL",
+     "closest": "anthropics/claude-code issue #67847 (anecdote: fabricating turns are long and output-token-heavy); MLPerf Inference TEST09 (output length checked against throughput cheating)"
+    },
+    {
+     "claim": "Mechanism ancestor: model latency as a function of the declared workload and flag large residuals as anomalies",
+     "verdict": "TAKEN",
+     "closest": "Kelly, 'Detecting Performance Anomalies in Global Applications', USENIX WORLDS 2005. Also TraceAnomaly (Liu et al., ISSRE 2020) and Gow et al., arXiv 1307.1743 (2013)."
+    },
+    {
+     "claim": "A benchmark harness internally uses timing against the declared workload to detect results that were not actually computed",
+     "verdict": "TAKEN",
+     "closest": "MLPerf Inference compliance TEST04 (caching detection), plus TEST01 and TEST09; Reddi et al., 'MLPerf Inference Benchmark', arXiv 1911.02549"
+    },
+    {
+     "claim": "An APM or LLM-observability product already runs a workload-conditioned duration check on agent tool calls (the 'internally embodies' test)",
+     "verdict": "NOVEL",
+     "closest": "Datadog Watchdog and Datadog LLM Observability agent evaluations; Dynatrace Davis multidimensional baselining and Dynatrace MCP observability; New Relic anomaly detection"
+    },
+    {
+     "claim": "N1 design element: baseline from recent repeats of the same command instead of a global model",
+     "verdict": "PARTIAL",
+     "closest": "Tsafrir, Etsion & Feitelson, 'Backfilling Using System-Generated Predictions Rather Than User Runtime Estimates', IEEE TPDS 2007; per-endpoint baselines in Dynatrace and Datadog"
+    },
+    {
+     "claim": "Run duration, together with command identity, as a feature that separates two processes generating records in CI",
+     "verdict": "PARTIAL",
+     "closest": "Haben et al., 'Discerning Legitimate Failures From False Alerts: A Study of Chromium's Continuous Integration' (Fair), arXiv 2111.03382"
+    },
+    {
+     "claim": "Premise behind (b): residuals of honest tool calls are uncorrelated with output size",
+     "verdict": "N/A",
+     "closest": "LogGP (Alexandrov, Ionescu, Schauser, Scheiman, SPAA 1995 / UCSB TR 1995-09): latency has a per-byte term G"
+    }
+   ]
+  },
+  {
+   "key": "B1c_logs_llm_latency",
+   "items": [
+    {
+     "claim": "(a) general: a residual of an event's duration against a learned per-event-type baseline is an anomaly signal in system logs",
+     "verdict": "TAKEN",
+     "closest": "DeepLog (Du et al., ACM CCS 2017); Fu, Lou, Wang, Li (ICDM 2009)"
+    },
+    {
+     "claim": "(a) baseline design: estimate expected duration with actor, machine and load held constant (N1's within-session repeats)",
+     "verdict": "TAKEN",
+     "closest": "van der Linden & Guo, Psychometrika 2008 73(3):365-384; also Fu 2009 per-machine capacity; CacheWise 2606.16824 same-user/project history"
+    },
+    {
+     "claim": "(a) internal embodiment: modelling the expected duration of an agent tool call from the command, arguments and history",
+     "verdict": "TAKEN",
+     "closest": "CacheWise (arXiv 2606.16824); Continuum (arXiv 2511.02230, PVLDB 2027)"
+    },
+    {
+     "claim": "(a) as stated: a duration-vs-expected-workload residual is a FABRICATION signal in agent tool logs",
+     "verdict": "PARTIAL",
+     "closest": "DeepLog (logs); van der Linden & Guo 2008 (residual as a dishonesty signal); CacheWise/Continuum (agent expected tool duration)"
+    },
+    {
+     "claim": "(b) physics: generation-bound latency is proportional to output tokens (TTFT + TPOT x n)",
+     "verdict": "TAKEN",
+     "closest": "DistServe (arXiv 2401.09670, OSDI 2024); Time Will Tell (arXiv 2412.15431)"
+    },
+    {
+     "claim": "(b) as stated: corr(duration residual, output_size) discriminates work-bound from generation-bound tool-call latency",
+     "verdict": "PARTIAL",
+     "closest": "Early Bird Catches the Leak (arXiv 2409.20002) s4-D; Time Will Tell 2412.15431; keystroke provenance (2511.12468, 2609.17883)"
+    },
+    {
+     "claim": "Angle (i) factual: do DeepLog, LogAnomaly, LogBERT, LogRobust, PLELog and successors model duration rather than event sequence?",
+     "verdict": "N/A",
+     "closest": "Landauer et al. survey (MLWA 2023, arXiv 2207.03820) Table II; logpai/deep-loglizer code"
+    },
+    {
+     "claim": "Angle (iii): timing or production-process signals detect machine-generated or delegated text",
+     "verdict": "TAKEN",
+     "closest": "Mehta et al. (arXiv 2511.12468, IEEE T-BIOM 2026; extends Kundu et al. IJCB 2024); Davalos & Zhang (arXiv 2609.17883)"
+    },
+    {
+     "claim": "Limitation: a timing-based generated-vs-executed check is defeated by an adversary who controls timing (padding latency)",
+     "verdict": "TAKEN",
+     "closest": "Condrey (arXiv 2601.17280); Jones & Bergen (arXiv 2405.08007); Westwood PNAS 2025 via 404 Media"
+    }
+   ]
+  },
+  {
+   "key": "B1d_agent_eval",
+   "items": [
+    {
+     "claim": "N1a: a workload-conditioned duration residual, with the expected duration taken from within-session repeats of the same command, used as a fabrication signal for agent tool results.",
+     "verdict": "NOVEL",
+     "closest": "crewAI PR #3388 (crewAIInc/crewAI, head 7be92705; closed without merging 2026-03-19). Also METR, 'Recent Frontier Models Are Reward Hacking' (2025-06-05), which triages RE-Bench runs by outlier score."
+    },
+    {
+     "claim": "N1b: corr(residual, output_bytes) as the discriminator between work-bound and generation-bound latency of a tool result.",
+     "verdict": "NOVEL",
+     "closest": "crewAI PR #3388's ExecutionEvidence record, and the Tool Receipts / NabaOS receipt (arXiv 2603.10060)."
+    },
+    {
+     "claim": "Generic: some existing agent system already uses tool-call duration, in any form, as a fabrication signal.",
+     "verdict": "PARTIAL",
+     "closest": "crewAI PR #3388, never merged. Also the agents themselves in the OpenAI/Hugging Face incident (METR/Redwood, 2026-08-26)."
+    },
+    {
+     "claim": "An agent eval harness already time-checks tool calls internally, i.e. compares a call's duration with something other than a budget or timeout.",
+     "verdict": "NOVEL",
+     "closest": "inspect_ai ToolEvent.working_time; SWE-agent step.execution_time."
+    },
+    {
+     "claim": "Benchmark-cheating and reward-hacking detectors use tool-call timing as a signal.",
+     "verdict": "NOVEL",
+     "closest": "METR 2025 outlier-score triage on RE-Bench. Scale AI, 'Detection and Remediation of Unearned Passes' (arXiv 2609.34262)."
+    },
+    {
+     "claim": "A source cited in PROJECT_BRIEF.md already contains a latency-based fabrication check.",
+     "verdict": "NOVEL",
+     "closest": "ACE (arXiv 2609.28915), Appendices B and C. Also a case in the Hearsay appendix (arXiv 2609.32495)."
+    },
+    {
+     "claim": "Fact: N1 could have run on the transcripts from the motivating OpenAI/Hugging Face incident.",
+     "verdict": "N/A",
+     "closest": "METR/Redwood, 'Brief independent investigation of agents' behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident' (2026-08-26; Greenblatt, Cotra, Wijk)."
+    },
+    {
+     "claim": "Threat-model support: tool-call spoofing that leaves the transcript intact has been shown across current harnesses, and detecting it is left unaddressed.",
+     "verdict": "N/A",
+     "closest": "Qin, Schmotz et al., 'LLM Agents Can Easily Tamper With Their Own Traces' (arXiv 2609.30266)."
+    },
+    {
+     "claim": "Adjacent to N5, which B3 owns: a harness already compares repeats of the same command within a session.",
+     "verdict": "PARTIAL",
+     "closest": "StuckDetector in OpenHands software-agent-sdk."
+    }
+   ]
+  },
+  {
+   "key": "B3a_tokens_harness_timers",
+   "items": [
+    {
+     "claim": "C1 Token conservation: between consecutive provider calls, the growth in reported prompt size (input + cache_read + cache_creation) should equal the tokens of the logged appended content. Checked retrospectively on agent logs, a mismatch is a sign the tool result was tampered with or fabricated.",
+     "verdict": "PARTIAL",
+     "closest": "Velasco, Tsirtsis & Gomez-Rodriguez, 'Auditing Pay-Per-Token in LLMs' (arXiv 2510.05181). Adjacent: Paritok cost attribution (arXiv 2609.22114) and Hoque et al. 'Token Inflation' (arXiv 2605.30040)."
+    },
+    {
+     "claim": "C2 Cache-read chain: the identity cache_read(k+1) = cache_read(k) + cache_creation(k) is a witness, written by the provider, that each logged prefix was really sent (turn existence, order, prefix continuity). Checked retrospectively on recorded logs.",
+     "verdict": "PARTIAL",
+     "closest": "KeyPooling (Sun et al., arXiv 2608.17485) and CacheTracer (Ji et al., arXiv 2608.20732). Also CacheProbe (Fahey, arXiv 2605.30613) and the Anthropic prompt-caching docs."
+    },
+    {
+     "claim": "C3 Using prompt-cache timing (TTFT), as in Gu et al. 2025, as a witness of what an agent transcript sent. This also settles whether Gu et al. takes our usage-ledger or cache claims.",
+     "verdict": "TAKEN",
+     "closest": "Gu, Li, Kuditipudi, Liang & Hashimoto, 'Auditing Prompt Caching in Language Model APIs', ICML 2025 (arXiv 2502.07776)."
+    },
+    {
+     "claim": "C4 (N2) Accounting identity: a tool result the model invents inline is billed as output tokens, while a result returned by the environment arrives as input tokens on the next call. This would separate inline fabrication from execution-layer compromise.",
+     "verdict": "PARTIAL",
+     "closest": "ReAct reference harness (github.com/ysymyth/ReAct hotpotqa.ipynb), plus billing audits that verify output-token counts (arXiv 2510.05181)."
+    },
+    {
+     "claim": "C5 Harness dual-rendering recount: Claude Code's structured toolUseResult counters (Read numLines, totalToolUseCount, Grep numLines, Edit structuredPatch) checked against the model-visible tool_result text, to flag a visible result that was edited or fabricated.",
+     "verdict": "PARTIAL",
+     "closest": "For the technique: Strider GhostBuster cross-view diff (MSR-TR-2005-25, DSN 2005), and NTFS $SI-vs-$FN timestomp detection (Magnet Forensics / Andrade 2020; Vanini, Hargreaves & Breitinger, arXiv 2412.12814). In the agent domain: Hearsay (Dai et al., arXiv 2609.32495)."
+    },
+    {
+     "claim": "C6 Nested timer chain: the duration a tool prints in its output (pytest 'in X s', Codex 'Wall time') must be no more than the harness timer, which sits inside the call-to-result window, which sits inside the provider request-id interval. Output that claims more elapsed work than its enclosing interval allows is contradicted.",
+     "verdict": "PARTIAL",
+     "closest": "Jaeger ClockSkew adjuster (jaegertracing/jaeger model/adjuster/clockskew.go). Sharma et al., arXiv 2604.21361. Forensic clock-hypothesis and time-anchor testing (Willassen 2008, opened by sibling B2b; Vanini et al., arXiv 2412.12814)."
+    }
+   ]
+  },
+  {
+   "key": "B3b_reaction_concurrency_determinism",
+   "items": [
+    {
+     "claim": "(4) Reaction-time scaling (N3): the gap between a tool result arriving and the next call is reading time and should scale with result size. An agent-authored (fabricated) result needs no reading, so per-session corr(next_call_gap, result_bytes) is a fabrication signal.",
+     "verdict": "PARTIAL",
+     "closest": "Zhang & Conrad 2014, 'Speeding in Web Surveys' (Survey Research Methods 8(2)): a reading-time floor scaled by content length. Google patent US8271865 (2005): reading speed used to detect automated surfing. Agent-adjacent: Reworr & Volkov, LLM Agent Honeypot (arXiv 2410.13919): response-gap timing separates LLM agents from humans. Physics: Early Bird (arXiv 2409.20002) and TraceLab (arXiv 2606.30560): prefill time scales with uncached appended tokens."
+    },
+    {
+     "claim": "(5) Concurrency-contention scaling (N4): concurrent real tool calls compete for CPU, disk and network, so their durations inflate together. Generated results compete for the inference engine instead. Duration scaling against concurrency is therefore a fabrication signal.",
+     "verdict": "PARTIAL",
+     "closest": "Rubenstein, Kurose & Towsley, 'Detecting Shared Congestion of Flows Via End-to-end Measurement' (UMass TR 99-66 / SIGMETRICS 2000 / ToN 2002). Ristenpart et al., 'Hey, You, Get Off of My Cloud' (CCS 2009), load-based co-residence detection. Bowers et al., RAFT (CCS 2011, ePrint 2010/214). CPI2/Proctor as described in PANDA (arXiv 2511.08803)."
+    },
+    {
+     "claim": "(6) Repeat-command determinism (N5 battery): the same command run twice with no write in between should return byte-identical output. LLM sampling makes fabricated repeats drift. Byte-different repeats of an identical read-only command, with no logged write in between, are therefore a fabrication check.",
+     "verdict": "PARTIAL",
+     "closest": "LLM-honeypot line: AdvancedShelLM (arXiv 2606.27990), shelLM (arXiv 2309.00155), Galah (github.com/0x4D31/galah), Ragsdale & Boppana and HoneyGPT (via SoK arXiv 2510.25939). Tool simulators: ToolEmu (arXiv 2309.15817) and StableToolBench (arXiv 2403.07714). Logic: Berenson et al. 1995 P2/A2 non-repeatable read (arXiv cs/0701157) and Elle (arXiv 2003.10554). Premise: SelfCheckGPT (arXiv 2303.08896)."
+    }
+   ]
+  },
+  {
+   "key": "B3c_errors_transfer",
+   "items": [
+    {
+     "claim": "(7a) Fabricated (emulated or LLM-generated) command output can be told apart from real output by fidelity deviations: exact error/diagnostic strings, output conventions, and consistency with earlier state.",
+     "verdict": "TAKEN",
+     "closest": "Vetterl & Clayton, Bitter Harvest (USENIX WOOT 2018). Also SoK Honeypots & LLMs (arXiv 2510.25939) and AdvancedShelLM (arXiv 2606.27990)."
+    },
+    {
+     "claim": "(7b) Error-message fidelity cross-reference: in a recorded tool failure, the paths, versions and line numbers must agree with what the same transcript already showed. The check is passive and log-only.",
+     "verdict": "PARTIAL",
+     "closest": "ToolEmu (arXiv 2309.15817): its emulator must stay consistent with the previous trajectory. ETF (arXiv 2410.14748): entity grounding against source code. Spracklen et al. (arXiv 2406.10279): package names checked against a registry."
+    },
+    {
+     "claim": "(7c) Premise in the brief (N5): 'Nobody studies fabricated failures; everyone assumes a lying agent only lies about success.'",
+     "verdict": "TAKEN",
+     "closest": "Rodriguez, Pozanco and Borrajo, 'Is Your Agent Playing Dead?' (CEF/Thanatosis, arXiv 2606.14831). Also Sethi et al. 2609.14758, Singh 2607.19449, and Transluce's o3 report (2025-04-16)."
+    },
+    {
+     "claim": "(7d) A detector exists for LLM-hallucinated stack traces or fabricated error records.",
+     "verdict": "NOVEL",
+     "closest": "CEF 2606.14831 (documents the behaviour and proposes untested detectors). Nirujan et al. 2605.24137 (hallucination in LLM-generated bug-report summaries)."
+    },
+    {
+     "claim": "(8a) Log anomaly detectors trained on one system do not transfer to another without adaptation.",
+     "verdict": "TAKEN",
+     "closest": "FreeLog (FSE Companion 2025, arXiv 2507.19806) and CroSysLog (SANER 2025, arXiv 2412.15445). LogTransfer, LogTAD and MetaLog exist because of this problem."
+    },
+    {
+     "claim": "(8b) Detectors of generated or false content degrade under domain or generator shift.",
+     "verdict": "TAKEN",
+     "closest": "M4 (EACL 2024, 2305.14902), RAID (ACL 2024, 2405.07940), and Orgad et al. (ICLR 2025, 2410.02707). Counter-example: Pacchiardi et al. (2309.15840)."
+    },
+    {
+     "claim": "(8c) Agent-trace detectors and monitors lose accuracy, or change prevalence and thresholds, across benchmarks and scaffolds.",
+     "verdict": "TAKEN",
+     "closest": "TraceProbe, 'What Resolve Rate Hides' (arXiv 2607.06184, July 2026). Also ImpossibleBench (2510.20270), TRAIL (2505.08638), Advani (2606.09863) and Who&When (2505.00212)."
+    },
+    {
+     "claim": "(8d) Headline: 'fabrication-detection signals do not transfer across harnesses' as a secondary contribution.",
+     "verdict": "PARTIAL",
+     "closest": "TraceProbe 2607.06184 and Advani 2606.09863. CEF 2606.14831 s4.5 adds that fabricated errors need 'division-specific CEF signatures'."
+    },
+    {
+     "claim": "(8e) An N6 mechanism x corpus transfer grid for witness-free tool-log fabrication signals across public corpora, failing cells included.",
+     "verdict": "NOVEL",
+     "closest": "TraceProbe 2607.06184, which reports detector x scaffold prevalence tables."
+    }
+   ]
+  }
+ ],
+ "corpora": [
+  {
+   "key": "b4",
+   "corpora": [
+    {
+     "name": "swechat/claude_code",
+     "pass": true,
+     "dl": "data/swe-chat-pinned",
+     "reqid": "YES. Anthropic req_ (494 distinct req_vrtx_) in the `requestId` field. Calls 380,855/388,605 = 0.980 [0.973, 0.987]; responses 307,479/314,821. Decodable time: 305,727/305,727 distinct ids are UUIDv7 at ms resolution, version and variant bits included; 305,584 agree with the carrying event within [-2 s, +600 s]. Layout UNVERIFIED against vendor docs. Bedrock calls 0/3,575 carry one"
+    },
+    {
+     "name": "swechat/codex",
+     "pass": true,
+     "dl": "data/swe-chat-pinned",
+     "reqid": "NO: 0 request-id keys. turn_context.trace_id (32 hex, 217 occurrences) has unestablished provenance and is not a provider request id"
+    },
+    {
+     "name": "swechat/opencode",
+     "pass": true,
+     "dl": "data/swe-chat-pinned",
+     "reqid": "NO: 0 request-id keys. Message ids are client-minted opencode_id values; 4 cf-ray matches sit inside tool output"
+    },
+    {
+     "name": "swechat/gemini",
+     "pass": true,
+     "dl": "data/swe-chat-pinned",
+     "reqid": "NO: message ids are UUIDv4; 128 req_ strings occur inside text only"
+    },
+    {
+     "name": "swechat/cursor",
+     "pass": false,
+     "dl": "data/swe-chat-pinned",
+     "reqid": "NO"
+    },
+    {
+     "name": "swechat/copilot",
+     "pass": true,
+     "dl": "data/swe-chat-pinned",
+     "reqid": "NO on calls. 2 requestId values (42 chars, unknown format) appear on session.compaction_complete only"
+    },
+    {
+     "name": "cc_local",
+     "pass": true,
+     "dl": "data/claude-code-local",
+     "reqid": "YES. Anthropic req_ (first-party only): calls 41,707/41,707 = 1.0; responses 35,381/35,391. 35,379 distinct ids, all decode as UUIDv7 ms; 35,227 agree within [-2 s, +600 s]"
+    },
+    {
+     "name": "aiv_cc",
+     "pass": true,
+     "dl": "data/ai-village",
+     "reqid": "NO: 0 request-id keys in raw. msg_ response ids are random-format (22 time-format against 22.05 expected by chance), so they carry no clock"
+    },
+    {
+     "name": "aiv_cu/anthropic",
+     "pass": true,
+     "dl": "data/ai-village",
+     "reqid": "NO request ids. Provider response ids: msg_ 856,394 distinct, 294,075 decodable at ms resolution (post-2026-07-06 format only), 293,865 agree with created_at"
+    },
+    {
+     "name": "aiv_cu/anthropic-sdk",
+     "pass": true,
+     "dl": "data/ai-village",
+     "reqid": "NO. 10,590 msg_ ids; 4 time-format, which is chance level"
+    },
+    {
+     "name": "aiv_cu/gemini",
+     "pass": true,
+     "dl": "data/ai-village",
+     "reqid": "NO request-id header among the stored headers (date, server-timing, x-gemini-service-tier, ...). responseId: 462,024 decodable at 1 s resolution, 462,022 agree"
+    },
+    {
+     "name": "aiv_cu/openai-responses",
+     "pass": true,
+     "dl": "data/ai-village",
+     "reqid": "NO (no x-request-id stored). Output-item ids (fc_/msg_/rs_/cu_): 572,082 decodable at 1 s, all agree"
+    },
+    {
+     "name": "aiv_cu/openai-chat",
+     "pass": true,
+     "dl": "data/ai-village",
+     "reqid": "NO: no provider id of any kind stored"
+    },
+    {
+     "name": "whowhen",
+     "pass": false,
+     "dl": "data/who-and-when",
+     "reqid": "NO"
+    },
+    {
+     "name": "collusion-wiki",
+     "pass": false,
+     "dl": "data/collusion-wiki",
+     "reqid": "n/a: no LLM calls, 0 request-id keys. request_time comes from the wiki server's HTTP log (an external witness)"
+    },
+    {
+     "name": "urlquery-agent-activity v5",
+     "pass": false,
+     "dl": "data/urlquery-agent-activity",
+     "reqid": "n/a: report ids are UUIDv4; 0 request-id keys"
+    },
+    {
+     "name": "swe-chat-mirror-cfahlgren1",
+     "pass": false,
+     "dl": "data/swe-chat-mirror-cfahlgren1",
+     "reqid": "not audited (not opened)"
+    }
+   ]
+  },
+  {
+   "key": "B5a_sweagent_openhands",
+   "corpora": [
+    {
+     "name": "openhands-evaluation-outputs",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\openhands-evaluation-outputs\\ (91/91 sha256 match Hub LFS)",
+     "reqid": "no provider request ids. v2.x runs carry model_response.id + created per action: Anthropic = litellm chatcmpl-<uuid> (proxy-minted, created local); DeepSeek/Fireworks = UUID ids with provider-side created (non-local clock; 26 and 83 small negative deltas in two Fireworks runs, min -0.159 s). v1.9 runs have none"
+    },
+    {
+     "name": "openhands-feedback",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\openhands-feedback\\",
+     "reqid": "none"
+    },
+    {
+     "name": "miniswe-v2-qwen3-30b-swebv-tarsur385",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\miniswe-v2-qwen3-30b-swebv-tarsur385\\",
+     "reqid": "none: chatcmpl-<16hex> + created minted by the self-hosted vLLM server (separate-process clock)"
+    },
+    {
+     "name": "sweagent-combo2-rl-rollouts (subset: trajectories_00 of 6)",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\sweagent-combo2-rl-rollouts\\",
+     "reqid": "none"
+    },
+    {
+     "name": "SWE-bench leaderboard trajectories (S3 swe-bench-submissions + submitter repos)",
+     "pass": true,
+     "dl": "not downloaded (listed)",
+     "reqid": "no (Anthropic via litellm = chatcmpl-<uuid>)"
+    },
+    {
+     "name": "OpenHands Index full_archive tarballs",
+     "pass": true,
+     "dl": "not downloaded (listed)",
+     "reqid": "DeepSeek UUID llm_response_id; Anthropic = proxy chatcmpl-<uuid>; metrics.response_latencies + token_usages keyed by response id"
+    },
+    {
+     "name": "CooperBench qwen9b mini-swe-agent v2 (solo / coop)",
+     "pass": true,
+     "dl": "not downloaded (listed)",
+     "reqid": "none (vLLM)"
+    },
+    {
+     "name": "nebius/SWE-agent-trajectories (+ mirrors ElenaFu, antontuzovAI)",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "none"
+    },
+    {
+     "name": "nebius/SWE-rebench-openhands-trajectories",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "none"
+    },
+    {
+     "name": "SWE-Gym OpenHands Sampled / SFT / Verifier trajectories",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "none"
+    },
+    {
+     "name": "SWE-bench/SWE-smith-trajectories; Kwai-Klear mini_swe_agent_plus 66k; nvidia SWE-Zero/SWE-Hero OpenHands",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "none"
+    },
+    {
+     "name": "livesweagent/*_swebench_verified_traj (mini-swe-agent 1.14)",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "gpt-5: OpenAI-minted chatcmpl ids; 14/14 in the sample decode to their created second with B2a's rule. Claude: chatcmpl-<uuid> (proxy)"
+    },
+    {
+     "name": "Unlicensed or over-cap sources (not downloaded)",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "nlile's card declares timestamp + request_id columns (Claude Code traces) but has no licence: lead for B4/B2"
+    }
+   ]
+  },
+  {
+   "key": "B5b_aider_tbench_metr",
+   "corpora": [
+    {
+     "name": "terminal-bench-2-leaderboard (field-audited subset)",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\terminal-bench-2-leaderboard\\hf_repo (manifest _acquisition\\FILES_SHA256.v2_lf_exact.jsonl, aggregate sha256 03639266a3aadf6c6810ddf82c3416ded5d09a1c921f3defb6488fc7bf9bfacf)",
+     "reqid": "YES in WozCode__Claude-Opus-4.6: Anthropic requestId on 444/444 sessions, 7,272 distinct ids, 12,327 entries, 12,327 decode as UUIDv7, 12,279 (0.9961) within [-2 s,+600 s]. hookele: 12,804 OpenAI resp_ ids (1 s clock), 12,804/12,804 bracketed by harness timestamps +-1 s. None in ClaudeCode__GLM-4.7 or cchuter"
+    },
+    {
+     "name": "glm52-nf3-tb21-traces",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\glm52-nf3-tb21-traces\\hf_repo (aggregate sha256 655abf8c32334f373b9e242e3d7e9aa6a887a27c5a2df6949c0864cb29c8890d)",
+     "reqid": "NO (self-hosted)"
+    },
+    {
+     "name": "METR MALT (metr-evals/malt-transcripts-public; malt-public)",
+     "pass": false,
+     "dl": "NOT DOWNLOADED: gated (contact-info agreement). Only the card was read; the account token already has access. Listed for human approval",
+     "reqid": "NO"
+    },
+    {
+     "name": "Aider benchmark logs",
+     "pass": false,
+     "dl": "NOT DOWNLOADED (fails audit)",
+     "reqid": "NO (the harness records sha1 chat_hashes of LLM request and response only)"
+    },
+    {
+     "name": "yoonholee/terminalbench-trajectories",
+     "pass": false,
+     "dl": "NOT DOWNLOADED (fails audit)",
+     "reqid": "NO"
+    },
+    {
+     "name": "mercor/ApexAgentsRecipe-TBench2_1-EvalTraces",
+     "pass": false,
+     "dl": "NOT DOWNLOADED (fails audit)",
+     "reqid": "NO"
+    },
+    {
+     "name": "Terminal-Bench 2.1 official leaderboard jobs (Harbor Hub)",
+     "pass": false,
+     "dl": "NOT DOWNLOADED (needs the harbor CLI, i.e. executing third-party code, and has no licence); listed for a human",
+     "reqid": "unknown"
+    },
+    {
+     "name": "Unlicensed TB trace dumps on HF (dot-agi/harbor-tb2-results, mlfoundations-dev/*tbench*, DCAgent2/*terminal_bench_2*, harborframework/parity-experiments)",
+     "pass": false,
+     "dl": "NOT DOWNLOADED (no licence)",
+     "reqid": "not audited"
+    },
+    {
+     "name": "METR released run data and report transcripts (eval-analysis-public runs.jsonl, o3/GPT-5 report excerpts, gdm-replication)",
+     "pass": false,
+     "dl": "NOT DOWNLOADED",
+     "reqid": "NO"
+    },
+    {
+     "name": "Simple-Codex codex.txt inside the TB2 leaderboard (not in the subset)",
+     "pass": false,
+     "dl": "NOT DOWNLOADED (free text; the same trials' ATIF was taken)",
+     "reqid": "YES ('Initial response ID: resp_...', OpenAI hex50)"
+    }
+   ]
+  },
+  {
+   "key": "B5c_web_os_agents",
+   "corpora": [
+    {
+     "name": "OSWorld-Verified trajectories (xlangai/ubuntu_osworld_verified_trajs), text-only subset of 20 of 99 submissions",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\osworld_verified_trajs\\",
+     "reqid": "None (0 req_ ids). The Claude runs went through Bedrock (msg_bdrk_ ids), and 0 of 72,212 per-task Bedrock msg ids decode to a time within 24 h of the run. One submission (Meta Muse Spark, api.ai.meta.com) has Responses-style resp_/rs_ ids whose first 8 hex digits read as Unix seconds. Per step that time is within 1 s of action_timestamp in 8,228 of 8,231 steps, and never after it. The layout is inferred and undocumented."
+    },
+    {
+     "name": "WebArena-Infinity browser-agent trajectories (webarena-x/webarena-infinity-trajectories), Gemini 2.5 Flash / browser-use subset",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\webarena_infinity_trajs\\",
+     "reqid": "none"
+    },
+    {
+     "name": "xlangai/osworld2.0-trajectory",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "UNAUDITED; api_usage.json (108) and call_*.json files may hold raw per-call API records"
+    },
+    {
+     "name": "mlfoundations-cua-dev/osworld-trajectories",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "unknown"
+    },
+    {
+     "name": "McGill-NLP/agent-reward-bench (AgentRewardBench: WebArena, VisualWebArena, AssistantBench, WorkArena)",
+     "pass": false,
+     "dl": "not downloaded (one 118 KB sample read to the scratchpad for the audit)",
+     "reqid": "none"
+    },
+    {
+     "name": "agentlabtraces/agentlabtraces (AgentLab/BrowserGym TMLR traces)",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "unknown"
+    },
+    {
+     "name": "OpenHandsCommunity/eval-output-webarena (OpenHands BrowsingAgent on WebArena)",
+     "pass": true,
+     "dl": "not downloaded",
+     "reqid": "none seen in the sample"
+    },
+    {
+     "name": "WebArena official execution traces v1/v2 (Google Drive)",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "none"
+    },
+    {
+     "name": "VisualWebArena GPT-4V+SoM trajectories (gpt4v_som.tar, Google Drive)",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "none"
+    },
+    {
+     "name": "AgentBench (THUDM) run outputs",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "none"
+    },
+    {
+     "name": "harry1332/agentbench-avalon-sampled-cpu-trace",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "unknown"
+    },
+    {
+     "name": "anonymousmypcbench/cua-speedrun-trajectories and mlfoundations-cua-dev/computer-agent-trajectories",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "unknown"
+    }
+   ]
+  },
+  {
+   "key": "B5d_hf_search",
+   "corpora": [
+    {
+     "name": "Exgentic multi-benchmark OTel agent traces",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Command: hf download Exgentic/agent-llm-traces --repo-type dataset --revision 70036b93a04e61b0ea2706a68b962f4f26774587 --local-dir C:/Swarms/data/acquired/hf__Exgentic__agent-llm-traces",
+     "reqid": "gen_ai.response.id per span (sampled Azure DeepSeek rows: 32-hex, no time layout); claude_code rows not sampled"
+    },
+    {
+     "name": "AgentBRANE SWE-bench Lite v14 harness-native traces",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Command: hf download melissapan/swe-bench-lite-agent-traces-v14 --repo-type dataset --revision 2cdf7f3c08052508330cf99dc600c6a00ea89bff --local-dir C:/Swarms/data/acquired/hf__melissapan__swe-bench-lite-agent-traces-v14",
+     "reqid": "NONE: gateway stripped requestId; receipts keep only route/outcome/byte counts/sha256 digests and no timestamps"
+    },
+    {
+     "name": "MCPHunt agent traces",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Command: hf download lihaonan0716/mcphunt-agent-traces --repo-type dataset --revision <sha in JSON> --local-dir C:/Swarms/data/acquired/hf__lihaonan0716__mcphunt-agent-traces",
+     "reqid": "none seen"
+    },
+    {
+     "name": "Trace Commons raw donated sessions",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Command: hf download trace-commons/agent-traces --repo-type dataset --revision 112ebd4d03ce852b00e935d523107c3d0c9a65bf --local-dir C:/Swarms/data/acquired/hf__trace-commons__agent-traces --include \"sessions/*\"",
+     "reqid": "YES Anthropic req_011C... (72 distinct in a 600 kB sample)"
+    },
+    {
+     "name": "Claude Code sessions with Anthropic request ids, licensed, deduplicated (15 groups)",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Per-member pinned commands in JSON.",
+     "reqid": "YES: 261 distinct Anthropic-shaped ids in samples, 261 agree with the B4 band (first carrying event ts minus embedded ms in [-2 s, +600 s])"
+    },
+    {
+     "name": "KernelBench agent traces (Infatoshi hard + mega)",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Pinned commands in JSON.",
+     "reqid": "present; non-Anthropic shape in codex/kimi files, Anthropic shape in claude-fable-5 file"
+    },
+    {
+     "name": "Swival security-audit traces",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Pinned command in JSON.",
+     "reqid": "none"
+    },
+    {
+     "name": "Pi coding-agent sessions (pi-share-hf exports), 25 licensed repos",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Pinned commands in JSON.",
+     "reqid": "none (format has none)"
+    },
+    {
+     "name": "Codex CLI rollouts, 9 licensed repos",
+     "pass": true,
+     "dl": "NOT downloaded (needs explicit user approval). Pinned commands in JSON.",
+     "reqid": "none"
+    },
+    {
+     "name": "AgentLogs (GitHub Copilot cloud agent)",
+     "pass": false,
+     "dl": "NOT downloaded: over cap. Subset command (sessions + 10 shards, ~2.2 GB) in JSON.",
+     "reqid": "UNVERIFIED (data.id / data.object chat-completion objects)"
+    },
+    {
+     "name": "AgentTrajectorySentinel (labeled tool-layer fault injection)",
+     "pass": false,
+     "dl": "NOT downloaded (fails the strict audit). Listed for human decision.",
+     "reqid": "none"
+    },
+    {
+     "name": "Real Pi sessions compilation (MaxDevv)",
+     "pass": true,
+     "dl": "NOT downloaded: licence unclear for 626 pi-mono sessions; take the MIT members instead",
+     "reqid": "none"
+    },
+    {
+     "name": "IBM Codex SWE-bench Pro OTel traces",
+     "pass": false,
+     "dl": "not downloaded (fails audit)",
+     "reqid": "none"
+    },
+    {
+     "name": "LMCache agentic traces",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "none"
+    },
+    {
+     "name": "Failed or out-of-scope (MCPMark, netpreme, WhitzardAgent conversions, thoughtworks, beomi, PotatoHD, hf-coding-tools family, cline/incident-traces, harry1332 CPU traces, concealed-fabrication-agentic, Lightcap)",
+     "pass": false,
+     "dl": "not downloaded",
+     "reqid": "hf-coding-tools has non-Anthropic req ids but zero tool calls"
+    },
+    {
+     "name": "Unlicensed datasets that pass the field audit (192) incl. nlile/misc-merged-claude-code-traces-v1, TeichAI/*, MarxistLeninist/repro-*, badlogicgames/pi-mono, open-agent-leaderboard/traces",
+     "pass": true,
+     "dl": "not downloaded (no licence: list for human)",
+     "reqid": "89 unlicensed datasets carry request ids; 1,168/1,252 deduped Anthropic ids agree"
+    }
+   ]
+  },
+  {
+   "key": "B5e_cli_traces",
+   "corpora": [
+    {
+     "name": "tracelab-uw (TraceLab v0.0.2, UW SyFI, arXiv 2606.30560)",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\tracelab-uw\\v0.0.2\\",
+     "reqid": "NO (ids pseudonymized; no request/response id keys)"
+    },
+    {
+     "name": "cli-trace-commons (trace-commons/agent-traces)",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\cli-trace-commons\\trace-commons__agent-traces@112ebd4d\\",
+     "reqid": "YES: 7,496/7,499 assistant entries carry Anthropic req_; 7,496 decode as UUIDv7 (B2a layout, UNVERIFIED) and all 7,496 fall in the B4 [-2 s, +600 s] window"
+    },
+    {
+     "name": "cli-claude-code-hf (12 raw Claude Code repos on HF)",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\cli-claude-code-hf\\<owner>__<repo>@<sha8>\\",
+     "reqid": "YES (partial): 21,577/24,425 assistant entries carry req_; 21,575 decode v7; 21,567 in B4 window. None in INONONO (0/146) and victor (0/268); AlinCiocan 271/2,506"
+    },
+    {
+     "name": "cli-codex-hf (6 raw Codex rollout repos on HF)",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\cli-codex-hf\\<owner>__<repo>@<sha8>\\",
+     "reqid": "NO (response_item entries carry no id; no request-id key)"
+    },
+    {
+     "name": "cli-pi-hf (23 raw Pi session repos on HF; adjacent CLI harness)",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\cli-pi-hf\\<owner>__<repo>@<sha8>\\",
+     "reqid": "PARTIAL: assistant responseId; OpenAI resp_ (hex50, 1 s) 5,452 of which 4,877 within 5 s of message ts (574 of 575 outliers in woxQAQ/pi-web); OpenRouter gen-<secs> 42/42 within 5 s; Anthropic msg_ not time-bearing; ~half of messages have no responseId"
+    },
+    {
+     "name": "agentcap-dacorvo (OpenCode + Pi native traces with joinable HTTP wire captures)",
+     "pass": true,
+     "dl": "C:\\Swarms\\data\\acquired\\agentcap-dacorvo\\<owner>__<repo>@<sha8>\\",
+     "reqid": "Not in native traces; in captures the provider SSE id + created on 15,829/18,885 rows (local llama.cpp chatcmpl- and HF-Router GLM-4.6 32-hex); capture request_id is proxy-minted; no request-id HTTP header"
+    },
+    {
+     "name": "cline/incident-traces",
+     "pass": false,
+     "dl": "",
+     "reqid": "n/a"
+    },
+    {
+     "name": "Roo Code public traces",
+     "pass": false,
+     "dl": "",
+     "reqid": "n/a"
+    },
+    {
+     "name": "risenlab/agentlogs (AgentLogs, GitHub Copilot cloud agent)",
+     "pass": false,
+     "dl": "",
+     "reqid": "unknown"
+    },
+    {
+     "name": "Inferact/codex_swebenchpro_traces + ibm-research/codex_swebenchpro_traces_Otel",
+     "pass": false,
+     "dl": "",
+     "reqid": "no"
+    },
+    {
+     "name": "Swival exports (jedisct1/security-audits, jedisct1/agent-traces-flashmania)",
+     "pass": false,
+     "dl": "",
+     "reqid": "no"
+    },
+    {
+     "name": "Unlicensed CLI trace sets (nlile/misc-merged-claude-code-traces-v1, Becks723/codex-traces, basedlsg/codex-assistant-rollouts, Mike0021/codex-sessions, AletheiaResearch/GPT-5.3-Codex-Spark-Codex, lhoestq/agent-traces-example, doug-leith/extractor-code-development)",
+     "pass": false,
+     "dl": "",
+     "reqid": "unknown"
+    }
+   ]
+  },
+  {
+   "key": "B6",
+   "corpora": [
+    {
+     "name": "swechat/claude_code (existing; request-id verification only)",
+     "pass": true,
+     "dl": "already present (data/swe-chat-pinned); nothing new downloaded",
+     "reqid": "YES: 380,855/388,605 calls (0.98006, CI [0.97279, 0.98708]); 305,727 distinct req_ ids, all UUIDv7. Bedrock calls (3,575) carry none. No HTTP headers."
+    },
+    {
+     "name": "PROPOSED generated corpus: Claude Code headless (Max 20x) + OTel raw bodies + local mitmproxy",
+     "pass": false,
+     "dl": "not generated (assessment only)",
+     "reqid": "yes: request-id header + JSONL requestId + OTel request_id, plus HTTP Date (documented, 1 s) and proxy wire clock"
+    },
+    {
+     "name": "sammshen/* HTTP-level benchmark traces (lead for B5; prior art for B6)",
+     "pass": false,
+     "dl": "not downloaded (first-rows API only)",
+     "reqid": "no first-party request-id header; OpenRouter gen-<unix s> ids in body + HTTP date + cf-ray headers"
+    },
+    {
+     "name": "Public HF raw Claude Code JSONL (B5e census)",
+     "pass": false,
+     "dl": "not downloaded by B6",
+     "reqid": "UNAUDITED: probably present where uploaded raw; B5e sample audit pending"
+    }
+   ]
+  },
+  {
+   "key": "B7",
+   "corpora": [
+    {
+     "name": "swechat (SALT-NLP/SWE-chat pinned f66cca95 = v1; 6 harness formats)",
+     "pass": true,
+     "dl": "C:/Swarms/data/swe-chat-pinned (already held; nothing new downloaded)",
+     "reqid": "claude_code calls 0.980; all formats 0.888; codex, opencode, gemini, cursor and copilot have none"
+    },
+    {
+     "name": "aiv_cc (AI Village claude_code_messages)",
+     "pass": true,
+     "dl": "C:/Swarms/data/ai-village (already held)",
+     "reqid": "none"
+    },
+    {
+     "name": "aiv_cu (AI Village computer_use_turns)",
+     "pass": true,
+     "dl": "C:/Swarms/data/ai-village (already held)",
+     "reqid": "None. Provider response ids carry embedded time (B4)."
+    },
+    {
+     "name": "whowhen (Who&When)",
+     "pass": false,
+     "dl": "C:/Swarms/data/who-and-when (already held)",
+     "reqid": "none"
+    },
+    {
+     "name": "cc_local (private Claude Code transcripts)",
+     "pass": true,
+     "dl": "C:/Swarms/data/claude-code-local (already held; not read by B7)",
+     "reqid": "calls 1.0 (B4)"
+    },
+    {
+     "name": "collusion-wiki",
+     "pass": false,
+     "dl": "C:/Swarms/data/collusion-wiki (already held)",
+     "reqid": "none"
+    },
+    {
+     "name": "urlquery agent-activity catalog v5",
+     "pass": false,
+     "dl": "C:/Swarms/data/urlquery-agent-activity (already held)",
+     "reqid": "none"
+    }
+   ]
+  }
+ ],
+ "pd": {
+  "key": "PRIOR_ART_md",
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\PRIOR_ART.md"
+  ],
+  "items": [
+   {
+    "claim": "B2 headline: the time inside a provider-minted request id, with one constant skew per stream, must fall between the stream's last input and the response's first output",
+    "verdict": "PARTIAL",
+    "closest_work": "Vanini et al. forensic time anchors (arXiv 2412.12814); Willassen 2008 clock-hypothesis test; Roughtime draft-17 s8.2; Jaeger ClockSkew adjuster",
+    "what_it_does": "Each covers two of the three ingredients. Id or external time checked against the local clock: time anchors, Magnet AXIOM. Causal bracket with a skew allowance: Willassen Thm 2, Jaeger, NTP. Chained external times with a radius, where a violation means malfeasance: Roughtime, but its times are signed.",
+    "what_it_does_not": "No opened source combines all of it on a recorded, uninstrumented log: an unsigned id-embedded server clock, one existential constant offset per stream, and infeasibility used as a per-record tamper flag.",
+    "deciding_citation": "arXiv 2412.12814 time-anchor definition (a mismatch between internal and external timestamps 'indicates tampering'); Willassen 2008 Theorem 2; absence across the 35 sources B2b opened. Risk: Vanini 2024b full text was not opened.",
+    "opened": true
+   },
+   {
+    "claim": "B2 application: LLM-provider request ids as the external clock for agent tool-log stamps, plus the single-response binding test",
+    "verdict": "NOVEL",
+    "closest_work": "Langfuse ai-gateway and Codex rollout-trace, which store the provider id next to their own clock; debug-claude-session skill; ccusage",
+    "what_it_does": "Systems record provider ids and use them for correlation, support lookup, dedupe and grouping. ccusage deduplicates resume/fork copies by (message.id, requestId).",
+    "what_it_does_not": "None of the 25 systems examined decodes the id as a clock or uses any provider-side clock to verify, order or bound tool-log stamps.",
+    "deciding_citation": "B2c, 0 of 25 systems (langfuse mapping.rs L183-189 stores the id as metadata only; codex rollout-trace reducer/inference.rs L211-217 stores it only). debug-claude-session SKILL.md: 'Correlate by time + model, not request id.'",
+    "opened": true
+   },
+   {
+    "claim": "B2 fact: provider request/response id layouts are documented and stable",
+    "verdict": "N/A",
+    "closest_work": "Anthropic errors doc and SDK types/message.py; OpenAI API reference overview; Vertex prediction_service.proto and Gemini generative_service.proto",
+    "what_it_does": "Documents that the ids exist. Anthropic and OpenAI explicitly reserve the right to change id format and length. Vertex says response_id 'is the encoding of the event_id'.",
+    "what_it_does_not": "No vendor documents any layout or timestamp. Every clock is inferred: Anthropic req_/msg_ as UUIDv7; OpenAI chatcmpl base62 epoch and resp_ time-first hex; Gemini as the Google ei layout with a validated microsecond field; Meta resp_ hex seconds. At least 3 unannounced format changes were observed. This is a MATERIAL LIMITATION.",
+    "deciding_citation": "anthropic-sdk-python types/message.py: 'The format and length of IDs may change over time.' developers.openai.com/api/reference/overview lists 'Changing the length or format of opaque strings, like resource identifiers' as backwards-compatible.",
+    "opened": true
+   },
+   {
+    "claim": "B1(a): a residual of duration against expected workload as a fabrication signal in agent tool logs (N1)",
+    "verdict": "PARTIAL",
+    "closest_work": "BOINC CreditNew; Sinharay 2020 and van der Linden response-time residuals; DeepLog and Fu 2009; Kovah 2012 timing attestation; CacheWise and Continuum; crewAI PR #3388",
+    "what_it_does": "BOINC treats a reported elapsed time the declared FLOP bound cannot explain as falsification. Psychometrics flags aberrant response times against a workload-conditioned model. Log-AD flags duration residuals. Agent serving systems predict tool duration, but for scheduling. crewAI's unmerged PR flags tool calls under 10 ms as LIKELY_FAKE.",
+    "what_it_does_not": "No source runs a passive, two-sided, workload-conditioned residual with a within-session same-command baseline on recorded agent tool calls, where the threat is fabricated result content.",
+    "deciding_citation": "https://raw.githubusercontent.com/wiki/BOINC/boinc/CreditNew.md: incentive to cheat 'by falsifying benchmark scores or elapsed time'; Sinharay 2020 PMC7433384; crewAI tool_execution_verifier.py @7be92705 L164-166",
+    "opened": true
+   },
+   {
+    "claim": "B1(b): corr(residual, output_size) as the discriminator between work-bound and generation-bound latency",
+    "verdict": "PARTIAL",
+    "closest_work": "Early Bird (arXiv 2409.20002) s4-D; Time Will Tell (arXiv 2412.15431); DistServe",
+    "what_it_does": "Early Bird separates cached from computed responses by whether TTFT is flat or scales with request length (input side, threshold). Time Will Tell measures Pearson(time, output tokens): at least 0.987 locally and 0.370 for GPT-4o via the API.",
+    "what_it_does_not": "No opened source correlates a workload-conditioned residual with output size, or uses size scaling to decide whether a recorded tool result was executed or generated. Three angles called it NOVEL but conditionally; B1c found the inference pattern.",
+    "deciding_citation": "arXiv 2409.20002 s4-D: cache-hit 'TTFT remains consistent, regardless of the request length'",
+    "opened": true
+   },
+   {
+    "claim": "B3.1 Token conservation: context growth vs logged appended content as a tamper or fabrication witness",
+    "verdict": "PARTIAL",
+    "closest_work": "Velasco et al. arXiv 2510.05181; Paritok arXiv 2609.22114; Hoque et al. arXiv 2605.30040",
+    "what_it_does": "Billing audits compare reported token counts with a recount of the visible text. Paritok shows the per-turn input delta equals the appended slice.",
+    "what_it_does_not": "They trust the content and audit the provider, the reverse of our direction. They do not use recorded agent transcripts and report no tamper curve.",
+    "deciding_citation": "arXiv 2510.05181 s3.2 (reported length minus recount); arXiv 2609.22114 Table 2",
+    "opened": true
+   },
+   {
+    "claim": "B3.2 Cache-read chain as a witness that each logged prefix was sent",
+    "verdict": "PARTIAL",
+    "closest_work": "KeyPooling arXiv 2608.17485; CacheTracer arXiv 2608.20732; CacheProbe arXiv 2605.30613",
+    "what_it_does": "Uses the provider-reported cached-token count as an oracle that a prefix was sent earlier.",
+    "what_it_does_not": "These are live active probes within the cache lifetime. None reads recorded usage after the fact or chains the counter across one session.",
+    "deciding_citation": "arXiv 2608.17485 s II-A; arXiv 2608.20732 Assumption 1 (Cache Telemetry integrity)",
+    "opened": true
+   },
+   {
+    "claim": "B3.3 Prompt-cache timing side channel (Gu et al.) as a witness of what was sent",
+    "verdict": "TAKEN",
+    "closest_work": "Gu, Li, Kuditipudi, Liang & Hashimoto, ICML 2025, arXiv 2502.07776",
+    "what_it_does": "A live TTFT audit with a KS test detects caching and its sharing level.",
+    "what_it_does_not": "Uses no usage fields and no recorded logs, and needs a live cache plus paid probes. It does not overlap B3.1/B3.2 and cannot run on our corpora.",
+    "deciding_citation": "arXiv 2502.07776 s2.1: 'Cache hits tend to have a faster TTFT than cache misses'",
+    "opened": true
+   },
+   {
+    "claim": "B3.4 N2 accounting identity: an inline-fabricated result is billed as output tokens",
+    "verdict": "PARTIAL",
+    "closest_work": "ReAct reference code (hotpotqa.ipynb); billing audits",
+    "what_it_does": "ReAct stops generation before 'Observation', so the model cannot write the result itself.",
+    "what_it_does_not": "It prevents rather than detects, and logs no tokens. No source uses the identity after the fact. In structured logs it is mostly redundant with role labels.",
+    "deciding_citation": "ysymyth/ReAct hotpotqa.ipynb stop=[f'\\nObservation {i}:']",
+    "opened": true
+   },
+   {
+    "claim": "B3.5 Harness dual-rendering recount (toolUseResult counters vs visible tool_result text)",
+    "verdict": "PARTIAL",
+    "closest_work": "Strider GhostBuster MSR-TR-2005-25; NTFS $SI vs $FN timestomp detection (Magnet); Hearsay arXiv 2609.32495 App. G",
+    "what_it_does": "Cross-view diff of two renderings of the same state. Hearsay saw native second copies in agent records.",
+    "what_it_does_not": "No source compares two renderings written by one agent harness. Hearsay treated the copies only as a confound. Ours is a weak witness: one writer, one line.",
+    "deciding_citation": "MSR-TR-2005-25 abstract; arXiv 2609.32495 App. G: 'Twelve of the 14 misses on witnessed content ...'",
+    "opened": true
+   },
+   {
+    "claim": "B3.6 Nested timer chain: tool-printed duration <= harness timer <= window <= provider interval",
+    "verdict": "PARTIAL",
+    "closest_work": "Jaeger ClockSkew adjuster; Sharma et al. arXiv 2604.21361; Willassen 2008",
+    "what_it_does": "Checks that a child interval fits its parent, and counts negative spans.",
+    "what_it_does_not": "Assumes benign skew and repairs rather than flags. Does not chain tool self-reports to a provider clock as a fabrication check. The check is one-sided.",
+    "deciding_citation": "jaeger model/adjuster/clockskew.go child-fits-parent check; arXiv 2604.21361 s3: 'We do not consider adversarial clock manipulation'",
+    "opened": true
+   },
+   {
+    "claim": "B3.7 Reaction-time scaling corr(next_call_gap, result_bytes) (N3)",
+    "verdict": "PARTIAL",
+    "closest_work": "Zhang & Conrad 2014 survey speeding; Google patent US8271865; Palisade LLM Agent Honeypot arXiv 2410.13919",
+    "what_it_does": "Content-length-scaled reading-time floors; response-gap timing used to identify LLM agents.",
+    "what_it_does_not": "None infers authorship of the content or runs on agent logs. Physically weak: a fabricated tool_result is prefilled like a real one.",
+    "deciding_citation": "Zhang & Conrad 2014 p.129: '300 milliseconds (msec) per word ... multiplied by the number of words'",
+    "opened": true
+   },
+   {
+    "claim": "B3.8 Concurrency-contention scaling (N4)",
+    "verdict": "PARTIAL",
+    "closest_work": "Rubenstein, Kurose & Towsley 2000; RAFT (CCS 2011, ePrint 2010/214); Ristenpart et al. CCS 2009",
+    "what_it_does": "Infers a shared physical resource from correlated latency, including RAFT's verification of a provider's claim.",
+    "what_it_does_not": "Not applied to agent logs or to the executed-vs-generated question. RAFT needs a challenge the verifier issues.",
+    "deciding_citation": "UMass TR 99-66 abstract; IACR ePrint 2010/214 abstract (abstract only)",
+    "opened": true
+   },
+   {
+    "claim": "B3.9 Repeat-command determinism (N5)",
+    "verdict": "PARTIAL",
+    "closest_work": "AdvancedShelLM arXiv 2606.27990; shelLM; ToolEmu; StableToolBench; Galah; Berenson 1995 and Elle",
+    "what_it_does": "Repeat drift of LLM-fabricated shell output is a known honeypot tell, which simulators engineer around with caches. Non-repeatable-read checking from history (Elle).",
+    "what_it_does_not": "No passive automated check on recorded agent tool logs: an identical read-only command, no intervening logged write, byte-different output. A response cache defeats it.",
+    "deciding_citation": "arXiv 2606.27990 s5.3: 'I did an ls in /var/ twice, and got different results'; arXiv cs/0701157 A2",
+    "opened": true
+   },
+   {
+    "claim": "B3.10 Error-message fidelity, passive and log-only (N5); includes the brief's premise that nobody studies fabricated failures",
+    "verdict": "PARTIAL",
+    "closest_work": "Bitter Harvest (USENIX WOOT 2018); ToolEmu; ETF; CEF/Thanatosis arXiv 2606.14831",
+    "what_it_does": "Honeypot fingerprinting by exact error strings (TAKEN as a technique). Emulator consistency requirements. Fabricated failures documented in narration.",
+    "what_it_does_not": "Active probing only. No passive check of recorded failure records against the same log. No detector for fabricated stack traces (NOVEL, search-bounded). The brief's premise is FALSE.",
+    "deciding_citation": "woot18-paper-vetterl.pdf s4.4.2; arXiv 2309.15817 Table A.1; arXiv 2606.14831 s1",
+    "opened": true
+   },
+   {
+    "claim": "B3.11 Cross-harness non-transfer of fabrication-detection signals (N6)",
+    "verdict": "PARTIAL",
+    "closest_work": "TraceProbe arXiv 2607.06184; FreeLog arXiv 2507.19806; ImpossibleBench; Silent Failure arXiv 2606.09863",
+    "what_it_does": "Shows that log-AD, MGT and agent-trace detectors need per-system or per-scaffold calibration. TraceProbe does so with deterministic detectors on Claude Code, Codex and OpenCode.",
+    "what_it_does_not": "No source measures transfer of witness-free tool-log fabrication signals. The N6 grid is NOVEL as a measurement.",
+    "deciding_citation": "arXiv 2607.06184 s VI: thresholds 'should be audited on the target benchmark'; arXiv 2507.19806 Table 1 block (c)",
+    "opened": true
+   },
+   {
+    "claim": "FINDINGS 4.3 rank 2 image-token ledger, rank 3 git execution window, and N5 items (sort order, truncation boundary, whitespace, output-size distribution, cold start)",
+    "verdict": "UNVERIFIED",
+    "closest_work": "Not researched in Track B. Nearest covered: token conservation (B3.1), honeypot output-convention fingerprinting (B3.10 7a), Dubey 2026 tool_contract",
+    "what_it_does": "n/a",
+    "what_it_does_not": "No Track B verdict exists. DESIGN.md must not treat these as having cleared prior art.",
+    "deciding_citation": "none",
+    "opened": false
+   }
+  ],
+  "notes": "I wrote C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\PRIOR_ART.md (about 615 lines). It opens with the verdict table, then B2 (§1), then B1 with separate verdicts for sub-claims (a) and (b) (§2), then the B3 items (§3.1–3.11), the B4/B5 internal-embodiment findings (§3.12), what was not covered (§3.13), and conflicts and caveats (§4). Synthesis reasoning is marked [INTERPRETATION]. Every citation is one a Track B agent opened. Unopened sources are marked UNVERIFIED inline and listed in §1.5 and §2.5.\n\nCalls the evidence did not make directly:\n\n- **B1(b) is PARTIAL, not NOVEL.** Three angles reported NOVEL, but each said so only on condition that the other angles found nothing. B1c found the same inference in Early Bird (arXiv 2409.20002 §4-D): telling two producing processes apart by whether latency is flat or scales with length.\n- **B2 is split into two verdicts.** The method is PARTIAL: time anchors, Willassen 2008, event-time bounding and Roughtime are all old. The application is NOVEL: no system among the 25 B2c examined uses a provider id or a provider-side clock to check anything.\n- **The provider-id layout is undocumented for every provider, and this is a material limitation.** Its section in §1.2 has a per-provider table (documented? timestamp? stable?) and confirming counts from the corpus tasks: TB2 WozCode, hookele, HF Hub, and Meta resp_ ids in OSWorld.\n\nFlags for the orchestrator:\n\n1. **Biggest prior-art risk:** the full text of Vanini et al. 2024b (\"Was the clock correct?\") was never opened. If its Google-search example bounds the ei time between causally ordered events with a tolerance, the B2 method becomes TAKEN for forensics. Someone with library access should check it.\n2. **The brief's N5 premise is false.** \"Nobody studies fabricated failures\" is contradicted by CEF arXiv 2606.14831, arXiv 2609.14758, arXiv 2607.19449 and Transluce's o3 report. It must be removed from the writeup.\n3. **Silent Failure conflicts with CLAUDE_context §7.** Two agents read v1 as reporting XGBoost, which §7 says it does not have. PRIOR_ART.md cites only its transfer AUROCs and does not take a side; a human should reconcile.\n4. **Possible held-out exposure.** B2a's aiv_cu scans touched 517 rows / 270 sessions of held-out split H. Only id-format aggregates were computed and no threshold was tuned. Whether this breaks the \"nothing reads H\" rule is your call.\n5. **No Track B verdict for:** FINDINGS rank 2 (image-token ledger), rank 3 (git execution window), and the N5 items for sort order, truncation boundary, whitespace, output-size distribution and cold start. Their novelty stays UNVERIFIED.\n6. **Corrections to FINDINGS, suggested only (I did not edit it):**\n   - rank 1 novelty line;\n   - rank 5 Gu et al. relevance;\n   - Gemini id clock resolution is microseconds, not 1 s;\n   - the Gladyshev & Patel link is now confirmed through Willassen 2008, though the primary is still unopened.\n\nI made no commits and touched nothing swarm-related. I wrote no files besides PRIOR_ART.md. PRIOR_ART.md points to analysis/CORPUS_INVENTORY.md, which another writer has not produced yet."
+ },
+ "cd": {
+  "key": "corpus_inventory",
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\CORPUS_INVENTORY.md",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_inventory.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_inventory\\compose_inventory.py",
+   "C:\\Swarms\\data\\README.md (appended section 'acquired/ (Phase E Track B5, pulled 2026-10-04)' with 14 rows; the original 3,763 bytes are unchanged, sha256 394856845bc666af782f5c31b5267bc62e2e750e5c4d27372dad5030c45d5043)"
+  ],
+  "corpora": [
+   {
+    "name": "swechat",
+    "source_url": "https://huggingface.co/datasets/SALT-NLP/SWE-chat @f66cca95 (v1)",
+    "licence": "ODC-BY",
+    "research_use_ok": true,
+    "size": "12.79 GB",
+    "sessions": "3,353 Claude Code measured (non-H); 5,850 population",
+    "tool_calls": "429,071 measured, all formats",
+    "ms_timestamps": "yes (Claude Code 1,730,813/1,730,824 events)",
+    "call_result_join": "yes (Claude Code 388,002/388,605)",
+    "provider_request_ids": "YES, Claude Code format only: calls 380,855/388,605 = 0.980 [0.973, 0.987]; 305,727 distinct (non-H). Other 5 formats: 0",
+    "field_audit_pass": true,
+    "downloaded_to": "data/swe-chat-pinned",
+    "notes": "Source: track_b/b4.json. v2 (17,968 sessions) not audited"
+   },
+   {
+    "name": "cc_local",
+    "source_url": "local ~/.claude/projects snapshot (private)",
+    "licence": "none (private)",
+    "research_use_ok": true,
+    "size": "1.1 GB",
+    "sessions": "309",
+    "tool_calls": "41,707",
+    "ms_timestamps": "yes",
+    "call_result_join": "41,706/41,707",
+    "provider_request_ids": "YES: 41,707/41,707 calls; 35,379 distinct",
+    "field_audit_pass": true,
+    "downloaded_to": "data/claude-code-local",
+    "notes": "Private, aggregates only"
+   },
+   {
+    "name": "aiv_cc / aiv_cu",
+    "source_url": "https://huggingface.co/datasets/aidigestorg/ai-village @838b4150",
+    "licence": "custom ai-village-research-terms (gated)",
+    "research_use_ok": true,
+    "size": "5.5 GB tables",
+    "sessions": "aiv_cc 314 runs; aiv_cu 76,114 measured",
+    "tool_calls": "72,225; 2,353,075",
+    "ms_timestamps": "row-insert / one stamp per turn",
+    "call_result_join": "yes / by construction",
+    "provider_request_ids": "NO. aiv_cu has response ids with embedded time (Gemini, OpenAI 1 s; Anthropic msg_ ms after 2026-07-06)",
+    "field_audit_pass": true,
+    "downloaded_to": "data/ai-village",
+    "notes": "Not redistributable (B7)"
+   },
+   {
+    "name": "whowhen",
+    "source_url": "https://huggingface.co/datasets/Kevin355/Who_and_When",
+    "licence": "MIT (GitHub)",
+    "research_use_ok": true,
+    "size": "9 MB",
+    "ms_timestamps": "no",
+    "call_result_join": "888/968",
+    "provider_request_ids": "NO",
+    "field_audit_pass": false,
+    "downloaded_to": "data/who-and-when",
+    "notes": "no clock fields"
+   },
+   {
+    "name": "collusion-wiki, urlquery-agent-activity",
+    "source_url": "local exports",
+    "licence": "UNVERIFIED",
+    "research_use_ok": false,
+    "size": "63 MB; 41.5 MB",
+    "ms_timestamps": "witness clocks only",
+    "call_result_join": "n/a",
+    "provider_request_ids": "n/a (no LLM calls)",
+    "field_audit_pass": false,
+    "downloaded_to": "data/collusion-wiki; data/urlquery-agent-activity",
+    "notes": "external witnesses only"
+   },
+   {
+    "name": "terminal-bench-2-leaderboard",
+    "source_url": "https://huggingface.co/datasets/harborframework/terminal-bench-2-leaderboard @572b2614",
+    "licence": "Apache-2.0 (card)",
+    "research_use_ok": true,
+    "size": "5.884 GB on disk (1.070 GB .git)",
+    "sessions": "32,803 trials",
+    "tool_calls": "ATIF 472,285; CC 47,939; Gemini 21,009; hookele 12,230",
+    "ms_timestamps": "yes",
+    "call_result_join": "yes (ATIF id + step-paired)",
+    "provider_request_ids": "YES in 1 of 75 submissions (WozCode): 12,327 entries, 7,272 distinct. My scan of 9,670 ATIF files: 5 regex hits, all in mteb-leaderboard trials (probably task content)",
+    "field_audit_pass": true,
+    "downloaded_to": "data/acquired/terminal-bench-2-leaderboard",
+    "notes": "Upstream OAuth tokens in 446 files; .git removable (human)"
+   },
+   {
+    "name": "cli-trace-commons",
+    "source_url": "https://huggingface.co/datasets/trace-commons/agent-traces @112ebd4d",
+    "licence": "CC BY 4.0",
+    "research_use_ok": true,
+    "size": "0.127 GB",
+    "sessions": "28 Claude Code + 1 OpenCode + 1 Cursor",
+    "tool_calls": "4,264 + 3",
+    "ms_timestamps": "yes",
+    "call_result_join": "4,262/4,262",
+    "provider_request_ids": "YES: 7,496/7,499 assistant entries, 4,349 distinct",
+    "field_audit_pass": true,
+    "downloaded_to": "data/acquired/cli-trace-commons",
+    "notes": ""
+   },
+   {
+    "name": "cli-claude-code-hf",
+    "source_url": "12 HF repos (B5e_cli_traces.json)",
+    "licence": "MIT/Apache-2.0/CC BY 4.0/CC0/AGPL-3.0 per repo",
+    "research_use_ok": true,
+    "size": "0.244 GB",
+    "sessions": "377 files, 210 distinct sessionIds",
+    "tool_calls": "12,997",
+    "ms_timestamps": "yes",
+    "call_result_join": "12,994/12,994",
+    "provider_request_ids": "YES in 10 of 12 repos: 21,577/24,425 assistant entries, 7,660 distinct",
+    "field_audit_pass": true,
+    "downloaded_to": "data/acquired/cli-claude-code-hf",
+    "notes": "armand0e and cfahlgren1 share 29 sessions and 2,576 request ids"
+   },
+   {
+    "name": "tracelab-uw",
+    "source_url": "https://github.com/uw-syfi/TraceLab/releases/tag/v0.0.2",
+    "licence": "CC BY 4.0",
+    "research_use_ok": true,
+    "size": "0.101 GB",
+    "sessions": "8,058",
+    "tool_calls": "743,819",
+    "ms_timestamps": "yes",
+    "call_result_join": "yes (pseudonymized ids)",
+    "provider_request_ids": "NO",
+    "field_audit_pass": true,
+    "downloaded_to": "data/acquired/tracelab-uw",
+    "notes": "content removed"
+   },
+   {
+    "name": "openhands-evaluation-outputs, openhands-feedback, miniswe-v2-qwen3-30b-swebv-tarsur385, sweagent-combo2-rl-rollouts",
+    "source_url": "HF OpenHands/*, tarsur385/*, sweagent/combo2-rl-rollouts (B5a)",
+    "licence": "MIT",
+    "research_use_ok": true,
+    "size": "4.762 / 0.114 / 0.224 / 0.446 GB",
+    "ms_timestamps": "yes",
+    "call_result_join": "yes (feedback: strict pairing only)",
+    "provider_request_ids": "NO",
+    "field_audit_pass": true,
+    "downloaded_to": "data/acquired/<name>",
+    "notes": "4,525 harness-flagged synthetic results in combo2; duplicate .part file (0.154 GB) in openhands-eval"
+   },
+   {
+    "name": "glm52-nf3-tb21-traces, osworld_verified_trajs, webarena_infinity_trajs, cli-codex-hf, cli-pi-hf, agentcap-dacorvo",
+    "source_url": "see B5b, B5c, B5e JSONs",
+    "licence": "MIT / MIT / MIT / CC BY 4.0+MIT / MIT, Apache, BSD, CC BY / Apache-2.0",
+    "research_use_ok": true,
+    "size": "0.104 / 1.705 / 0.104 / 0.073 / 0.211 / 0.858 GB",
+    "ms_timestamps": "yes (OSWorld: one pre-action stamp per step)",
+    "call_result_join": "yes (OSWorld and WebArena: positional)",
+    "provider_request_ids": "NO. Response-id clocks at 1 s: Pi resp_ 4,877/5,452 within 5 s; Muse Spark 8,228/8,231",
+    "field_audit_pass": true,
+    "downloaded_to": "data/acquired/<name>",
+    "notes": "agentcap: 18,885/18,885 capture rows match a trace folder (B5e's 0 came from a census bug)"
+   }
+  ],
+  "notes": "I wrote analysis/CORPUS_INVENTORY.md and appended a 14-row 'acquired/' section to C:\\Swarms\\data\\README.md. The original README bytes are unchanged; I checked by hash. Every number in the inventory is in a file under analysis/out/phase_e/. An automated check found 347 numbers in the MD; all appear in those files except 4.814 (rounded from 4,814,220,907 bytes, which is in corpus_inventory.json) and the section reference 5.11.\n\n**Request-id column**\n- 5 of 21 corpora carry provider request ids: swechat, cc_local, terminal-bench-2-leaderboard, cli-trace-commons and cli-claude-code-hf.\n- 4 of the 5 are public. All 5 are Claude Code talking to Anthropic, so there is still one harness and one provider. The B4 baseline was 2 of 7, with 1 public.\n- The new public corpora add 19,281 distinct ids, 0.063 of swechat's 305,727 (non-H).\n\n**Corrections to sibling outputs (measured by my composer)**\n1. B5e's headline of 29,073 new request ids counts assistant entries. The distinct count is 12,009. Two of the repos (armand0e, MIT, and cfahlgren1, AGPL) share 29 sessions and 2,576 request ids. The three new corpora share nothing with each other.\n2. B5e reported 0 for its agentcap capture-to-trace join counter. That is a census bug: census_downloaded.py L270-275 looks only inside each capture repo. In fact 31/31 run_ids and 18,885/18,885 capture rows match a trace folder. Per-call alignment is still untested.\n3. B5b checked only native Claude Code JSONL for request ids. I scanned all 9,670 TB2 ATIF files. There were 5 regex hits, all in mteb-leaderboard trials, so they are probably task content. The 53 submissions downloaded as result.json and exception.txt only remain unchecked.\n4. B6 made generation wait on B5e's audit. That audit has answered it: public raw Claude Code JSONL keeps requestId, so generating for coverage is unnecessary. Only P0 still adds something (an HTTP Date clock). H1-H3 remain blocking.\n5. B7 predates the acquisitions. New formats need 11 new loaders, about 22-44 h (an extrapolation of B7's 2-4 h each, not a measurement), plus a per-corpus licence and secrets pass.\n\n**Disk**\n- 14.958 GB is on disk, leaving 10.042 GB of headroom.\n- TB2 is over the 5 GB cap only because of its 1.070 GB .git.\n- A 0.154 GB duplicate .part file is still in openhands-evaluation-outputs.\n- Both are listed for a human, because data/ is append-only.\n\n**Seen-data warnings and scope**\n- Seen-data warnings from B5a and B5e are carried into the MD.\n- I did not open swechat, so swechat H was not read. No swarm data was read.\n- External prior-art verdicts are relayed from the sibling JSONs, marked opened=false with opened_by.\n- Nothing was committed, and no paid calls were made."
+ },
+ "sk": [
+  {
+   "key": "B_citation_skeptic",
+   "files_written": [
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\B_citation_skeptic.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\PRIOR_ART.md"
+   ],
+   "items": [
+    {
+     "claim": "B2 conjunction: an id-embedded external time bounds a log event between causally ordered local events, with a skew allowance, on a recorded log",
+     "verdict": "PARTIAL",
+     "closest_work": "Willassen 2008 §2 and Thm 2–3, which summarises Gladyshev & Patel 2005 and Schatz et al. 2006; Albea 2026 KQL InternetMessageId-date check; Roughtime §8.2; Jaeger clockskew.go",
+     "what_it_does": "Willassen §2 sets bracketing of an uncertain event by externally timed events beside server-clock correlation, and Thm 2–3 test clock hypotheses that include a deviation term. The KQL query flags emails whose id-embedded date and recorded processing time fall on different days, run over recorded logs.",
+     "what_it_does_not": "No source uses a clock embedded in a provider-minted id together with a two-sided causal bracket and a per-stream offset. The KQL check is one-sided, works to the day, and trusts the log over the id. Willassen and Gladyshev work by hand on file-system artifacts.",
+     "deciding_citation": "Willassen08.pdf §2: 'time boundaries can be established when an event that occurred at an unknown or uncertain time is causally preceded and succeeded by events whose times of occurrence are known ... must come from external sources' (https://dl.ifip.org/db/conf/ifip11-9/df2008/Willassen08.pdf). Now labelled near-TAKEN as a method.",
+     "opened": true
+    },
+    {
+     "claim": "B2 application: LLM-provider request ids as the clock for agent tool-log stamps, plus the single-response binding test",
+     "verdict": "NOVEL",
+     "closest_work": "debug-claude-session skill; OTel GenAI gen_ai.response.id; Langfuse gateway; Codex rollout-trace; ccusage; Hearsay App. I; Luo et al. 2605.02187; Qin et al. 2609.30266",
+     "what_it_does": "These systems store or deduplicate provider ids, or correlate by time window. Hearsay names the provider log as an independent witness. Luo et al. propose provider signatures over tool_use fields.",
+     "what_it_does_not": "None of them decodes a provider id as a clock, or uses it to bound, order or verify tool-log stamps.",
+     "deciding_citation": "claudskills debug-claude-session: 'Correlate by time + model, not request id.'; langfuse mapping.rs @f75c661d (id stored as metadata only; line numbers not confirmed)",
+     "opened": true
+    },
+    {
+     "claim": "B2 time anchor: an external clock's time inside a local artifact is used to check the local clock or expose tampering",
+     "verdict": "TAKEN",
+     "closest_work": "Weil 2002; Schatz et al. 2006 (known via Willassen); Vanini et al. 2024 (primary UNVERIFIED)",
+     "what_it_does": "Weil corrects local MAC times from server timestamps in cached pages, giving a range. arXiv 2412.12814 summarises the time-anchor concept.",
+     "what_it_does_not": "Nothing about LLM ids or agent logs. 2412.12814 is only a one-sentence secondary summary of a paper that was not opened.",
+     "deciding_citation": "arXiv 2412.12814 §4: 'an anchor is an artefact that contains two timestamps ... If these timestamps do not match, this indicates tampering' (attributed to its ref [19]); Weil 2002 IJDE 1(2) (pypdf)",
+     "opened": true
+    },
+    {
+     "claim": "B2 fact: provider id layouts are undocumented and unstable (material limitation)",
+     "verdict": "N/A",
+     "closest_work": "Anthropic SDK types/message.py; OpenAI API overview; Vertex prediction_service.proto",
+     "what_it_does": "Anthropic says the 'format and length of IDs may change over time'. OpenAI lists changing 'the length or format of opaque strings' as backwards-compatible. Vertex says the response_id 'is the encoding of the event_id'.",
+     "what_it_does_not": "No provider documents an embedded timestamp.",
+     "deciding_citation": "raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/message.py id docstring",
+     "opened": true
+    },
+    {
+     "claim": "B1(a): a duration-vs-expected-workload residual as a fabrication signal in agent tool logs",
+     "verdict": "PARTIAL",
+     "closest_work": "BOINC CreditNew; Sinharay 2020; Kelly 2005; Kovah 2012; crewAI PR #3388",
+     "what_it_does": "BOINC rejects claims that exceed fpops_bound and names falsified elapsed time as the cheat. Kelly flags response time that disagrees with a workload model. crewAI #3388 labels tool calls under 10 ms LIKELY_FAKE.",
+     "what_it_does_not": "None is a passive, two-sided, workload-conditioned residual on recorded agent tool calls with a within-session baseline. crewAI #3388 is a fixed floor applied live and was never merged.",
+     "deciding_citation": "CreditNew.md: 'cheaters can falsify elapsed time'; crewAI head tool_execution_verifier.py 'if evidence.execution_time < 0.01' (closed 2026-03-19, unmerged)",
+     "opened": true
+    },
+    {
+     "claim": "B1(b): corr(residual, output_size) separates work-bound from generation-bound latency",
+     "verdict": "PARTIAL",
+     "closest_work": "Early Bird arXiv 2409.20002; Time Will Tell arXiv 2412.15431",
+     "what_it_does": "Early Bird finds cache-hit TTFT flat in request length while misses grow linearly, and separates them with a 2.0 s threshold at 89% accuracy (Fig. 11). Time Will Tell measures Pearson(time, tokens) of at least 0.987 locally and 0.370 for GPT-4o.",
+     "what_it_does_not": "Neither correlates a workload-conditioned residual with output size, and neither applies the idea to tool results.",
+     "deciding_citation": "arXiv 2409.20002 §IV-D: 'when the cache is hit, the TTFT remains consistent, regardless of the request length, whereas when the cache is missed, TTFT increases almost linearly'",
+     "opened": true
+    },
+    {
+     "claim": "B3.4 N2: inline fabrication is billed as output tokens",
+     "verdict": "PARTIAL",
+     "closest_work": "ReAct hotpotqa.ipynb stop sequence; crewAI PR #4077 (newly found)",
+     "what_it_does": "ReAct stops generation at 'Observation i:'. crewAI #4077 rejects any output that contains both an Action and a Final Answer.",
+     "what_it_does_not": "Both prevent the problem live. Neither uses token accounting after the fact, and #4077 was never merged.",
+     "deciding_citation": "github.com/crewAIInc/crewAI/pull/4077: 'Check for fabrication: LLM cannot include both Action and Final Answer'",
+     "opened": true
+    },
+    {
+     "claim": "B3.11 8d: fabrication-detection signals do not transfer across harnesses",
+     "verdict": "PARTIAL",
+     "closest_work": "TraceProbe arXiv 2607.06184; Silent Failure arXiv 2606.09863",
+     "what_it_does": "TraceProbe reports a scaffold-specific prevalence of 49.6% vs 0.4% and says thresholds 'should be audited on the target benchmark'. Silent Failure reports AUROC 0.904 for leave-one-model-out and 0.696 for leave-one-domain-out.",
+     "what_it_does_not": "Neither covers witness-free fabrication signals on tool logs.",
+     "deciding_citation": "arxiv.org/html/2607.06184 and arxiv.org/html/2606.09863. The Silent Failure version I opened also shows TF-IDF+XGBoost and a 1.19 ms latency, which conflicts with CLAUDE_context §7.",
+     "opened": true
+    }
+   ],
+   "notes": "I re-opened 103 citations. 86 say what PRIOR_ART claims, 15 are right in substance but needed a wording or location fix, 1 is an unreadable scan (Haber & Stornetta 1991, gwern copy) and 1 could not be found (Vanini et al. 2024 'Was the clock correct?', already marked UNVERIFIED). Every cited source exists. That covers every deciding citation behind a NOVEL or PARTIAL verdict except those two. The B1/B2 supporting citations I did not reopen are listed in the JSON under not_reopened_by_skeptic; they keep the originating agent's opened=true status.\n\nVerdict changes in PRIOR_ART.md:\n- V1: The B2 conjunction sub-row stays PARTIAL but is now labelled near-TAKEN as a method. Willassen 2008 §2 already pairs Gladyshev & Patel 2005 (bounding an event by externally timed events) with Schatz et al. 2006 (correlating server clocks). Email threat hunting already checks dates embedded in InternetMessageIds against recorded logs (Albea 2026 KQL query; I opened it on kqlsearch.com, the repo exists, but I could not find the file inside it).\n- V2: The time-anchor deciding citation, arXiv 2412.12814, turns out to be a one-sentence secondhand summary of the unopened Vanini et al. 2024 paper. Its author list also differs.\n- V3: The Futuremark RTC quote is now confirmed.\n- All other verdicts stand. B2's application (LLM provider ids as a clock) is still NOVEL, B1(a) PARTIAL, B1(b) PARTIAL-narrow.\n\nThe 15 corrections (C1–C15) are listed in §5.2, for example:\n- Willassen 2008 never says 'antedating'.\n- The OTel spec never says 'for correlation only'.\n- The Codex quote is in the rollout-trace README, not inference.rs.\n- METR 2025 describes high-score triage, not a timing check.\n- Early Bird's two findings come from different sections.\n- Paritok's result compares two arms, not consecutive turns.\n- KeyPooling's 'Table XI' was not found.\n- The AgentBRANE schema says nothing about timestamps.\n- Tool Receipts' citation to Tharakan (arXiv 2503.11221) resolves to an unrelated image-quality paper.\n- Broken cross-reference §1.6 changed to §1.5.\n\nPrior art the earlier pass missed, all opened and added:\n- Albea KQL query.\n- Willassen 2008 §2 discussion.\n- Metaspike Gmail MIME-boundary FILETIME case.\n- Luo et al. 2605.02187. A BYOK relay can rewrite tool_use fields and still pass the request-id check, because the id is passed through unchanged. I added this limit to the threat-model boundary in §1.4.\n- Qin et al.'s statements about provider-side records.\n- crewAI PR #4077.\n\nFor a human:\n1. Silent Failure: the arXiv HTML version I opened shows TF-IDF+XGBoost and a 1.19 ms latency, which contradicts CLAUDE_context §7.\n2. The B2 PARTIAL verdict still depends on Vanini 2024, which needs library access to check.\n3. Haber & Stornetta §6.2 has not been re-verified.\n\nLine numbers I could not confirm: Langfuse L183-189, Codex L211-217, Inspect L70.\n\nI touched no swarm material, generated no transcripts and made no commits. PRIOR_ART.md was edited in place and §5 'Skeptic changes' appended. Evidence: C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\B_citation_skeptic.json"
+  },
+  {
+   "key": "corpus_skeptic",
+   "files_written": [
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\field_audit.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\field_audit.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\full_counts.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\full_counts.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\request_id_scan.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\request_id_scan.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\combo2_synthetic.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\combo2_synthetic.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\openhands_shapes.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\openhands_shapes.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\context_probe.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\context_probe.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\track_b\\corpus_skeptic\\compose_skeptic.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\CORPUS_INVENTORY.md (edited in place + appended 'Skeptic changes'; sha256 before 0e2a20af..., after b5514ac3...)"
+   ],
+   "corpora": [
+    {
+     "name": "openhands-evaluation-outputs",
+     "source_url": "https://huggingface.co/datasets/OpenHands/openhands-evaluation-outputs @aa8977805b4c",
+     "licence": "MIT (on-disk card; Hub API opened: license mit, not gated)",
+     "research_use_ok": true,
+     "size": "4.762 GB, including a 0.154 GB .part file that is sha256-identical to output.jsonl; under the 5 GB cap",
+     "ms_timestamps": "sample: 6,534/6,654 events (us); doc 312,115/318,298",
+     "call_result_join": "sample: flat-run observations resolving by cause 2,002/2,012. Full pass: 9 flat runs joined by cause, 10 pair runs joined by position. The doc said 8/11.",
+     "provider_request_ids": "NO: 0 Anthropic-layout ids in 4.61 GB scanned",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\openhands-evaluation-outputs",
+     "notes": "Doc 5.3 was wrong: the run claude-3-5-sonnet-20241022_maxiter_30_N_v1.9-no-hint is flat with no tool_call_metadata. Loaders must detect the shape per line. outputs/webarena/ is only a pointer README.",
+     "sessions": "5,695 instances in 19 runs",
+     "tool_calls": "145,702 agent actions (B5a census)"
+    },
+    {
+     "name": "openhands-feedback",
+     "source_url": "https://huggingface.co/datasets/OpenHands/openhands-feedback @facf45600d62",
+     "licence": "MIT (on-disk card; B5a manifest license_tags)",
+     "research_use_ok": true,
+     "size": "0.114 GB",
+     "ms_timestamps": "sample: tool actions 820/828, tool observations 823/823 (us)",
+     "call_result_join": "sample: tool observations paired to the id-1 tool action 780/823. The doc's 5,552/5,974 also requires an echo match, so it is lower.",
+     "provider_request_ids": "NO (full scan of the parquet strings)",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\openhands-feedback",
+     "notes": "275 rows confirmed. Real-user data: aggregates only.",
+     "sessions": "275"
+    },
+    {
+     "name": "miniswe-v2-qwen3-30b-swebv-tarsur385",
+     "source_url": "https://huggingface.co/datasets/tarsur385/qwen3-30b-a3b-instruct-2507-swebench-verified-mini-swe-agent @58389eb5426d",
+     "licence": "MIT (card; Hub API opened)",
+     "research_use_ok": true,
+     "size": "0.224 GB",
+     "ms_timestamps": "sample: assistant 1,016/1,016 and tool 993/993 (float s)",
+     "call_result_join": "sample: 993/1,016 by tool_call_id; the 23 unjoined calls are the final submits of 23 Submitted runs, matching the doc's explanation",
+     "provider_request_ids": "NO",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\miniswe-v2-qwen3-30b-swebv-tarsur385",
+     "notes": "499 trajectories confirmed.",
+     "sessions": "499"
+    },
+    {
+     "name": "sweagent-combo2-rl-rollouts",
+     "source_url": "https://huggingface.co/datasets/sweagent/combo2-rl-rollouts @eaff5487b898 (shard 00)",
+     "licence": "MIT (card; Hub API opened)",
+     "research_use_ok": true,
+     "size": "0.446 GB (about 5.6 GB decompressed)",
+     "ms_timestamps": "sample: 3,757 + 3,717 stamps, all float s",
+     "call_result_join": "sample: 3,717/3,757; the 40 unjoined are final submits",
+     "provider_request_ids": "NO (full decompressed scan)",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\sweagent-combo2-rl-rollouts",
+     "notes": "Full pass confirms 4,525 tool-role synthetic flags (combo_ground 4,361, combo_empty_guard 164). Each comes with a user-role message carrying the same flag, so 9,151 messages carry extra.synthetic. Select role==tool.",
+     "sessions": "4,571"
+    },
+    {
+     "name": "terminal-bench-2-leaderboard",
+     "source_url": "https://huggingface.co/datasets/harborframework/terminal-bench-2-leaderboard @572b2614be2c",
+     "licence": "Apache-2.0 (on-disk card; README at the pinned revision opened. The Hub API page was too large to fetch.)",
+     "research_use_ok": true,
+     "size": "5.884 GB, over the 5 GB cap only because of hf_repo/.git (1.070 GB); 4.814 GB without it. The 1,766 early copies are byte-identical (7.5 MB).",
+     "ms_timestamps": "sample: ATIF 1,670/1,670 steps sub-second; CC 997/997; Gemini 147/147; hookele 1 s only",
+     "call_result_join": "sample: ATIF results 703/1,296 by source_call_id and 578 step-paired; CC 367/368; Gemini 126/126; hookele 140/140",
+     "provider_request_ids": "YES, WozCode only: 12,327 entries, 7,272 distinct, 12,279 agree in [-2 s, +600 s], all reproduced. 1 of 25 submissions with logs, not 1 of 75 with 53 unchecked: 50 have no structured log. 6 more Anthropic-layout ids sit in error-body text of Meta-Harness, Terminus-KIRA and JJAgent files; CI's regex missed them.",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\terminal-bench-2-leaderboard",
+     "notes": "446 files with sk-ant- values confirmed, all in pilot-real__claude-opus-4-6, not printed. Caveat: in the sample only 1,007 of 1,038 ATIF steps that have metrics show non-zero tokens.",
+     "sessions": "75 submissions; 9,670 ATIF, 1,379 CC JSONL, 884 Gemini, 443 hookele files",
+     "token_counts": "ATIF metrics (not always non-zero), CC usage, Gemini tokens, hookele usage"
+    },
+    {
+     "name": "glm52-nf3-tb21-traces",
+     "source_url": "https://huggingface.co/datasets/0xSero/glm-5.2-nf3-hybrid-terminal-bench-2.1-traces @6020a41cb40c",
+     "licence": "MIT (card; Hub API opened)",
+     "research_use_ok": true,
+     "size": "0.104 GB (includes a 14 MB .git)",
+     "ms_timestamps": "sample: 772/772 steps (us)",
+     "call_result_join": "sample: 494/752 results by id, the rest step-paired (doc 2,106/3,237)",
+     "provider_request_ids": "NO",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\glm52-nf3-tb21-traces",
+     "notes": "86 ATIF files confirmed.",
+     "sessions": "85 trials"
+    },
+    {
+     "name": "osworld_verified_trajs",
+     "source_url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_verified_trajs @5473c39e42a5 (20 of 99 submissions, text only)",
+     "licence": "MIT (SOURCE.json; Hub API opened)",
+     "research_use_ok": true,
+     "size": "1.705 GB",
+     "ms_timestamps": "sample: 1,762/1,762 rows stamped, but only 523 sub-second (doc 49,907 us vs 95,890 s)",
+     "call_result_join": "positional only (row = action + its screenshot, not downloaded); no result-arrival time",
+     "provider_request_ids": "NO: 0 req_ ids in 23,213 files (Claude via Bedrock)",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\osworld_verified_trajs",
+     "notes": "WEAK pass: one pre-action stamp per step and a positional join. 7,241 traj files and 20 submissions confirmed."
+    },
+    {
+     "name": "webarena_infinity_trajs",
+     "source_url": "https://huggingface.co/datasets/webarena-x/webarena-infinity-trajectories @73cf7f57a6ff",
+     "licence": "MIT (card; Hub API opened)",
+     "research_use_ok": true,
+     "size": "0.104 GB",
+     "ms_timestamps": "sample: step start/end on 441/441 steps (epoch float)",
+     "call_result_join": "positional; action and result counts match in 430/441 steps (doc 9,078/9,241)",
+     "provider_request_ids": "NO",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\webarena_infinity_trajs",
+     "notes": "WEAK pass: one window per step, successful trajectories only. The 4 .incomplete files are 0-byte cache markers; their targets exist.",
+     "sessions": "844"
+    },
+    {
+     "name": "tracelab-uw",
+     "source_url": "https://github.com/uw-syfi/TraceLab/releases/tag/v0.0.2 (repo commit 11b8b14c)",
+     "licence": "CC BY 4.0 data (LICENSE-DATASET.md at the pinned commit opened; asks users not to re-identify contributors); code Apache-2.0",
+     "research_use_ok": true,
+     "size": "0.101 GB gz (1.25 GB decompressed)",
+     "ms_timestamps": "full pass: tool emitted_at/result_at ISO ms",
+     "call_result_join": "full pass: id with both stamps 304,290/305,005 (Claude) and 438,760/438,814 (Codex)",
+     "provider_request_ids": "NO",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\tracelab-uw",
+     "notes": "8,058 sessions (5,319 + 2,739) and 743,819 tools confirmed by full pass. No content.",
+     "sessions": "8,058",
+     "tool_calls": "743,819"
+    },
+    {
+     "name": "cli-trace-commons",
+     "source_url": "https://huggingface.co/datasets/trace-commons/agent-traces @112ebd4d03ce",
+     "licence": "CC BY 4.0 for the compilation (card; Hub API opened); trace contents keep their own licences",
+     "research_use_ok": true,
+     "size": "0.127 GB",
+     "ms_timestamps": "all files: 12,174/12,174 entries",
+     "call_result_join": "4,262/4,264",
+     "provider_request_ids": "YES: 7,496/7,499 assistant entries, 4,349 distinct, 7,496 agree, all reproduced",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\cli-trace-commons",
+     "notes": "Correction: data/ parquet is a full copy of the sessions (trace column), not an index; never read both.",
+     "sessions": "28 CC + 1 OpenCode + 1 Cursor"
+    },
+    {
+     "name": "cli-claude-code-hf",
+     "source_url": "12 pinned HF repos (see B5e corpora_downloaded)",
+     "licence": "MIT x5, Apache-2.0 x3, CC BY 4.0 x2, CC0 x1, AGPL-3.0 x1 (cfahlgren1; Hub API opened)",
+     "research_use_ok": true,
+     "size": "0.244 GB",
+     "ms_timestamps": "full: 39,686/39,686",
+     "call_result_join": "full: 12,994/12,997",
+     "provider_request_ids": "YES in 10/12 repos: 21,577/24,425 assistant entries, 7,660 distinct, 21,567 assistant entries agree, all reproduced. Entries carrying ids show only Claude models, <synthetic> (146) or none (8).",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\cli-claude-code-hf",
+     "notes": "Correction: 379 JSONL files, not 377. 2 cfahlgren1 req_ values do not fit the layout. <synthetic> entries are harness records.",
+     "sessions": "210 distinct sessionIds"
+    },
+    {
+     "name": "cli-codex-hf",
+     "source_url": "6 pinned HF repos",
+     "licence": "CC BY 4.0 x3, MIT x3",
+     "research_use_ok": true,
+     "size": "0.073 GB",
+     "ms_timestamps": "17,617/17,617 lines",
+     "call_result_join": "3,381/3,381 by call_id",
+     "provider_request_ids": "NO",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\cli-codex-hf",
+     "notes": "Full pass confirms the doc.",
+     "sessions": "46"
+    },
+    {
+     "name": "cli-pi-hf",
+     "source_url": "23 pinned HF repos",
+     "licence": "root cards: MIT x17, Apache-2.0 x4, CC BY 4.0, BSD-3-Clause (xhochy; Hub API opened). 4 repos keep data under _upload_staging with a generated card saying 'other'.",
+     "research_use_ok": true,
+     "size": "0.211 GB",
+     "ms_timestamps": "full: 55,175 session entries; 50,107/50,107 messages epoch ms",
+     "call_result_join": "full: 23,927/23,974 (doc 23,928)",
+     "provider_request_ids": "NO harness field: the 31 Anthropic-layout ids occur only in text and error bodies",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\cli-pi-hf",
+     "notes": "The 530 session files hold 522 distinct sessions; 8 duplicate files hold 248 calls. 14 redaction-manifest JSONL files are not sessions. The 'fails JSON decoding' file is an empty skill manifest. NEW HYGIENE: one sk-ant-api03- value in thomasmustier/pine-of-glass-sessions, not printed.",
+     "sessions": "522 distinct (530 files)",
+     "tool_calls": "23,974 incl. 248 in duplicate files"
+    },
+    {
+     "name": "agentcap-dacorvo",
+     "source_url": "9 pinned HF repos dacorvo/*",
+     "licence": "Apache-2.0 on all 9 cards",
+     "research_use_ok": true,
+     "size": "0.858 GB",
+     "ms_timestamps": "OpenCode tool start/end 4,693 and 4,685 of 4,694; Pi 16,073/16,073; captures captured_at in whole seconds",
+     "call_result_join": "OpenCode callID+output 3,934/4,694 (the rest are error, running or pending parts); Pi 6,804/6,805; capture rows matching a trace folder 18,885/18,885",
+     "provider_request_ids": "NO: all 18,885 capture request_ids are 32-hex proxy ids",
+     "field_audit_pass": true,
+     "downloaded_to": "C:\\Swarms\\data\\acquired\\agentcap-dacorvo",
+     "notes": "Full pass confirms the doc. 2 OpenCode files fail to parse.",
+     "sessions": "804 (411 OpenCode + 393 Pi)"
+    }
+   ],
+   "notes": "I re-checked all 14 corpora marked downloaded. The inventory holds up: the problems are wrong counts and descriptions, plus one credential-like value it missed. No headline changes.\n\n- **On disk:** all 14 directories are under C:\\Swarms\\data\\acquired. Total is 14,957,562,193 B (14.958 GB), matching the doc.\n- **Size caps:** only terminal-bench-2-leaderboard is over the 5 GB per-corpus cap (5.884 GB), and only because of its 1.070 GB .git folder.\n- **Licences:** every on-disk card licence permits research use. I checked 11 of them against the upstream source; all matched. The Hub API page for terminal-bench-2-leaderboard was too large to fetch (over 10 MB), so I read its README at the pinned revision instead.\n- **Field audit:** I re-ran it with my own parsers: seeded samples for most corpora, full passes for TraceLab, the CLI corpora and agentcap. All 14 agree with the doc within sampling noise. OSWorld and WebArena-Infinity pass only weakly: one stamp or window per step, positional join, no time recorded for when a result arrives.\n- **Request-id column:** the three new public carriers reproduce entry for entry (WozCode 12,327 / 7,272 / 12,279; cli-trace-commons 7,496 / 4,349 / 7,496; cli-claude-code-hf 21,577 / 7,660 / 21,567). A full scan of all ~16 GB found no Anthropic-layout id in a logged field of any of the 11 NO corpora; the only hits are inside text or error bodies.\n- **Committed evidence:** nothing under analysis/out/phase_e/track_b is committed. So the B5 rows of the request-id column rest on uncommitted files; I re-derived them from the data instead. The B4 rows match committed files (out/build/*_build.json and out/phase_c/ids_and_clocks_in_ids.json).\n\nCorrections made in CORPUS_INVENTORY.md, plus an appended \"Skeptic changes\" section:\n1. **TB2 denominator:** 25 submissions have structured logs and 50 do not. The doc said 53 without, so the request-id carrier is 1 of 25, not \"1 of 75\".\n2. **TB2 ATIF scan:** the earlier regex misses ids inside escaped JSON. A strict scan finds 6 ids in Meta-Harness, Terminus-KIRA and JJAgent files, all in content or error text. The conclusion does not change.\n3. **OpenHands eval:** 9 runs are flat and 10 are pairs, not 8 and 11. One run named v1.9 is flat and has no tool_call_metadata, so loaders must detect the shape per line.\n4. **cli-trace-commons:** the data/ parquet is a full copy of the sessions, not an index. Read one or the other, never both.\n5. **cli-claude-code-hf:** 379 JSONL files, not 377. Entries carrying a request id show only Claude model names, <synthetic> (146) or none (8).\n6. **cli-pi-hf:** 530 session files hold 522 distinct sessions. The 8 duplicate files hold 248 tool calls, and 14 other JSONL files are redaction manifests, not sessions. The file that \"fails JSON decoding\" is an empty skill manifest, not a session.\n7. **combo2:** the 4,525 tool results the harness marks as synthetic are confirmed. Each also has a user-role message with the same flag, so 9,151 messages carry it.\n8. **New hygiene item:** one sk-ant-api03- value (79 characters) in a cli-pi-hf thomasmustier/pine-of-glass-sessions file. I did not print it and added it to sections 2.4 and 6. The 446 terminal-bench-2-leaderboard token files are confirmed.\n\nThe evidence is in corpus_skeptic.json. It names the closest prior work for every claim, records sources as opened or not, and its scripts reuse none of the B5 code. No commit was made, and nothing swarm-related or in the swechat held-out split was opened. Some of my scripts also left a __pycache__ folder in corpus_skeptic/, which can be deleted."
+  }
+ ]
+}

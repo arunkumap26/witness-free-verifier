@@ -1,0 +1,799 @@
+{
+ "produced_by": "analysis/out/phase_e/track_b/corpus_skeptic/field_audit.py",
+ "seed": 20261004,
+ "generated_utc": "2026-10-04T08:55:32Z",
+ "timings_s": {
+  "cli-trace-commons": 0.6,
+  "cli-claude-code-hf": 0.3,
+  "cli-codex-hf": 0.7,
+  "cli-pi-hf": 0.3,
+  "agentcap-dacorvo": 0.7,
+  "webarena_infinity_trajs": 0.1,
+  "osworld_verified_trajs": 0.3,
+  "miniswe": 0.1,
+  "openhands-feedback": 0.8,
+  "glm": 0.0,
+  "tb2": 5.1,
+  "tracelab-uw": 3.3,
+  "combo2": 13.7,
+  "openhands-evaluation-outputs": 16.7
+ },
+ "results": {
+  "cli-trace-commons": {
+   "census": {
+    "files": 29
+   },
+   "sample": {
+    "files": 29
+   },
+   "tally": {
+    "assistant_entries": 7499,
+    "assistant_entries_with_req": 7496,
+    "assistant_entries_with_req_anthropic_layout": 7496,
+    "calls": 4264,
+    "calls_joined": 4262,
+    "files": 29,
+    "results": 4262,
+    "results_without_call": 0,
+    "ua_entries_n": 12174,
+    "ua_entries_ts_subsecond": 12174,
+    "ua_entries_with_ts": 12174
+   }
+  },
+  "cli-claude-code-hf": {
+   "census": {
+    "files": 379
+   },
+   "sample": {
+    "files": 60
+   },
+   "tally": {
+    "assistant_entries": 1932,
+    "assistant_entries_with_req": 1094,
+    "assistant_entries_with_req_anthropic_layout": 1094,
+    "calls": 978,
+    "calls_joined": 978,
+    "files": 60,
+    "results": 978,
+    "results_without_call": 0,
+    "ua_entries_n": 3125,
+    "ua_entries_ts_subsecond": 3125,
+    "ua_entries_with_ts": 3125
+   }
+  },
+  "cli-codex-hf": {
+   "census": {
+    "files": 46
+   },
+   "sample": {
+    "files": 46
+   },
+   "tally": {
+    "calls": 3381,
+    "calls_joined": 3381,
+    "files": 46,
+    "lines_n": 17617,
+    "lines_ts_subsecond": 17617,
+    "lines_with_ts": 17617,
+    "results": 3381,
+    "results_without_call": 0
+   }
+  },
+  "cli-pi-hf": {
+   "census": {
+    "files": 544
+   },
+   "sample": {
+    "files": 60
+   },
+   "tally": {
+    "assistant_messages": 3213,
+    "assistant_with_responseId": 1640,
+    "calls": 3309,
+    "calls_joined": 3302,
+    "entries_n": 7356,
+    "entries_ts_subsecond": 7356,
+    "entries_with_ts": 7356,
+    "files": 60,
+    "messages_epoch_n": 6796,
+    "messages_epoch_ts_subsecond": 6796,
+    "messages_epoch_with_ts": 6796,
+    "results": 3302,
+    "results_without_call": 0
+   }
+  },
+  "agentcap-dacorvo": {
+   "census": {
+    "opencode_json": 413,
+    "pi_jsonl": 393,
+    "capture_parquets": 31,
+    "capture_rows": 18885
+   },
+   "sample": {
+    "opencode_json": 40,
+    "pi_jsonl": 40,
+    "captures": "all rows (request_id), first 5000 per file (captured_at)"
+   },
+   "tally": {
+    "oc_files": 40,
+    "oc_messages_created_n": 752,
+    "oc_messages_created_ts_subsecond": 752,
+    "oc_messages_created_with_ts": 752,
+    "oc_status_completed": 397,
+    "oc_status_error": 83,
+    "oc_tool_end_n": 480,
+    "oc_tool_end_ts_subsecond": 480,
+    "oc_tool_end_with_ts": 480,
+    "oc_tool_parts": 480,
+    "oc_tool_parts_with_callID": 480,
+    "oc_tool_parts_with_callID_and_output": 397,
+    "oc_tool_start_n": 480,
+    "oc_tool_start_ts_subsecond": 480,
+    "oc_tool_start_with_ts": 480,
+    "pi_assistant_messages": 613,
+    "pi_assistant_with_responseId": 608,
+    "pi_calls": 491,
+    "pi_calls_joined": 491,
+    "pi_entries_n": 1382,
+    "pi_entries_ts_subsecond": 1382,
+    "pi_entries_with_ts": 1382,
+    "pi_files": 40,
+    "pi_messages_epoch_n": 1258,
+    "pi_messages_epoch_ts_subsecond": 1258,
+    "pi_messages_epoch_with_ts": 1258,
+    "pi_results": 491,
+    "pi_results_without_call": 0
+   },
+   "captures_tally": {
+    "captured_at_n": 18885,
+    "captured_at_with_ts": 18885,
+    "request_id_hex32_uuid": 18885,
+    "request_id_present": 18885
+   }
+  },
+  "webarena_infinity_trajs": {
+   "census": {
+    "history_files": 844
+   },
+   "sample": {
+    "history_files": 40
+   },
+   "tally": {
+    "actions": 539,
+    "results": 528,
+    "step_end_n": 441,
+    "step_end_ts_subsecond": 441,
+    "step_end_with_ts": 441,
+    "step_start_n": 441,
+    "step_start_ts_subsecond": 441,
+    "step_start_with_ts": 441,
+    "steps": 441,
+    "steps_action_result_count_match": 430
+   }
+  },
+  "osworld_verified_trajs": {
+   "census": {
+    "submissions": 20,
+    "traj_files": 7241
+   },
+   "sample": {
+    "traj_files_per_submission": 4
+   },
+   "tally": {
+    "rows_n": 1762,
+    "rows_ts_subsecond": 523,
+    "rows_with_call_id": 1100,
+    "rows_with_screenshot_ref": 1762,
+    "rows_with_ts": 1762
+   },
+   "per_submission": {
+    "autoglm_15steps": {
+     "rows_n": 53,
+     "rows_with_screenshot_ref": 53,
+     "rows_with_ts": 53
+    },
+    "claude-3-7-sonnet-20250219-100steps": {
+     "rows_n": 160,
+     "rows_with_call_id": 156,
+     "rows_with_screenshot_ref": 160,
+     "rows_with_ts": 160
+    },
+    "claude-3-7-sonnet-20250219-15steps": {
+     "rows_n": 46,
+     "rows_with_call_id": 44,
+     "rows_with_screenshot_ref": 46,
+     "rows_with_ts": 46
+    },
+    "claude-3-7-sonnet-20250219-50steps": {
+     "rows_n": 108,
+     "rows_with_call_id": 105,
+     "rows_with_screenshot_ref": 108,
+     "rows_with_ts": 108
+    },
+    "claude-4-sonnet-20250514-100steps": {
+     "rows_n": 209,
+     "rows_with_call_id": 205,
+     "rows_with_screenshot_ref": 209,
+     "rows_with_ts": 209
+    },
+    "claude-4-sonnet-20250514-15steps": {
+     "rows_n": 58,
+     "rows_with_call_id": 57,
+     "rows_with_screenshot_ref": 58,
+     "rows_with_ts": 58
+    },
+    "claude-4-sonnet-20250514-50steps": {
+     "rows_n": 80,
+     "rows_with_call_id": 76,
+     "rows_with_screenshot_ref": 80,
+     "rows_with_ts": 80
+    },
+    "claude-sonnet-4-5-20250929_100steps": {
+     "rows_n": 141,
+     "rows_ts_subsecond": 141,
+     "rows_with_call_id": 138,
+     "rows_with_screenshot_ref": 141,
+     "rows_with_ts": 141
+    },
+    "claude-sonnet-4-5-20250929_15steps": {
+     "rows_n": 73,
+     "rows_ts_subsecond": 73,
+     "rows_with_call_id": 70,
+     "rows_with_screenshot_ref": 73,
+     "rows_with_ts": 73
+    },
+    "claude-sonnet-4-5-20250929_50steps": {
+     "rows_n": 113,
+     "rows_ts_subsecond": 113,
+     "rows_with_call_id": 109,
+     "rows_with_screenshot_ref": 113,
+     "rows_with_ts": 113
+    },
+    "evocua_20260105": {
+     "rows_n": 112,
+     "rows_ts_subsecond": 112,
+     "rows_with_screenshot_ref": 112,
+     "rows_with_ts": 112
+    },
+    "intelligence-indeed-claude-sonnet-4-6-opus-4-7-nogdrive-100steps": {
+     "rows_n": 53,
+     "rows_with_screenshot_ref": 53,
+     "rows_with_ts": 53
+    },
+    "kimi-k26": {
+     "rows_n": 107,
+     "rows_with_screenshot_ref": 107,
+     "rows_with_ts": 107
+    },
+    "o3_15steps": {
+     "rows_n": 60,
+     "rows_with_screenshot_ref": 60,
+     "rows_with_ts": 60
+    },
+    "qwen37-plus_100steps_0524": {
+     "rows_n": 84,
+     "rows_ts_subsecond": 84,
+     "rows_with_screenshot_ref": 84,
+     "rows_with_ts": 84
+    },
+    "results_agent_s2_gemini_15steps": {
+     "rows_n": 42,
+     "rows_with_screenshot_ref": 42,
+     "rows_with_ts": 42
+    },
+    "results_agent_s2_o3_15steps": {
+     "rows_n": 54,
+     "rows_with_screenshot_ref": 54,
+     "rows_with_ts": 54
+    },
+    "results_klick_openapa_full_newkey_bg2": {
+     "rows_n": 37,
+     "rows_with_screenshot_ref": 37,
+     "rows_with_ts": 37
+    },
+    "results_muse_spark_super_nova_ext_xhigh_100steps_full361_20260709_175646_sanitized": {
+     "rows_n": 140,
+     "rows_with_call_id": 140,
+     "rows_with_screenshot_ref": 140,
+     "rows_with_ts": 140
+    },
+    "uitars15-7b-15step": {
+     "rows_n": 32,
+     "rows_with_screenshot_ref": 32,
+     "rows_with_ts": 32
+    }
+   }
+  },
+  "miniswe-v2-qwen3-30b-swebv-tarsur385": {
+   "census": {
+    "traj_files": 499
+   },
+   "sample": {
+    "traj_files": 40
+   },
+   "tally": {
+    "assistant_n": 1016,
+    "assistant_ts_subsecond": 1016,
+    "assistant_with_ts": 1016,
+    "calls": 1016,
+    "calls_joined": 993,
+    "exit_LimitsExceeded": 17,
+    "exit_Submitted": 23,
+    "results": 993,
+    "results_without_call": 0,
+    "tool_n": 993,
+    "tool_ts_subsecond": 993,
+    "tool_with_ts": 993
+   }
+  },
+  "openhands-feedback": {
+   "census": {
+    "rows": 275
+   },
+   "sample": {
+    "sessions": 40
+   },
+   "tally": {
+    "tool_actions_n": 828,
+    "tool_actions_ts_subsecond": 820,
+    "tool_actions_with_ts": 820,
+    "tool_observations_n": 823,
+    "tool_observations_paired_id_minus_1_to_tool_action": 780,
+    "tool_observations_ts_subsecond": 823,
+    "tool_observations_with_ts": 823
+   }
+  },
+  "glm52-nf3-tb21-traces": {
+   "census": {
+    "atif_files": 86
+   },
+   "sample": {
+    "atif_files": 20
+   },
+   "tally": {
+    "atif_calls_joined_same_step": 494,
+    "atif_calls_with_id": 1262,
+    "atif_files": 20,
+    "atif_obs_results": 752,
+    "atif_obs_results_no_call_in_step": 1,
+    "atif_obs_results_step_paired": 257,
+    "atif_obs_results_with_source_call_id": 494,
+    "atif_results_with_id_without_call_same_step": 0,
+    "atif_steps_n": 772,
+    "atif_steps_ts_subsecond": 772,
+    "atif_steps_with_metrics": 752,
+    "atif_steps_with_nonzero_tokens": 752,
+    "atif_steps_with_ts": 772,
+    "atif_tool_calls": 1262
+   }
+  },
+  "terminal-bench-2-leaderboard": {
+   "census": {
+    "submissions": 75,
+    "submissions_with_any_structured_log": 25,
+    "submissions_without_structured_log": 50,
+    "submissions_with": {
+     "atif": 21,
+     "cc": 3,
+     "gemini": 2,
+     "hookele": 1
+    },
+    "native_only_submissions": [
+     "ClaudeCode__GLM-4.7",
+     "Gemini_CLI__Gemini-3-Flash-Preview",
+     "cchuter__minimax-m2.5",
+     "hookele__gpt5.1-codex-mini"
+    ],
+    "files": {
+     "atif": 9670,
+     "cc_jsonl": 1379,
+     "gemini": 884,
+     "hookele": 443
+    },
+    "trial_result_json_total": 33047
+   },
+   "sample": {
+    "atif_files": 42,
+    "cc_jsonl_files": 12,
+    "gemini_files": 8,
+    "hookele_files": 8,
+    "rule": "2 ATIF per ATIF submission, 4 CC JSONL per CC submission"
+   },
+   "tally": {
+    "atif_calls_joined_same_step": 703,
+    "atif_calls_with_id": 1989,
+    "atif_files": 42,
+    "atif_obs_results": 1296,
+    "atif_obs_results_no_call_in_step": 15,
+    "atif_obs_results_step_paired": 578,
+    "atif_obs_results_with_source_call_id": 703,
+    "atif_results_with_id_without_call_same_step": 0,
+    "atif_steps_n": 1670,
+    "atif_steps_ts_subsecond": 1670,
+    "atif_steps_with_metrics": 1038,
+    "atif_steps_with_nonzero_tokens": 1007,
+    "atif_steps_with_ts": 1670,
+    "atif_tool_calls": 1989,
+    "gem_calls": 126,
+    "gem_calls_joined": 126,
+    "gem_files": 8,
+    "gem_messages_n": 147,
+    "gem_messages_ts_subsecond": 147,
+    "gem_messages_with_ts": 147,
+    "gem_toolcall_n": 126,
+    "gem_toolcall_ts_subsecond": 126,
+    "gem_toolcall_with_ts": 126,
+    "hk_calls": 140,
+    "hk_calls_joined": 140,
+    "hk_files": 8,
+    "hk_lines_n": 643,
+    "hk_lines_with_ts": 643,
+    "hk_results": 140,
+    "hk_results_without_call": 0,
+    "hk_stream_summaries": 151,
+    "hk_stream_summaries_with_resp_id": 151
+   },
+   "cc_tally": {
+    "assistant_entries": 609,
+    "assistant_entries_with_req": 75,
+    "assistant_entries_with_req_anthropic_layout": 75,
+    "calls": 368,
+    "calls_joined": 367,
+    "files": 12,
+    "results": 367,
+    "results_without_call": 0,
+    "ua_entries_n": 997,
+    "ua_entries_ts_subsecond": 997,
+    "ua_entries_with_ts": 997
+   }
+  },
+  "tracelab-uw": {
+   "census": {
+    "rows": 665453
+   },
+   "sample": {
+    "rows": 3000
+   },
+   "tally": {
+    "timing_events_n": 11984,
+    "timing_events_ts_subsecond": 11984,
+    "timing_events_with_ts": 11984,
+    "tool_emitted_claude_n": 1393,
+    "tool_emitted_claude_ts_subsecond": 1393,
+    "tool_emitted_claude_with_ts": 1393,
+    "tool_emitted_codex_n": 1942,
+    "tool_emitted_codex_ts_subsecond": 1942,
+    "tool_emitted_codex_with_ts": 1942,
+    "tool_result_claude_n": 1393,
+    "tool_result_claude_ts_subsecond": 1391,
+    "tool_result_claude_with_ts": 1391,
+    "tool_result_codex_n": 1942,
+    "tool_result_codex_ts_subsecond": 1941,
+    "tool_result_codex_with_ts": 1941,
+    "tools_claude": 1393,
+    "tools_codex": 1942,
+    "tools_with_id_and_both_stamps_claude": 1391,
+    "tools_with_id_and_both_stamps_codex": 1941,
+    "tools_with_id_claude": 1393,
+    "tools_with_id_codex": 1942
+   }
+  },
+  "sweagent-combo2-rl-rollouts": {
+   "census": {
+    "members": 4571,
+    "synthetic_flag_values_full_shard": {
+     "synthetic:combo_empty_guard": 328,
+     "synthetic:combo_ground": 8722,
+     "synthetic:combo_valve": 101
+    }
+   },
+   "sample": {
+    "trajectories": 40
+   },
+   "tally": {
+    "assistant_n": 3757,
+    "assistant_ts_subsecond": 3757,
+    "assistant_with_ts": 3757,
+    "calls": 3757,
+    "calls_joined": 3717,
+    "results": 3717,
+    "results_without_call": 0,
+    "tool_n": 3717,
+    "tool_ts_subsecond": 3717,
+    "tool_with_ts": 3717
+   }
+  },
+  "openhands-evaluation-outputs": {
+   "census": {
+    "runs": 19
+   },
+   "sample": {
+    "instances_per_run": 6
+   },
+   "tally": {
+    "actions_with_model_response": 1886,
+    "agent_tool_actions": 3144,
+    "agent_tool_actions_with_obs_by_cause": 2002,
+    "agent_tool_actions_with_obs_positional": 1140,
+    "events_n": 6654,
+    "events_ts_subsecond": 6534,
+    "events_with_ts": 6534,
+    "instances_flat": 54,
+    "instances_pairs": 60,
+    "model_response_id_chatcmpl": 679,
+    "observations": 2012,
+    "observations_cause_resolves": 2002,
+    "observations_with_cause": 2002
+   },
+   "per_run": {
+    "claude-3-5-haiku-20241022_maxiter_100_N_v2.1-no-hint": {
+     "lines_in_file": 299,
+     "sampled": 6,
+     "tally": {
+      "actions_with_model_response": 107,
+      "agent_tool_actions": 102,
+      "agent_tool_actions_with_obs_by_cause": 102,
+      "events_n": 226,
+      "events_ts_subsecond": 226,
+      "events_with_ts": 226,
+      "instances_flat": 6,
+      "model_response_id_chatcmpl": 107,
+      "observations": 103,
+      "observations_cause_resolves": 102,
+      "observations_with_cause": 102
+     }
+    },
+    "claude-3-5-sonnet-20241022_maxiter_100_N_v2.1-no-hint": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "actions_with_model_response": 228,
+      "agent_tool_actions": 223,
+      "agent_tool_actions_with_obs_by_cause": 223,
+      "events_n": 464,
+      "events_ts_subsecond": 464,
+      "events_with_ts": 464,
+      "instances_flat": 6,
+      "model_response_id_chatcmpl": 228,
+      "observations": 224,
+      "observations_cause_resolves": 223,
+      "observations_with_cause": 223
+     }
+    },
+    "claude-3-5-sonnet-20241022_maxiter_100_N_v2.2-no-hint": {
+     "lines_in_file": 299,
+     "sampled": 6,
+     "tally": {
+      "actions_with_model_response": 228,
+      "agent_tool_actions": 223,
+      "agent_tool_actions_with_obs_by_cause": 223,
+      "events_n": 468,
+      "events_ts_subsecond": 468,
+      "events_with_ts": 468,
+      "instances_flat": 6,
+      "model_response_id_chatcmpl": 228,
+      "observations": 224,
+      "observations_cause_resolves": 223,
+      "observations_with_cause": 223
+     }
+    },
+    "claude-3-5-sonnet-20241022_maxiter_30_N_v1.9-no-hint": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 146,
+      "agent_tool_actions_with_obs_by_cause": 145,
+      "events_n": 305,
+      "events_ts_subsecond": 305,
+      "events_with_ts": 305,
+      "instances_flat": 6,
+      "observations": 151,
+      "observations_cause_resolves": 145,
+      "observations_with_cause": 145
+     }
+    },
+    "claude-3-5-sonnet@20240620_maxiter_30_N_v1.9-no-hint-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 133,
+      "agent_tool_actions_with_obs_positional": 133,
+      "events_n": 284,
+      "events_ts_subsecond": 275,
+      "events_with_ts": 275,
+      "instances_pairs": 6
+     }
+    },
+    "deepseek-chat_maxiter_100_N_v2.2-no-hint-main-non-fncall-run_1": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "actions_with_model_response": 287,
+      "agent_tool_actions": 286,
+      "agent_tool_actions_with_obs_by_cause": 286,
+      "events_n": 579,
+      "events_ts_subsecond": 579,
+      "events_with_ts": 579,
+      "instances_flat": 6,
+      "observations": 286,
+      "observations_cause_resolves": 286,
+      "observations_with_cause": 286
+     }
+    },
+    "deepseek-v2.5_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 124,
+      "agent_tool_actions_with_obs_positional": 124,
+      "events_n": 260,
+      "events_ts_subsecond": 254,
+      "events_with_ts": 254,
+      "instances_pairs": 6
+     }
+    },
+    "gemini-1.5-pro-002_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "actions_with_model_response": 116,
+      "agent_tool_actions": 110,
+      "agent_tool_actions_with_obs_by_cause": 110,
+      "events_n": 240,
+      "events_ts_subsecond": 240,
+      "events_with_ts": 240,
+      "instances_flat": 6,
+      "model_response_id_chatcmpl": 116,
+      "observations": 110,
+      "observations_cause_resolves": 110,
+      "observations_with_cause": 110
+     }
+    },
+    "gemini-1.5-pro-002_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 102,
+      "agent_tool_actions_with_obs_positional": 102,
+      "events_n": 230,
+      "events_ts_subsecond": 217,
+      "events_with_ts": 217,
+      "instances_pairs": 6
+     }
+    },
+    "gpt-4o-2024-05-13_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 131,
+      "agent_tool_actions_with_obs_positional": 131,
+      "events_n": 280,
+      "events_ts_subsecond": 271,
+      "events_with_ts": 271,
+      "instances_pairs": 6
+     }
+    },
+    "gpt-4o-mini-2024-07-18_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 120,
+      "agent_tool_actions_with_obs_positional": 120,
+      "events_n": 258,
+      "events_ts_subsecond": 249,
+      "events_with_ts": 249,
+      "instances_pairs": 6
+     }
+    },
+    "llama-3.1-405b-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 118,
+      "agent_tool_actions_with_obs_positional": 117,
+      "events_n": 258,
+      "events_ts_subsecond": 246,
+      "events_with_ts": 246,
+      "instances_pairs": 6
+     }
+    },
+    "llama-3.1-70b-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 116,
+      "agent_tool_actions_with_obs_positional": 116,
+      "events_n": 254,
+      "events_ts_subsecond": 243,
+      "events_with_ts": 243,
+      "instances_pairs": 6
+     }
+    },
+    "llama-3.2-90b-vision-instruct_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+     "lines_in_file": 297,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 125,
+      "agent_tool_actions_with_obs_positional": 125,
+      "events_n": 268,
+      "events_ts_subsecond": 259,
+      "events_with_ts": 259,
+      "instances_pairs": 6
+     }
+    },
+    "llama-v3p1-405b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "actions_with_model_response": 204,
+      "agent_tool_actions": 201,
+      "agent_tool_actions_with_obs_by_cause": 201,
+      "events_n": 411,
+      "events_ts_subsecond": 411,
+      "events_with_ts": 411,
+      "instances_flat": 6,
+      "observations": 201,
+      "observations_cause_resolves": 201,
+      "observations_with_cause": 201
+     }
+    },
+    "llama-v3p1-70b-instruct_maxiter_100_N_v2.2-no-hint-non-fncall-run_1": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "actions_with_model_response": 358,
+      "agent_tool_actions": 355,
+      "agent_tool_actions_with_obs_by_cause": 355,
+      "events_n": 720,
+      "events_ts_subsecond": 720,
+      "events_with_ts": 720,
+      "instances_flat": 6,
+      "observations": 356,
+      "observations_cause_resolves": 355,
+      "observations_with_cause": 355
+     }
+    },
+    "llama-v3p3-70b-instruct_maxiter_100_N_v0.15.0-no-hint-run_1": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "actions_with_model_response": 358,
+      "agent_tool_actions": 357,
+      "agent_tool_actions_with_obs_by_cause": 357,
+      "events_n": 721,
+      "events_ts_subsecond": 721,
+      "events_with_ts": 721,
+      "instances_flat": 6,
+      "observations": 357,
+      "observations_cause_resolves": 357,
+      "observations_with_cause": 357
+     }
+    },
+    "o1-mini-2024-09-12_maxiter_30_N_v1.9-no-hint-eval-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 79,
+      "agent_tool_actions_with_obs_positional": 79,
+      "events_n": 186,
+      "events_ts_subsecond": 172,
+      "events_with_ts": 172,
+      "instances_pairs": 6
+     }
+    },
+    "qwen-2.5-72b-instruct_maxiter_30_N_v1.9-no-hint-non-fncall-eval-24sep": {
+     "lines_in_file": 300,
+     "sampled": 6,
+     "tally": {
+      "agent_tool_actions": 93,
+      "agent_tool_actions_with_obs_positional": 93,
+      "events_n": 242,
+      "events_ts_subsecond": 214,
+      "events_with_ts": 214,
+      "instances_pairs": 6
+     }
+    }
+   }
+  }
+ }
+}

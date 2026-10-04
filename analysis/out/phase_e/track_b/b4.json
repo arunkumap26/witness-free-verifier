@@ -1,0 +1,1836 @@
+{
+ "key": "b4",
+ "task": "Phase E Track B4: audit the corpora we already have; provider-request-id column first",
+ "produced_by": {
+  "probe": "analysis/probes/phase_e_b4_inventory.py",
+  "probe_output": "analysis/out/phase_e/b4_inventory.json",
+  "evidence_composer": "scratchpad compose_b4.py (reads the files below; no number typed by hand)",
+  "probe_runtime_s": 78.2
+ },
+ "split_hygiene": "H never read. swechat measured on A u B u E (4,025 of 5,850 transcripts; 1,825 H skipped before open). aiv_cu measured on all sessions except the 2,000 H sessions (64,219 H rows skipped on the session-id prefix in the raw scan). cc_local, aiv_cc, whowhen have no H; measured whole. Population counts are quoted from the committed build reports, which predate the split.",
+ "REQUEST_ID_COLUMN_FIRST": {
+  "definition": "provider request id = an id the LLM provider mints per HTTP request (Anthropic `request-id` response header, value `req_...`) that the harness stores in the log. Detected in the IR request_id column and by a raw-text key scan for request-id-like JSON keys (REQ_KEY_RX in the probe) in every corpus.",
+  "corpora_carrying_provider_request_ids": {
+   "count_strict": 2,
+   "of_corpora_audited": 7,
+   "which": [
+    "swechat (claude_code format only)",
+    "cc_local (private, aggregates only)"
+   ],
+   "public_count": 1,
+   "public_which": "swechat claude_code raw transcripts (data/swe-chat-pinned/transcripts/*.jsonl). The documented SWE-chat tables do not carry it as a column; it survives in the raw transcripts' `requestId` field.",
+   "provider_and_harness": "both are Claude Code talking to Anthropic (first-party API, plus Vertex `req_vrtx_`). One harness, one provider. Bedrock-backed Claude Code calls in swechat carry no request id."
+  },
+  "per_corpus": {
+   "swechat/claude_code": {
+    "kind": "Anthropic request id `req_01...` (494 distinct `req_vrtx_`), field `requestId` on every assistant entry incl. nested subagent entries",
+    "calls_with_request_id": {
+     "k": 380855,
+     "n": 388605,
+     "rate": 0.98006,
+     "ci95_session_clustered": [
+      0.97279,
+      0.98708
+     ],
+     "n_sessions": 3303
+    },
+    "responses_with_request_id": {
+     "k": 307479,
+     "n": 314821,
+     "rate": 0.97668,
+     "ci95_session_clustered": [
+      0.96916,
+      0.98355
+     ],
+     "n_sessions": 3348
+    },
+    "sessions_with_ge1_request_id_of_measured": [
+     3270,
+     3353
+    ],
+    "distinct_request_ids": 305727,
+    "decodable_time": {
+     "time_format_ms": 305727,
+     "rfc9562_v7_version_and_variant_bits": 305727,
+     "agrees_with_carrying_event_minus2s_plus600s": 305584,
+     "resolution": "ms",
+     "layout_status": "inferred from data (Phase C ids lens); UNVERIFIED against vendor documentation"
+    },
+    "calls_by_backend": {
+     "anthropic_bedrock": 3575,
+     "anthropic_first_party": 382061,
+     "anthropic_req": 60,
+     "anthropic_vertex": 560,
+     "chatcmpl_ms": 59,
+     "msg_datetime14": 2041,
+     "none": 1,
+     "openai_item_hex": 62,
+     "other": 180,
+     "uuid": 6
+    },
+    "calls_with_request_id_by_backend": {
+     "anthropic_first_party": 380295,
+     "anthropic_vertex": 560
+    },
+    "source": "analysis/out/phase_e/b4_inventory.json#swechat.by_format.claude_code"
+   },
+   "swechat/all_formats": {
+    "calls_with_request_id": {
+     "k": 380855,
+     "n": 429071,
+     "rate": 0.88763,
+     "ci95_session_clustered": [
+      0.86244,
+      0.90883
+     ],
+     "n_sessions": 3918
+    },
+    "note": "share of ALL swechat tool calls (every harness) the request-id mechanism can see; codex, opencode, gemini, cursor, copilot contribute 0",
+    "source": "analysis/out/phase_e/b4_inventory.json#swechat.all_formats"
+   },
+   "swechat/codex": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 17153,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 130
+    },
+    "raw_key_scan": {
+     "request_id_keys": {},
+     "correlation_keys": {
+      "trace_id|hex32": 217
+     },
+     "anthropic_req_value_occurrences_anywhere": 4
+    },
+    "note": "no request-id key anywhere; `turn_context.payload.trace_id` (32 hex, 217 occurrences) is a trace id of unestablished provenance, not a provider request id"
+   },
+   "swechat/opencode": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 17354,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 428
+    },
+    "raw_key_scan": {
+     "request_id_keys": {
+      "cf-ray|other_len20": 4
+     },
+     "correlation_keys": {},
+     "anthropic_req_value_occurrences_anywhere": 0
+    },
+    "note": "message/part ids are client-minted (opencode_id layout); `cf-ray` matches (4) sit inside tool output text"
+   },
+   "swechat/gemini": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 5104,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 44
+    },
+    "raw_key_scan": {
+     "request_id_keys": {},
+     "correlation_keys": {},
+     "anthropic_req_value_occurrences_anywhere": 128
+    },
+    "note": "message ids are UUIDv4; `anthropic_req_value_occurrences_anywhere` 128 are mentions inside text, not records"
+   },
+   "swechat/copilot": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 266,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 2
+    },
+    "raw_key_scan": {
+     "request_id_keys": {
+      "requestid|other_len42": 2
+     },
+     "correlation_keys": {
+      "interactionid|uuid": 644
+     },
+     "anthropic_req_value_occurrences_anywhere": 0
+    },
+    "note": "2 `requestId` values (42 chars, unknown provider format) on session.compaction_complete only, on no call; 2 sessions"
+   },
+   "swechat/cursor": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 589,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 11
+    },
+    "note": "no timestamps, no results; nothing to bracket"
+   },
+   "cc_local": {
+    "kind": "Anthropic request id `req_01...` (first-party only)",
+    "calls_with_request_id": {
+     "k": 41707,
+     "n": 41707,
+     "rate": 1.0,
+     "ci95_session_clustered": [
+      1.0,
+      1.0
+     ],
+     "n_sessions": 281
+    },
+    "responses_with_request_id": {
+     "k": 35381,
+     "n": 35391,
+     "rate": 0.99972,
+     "ci95_session_clustered": [
+      0.999,
+      0.99987
+     ],
+     "n_sessions": 309
+    },
+    "distinct_request_ids": 35379,
+    "decodable_time": {
+     "time_format_ms": 35379,
+     "rfc9562_v7_version_and_variant_bits": 35379,
+     "agrees_with_carrying_event_minus2s_plus600s": 35227,
+     "resolution": "ms",
+     "layout_status": "inferred; UNVERIFIED against vendor docs"
+    },
+    "privacy": "private corpus; aggregates only",
+    "source": "analysis/out/phase_e/b4_inventory.json#cc_local"
+   },
+   "aiv_cc": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 72225,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 201
+    },
+    "raw_key_scan": {
+     "request_id_keys": {},
+     "correlation_keys": {},
+     "anthropic_req_value_occurrences_anywhere": 8
+    },
+    "provider_response_ids": {
+     "distinct_api_msg_id": 65571,
+     "families": {
+      "uuid": 21,
+      "anthropic_msg": 65550
+     },
+     "anthropic_msg_time_format": 22,
+     "anthropic_msg_expected_by_chance": 22.05
+    },
+    "note": "Claude Agent SDK stream stores no request id. Its Anthropic msg_ ids are random-format: time-format count equals the chance expectation, so no response-id clock either.",
+    "source": "analysis/out/phase_e/b4_inventory.json#aiv_cc"
+   },
+   "aiv_cu": {
+    "request_id_keys_in_raw_scan": {},
+    "raw_scan_rows": {
+     "rows_read": 2510487,
+     "rows_skipped_H": 64219,
+     "rows_prefix_mismatch": 0
+    },
+    "provider_response_ids_by_shape": {
+     "anthropic": {
+      "distinct": 856394,
+      "families": {
+       "anthropic_msg": 856394
+      },
+      "decodable_in_window": 294075,
+      "decodable_resolution": {
+       "ms": 294075
+      },
+      "agrees_with_row_created_at": 293865,
+      "anthropic_v7_version_and_variant": 293869,
+      "sessions_with_ge1_decodable": 8826
+     },
+     "anthropic-sdk": {
+      "distinct": 10590,
+      "families": {
+       "anthropic_msg": 10590
+      },
+      "decodable_in_window": 4,
+      "decodable_resolution": {
+       "ms": 4
+      },
+      "agrees_with_row_created_at": 0,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 4
+     },
+     "empty-dict": {
+      "distinct": 0,
+      "families": {},
+      "decodable_in_window": 0,
+      "decodable_resolution": {},
+      "agrees_with_row_created_at": 0,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 0
+     },
+     "gemini": {
+      "distinct": 462024,
+      "families": {
+       "gemini_response_id": 462024
+      },
+      "decodable_in_window": 462024,
+      "decodable_resolution": {
+       "s": 462024
+      },
+      "agrees_with_row_created_at": 462022,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 13155
+     },
+     "openai-chat": {
+      "distinct": 0,
+      "families": {},
+      "decodable_in_window": 0,
+      "decodable_resolution": {},
+      "agrees_with_row_created_at": 0,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 0
+     },
+     "openai-responses": {
+      "distinct": 572082,
+      "families": {
+       "openai_item_hex": 572082
+      },
+      "decodable_in_window": 572082,
+      "decodable_resolution": {
+       "s": 572082
+      },
+      "agrees_with_row_created_at": 572082,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 19136
+     }
+    },
+    "note": "0 request ids. Provider RESPONSE ids with embedded time exist: Gemini responseId (1 s), OpenAI Responses output-item ids (1 s), Anthropic msg_ ids only after the 2026-07-06 format switch (ms). openai-chat rows carry no provider id. One created_at per turn (call and result share it, Phase A A1), so a bracket here is weak by construction (Phase C ids/O3).",
+    "source": "analysis/out/phase_e/b4_inventory.json#aiv_cu"
+   },
+   "whowhen": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 968,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 160
+    },
+    "raw_key_scan": {
+     "request_id_keys": {},
+     "correlation_keys": {},
+     "anthropic_req_value_occurrences_anywhere": 0
+    },
+    "note": "no ids, no clock fields",
+    "source": "analysis/out/phase_e/b4_inventory.json#whowhen"
+   },
+   "collusion_wiki": {
+    "note": "no agent tool calls; no request-id key; its `request_time`/`reqlog` fields are the wiki server's HTTP request log, an external witness, not an LLM provider id",
+    "source": "analysis/out/phase_e/b4_inventory.json#collusion_wiki"
+   },
+   "urlquery": {
+    "note": "no agent tool calls; report ids are UUIDv4 (no embedded time); no request-id key",
+    "report_id_uuid_versions": {
+     "v4": 38160
+    },
+    "source": "analysis/out/phase_e/b4_inventory.json#urlquery"
+   },
+   "swechat_mirror_cfahlgren1": {
+    "note": "superseded, not opened (analysis/README.md rule 8). Its README says Claude Code progress lines and toolUseResult are removed and results truncated at 10 KB; request ids were not audited there."
+   }
+  }
+ },
+ "inventory_rows": {
+  "swechat": {
+   "source": "HF SALT-NLP/SWE-chat (gated auto), pinned revision f66cca95b14caaa4177f7ed5eaa424608dadcffa (= v1, 2026-04-29); data/swe-chat-pinned",
+   "licence": "ODC-BY (dataset card `license: odc-by`)",
+   "research_use_ok": true,
+   "sessions_population": 5850,
+   "session_rows": 5851,
+   "tool_calls_population": 635454,
+   "by_format": {
+    "claude_code": {
+     "name": "swechat/claude_code",
+     "sessions_population": 4925,
+     "tool_calls_population": 584802,
+     "population_source": "analysis/out/build/swechat_build.json#full_population_pass.by_format.claude_code",
+     "sessions_measured_nonH": 3353,
+     "tool_calls_measured_nonH": 388605,
+     "ms_timestamps": {
+      "k": 1730813,
+      "n": 1730824,
+      "rate": 0.99999,
+      "ci95_session_clustered": [
+       0.99998,
+       1.0
+      ],
+      "n_sessions": 3352
+     },
+     "tool_call_id_join": {
+      "calls_joined": {
+       "k": 388002,
+       "n": 388605,
+       "rate": 0.99845,
+       "ci95_session_clustered": [
+        0.99828,
+        0.99861
+       ],
+       "n_sessions": 3303
+      },
+      "calls_loader_synthetic_id": 0,
+      "results_without_call": 10
+     },
+     "token_counts": {
+      "calls_with_usage_in": {
+       "k": 388604,
+       "n": 388605,
+       "rate": 1.0,
+       "ci95_session_clustered": [
+        0.99999,
+        1.0
+       ],
+       "n_sessions": 3303
+      },
+      "usage_rows_A_plus_B_build": 314639,
+      "usage_rows_source": "analysis/out/build/swechat_build.json#per_format_AB.claude_code.summary.usage_rows"
+     },
+     "truncation_markers": {
+      "k": 3474,
+      "n": 388012,
+      "rate": 0.00895,
+      "ci95_session_clustered": [
+       0.00846,
+       0.00949
+      ],
+      "n_sessions": 3299
+     },
+     "error_markers": {
+      "native_error_nonnull": {
+       "k": 130495,
+       "n": 388012,
+       "rate": 0.33632,
+       "ci95_session_clustered": [
+        0.32685,
+        0.34566
+       ],
+       "n_sessions": 3299
+      },
+      "native_true": 16494,
+      "exit_code_nonnull": 0,
+      "text_error_marker": {
+       "k": 12956,
+       "n": 388012,
+       "rate": 0.03339,
+       "ci95_session_clustered": [
+        0.03193,
+        0.03483
+       ],
+       "n_sessions": 3299
+      }
+     },
+     "provider_request_ids": {
+      "calls_with_request_id": {
+       "k": 380855,
+       "n": 388605,
+       "rate": 0.98006,
+       "ci95_session_clustered": [
+        0.97279,
+        0.98708
+       ],
+       "n_sessions": 3303
+      },
+      "responses_with_request_id": {
+       "k": 307479,
+       "n": 314821,
+       "rate": 0.97668,
+       "ci95_session_clustered": [
+        0.96916,
+        0.98355
+       ],
+       "n_sessions": 3348
+      },
+      "distinct_ids_decoded": {
+       "agrees_minus2s_plus600s": 305584,
+       "distinct": 305727,
+       "family|anthropic_req": 305727,
+       "prefix|req_": 305233,
+       "prefix|req_vrtx_": 494,
+       "session_copies": 307454,
+       "time_format": 305727,
+       "time_format_within_1day_of_event": 305727,
+       "v7_version_and_variant": 305727
+      },
+      "raw_key_scan": {
+       "request_id_keys": {
+        "cf-ray|other_len20": 155,
+        "request-id|anthropic_req": 95,
+        "request_id|anthropic_req": 114,
+        "request_id|other_len26": 2,
+        "request_id|other_len28": 5,
+        "request_id|other_len29": 4,
+        "request_id|other_len30": 15,
+        "request_id|other_len31": 32,
+        "request_id|other_len32": 40,
+        "request_id|other_len33": 9,
+        "request_id|other_len34": 50,
+        "request_id|other_len35": 8,
+        "request_id|other_len36": 12,
+        "request_id|other_len37": 40,
+        "request_id|other_len38": 30,
+        "request_id|other_len39": 10,
+        "request_id|other_len40": 25,
+        "request_id|other_len41": 5,
+        "request_id|other_len42": 7,
+        "request_id|other_len43": 10,
+        "request_id|other_len44": 6,
+        "request_id|other_len45": 1,
+        "request_id|other_len46": 2,
+        "request_id|other_len47": 2,
+        "request_id|other_len48": 1,
+        "request_id|uuid": 2,
+        "requestid|anthropic_req": 596653,
+        "requestid|null": 246,
+        "requestid|redacted": 1,
+        "x-amzn-requestid|uuid": 8,
+        "x-request-id|uuid": 80
+       },
+       "correlation_keys": {},
+       "anthropic_req_value_occurrences_anywhere": 611236
+      },
+      "kind": "Anthropic req_ (+req_vrtx_)"
+     },
+     "source_paths": [
+      "analysis/out/phase_e/b4_inventory.json#swechat.by_format.claude_code",
+      "analysis/out/phase_e/b4_inventory.json#swechat.raw_key_scan_by_format.claude_code"
+     ]
+    },
+    "codex": {
+     "name": "swechat/codex",
+     "sessions_population": 213,
+     "tool_calls_population": 21902,
+     "population_source": "analysis/out/build/swechat_build.json#full_population_pass.by_format.codex",
+     "sessions_measured_nonH": 161,
+     "tool_calls_measured_nonH": 17153,
+     "ms_timestamps": {
+      "k": 74868,
+      "n": 74868,
+      "rate": 1.0,
+      "ci95_session_clustered": [
+       1.0,
+       1.0
+      ],
+      "n_sessions": 161
+     },
+     "tool_call_id_join": {
+      "calls_joined": {
+       "k": 17063,
+       "n": 17153,
+       "rate": 0.99475,
+       "ci95_session_clustered": [
+        0.99157,
+        0.99749
+       ],
+       "n_sessions": 130
+      },
+      "calls_loader_synthetic_id": 25,
+      "results_without_call": 0
+     },
+     "token_counts": {
+      "calls_with_usage_in": {
+       "k": 0,
+       "n": 17153,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 130
+      },
+      "usage_rows_A_plus_B_build": 7611,
+      "usage_rows_source": "analysis/out/build/swechat_build.json#per_format_AB.codex.summary.usage_rows"
+     },
+     "truncation_markers": {
+      "k": 131,
+      "n": 17063,
+      "rate": 0.00768,
+      "ci95_session_clustered": [
+       0.00488,
+       0.01247
+      ],
+      "n_sessions": 130
+     },
+     "error_markers": {
+      "native_error_nonnull": {
+       "k": 11063,
+       "n": 17063,
+       "rate": 0.64836,
+       "ci95_session_clustered": [
+        0.57473,
+        0.70814
+       ],
+       "n_sessions": 130
+      },
+      "native_true": 746,
+      "exit_code_nonnull": 8954,
+      "text_error_marker": {
+       "k": 0,
+       "n": 17063,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 130
+      }
+     },
+     "provider_request_ids": {
+      "calls_with_request_id": {
+       "k": 0,
+       "n": 17153,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 130
+      },
+      "responses_with_request_id": null,
+      "distinct_ids_decoded": {
+       "session_copies": 0
+      },
+      "raw_key_scan": {
+       "request_id_keys": {},
+       "correlation_keys": {
+        "trace_id|hex32": 217
+       },
+       "anthropic_req_value_occurrences_anywhere": 4
+      },
+      "kind": "none"
+     },
+     "source_paths": [
+      "analysis/out/phase_e/b4_inventory.json#swechat.by_format.codex",
+      "analysis/out/phase_e/b4_inventory.json#swechat.raw_key_scan_by_format.codex"
+     ]
+    },
+    "opencode": {
+     "name": "swechat/opencode",
+     "sessions_population": 624,
+     "tool_calls_population": 22619,
+     "population_source": "analysis/out/build/swechat_build.json#full_population_pass.by_format.opencode",
+     "sessions_measured_nonH": 432,
+     "tool_calls_measured_nonH": 17354,
+     "ms_timestamps": {
+      "k": 37660,
+      "n": 64371,
+      "rate": 0.58505,
+      "ci95_session_clustered": [
+       0.56709,
+       0.60994
+      ],
+      "n_sessions": 432
+     },
+     "tool_call_id_join": {
+      "calls_joined": {
+       "k": 17349,
+       "n": 17354,
+       "rate": 0.99971,
+       "ci95_session_clustered": [
+        0.99924,
+        1.0
+       ],
+       "n_sessions": 428
+      },
+      "calls_loader_synthetic_id": 4903,
+      "results_without_call": 0
+     },
+     "token_counts": {
+      "calls_with_usage_in": {
+       "k": 0,
+       "n": 17354,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 428
+      },
+      "usage_rows_A_plus_B_build": 8961,
+      "usage_rows_source": "analysis/out/build/swechat_build.json#per_format_AB.opencode.summary.usage_rows"
+     },
+     "truncation_markers": {
+      "k": 308,
+      "n": 17349,
+      "rate": 0.01775,
+      "ci95_session_clustered": [
+       0.01491,
+       0.02076
+      ],
+      "n_sessions": 428
+     },
+     "error_markers": {
+      "native_error_nonnull": {
+       "k": 17349,
+       "n": 17349,
+       "rate": 1.0,
+       "ci95_session_clustered": [
+        1.0,
+        1.0
+       ],
+       "n_sessions": 428
+      },
+      "native_true": 682,
+      "exit_code_nonnull": 4163,
+      "text_error_marker": {
+       "k": 0,
+       "n": 17349,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 428
+      }
+     },
+     "provider_request_ids": {
+      "calls_with_request_id": {
+       "k": 0,
+       "n": 17354,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 428
+      },
+      "responses_with_request_id": {
+       "k": 0,
+       "n": 10846,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 431
+      },
+      "distinct_ids_decoded": {
+       "session_copies": 0
+      },
+      "raw_key_scan": {
+       "request_id_keys": {
+        "cf-ray|other_len20": 4
+       },
+       "correlation_keys": {},
+       "anthropic_req_value_occurrences_anywhere": 0
+      },
+      "kind": "none"
+     },
+     "source_paths": [
+      "analysis/out/phase_e/b4_inventory.json#swechat.by_format.opencode",
+      "analysis/out/phase_e/b4_inventory.json#swechat.raw_key_scan_by_format.opencode"
+     ]
+    },
+    "gemini": {
+     "name": "swechat/gemini",
+     "sessions_population": 59,
+     "tool_calls_population": 5246,
+     "population_source": "analysis/out/build/swechat_build.json#full_population_pass.by_format.gemini",
+     "sessions_measured_nonH": 51,
+     "tool_calls_measured_nonH": 5104,
+     "ms_timestamps": {
+      "k": 14441,
+      "n": 15469,
+      "rate": 0.93354,
+      "ci95_session_clustered": [
+       0.78385,
+       1.0
+      ],
+      "n_sessions": 51
+     },
+     "tool_call_id_join": {
+      "calls_joined": {
+       "k": 4617,
+       "n": 5104,
+       "rate": 0.90458,
+       "ci95_session_clustered": [
+        0.70599,
+        1.0
+       ],
+       "n_sessions": 44
+      },
+      "calls_loader_synthetic_id": 0,
+      "results_without_call": 0
+     },
+     "token_counts": {
+      "calls_with_usage_in": {
+       "k": 4601,
+       "n": 5104,
+       "rate": 0.90145,
+       "ci95_session_clustered": [
+        0.70317,
+        0.99779
+       ],
+       "n_sessions": 44
+      },
+      "usage_rows_A_plus_B_build": 8183,
+      "usage_rows_source": "analysis/out/build/swechat_build.json#per_format_AB.gemini.summary.usage_rows"
+     },
+     "truncation_markers": {
+      "k": 1300,
+      "n": 4617,
+      "rate": 0.28157,
+      "ci95_session_clustered": [
+       0.1743,
+       0.34749
+      ],
+      "n_sessions": 43
+     },
+     "error_markers": {
+      "native_error_nonnull": {
+       "k": 4617,
+       "n": 4617,
+       "rate": 1.0,
+       "ci95_session_clustered": [
+        1.0,
+        1.0
+       ],
+       "n_sessions": 43
+      },
+      "native_true": 256,
+      "exit_code_nonnull": 0,
+      "text_error_marker": {
+       "k": 483,
+       "n": 4617,
+       "rate": 0.10461,
+       "ci95_session_clustered": [
+        0.06779,
+        0.12617
+       ],
+       "n_sessions": 43
+      }
+     },
+     "provider_request_ids": {
+      "calls_with_request_id": {
+       "k": 0,
+       "n": 5104,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 44
+      },
+      "responses_with_request_id": {
+       "k": 0,
+       "n": 5496,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 51
+      },
+      "distinct_ids_decoded": {
+       "session_copies": 0
+      },
+      "raw_key_scan": {
+       "request_id_keys": {},
+       "correlation_keys": {},
+       "anthropic_req_value_occurrences_anywhere": 128
+      },
+      "kind": "none"
+     },
+     "source_paths": [
+      "analysis/out/phase_e/b4_inventory.json#swechat.by_format.gemini",
+      "analysis/out/phase_e/b4_inventory.json#swechat.raw_key_scan_by_format.gemini"
+     ]
+    },
+    "cursor": {
+     "name": "swechat/cursor",
+     "sessions_population": 23,
+     "tool_calls_population": 619,
+     "population_source": "analysis/out/build/swechat_build.json#full_population_pass.by_format.cursor",
+     "sessions_measured_nonH": 22,
+     "tool_calls_measured_nonH": 589,
+     "ms_timestamps": {
+      "k": 0,
+      "n": 1575,
+      "rate": 0.0,
+      "ci95_session_clustered": [
+       0.0,
+       0.0
+      ],
+      "n_sessions": 22
+     },
+     "tool_call_id_join": {
+      "calls_joined": {
+       "k": 0,
+       "n": 589,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 11
+      },
+      "calls_loader_synthetic_id": 589,
+      "results_without_call": 0
+     },
+     "token_counts": {
+      "calls_with_usage_in": {
+       "k": 0,
+       "n": 589,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 11
+      },
+      "usage_rows_A_plus_B_build": 0,
+      "usage_rows_source": "analysis/out/build/swechat_build.json#per_format_AB.cursor.summary.usage_rows"
+     },
+     "truncation_markers": null,
+     "error_markers": {
+      "native_error_nonnull": null,
+      "native_true": 0,
+      "exit_code_nonnull": 0,
+      "text_error_marker": null
+     },
+     "provider_request_ids": {
+      "calls_with_request_id": {
+       "k": 0,
+       "n": 589,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 11
+      },
+      "responses_with_request_id": null,
+      "distinct_ids_decoded": {
+       "session_copies": 0
+      },
+      "raw_key_scan": {
+       "request_id_keys": {},
+       "correlation_keys": {},
+       "anthropic_req_value_occurrences_anywhere": 0
+      },
+      "kind": "none"
+     },
+     "source_paths": [
+      "analysis/out/phase_e/b4_inventory.json#swechat.by_format.cursor",
+      "analysis/out/phase_e/b4_inventory.json#swechat.raw_key_scan_by_format.cursor"
+     ]
+    },
+    "copilot": {
+     "name": "swechat/copilot",
+     "sessions_population": 2,
+     "tool_calls_population": 266,
+     "population_source": "analysis/out/build/swechat_build.json#full_population_pass.by_format.copilot",
+     "sessions_measured_nonH": 2,
+     "tool_calls_measured_nonH": 266,
+     "ms_timestamps": {
+      "k": 2250,
+      "n": 2250,
+      "rate": 1.0,
+      "ci95_session_clustered": [
+       1.0,
+       1.0
+      ],
+      "n_sessions": 2
+     },
+     "tool_call_id_join": {
+      "calls_joined": {
+       "k": 265,
+       "n": 266,
+       "rate": 0.99624,
+       "ci95_session_clustered": [
+        0.9918,
+        1.0
+       ],
+       "n_sessions": 2
+      },
+      "calls_loader_synthetic_id": 0,
+      "results_without_call": 0
+     },
+     "token_counts": {
+      "calls_with_usage_in": {
+       "k": 0,
+       "n": 266,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 2
+      },
+      "usage_rows_A_plus_B_build": 364,
+      "usage_rows_source": "analysis/out/build/swechat_build.json#per_format_AB.copilot.summary.usage_rows"
+     },
+     "truncation_markers": {
+      "k": 4,
+      "n": 265,
+      "rate": 0.01509,
+      "ci95_session_clustered": [
+       0.0,
+       0.02778
+      ],
+      "n_sessions": 2
+     },
+     "error_markers": {
+      "native_error_nonnull": {
+       "k": 265,
+       "n": 265,
+       "rate": 1.0,
+       "ci95_session_clustered": [
+        1.0,
+        1.0
+       ],
+       "n_sessions": 2
+      },
+      "native_true": 8,
+      "exit_code_nonnull": 0,
+      "text_error_marker": {
+       "k": 0,
+       "n": 265,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 2
+      }
+     },
+     "provider_request_ids": {
+      "calls_with_request_id": {
+       "k": 0,
+       "n": 266,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 2
+      },
+      "responses_with_request_id": {
+       "k": 0,
+       "n": 184,
+       "rate": 0.0,
+       "ci95_session_clustered": [
+        0.0,
+        0.0
+       ],
+       "n_sessions": 2
+      },
+      "distinct_ids_decoded": {
+       "session_copies": 0
+      },
+      "raw_key_scan": {
+       "request_id_keys": {
+        "requestid|other_len42": 2
+       },
+       "correlation_keys": {
+        "interactionid|uuid": 644
+       },
+       "anthropic_req_value_occurrences_anywhere": 0
+      },
+      "kind": "none on calls (2 compaction requestId values, unknown format)"
+     },
+     "source_paths": [
+      "analysis/out/phase_e/b4_inventory.json#swechat.by_format.copilot",
+      "analysis/out/phase_e/b4_inventory.json#swechat.raw_key_scan_by_format.copilot"
+     ]
+    }
+   },
+   "all_formats_nonH": {
+    "sessions": 4025,
+    "tool_calls": 429071,
+    "calls_with_request_id": {
+     "k": 380855,
+     "n": 429071,
+     "rate": 0.88763,
+     "ci95_session_clustered": [
+      0.86244,
+      0.90883
+     ],
+     "n_sessions": 3918
+    },
+    "ms_timestamps": {
+     "k": 1860032,
+     "n": 1889377,
+     "rate": 0.98447,
+     "ci95_session_clustered": [
+      0.9802,
+      0.98853
+     ],
+     "n_sessions": 4024
+    },
+    "calls_joined": {
+     "k": 427296,
+     "n": 429071,
+     "rate": 0.99586,
+     "ci95_session_clustered": [
+      0.99286,
+      0.99772
+     ],
+     "n_sessions": 3918
+    },
+    "source": "analysis/out/phase_e/b4_inventory.json#swechat.all_formats"
+   }
+  },
+  "cc_local": {
+   "name": "cc_local",
+   "sessions_measured": 309,
+   "tool_calls_measured": 41707,
+   "ms_timestamps": {
+    "k": 167231,
+    "n": 168728,
+    "rate": 0.99113,
+    "ci95_session_clustered": [
+     0.98939,
+     0.9956
+    ],
+    "n_sessions": 309
+   },
+   "tool_call_id_join": {
+    "calls_joined": {
+     "k": 41706,
+     "n": 41707,
+     "rate": 0.99998,
+     "ci95_session_clustered": [
+      0.99983,
+      1.0
+     ],
+     "n_sessions": 281
+    },
+    "calls_loader_synthetic_id": 0,
+    "results_without_call": 0
+   },
+   "token_counts": {
+    "calls_with_usage_in": {
+     "k": 41707,
+     "n": 41707,
+     "rate": 1.0,
+     "ci95_session_clustered": [
+      1.0,
+      1.0
+     ],
+     "n_sessions": 281
+    }
+   },
+   "truncation_markers": {
+    "k": 493,
+    "n": 41706,
+    "rate": 0.01182,
+    "ci95_session_clustered": [
+     0.00419,
+     0.01428
+    ],
+    "n_sessions": 281
+   },
+   "error_markers": {
+    "native_error_nonnull": {
+     "k": 30581,
+     "n": 41706,
+     "rate": 0.73325,
+     "ci95_session_clustered": [
+      0.51697,
+      0.78319
+     ],
+     "n_sessions": 281
+    },
+    "native_true": 1803,
+    "exit_code_nonnull": 0,
+    "text_error_marker": {
+     "k": 1540,
+     "n": 41706,
+     "rate": 0.03693,
+     "ci95_session_clustered": [
+      0.02998,
+      0.06837
+     ],
+     "n_sessions": 281
+    }
+   },
+   "provider_request_ids": {
+    "calls_with_request_id": {
+     "k": 41707,
+     "n": 41707,
+     "rate": 1.0,
+     "ci95_session_clustered": [
+      1.0,
+      1.0
+     ],
+     "n_sessions": 281
+    },
+    "responses_with_request_id": {
+     "k": 35381,
+     "n": 35391,
+     "rate": 0.99972,
+     "ci95_session_clustered": [
+      0.999,
+      0.99987
+     ],
+     "n_sessions": 309
+    },
+    "distinct_ids_decoded": {
+     "agrees_minus2s_plus600s": 35227,
+     "distinct": 35379,
+     "family|anthropic_req": 35379,
+     "prefix|req_": 35379,
+     "session_copies": 35379,
+     "time_format": 35379,
+     "time_format_within_1day_of_event": 35379,
+     "v7_version_and_variant": 35379
+    },
+    "raw_key_scan": {
+     "request_id_keys": {
+      "requestid|anthropic_req": 86257
+     },
+     "correlation_keys": {},
+     "anthropic_req_value_occurrences_anywhere": 86280
+    }
+   },
+   "source": "~/.claude/projects on this machine, snapshot 2026-10-03; data/claude-code-local (1,172 JSONL files)",
+   "licence": "none: the user's own private Claude Code transcripts; not redistributable",
+   "research_use_ok": true,
+   "sessions_population": 309,
+   "tool_calls_population": 41707,
+   "privacy": "aggregates only",
+   "source_paths": [
+    "analysis/out/phase_e/b4_inventory.json#cc_local",
+    "analysis/out/build/cc_local_build.json#full_corpus_ir"
+   ]
+  },
+  "aiv_cc": {
+   "name": "aiv_cc",
+   "sessions_measured": 314,
+   "tool_calls_measured": 72225,
+   "ms_timestamps": {
+    "k": 244790,
+    "n": 244820,
+    "rate": 0.99988,
+    "ci95_session_clustered": [
+     0.99983,
+     0.99993
+    ],
+    "n_sessions": 314
+   },
+   "tool_call_id_join": {
+    "calls_joined": {
+     "k": 72213,
+     "n": 72225,
+     "rate": 0.99983,
+     "ci95_session_clustered": [
+      0.99971,
+      0.99993
+     ],
+     "n_sessions": 201
+    },
+    "calls_loader_synthetic_id": 0,
+    "results_without_call": 0
+   },
+   "token_counts": {
+    "calls_with_usage_in": {
+     "k": 72225,
+     "n": 72225,
+     "rate": 1.0,
+     "ci95_session_clustered": [
+      1.0,
+      1.0
+     ],
+     "n_sessions": 201
+    }
+   },
+   "truncation_markers": {
+    "k": 62,
+    "n": 72213,
+    "rate": 0.00086,
+    "ci95_session_clustered": [
+     0.0004,
+     0.00163
+    ],
+    "n_sessions": 196
+   },
+   "error_markers": {
+    "native_error_nonnull": {
+     "k": 11655,
+     "n": 72213,
+     "rate": 0.1614,
+     "ci95_session_clustered": [
+      0.11984,
+      0.20389
+     ],
+     "n_sessions": 196
+    },
+    "native_true": 1317,
+    "exit_code_nonnull": 0,
+    "text_error_marker": {
+     "k": 543,
+     "n": 72213,
+     "rate": 0.00752,
+     "ci95_session_clustered": [
+      0.00539,
+      0.00971
+     ],
+     "n_sessions": 196
+    }
+   },
+   "provider_request_ids": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 72225,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 201
+    },
+    "responses_with_request_id": {
+     "k": 0,
+     "n": 65571,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 261
+    },
+    "distinct_ids_decoded": {
+     "session_copies": 0
+    },
+    "raw_key_scan": {
+     "request_id_keys": {},
+     "correlation_keys": {},
+     "anthropic_req_value_occurrences_anywhere": 8
+    }
+   },
+   "source": "HF aidigestorg/ai-village rev 838b4150 (gated manual), claude_code_messages.jsonl.gz",
+   "licence": "custom 'ai-village-research-terms' (research/analysis use; no training without permission; no re-identification; cite)",
+   "research_use_ok": true,
+   "sessions_population": 314,
+   "tool_calls_population": 72225,
+   "caveat": "effectively one agent: 53 distinct SDK sessions, the largest holds 0.9995 of rows (aiv_cc_build.json#sdk_sessions)",
+   "timestamp_kind": "row_insert (microsecond DB stamps), not harness event stamps",
+   "source_paths": [
+    "analysis/out/phase_e/b4_inventory.json#aiv_cc",
+    "analysis/out/build/aiv_cc_build.json"
+   ]
+  },
+  "aiv_cu": {
+   "name": "aiv_cu",
+   "source": "HF aidigestorg/ai-village rev 838b4150 (gated manual), computer_use_turns.jsonl.gz",
+   "licence": "custom 'ai-village-research-terms'",
+   "research_use_ok": true,
+   "sessions_population": 78114,
+   "turn_rows_population": 2510487,
+   "sessions_measured_nonH": 76114,
+   "turn_rows_measured_nonH": 2446268,
+   "by_provider_shape": {
+    "anthropic": {
+     "sessions_measured_nonH": 27409,
+     "turn_rows_non_synthetic": 856403,
+     "tool_calls_n_calls_sum": 844309,
+     "rows_has_usage": 856403,
+     "rows_server_timing_header": 0,
+     "rows_http_date_header": 0,
+     "rows_error_channel_nonempty": 29490,
+     "provider_response_ids": {
+      "distinct": 856394,
+      "families": {
+       "anthropic_msg": 856394
+      },
+      "decodable_in_window": 294075,
+      "decodable_resolution": {
+       "ms": 294075
+      },
+      "agrees_with_row_created_at": 293865,
+      "anthropic_v7_version_and_variant": 293869,
+      "sessions_with_ge1_decodable": 8826
+     },
+     "source": "analysis/out/phase_e/b4_inventory.json#aiv_cu.by_shape.anthropic"
+    },
+    "anthropic-sdk": {
+     "sessions_measured_nonH": 821,
+     "turn_rows_non_synthetic": 10881,
+     "tool_calls_n_calls_sum": 0,
+     "rows_has_usage": 10881,
+     "rows_server_timing_header": 0,
+     "rows_http_date_header": 0,
+     "rows_error_channel_nonempty": 647,
+     "provider_response_ids": {
+      "distinct": 10590,
+      "families": {
+       "anthropic_msg": 10590
+      },
+      "decodable_in_window": 4,
+      "decodable_resolution": {
+       "ms": 4
+      },
+      "agrees_with_row_created_at": 0,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 4
+     },
+     "source": "analysis/out/phase_e/b4_inventory.json#aiv_cu.by_shape.anthropic-sdk"
+    },
+    "empty-dict": {
+     "sessions_measured_nonH": 18,
+     "turn_rows_non_synthetic": 19,
+     "tool_calls_n_calls_sum": 0,
+     "rows_has_usage": 0,
+     "rows_server_timing_header": 0,
+     "rows_http_date_header": 0,
+     "rows_error_channel_nonempty": 0,
+     "provider_response_ids": {
+      "distinct": 0,
+      "families": {},
+      "decodable_in_window": 0,
+      "decodable_resolution": {},
+      "agrees_with_row_created_at": 0,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 0
+     },
+     "source": "analysis/out/phase_e/b4_inventory.json#aiv_cu.by_shape.empty-dict"
+    },
+    "gemini": {
+     "sessions_measured_nonH": 15343,
+     "turn_rows_non_synthetic": 530678,
+     "tool_calls_n_calls_sum": 551268,
+     "rows_has_usage": 530678,
+     "rows_server_timing_header": 462024,
+     "rows_http_date_header": 462024,
+     "rows_error_channel_nonempty": 34024,
+     "provider_response_ids": {
+      "distinct": 462024,
+      "families": {
+       "gemini_response_id": 462024
+      },
+      "decodable_in_window": 462024,
+      "decodable_resolution": {
+       "s": 462024
+      },
+      "agrees_with_row_created_at": 462022,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 13155
+     },
+     "source": "analysis/out/phase_e/b4_inventory.json#aiv_cu.by_shape.gemini"
+    },
+    "openai-chat": {
+     "sessions_measured_nonH": 13311,
+     "turn_rows_non_synthetic": 411606,
+     "tool_calls_n_calls_sum": 441924,
+     "rows_has_usage": 0,
+     "rows_server_timing_header": 0,
+     "rows_http_date_header": 0,
+     "rows_error_channel_nonempty": 32883,
+     "provider_response_ids": {
+      "distinct": 0,
+      "families": {},
+      "decodable_in_window": 0,
+      "decodable_resolution": {},
+      "agrees_with_row_created_at": 0,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 0
+     },
+     "source": "analysis/out/phase_e/b4_inventory.json#aiv_cu.by_shape.openai-chat"
+    },
+    "openai-responses": {
+     "sessions_measured_nonH": 19136,
+     "turn_rows_non_synthetic": 572082,
+     "tool_calls_n_calls_sum": 515574,
+     "rows_has_usage": 0,
+     "rows_server_timing_header": 0,
+     "rows_http_date_header": 0,
+     "rows_error_channel_nonempty": 51153,
+     "provider_response_ids": {
+      "distinct": 572082,
+      "families": {
+       "openai_item_hex": 572082
+      },
+      "decodable_in_window": 572082,
+      "decodable_resolution": {
+       "s": 572082
+      },
+      "agrees_with_row_created_at": 572082,
+      "anthropic_v7_version_and_variant": 0,
+      "sessions_with_ge1_decodable": 19136
+     },
+     "source": "analysis/out/phase_e/b4_inventory.json#aiv_cu.by_shape.openai-responses"
+    }
+   },
+   "ms_timestamps": "row created_at to microseconds, but ONE stamp per turn: call and result share it in 6,107/6,107 split-A pairs (PHASE_A.md A1, KILLED for latency)",
+   "tool_call_id_join": "by construction: one row holds the call and its output (PHASE_A.md A2, untestable)",
+   "token_counts": "per-turn usage on anthropic, anthropic-sdk, gemini rows; none on openai-chat / openai-responses rows (see by_provider_shape.rows_has_usage)",
+   "truncation_markers": "0/6,107 split-A results carry a marker (PHASE_A.md A3; unmarked caps not excluded)",
+   "error_markers": "no native flag; a separate stderr channel (`error`) is non-empty on rows_error_channel_nonempty; stderr-regex proxy 118/6,107 unvalidated (PHASE_A.md A4)",
+   "provider_request_ids": "NONE (0 request-id keys in 2,446,268 non-H rows); provider RESPONSE ids with embedded time: see REQUEST_ID_COLUMN_FIRST.per_corpus.aiv_cu",
+   "source_paths": [
+    "analysis/out/phase_e/b4_inventory.json#aiv_cu",
+    "analysis/out/build/aiv_cu_build.json#population"
+   ]
+  },
+  "whowhen": {
+   "name": "whowhen",
+   "sessions_measured": 184,
+   "tool_calls_measured": 968,
+   "ms_timestamps": {
+    "k": 0,
+    "n": 4371,
+    "rate": 0.0,
+    "ci95_session_clustered": [
+     0.0,
+     0.0
+    ],
+    "n_sessions": 184
+   },
+   "tool_call_id_join": {
+    "calls_joined": {
+     "k": 888,
+     "n": 968,
+     "rate": 0.91736,
+     "ci95_session_clustered": [
+      0.89666,
+      0.93656
+     ],
+     "n_sessions": 160
+    },
+    "calls_loader_synthetic_id": 968,
+    "results_without_call": 0
+   },
+   "token_counts": {
+    "calls_with_usage_in": {
+     "k": 0,
+     "n": 968,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 160
+    }
+   },
+   "truncation_markers": {
+    "k": 0,
+    "n": 888,
+    "rate": 0.0,
+    "ci95_session_clustered": [
+     0.0,
+     0.0
+    ],
+    "n_sessions": 158
+   },
+   "error_markers": {
+    "native_error_nonnull": {
+     "k": 244,
+     "n": 888,
+     "rate": 0.27477,
+     "ci95_session_clustered": [
+      0.20445,
+      0.35645
+     ],
+     "n_sessions": 158
+    },
+    "native_true": 90,
+    "exit_code_nonnull": 244,
+    "text_error_marker": {
+     "k": 90,
+     "n": 888,
+     "rate": 0.10135,
+     "ci95_session_clustered": [
+      0.07214,
+      0.13643
+     ],
+     "n_sessions": 158
+    }
+   },
+   "provider_request_ids": {
+    "calls_with_request_id": {
+     "k": 0,
+     "n": 968,
+     "rate": 0.0,
+     "ci95_session_clustered": [
+      0.0,
+      0.0
+     ],
+     "n_sessions": 160
+    },
+    "responses_with_request_id": null,
+    "distinct_ids_decoded": {
+     "session_copies": 0
+    },
+    "raw_key_scan": {
+     "request_id_keys": {},
+     "correlation_keys": {},
+     "anthropic_req_value_occurrences_anywhere": 0
+    }
+   },
+   "source": "HF Kevin355/Who_and_When rev 59b9fcba (not gated); same data in github.com/mingyin1/Agents_Failure_Attribution `Who&When/`",
+   "licence": "MIT (GitHub repo LICENSE, which contains the Who&When folder); the HF dataset card states no licence",
+   "research_use_ok": true,
+   "sessions_population": 184,
+   "tool_calls_population": 968,
+   "caveat": "calls are loader-synthesised from code blocks / websurfer reports; no timestamps at all",
+   "source_paths": [
+    "analysis/out/phase_e/b4_inventory.json#whowhen",
+    "analysis/out/build/whowhen_build.json"
+   ]
+  },
+  "collusion_wiki": {
+   "name": "collusion-wiki",
+   "source": "collusion.wiki exports downloaded 2026-10-03 from ~/Downloads (manifest generated_at 2026-09-03)",
+   "licence": "UNVERIFIED: no licence statement in the package (manifest.json, SHA256SUMS) and no source URL recorded",
+   "research_use_ok": false,
+   "sessions": "n/a (no agent sessions)",
+   "tool_calls": 0,
+   "rows": {
+    "events.jsonl": 19913,
+    "revisions.jsonl": 14591,
+    "pages.jsonl": 4579,
+    "labels.jsonl": 3103
+   },
+   "clock_fields": {
+    "events.jsonl": {
+     "clock_delta_seconds": 5220,
+     "clock_note": 1,
+     "event_id": 19913,
+     "related_event_id": 67,
+     "request_action": 5322,
+     "request_time": 5220,
+     "round_id": 92,
+     "success_time": 5221,
+     "time": 19913,
+     "time_grade": 19913,
+     "uncertainty_seconds": 5221,
+     "winning_clock": 5221
+    },
+    "events_time_grade": {
+     "reqlog": 19803,
+     "rclog": 104,
+     "write_date": 6
+    }
+   },
+   "provider_request_ids": "n/a (no LLM calls); 0 request-id keys",
+   "source_paths": [
+    "analysis/out/phase_e/b4_inventory.json#collusion_wiki"
+   ]
+  },
+  "urlquery": {
+   "name": "urlquery-agent-activity v5",
+   "source": "~/Downloads/urlquery-agent-activity-2026-09-23.zip (snapshot 2026-09-23)",
+   "licence": "UNVERIFIED: README says 'public report links and research metadata' but states no licence",
+   "research_use_ok": false,
+   "sessions": "n/a",
+   "tool_calls": 0,
+   "rows": 38160,
+   "timestamp_precision": {
+    "second": 38160
+   },
+   "provider_request_ids": "n/a (no LLM calls); report ids are UUIDv4",
+   "source_paths": [
+    "analysis/out/phase_e/b4_inventory.json#urlquery"
+   ]
+  },
+  "swechat_mirror": {
+   "name": "swe-chat-mirror-cfahlgren1",
+   "status": "superseded, note only, not opened",
+   "reason": "data/README.md: same rows as f66cca95 but 5,259 rows (915 sessions) carry secrets the pinned release redacts"
+  }
+ },
+ "cross_corpus_descriptive": {
+  "note": "Descriptive only; tool-call definitions differ across corpora (aiv_cu counts tool calls per turn message).",
+  "public_tool_calls_measured_nonH": {
+   "swechat": 429071,
+   "aiv_cc": 72225,
+   "aiv_cu": 2353075,
+   "whowhen": 968
+  },
+  "public_tool_calls_with_provider_request_id": 380855
+ },
+ "consistency_checks_against_committed_numbers": {
+  "phase_c_ids_B_split_swechat_request_ids": {
+   "n_ids": 155326,
+   "time_format": 155326,
+   "source": "analysis/out/phase_c/ids_and_clocks_in_ids.json#clocks.swechat.request_id|anthropic_req.claude_code",
+   "agrees_with_this_probe": "yes: every request id is time-format in both (B split there; A u B u E here)"
+  },
+  "cc_local_build_request_id_fill": {
+   "value": {
+    "assistant": {
+     "n": 8424,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 0.9988129154795822,
+     "model": 1.0,
+     "api_msg_ids_unique": 8424
+    },
+    "call": {
+     "n": 41707,
+     "usage_in": 1.0,
+     "usage_out": 1.0,
+     "usage_cache_read": 1.0,
+     "usage_cache_create": 1.0,
+     "api_msg_id": 1.0,
+     "request_id": 1.0,
+     "model": 1.0,
+     "api_msg_ids_unique": 34095
+    }
+   },
+   "source": "analysis/out/build/cc_local_build.json#full_corpus_ir.usage_fill",
+   "agrees_with_this_probe": "yes: call rows 1.0 there, 41,707/41,707 here"
+  },
+  "aiv_cc_build_request_id_fill": "0.0 in analysis/out/build/aiv_cc_build.json#full_corpus_ir.usage_fill; 0 here"
+ },
+ "prior_art": {
+  "applicability": "B4 makes measurement claims about our own corpora, not novelty claims, so NOVEL/PARTIAL/TAKEN is not applicable to the inventory itself. The two claims that touch prior work are recorded below.",
+  "claims": [
+   {
+    "claim": "Claude Code transcripts carry a provider request id per API response",
+    "closest_existing_work": "Claude Code's own transcript format (it writes `requestId`); SWE-chat redistributes those raw transcripts",
+    "what_it_does": "stores the Anthropic `request-id` header value on each assistant entry",
+    "what_it_does_not": "SWE-chat documents no request-id column in its tables; neither source decodes the id or uses it as a clock",
+    "verdict": "TAKEN as a data fact (not ours); our contribution is only the count and its coverage",
+    "deciding_citation": "data/swe-chat-pinned/README.md lines 92 and 263 (raw transcripts live in transcripts/{session_id}.jsonl); a6_raw_census swechat_transcripts/claude_code assistant.requestId fill 19,344/19,457"
+   },
+   {
+    "claim": "the request id's internal structure (embedded ms time) is undocumented",
+    "closest_existing_work": "Anthropic API docs, Request ID section",
+    "what_it_does": "documents that every response has a unique `request-id` header with a `req_...` value and that SDKs expose it",
+    "what_it_does_not": "says nothing about internal structure, embedded time, or format stability",
+    "verdict": "n/a for B4 (B2 owns the novelty question); recorded as a material limitation",
+    "deciding_citation": "https://platform.claude.com/docs/en/api/errors (opened): 'Every API response includes a unique `request-id` header.'",
+    "side_check": "The page's two example ids decode differently under our inferred layout: the error-body example req_011CSHoEeqs5C35K2UUqR7Fy decodes as version 7, variant 2, 2025-08-19 21:43:15.444 UTC; the header example req_018EeWyXxfu5pfWkrYcMdjWG has version nibble 9 and falls outside the plausible window. Computed in-session with analysis/probes/phase_c_ids_and_clocks_in_ids.py b58(); not saved by a committed script."
+   }
+  ]
+ },
+ "sources": [
+  {
+   "url": "https://huggingface.co/api/datasets/SALT-NLP/SWE-chat",
+   "opened": true,
+   "passage": "cardData.license \"odc-by\"; gated \"auto\"; sha \"202b071f18e03c79df5a7287565ce2ebc5ee7756\"; lastModified \"2026-10-03T22:38:39.000Z\"",
+   "used_for": "licence; shows the Hub main has moved past our pin"
+  },
+  {
+   "url": "https://huggingface.co/datasets/SALT-NLP/SWE-chat",
+   "opened": true,
+   "passage": "Version History: v1 (April 29, 2026): 5,851 sessions; v2 (October 2, 2026): 17,968 sessions, 229,909 prompts. Agents listed include Claude Code, Codex, Gemini CLI, Cursor, OpenCode, Copilot CLI, Factory AI Droid, Pi.",
+   "used_for": "our pin f66cca95 is v1; v2 exists and was NOT audited (flag for B5)"
+  },
+  {
+   "url": "https://huggingface.co/datasets/SALT-NLP/SWE-chat/raw/main/README.md",
+   "opened": false,
+   "passage": "HTTP 401 (gated)",
+   "used_for": "n/a"
+  },
+  {
+   "url": "file:data/swe-chat-pinned/README.md",
+   "opened": true,
+   "passage": "line 2 `license: odc-by`; line 92 '# Raw transcripts live under transcripts/{session_id}.jsonl'",
+   "used_for": "licence of the pinned copy; request ids live in raw transcripts"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/aidigestorg/ai-village",
+   "opened": true,
+   "passage": "cardData.license \"other\"; license_name \"ai-village-research-terms\"; gated \"manual\"; sha \"838b4150303ca8228e8edb432d8b8ccae353d258\"",
+   "used_for": "aiv_cc and aiv_cu licence; pinned revision matches data/README.md"
+  },
+  {
+   "url": "file:data/ai-village/README.md",
+   "opened": true,
+   "passage": "'use the data for research and analysis, not to train or fine-tune AI systems without our written permission'",
+   "used_for": "research use permitted"
+  },
+  {
+   "url": "https://huggingface.co/api/datasets/Kevin355/Who_and_When",
+   "opened": true,
+   "passage": "no license field in cardData or tags; sha \"59b9fcba1aaed7bbf206b5f4d3c68b8face2f49c\"; gated false",
+   "used_for": "HF card states no licence"
+  },
+  {
+   "url": "https://huggingface.co/datasets/Kevin355/Who_and_When/raw/main/README.md",
+   "opened": true,
+   "passage": "no license statement",
+   "used_for": "confirms the gap"
+  },
+  {
+   "url": "https://raw.githubusercontent.com/mingyin1/Agents_Failure_Attribution/main/LICENSE",
+   "opened": true,
+   "passage": "MIT License / Copyright (c) 2025 Ming Yin",
+   "used_for": "Who&When licence"
+  },
+  {
+   "url": "https://github.com/mingyin1/Agents_Failure_Attribution",
+   "opened": true,
+   "passage": "top-level folders include `Who&When`; badge 'License-MIT'",
+   "used_for": "the MIT repo contains the dataset folder"
+  },
+  {
+   "url": "https://github.com/ag2ai/Agents_Failure_Attribution",
+   "opened": true,
+   "passage": "sidebar 'MIT license'",
+   "used_for": "corroboration"
+  },
+  {
+   "url": "https://platform.claude.com/docs/en/api/errors",
+   "opened": true,
+   "passage": "'Every API response includes a unique `request-id` header. This header contains a value such as `req_018EeWyXxfu5pfWkrYcMdjWG`.' and, for Claude Platform on AWS, 'responses include two request IDs: the AWS request ID (`x-amzn-requestid`, primary...) and the Anthropic request ID (`request-id`, secondary)'",
+   "used_for": "defines what a provider request id is; structure undocumented"
+  },
+  {
+   "url": "https://docs.anthropic.com/en/api/errors",
+   "opened": false,
+   "passage": "301 redirect to platform.claude.com (followed above)",
+   "used_for": "n/a"
+  },
+  {
+   "url": "file:data/urlquery-agent-activity/urlquery-agent-activity-2026-09-22-v5/README.md",
+   "opened": true,
+   "passage": "'It contains public report links and research metadata, with no full report JSON, response bodies...' (no licence stated)",
+   "used_for": "licence UNVERIFIED"
+  },
+  {
+   "url": "file:data/collusion-wiki/full-wiki-logs/manifest.json",
+   "opened": true,
+   "passage": "keys generated_at, db_sha256, cut, counts, ... tool_versions; no licence or source URL",
+   "used_for": "licence UNVERIFIED"
+  }
+ ],
+ "INTERPRETATION_verdict": {
+  "headline": "Provider request ids exist in exactly two of our seven corpora, and only one of them is public: SWE-chat's Claude Code raw transcripts. cc_local is private. Both are the same harness (Claude Code) and the same provider (Anthropic). The request-id mechanism therefore runs on one public harness/provider pair. It cannot be shown to transfer across harnesses or providers with the data we hold.",
+  "coverage_bound": "Within swechat, Claude Code calls carry a request id at 0.980 (session-clustered CI [0.973, 0.987]). Across all swechat harnesses it is 0.888 [0.862, 0.909], because Codex, OpenCode, Gemini CLI, Cursor and Copilot carry none. Across every public tool call we hold (non-H) it is 380,855 of about 2.86 M, under 14%. That figure is descriptive, since aiv_cu dominates the denominator and counts calls per turn.",
+  "decodable_time": "Every request id we hold decodes under the inferred UUIDv7 layout: 305,727/305,727 in swechat and 35,379/35,379 in cc_local, with version and variant bits matching too. The layout is inferred, not documented: Anthropic's docs describe the header but not its structure, and one of the two example ids on that page does not decode. This is a material limitation for the design.",
+  "nearest_substitutes": "aiv_cu carries provider RESPONSE ids with embedded time: Gemini responseId and OpenAI Responses item ids at 1 s resolution, and Anthropic msg_ ids at ms resolution only after the 2026-07-06 switch (294,075 of 856,394). But aiv_cu stamps a turn once, so there is no input-to-first-output window to bracket. aiv_cc's msg_ ids carry no time.",
+  "gaps_that_cap_coverage": [
+   "Bedrock-backed Claude Code calls carry no request id (0 of 3,575 non-H swechat calls); OpenAI-compatible proxies (msg_datetime14, chatcmpl) carry none either.",
+   "1,766 first-party Anthropic calls in swechat Claude Code lack a request id (382,061 - 380,295), and 246 raw `requestId` values are null.",
+   "SWE-chat's documented parquet tables drop the field; any pipeline built on conversations.parquet loses request ids."
+  ],
+  "follow_ups_for_other_tasks": [
+   "B5: SWE-chat v2 (2026-10-02, 17,968 sessions) is public under ODC-BY and not yet audited. CLAUDE_context_swarms.md section 6 puts v2 at 68.8% Claude Code, i.e. about 12,360 Claude Code sessions against 4,852 in our pin (about 2.5x). That gain holds only if v2's raw Claude Code transcripts keep `requestId`, which is UNVERIFIED until they are downloaded.",
+   "B6: a request-id corpus for any non-Anthropic provider would be new data relative to our holdings (OpenAI `x-request-id`, AWS `x-amzn-requestid` as documented for Claude Platform on AWS)."
+  ]
+ }
+}
