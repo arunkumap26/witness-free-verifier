@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Witness-free verification: how it works</title>
+<meta name="description" content="Six diagrams explaining the witness-free verification work: the problem, phases A to E, the hidden witnesses in ordinary logs, the verifier data flow, the evaluation protocol and the results.">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --text: #1c1d1f; --muted: #5a5d63; --border: #dcdad3;
+  --accent: #1f5fa8; --code-bg: #f0eee8; --th-bg: #f3f1ec; --shadow: 0 1px 2px rgba(0,0,0,.05);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141517; --surface: #1c1e21; --text: #e6e4df; --muted: #a3a6ad; --border: #34373c;
+    --accent: #7fb0ea; --code-bg: #26292d; --th-bg: #23262a; --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141517; --surface: #1c1e21; --text: #e6e4df; --muted: #a3a6ad; --border: #34373c;
+  --accent: #7fb0ea; --code-bg: #26292d; --th-bg: #23262a; --shadow: none;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+main { max-width: 900px; margin: 0 auto; padding: 24px 16px 64px; }
+header.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+h1 { font-size: 1.75rem; line-height: 1.25; margin: 8px 0 12px; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; line-height: 1.3; margin: 36px 0 12px; }
+h3 { font-size: 1.05rem; margin: 28px 0 8px; color: var(--muted); }
+p { margin: 0 0 14px; }
+a { color: var(--accent); }
+hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0 8px; }
+code {
+  font: 0.86em/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--code-bg); padding: 1px 4px; border-radius: 4px; overflow-wrap: anywhere;
+}
+.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px; box-shadow: var(--shadow); }
+.toc ul { margin: 0; padding-left: 0; list-style: none; }
+.toc li { margin: 2px 0; }
+figure.diagram {
+  margin: 16px 0 18px; padding: 12px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; box-shadow: var(--shadow); overflow-x: auto; max-width: 100%;
+}
+figure.diagram pre.mermaid { margin: 0; text-align: center; white-space: pre-wrap; font-size: 12px; color: var(--muted); }
+figure.diagram svg { max-width: 100%; height: auto; }
+.table-wrap { overflow-x: auto; max-width: 100%; margin: 8px 0 16px; border: 1px solid var(--border); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; background: var(--surface); }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
+th { background: var(--th-bg); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+button.theme {
+  flex: none; font: inherit; font-size: 0.85rem; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; cursor: pointer; margin-top: 10px;
+}
+.load-note { font-size: 0.85rem; color: var(--muted); }
+.scroll-hint { position: sticky; left: 0; font-size: 0.8rem; color: var(--muted); margin: 0 0 6px; }
+@media (max-width: 600px) {
+  h1 { font-size: 1.45rem; }
+  table { font-size: 0.82rem; }
+  th, td { padding: 6px 8px; }
+  figure.diagram { padding: 8px; }
+}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><h1>Witness-free verification: how it works</h1><button class="theme" type="button" id="themeBtn" aria-label="Switch colour theme">Theme: auto</button></header>
+<p>A five-minute tour of the work in <code>analysis/</code> and <code>verifier/</code>, in six diagram sections. Every number is copied from a committed file under <code>analysis/</code>, and the file is named next to it. <strong>Every detection number in sections 1 to 6 is against synthetic tampering of real honest sessions: none of the 21 corpora contains a known real fabricated tool result.</strong> The same text and diagrams exist in two forms: <code>analysis/FLOWCHARTS.md</code> (renders on GitHub) and <code>analysis/flowcharts.html</code>.</p>
+<p>How to read the numbers: <code>k/n</code> is "flagged out of tried". "488/500 vs 3/500 honest" means the check flagged 488 of 500 tampered sessions and 3 of 500 untouched copies. sw/CC is the SWE-chat Claude Code unit, the largest one we hold.</p>
+<nav class="toc" aria-label="Sections"><ul><li><a href="#1-the-project-in-one-picture">1. The project in one picture</a></li><li><a href="#2-phases-a-to-e-with-their-gates">2. Phases A to E, with their gates</a></li><li><a href="#3-hidden-witnesses-inside-ordinary-logs-and-the-attacks-they-catch">3. Hidden witnesses inside ordinary logs, and the attacks they catch</a></li><li><a href="#4-verifier-data-flow">4. Verifier data flow</a></li><li><a href="#5-evaluation-protocol">5. Evaluation protocol</a></li><li><a href="#6-results-at-a-glance">6. Results at a glance</a></li><li><a href="#swarm-dataset-results">Swarm dataset results</a></li></ul></nav>
+<hr>
+<h2 id="1-the-project-in-one-picture">1. The project in one picture</h2>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+    P[&quot;Problem&lt;br/&gt;Agents can fake what a tool returned.&lt;br/&gt;Graders, reviewers and other agents trust the log.&quot;]
+    Q[&quot;Question&lt;br/&gt;How much can a log prove about itself,&lt;br/&gt;with no outside witness?&quot;]
+    D[&quot;Data: 21 corpora held&lt;br/&gt;7 before acquisition + 14 downloaded&lt;br/&gt;6 of the 14 loaded and measured&quot;]
+    PH[&quot;Phases A to E&lt;br/&gt;recon, pre-registered probes, discovery,&lt;br/&gt;report, second pass with an attack battery&quot;]
+    DS[&quot;Design&lt;br/&gt;analysis/DESIGN.md, commit 2baebcf&quot;]
+    V[&quot;Verifier scaffold, commit 5f837b6&lt;br/&gt;pipeline end to end, reference check only&quot;]
+    SW[&quot;Swarm labeled dataset test&lt;br/&gt;dev/test split by session, rules frozen before test&quot;]
+    P --&gt; Q --&gt; D --&gt; PH --&gt; DS --&gt; V --&gt; SW
+    D -.- RID[&quot;Only 5 of the 21 carry provider request ids,&lt;br/&gt;all Claude Code talking to Anthropic&quot;]
+    PH -.- SYN[&quot;Every positive in the corpus work is synthetic&quot;]</pre></figure>
+<p>Agent harnesses record what each tool call returned, and those records are treated as evidence, but nothing checks whether a recorded result could have come from the call it is attached to (<code>analysis/DESIGN.md</code> §1.1). We asked how much of that a log can check about itself, using only fields the agent does not control: provider clocks, billing counters, harness timers and second renderings. We held 21 corpora: 7 before acquisition, plus 14 downloaded, of which 6 were loaded and measured (tbench2, agentcap, pub_cc_hf, pub_trace_commons, pub_codex, glm_tb21) and 8 were not, for time (<code>analysis/CORPUS_INVENTORY.md</code> §0, <code>analysis/MORNING_BRIEF.md</code> §1). Only 5 of the 21 carry provider request ids, the strongest clock we found, and all 5 are one harness talking to one provider (<code>analysis/CORPUS_INVENTORY.md</code> §0). The phases produced a design and a verifier scaffold. The last step tests that strategy against a labeled dataset from the separate swarm workstream (section 5 and the results placeholder in section 6).</p>
+<hr>
+<h2 id="2-phases-a-to-e-with-their-gates">2. Phases A to E, with their gates</h2>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+    A[&quot;Phase A: schema recon, split A only&lt;br/&gt;Which fields exist, at what resolution?&quot;]
+    GA{{&quot;Gate A&lt;br/&gt;pre-registered kill rules&quot;}}
+    KA[&quot;Killed early&lt;br/&gt;Latency in aiv_cu: call and result share one stamp,&lt;br/&gt;6,107/6,107 pairs. No stamps in whowhen and cursor.&quot;]
+    PR1[&quot;Pre-registration, commit 3df8d28&lt;br/&gt;Phase B thresholds from split A only&quot;]
+    B[&quot;Phase B: 4 probes on split B&lt;br/&gt;latency, knowledge precedence, pushback, entropy&quot;]
+    SB[&quot;Skeptic re-derivation&lt;br/&gt;49 of 50 unit checks reproduced&quot;]
+    C[&quot;Phase C: 14 discovery lenses&lt;br/&gt;239 observations&quot;]
+    SC[&quot;Skeptic re-check&lt;br/&gt;200 of 239 reproduced&quot;]
+    D[&quot;Phase D: FINDINGS.md, commit c24eed6&lt;br/&gt;5 proposed witnesses R1 to R5, ranked&quot;]
+    PR2[&quot;Pre-registration E, commit 55fc556&lt;br/&gt;kill tests, attack battery, transfer grid&quot;]
+    E[&quot;Phase E, three tracks&quot;]
+    TA[&quot;Track A: measure&lt;br/&gt;second pass, N1 to N5,&lt;br/&gt;N7 attack battery, N6 transfer grid&quot;]
+    TB[&quot;Track B: prior art and corpora&lt;br/&gt;14 downloaded, 6 loaded&quot;]
+    TC[&quot;Track C: DESIGN.md and the scaffold&quot;]
+    GE{{&quot;Survival rule&lt;br/&gt;a check can only lower a label&quot;}}
+    OUT[&quot;25 candidate x unit rows&lt;br/&gt;SURVIVES 9, DOWNGRADED 7,&lt;br/&gt;KILLED 3, NOT_RUN 6&quot;]
+    A --&gt; GA
+    GA --&gt;|&quot;dead&quot;| KA
+    GA --&gt;|&quot;alive&quot;| PR1 --&gt; B --&gt; SB --&gt; D
+    GA --&gt;|&quot;alive&quot;| C --&gt; SC --&gt; D
+    D --&gt; PR2 --&gt; E
+    E --&gt; TA --&gt; GE --&gt; OUT
+    E --&gt; TB
+    TA --&gt; TC
+    TB --&gt; TC</pre></figure>
+<p>Each corpus's sessions were drawn into disjoint splits: A and B by stratified sampling at the start (<code>analysis/lib/sample.py</code>), E and H in commit 49f254b, before any Phase E measurement (<code>analysis/PHASE_E_PLAN.md</code>).</p>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    S_A[&quot;A&lt;br/&gt;calibrate thresholds&quot;] --&gt; S_B[&quot;B&lt;br/&gt;measure;&lt;br/&gt;Phase C also read it&quot;] --&gt; S_E[&quot;E&lt;br/&gt;fresh replication&quot;] --&gt; S_H[&quot;H&lt;br/&gt;held out; read once,&lt;br/&gt;after the freeze&quot;]</pre></figure>
+<p>Phase A only looked at which fields exist and at what resolution, on split A, and its gate killed lines whose data could not carry them, for example latency in aiv_cu, where a call and its result share one stamp in 6,107/6,107 pairs (<code>analysis/PHASE_A.md</code> A1). Thresholds for Phase B were then frozen in a pre-registration commit (3df8d28) from split A alone, and an independent re-derivation reproduced 49 of 50 Phase B unit checks (<code>analysis/FINDINGS.md</code>, "Read this first"). Phase C's 14 discovery lenses read split B before the Phase B probes ran, so B is not blind for anything Phase C found; a skeptic reproduced 200 of its 239 observations (<code>analysis/FINDINGS.md</code> §4.1). Phase E re-ran every survivor and the five Phase D proposals under a second pre-registration (55fc556), using a fresh split E as the replication; split E holds 1,825 swechat and 2,000 aiv_cu sessions (<code>analysis/PREREG_E.md</code> §0). Of 25 candidate x unit rows, 9 survived, 7 were downgraded, 3 were killed and 6 could not be run (<code>analysis/SECOND_PASS.md</code> §1, <code>analysis/out/phase_e/second_pass.json</code> <code>counts</code>). Split H is held out and is read once, after the code freeze (<code>analysis/DESIGN.md</code> §5.2).</p>
+<hr>
+<h2 id="3-hidden-witnesses-inside-ordinary-logs-and-the-attacks-they-catch">3. Hidden witnesses inside ordinary logs, and the attacks they catch</h2>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    subgraph W[&quot;Witness already in the log&quot;]
+        W1[&quot;Request-id server clock&lt;br/&gt;R1, id_bracket&quot;]
+        W2[&quot;Usage ledger&lt;br/&gt;R5, ledger_tally&quot;]
+        W2b[&quot;Output-token accounting&lt;br/&gt;N2, inline_output_accounting&quot;]
+        W3[&quot;Harness timers&lt;br/&gt;P1 latency floor&quot;]
+        W4[&quot;Git commit times&lt;br/&gt;R3&quot;]
+        W5[&quot;Structure: the harness&#x27;s second rendering&lt;br/&gt;R4, dual_render_recount&quot;]
+        W6[&quot;Recomputation&lt;br/&gt;N5 battery&quot;]
+        W7[&quot;Shadow state&lt;br/&gt;replayed file reads and writes&quot;]
+    end
+    subgraph AT[&quot;Attack, synthetic, sw/CC split E&quot;]
+        A1[&quot;Back-dated response&quot;]
+        A2[&quot;Request-id swap or splice&quot;]
+        A3[&quot;Deleted response&quot;]
+        A4[&quot;Inline fabrication&lt;br/&gt;model writes its own tool output&quot;]
+        A5[&quot;Output substitution&lt;br/&gt;flipped error, changed digit, same-size swap&quot;]
+        A6[&quot;Consistent rewrite of k results&quot;]
+        A7[&quot;Execution-layer shim&lt;br/&gt;returns plausible output&quot;]
+        A8[&quot;Coherent forgery&lt;br/&gt;every field consistent&quot;]
+    end
+    NONE[&quot;Nothing in the log can catch it&quot;]
+    W1 --&gt;|&quot;30 s: 488/500 vs 3/500&quot;| A1
+    W1 --&gt;|&quot;swap 486/500, splice 395/500, vs 3/500&quot;| A2
+    W2 --&gt;|&quot;396/500 vs 4/500&quot;| A3
+    W2b --&gt;|&quot;224/500 vs 83/500, partial&quot;| A4
+    W5 --&gt;|&quot;same-size swap 76/500 vs 0/500, partial&quot;| A5
+    W6 -.-&gt;|&quot;no detecting cell&quot;| A5
+    W5 --&gt;|&quot;k=5: 205/500 vs 0/500, partial&quot;| A6
+    W4 --&gt;|&quot;k=2: 45/500 vs 0/500, partial&quot;| A6
+    W3 -.-&gt;|&quot;in principle only, not shipped&quot;| A7
+    W7 -.-&gt;|&quot;not measured in analysis/&quot;| A5
+    A8 --- NONE</pre></figure>
+<p>Each witness is a field the agent does not write: the provider mints request ids with a clock inside them, bills output tokens, and the harness stamps time and writes a second structured copy of some results. Against synthetic attacks on sw/CC split E, the request-id clock flags a 30 s back-dated response in 488/500 sessions against 3/500 honest copies, an adjacent id swap in 486/500 and a nearest-time foreign id in 395/500 (<code>analysis/out/phase_e/n7_timing.json</code> <code>cells</code>, keys <code>swechat/claude_code|E|R1_BRACKET|...</code>), with an honest stream rate of 11/3,325 = 0.00331 on E (<code>analysis/SECOND_PASS.md</code> §4.1). The usage ledger catches deleted responses, 396/500 against 4/500, but its E split is not blind, and output-token accounting is the only shipped check with power against an attack inside the threat model, inline fabrication, where it is only partial: 224/500 against 83/500 (<code>analysis/out/phase_e/n7_content.json</code> <code>cells</code>; <code>analysis/DESIGN.md</code> §1.5). Output substitution, consistent rewrites, reordering, deleted pairs and inserted pairs walk through: 10 of 21 attack types have no detecting cell in any detector, unit or split (<code>analysis/SECOND_PASS.md</code> §6). A shim that returns plausible output, and any coherent forgery, passes by construction (<code>analysis/DESIGN.md</code> §1.2, §1.4).</p>
+<div class="table-wrap"><table><thead><tr><th>Witness</th><th>What we measured (honest baseline, then synthetic attack)</th><th>Source</th></tr></thead><tbody><tr><td>Request-id server clock (R1)</td><td>honest streams on E 11/3,325 = 0.00331; back-date 30 s 488/500 vs 3/500</td><td><code>analysis/SECOND_PASS.md</code> §4.1; <code>analysis/out/phase_e/n7_timing.json</code></td></tr><tr><td>Usage ledger (R5)</td><td>honest sessions 23/3,165 = 0.0073 (B ∪ E); delete_response 396/500 vs 4/500 (E not blind)</td><td><code>analysis/SECOND_PASS.md</code> §1 row 22; <code>analysis/out/phase_e/n7_content.json</code></td></tr><tr><td>Output-token accounting (N2)</td><td>inline_fabrication 224/500 vs 83/500 (PARTIAL); 237/1,492 = 0.159 of honest sessions flagged</td><td><code>analysis/out/phase_e/n7_content.json</code>; <code>analysis/DESIGN.md</code> Summary, from <code>n2.json</code></td></tr><tr><td>Harness timers (P1 floor, N1)</td><td>results moved 5 s earlier: 257/500 vs 121/500 honest; N1 flags only 219/3,842 = 0.057 of tampered shell calls per call</td><td><code>analysis/out/phase_e/n7_timing.json</code>; <code>analysis/SECOND_PASS.md</code> §6</td></tr><tr><td>Git commit times (R3)</td><td>honest 2/976; consistent rewrite k=2 45/500 vs 0/500 (edit artifact)</td><td><code>analysis/SECOND_PASS.md</code> §1 row 16; <code>analysis/out/phase_e/n7_timing.json</code></td></tr><tr><td>Structure: dual rendering (R4)</td><td>honest 0/2,998 sessions; rewrite k=5 205/500 vs 0/500; same-size swap 76/500 vs 0/500</td><td><code>analysis/SECOND_PASS.md</code> §1 row 20; <code>analysis/out/phase_e/n7_content.json</code></td></tr><tr><td>Recomputation (N5 battery)</td><td>determinism, sort order, truncation, whitespace and cold start are DEAD in sw/CC (determinism drift 491/1,745 = 0.281); no content detector reaches DETECTS</td><td><code>analysis/SECOND_PASS.md</code> §6</td></tr><tr><td>Shadow state</td><td>not measured in <code>analysis/</code>. The nearest relative, P2 knowledge precedence, never reached ALIVE (honest E rate 608/4,466 = 0.136)</td><td><code>analysis/SECOND_PASS.md</code> §1 row 5</td></tr></tbody></table></div>
+<hr>
+<h2 id="4-verifier-data-flow">4. Verifier data flow</h2>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+    IN1[&quot;Raw transcript&lt;br/&gt;Claude Code JSONL, Codex, OpenCode,&lt;br/&gt;Gemini CLI, ATIF trajectory&quot;]
+    IN2[&quot;IR parquet cache&lt;br/&gt;splits A, B, E&quot;]
+    IN3[&quot;Python list of turn dicts&quot;]
+    IN4[&quot;Eval pack&lt;br/&gt;attacks applied by eval/&quot;]
+    LD[&quot;verifier/loaders&lt;br/&gt;sniff the format, reuse the analysis/loaders parsers&quot;]
+    IR[&quot;IR events, one row per event&lt;br/&gt;analysis/lib/ir.py&quot;]
+    SE[&quot;Session&lt;br/&gt;call/result pairs, responses, clocks,&lt;br/&gt;capabilities, sidecar fields&quot;]
+    REG[&quot;registry: for each enabled check&quot;]
+    G1{{&quot;Required fields present?&quot;}}
+    G2{{&quot;Check applies to this session?&quot;}}
+    U1[&quot;unconstrained&lt;br/&gt;missing: field&quot;]
+    U2[&quot;unconstrained&lt;br/&gt;abstain: not applicable&quot;]
+    RUN[&quot;check.run&lt;br/&gt;one CallVerdict per call, with evidence&quot;]
+    CO[&quot;compose&lt;br/&gt;contradicted beats supported beats unconstrained&lt;br/&gt;reference checks never decide&quot;]
+    VE[&quot;Verdict per call&lt;br/&gt;verdict, rule, reason, evidence events, blame&quot;]
+    O1[&quot;CLI table&quot;]
+    O2[&quot;JSONL + session.json&quot;]
+    O3[&quot;Static HTML page&lt;br/&gt;evidence inline&quot;]
+    O4[&quot;eval/run_eval.py&lt;br/&gt;joins tamper labels, scores&quot;]
+    IN1 --&gt; LD
+    IN2 --&gt; LD
+    LD --&gt; IR
+    IN3 --&gt; IR
+    IN4 --&gt; IR
+    IR --&gt; SE --&gt; REG --&gt; G1
+    G1 --&gt;|&quot;no&quot;| U1
+    G1 --&gt;|&quot;yes&quot;| G2
+    G2 --&gt;|&quot;no&quot;| U2
+    G2 --&gt;|&quot;yes&quot;| RUN
+    U1 --&gt; CO
+    U2 --&gt; CO
+    RUN --&gt; CO --&gt; VE
+    VE --&gt; O1
+    VE --&gt; O2
+    VE --&gt; O3
+    VE --&gt; O4</pre></figure>
+<p>Every input, whatever its format, becomes the same event table (the IR in <code>analysis/lib/ir.py</code>), and one session's events become a <code>Session</code> that records which fields this log actually carries (<code>analysis/DESIGN.md</code> §2.3). Each check is a plugin that declares the fields it needs; if they are missing, every call gets <code>unconstrained</code> with the reason, so a gap in the data is reported as lost coverage, never as a detection. Composition is a fixed order, not a vote: any <code>contradicted</code> wins, then <code>supported</code>, then <code>unconstrained</code>, and a statistical check may contradict but never support (<code>analysis/DESIGN.md</code> §4.6, DA2). The scaffold runs end to end with the reference check only: 115 tests ran and passed with 1 slow test skipped, and the demo session gives 17/17 calls <code>unconstrained</code> because no detection check is enabled yet (<code>analysis/out/phase_e/scaffold_check.json</code> <code>tests</code>; <code>analysis/out/phase_e/demo/demo_meta.json</code>). The planned checks, in build order, are <code>id_bracket</code> and <code>inline_output_accounting</code> (MUST), <code>ledger_tally</code> and <code>dual_render_recount</code> (SHOULD) and <code>latency_floor</code> (COULD) (<code>analysis/DESIGN.md</code> §7.2).</p>
+<hr>
+<h2 id="5-evaluation-protocol">5. Evaluation protocol</h2>
+<h3 id="5a-how-the-corpus-measurements-were-run">5a. How the corpus measurements were run</h3>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+    PRE[&quot;Pre-register the rule and its thresholds&lt;br/&gt;commit before any outcome exists&quot;]
+    CAL[&quot;Calibrate thresholds on split A only,&lt;br/&gt;measure on split B, replicate on fresh split E&quot;]
+    AC[&quot;Artifact checks AC1 to AC5&lt;br/&gt;parser, truncation, join, dominance, sampling&lt;br/&gt;can only lower a label&quot;]
+    HON{{&quot;Honest leg passes?&lt;br/&gt;rate at most 0.05, CI high at most 0.10&quot;}}
+    ATK{{&quot;Synthetic attack leg&lt;br/&gt;recall at least 0.5 and&lt;br/&gt;recall CI low above honest CI high?&quot;}}
+    DET[&quot;DETECTS&quot;]
+    PAR[&quot;PARTIAL&lt;br/&gt;separates, recall under 0.5&quot;]
+    BL[&quot;BLIND&quot;]
+    V3[&quot;The verifier reports three verdicts per call&lt;br/&gt;contradicted, supported, unconstrained&lt;br/&gt;unconstrained is shown as coverage, not hidden&quot;]
+    RPT[&quot;Report per unit and per threat class&lt;br/&gt;never pooled across corpora&quot;]
+    H[&quot;Split H: read once, after the freeze, every read logged&quot;]
+    PRE --&gt; CAL --&gt; AC --&gt; HON
+    HON --&gt;|&quot;no&quot;| BL
+    HON --&gt;|&quot;yes&quot;| ATK
+    ATK --&gt;|&quot;yes&quot;| DET
+    ATK --&gt;|&quot;separates only&quot;| PAR
+    ATK --&gt;|&quot;no&quot;| BL
+    DET --&gt; V3
+    PAR --&gt; V3
+    V3 --&gt; RPT --&gt; H</pre></figure>
+<p>Every rule and threshold was written down and committed before the data that judges it was read: thresholds come from split A, and the first measurement is on B, with E as the replication (<code>analysis/PREREG_E.md</code> §0). A check decides on a unit only if its honest leg passes the pre-registered bar there, a rate of at most 0.05 with a CI high of at most 0.10 (<code>analysis/DESIGN.md</code> DA16). Against an attack, DETECTS needs recall of at least 0.5 and a recall CI low above the honest CI high; separation with lower recall is PARTIAL (<code>analysis/out/phase_e/n7_content.json</code>, <code>deciding_number.rule</code> in each cell). Results are reported per unit and per threat class, never as one pooled number (<code>analysis/DESIGN.md</code> DA12). <code>unconstrained</code> is an answer, not a failure, and the share of calls that get it is reported as coverage (<code>analysis/DESIGN.md</code> §1.3).</p>
+<h3 id="5b-how-the-swarm-labeled-dataset-is-tested">5b. How the swarm labeled dataset is tested</h3>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+    DB[&quot;Swarm labeled dataset, read-only&lt;br/&gt;v_blind: the claimed output and its context&lt;br/&gt;observed: provenance the session itself produced&quot;]
+    WIT[&quot;Witness and label data&lt;br/&gt;real output, host stdout, answer labels&quot;]
+    SPLIT{{&quot;sha256 of session_id, mod 2&quot;}}
+    DEV[&quot;dev: build and tune rules,&lt;br/&gt;look at labels here only&quot;]
+    SOUND{{&quot;Soundness gate&lt;br/&gt;fires on 0 honest real executed calls&lt;br/&gt;and 0 honest swarm tool results?&quot;}}
+    DROP[&quot;Rule dropped&quot;]
+    FREEZE[&quot;Freeze rules and thresholds into a JSON&quot;]
+    TEST[&quot;test: score once with the frozen rules&quot;]
+    SCORE[&quot;Join labels only at scoring&lt;br/&gt;contradicted, supported, or unconstrained as an abstention&quot;]
+    STRATA[&quot;Report per stratum, never pooled&lt;br/&gt;source, spoof class, unit, instructed to lie, consistency,&lt;br/&gt;and the honest trap classes&quot;]
+    DB --&gt; SPLIT
+    SPLIT --&gt;|&quot;0&quot;| DEV
+    SPLIT --&gt;|&quot;1&quot;| TEST
+    DEV --&gt; SOUND
+    SOUND --&gt;|&quot;no&quot;| DROP
+    SOUND --&gt;|&quot;yes&quot;| FREEZE --&gt; TEST --&gt; SCORE --&gt; STRATA
+    WIT -.-&gt;|&quot;scoring only, never inside a detector&quot;| SCORE</pre></figure>
+<p>The swarm dataset is an outside input with labels, so it gets its own split: a session goes to dev when the sha256 of its id is even and to test when it is odd, and labels are looked at on dev only. A rule is kept only if it fires on zero honest calls, checked against every honest real executed call and every honest swarm tool result, because one false <code>contradicted</code> makes the tool useless. Rules and thresholds are frozen into a JSON before the test split is scored. Detectors never read the real output, host stdout or the labels; those are joined only when scoring, and <code>unconstrained</code> counts as an abstention, not a miss. Results are reported per stratum (source, spoof class, unit, whether the agent was told to lie, consistency) and separately for the honest classes that look like positives, such as an agent quoting a false value in order to refute it.</p>
+<hr>
+<h2 id="6-results-at-a-glance">6. Results at a glance</h2>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+    ROWS[&quot;25 candidate x unit rows, second pass&quot;]
+    SV[&quot;SURVIVES 9&quot;]
+    DG[&quot;DOWNGRADED 7&quot;]
+    KL[&quot;KILLED 3&quot;]
+    NR[&quot;NOT_RUN 6&quot;]
+    AL[&quot;Final ALIVE 3, all in sw/CC&lt;br/&gt;R1 request-id bracket, replicated on blind E&lt;br/&gt;R5 usage ledger, E not blind&lt;br/&gt;P3a zero-error tail, baseline only&quot;]
+    WK[&quot;Final WEAK 13&lt;br/&gt;P1 latency, P2 knowledge precedence,&lt;br/&gt;P4 round numbers, R3 git, R4 dual render&quot;]
+    DD[&quot;Final DEAD 3&lt;br/&gt;R2 image ledger, P4 pooled, P2 aiv_cc&quot;]
+    ROWS --&gt; SV
+    ROWS --&gt; DG
+    ROWS --&gt; KL
+    ROWS --&gt; NR
+    SV --&gt; AL
+    SV --&gt; WK
+    DG --&gt; WK
+    KL --&gt; DD</pre></figure>
+<figure class="diagram"><pre class="mermaid">flowchart LR
+    GRID[&quot;N6 transfer grid&lt;br/&gt;396 loaded mechanism x unit cells&quot;]
+    DEC[&quot;Decided: 87&quot;]
+    UND[&quot;Not decidable: 309&quot;]
+    G_AL[&quot;ALIVE 7&lt;br/&gt;19 before the artifact checks and kill tests&quot;]
+    G_WK[&quot;WEAK 41&quot;]
+    G_DD[&quot;DEAD 39&quot;]
+    G_IN[&quot;INSUFFICIENT_N 110&lt;br/&gt;too few sessions&quot;]
+    G_NT[&quot;NOT_TESTABLE 172&lt;br/&gt;a required field is absent&quot;]
+    G_NR[&quot;NOT_RUN 26, per stratum 1&quot;]
+    GRID --&gt; DEC
+    GRID --&gt; UND
+    DEC --&gt; G_AL
+    DEC --&gt; G_WK
+    DEC --&gt; G_DD
+    UND --&gt; G_IN
+    UND --&gt; G_NT
+    UND --&gt; G_NR</pre></figure>
+<p>Three candidates survived every attempt to kill them, all in sw/CC: the request-id bracket (R1, replicated on a blind E), the usage ledger (R5, E not blind) and the zero-error tail (P3a, a baseline with no positive control) (<code>analysis/SECOND_PASS.md</code> §1, §8). R2 died on its honest rate, 44/807 = 0.0545 against a 0.05 budget; the pooled round-number row collapsed without one model; and in sw/CC the reaction-time test and five of the seven N5 items are DEAD (<code>analysis/SECOND_PASS.md</code> §7). Across the transfer grid only 87 of 396 loaded cells could be decided, and 7 are ALIVE, down from 19 before the artifact checks and kill tests: most cells are undecidable rather than failed (<code>analysis/SECOND_PASS.md</code> §6, <code>analysis/MORNING_BRIEF.md</code> §2, <code>analysis/out/phase_e/n6_grid.json</code>). Read plainly, the verifier we can ship mostly detects naive record editing; its only in-scope power is partial, against inline fabrication, and a coherent forgery passes (<code>analysis/DESIGN.md</code> §1.5). We do not claim the request-id bracket method: prior art for it exists (<code>analysis/PRIOR_ART.md</code>, B2 rows).</p>
+<div class="table-wrap"><table><thead><tr><th>The 7 ALIVE grid cells</th><th>Held at WEAK</th><th>Died (KILLED or DEAD)</th></tr></thead><tbody><tr><td>R1 request-id bracket, sw/CC: honest 21/7,008 streams = 0.00300</td><td>P1 latency floor, all 3 second-pass units</td><td>R2 image-token ledger: honest 44/807 = 0.0545</td></tr><tr><td>R5 usage ledger, sw/CC: honest 23/3,165 = 0.0073 (E not blind)</td><td>P2 knowledge precedence</td><td>P4 round numbers, swechat pooled</td></tr><tr><td>P3a zero-error tail, sw/CC: E 8/380 = 0.021 (baseline only)</td><td>P4 round numbers, sw/CC and cc_local (after F3)</td><td>P2 knowledge precedence, aiv_cc (one agent)</td></tr><tr><td>N1 conditional duration, sw/CC, and aiv_cc (one agent, B only)</td><td>R3 git window: honest 2/976</td><td>N3 reaction time, N5a to d and N5g, in sw/CC</td></tr><tr><td>P4b round numbers, tbench2 (Phase B rule only); N2 token accounting, agentcap/opencode (one corpus)</td><td>R4 dual render: honest 0/2,998 sessions</td><td>10 of 21 attack types: no detecting cell anywhere</td></tr></tbody></table></div>
+<p>Sources: <code>analysis/SECOND_PASS.md</code> §1, §6, §7; <code>analysis/MORNING_BRIEF.md</code> §2, §3; <code>analysis/out/phase_e/second_pass.json</code>; <code>analysis/out/phase_e/n6_grid.json</code>.</p>
+<h2 id="swarm-dataset-results">Swarm dataset results</h2>
+<figure class="diagram"><pre class="mermaid">flowchart TD
+    DB[&quot;spoof_v1.db, read-only&lt;br/&gt;31,987 rows; test split 16,112&quot;]
+    V[&quot;Session view per row&lt;br/&gt;tampered transcript, spliced honest transcript,&lt;br/&gt;or honest transcript&quot;]
+    T0[&quot;T0 structural&lt;br/&gt;call and turn chain&quot;]
+    T1[&quot;T1 recompute&lt;br/&gt;output vs the call&#x27;s own inputs&quot;]
+    T3[&quot;T3 shadow state&lt;br/&gt;files and git state seen so far&quot;]
+    TC[&quot;TC token conservation&lt;br/&gt;server token counts vs logged text&quot;]
+    CL[&quot;Claim provenance&lt;br/&gt;published claim vs own record&quot;]
+    OURS{{&quot;Combined: contradicted if any check contradicts&quot;}}
+    BASE[&quot;Baseline oracles, swarm/delta.py&lt;br/&gt;tool outputs 368 / 5,948 = 0.062&quot;]
+    R1[&quot;Ours, test: tool outputs 3,778 / 5,948 = 0.635&lt;br/&gt;claims 144 / 164 = 0.878&quot;]
+    R2[&quot;Union with the baseline, test&lt;br/&gt;tool outputs 4,041 / 5,948 = 0.679&lt;br/&gt;claims 145 / 164 = 0.884&quot;]
+    S[&quot;Soundness: 0 false positives on 179,365 honest calls&lt;br/&gt;and on 10,000 honest test rows&quot;]
+    DB --&gt; V
+    V --&gt; T0
+    V --&gt; T1
+    V --&gt; T3
+    V --&gt; TC
+    DB --&gt; CL
+    T0 --&gt; OURS
+    T1 --&gt; OURS
+    T3 --&gt; OURS
+    TC --&gt; OURS
+    CL --&gt; OURS
+    OURS --&gt; R1 --&gt; R2
+    BASE --&gt; R2
+    S -.-&gt; R1</pre></figure>
+<p>We tested five frozen checks on the test split of the swarm team's labeled dataset, scoring it once. Each check fired on 0 of 179,365 honest tool calls and on 0 of 10,000 honest test rows. On fabricated tool outputs the combined verdict contradicts 3,778 of 5,948 (0.635), against 368 (0.062) for the baseline. On fabricated claims it contradicts 144 of 164 (0.878), against 38 (0.232) for the baseline. The union with the baseline reaches 4,041 (0.679) and 145 (0.884), still with no false positives. Two numbers are close to built in: injected_I-struct 780/780 (T0) and injected_I-recompute 743/744 (T1), because the injector creates those two classes from the very invariants these checks test.</p>
+<p>What stays out of reach is the coherent forgery. On test, ours abstains on 2,169 of the 5,948 fabricated tool outputs, mostly counterfactual (834 of 1,149) and tiered (823 of 1,465) rows whose output cannot be recomputed from the transcript and whose token count is within tolerance. This dataset cannot test the request-id clock (vLLM ids carry no time) or the timing mechanisms (forged rows keep the original timing). Full tables: <code>analysis/SWARM_DATASET_RESULTS.md</code>; numbers: <code>analysis/out/swarmds/test_scores.json</code>.</p>
+<p class="load-note" id="loadNote" hidden>The diagrams could not be drawn (the Mermaid library did not load), so their source text is shown instead.</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('pre.mermaid'));
+  var sources = nodes.map(function (n) { return n.textContent; });
+  var mode = 'auto';
+  try { mode = localStorage.getItem('fc-theme') || 'auto'; } catch (e) {}
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function isDark() { return mode === 'dark' || (mode === 'auto' && mq && mq.matches); }
+  function applyAttr() {
+    if (mode === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', mode);
+    document.getElementById('themeBtn').textContent = 'Theme: ' + mode;
+  }
+  function render() {
+    if (!window.mermaid) { document.getElementById('loadNote').hidden = false; return; }
+    nodes.forEach(function (n, i) { n.removeAttribute('data-processed'); n.innerHTML = ''; n.textContent = sources[i]; });
+    window.mermaid.initialize({
+      startOnLoad: false, securityLevel: 'strict', theme: isDark() ? 'dark' : 'default',
+      fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif',
+      flowchart: { htmlLabels: true, useMaxWidth: true, curve: 'basis' }, pie: { useMaxWidth: true }
+    });
+    window.mermaid.run({ nodes: nodes }).then(fit).catch(function (err) { console.error(err); });
+  }
+  // On narrow screens, keep wide diagrams legible: give them a floor width and let the figure
+  // (not the page) scroll sideways.
+  function fit() {
+    nodes.forEach(function (n) {
+      var svg = n.querySelector('svg'), fig = n.parentNode;
+      var hint = fig.querySelector('.scroll-hint');
+      if (hint) hint.remove();
+      if (!svg) return;
+      svg.style.minWidth = '';
+      var vb = (svg.getAttribute('viewBox') || '').split(/\s+/);
+      var vbw = parseFloat(vb[2] || '0');
+      var floor = Math.round(vbw * 0.5);
+      if (vbw && fig.clientWidth - 24 < floor) {
+        svg.style.minWidth = floor + 'px';
+        hint = document.createElement('div');
+        hint.className = 'scroll-hint';
+        hint.textContent = 'Wide diagram: scroll sideways inside this box.';
+        fig.insertBefore(hint, n);
+        fig.scrollLeft = Math.max(0, (fig.scrollWidth - fig.clientWidth) / 2);
+      }
+    });
+  }
+  var rt;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(fit, 150); });
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    mode = mode === 'auto' ? 'light' : mode === 'light' ? 'dark' : 'auto';
+    try { localStorage.setItem('fc-theme', mode); } catch (e) {}
+    applyAttr(); render();
+  });
+  if (mq && mq.addEventListener) mq.addEventListener('change', function () { if (mode === 'auto') render(); });
+  applyAttr(); render();
+})();
+</script>
+</body>
+</html>

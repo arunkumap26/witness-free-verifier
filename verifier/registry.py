@@ -33,6 +33,22 @@ CHECK_MODULES: tuple[str, ...] = ("reference",)
 # §5.7 MUST rows on E. Reference checks are never listed.
 ENABLED_CHECKS: tuple[str, ...] = ()
 
+# Profiles. 'default' is ENABLED_CHECKS above (unchanged). 'swarm' enables the five checks validated on the swarm
+# harness's spoof dataset (verifier/swarm_profile.py; frozen rules in analysis/swarmds/frozen_*.json; results in
+# analysis/SWARM_DATASET_RESULTS.md). Those checks read swarm turns directly and are run through
+# verifier.swarm_profile.run_session / verify_claim, not through run_checks(Session).
+SWARM_PROFILE_CHECKS: tuple[str, ...] = ("t0_structural", "t1_recompute", "t3_shadow_state", "token_conservation",
+                                         "claim_provenance")
+PROFILES: dict[str, tuple[str, ...]] = {"default": ENABLED_CHECKS, "swarm": SWARM_PROFILE_CHECKS}
+
+
+def enabled_checks(profile: str = "default") -> tuple[str, ...]:
+    """Checks enabled for a profile. KeyError on an unknown profile."""
+    if profile not in PROFILES:
+        raise KeyError(f"unknown profile {profile!r}; known: {sorted(PROFILES)}")
+    return PROFILES[profile]
+
+
 _NAME_RX = re.compile(r"^[a-z][a-z0-9_]*$")
 _SEMVER_RX = re.compile(r"^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.\-]+)?$")
 _loaded = False
@@ -201,5 +217,6 @@ def describe() -> list[dict]:
     return rows
 
 
-__all__ = ["REGISTRY", "CHECK_MODULES", "ENABLED_CHECKS", "CAPABILITIES", "register", "load_checks", "get_check",
+__all__ = ["REGISTRY", "CHECK_MODULES", "ENABLED_CHECKS", "SWARM_PROFILE_CHECKS", "PROFILES", "enabled_checks",
+           "CAPABILITIES", "register", "load_checks", "get_check",
            "check_module_file", "resolve_names", "RunStats", "run_checks", "kinds_of", "describe"]

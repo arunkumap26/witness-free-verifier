@@ -1,0 +1,38 @@
+{
+ "check": "T3 shadow state",
+ "module": "verifier/checks/shadow_state.py",
+ "module_sha256": "a0342eec13c42d1a77d6b6f9e854d63365ed4b3f17eaf0b52935c64b6fb166f6",
+ "check_version": "1.0.0",
+ "frozen_at": "2026-10-04, before any test-split scoring (test split never scored by this author)",
+ "entrypoint": "verifier.checks.shadow_state.check_session(turns: list[dict], params: dict|None=None) -> {tool_call_id: {verdict, reason, confidence, rule, conflict_with, localized}}; check_call(turns, tool_call_id, claimed_output=None, params=None) -> one entry",
+ "enabled_rules": [
+  "read_content",
+  "read_absent",
+  "presence_after_absence",
+  "listing_missing",
+  "edit_unsatisfiable",
+  "edit_false_failure",
+  "git_status_flip",
+  "git_clean_after_edit",
+  "exit_status",
+  "rerun_exit",
+  "write_ack_state"
+ ],
+ "disabled_rules": [],
+ "constants": {
+  "DEFAULT_CWD (owned state root)": "/workspace",
+  "READ_MAX_LINE": 2000,
+  "truncation_marker": "\\n\\n\\.\\.\\. \\[\\d+ characters truncated\\] \\.\\.\\.\\n\\n",
+  "confidence": {
+   "localized_write_backed": 0.9,
+   "listing_blamed_for_omission": 0.8,
+   "git_status_blame_clean": 0.8,
+   "rerun_exit_blame_success": 0.8,
+   "exit_status": 0.95,
+   "pair_unlocalized": 0.5
+  }
+ },
+ "havoc": "user turns after the first; any Bash command not in the read-only effect model (READONLY_HEADS + read-only git subcommands, no file redirects/subshells/heredocs/loops/background); failed/unrecognised Write/Edit acks; Write/Edit clear rerun memory",
+ "scope_restriction": "only paths under /workspace are modelled (rung3b /shared is written concurrently by other agents: 58 honest FPs before this restriction, 0 after)",
+ "dev_basis": "analysis/swarmds/dev_t3_state.json"
+}

@@ -1,0 +1,97 @@
+{
+  "check": "t0_structural",
+  "version": "1.0.0",
+  "module": "verifier/checks/structural.py",
+  "module_sha256": "5e4cc161402762f3d098d90930fb5d380f1f69282be3e41a22a3404909098be1",
+  "frozen_at_unix": 1791153710,
+  "frozen_before_test_scoring": true,
+  "profile_gate": "rules run only when every turn has source=='swarm' (or caller forces profile='swarm'); otherwise every call is unconstrained/abstain:unvalidated_harness",
+  "tolerances": {
+    "timestamp_regression_s": 0.0,
+    "turn_number_step": 1,
+    "result_offset_from_call": 1,
+    "parent_uuid": "must equal previous turn's uuid",
+    "trailing_unanswered_call": "abstain (missing:result_truncated_at_end)"
+  },
+  "rule_priority": [
+    "orphan_result",
+    "result_before_call",
+    "duplicate_call_id",
+    "missing_result",
+    "result_not_adjacent",
+    "tool_name_mismatch",
+    "session_id_mismatch",
+    "turn_id_mismatch",
+    "uuid_duplicate",
+    "parent_chain_break",
+    "turn_number_gap",
+    "timestamp_regression"
+  ],
+  "rules": {
+    "duplicate_call_id": {
+      "scope": "call",
+      "confidence": 0.99999
+    },
+    "orphan_result": {
+      "scope": "call",
+      "confidence": 0.99999
+    },
+    "result_before_call": {
+      "scope": "call",
+      "confidence": 0.99999
+    },
+    "missing_result": {
+      "scope": "call",
+      "confidence": 0.99999
+    },
+    "result_not_adjacent": {
+      "scope": "call",
+      "confidence": 0.99999
+    },
+    "tool_name_mismatch": {
+      "scope": "call",
+      "confidence": 0.99999
+    },
+    "parent_chain_break": {
+      "scope": "boundary",
+      "confidence": 0.99999
+    },
+    "uuid_duplicate": {
+      "scope": "turn",
+      "confidence": 0.99999
+    },
+    "turn_number_gap": {
+      "scope": "boundary",
+      "confidence": 0.99999
+    },
+    "turn_id_mismatch": {
+      "scope": "turn",
+      "confidence": 0.99999
+    },
+    "session_id_mismatch": {
+      "scope": "turn",
+      "confidence": 0.99999
+    },
+    "timestamp_regression": {
+      "scope": "boundary",
+      "confidence": 0.99999
+    }
+  },
+  "confidence_basis": {
+    "formula": "1 - (fp+1)/(n+2), fp=0, n = honest opportunities",
+    "pairing_rules_n_tool_results": 179349,
+    "pairing_conf": 0.99999,
+    "boundary_rules_n_boundaries": 452012,
+    "boundary_conf": 0.99999
+  },
+  "honest_validation": {
+    "n_sessions": 6232,
+    "n_calls": 179365,
+    "n_tool_results": 179349,
+    "contradicted_calls": 0,
+    "session_level": 0,
+    "execlog_rows": 19496,
+    "execlog_contradicted": 0
+  },
+  "dev_recall_I_struct": 1.0
+}

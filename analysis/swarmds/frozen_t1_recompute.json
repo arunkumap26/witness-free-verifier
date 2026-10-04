@@ -1,0 +1,40 @@
+{
+ "check": "t1_recompute",
+ "rules_version": "t1_recompute/1.0.0",
+ "module": "verifier/checks/recompute.py",
+ "module_sha256": "4c6af90710e2ca5986e8c6d6f2907d18af4f386682dc87579accd635f0285e1e",
+ "enabled_rules": [
+  "ack_path",
+  "ack_id",
+  "write_ack_state",
+  "pure_bash",
+  "known_file",
+  "read_numbering",
+  "exit_code",
+  "pytest_counts",
+  "pytest_replay"
+ ],
+ "confidence": {
+  "ack_path": 0.99,
+  "ack_id": 0.99,
+  "write_ack_state": 0.9,
+  "pure_bash": 0.98,
+  "known_file": 0.95,
+  "read_numbering": 0.97,
+  "exit_code": 0.95,
+  "pytest_counts": 0.95,
+  "pytest_replay": 0.85
+ },
+ "entrypoint": "verifier.checks.recompute:check_session(turns: list[dict]) -> dict[tool_call_id, {verdict, reason, confidence, rule, detail}]",
+ "claim_entrypoint": "verifier.checks.recompute:check_claim(row, turns=None) -> always unconstrained",
+ "harness_constants": {
+  "MAX_LINE_CHARS": 2000,
+  "DEFAULT_READ_LIMIT": 2000,
+  "MAX_DELIVERED_CHARS": 3000
+ },
+ "thresholds": "none: every rule is an exact invariant (no tuned threshold)",
+ "frozen_before_test": true,
+ "honest_fp_at_freeze": 0,
+ "honest_calls_validated": 179349,
+ "frozen_at": "2026-10-04T17:48:09"
+}

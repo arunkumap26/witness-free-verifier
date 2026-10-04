@@ -1,0 +1,36 @@
+{
+ "check": "claim_provenance@0.1.0",
+ "module": "verifier/checks/claims.py",
+ "entrypoint": "verifier.checks.claims:verify_claim(row, turns, observed=None, *, population=None, rules=None)",
+ "frozen_before_test_scoring": true,
+ "rules": {
+  "enabled": [
+   "M1",
+   "M2",
+   "M3",
+   "F1",
+   "F2",
+   "C1",
+   "C2",
+   "P1",
+   "A1"
+  ],
+  "M2_valid_hex_lengths": [
+   32,
+   40,
+   56,
+   64,
+   96,
+   128
+  ],
+  "M2_min_len": 20,
+  "M2_min_ascending_pairs": 12,
+  "F1_min_abs_diff": 2,
+  "F2_min_hex": 12,
+  "A1_min_grounded": 10,
+  "A1_min_share": 0.8
+ },
+ "population": "ChorePopulation built from all b1/b2/b5_lat transcripts via sessions.task_id (no labels, no execlog)",
+ "module_sha256": "c2843a809c2227fcb253e792d881d463e1927acfeef9879d67b7bfefef5924d6",
+ "loader_note": "verifier/__init__.py imports pandas (blocked by Application Control on this host); load claims.py by file path (stdlib-only), as dev_claims.py does"
+}
