@@ -1,0 +1,192 @@
+{
+ "question": "A5",
+ "provenance": "Structured outputs of the Phase A workflow's measure:a5 and verify:a5 subagents (workflow wf_a777a5b4-cfb), copied verbatim. The verifier re-derived the numbers with its own scratch scripts (not committed); its numbers are verifier-reported unless the synthesizer re-derived them in analysis/out/phase_a/resolve.json.",
+ "measurer_summary": {
+  "question": "A5 - Token accounting. Which per-turn token fields exist per corpus? Does any field account tool-result tokens separately from model-generated tokens? Is token conservation (context delta between consecutive API calls vs the chars appended) tight enough to be worth a Phase C probe?",
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a_a5.py",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a5.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\phase_a_a5.md"
+  ],
+  "per_corpus": [
+   {
+    "corpus": "ALL (separate tool-result accounting)",
+    "answer": "No field in any corpus counts tool-result tokens apart from the rest of the prompt. Every usage record has a single input bucket that mixes tool output, user/system text and earlier model output. Candidates checked: (1) Gemini CLI tokens.tool is on 2505 of 3017 split-A gemini messages but nonzero in 0; total == input + output + thoughts holds 2505/2505, and the IR drops the field. (2) Gemini API toolUsePromptTokenCount is absent on all 752 + 528 aiv_cu rows; totalTokenCount == prompt + candidates + thoughts holds 752/752 and 528/528. (3) Claude usage.iterations[] never has more than one entry (swechat A: 132 single-entry lists; cc_local A: 7463). (4) CC toolUseResult.totalTokens is on 199 Task/Agent results and counts the subagent's own usage, not the result text. (5) The reasoning splits (Codex, OpenCode, Anthropic thinking_tokens, Gemini thoughts) separate model output only. (6) Copilot's toolDefinitionsTokens covers tool definitions (3 rows), and responseTokenLimit is a limit, not a count. Only partial exception: Gemini promptTokensDetails IMAGE in aiv_cu rises in 417/420 (pro) and 191/191 (flash) gaps that hold a GUI result, and in 0/309 and 0/320 gaps without one, in exact steps of 258 or 1064 tokens. So screenshot tool results are counted exactly; text tool output is not.",
+    "decisive_number": "Gemini CLI tokens.tool nonzero in 0/2505; IMAGE modality rises in 417/420 and 191/191 GUI gaps vs 0/309 and 0/320 non-GUI gaps",
+    "json_path": "part1.raw_A_checks.swechat_gemini_tokens_A.counts; part1.separate_tool_result_accounting; part2.aiv_cu/gemini-*.gemini_modality",
+    "verdict": "absent (partial for Gemini screenshot images only)"
+   },
+   {
+    "corpus": "aiv_cc",
+    "answer": "Fields: in/out/cache_read/cache_create on every assistant/call row and on 30098/31619 meta rows. Output is a streaming snapshot (per-response max has median 1). Result rows (100) carry num_turns, cost and durations but no usage in the IR. Conservation, non-image growth pairs: n=27491 in 73 sessions, Pearson 0.989, Spearman 0.985 [0.977, 0.988], chars/token median 2.431. Cross-fit median abs residual is 66.1 tokens [53.1, 82.9] (p90 195.5) vs a typical result of 1447.7 tokens, ratio 0.046 [0.038, 0.054]. delta<0 share 0.015 (449), of which 429 carry a compaction marker; delta==0 is 0. Image pairs: 2079; residual per image 913.7 [904.2, 916.7] tokens.",
+    "decisive_number": "cross-fit median |residual| 66.1 tokens = 0.046 x typical result (1447.7 tokens); Spearman 0.985",
+    "json_path": "part2.aiv_cc",
+    "verdict": "usable (TIGHT)"
+   },
+   {
+    "corpus": "swechat/claude_code",
+    "answer": "Fields: in/out/cr/cc on 4742/4745 assistant and 13620/13620 call rows, plus 3480 thinking-only meta rows. usage_in excludes cache. Output is a snapshot: it varies within 3809 of 6900 multi-row responses. Conservation: fit n=10669 in 125 sessions, Pearson 0.974, Spearman 0.915 [0.897, 0.931], chars/token median 2.225. Cross-fit median abs residual is 125.1 tokens [120.2, 130.3] (p90 607.8) vs a typical result of 168.7 tokens, ratio 0.742 [0.591, 1.0]. With thinking chars added, the residual is 90.1. delta<0 share 0.009 (100): 33 compaction-marked plus 67 unmarked; delta==0 is 8. Image pairs: only 23; residual per image 1316.2.",
+    "decisive_number": "residual 125.1 tokens = 0.742 x typical result; Spearman CI low 0.897",
+    "json_path": "part2.swechat/claude_code",
+    "verdict": "partial (LOOSE)"
+   },
+   {
+    "corpus": "cc_local",
+    "answer": "Fields: as for Claude Code, on all assistant/call rows and 3460/5054 meta rows. Conservation: fit n=4069 in 106 sessions, Pearson 0.878, Spearman 0.831 [0.804, 0.899], chars/token median 1.446, Theil-Sen intercept 851.5 tokens per pair. Cross-fit median abs residual is 586.3 tokens [539.6, 740.4] vs a typical result of 357.8 tokens, ratio 1.639 [1.372, 2.941]. delta<0: 1 of 4095. Post-hoc diagnostic: the residual tracks response k's usage_out (Spearman 0.538 [0.18, 0.614]), while thinking chars are >0 in only 15.1% of pairs. This fits thinking that stays in context but not in the log (interpretation). Image: 25 pairs in 5 sessions; per-image CI spans 0.",
+    "decisive_number": "residual 586.3 tokens = 1.639 x typical result",
+    "json_path": "part2.cc_local",
+    "verdict": "partial (NOT_TIGHT)"
+   },
+   {
+    "corpus": "aiv_cu (anthropic strata)",
+    "answer": "Fields: usage on call rows (opus 684/684, sonnet 683/683, haiku 552/552, fable 436/436, SDK 561/587), plus usage_detail (cache_creation 5m/1h, thinking_tokens). There is no image in the export; a GUI result in the gap is the image proxy. Conservation on non-GUI growth pairs: Spearman opus 0.684, sonnet 0.702, haiku 0.665 (n 188 < 200, INSUFFICIENT), fable 0.407, SDK 0.420, pooled 0.323 [0.146, 0.551] (n=1198, 67 sessions). Cross-fit residuals run 221.4-1173.1 tokens (pooled 709.3); intercepts 312-2269 tokens per pair. Typical result text is 24-74 tokens because GUI results have no text. Per GUI result: 634-1017 extra tokens.",
+    "decisive_number": "pooled Spearman 0.323; residual 709.3 tokens",
+    "json_path": "part2.aiv_cu/anthropic_all (and per-stratum keys)",
+    "verdict": "partial (NOT_TIGHT)"
+   },
+   {
+    "corpus": "aiv_cu (gemini strata)",
+    "answer": "Fields: usage_in (includes cache) and out on 752/752 and 528/528 call rows, plus usage_detail TEXT/IMAGE prompt and cache splits, thoughts and total. The identities hold exactly. Conservation on non-GUI growth pairs: Spearman 0.521 (pro, n=309) and 0.517 (flash, n=318); residuals 185.7 and 352.2 tokens. Using only the TEXT modality does not help: Spearman 0.521/0.517 without a GUI result, -0.01/0.171 with one. IMAGE modality is exact per screenshot (see the ALL row). Post-hoc rule: 119 of 752 gemini-pro usage rows have no api id. Rule off: Spearman 0.500, residual 207.1. Rule on: 0.521, 185.7.",
+    "decisive_number": "Spearman 0.521 / 0.517; IMAGE rises in 417/420 and 191/191 GUI gaps",
+    "json_path": "part2.aiv_cu/gemini-pro, part2.aiv_cu/gemini-flash",
+    "verdict": "partial (conservation NOT_TIGHT; image accounting exact)"
+   },
+   {
+    "corpus": "swechat/opencode",
+    "answer": "Fields: step-finish meta 3414/7742 with in (net of cache), out, cache read/write, cost (>0 on 3233) and reasoning_tokens (>0 on 2589). Conservation: fit n=3234 in 25 sessions, Pearson 0.982, Spearman 0.911 [0.892, 0.930]. Residual 89.2 tokens [79.6, 103.0] vs a typical result of 189.9 tokens, ratio 0.470. delta<0 share 0.045 (154), only 4 of them compaction-marked. Result-only variant (y = delta - usage_out, x = input chars): Spearman 0.951 [0.934, 0.970], residual 19.3 tokens [14.9, 22.5], ratio 0.102 [0.070, 0.135]. That meets the TIGHT thresholds.",
+    "decisive_number": "result-only residual 19.3 tokens = 0.102 x typical result",
+    "json_path": "part2.swechat/opencode",
+    "verdict": "partial (LOOSE; result-only variant meets TIGHT)"
+   },
+   {
+    "corpus": "swechat/gemini (Gemini CLI)",
+    "answer": "Fields: in (includes cache), out and cached on 2419/2923 assistant and 2307/2800 call rows. Raw-only fields thoughts and total (and tool, always 0) are dropped by the IR. Conservation: fit n=2400 in 11 sessions, Spearman 0.820 [0.778, 0.865], residual 117.8 tokens vs a typical result of 227.7, ratio 0.517. Result-only variant: Spearman 0.898 [0.857, 0.931], residual 47.0, ratio 0.174. delta<0: 87, none marked (the format has no compaction marker).",
+    "decisive_number": "residual 117.8 tokens = 0.517 x typical result",
+    "json_path": "part2.swechat/gemini",
+    "verdict": "partial (LOOSE)"
+   },
+   {
+    "corpus": "swechat/codex",
+    "answer": "Fields: token_count meta 701/2314 with last in (includes cached), out and cached, plus cumulative total_token_usage (total = in + out holds 722/722) and reasoning_output_tokens (<= out 701/701). There is no cache_create. Conservation: fit n=655 in 15 sessions, Spearman 0.918 [0.889, 0.944], residual 315.3 tokens vs a typical result of 136.5, ratio 2.311. The residual tracks usage_out (Spearman 0.548). Result-only variant (subtracting visible output only): residual 373.1, ratio 2.783. delta<0: 28 (2 marked).",
+    "decisive_number": "residual 315.3 tokens = 2.311 x typical result",
+    "json_path": "part2.swechat/codex",
+    "verdict": "partial (NOT_TIGHT)"
+   },
+   {
+    "corpus": "swechat/copilot, swechat/cursor, swechat/simple_text, whowhen, aiv_cu openai/compat",
+    "answer": "Copilot has usage_out only (364 rows in 2 sessions), with no input or context field. Cursor (7 sessions), simple_text (4), Who&When (73) and the aiv_cu openai-responses/openai-chat/compat-chat strata (28/17/22 sessions) have no usage at all. Conservation cannot be tested.",
+    "decisive_number": "rows_usage_in = 0 in all listed groups",
+    "json_path": "part2_not_feasible",
+    "verdict": "absent"
+   }
+  ],
+  "surprises": [
+   "Gemini CLI writes tokens.tool on every token record, but it is 0 in 2505/2505 split-A messages. The IR drops it, along with tokens.thoughts and tokens.total.",
+   "aiv_cu Gemini promptTokensDetails counts screenshot images exactly and apart from text. IMAGE tokens rise only in gaps that hold a GUI result (417/420 and 191/191 vs 0/309 and 0/320), in steps of 258 or 1064 tokens.",
+   "aiv_cc images cost a near-constant 913.7 tokens [904.2, 916.7] each, even though the export holds no image.",
+   "cc_local conserves far worse than the other Claude Code corpora: residual 586.3 tokens and intercept 851.5 per pair, vs 66.1 (aiv_cc) and 125.1 (swechat). The residual tracks usage_out (Spearman 0.538), and thinking chars are >0 in only 15.1% of pairs.",
+   "OpenCode's result-only form (subtracting the exact output count) cuts the residual from 89.2 to 19.3 tokens, about 0.10 of a typical result.",
+   "Context drops without a compaction marker are common in some formats: 150 of 3384 OpenCode non-image pairs, 87 of 2487 Gemini CLI, 67 of 10744 SWE-chat Claude Code. Every marked compaction pair dropped (33/33, 429/429).",
+   "aiv_cu context grows by hundreds of tokens per step that no logged text explains: intercepts 312-2269 tokens. The SDK stratum's median chars/token is 0.178.",
+   "Claude usage.iterations[] never has more than one entry (132 lists in swechat A, 7463 in cc_local A).",
+   "119 of 752 aiv_cu gemini-pro usage rows have no api_msg_id, so the USAGE DEDUPE rule cannot apply. A post-hoc rule (logged with before/after) treats each as its own response."
+  ],
+  "implications_for_phase_b": [
+   "Token conservation can carry a fabrication-detection mechanism only in aiv_cc as measured: TIGHT, residual 66.1 tokens vs a 1447.7-token typical result. Phase B thresholds should come from the split-A cross-fit residual distribution (part2.aiv_cc.non_image_growth.cross_fit.resid: median, p90 195.5, p99 870.9).",
+   "OpenCode, Gemini CLI and SWE-chat Claude Code are LOOSE in the chars form. A Phase B probe there should use the result-only form (delta - exact usage_out), which met the TIGHT thresholds for OpenCode, or add thinking chars (swechat CC residual 125.1 -> 90.1).",
+   "Exclude compaction-marked pairs: they always drop. Treat unmarked negative deltas as a known false-positive class, per format.",
+   "Images need their own term: about 914 tokens per image in aiv_cc; exact counts from Gemini IMAGE modality in aiv_cu. aiv_cu Anthropic has no image accounting, and its GUI-proxy residual is 634-1017 tokens per GUI result.",
+   "Before judging cc_local and Codex, model the response's own output tokens (thinking / encrypted reasoning that stays in context). Neither form was pre-registered here, so Phase B must pre-register it.",
+   "Do not plan a mechanism that needs a separate tool-result token count: no corpus has one (Gemini screenshot images excepted).",
+   "aiv_cu (all strata) and the no-usage corpora (Who&When, cursor, copilot, aiv_cu OpenAI/compat) cannot support token conservation."
+  ],
+  "could_not_measure": [
+   "Exact tokens: no tokenizer was used (no new dependencies). Chars stand in for tokens, so every residual is an upper bound.",
+   "Whether thinking or encrypted reasoning stays in context between calls. Inferred only from the residual-vs-usage_out correlation (cc_local 0.538, Codex 0.548). A Codex variant subtracting the full usage_out was not pre-registered and not run.",
+   "Whether Claude Code-format usage_out is final per response: it varies within responses (aiv_cc per-response max has median 1), so result-only conservation was not run for Claude Code formats.",
+   "aiv_cu Anthropic screenshots: the export holds no image, and 'GUI result => screenshot appended' is validated only for the Gemini strata.",
+   "Whether the aiv_cu separate stderr ('error') field is shown to the model: assumed yes.",
+   "The causes of unmarked negative deltas (OpenCode pruning, Claude Code context edits): the IR records no marker for them.",
+   "aiv_cc result.usage / modelUsage reconciliation: not in the IR. Phase C aiv_accounting covered it from raw data.",
+   "Typical result size for aiv_cu: GUI results have no text (median 9-174 chars), so residual / typical result is not meaningful there.",
+   "Gemini CLI messages without tokens: 2505 of 3017 split-A messages carry tokens. Output rows of the rest are counted as appended content (997 orphan rows), which blurs those pairs."
+  ]
+ },
+ "verifier": {
+  "question": "A5 - Token accounting: which per-turn token fields exist per corpus, does any field count tool-result tokens apart from model-generated tokens, and is token conservation (context delta between consecutive API calls vs appended chars) tight enough to be worth a Phase C probe? I re-derived this independently with scratch code (C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\a5_rederive.py, sens.py, misc.py). I read only the *_A caches plus raw split-A swechat transcripts for fields the IR drops. I read the measurer's script only after I had my own numbers.",
+  "checks": [
+   {
+    "corpus": "ALL (separate tool-result accounting)",
+    "reproduced": true,
+    "my_numbers": "Gemini CLI raw, split A: 3017 gemini messages, 2505 with tokens. tokens.tool is present on 2505 and nonzero on 0. total == input+output+thoughts holds 2505/2505. aiv_cu Gemini IR: totalTokenCount == in+out+thoughts holds 752/752 (pro) and 528/528 (flash). No toolUsePromptTokenCount/Details key in any of these rows. The loader would keep that key if present, and the pass-1 key inventory for the whole population (aiv_cu_pass1_stats.json) has 0 hits. Raw swechat CC split A: usage.iterations present on 5335 usage dicts (5179 empty, 131 with one entry, 0 longer; the measurer has 132). toolUseResult.totalTokens appears on 199 results. The only usage keys containing 'tool' are server_tool_use, which counts requests. IMAGE modality: gemini-pro rises in 417/420 GUI gaps and 0/309 non-GUI gaps, steps 258 (249x) and 1064 (168x). gemini-flash rises in 191/191 GUI gaps and 0/315 non-GUI gaps, plus 5 pairs with no IMAGE field (the measurer reports 0/320), all steps 1064.",
+    "problem": "None substantive. IMAGE is a per-modality total for the whole prompt. It matches screenshot-result tokens only because screenshots are the only images in that harness. It cannot give per-result tokens when several images land in one gap. I did not re-check the cc_local iterations count (7463), because that needs the private raw files."
+   },
+   {
+    "corpus": "aiv_cc",
+    "reproduced": true,
+    "my_numbers": "30001 pairs, of which 27491 non-image growth pairs in 73 sessions. Pearson 0.988, Spearman 0.985 [0.977, 0.988]. Median chars/token 2.416. Theil-Sen slope 0.367, intercept 207-222. Cross-fit median |residual|: 66.6 with the sha1 split (measurer 66.1), 62.8 with an md5 split, 56.3 / 64.6 / 70.7 at p5 / p50 / p95 over 50 random session halves. p90 196.8. Typical result about 1450 tokens, so the ratio is 0.043-0.046. delta<0: 449 (0.015); delta==0: 0. 10 zero-ctx responses dropped. Image pairs: 2061 with delta>0 (2110 at any delta; measurer 2079 after the compaction>image categorization). Residual per image 925.4 (measurer 913.7). Thinking chars >0 in 100% of pairs; with thinking chars added, in-sample residual is 54.1.",
+    "problem": "The TIGHT verdict holds under every fold split. However, all 27491 fit pairs come from ONE sdk_session_id (0a15c7c2...), i.e. one Opus 4.5 agent in one resumed conversation. The 73 'sessions' are its runs. The session-clustered CIs treat dependent runs as independent, so the result covers one agent and one harness."
+   },
+   {
+    "corpus": "swechat/claude_code",
+    "reproduced": true,
+    "my_numbers": "Fit set 10669 pairs in 125 sessions. Pearson 0.974, Spearman 0.915 [0.897, 0.930]. Median chars/token 2.217. Cross-fit residual: 127.9 with sha1 (measurer 125.1); 118.4 / 125.0 / 138.0 at p5 / p50 / p95 over random halves. p90 609.6. Typical result 171.7 tokens (median of all result texts, 504 chars, times the slope; the measurer has 494 chars and 168.7 tokens), so the ratio is about 0.73-0.80. delta<0: 100 (0.009); delta==0: 8. Dropping the 27 zero-ctx (synthetic) responses is essential: with them kept, Pearson falls to 0.610. With thinking chars added, in-sample residual is 93.7 (measurer 90.1). Subtracting usage_out makes the fit worse (cross-fit 159.2, Spearman 0.755), consistent with usage_out being a streaming snapshot. Image: 23 pairs in 8 sessions, 1341 per image (measurer 1316.2).",
+    "problem": "LOOSE is borderline: the ratio CI upper bound in a5.json is 0.9996, at the 1.0 LOOSE/NOT_TIGHT boundary. The notes print it as 1.0."
+   },
+   {
+    "corpus": "cc_local",
+    "reproduced": true,
+    "my_numbers": "Fit set 4069 pairs in 106 sessions. Pearson 0.877, Spearman 0.828 [0.802, 0.897]. Median chars/token 1.439. Theil-Sen intercept 841-850. Cross-fit residual: 590.6 with sha1 (measurer 586.3); 566.9 / 614.7 / 668.2 at p5 / p50 / p95 over random halves. Typical result 345-353 tokens, so the ratio is about 1.6-1.75. delta<0: 1 of 4095. Thinking >0 in 15.1% of pairs. With 9 zero-ctx responses kept, Pearson falls to 0.314. Post-hoc check: subtracting max usage_out cuts the cross-fit residual to 386.0, but Spearman drops to 0.617.",
+    "problem": "None. NOT_TIGHT holds under every split I tried."
+   },
+   {
+    "corpus": "aiv_cu (anthropic strata)",
+    "reproduced": true,
+    "my_numbers": "Non-GUI growth pairs (Spearman): opus 268 pairs / 13 sessions, 0.681; sonnet 215 / 12, 0.705; haiku 188 / 12, 0.649; fable 257 / 14, 0.406; SDK 270 / 16, 0.427. Pooled: n=1198 in 67 sessions, Spearman 0.323 [0.152, 0.540]. Pooled residual: in-sample 704 (measurer's sha1 cross-fit 709.3); md5 cross-fit 1081. SDK intercept 2266. Usage fill: 684/684, 683/683, 552/552, 436/436, 561/587 calls. Median result text is 0 chars in most strata, because GUI results carry no text.",
+    "problem": "The pooled Spearman of 0.323 is lower than every single stratum (0.41-0.70). That comes from pooling strata with different intercepts, so it is a misleading 'decisive number'. With 12-16 sessions the cross-fit residuals depend heavily on the fold split (sonnet: in-sample 229 vs md5 cross-fit 805). NOT_TIGHT holds per stratum regardless."
+   },
+   {
+    "corpus": "aiv_cu (gemini strata)",
+    "reproduced": true,
+    "my_numbers": "gemini-pro: Spearman 0.521 [0.381, 0.656], n=309 in 19 sessions, in-sample residual 187.9 (measurer 185.7). 119 of 752 usage rows have no api_msg_id. Dropping those rows gives Spearman 0.494 (measurer's rule-off value: 0.500). gemini-flash: Spearman 0.517, n=318 in 17 sessions, in-sample residual 336.4 (measurer 352.2). The total-token identity and the IMAGE rises are as in the ALL row.",
+    "problem": "None. NOT_TIGHT holds."
+   },
+   {
+    "corpus": "swechat/opencode",
+    "reproduced": true,
+    "my_numbers": "Full fit: n=3235 in 25 sessions (measurer 3234). Spearman 0.911 [0.891, 0.931]. Cross-fit residual 89.6 with sha1 (measurer 89.2); 87.6 / 97.1 / 105.8 at p5 / p50 / p95 over random halves. Result-only variant (delta - usage_out vs input chars): Spearman 0.952 [0.935, 0.971]; cross-fit residual 19.0 with sha1 (measurer 19.3), 13.1 / 16.1 / 26.5 over random halves. Typical result about 190 tokens, so the ratio is about 0.07-0.14. Subtracting reasoning_tokens as well makes it worse (residual 70.1), so OpenCode does not re-send reasoning. delta<0: 154 of 3389.",
+    "problem": "The result-only typical-ratio was added post hoc; the notes say so. TIGHT for that variant holds under every random split."
+   },
+   {
+    "corpus": "swechat/gemini (Gemini CLI)",
+    "reproduced": true,
+    "my_numbers": "n=2400 in 11 sessions. Spearman 0.819 [0.776, 0.865]. Cross-fit residual 117.4 with sha1 (measurer 117.8). But 50 random session halves give 132.9 / 148.1 / 203.3 at p5 / p50 / p95, the md5 split gives 190.7, and in-sample is 148.6. Typical result 228.4 tokens, so the ratio at the random-split median is about 0.65 (reported: 0.517). Result-only: Spearman 0.902 [0.858, 0.934]; residual 46.7 with sha1, 33.1 / 39.1 / 89.3 over random halves. delta<0: 87 of 2487.",
+    "problem": "The reported residual of 117.8 comes from a sha1 fold split that falls below the 5th percentile of random splits. Its CI [91.8, 137.0] keeps the fit fixed, so it leaves out fold variance, which is large with 11 sessions. LOOSE still holds."
+   },
+   {
+    "corpus": "swechat/codex",
+    "reproduced": true,
+    "my_numbers": "Prereg numbers reproduced: n=655 in 15 sessions, Spearman 0.918 [0.887, 0.944]. Cross-fit residual 317.9 with sha1 (measurer 315.3); 221.4 / 258.9 / 310.3 at p5 / p50 / p95 over random halves. The 'visible output' result-only variant gives 373.1, exactly the measurer's value. Post hoc, subtracting the FULL usage_out (Codex output includes reasoning_output_tokens): Spearman 0.974 [0.935, 0.993]; residual 45.1 with sha1, 34.5 / 52.2 / 100.9 over random halves, in-sample 37.6. Typical result about 135 tokens, so the ratio is about 0.33 (LOOSE, close to TIGHT).",
+    "problem": "NOT_TIGHT follows the pre-registered rule, but the rule subtracts visible output only. The encrypted reasoning that is sent back into the context explains almost the whole residual. 'Codex conservation fails' is therefore an artifact of the pre-registered variant. The notes admit the full-usage_out form was not pre-registered, but still list Codex under 'No'."
+   },
+   {
+    "corpus": "swechat/copilot, cursor, simple_text, whowhen, aiv_cu openai/compat",
+    "reproduced": true,
+    "my_numbers": "usage_in rows = 0 in: copilot (usage_out on 364 rows in 2 sessions), cursor (7 sessions), simple_text (4), Who&When (73), and aiv_cu openai-responses (28 sessions), openai-chat (17), compat-chat (22).",
+    "problem": "None."
+   }
+  ],
+  "kill_logic_ok": true,
+  "overclaims": [
+   "Notes section 7 says conservation 'can carry a mechanism only where the fit is tight' and then lists Gemini CLI and SWE-chat Claude Code, with the result-only form or with thinking chars. Under the pre-registered rule neither is TIGHT. Gemini CLI result-only has a Spearman CI low of 0.857, below 0.90. SWE-chat CC with thinking gives 90.1/168.7 = 0.53, which is LOOSE. And SWE-chat CC has no exact output counts, so the result-only form does not apply to it.",
+   "Caveats say 'every residual is an upper bound on what a real tokenizer would give'. This is unproven: the chars-to-tokens error is not guaranteed to only inflate residuals.",
+   "aiv_cc TIGHT is reported with session-clustered CIs (Spearman [0.977, 0.988], residual [53.1, 82.9], ratio [0.038, 0.054]). All 27491 fit pairs come from one sdk_session_id (one agent, one resumed conversation, 73 runs). The CIs treat dependent runs as independent, so TIGHT holds for one agent and harness, not for the corpus type in general.",
+   "'A tool result whose logged length differs ... by more than about a quarter of a typical result sits outside the p90 of honest pairs' is a claim about detection power. No manipulated results were injected to test it, and the p90 comes from that single agent.",
+   "The single-split cross-fit residuals are reported with CIs that keep the fit fixed, which hides fold variance in small groups. For Gemini CLI (11 sessions), 117.8 is below the 5th percentile of 50 random session splits (median 148.1). For Codex (15 sessions), 315.3 is above the 95th percentile (median 258.9).",
+   "Codex is framed as 'No, as measured', with residual 2.3x and result-only 2.783x a typical result. Subtracting the full usage_out, reasoning included, gives a residual of 45 tokens (about 0.33 of a typical result, Spearman 0.974). The failure comes from the pre-registered visible-output-only choice, not from conservation itself.",
+   "aiv_cu Anthropic's 'decisive' pooled Spearman of 0.323 is a pooling artifact: every stratum on its own is 0.41-0.70. The verdict is unaffected, but the number understates per-stratum conservation.",
+   "'Screenshot tool results are counted exactly and apart from text' (Gemini IMAGE modality) overstates slightly. It is a total over all images in the prompt, identified with screenshots only by inference. 3 of 420 GUI gaps show no rise, and it cannot split several images in one gap.",
+   "The TIGHT vs LOOSE contrast between aiv_cc and SWE-chat CC comes mostly from the denominator: absolute residuals are 66 vs 125 tokens (1.9x), but typical results are 1447.7 vs 168.7 tokens (8.6x). aiv_cc's 'Yes' partly reflects its very large tool results. Its residual relative to delta (0.037 vs 0.214) is better, but the residual in tokens is not."
+  ]
+ }
+}

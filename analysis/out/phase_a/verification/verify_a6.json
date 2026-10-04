@@ -1,0 +1,126 @@
+{
+ "question": "A6",
+ "provenance": "Structured outputs of the Phase A workflow's measure:a6 and verify:a6 subagents (workflow wf_a777a5b4-cfb), copied verbatim. The verifier re-derived the numbers with its own scratch scripts (not committed); its numbers are verifier-reported unless the synthesizer re-derived them in analysis/out/phase_a/resolve.json.",
+ "measurer_summary": {
+  "question": "A6: Unused fields and parser surprises. (1) Which timer / clock / counter / hash-id / status / token fields exist in raw data but are not in the IR as built now (census cross-referenced with ir.COLUMNS + every extra key in the Phase A caches, with fill rates)? (2) What parser surprises do the build and review reports record, deduplicated with counts? (3) Which non-tool entry types do the loaders skip, per corpus, with counts?",
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a_a6.py",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\phase_a_a6.md"
+  ],
+  "per_corpus": [
+   {
+    "corpus": "swechat",
+    "answer": "Many Claude Code consistency fields are not in the IR, all with high raw fill. Read file.numLines/startLine/totalLines: 2514/2561, 0.982 [0.972, 0.989], 149 files. Edit structuredPatch oldLines/newLines: 1958/2029, 0.965 [0.952, 0.976]. Grep numLines: 823/939, 0.876 [0.839, 0.908]. stop_hook_summary hookInfos[].durationMs: 792/951, 0.833 [0.694, 0.911]; hookCount/hookErrors/stopReason: 951/951. assistant stop_reason: 19457/19457. Ephemeral cache tokens: 0.998 [0.994, 1.0]. sourceToolAssistantUUID: 0.995 [0.983, 1.0]. The file-history-snapshot entry type is skipped entirely: backupTime/version 1362/1673, 0.814 [0.756, 0.856]. Other formats: Gemini tokens.thoughts/tool/total 2509/2511, 0.999 [0.997, 1.0] and diffStat (replace 0.857 [0.810, 0.898]); OpenCode reasoning time.start/end 0.998 [0.995, 1.0], info.time.completed 0.997 [0.992, 1.0], tokens.total, info.finish 0.994 [0.986, 1.0]; Codex last_token_usage.total_tokens 0.992 [0.980, 0.996], patch_apply_end status 185/185, turn_id and trace_id. The census under-stated what the IR holds: 302 entries it called uncaptured are in the IR, 271 of them swechat (Gemini usage, OpenCode state.time.end as result ts, Codex duration_s, task_complete duration_ms). Skipped Claude Code entry types: 12 types, 421,664 records (queue-operation 353,747 across its 4 subtypes, file-history-snapshot 60,218, ...).",
+    "decisive_number": "Read file.numLines raw fill 2514/2561 = 0.982 [0.972, 0.989] (149 files), uncaptured; the A slice has 4,043 result rows",
+    "json_path": "analysis/out/phase_a/a6.json :: part1_candidates.not_in_ir (corpus=swechat, group=toolUseResult/Read); part1_census_crossref.summary; part3_non_tool_inventory.skipped_summary",
+    "verdict": "partial"
+   },
+   {
+    "corpus": "cc_local",
+    "answer": "Same Claude Code gap, plus fields only local logs carry. Edit structuredPatch: 225/226, 0.996 [0.986, 1.0]. Read numLines: 194/210, 0.924 [0.847, 0.986]. Glob totalMatches: 375/375 (46 files). stop_hook_summary hookCount/hookErrors/stopReason: 596/596. assistant stop_reason: 8640/8640. usage.iterations[]: 0.999 [0.997, 1.0]. thinking_tokens: 0.900 [0.711, 0.998]. apiBlockIndex: 0.727 [0.497, 0.911]. sourceToolAssistantUUID and promptId: 1.0. The cost-state session tallies (totalAPIDuration, totalToolDuration, totalDuration, totalCostUSD, totalLinesAdded/Removed; 34/34 in 33 files) are not emitted, because cost-state is one of 11 untimestamped entry types the loader drops (18,559 raw records). file-history-delta rows are emitted but backup.version/backupTime are dropped (92/92). No progress or turn_duration entries exist in cc_local at all. native_error filled on 0.650 [0.394, 0.790] of A results; exit_code never.",
+    "decisive_number": "Edit structuredPatch oldLines/newLines 225/226 = 0.996 [0.986, 1.0] (11 files), uncaptured (156 A rows); cost-state timers 34/34, not_emitted",
+    "json_path": "analysis/out/phase_a/a6.json :: part1_candidates.not_in_ir (corpus=cc_local); part3_non_tool_inventory.skipped_summary['cc_local|claude_code']",
+    "verdict": "partial"
+   },
+   {
+    "corpus": "aiv_cc",
+    "answer": "The IR keeps the SDK result-row timers and cost (duration_ms, duration_api_ms, total_cost_usd, num_turns: 100/31,619 A meta rows). It drops these: assistant stop_reason and ephemeral cache tokens (13792/13792, 147 runs; 77,716 A rows); result-row usage.* (20/20) and modelUsage.<model>.costUSD/inputTokens (opus 18/20, 0.9 [0.75, 1.0]); init mcp_servers[].status; the row id and content.session_id. No entry type is skipped. native_error is filled on only 0.178 [0.108, 0.247] of A results (33,475 rows, 77 sessions).",
+    "decisive_number": "assistant message.stop_reason 13792/13792 (147 runs) uncaptured; native_error fill 0.178 [0.108, 0.247]",
+    "json_path": "analysis/out/phase_a/a6.json :: part1_candidates.not_in_ir (corpus=aiv_cc); part1_ir_inventory.columns_by_kind.aiv_cc.result",
+    "verdict": "partial"
+   },
+   {
+    "corpus": "aiv_cu",
+    "answer": "Most provider fields are already in the IR: usage columns, usage_detail (thoughts, total, modality, ephemeral cache, service tier), meta.stop_reason / finish_reason, Gemini timing.server_timing_dur_ms and http_date, result updated_at (6,107/6,107). The census missed 27 of these. Still not in the IR: Anthropic stop_sequence (907,506/907,506 rows, population pass 1); Agent-SDK text/thinking message stop_reason (11,679/11,679); Responses item status (4776/20000, 0.239 [0.233, 0.245], head); candidates[].index; tool_calls[].index. There is no latency field outside Gemini, and Gemini server-timing starts in 2025-12. There is no failure flag (native_error / exit_code non-null 0 in A).",
+    "decisive_number": "server-timing present on 1,161/6,107 A calls, 0.190 [0.132, 0.255], Gemini only; Anthropic stop_sequence 907,506/907,506 uncaptured",
+    "json_path": "analysis/out/phase_a/a6.json :: part1_census_crossref.entries + aiv_cu_pass1_name_only_entries (corpus=aiv_cu); part2_parser_surprises[id=au_no_latency_outside_gemini]",
+    "verdict": "partial"
+   },
+   {
+    "corpus": "whowhen",
+    "answer": "There is no timer, clock, token or hash field anywhere in the source. The only status fields are ground-truth labels, which are kept in whowhen_labels.json by design (14 entries, label_store). system_prompt is omitted (356 entries); the question is not emitted, and for 10 of 126 AG tasks it appears nowhere in the history. Hand-Crafted results have no harness exit code (644 of 652).",
+    "decisive_number": "0 timer/clock/token/hash fields; 14 census entries, all label_store",
+    "json_path": "analysis/out/phase_a/a6.json :: part1_census_crossref.summary.by_corpus_status (whowhen|label_store 14, whowhen|omitted_by_loader 1)",
+    "verdict": "absent"
+   }
+  ],
+  "surprises": [
+   "The census over-stated the gap for non-Claude-Code formats. 302 entries it marked uncaptured are in the IR now: OpenCode state.time.end is the result ts, Codex exec duration is extra.duration_s, Codex task_complete duration_ms is in extra, Gemini tokens.input/output/cached are the usage columns, aiv_cu updated_at / stop_reason / finishReason are in extra. In the other direction, 48 census-captured entries are not usable fields; 39 of them sit only inside the args JSON string.",
+   "Gemini shell results: 445 of 1,419 (A+B) have text 'Exit Code: N' with N != 0, and 0 of those have native_error true.",
+   "61 of 96 Codex A+B sessions write no exec_command_end at all, so the exit code exists only in the output header text. 1,346 exited outputs have exit_code null, 85 of them with a nonzero header exit.",
+   "One Gemini session in A (d8bda4a8...) has no timestamp on any event (1,028 of 8,356 Gemini A events) and holds all 487 toolCalls without results. One Claude Code A session (6 events) is also fully untimed.",
+   "cc_local subagent events are stamped after their parent call's result in 113,950 of 114,045 cases (Workflow 111,625 / 111,664). Parent-child ordering is inverted by design (background runs).",
+   "In cc_local, tool_use.input differs from the harness wireToolInputs copy in 4,473 cases (equal 14,250); 4,072 of them are a stripped 'cd ... &&' prefix.",
+   "conversations.parquet lacks 38,178 raw call ids in the 2,200 sampled sessions, including all 10,923 Codex calls (the table has 0).",
+   "Claude Code native_error is filled on only 0.328 [0.285, 0.370] of swechat A results, 0.650 [0.394, 0.790] in cc_local and 0.178 [0.108, 0.247] in aiv_cc, because is_error is absent rather than false. exit_code is 0% for every Claude Code corpus.",
+   "aiv_cu: 613 model-generated mouse_move to (512,384), the bootstrap target, besides the 66,294 synthetic bootstrap turns; 27,752 executed actions matched no provider tool call.",
+   "No build or review report has a parser_surprises or open_problems field. The 80 items were compiled from counters and review checks in 14 of the 15 build files. All 25 cross-report same-fact checks agree. 5 review findings are already resolved in the current build.",
+   "The review-2 cc_local row counts (A 17,762) predate the current cache (A 21,222): thinking-only meta rows were added after the review, so review numbers cannot be compared to caches 1:1.",
+   "The rule set needed 8 corrections after the first run, 7 of them removing false name-level matches: nested toolUseResult keys, coarse AIV slices, joined-row verification, OpenCode messageID. Leaf-name matching against extra is unreliable without per-entry-type slicing."
+  ],
+  "implications_for_phase_b": [
+   "The highest-fill redundancy fields, which make cross-record consistency checks possible, are all outside the IR today: Claude Code Read numLines vs text, Edit structuredPatch line counts, Grep/Glob counts, stop_hook_summary hookCount/hookInfos durationMs, assistant stop_reason, Gemini diffStat and tokens.thoughts/total, OpenCode reasoning/completion clocks and tokens.total, Codex last_token_usage.total_tokens. A Phase B mechanism that needs them requires a loader change, decided by day, before thresholds are set. Probes reading only the current IR cannot use them.",
+   "Do not treat a null native_error / exit_code as success. Fill varies by format: Claude Code is filled only when is_error is present; Gemini never flags a nonzero 'Exit Code' in text; 61 Codex sessions have no structured exit at all; aiv_cu has no failure flag. Stratify error-based probes by format, and use extra.marker / text headers only where documented.",
+   "Latency probes must account for: Claude Code (124,103) and OpenCode (6,662) out-of-order writes; cc_local background subagents running after their parent's result; aiv_cu latency only for Gemini, from 2025-12; variable fractional digits in AI Village created_at; Who&When and Cursor having no timestamps at all.",
+   "Use raw transcripts, not conversations.parquet. The table drops every Codex call and 27,156 Claude Code call ids in the sample.",
+   "Some surprise counts come from build reports computed on A+B or on full populations. They describe parser behaviour and must not be used to tune Phase B thresholds.",
+   "Session-level tallies (cc_local cost-state, OpenCode session summary, Copilot session.shutdown) live in entry types the loaders skip. A recount-vs-tally check would need those entries emitted (cost-state: 113 records in 111 of 332 main files)."
+  ],
+  "could_not_measure": [
+   "Whether the uncaptured fields agree with the IR (for example hook durations vs event gaps, or file-history backup versions vs Edit results). A6 is an inventory; agreement needs the raw fields, which the IR does not hold.",
+   "75 slice_absent_in_A entries and 121 inconclusive_rare entries: the entry type or field is too rare in the A sample to tell a loader drop from sampling absence. Examples are Codex turn_aborted duration_ms/reason, cc_local subagent attachments (subagent files are in 10 of 309 sessions; A holds 4) and swechat Claude Code async_hook_response.",
+   "Census-marked cc_jsonl paths (583 entries) were trusted from the census's code-derived path list, not re-verified as non-null in the A caches.",
+   "aiv_cu population fill from pass-1 stats has no session-clustered CI, because the pass-1 index carries no session ids. List-level paths count elements, not rows, so no rate is given for them.",
+   "AI Village tables outside the IR (events, chat_messages, agent_memories, ...) were censused only on their first 20,000 rows by the earlier agent. village-transcript.json was not censused at all.",
+   "The value equivalence of rule-mapped fields that live on another row was not checked. Examples: OpenCode message-level info.tokens vs step-finish usage, and Gemini functionResponse.id vs call id. Only presence was verified.",
+   "No build or review report contains parser_surprises or open_problems fields. The surprise list is a hand-selected compilation; every value is read from the reports at run time, but the selection itself is judgement."
+  ]
+ },
+ "verifier": {
+  "question": "A6: Unused fields and parser surprises. (1) Which timer / clock / counter / hash-id / status / token fields exist in raw data but are not in the IR now (census cross-referenced with ir.COLUMNS + every extra key in the A caches, with fill rates)? (2) Which parser surprises do the build and review reports record, deduplicated with counts? (3) Which non-tool entry types do the loaders skip, per corpus, with counts?",
+  "checks": [
+   {
+    "corpus": "swechat",
+    "reproduced": true,
+    "my_numbers": "I enumerated the IR independently (scratchpad a6v/extra_keys.py). It matches the measurer's extra_by_kind exactly: 322 top-level keys across 5 corpora, 0 count mismatches, row totals equal. CC Read results in the A cache: 4,043 rows (2,249 top-level, 1,794 subagent), 120 sessions. 'numLines' appears in 0 extra strings, so the field is uncaptured (reproduced). I read the raw transcripts of the 128 A CC sessions (a6v/swe_raw.py, swe_read.py). Top-level Read toolUseResult file.numLines is on 2,175/2,249 = 0.967 [0.956, 0.978] (117 sessions), consistent with the census 0.982 on its own 149-file sample. Per A IR Read row it is on 2,180/4,042 = 0.539 [0.456, 0.634] (120 sessions). On subagent Read rows it is 6/1,794 = 0.003 [0, 0.013], because nested agent_progress results almost never carry toolUseResult. Other A raw fills: Edit structuredPatch 1,683/1,763 = 0.955 [0.939, 0.969]; Grep numLines 864/1,045 = 0.827 [0.780, 0.864]; stop_hook_summary hookCount 863/863; hookInfos durationMs 566/863 = 0.656 [0.489, 0.798] (census 0.833). The assistant stop_reason key is on 17,929/17,932, but its value is non-null on only 5,191/17,932 = 0.290 [0.212, 0.369] (128 sessions). CC native_error is non-null on 4,464/13,592 = 0.328 [0.285, 0.370] (126 sessions) and exit_code on 0; both exact. Skipped CC types from the census inventory sum to 421,664 (9 types, 12 when queue-operation's 4 subtypes are counted); reproduced. In A the skipped types are: file-history-snapshot 1,467, queue-operation 814, last-prompt 43, summary 40, permission-mode 23, pr-link 17, custom-title 5, agent-name 3. Surprises checked on A: Gemini d8bda4a8 has 1,028/8,356 events without ts and all 487 unresolved calls; CC 145abcf4 is fully untimed (6 events); Gemini shell results with a nonzero 'Exit Code' are 280/816 and 0 of them have native_error true; 12 of 19 Codex A sessions have no exec_command_end. The 38,178 missing-id total is reproduced from the build crosscheck.",
+    "problem": "The decisive number puts a top-level-only fill (0.982) next to the full A slice (4,043 rows). 44% of that slice (1,794 subagent rows) almost never has the field, so actual availability per A Read row is 0.539, not about 0.98. Two listed 'uncaptured' fields are already in the IR. sourceToolAssistantUUID equals the result row's IR parent_uuid on 9,338/9,340 = 0.9998 [0.9993, 1.0] (121 sessions) and the call row's uuid on 9,332/9,340. OpenCode info.finish equals the step-finish 'reason' kept in IR extra.reason (3,414 A rows) on 3,227/3,227 A messages that have both. Every fill comes from key presence. stop_reason '19457/19457' is key presence: the census's own types show null 11,012, str 8,445. stop_sequence is null on 19,397/19,457."
+   },
+   {
+    "corpus": "cc_local",
+    "reproduced": true,
+    "my_numbers": "cc_local_A has 156 Edit result rows, all main. structuredPatch, numLines, totalMatches and totalAPIDuration each appear in 0 extra strings, and there are no cost-state rows, so these fields are uncaptured or not emitted (reproduced). I mapped raw files to A by entry uuid (aggregates only, a6v/cclocal.py). All 156 A Edit ids were found in raw. structuredPatch[].oldLines is on 155/156 = 0.994 [0.980, 1.0], 8 sessions (census 225/226 on 11 files). A-mapped raw files hold 43 cost-state records in 43 sessions and 11 untimestamped types. The build counters give 11 types and 18,559 records (cost-state 113); reproduced. native_error is non-null on 3,359/5,164 = 0.650 [0.394, 0.790] (107 sessions) and exit_code on 0; both exact. The 65 file-history-delta meta rows in A carry no backup.* keys (reproduced). The census inventory over all 1,172 files has no progress or turn_duration groups (reproduced). A has 21,222 rows and review2 recorded A 17,762 (reproduced).",
+    "problem": "The Edit fill rests on 8 A sessions, a narrow base, although the CI is stated. stop_sequence and subagent stop_reason are listed at fill 1.0, but the census types show null on 8,630/8,640 and 8,915/13,048. These are key-presence fills. Main-file stop_reason is genuinely non-null (8,640 str)."
+   },
+   {
+    "corpus": "aiv_cc",
+    "reproduced": false,
+    "my_numbers": "native_error is non-null on 5,957/33,475 = 0.178 [0.108, 0.247] (77 sessions; 538 true, 5,419 false) and exit_code on 0; exact. There are 100 SDK result meta rows, all with duration_ms (reproduced). I matched raw claude_code_messages assistant rows to A by content.uuid (a6v/aivcc.py). The stop_reason key is on 77,716/77,716 A rows (105 sessions), which matches the '77,716 A rows'. Its value is non-null on only 126/77,716 = 0.0016 [0.0005, 0.0037] (tool_use 110, stop_sequence 10, end_turn 6). The census's own types for the 13,792 head rows say the same: null 13,778, str 14. The ephemeral_5m/1h keys are on 77,716/77,716 rows and nonzero on 77,670. Their sum equals cache_creation_input_tokens, which is already the IR column usage_cache_create, on 77,716/77,716 = 1.0 (105 sessions; a6v/eph.py).",
+    "problem": "Half of the decisive number, 'assistant message.stop_reason 13792/13792 uncaptured', counts the key, not a value. The field is null on 99.84% of A assistant rows, so it is not a usable candidate. The ephemeral cache tokens, the other headline uncaptured field, only split a column the IR already holds. The 'partial' verdict still holds through other non-null uncaptured fields: result-row usage and modelUsage, init mcp_servers status, row id and content.session_id. But the stated decisive number does not support it."
+   },
+   {
+    "corpus": "aiv_cu",
+    "reproduced": false,
+    "my_numbers": "Server timing (call extra.timing.server_timing_dur_ms) is non-null on 1,161/6,107 = 0.190 [0.132, 0.255] (199 sessions); exact. It is 0 in all 8 non-Gemini strata and 1,161/1,280 = 0.907 [0.801, 0.986] within Gemini (40 sessions). By month: 0 before 2025-12, 40/80 in 2025-12, all calls after. native_error and exit_code are non-null on 0/6,107 results. I scanned raw computer_use_turns for A sessions (6,455 rows; a6v/aivcu_raw.py). Anthropic agent_messages.stop_sequence has the key on 2,461 rows (77 sessions) and is non-null on 0/2,461. SDK textMessage/thinkingMessage.message.stop_reason is non-null on 0/586 each. The census's own part file agrees: stop_sequence null 7,262/7,262 and SDK stop_reason null 88/88. Anthropic stop_reason is non-null on 2,461/2,461 and is in the IR as call extra meta.stop_reason. Responses items with a status key: 1,088, all non-null.",
+    "problem": "'Anthropic stop_sequence 907,506/907,506 uncaptured' and 'SDK stop_reason 11,679/11,679' are key-path counts from aiv_cu_pass1_stats. Both fields are null on every A row checked and on every census-head row. They are absent signals, not missing ones. By the measurer's own 'uncaptured' rule (expected count >= 3) they should fail, because expected non-null = 0. The server-timing half reproduces exactly."
+   },
+   {
+    "corpus": "whowhen",
+    "reproduced": true,
+    "my_numbers": "In whowhen_A (1,733 rows, 73 sessions), ts, usage_*, api_msg_id, request_id, uuid and model are each non-null on 0 rows. exit_code is non-null on 87/87 Algorithm-Generated results and 0/266 Hand-Crafted results. The census has 15 who_and_when entries: 14 label fields (is_correct / is_corrected, question_ID, level, mistake_reason across json/parquet) plus system_prompt.VSCode_Expert. 4 of the 14 have class HASH_ID (question_ID), and question_ID is UUID-shaped in 128/184 entries of whowhen_labels.json. The 644/652 (A+B) exit-code figure is in whowhen_build.json (exit_code_histogram {0: 8, none: 644}). The A share (0/266) is consistent; B was not opened.",
+    "problem": "The decisive '0 timer/clock/token/hash fields' contradicts the census's own HASH_ID class on question_ID, which is 4 of the 14 label_store entries. It is a label-store id, not a transcript field, so the 'absent' verdict for transcript-side signals stands, but the wording is wrong."
+   }
+  ],
+  "kill_logic_ok": false,
+  "overclaims": [
+   "Fills are key presence presented as value fill. The a6 script never reads the census 'types' (null counts), and the IR inventory also counts keys, not non-null values. Affected: aiv_cc stop_reason '13792/13792' (non-null 126/77,716 in A, 14/13,792 in the census); aiv_cu Anthropic stop_sequence '907,506/907,506' (0/2,461 in A) and SDK stop_reason '11,679/11,679' (0/586 in A); swechat CC stop_reason '19457/19457' (non-null 5,191/17,932 = 0.290 in A raw) and stop_sequence (60/19,457 non-null); cc_local stop_sequence (10/8,640) and subagent stop_reason (4,133/13,048). At least 12 of the 435 'harness_measured, raw fill >= 0.3' candidates are majority-null or all-null: 7 by census types, plus 5 aiv_cu pass-1 stop_* entries that are null in A. These sit inside 'uncaptured' status: their expected non-null count in A is about 0, below the measurer's own threshold of 3.",
+   "'Read file.numLines 0.982 ... the A slice has 4,043 result rows' implies near-full coverage of the A slice. 1,794 of those rows are subagent results with the field on 6/1,794. Per-row availability in A is 2,180/4,042 = 0.539 [0.456, 0.634]. The same top-level-only fill is set against nested-inclusive A row counts in the 1.2 tables.",
+   "'The highest-fill redundancy fields ... are all outside the IR' and the linkage-id list: sourceToolAssistantUUID equals the IR parent_uuid on 9,338/9,340 swechat A results, so it is already captured. OpenCode info.finish equals the step-finish 'reason' that the IR keeps in extra.reason (3,227/3,227 A messages). The ephemeral 5m+1h cache tokens sum to usage_cache_create on 77,716/77,716 aiv_cc A rows, so only the TTL split is new.",
+   "Notes Part 2.1 says 'All have raw fill >= 0.8 in at least one corpus'. turn_duration messageCount, listed among the per-turn tallies, has its only fill at 198/572 = 0.346 (swechat; cc_local has no turn_duration).",
+   "'Who&When has no timer, clock, token or hash field': question_ID is census class HASH_ID (4 of the 14 label_store entries) and is UUID-shaped in 128/184 labels. It is kept as a label, but 'no hash field' is false as written.",
+   "'extra.marker ... on swechat results it is present on 0.646': this is key presence, equal to the CC share of results (13,592/21,025; the CC parser always writes the key). The marker value is non-null on 488/21,025 (cc_exit_code 248, cc_tool_use_error 176, cc_interrupt_reject 61, cc_permission_denied 3).",
+   "'conversations.parquet lacks 38,178 raw call ids ... including all 10,923 Codex calls': the 38,178 total counts 10,899 Codex ids, because 24 synthetic ids are skipped. Minor.",
+   "Verdict note: the per-corpus verdicts (partial x4, absent for whowhen) survive on other non-null fields. Those are swechat top-level Read numLines 0.967 in A raw, cc_local Edit structuredPatch 155/156, aiv_cc result-row usage/modelUsage and row ids, and aiv_cu Responses item status 1,088/1,088 non-null. The aiv_cc and aiv_cu decisive numbers do not support them, and the 'uncaptured' status rule needs a non-null condition before Phase B uses the candidate list. My scripts are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\a6v\\ (extra_keys.py, swe_raw.py, swe_read.py, swe_ir.py, cclocal.py, aivcc.py, aivcu.py, aivcu_raw.py, oc.py, eph.py, stau.py)."
+  ]
+ }
+}

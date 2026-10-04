@@ -1,0 +1,216 @@
+{
+ "question": "A2",
+ "provenance": "Structured outputs of the Phase A workflow's measure:a2 and verify:a2 subagents (workflow wf_a777a5b4-cfb), copied verbatim. The verifier re-derived the numbers with its own scratch scripts (not committed); its numbers are verifier-reported unless the synthesizer re-derived them in analysis/out/phase_a/resolve.json.",
+ "measurer_summary": {
+  "question": "A2: join completeness. Per corpus, per SWE-chat format, and split by is_subagent: orphan results, calls without a result, duplicate call_ids within a session, calls with more than one result. Rates are session-clustered, run on the Phase A split only. Also: how much the raw transcripts recover compared with conversations.parquet (cited numbers).",
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a_a2.py",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a2.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\phase_a_a2.md"
+  ],
+  "per_corpus": [
+   {
+    "corpus": "swechat (all formats, split A)",
+    "answer": "Orphan results: 3/21025 = 0.0001 [0.0000, 0.0003], n = 178 sessions. Calls without a result: 727/21749 = 0.0334 [0.0015, 0.0858], n = 182. Of those 727, 694 are structural: 206 Cursor calls, 488 'session has no results' (487 from one Gemini session, 1 from a one-call Claude Code session) and 1 server-side Codex web_search. Excluding structural calls: 32/21054 = 0.0015 [0.0008, 0.0023]. Duplicate call keys: 1/21748, caused by two ids redacted to the literal 'REDACTED'. Calls with more than one result: 0/21748. is_subagent=False: calls without a result 725/17325 = 0.0418 [0.0017, 0.1079], n = 161; excluding structural 30/16630 = 0.0018 [0.0009, 0.0029]. is_subagent=True: 2/4424 = 0.0005 [0.0000, 0.0011], n = 73, with 0 orphans. No paired call and result differ in is_subagent (0 of 21,022 pairs), and no result comes before its call.",
+    "decisive_number": "calls without a result, excluding structural: 32/21054 = 0.0015 [0.0008, 0.0023]",
+    "json_path": "by_corpus.swechat",
+    "verdict": "partial (usable once structural formats and sessions are excluded)"
+   },
+   {
+    "corpus": "swechat / claude_code",
+    "answer": "Orphans 3/13592 = 0.0002 [0.0000, 0.0005], n = 126. Of the 3, two open a resumed session file with a cc_interrupt_reject result, and one is unexplained. Calls without a result: 31/13620 = 0.0023 [0.0013, 0.0036], n = 127. Reasons: stream end 13, compaction boundary before the next result 7, SessionStart hook (restart or resume) 6, other 4, one-call session 1. Seven are Task/Agent calls; in 4 of them the subagent ran but the parent's result is missing. Even though the per-call rate is low, 20/127 sessions = 0.157 [0.104, 0.231] have at least one call with no result. Nested subagent calls: 2/3912 = 0.0005 [0.0000, 0.0013], n = 52. Main stream: 29/9708 = 0.0030 [0.0016, 0.0050]. Duplicate keys 0, calls with more than one result 0. Full-population census (cited, not a sample): 861/584802 = 0.0015 calls without a result, and 16 results without a call.",
+    "decisive_number": "31/13620 = 0.0023 [0.0013, 0.0036] per call; 20/127 sessions affected [0.104, 0.231]",
+    "json_path": "swechat_by_format.claude_code",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "swechat / codex",
+    "answer": "Orphans 0/1120, n = 15. Calls without a result: 2/1122 = 0.0018 [0.0000, 0.0045]. One is a server-side web_search_call; the other is stream end, leaving 1/1121 = 0.0009 [0.0000, 0.0035] excluding structural. Sub-agent sessions: 0/179, n = 7. Duplicate keys 0, calls with more than one result 0. Tool-linked end records resolve to their call in the same session for 863 of 864 events (exec_command_end 681); the one exception is a web_search_end. Census (cited): 131/21902 = 0.0060.",
+    "decisive_number": "2/1122 = 0.0018 [0.0000, 0.0045]",
+    "json_path": "swechat_by_format.codex",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "swechat / opencode",
+    "answer": "Zero defects in every slice: 0/3735 calls without a result and 0/3735 orphans, n = 25. Child (subagent) sessions: 0/333, n = 14. This is the same-record format, where one tool part holds both the call and its result. 1,026 of 3,735 calls carry loader synthetic ids because the release redacted callIDs. Census (cited): 6/22619 = 0.0003.",
+    "decisive_number": "0/3735 calls without a result (sessions affected 0/25, Wilson upper bound 0.133)",
+    "json_path": "swechat_by_format.opencode",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "swechat / gemini",
+    "answer": "Calls without a result: 487/2800 = 0.1739 [0.0000, 0.5509], n = 11. All 487 come from one session (d8bda4a8-7745-40b9-be81-e42b23525140), a bare {messages:[...]} export whose toolCalls have no result field. Excluding it: 0/2313. Orphans 0/2313. One duplicate key, from two ids redacted to the literal 'REDACTED', which the loader kept. That session has 486 distinct unpaired keys, which equals the population count of Gemini calls without a result (486, census share 0.0926).",
+    "decisive_number": "487/2800 = 0.1739, all from 1 of 11 sessions; 0/2313 elsewhere",
+    "json_path": "swechat_by_format.gemini",
+    "verdict": "partial (usable once the no-result session is excluded)"
+   },
+   {
+    "corpus": "swechat / copilot",
+    "answer": "Calls without a result: 1/266 = 0.0038 [0.0000, 0.0082], from stream end. Orphans 0/265. Only n = 2 sessions, so the session-level CI is uninformative.",
+    "decisive_number": "1/266, n = 2 sessions",
+    "json_path": "swechat_by_format.copilot",
+    "verdict": "usable (n = 2)"
+   },
+   {
+    "corpus": "swechat / cursor",
+    "answer": "There are no result events. Calls without a result are 206/206 across 2 sessions. The source format records no tool results; call ids are loader synthetic. Census (cited): 619/619.",
+    "decisive_number": "0 results for 206 calls",
+    "json_path": "swechat_by_format.cursor",
+    "verdict": "absent"
+   },
+   {
+    "corpus": "swechat conversations.parquet vs raw (cited, not recomputed)",
+    "answer": "In the table, 76,618 of 408,086 distinct results are orphaned, a share of 0.1877 (census). In a seeded check, all 1,367 orphan ids from 50 of the 4,386 orphan-bearing sessions turned up as top-level assistant tool_use blocks in the raw transcripts. The table drops 0.1869 [0.1804, 0.1927] of tool_use ids (76,258/407,920, n = 4,847 sessions; Phase C). It also hides 172,814 subagent tool_use ids inside progress rows. Full raw pass over 5,850 files: 16 results without a call out of 633,366 (0.0000253), and 2,104 calls without a result out of 635,454 (0.0033). The raw IR exposes 176,501 nested subagent calls. In the 2,200-session A+B cross-check, the raw IR has 171,329 non-nested calls against 133,018 table rows in the 2,159 sessions present in the table (38,311 more). Raw has more calls than the table in 1,671 sessions. Codex (96 sessions) and Cursor (15) have 0 table tool_use rows. Only 162 table ids are missing from raw, all OpenCode REDACTED-id handling.",
+    "decisive_number": "Table orphan share 0.1877 vs raw 0.0000253 (16/633,366)",
+    "json_path": "cited / derived_from_cited",
+    "verdict": "table: partial (unusable for joins); raw: usable"
+   },
+   {
+    "corpus": "cc_local",
+    "answer": "Calls without a result: 1/5165 = 0.0002 [0.0000, 0.0010], n = 107 sessions; the one case is stream end. Orphans 0/5164. Duplicate keys 0, calls with more than one result 0. is_subagent=True: 0/2325, n = 4. Subagent parent links resolve in-session (13/13), as do the 1,897 subagent meta links. These counts match the build report's split-A pairing exactly.",
+    "decisive_number": "1/5165 = 0.0002 [0.0000, 0.0010]",
+    "json_path": "by_corpus.cc_local",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "aiv_cc",
+    "answer": "Calls without a result: 4/33479 = 0.0001 [0.0000, 0.0003], n = 78 runs. Three are stream end; one is a one-call run that ends in error_during_execution. Orphans 0/33475. Duplicate keys 0, calls with more than one result 0. There are no subagent events. 4/78 runs are affected [0.020, 0.125]. Matches the build report's split A.",
+    "decisive_number": "4/33479 = 0.0001 [0.0000, 0.0003]",
+    "json_path": "by_corpus.aiv_cc",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "aiv_cu",
+    "answer": "0/6107 on all four defects, n = 199 sessions (Wilson upper bound on sessions affected 0.019). The zero says nothing about the source: the loader builds the pairing by emitting a result for every executed call from the same turn row, so the joins cannot fail. 1,036 of 6,107 call ids are loader 'turn:' fallbacks. 3,393/6,107 = 0.5556 [0.5020, 0.6102] of results have null or empty text. The model also issued provider calls that the harness never executed, and these have no call event: 4 out of 6,111 calls (0.0007 [0.0000, 0.0016]; gemini-pro 3, anthropic-haiku 1).",
+    "decisive_number": "0/6107 (by construction); 0.5556 of results have empty text",
+    "json_path": "by_corpus.aiv_cu",
+    "verdict": "usable (pairing built by the loader, not observed)"
+   },
+   {
+    "corpus": "whowhen",
+    "answer": "Calls without a result: 20/373 = 0.0536 [0.0299, 0.0822], n = 63. Orphans 0/353. AG (Algorithm-Generated): 12/99 = 0.1212 [0.0531, 0.1982], n = 39; all 12 are code blocks the harness never executed. HC (Hand-Crafted): 8/274 = 0.0292 [0.0109, 0.0437], n = 24; all 8 are orchestrator instructions superseded by a later call. Excluding structural: 8/361 = 0.0222 [0.0074, 0.0348]. Pairing is assigned by the loader (step adjacency for AG, an open-call heuristic for HC), and there is no ground truth for it. Population counts (cited): AG 43 of 279 unpaired, HC 37 of 689.",
+    "decisive_number": "20/373 = 0.0536 [0.0299, 0.0822]; excluding structural 8/361 = 0.0222",
+    "json_path": "by_corpus.whowhen; by_stratum.whowhen",
+    "verdict": "partial"
+   }
+  ],
+  "surprises": [
+   "Most of SWE-chat's Gemini gap is one session. A single session uses a bare {messages:[...]} export variant with 487 calls and no results at all. Its 486 distinct unpaired keys equal the full-population Gemini calls_without_result count (486), so this one session plausibly accounts for the format's census share of 0.0926. That attribution is not verified.",
+   "The SWE-chat release redacted some Gemini call ids to the literal string 'REDACTED', and the Gemini loader kept them. For OpenCode the loader replaced such ids with synthetic ones. This produces the only duplicate call key found. It is harmless here only because that session has no results.",
+   "In honest Claude Code sessions, missing results are rare per call but common per session. 20/127 swechat CC sessions = 0.157 [0.104, 0.231] have at least one call with no result. They cluster at compaction boundaries (7) and SessionStart restart/resume hooks (6), not only at session end (13).",
+   "In 4 of 7 unpaired Task/Agent calls, the subagent visibly ran (nested events exist) but the parent never got a tool_result.",
+   "In aiv_cu, 0.5556 [0.5020, 0.6102] of result events carry no output text. A result being present does not mean its content is present.",
+   "Call ids are not unique across sessions. swechat has 204 shared ids (198 are loader synthetic ids, which are per-format-seq), aiv_cu has 50 provider ids repeated across 4 sessions, and whowhen step ids repeat by construction.",
+   "1,804 swechat main-stream meta events have a parent_call_id that does not resolve to any call. Nearly all are Stop (1,189) and SessionStart (613) hook_progress events whose parent id is not a tool call. Every tool-attached timer type does resolve (bash_progress 6,033/6,033)."
+  ],
+  "implications_for_phase_b": [
+   "Build every pair-conditioned mechanism on the raw-transcript IR, never on conversations.parquet. The table orphans 0.1877 of results and has no Codex or Cursor calls; raw has 16 results without a call in 633,366.",
+   "Exclude by rule, not by format label: sessions with calls but zero results (swechat Cursor, plus the Gemini bare-export session); Codex server_side_tool calls; and Who&When AG calls with extra.unexecuted. Treat these as 'no evidence', not as 'missing result'.",
+   "A 'call with no result' signal has an honest baseline of about 16% of swechat Claude Code sessions [0.104, 0.231], but only 1/107 cc_local sessions and 4/78 aiv_cc runs. Any detector built on unanswered calls must first condition on stream end, compact_boundary and SessionStart landmarks; otherwise its false-positive floor will vary by corpus.",
+   "aiv_cu cannot test join completeness, because pairing is by construction. Mechanisms that compare a claim with a tool output must condition on output being non-empty (only 0.4444 of results have text). Unexecuted provider calls (extra.unexecuted_calls) are a separate channel.",
+   "Who&When AG code blocks that were never executed (12/99 calls in A; 43/279 in the population, cited) are a natural place to probe 'claims a result for code that never ran'. Pairing there is assigned by the loader, so any HC result must be treated as heuristic.",
+   "Always join on (session_id, call_id). Synthetic, provider and step ids collide across sessions.",
+   "Latency and progress mechanisms (A1) can rely on parent_call_id links. Tool-attached progress and end records resolve 100% in A, apart from one Codex web_search_end and one PostToolUse hook. Filter out Stop and SessionStart hooks, which are not tool-linked.",
+   "Parent attribution for session-level subagents (Codex, OpenCode) cannot be done inside the Phase A split. Codex: 0 of 5 parent ids resolve in A. OpenCode: 3 of 9 resolve. 9 of 23 subagent sessions have no parent id. Any parent-child mechanism needs the population, not one split."
+  ],
+  "could_not_measure": [
+   "Whether all 486 population Gemini calls without a result come from the one Phase A session. The counts are equal, but confirming it would mean opening B caches or raw files beyond one exploratory check, so it was not done.",
+   "Source-side join completeness for aiv_cu. The loader emits a result per executed call from the same row, so an orphan or unpaired call cannot appear in the IR.",
+   "Whether the Who&When HC open-call pairing heuristic and the AG adjacency pairing are correct. No ground truth exists for the pairings themselves.",
+   "The cause of the one Claude Code orphan classed 'other', and of the 4 'other' unpaired CC calls. Classification used only IR fields, with no text inspection.",
+   "Table-vs-raw rates restricted to Phase A sessions. The task said to cite rather than recompute, and the cited cross-check covers the combined A+B sample (2,200 sessions) while the recon covers the whole table, so no A-only table comparison exists.",
+   "Bootstrap CIs for zero counts are degenerate ([0, 0]). For those cases the only informative bound is the Wilson interval on sessions affected (for example aiv_cu 0/199, upper bound 0.019)."
+  ]
+ },
+ "verifier": {
+  "question": "A2, join completeness: per corpus, per SWE-chat format, and split by is_subagent, count orphan results, calls without a result, duplicate call_ids within a session, and calls with more than one result, all as session-clustered rates on the Phase A split. Also cite how much the raw transcripts recover compared with conversations.parquet. This review re-derived the numbers independently in scratchpad scripts (a2_rederive.py, a2_extras.py, a2_reasons.py), reading only the *_A caches plus one targeted read of conversations.parquet. The measurer's script was read only after reproduction.",
+  "checks": [
+   {
+    "corpus": "swechat (all formats)",
+    "reproduced": true,
+    "my_numbers": "Join key (session_id, call_id). Orphans 3/21025 = 0.0001 [0.0000, 0.0003], n=178. Calls without result 727/21749 = 0.0334 [0.0015, 0.0858], n=182. Distinct call keys 21748: duplicates 1, keys with more than one result 0, results with null call_id 0. Structural calls 206 cursor + 488 in sessions with no results + 1 web_search_call = 695. Excluding them: 32/21054 = 0.0015 [0.0008, 0.0023], n=178. is_subagent=False: 725/17325 = 0.0418 [0.0017, 0.1079], n=161; excluding structural 30/16630 = 0.0018 [0.0009, 0.0029], n=157. is_subagent=True: 2/4424 = 0.0005 [0.0000, 0.0011], n=73; orphans 0/4422. 21022 pairs, 0 is_subagent mismatches, 0 results before their call by seq. Sessions with at least one unpaired call: 26/182, Wilson [0.099, 0.201].",
+    "problem": "Every number matches the JSON. The orchestrator summary says '694 are structural'. The JSON and my count give 206+488+1 = 695, and 727-695 = 32 matches. The slip is arithmetic and appears in the summary only."
+   },
+   {
+    "corpus": "swechat / claude_code",
+    "reproduced": true,
+    "my_numbers": "31/13620 = 0.0023 [0.0013, 0.0036], n=127. Orphans 3/13592 = 0.0002 [0.0000, 0.0005], n=126. Duplicate keys 0, keys with more than one result 0. Sessions affected 20/127, Wilson [0.104, 0.231]. Main stream 29/9708 = 0.0030 [0.0016, 0.0050], n=127. Nested 2/3912 = 0.0005 [0.0000, 0.0013], n=52. Reasons under the stated first-match rule: stream_end 13 (11 sessions), compaction 7 (6), SessionStart 6 (3), other 4 (1), session_has_no_results 1 (1). Unpaired Task/Agent calls: 7, of which 4 have nested subagent events. Orphans: 2 at seq 0 with the cc_interrupt_reject marker, 1 at seq 50 with no marker. Per-call Wilson upper bound for 31/13620: 0.0032.",
+    "problem": "The numbers reproduce. Calling the 1-call session 'structural' (session_has_no_results) is a misnomer: it is a stream-end loss, not a format gap. It does not change the verdict. The reason labels record that a compaction or hook landmark falls inside the window, which can span hundreds or thousands of events. They do not show cause."
+   },
+   {
+    "corpus": "swechat / codex",
+    "reproduced": true,
+    "my_numbers": "2/1122 = 0.0018 [0.0000, 0.0045], n=15: one web_search_call with a synthetic id, one write_stdin at stream end. Orphans 0/1120. Sub-agent sessions 0/179, n=7. Tool-linked end records 864, of which 863 resolve in-session (exec_command_end 681, patch_apply_end 96, mcp_tool_call_end 85, collab_agent_spawn_end 1). The unresolved one is a web_search_end with has_call=False. Per-call Wilson upper bound 0.0065.",
+    "problem": "The full-population census rate 131/21902 = 0.0060 lies above the split-A bootstrap upper bound of 0.0045, so the 15-cluster bootstrap CI under-covers. The verdict at the 0.01 threshold does not change."
+   },
+   {
+    "corpus": "swechat / opencode",
+    "reproduced": true,
+    "my_numbers": "0/3735 calls without result, 0/3735 orphans, n=25. Sessions affected 0/25, Wilson upper bound 0.133. Child sessions 0/333, n=14. 1026/3735 call ids are synthetic.",
+    "problem": "The salvaged, truncated document ses_3353a8139ffeLXvY9MIuOitgt6 is in split A. The raw IR has 185 calls for it; conversations.parquet has 417 tool_use rows (288 distinct non-redacted ids plus 129 REDACTED). All 162 'table ids not in raw' in the cross-check come from this session (I checked conversations.parquet directly for this one session: 162 table ids not in raw, 0 raw ids not in table), so they come from the truncated raw parse, not from REDACTED-id handling. Join-completeness metrics cannot see calls lost to truncation, so 'zero defects' does not mean the session is complete. Separately, the zero-count bootstrap CI is [0, 0], yet the census rate 6/22619 = 0.0003 lies outside it."
+   },
+   {
+    "corpus": "swechat / gemini",
+    "reproduced": true,
+    "my_numbers": "487/2800 = 0.1739 [0.0000, 0.5509], n=11. All 487 come from d8bda4a8-7745-40b9-be81-e42b23525140, which has 0 results. The other 10 sessions: 0/2313. Orphans 0/2313. One duplicate key: 2 calls whose id is the literal 'REDACTED', both in that session.",
+    "problem": "No problem with the numbers. One correction to the hedging: the census counts calls_without_result as distinct keys (load_swechat.py line 1135 iterates over cset; 5246 - 4759 = 487 ≠ 486 confirms it). The session has 486 distinct unpaired keys and is itself part of the census, so the other 58 Gemini files contribute exactly 0. The 'plausible, not verified' attribution is arithmetically entailed. The census numerator (distinct keys) and denominator (call events) use mixed units, which is negligible here."
+   },
+   {
+    "corpus": "swechat / copilot",
+    "reproduced": true,
+    "my_numbers": "1/266 = 0.0038 [0.0000, 0.0082], n=2 sessions. Per-call Wilson: [0.0007, 0.0210].",
+    "problem": "A bootstrap over 2 clusters has only 3 possible outcomes, and its upper bound of 0.0082 is just the affected session's own rate. The 'usable' verdict depends on that degenerate bound. Under per-call Wilson the upper bound is 0.021 > 0.01, which would give 'partial'. The honest label is 'insufficient n'."
+   },
+   {
+    "corpus": "swechat / cursor",
+    "reproduced": true,
+    "my_numbers": "206/206 calls without a result, 0 result events, n=2 sessions (62 and 144 calls). All ids synthetic.",
+    "problem": "None. The 'absent' verdict follows the rule."
+   },
+   {
+    "corpus": "cc_local",
+    "reproduced": true,
+    "my_numbers": "1/5165 = 0.0002 [0.0000, 0.0010], n=107. Orphans 0/5164; duplicates and keys with more than one result 0. is_subagent=False: 1/2840 = 0.0004 [0.0000, 0.0013], n=107. is_subagent=True: 0/2325, n=4. Sessions affected 1/107, Wilson [0.002, 0.051]. Distinct subagent parent_call_ids 13/13 resolve in-session; subagent meta links 1897/1897 resolve. Matches the build report's split-A pairing.",
+    "problem": "None in the numbers. The subagent slice rests on only 4 sessions, and the zero-count bootstrap [0, 0] gives no information there."
+   },
+   {
+    "corpus": "aiv_cc",
+    "reproduced": true,
+    "my_numbers": "4/33479 = 0.0001 [0.0000, 0.0003], n=78 runs. Orphans 0/33475, n=77. Duplicates and keys with more than one result 0. Sessions affected 4/78, Wilson [0.020, 0.125]. No subagent events. Matches the build report's split A.",
+    "problem": "The 1-call run whose next row is error_during_execution is classed as structural ('the source never records a result by construction'). It is a lost result. The verdict does not change."
+   },
+   {
+    "corpus": "aiv_cu",
+    "reproduced": true,
+    "my_numbers": "0/6107 on all four defects, n=199. Sessions affected 0/199, Wilson upper bound 0.019. 1036/6107 call ids are 'turn:' fallbacks. Null or empty result text 3393/6107 = 0.5556 [0.5020, 0.6102], n=199. Unexecuted provider calls 4/6111 = 0.0007 [0.0000, 0.0016]: gemini-pro 3, anthropic-haiku 1.",
+    "problem": "The zero, and 'result never precedes call', hold by construction because the loader emits the call and its result from the same row. The 'usable' label overstates this: the data cannot test it."
+   },
+   {
+    "corpus": "whowhen",
+    "reproduced": true,
+    "my_numbers": "20/373 = 0.0536 [0.0299, 0.0822], n=63. Orphans 0/353. AG 12/99 = 0.1212 [0.0531, 0.1982], n=39: extra.unexecuted next_speaker_not_terminal 10, history_end 2. HC 8/274 = 0.0292 [0.0109, 0.0437], n=24. Excluding the AG never-executed calls: 8/361 = 0.0222 [0.0074, 0.0348], n=63. Sessions affected 15/63, Wilson [0.150, 0.356].",
+    "problem": "None in the numbers. Pairing is assigned by the loader (step adjacency, open-call heuristic), and nothing in the data can check it."
+   },
+   {
+    "corpus": "swechat conversations.parquet vs raw (cited)",
+    "reproduced": true,
+    "my_numbers": "Checked against the sources. recon/swechat_scan_pinned.json: orphaned 76618 of 408086 distinct results, hidden subagent tool_use 172814. recon/swechat_compare.txt: 1367/1367 orphan ids found as top-level tool_use in raw. phase_c swechat_tables.json followup pooled_dropped_share: 76258/407920 = 0.1869 [0.1804, 0.1927], n=4847. build full_population_pass: results without call 16/633366, calls without result 2104/635454, nested 176501. build crosscheck_conversations: 171329 raw vs 133018 table in 2159 present sessions; 1671 sessions where raw has more; codex 96 and cursor 15 sessions with 0 table rows; 162 table ids not in raw, all opencode.",
+    "problem": "The 162 ids are misattributed. They come from one salvaged OpenCode session where the raw parse is truncated, not from REDACTED-id handling (see the opencode check). The 1367/1367 orphan-id check covers 48 sessions, not 50: 2 of the 50 sampled sessions had no transcript file. The headline contrast 0.1877 vs 0.0000253 compares different units (table-wide distinct ids vs result events) over different session sets (5825 vs 5850). The order-of-magnitude gap holds, but the comparison is not matched."
+   }
+  ],
+  "kill_logic_ok": true,
+  "overclaims": [
+   "The '162 table ids missing from raw, all OpenCode REDACTED-id handling' attribution is wrong. All 162 come from one salvaged, truncated OpenCode document, ses_3353a8139ffeLXvY9MIuOitgt6, which is in split A: 185 raw IR calls vs 417 table tool_use rows. For that session the table recovers more than the raw IR, and A2's join metrics cannot detect the loss.",
+   "The swechat/copilot 'usable' verdict rests on a 2-cluster bootstrap upper bound of 0.0082, which is the affected session's own rate. Per-call Wilson for 1/266 has an upper bound of 0.0210, above the 0.01 threshold. The verdict should be 'insufficient n'.",
+   "Zero-count 'usable' verdicts (opencode, aiv_cu, and every zero orphan, duplicate or multi-result rate) pass only because the bootstrap gives [0, 0] when there are no defects. The rule's 'hi' does not bound those rates: the OpenCode census rate 0.0003 lies outside A's [0, 0], and session-level Wilson upper bounds reach 0.133 for opencode. The measurer computed those Wilson bounds but did not use them in the verdict.",
+   "The 0.01 verdict threshold was set after the swechat-A unpaired counts had been seen, against the instruction to set thresholds first. The measurer disclosed this. Verdicts that sit close to the threshold (copilot 0.0082) are the ones it affects.",
+   "Calling aiv_cu 'usable' overstates it: its 0/6107 is a product of how the loader builds rows, so the data cannot test it.",
+   "The corpus-wide claim 'no result comes before its call' holds by construction for aiv_cu, opencode, gemini and whowhen, where the loader emits the result right after its call. It is an observation only for claude_code, codex, cc_local and aiv_cc.",
+   "The 1-call sessions and runs classed as structural (session_has_no_results) include a swechat claude_code stream end and an aiv_cc run that ended in error_during_execution. Both are lost results, not format gaps. Verdicts do not change.",
+   "'They cluster at compaction boundaries (7) and SessionStart restart/resume hooks (6)' is not established. The reasons come from a first-match rule that checks whether a landmark falls inside the window between the call and the stream's next result, which can span hundreds or thousands of events. There is no baseline rate, and the counts are small (SessionStart is 6 calls in 3 sessions).",
+   "'In honest Claude Code sessions': SWE-chat carries no honesty label. 'Honest' is an assumption about the baseline, not something measured.",
+   "'All 1,367 orphan ids from 50 of the 4,386 orphan-bearing sessions': 2 of the 50 sampled sessions had no transcript file, so the ids come from 48.",
+   "The summary's '694 are structural' should be 695 (206 + 488 + 1). The JSON is correct."
+  ]
+ }
+}

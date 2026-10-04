@@ -1,0 +1,194 @@
+{
+ "question": "A4",
+ "provenance": "Structured outputs of the Phase A workflow's measure:a4 and verify:a4 subagents (workflow wf_a777a5b4-cfb), copied verbatim. The verifier re-derived the numbers with its own scratch scripts (not committed); its numbers are verifier-reported unless the synthesizer re-derived them in analysis/out/phase_a/resolve.json.",
+ "measurer_summary": {
+  "question": "A4: Error-signal survival. For each corpus and swechat format: how well does the native failure flag (native_error / exit_code) survive, what failure text survives and where, how well do ir.error_marker alone (A) and marker OR census regexes (B) agree with the native flag, does aiv_cu have any failure flag, and what error definition should Probe 3 use?",
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a_a4.py",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a4.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\phase_a_a4.md"
+  ],
+  "per_corpus": [
+   {
+    "corpus": "swechat/claude_code",
+    "answer": "is_error fill 4464/13592 = 0.328 [0.285,0.370] s126. It is filled on all 4150 shell results; non-shell results are only true (314) or absent (9128), so null means 'not flagged'. exit_code is never filled. Against native (null counted as negative): A has P 488/488, R 488/614 = 0.795 [0.72,0.85] s90. On shell, A has R 297/300 = 0.990 [0.97,1.00]; on non-shell, R 191/314 = 0.608 [0.52,0.69]. The non-shell misses are harness texts without a <tool_use_error> wrapper, e.g. 'File content exceeds' 27, 'File does not exist' 31, EISDIR 18. B adds 0 recall and 112 FP: P 488/600 = 0.813 [0.74,0.89]. Failure text is always in the result text: stderr-only hits = 0, and the exit header sits at the start 248/248. Proposed Probe 3 definition: native_error is True (null = not error).",
+    "decisive_number": "A: precision 488/488, recall 0.795 [0.72,0.85] (n=614 native-true, 90 sessions); B adds 0 TP and 112 FP",
+    "json_path": "analysis/out/phase_a/a4.json#units['swechat/claude_code'].all.pr.native_null_neg.predictors",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "cc_local",
+    "answer": "Native fill 3359/5164 = 0.650 [0.394,0.790] s107: shell 3312/3312, non-shell 47/1852. Native true 349. A: P 331/331, R 331/349 = 0.948 [0.90,0.98] s74; shell R 309/311, non-shell R 22/38 = 0.579 [0.41,0.76]. B: P 332/369 = 0.900 [0.82,0.95], R 332/349. Of the 311 native-true shell results, 157 are cc_permission_denied (harness refusals) and 135 are cc_exit_code. Aggregates only. Proposed Probe 3 definition: native_error is True, split by marker class.",
+    "decisive_number": "A: precision 331/331, recall 0.948 [0.90,0.98] (n=349, 74 sessions)",
+    "json_path": "analysis/out/phase_a/a4.json#units['cc_local'].all.pr.native_null_neg.predictors",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "aiv_cc",
+    "answer": "Native fill 5957/33475 = 0.178 [0.108,0.247]. Bash is filled 5652/5652. mcp__village__bash is flagged only on MCP-level errors (49 true, 1750 null). Its 1746 JSON turn records (output/error/system, the same harness as aiv_cu) are all native-null, with error non-empty on 267/1746 = 0.153 [0.098,0.236]. A: P 296/296, R 296/538 = 0.550 [0.34,0.79]. B: P 534/637 = 0.838 [0.74,0.90], R 534/538 = 0.993 [0.98,1.00] s38. B's gain is MCP 'Error:' text at the start (error_line text_start 201, 200 native true). Proposed Probe 3 definition: native_error is True, plus a separate unvalidated regex class on the village-bash JSON error field.",
+    "decisive_number": "B: P 0.838 [0.74,0.90], R 0.993 [0.98,1.00] (n=538, 38 sessions); 1746/1746 village-bash JSON turns are never natively flagged",
+    "json_path": "analysis/out/phase_a/a4.json#units['aiv_cc'].all.pr.native_null_neg.predictors.B ; #aiv_cc_village_bash_json",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "swechat/codex",
+    "answer": "Native fill 860/1120. Shell exit_code fill 679/842 = 0.806 [0.513,0.930] s14; 49 nonzero, all native true. 163 shell results are null on both. No ir marker exists for Codex, so A has R 0/49. B: P 33/36 = 0.917 [0.60,1.00], R 33/49 = 0.673 [0.19,0.92]. Predictor C (adds 'Exit code: N'): P 49/52 = 0.942 [0.81,1.00], R 49/49 (Wilson [0.93,1.00]) s6. Text carries the exit code on every shell result, including zero: 'Exit code: N' on 558/842 and 'Process exited with code N' on 268/842. The header is also present on 66+78 zero and 3 nonzero native-null shell results. Proposed Probe 3 definition: native_error is True, with a nonzero text exit header as fallback where native is null. Only 15 sessions have results.",
+    "decisive_number": "C: precision 49/52 = 0.942, recall 49/49 (6 sessions); A recall 0/49",
+    "json_path": "analysis/out/phase_a/a4.json#units['swechat/codex'].all.pr.native_strict.predictors",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "swechat/opencode",
+    "answer": "Native fill 3735/3735 (status=error OR exit != 0). Shell exit_code 1135/1140, 157 nonzero. No marker exists (A R 0/197). The exit code does not survive into the IR text: B on shell has P 26/36 = 0.722, R 26/157 = 0.166 [0.10,0.25], and 24 native-true shell results have blank text. Non-shell 'Error:' lines at the start give B P 36/49 = 0.735 [0.47,0.87], R 36/40 = 0.900 [0.65,1.00]. Proposed Probe 3 definition: native_error only; the text proxy is dead for shell.",
+    "decisive_number": "B shell recall 26/157 = 0.166 [0.10,0.25] (13 sessions)",
+    "json_path": "analysis/out/phase_a/a4.json#units['swechat/opencode'].shell.pr.native_strict.predictors.B",
+    "verdict": "usable"
+   },
+   {
+    "corpus": "swechat/gemini",
+    "answer": "Native fill 2313/2313 from status: success 2170, error 126, cancelled 17. The text exit code and the native flag are DISJOINT. gemini_exit_code_nonzero fires on 280/816 shell results, all native false. Native-true results ('Failed to edit' 102, '[Operation Cancelled]' 17) match no family. A: P 0/280, R 0/143; B and C: P 0/281, R 0/143. Proposed Probe 3 definition: two classes, tool-call failure = native True and command failure = text exit code. The union cannot be validated. 10 sessions.",
+    "decisive_number": "A precision 0/280, recall 0/143 (8 sessions)",
+    "json_path": "analysis/out/phase_a/a4.json#units['swechat/gemini'].all.pr.native_strict.predictors.A",
+    "verdict": "partial"
+   },
+   {
+    "corpus": "swechat/copilot",
+    "answer": "Native fill 265/265, 8 true (error_code=failure on all 8), 2 sessions. No marker. B: 1 TP, 1 FP, 7 FN, below the pre-registered minimum n. Proposed Probe 3 definition: native_error is True; text agreement is not measurable.",
+    "decisive_number": "8 native-true results in 2 sessions",
+    "json_path": "analysis/out/phase_a/a4.json#units['swechat/copilot'].all",
+    "verdict": "partial"
+   },
+   {
+    "corpus": "swechat/cursor + swechat/simple_text",
+    "answer": "The source has no tool results: 0 results across 7 (cursor) and 4 (simple_text) A sessions. No error signal exists, so Probe 3 is dead for these formats.",
+    "decisive_number": "0 results",
+    "json_path": "analysis/out/phase_a/a4.json#swechat_A_results_by_format",
+    "verdict": "absent"
+   },
+   {
+    "corpus": "aiv_cu",
+    "answer": "No native failure field (0/6107). stderr is non-empty on 277/6107 = 0.045 [0.035,0.056]; shell 253/2229 = 0.114 [0.089,0.141]. On outputs that look successful, stderr is non-empty on 135/2698 = 0.050 [0.037,0.066] (shell 128/1888 = 0.068 [0.047,0.090]). Only 33/1888 = 0.017 [0.010,0.026] carry a failure template; the rest is mostly git/curl progress ('To https:' 41, 'From https:' 28). The 'system' key is present on 0/6107 results. output_null is structural for gui (3065/3065). On shell it is associated with failure: stderr non-empty 125/325 = 0.385 [0.308,0.473] vs 128/1904 = 0.067, and failure template 83/325 = 0.255 vs 33/1904 = 0.017. But 200/325 output-null shell results have empty stderr, so it is not a failure flag. Failure text is stderr-only: tracebacks 14/14, timeouts 27/27, nonzero returncode 17/17. Probe 3 needs a regex proxy: stderr matching the returncode-N, timeout or census templates fires on 118/6107 = 0.019 [0.013,0.026] (shell 116/2229 = 0.052 [0.038,0.072]). It is unvalidated because there is no reference.",
+    "decisive_number": "stderr non-empty on looks-successful shell outputs 128/1888 = 0.068; only 33/1888 = 0.017 carry a failure template",
+    "json_path": "analysis/out/phase_a/a4.json#aiv_cu.by_class",
+    "verdict": "absent"
+   },
+   {
+    "corpus": "whowhen",
+    "answer": "exit_code is filled on 87/353 = 0.246 [0.151,0.403] s63, all AG code_exec; 36 nonzero = native true. A, B and C all score P 36/36, R 36/36 (s26), but this is TAUTOLOGICAL: the loader and the marker parse the same 'exitcode:' header. Under null-as-negative, B adds 12 FP (tracebacks in non-code agents' text). Other agents (266 results) have no failure field. Proposed Probe 3 definition: exit_code != 0 on AG code_exec only.",
+    "decisive_number": "87/353 results carry an exit code (36 nonzero); agreement 36/36 is by construction",
+    "json_path": "analysis/out/phase_a/a4.json#units['whowhen'].all",
+    "verdict": "partial"
+   }
+  ],
+  "surprises": [
+   "Gemini (swechat): the native flag and the text exit code never co-occur. 280/816 shell results say 'Exit Code: N!=0' in text but have status=success; the 143 native-true results are edit/cancel failures with no exit text. A and B score precision 0/280 and recall 0/143.",
+   "Claude Code is_error is written only on Bash results (false) and on failures (true). Every non-shell result is true or absent: 9128, 1805 and 25768 nulls in swechat_cc, cc_local and aiv_cc. So null means 'not flagged', not 'unknown'.",
+   "cc_local: 157 of 311 native-true Bash results are cc_permission_denied (harness refusals). In swechat/claude_code, exit codes dominate (248/300). 'Error' means different things across corpora.",
+   "aiv_cc mcp__village__bash results are JSON turn records with the same output/error/system schema as aiv_cu. All 1746 are native-null even when the error field holds a failure, so aiv_cc's native flag has a structural hole exactly where its computer-use traffic is.",
+   "Codex has no entry in ir.ERROR_MARKERS (marker recall 0/49), yet its shell text carries the exit code on nearly every result, including zero: 'Exit code: N' on 558/842 and 'Process exited with code N' on 268/842.",
+   "OpenCode: the exit code does not reach the IR text. B recall on nonzero-exit shell results is 26/157, and 24 of them have blank text.",
+   "The aiv_cu 'system' field is never present in Phase A (0/6107), and the same field in aiv_cc village JSON is null on 0/1746 non-null, i.e. never set. It cannot be tested as a flag.",
+   "The census regexes add no recall in any Claude Code corpus, only false positives (swechat/CC shell +81 FP, 0 TP). They help only where native errors start with 'Error:' (aiv_cc MCP: recall 52/256 to 252/256; OpenCode non-shell)."
+  ],
+  "implications_for_phase_b": [
+   "Use native_error as the Probe 3 error definition wherever it exists, with null counted as 'not error' for Claude Code formats. Text proxies are fallbacks, not replacements.",
+   "Split the error class by marker type (exit code / permission denial / tool_use_error / interrupt / native-only). Permission denials are about half of cc_local Bash errors and would otherwise mix harness refusals with command failures.",
+   "Gemini needs two separate error classes (native tool-call failure, text exit code). Reporting one pooled 'error rate' would silently change meaning by format.",
+   "Codex: native_error plus a nonzero text exit-header fallback for the 163 native-null shell results. Treat Codex numbers as small-n (15 sessions with results in A).",
+   "OpenCode: native only. Any Probe 3 mechanism that relies on the model SEEING an error in the result text is weak there, because 24/157 failed shell results show blank text and most show ordinary output.",
+   "aiv_cu (and aiv_cc village-bash turns): only an unvalidated stderr regex proxy (118/6107 results) exists. Its stderr rate varies by model family (4/240 to 58/203 on shell). Phase B should report aiv_cu error-dependent results as proxy-based, or drop them.",
+   "whowhen: restrict Probe 3 to AG code_exec (87 results, 36 failures in A). The marker/exit agreement there is not evidence.",
+   "cursor and simple_text: Probe 3 is dead (no tool results).",
+   "If Phase B sets thresholds on error prevalence, use these Phase A native-true rates. Examples: swechat_cc 614/13592 = 0.045 [0.037,0.054]; cc_local 349/5164 = 0.068 [0.056,0.105]; codex 49/1120; opencode 197/3735; gemini 143/2313."
+  ],
+  "could_not_measure": [
+   "aiv_cu: precision/recall of any failure definition. There is no reference flag, and no other field behaves like one.",
+   "whowhen: real agreement between text and the exit flag. Both come from the same header, so 36/36 is by construction.",
+   "swechat/copilot text agreement: 2 sessions, 8 native-true results, below the pre-registered minimum n.",
+   "swechat/cursor and simple_text: no tool results in the source.",
+   "OpenCode: whether the model saw anything beyond state.output (e.g. exit metadata) for shell results. The IR text carries none, and prompt assembly is not in the data.",
+   "Codex: why 163 shell results lack native and exit (unified-exec running/deferred or missing exec_command_end). Not resolved here; see swechat_build.json.",
+   "Cluster-bootstrap CIs are degenerate at rates of exactly 0 or 1 (e.g. A precision 488/488 gives [1.00,1.00]); Wilson intervals are in the JSON for those cases.",
+   "Precision of the aiv_cc village-bash JSON error-field proxy: native never fires on those turns."
+  ]
+ },
+ "verifier": {
+  "question": "A4 Error-signal survival. Per corpus and per swechat format: fill rates of native_error and exit_code; error_marker distribution; where failure text survives (text start, middle, stderr only); precision and recall of (a) ir.error_marker and (b) marker OR census regexes against the native flag; whether aiv_cu has any failure flag; and the proposed Probe 3 error definition. Re-derived independently from the *_A.parquet caches in scratchpad/a4v (common.py, sw.py, cc.py, cu.py). The measurer's script was read only after my numbers existed.",
+  "checks": [
+   {
+    "corpus": "swechat/claude_code",
+    "reproduced": true,
+    "my_numbers": "13592 results, 126 sessions. native T/F/null = 614/3850/9128. Fill 4464/13592 = 0.328, cluster CI [0.285,0.370], s126. Shell 4150/4150 filled. Non-shell is 314 T, 0 F, 9128 null. exit_code filled 0. Null-neg A: P 488/488 (Wilson lo 0.992), R 488/614 = 0.795, cluster [0.720,0.855], s90 (Wilson [0.761,0.825]). Shell R 297/300 = 0.990, cluster [0.975,1.0]; the 3 misses are 'Permission for this tool use was denied' variants. Non-shell R 191/314 = 0.608, cluster [0.517,0.689], s76. B adds 0 TP and 112 FP: 81 native-false Bash, 31 null non-shell (Read 15, TaskOutput 10). B P 488/600 = 0.813, cluster [0.741,0.885]. stderr non-empty on 43 results; census hits in stderr = 0. 'Exit code N' at text start 248, anywhere 250.",
+    "problem": "No material discrepancy. The headline CIs are session-cluster bootstrap; the question asked for Wilson, and Wilson is only in the JSON. '248/248 at start' is partly by construction, because cc_exit_code is anchored at the start. The 'File content exceeds' FN count is 27 for the measurer and 29 for me (regex difference)."
+   },
+   {
+    "corpus": "cc_local",
+    "reproduced": true,
+    "my_numbers": "5164 results, 107 sessions. T/F/null = 349/3010/1805. Fill 3359/5164 = 0.650, cluster [0.394,0.790]. A: P 331/331, R 331/349 = 0.948, cluster [0.900,0.977], s74. Shell R 309/311; non-shell R 22/38 = 0.579, cluster [0.405,0.759], s23. Null-neg B: P 332/369 = 0.900, cluster [0.824,0.949], R 332/349. Markers on shell native-true: permission_denied 157, exit_code 135, tool_use_error 11, interrupt 6, none 2. Non-shell filled 47 = 38 T + 9 F (all 9 F are Workflow).",
+    "problem": "The counts reproduce. The summary claim that every non-shell CC result is true or absent is false here: 9 non-shell Workflow results are False. All output is aggregates only."
+   },
+   {
+    "corpus": "aiv_cc",
+    "reproduced": true,
+    "my_numbers": "33475 results, 77 runs. T/F/null = 538/5419/27518. Fill 5957/33475 = 0.178, cluster [0.108,0.247]. A: P 296/296, R 296/538 = 0.550, cluster [0.342,0.791], s38. Null-neg B: P 534/637 = 0.838, cluster [0.736,0.897]; R 534/538 = 0.993, cluster [0.977,0.999]. B-only TPs: computer_use 170, village_bash 38, get_events 10, edit_memory 8, other 12. B FPs are 52 native-false Bash and 51 null (village_bash 31, get_events 19, search_history 1). Village-bash JSON turns: 1746/1799, all native null. Their error field is non-empty on 267/1746 = 0.153, cluster [0.098,0.236], s26; system is null on 1746/1746. mcp__village__computer_use has 3074 JSON turn records, also all native null, but error is non-empty on only 3. 33473 of the 33475 A results share ONE sdk_session_id.",
+    "problem": "The 77 runs, 38 of them with positives, are resumes of essentially one SDK conversation of one agent. Clustering by run treats them as independent, so every aiv_cc CI is too narrow. The 'usable' verdict rests on B's precision lower bound of 0.736 against a 0.70 bar. A alone fails the rule (R lower bound 0.342, so partial). The proposed definition, native_error is True, has a 1746-row hole on village bash. Text-start count for the error_line family: 244 (238 native T) for me, 201/200 for the measurer. That is a location-definition difference and not decisive."
+   },
+   {
+    "corpus": "swechat/codex",
+    "reproduced": true,
+    "my_numbers": "1120 results, s15. T/F/null = 49/811/260. Shell: 842 results, s14. exit_code fill 679/842 = 0.806, cluster [0.513,0.930]. 49 nonzero, all native T; 163 shell results are null on both. A R 0/49. B: P 33/36 = 0.917, cluster [0.60,1.0]; R 33/49 = 0.673, cluster [0.194,0.920], s6. B plus a nonzero exit header: P 47/50, R 47/49, cluster [0.823,1.0]. Adding the supplementary harness_timeout family ('sandbox error: command timed out') reproduces C: P 49/52, R 49/49, s6. Headers: 'Exit code: N' 558/842, 'Process exited with code N' 268 (266 when line-anchored), 0 overlap. 16 shell results have no header: 13 still-running unified exec, 3 sandbox-timeout texts. Null-native shell results with a zero header: 144 (66+78); with a nonzero header: 3. Exit column and text header agree on 677/677.",
+    "problem": "My independent C (exit header only) gives R 47/49. 49/49 needs the exploratory, recon-derived 'sandbox error: command timed out' string, which covers exactly 2 positives. 'Wilson [0.93,1.00]' ignores clustering across 6 sessions. 'Exit code on every shell result' is 826/842. The question's own predictors do not reach 'usable': A has R 0/49 and B is partial by the rule. The verdict rests on exploratory C. C is still usable by the rule without the timeout string (P lower bound 0.793, R lower bound 0.823), but only 6 sessions contain positives."
+   },
+   {
+    "corpus": "swechat/opencode",
+    "reproduced": true,
+    "my_numbers": "3735 results, s25. 197 T, 3538 F, fill 100%. Shell: 1140 results; exit filled 1135; nonzero 157, equal to native T shell; 24 of those have blank text. A R 0/197. B all: P 62/85 = 0.729, cluster [0.56,0.852]; R 62/197 = 0.315, cluster [0.224,0.397]. Shell: P 26/36 = 0.722, R 26/157 = 0.166, cluster [0.096,0.253], s13. Other: P 36/49 = 0.735, cluster [0.469,0.873]; R 36/40 = 0.900, cluster [0.647,1.0], s9.",
+    "problem": "The counts reproduce. The 'usable' verdict does not follow the pre-registered rule, which grades text proxies. Under that rule B is partial overall, absent on shell and partial on other. 'Usable' here means a native flag is present, which is a different standard that was not pre-registered. The shell native flag is itself exit != 0, set by the loader."
+   },
+   {
+    "corpus": "swechat/gemini",
+    "reproduced": true,
+    "my_numbers": "2313 results, s10. status success/error/cancelled = 2170/126/17; native T 143 in 8 sessions. Shell: 816 results; 'Exit Code: N!=0' on 280/816, all native F, 8 sessions. A: P 0/280, R 0/143. B: P 0/281, R 0/143. Native-true texts: 'Failed to edit' 109 (102 of them '0 occurrences'), '[Operation Cancelled]' 17.",
+    "problem": "The disjointness follows from how the loader builds the flag: native comes from status only. The loader docstring already says there is no exit field and that 'Exit Code: 1' can carry native False. So P 0/280 is not an empirical finding about text survival. Under the pre-registered rule A, B and C are all 'absent', yet the verdict says 'partial'."
+   },
+   {
+    "corpus": "swechat/copilot",
+    "reproduced": true,
+    "my_numbers": "265 results, s2. 8 native T, 257 F. A R 0/8. B: TP 1, FP 1, FN 7.",
+    "problem": "Minimum n is not met, so the rule gives 'absent' for the text proxy. The verdict 'partial' is off-rule; it actually describes the native flag, with 2 sessions."
+   },
+   {
+    "corpus": "swechat/cursor + simple_text",
+    "reproduced": true,
+    "my_numbers": "cursor: 7 A sessions, 0 results. simple_text: 4 A sessions, 0 results.",
+    "problem": "None."
+   },
+   {
+    "corpus": "aiv_cu",
+    "reproduced": true,
+    "my_numbers": "6107 results, s199. native and exit_code filled 0. 'system' key present 0/6107. stderr non-empty 277/6107 = 0.045, cluster [0.035,0.056]; shell 253/2229 = 0.114, cluster [0.089,0.141]. 'Looks successful' (non-null, non-blank output, no census hit in text): 2698 results, 1888 on shell. stderr non-empty on those: 135/2698 = 0.050, cluster [0.037,0.066]; shell 128/1888 = 0.068, cluster [0.047,0.090]. Failure template in stderr on those shell results: 33/1888 = 0.017, cluster [0.010,0.026]. output_null: gui 3065/3065, shell 325. stderr non-empty given output null: 125/325 = 0.385, cluster [0.308,0.473], versus 128/1904 = 0.067 given output present. Template: 83/325 versus 33/1904. Output null with empty stderr: 200. Stderr-only families: traceback 14/14, timeout 27/27, returncode N!=0 17/17, all with null output. Proxy fires on 118/6107 = 0.019, cluster [0.013,0.026]; shell 116/2229 = 0.052, cluster [0.038,0.072].",
+    "problem": "The counts reproduce. The notes' 'failure text lives in stderr only, in every shell family' is overstated: result text also carries no_such_file 3 (29/32 stderr-only), fatal 7, error_line 3, HTTP 2 and perm_denied 1. stderr also carries the harness string 'bash has exited with returncode 0' 4 times. The proxy is unvalidated, as the measurer states."
+   },
+   {
+    "corpus": "whowhen",
+    "reproduced": true,
+    "my_numbers": "353 results, s63. exit_code filled 87/353 = 0.246, cluster [0.151,0.403], all AG code_exec; 36 nonzero. Strict A and B: P 36/36, R 36/36, s26. Null-neg B: 12 FP, all WebSurfer tracebacks in 12 sessions, all 12 flagged extra.log_leak by the loader. Hand-Crafted: 266 results, 0 exit codes in A (no ComputerTerminal results in this split).",
+    "problem": "The by-construction agreement is correctly flagged. The rule would grade A 'usable'; the measurer downgraded it to 'partial'. That is defensible but off-rule. The 12 FPs are run-script log leakage, not failures of the agents."
+   }
+  ],
+  "kill_logic_ok": false,
+  "overclaims": [
+   "Verdict labels do not follow the pre-registered usable/partial/absent rule, which grades text proxies: opencode 'usable' (rule: B partial, shell absent), gemini 'partial' (rule: absent, P 0/281, R 0/143), copilot 'partial' (min n not met, so absent), whowhen 'partial' (rule: usable), codex 'usable' (only through exploratory predictor C; question predictor B is partial). They actually grade whether a Probe 3 error definition is available, native or text, and no rule for that was pre-registered.",
+   "'The census regexes add no recall in any Claude Code corpus, only false positives' is false for aiv_cc. There B lifts TP from 296 to 534 (R 0.550 to 0.993), and in cc_local B adds 1 TP. The claim holds only for swechat/claude_code.",
+   "'Claude Code is_error ... every non-shell result is true or absent' is false for cc_local: 9 non-shell Workflow results have is_error False.",
+   "Codex 'text carries the exit code on every shell result, including zero', and the notes' 'every legacy shell result opens with an exit header': actual coverage is 826/842 shell results and 558/561 shell_command results. 13 still-running unified exec outputs and 3 sandbox-timeout texts have no header.",
+   "Codex 'R 49/49 (Wilson [0.93,1.00]) s6': Wilson ignores clustering across 6 sessions. 2 of the 49 TPs come only from the recon-derived 'sandbox error: command timed out' string; the exit header alone gives R 47/49.",
+   "aiv_cc 'many B false positives are village-bash JSON turns whose error field holds a real failure the harness never flags' is unvalidated. That field is stderr, which the same analysis concludes is not a failure flag. Only 31 B FPs fall on village bash.",
+   "aiv_cc CIs (s38, s77) treat runs as independent, but 33473/33475 A results come from one sdk_session_id of one agent. The 'usable' verdict rests on a B precision lower bound of 0.736 against the 0.70 bar, which is less secure than stated.",
+   "aiv_cc 'native flag has a structural hole exactly where its computer-use traffic is': mcp__village__computer_use also has 3074 JSON turn records that are never natively flagged, but their error field is non-empty on only 3. So the hole that matters is village bash only.",
+   "Gemini 'native flag and text exit code are DISJOINT' is presented as an empirical finding. It follows from the loader's documented mapping: native comes from status, there is no exit field, and 'Exit Code: 1' can carry native False.",
+   "aiv_cu notes: 'failure text lives in stderr only, in every shell family' is too strong. no_such_file is 29/32 stderr-only, and fatal, error_line, HTTP and perm_denied also appear in result text.",
+   "The question asked for Wilson CIs. The headline reports session-cluster bootstrap, which is appropriate under README rule 5 but gives degenerate [1,1] intervals at P = 1, and switches to Wilson only where the bootstrap collapses (Codex). That gives a mixed and, for small-session units, overconfident account of uncertainty."
+  ]
+ }
+}

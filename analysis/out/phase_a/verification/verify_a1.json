@@ -1,0 +1,199 @@
+{
+ "question": "A1",
+ "provenance": "Structured outputs of the Phase A workflow's measure:a1 and verify:a1 subagents (workflow wf_a777a5b4-cfb), copied verbatim. The verifier re-derived the numbers with its own scratch scripts (not committed); its numbers are verifier-reported unless the synthesizer re-derived them in analysis/out/phase_a/resolve.json.",
+ "measurer_summary": {
+  "question": "A1: timestamp granularity and semantics (the latency gate). Pair each call with its first result on (session_id, call_id) and take delta = parse_ts(result) - parse_ts(call). Report the stamp and delta resolution per corpus, per swechat format and per is_subagent. Check event time against insert time (aiv_cc, aiv_cu), look for human-wait evidence in the Claude Code formats, and apply the kill rule: whole-second stamps, or a stamp shared by call and result, mean latency analysis is dead.",
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a_a1.py",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a1.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\phase_a_a1.md"
+  ],
+  "per_corpus": [
+   {
+    "corpus": "swechat/claude_code",
+    "answer": "Stamps are milliseconds (57,496/57,496 stamps have 3 digits; the last digit is uniform). 13,589 pairs over 126 sessions. Identical call/result stamps: 37 (0.272% [0.128, 0.484]). Whole-second stamps: 0.096% [0.062, 0.131]. Negative deltas: 0. Delta p50 0.101 s [0.069, 0.142], p95 30.1 s, max 78,675.7 s (a subagent call). Main-thread p50 0.133 s (n 9,679); subagent p50 0.048 s (n 3,910, 52 sessions). Human waits are clearly present: 13.2% [6.8, 21.7] of Edit/Write calls take more than 2 s; 34/126 sessions (27.0% [20.0, 35.3]) contain a user tool rejection, which arrives p50 23.4 s after the call; 15.0% [7.2, 26.9] of long shell commands start more than 2 s after the call (bash_progress offset). All 3,178 PreToolUse hook stamps fall inside the call-to-result window.",
+    "decisive_number": "identical stamps 0.272% [0.128, 0.484] of 13,589 pairs; whole-second stamps 0.096%",
+    "json_path": "verdicts['swechat/format=claude_code']; groups['swechat/format=claude_code']; claude_code_human_wait.swechat_claude_code",
+    "verdict": "ALIVE"
+   },
+   {
+    "corpus": "swechat/codex",
+    "answer": "Millisecond stamps. 1,120 pairs over 15 sessions; 0 identical, 0 negative. Delta p50 0.197 s [0.164, 0.357]. For exec_command, delta minus the harness duration_s is p50 0.0775 s and is never negative (184/184). The tool_raw values behave differently: shell_command p50 0.176 s, exec_command 0.711 s; 12 results came back while the process was still running; wait_agent and diagnostics calls show fixed-wait floors at 3, 10, 15 and 30 s.",
+    "decisive_number": "0/1,120 identical; whole-second stamps 0.089% [0, 0.224]",
+    "json_path": "verdicts['swechat/format=codex']; format_semantics_checks.codex",
+    "verdict": "ALIVE"
+   },
+   {
+    "corpus": "swechat/opencode",
+    "answer": "Millisecond stamps; call/result stamps are the tool part's time.start and time.end. 3,735 pairs over 25 sessions. 14 identical (0.375% [0.073, 0.723]), 0 negative. Delta p50 0.022 s [0.017, 0.024] (read p50 0.004 s, todo 0.001 s). Subagent p50 0.006 s (n 333, 14 sessions). Whether permission prompts fall inside time.start/time.end could not be determined.",
+    "decisive_number": "identical stamps 0.375% [0.073, 0.723]; whole-second stamps 0.054%",
+    "json_path": "verdicts['swechat/format=opencode']",
+    "verdict": "ALIVE"
+   },
+   {
+    "corpus": "swechat/gemini",
+    "answer": "Millisecond stamps. 2,313 pairs but only 10 sessions; 0 identical. 6 negative deltas (all shell; 0.26% [0, 0.44]; min -0.022 s). Delta p1 0.058 s; edit and write are never below 0.064 s. So the call stamp, which is the message stamp, is not exactly the moment the call was emitted. Delta p50 0.335 s. 486 calls in one session have neither a stamp nor a result.",
+    "decisive_number": "0/2,313 identical; whole-second stamps 0.151% [0.092, 0.251]",
+    "json_path": "verdicts['swechat/format=gemini']",
+    "verdict": "ALIVE"
+   },
+   {
+    "corpus": "swechat/copilot",
+    "answer": "Millisecond stamps. 265 pairs from only 2 sessions; 0 identical. tool.execution_start minus the call stamp is at most 0.003 s. Delta p50 0.582 s. Too few sessions for a baseline.",
+    "decisive_number": "0/265 identical; 0/530 whole-second stamps (n = 2 sessions)",
+    "json_path": "verdicts['swechat/format=copilot']",
+    "verdict": "ALIVE"
+   },
+   {
+    "corpus": "swechat/cursor",
+    "answer": "No timestamps at all (ts_kind none). 206 calls and no results in the source.",
+    "decisive_number": "0 stamped pairs",
+    "json_path": "verdicts['swechat/format=cursor']",
+    "verdict": "KILLED"
+   },
+   {
+    "corpus": "swechat/simple_text",
+    "answer": "No tool calls. 20/20 stamps are whole-second.",
+    "decisive_number": "0 pairs; 20/20 whole-second stamps",
+    "json_path": "verdicts['swechat/format=simple_text']",
+    "verdict": "KILLED"
+   },
+   {
+    "corpus": "cc_local",
+    "answer": "Millisecond event stamps. 5,164 pairs over 107 sessions; 0 identical, 0 negative. Delta p50 0.247 s [0.102, 0.351]. Where the tool reports its own duration, the stamps bracket it tightly: Glob delta minus durationMs p50 0.010 s, never negative (427/427). No sign of human waits on edits: 0/358 Edit/Write calls exceed 2 s (max 0.09 s). The 173 permission denials (67/107 sessions, 62.6% [53.2, 71.2]) are automatic (p50 7 ms, max 37 ms). There are no hook_progress events. Shell calls cannot be split into execution time and waiting (26.1% exceed 2 s).",
+    "decisive_number": "0/5,164 identical; whole-second stamps 0.058% [0.023, 0.116]",
+    "json_path": "verdicts.cc_local; claude_code_human_wait.cc_local",
+    "verdict": "ALIVE"
+   },
+   {
+    "corpus": "aiv_cc",
+    "answer": "Microsecond database row-insert stamps (the last digit is uniform, chi2 p 0.89). 33,475 pairs over 77 sessions; 0 identical, 0 negative; 33,001 distinct delta values. Insert time tracks event time and is not batched: 0 of 113,019 consecutive-row gaps are under 1 ms, and the smallest gap is 18.2 ms. Run spans match the SDK's own duration_ms (82 runs, p50 difference -3.7 ms). However, every call-to-result delta has a floor of about 50 ms that does not depend on the tool: TodoWrite p1 is 0.0516 s against 0.001 s in swechat; read p1 0.0582 s against 0.002 s; the overall minimum is 0.046 s. Glob delta minus its reported durationMs is p50 0.049 s. All 125 runs use bypassPermissions, so there are no human waits. A separate trap: a call that is not the last tool_use block of its message absorbs the generation time of the later blocks (Write p50 15.5 s for non-last blocks vs 0.089 s for last blocks). The parent_uuid check could not be done: parent_uuid is null on all 113,144 rows.",
+    "decisive_number": "0/33,475 identical; 0/66,950 whole-second stamps; delta min 0.046 s (~50 ms floor on every tool)",
+    "json_path": "verdicts.aiv_cc; aiv_cc_insert_time",
+    "verdict": "ALIVE"
+   },
+   {
+    "corpus": "aiv_cu",
+    "answer": "Call and result share one stamp in 6,107/6,107 pairs (199 sessions), in all 10 strata. Weaker quantities remain. The inter-turn gap is p50 14.06 s [13.26, 14.92] (n 6,255). For Gemini only (1,161 gaps, 35 sessions), the gap minus server timing is p50 6.36 s and is never negative. created_at minus the HTTP Date header is p50 4.49 s, but the Date header is whole-second, so that per-action proxy is also dead under the kill rule. updated_at is within 1 ms of created_at in 6,104/6,107 rows and adds nothing.",
+    "decisive_number": "6,107/6,107 pairs with identical call/result stamps (100% [100, 100])",
+    "json_path": "verdicts.aiv_cu; aiv_cu_shared_turn",
+    "verdict": "KILLED"
+   },
+   {
+    "corpus": "whowhen",
+    "answer": "No timestamps anywhere: 0 of 353 pairs have a stamp (ts_kind none on all 1,733 rows).",
+    "decisive_number": "0/353 stamped pairs",
+    "json_path": "verdicts.whowhen",
+    "verdict": "KILLED"
+   }
+  ],
+  "surprises": [
+   "aiv_cc: every tool's call-to-result delta has a floor of about 50 ms, the same for TodoWrite and Bash. Inserts are never closer than 18.2 ms apart, and none are batched (0 of 113,019 gaps under 1 ms). The floor is an additive offset that also appears against tool-reported durations (Glob +49 ms); it does not coarsen the resolution.",
+   "aiv_cc: a call that is not the last tool_use block of its API message absorbs the generation time of the later blocks (Write p50 15.5 s vs 0.089 s). In the CLI corpora the opposite holds: the result usually arrives before the last block is stamped (cc_local shell 87.2%, swechat reads 80.7%), so tool execution streams in the CLI but not in this SDK version.",
+   "swechat Claude Code: 27% of sessions contain a 'user doesn't want to proceed' rejection, arriving p50 23.4 s after the call. That is a direct measure of a human answering a permission prompt.",
+   "cc_local: 173 permission denials in 62.6% of sessions are automatic (p50 7 ms). The same marker means machine denial in cc_local and human interaction in swechat.",
+   "swechat WebFetch delta exceeds its own reported durationMs by p50 1.68 s (p95 88.6 s); in cc_local the excess is 0.004 s. This is consistent with per-domain permission prompts.",
+   "Gemini (swechat) has 6 negative deltas and a p1 floor of 58 ms, so its message-level call stamp is not the moment the call was emitted.",
+   "aiv_cu's last-digit uniformity test gives a spurious p = 0.009 when the shared stamp is counted twice; on distinct stamps p = 0.28."
+  ],
+  "implications_for_phase_b": [
+   "The latency probe can use swechat claude_code (126 sessions), cc_local (107) and aiv_cc (77). aiv_cu, whowhen and Cursor are out. Codex (15 sessions), OpenCode (25), Gemini (10) and Copilot (2) pass the gate on stamp granularity but are too small for per-format baselines.",
+   "Proposed rule for calls with no human wait (not applied):\n- Stamped pairs in an ALIVE unit only.\n- Tool class auto_read (read/glob/grep/ls) or internal_noperm (todo/task*/toolsearch). The one exception is aiv_cc, which runs bypassPermissions: there every tool qualifies except human-interactive and subagent tools.\n- The call must be the last or only tool_use block of its API message.\n- No cc_permission_denied or cc_interrupt_reject marker on the result.\n- No linked PreToolUse/PostToolUse hook_progress event (swechat) or hook attachment (cc_local).",
+   "aiv_cc deltas below about 0.1 s are bounded by the ingestion floor. Only compare tools well above about 50 ms there; a tool-independent ~50 ms offset is present.",
+   "Shell, edit, write and web tools in swechat claude_code and cc_local are not clean latencies. This holds until permissionMode is carried into the IR. Where bash_progress exists, the pre-exec offset measures the wait directly.",
+   "Keep Codex tool_raw values apart (shell_command / exec_command / write_stdin); polling and yield semantics put fixed-value spikes into delta.",
+   "Phase B's first count should be how many calls the proposed rule keeps, per corpus and tool class. A1 did not measure this."
+  ],
+  "could_not_measure": [
+   "aiv_cc 'event ts < parent_uuid ts': parent_uuid is null on all 113,144 IR rows. Only the causal proxy was measured: 0 results stamped before their call.",
+   "permissionMode for swechat claude_code and cc_local: it is in the raw entries but not carried by the IR. Loader/lib edits were out of scope.",
+   "Whether OpenCode time.start/time.end include permission-prompt waits.",
+   "Hook durations in cc_local: no hook_progress events; only 23 hook attachments, linked to 10 calls.",
+   "Server-timing residuals for any aiv_cu model other than Gemini (timing exists only for gemini-pro and gemini-flash, 35 sessions).",
+   "Stable per-format latency baselines outside Claude Code (10 to 25 sessions per format; Copilot 2)."
+  ]
+ },
+ "verifier": {
+  "question": "A1, the latency gate: timestamp granularity and meaning. Pair each call with its first result on (session_id, call_id) and take delta = result ts minus call ts. Report stamp and delta resolution per corpus, per swechat format and per is_subagent. Check event time against insert time (aiv_cc, aiv_cu) and look for human waits in the Claude Code corpora. Kill rule: whole-second stamps, or one stamp shared by a call and its result, mean latency analysis is dead for that unit. This re-derivation used my own scripts in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad (rd_a1.py, rd_swe.py, rd_swe2.py, rd_aivcc.py, rd_aivcu.py, rd_hw.py, rd_hw2.py, rd_bp.py, rd_bp2.py, rd_cc2.py, rd_last.py, rd_ccsub.py). They read only the *_A.parquet caches and swechat_population.parquet, and parse timestamps with my own integer-microsecond parser, which agrees with ir.parse_ts to 0.0 s on every pair. Nothing was written into analysis/.",
+  "checks": [
+   {
+    "corpus": "swechat/claude_code",
+    "reproduced": true,
+    "my_numbers": "57,496/57,496 stamps have 3 fractional digits. Last digit uniform on 49,496 distinct stamps (chi2 p 0.78). 13,620 calls, 13,589 pairs over 126 sessions, all stamped. Identical stamps 37/13,589 = 0.272% [0.128, 0.484]. Whole-second stamps 26/27,178 = 0.096% [0.062, 0.131]. Negative 0. Delta min 0, p1 0.002, p5 0.006, p50 0.101 [0.069, 0.142], p95 30.12, max 78,675.683 s. Main thread: 9,679 pairs, 126 sessions, p50 0.133 [0.091, 0.183]. Subagent: 3,910 pairs, 52 sessions, p50 0.0475 [0.033, 0.0945], identical 11 (0.281%). Human-wait checks: Edit/Write over 2 s 296/2,235 = 13.2% [6.8, 21.7] (115 sessions). cc_interrupt_reject on 59 results in 34/126 sessions (Wilson 27.0% [20.0, 35.3]), p50 23.388 s, min 0.164. PreToolUse hooks: 3,182 total, 3,178 linked, 3,178/3,178 inside the call-to-result window.",
+    "problem": "The decisive numbers and the ALIVE verdict reproduce exactly. The problems are in the human-wait evidence, not in the verdict:\n- The 34 sessions with a 'rejection' count all cc_interrupt_reject results. 1 of the 59 is a '[Request interrupted' (only 33 sessions have the 'doesn't want to proceed' text), and 18/59 are on ExitPlanMode/AskUserQuestion. Counting only permission-gated tools leaves 41 results in 20/126 sessions = 15.9% [10.5, 23.2].\n- The bash_progress offset sample (56/373, 51 sessions; I reproduce it when a paired result is required) contains 6 Task (subagent) calls. All 6 are over 2 s (p50 68.9 s). Shell only: 50/367 = 13.6% [5.8, 25.9].\n- Slow edits are concentrated: 187/296 come from 5 sessions, and only 51/115 sessions have any. Hooks do not explain them: 182/296 have no linked hook event, and hook-less edits are slower.\n- The maximum delta (78,675.7 s) is a main-thread Task call (tool subagent, is_subagent False), not a subagent-internal event."
+   },
+   {
+    "corpus": "swechat/codex",
+    "reproduced": true,
+    "my_numbers": "4,865/4,865 stamps have 3 digits (last-digit chi2 p 0.79). 1,122 calls, 1,120 pairs, 15 sessions. Identical 0/1,120. Whole-second stamps 2/2,240 = 0.089% [0, 0.224]. Negative 0. p50 0.1965 [0.164, 0.357], p95 7.40, max 299.98. Main thread: 941 pairs, 8 sessions, p50 0.182. Subagent: 179 pairs, 7 sessions, p50 0.692.",
+    "problem": "None in the decisive number; ALIVE follows the rule. It rests on 15 sessions, which the measurer states."
+   },
+   {
+    "corpus": "swechat/opencode",
+    "reproduced": true,
+    "my_numbers": "8,427 stamps, all 3 digits. 3,735 pairs over 25 sessions. Identical 14/3,735 = 0.375% [0.073, 0.723]. Whole-second stamps 4/7,470 = 0.054% [0, 0.101]. Negative 0. p50 0.022 [0.017, 0.024]. Subagent: 333 pairs, 14 sessions, p50 0.006, 0 identical. Last digit on 8,298 distinct stamps: chi2 p 0.039 (digit 5: 919 against a mean of 830).",
+    "problem": "The verdict reproduces. Minor: the notes call the last digit 'uniform' using a swechat-pooled p of 0.20, but OpenCode alone gives p 0.039. That is mild non-uniformity and does not change the verdict."
+   },
+   {
+    "corpus": "swechat/gemini",
+    "reproduced": true,
+    "my_numbers": "7,328 stamped events, all 3 digits; 1,028 rows have no ts. 2,800 call events, 2,313 pairs over 10 sessions. The 487 unpaired call events are all unstamped and all in 1 session: 486 distinct keys plus 1 duplicated call_id, which is the 'duplicate call id dropped'. Identical 0/2,313. Negative 6/2,313 = 0.259% [0, 0.437], min -0.022. Whole-second stamps 7/4,626 = 0.151% [0.092, 0.251]. p1 0.058, p50 0.335 [0.130, 0.391].",
+    "problem": "None; ALIVE follows. It rests on 10 sessions."
+   },
+   {
+    "corpus": "swechat/copilot",
+    "reproduced": true,
+    "my_numbers": "2,250 stamps, all 3 digits. 266 calls, 265 pairs, 2 sessions. Identical 0/265. Whole-second stamps 0/530. min 0.141, p50 0.582 [0.229, 1.03].",
+    "problem": "ALIVE by the rule, but with n = 2 sessions it is not a usable baseline. The measurer says so."
+   },
+   {
+    "corpus": "swechat/cursor",
+    "reproduced": true,
+    "my_numbers": "916 rows, all ts_kind none. 206 calls, 0 results, 0 pairs.",
+    "problem": "None; KILLED (no stamps)."
+   },
+   {
+    "corpus": "swechat/simple_text",
+    "reproduced": true,
+    "my_numbers": "20 rows over 4 sessions, all with 0 fractional digits (whole-second). 0 calls.",
+    "problem": "None; KILLED."
+   },
+   {
+    "corpus": "cc_local",
+    "reproduced": true,
+    "my_numbers": "21,074 stamps, all 3 digits; 148 rows have no ts (journal lines). 5,165 calls, 5,164 pairs over 107 sessions. Identical 0. Whole-second stamps 6/10,328 = 0.058% [0.023, 0.116]. Negative 0. p50 0.247 [0.102, 0.351], max 600.089. Main thread: 2,839 pairs, 107 sessions, p50 0.135. Subagent: 2,325 pairs from only 4 sessions (one holds 2,020 = 39% of all cc_local pairs), p50 0.427 [0.117, 4.533]. Edit/Write over 2 s: 0/358, max 0.09. cc_permission_denied: 173 results in 67/107 sessions = 62.6% [53.2, 71.2], p50 0.007 s, max 0.037. cc_interrupt_reject: 9 results in 6/107 sessions = 5.6% [2.6, 11.7], p50 4.902 s, min 0.458, max 87.0 (6 of them shell). hook_progress events: 0. Shell over 2 s: 26.1% [13.3, 29.4]. Glob delta minus durationMs: p50 0.010, 427/427 non-negative.",
+    "problem": "The ALIVE verdict reproduces. Problems:\n- Notes Part 2 says human-wait evidence is 'absent in ... cc_local', but the probe's own JSON has 9 human-paced rejections in 6 sessions (p50 4.9 s). Only the edit-specific claim (0/358) is supported.\n- The pooled cc_local delta distribution is dominated by one subagent-heavy session (39% of pairs). The bootstrap CI covers this, but the pooled p50 is not caveated."
+   },
+   {
+    "corpus": "aiv_cc",
+    "reproduced": true,
+    "my_numbers": "113,144 rows over 125 runs, all row_insert. Fractional digits: 6 = 101,759; 5 = 10,187; 4 = 1,080; 3 = 111; 2 = 7. Last digit after padding to microseconds is uniform. 33,479 calls, 33,475 pairs over 77 sessions. Identical 0. Whole-second stamps 0/66,950 (0 of all 113,144). Negative 0. 33,001 distinct deltas. min 0.046118, p1 0.0647, p50 0.448 [0.407, 0.529], max 361.5. Insert gaps: 113,019 consecutive gaps, 0 under 1 ms, 0 zero, min 18.192 ms. parent_uuid null on 113,144/113,144. Low quantiles: TodoWrite min 0.0505 / p1 0.0516; Bash min 0.0509 / p1 0.0655; Read p1 0.0582. Glob delta minus durationMs p50 0.049 (n 90, 1 negative). permissionMode bypassPermissions in 125/125 runs. Not-last tool_use blocks: Write p50 15.646 s (n 160, 1 session, 0/160 results before the last block's stamp) vs last-block Write p50 0.091 s. Other tools return before the last block in many cases: grep 41/41, read 45/68, get_events 502/993, chat_message 187/294, shell 549/1,570. Not-last Read p50 0.111 vs last 0.314; Bash 0.787 vs 0.709.",
+    "problem": "The decisive number and ALIVE follow the rule. The problems are interpretive:\n- The 'non-last block absorbs generation time / SDK does not stream' claim generalizes a single-session Write effect. Most tools' non-last results arrive before the last block is stamped.\n- 'Ingestion floor' is an attribution, not a measurement. Inserts can land 18 ms apart, yet call-to-result is never under 46 ms.\n- 'Tracks event time' is shown only at run level (82 run spans vs duration_ms)."
+   },
+   {
+    "corpus": "aiv_cu",
+    "reproduced": true,
+    "my_numbers": "16,085 rows over 200 sessions, all shared_turn. 6,107 pairs over 199 sessions. Identical 6,107/6,107 = 100% [100, 100] in all 10 strata, e.g. gemini-pro 752/752 and openai-responses 724/724. Whole-second stamps 0/12,214. Turns: 6,455; 0 with more than one distinct ts. Inter-turn gaps: n 6,255, 199 sessions, p50 14.063 [13.264, 14.924], 0 zero or negative. Gemini server timing on 1,161 turns. Gap minus server time of turn k+1: n 1,161, 35 sessions, p50 6.364 [5.820, 6.933], 0 negative. Subtracting turn k's server time instead gives 64/1,126 negative.",
+    "problem": "None; KILLED follows. 'Never negative' holds only for the documented alignment (turn k+1), which is the correct one."
+   },
+   {
+    "corpus": "whowhen",
+    "reproduced": true,
+    "my_numbers": "1,733 rows, all ts_kind none. 373 calls, 353 pairs, 0 stamped.",
+    "problem": "None; KILLED."
+   }
+  ],
+  "kill_logic_ok": true,
+  "overclaims": [
+   "'27% of sessions contain a user doesn't want to proceed rejection ... a direct measure of a human answering a permission prompt.' The 34/126 counts every cc_interrupt_reject result. 1 of the 59 is '[Request interrupted' (only 33 sessions have the quoted text), and 18/59 are on ExitPlanMode/AskUserQuestion, which are plan approvals and questions, not permission prompts. Counting only permission-gated tools: 41 results in 20/126 sessions = 15.9% [10.5, 23.2]. The minimum latency is 0.164 s.",
+   "'The same marker means machine denial in cc_local and human interaction in swechat.' This is wrong; the two corpora use different markers for these. cc_permission_denied is machine-fast in both: swechat n 3, p50 0.022 s, max 0.037; cc_local n 173, p50 0.007 s. cc_interrupt_reject is human-paced in both: swechat p50 23.4 s; cc_local 9 results, p50 4.9 s. What differs between the corpora is frequency, not meaning.",
+   "Notes Part 2 says human-wait evidence is 'absent in aiv_cc and cc_local'. For cc_local the probe's own JSON shows 9 cc_interrupt_reject results in 6/107 sessions (5.6% [2.6, 11.7]), p50 4.9 s, 6 of them shell. Only 'no waits on Edit/Write' (0/358) is supported.",
+   "aiv_cc: 'a call that is not the last tool_use block of its message absorbs the generation time of the later blocks ... tool execution streams in the CLI but not in this SDK version.' 160 of the 165 not-last file_write calls come from 1 session. For other tools, not-last results usually arrive before the last block's stamp: grep 41/41, read 45/68, get_events 502/993, chat_message 187/294, shell 549/1,570. Not-last Read is faster than last (p50 0.111 vs 0.314 s). Execution evidently does stream in the SDK for most tools; this is a one-session Write effect.",
+   "aiv_cc: 'That is the ingestion floor' and 'insert time tracks event time'. The minimum inter-row gap is 18.2 ms, so inserts alone can be that close, while call-to-result is never under 46 ms. The ~50 ms is a pipeline floor of unidentified cause. The match with event time is shown only at run level: 82 run spans vs SDK duration_ms, p50 -3.7 ms, p5 -0.244 s, p95 0.128 s. Per-event insert lag is unmeasured. The 'additive offset' also varies (Glob excess p5 0.019 to p50 0.049 s, 1/90 negative), so it is not a constant.",
+   "'15% of long shell commands start more than 2 s after the call (bash_progress offset).' The 373 calls include 6 Task (subagent) calls linked through parent_call_id. All 6 are over 2 s (p50 68.9 s), and that is subagent run time, not a pre-exec wait. Shell only: 50/367 = 13.6% [5.8, 25.9], before the ~1 s rounding from the integer elapsedTimeSeconds.",
+   "'Human waits are clearly present: 13.2% [6.8, 21.7] of Edit/Write calls take more than 2 s.' The probe's own recorded reason for the 2 s threshold says it captures human prompts, hooks or slow file systems, so this is not a direct human measure. Hooks do not explain it (182/296 slow edits have no hook event). It is concentrated: 187/296 slow edits sit in 5 sessions, 51/115 sessions have any, and 230/296 are in sessions that also have a rejection. It shows waits in a minority of sessions, not a corpus-wide property.",
+   "'The heavy right tails are real waits: the maximum is 78,675.7 s, a subagent.' The maximum is a main-thread Task call (is_subagent False) lasting about 21.9 h, and that subagent's own inner calls also show ~78,443 s deltas. This fits a suspended or resumed session. 'Real waits' is asserted, not measured.",
+   "'The last native digit is uniform' is backed by a swechat-pooled chi2 p of 0.20. OpenCode alone, on 8,298 distinct stamps, gives p 0.039. Minor, and it does not affect any verdict."
+  ]
+ }
+}

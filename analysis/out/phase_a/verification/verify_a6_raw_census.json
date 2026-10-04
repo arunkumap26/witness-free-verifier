@@ -1,0 +1,391 @@
+{
+ "question": "A6 raw census (a6_raw_census.json)",
+ "provenance": "Structured outputs of the earlier Phase C/A6 workflow (wf_aefdf80e-d22): lens:raw_census and verify:raw_census, copied verbatim from that workflow's result file. Verifier numbers come from its scratch scripts (rederive_raw_census.json, not committed).",
+ "measurer_summary": {
+  "lens": "Phase A6 raw-field census: every key path in every source, flagged as TIMER, CLOCK, COUNTER, HASH_ID, STATUS or TOKEN; marked captured or uncaptured against ir.py COLUMNS plus cc_jsonl extra; with a non-tool entry inventory and 5 pre-specified redundancy identities",
+  "files_written": [
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a6_raw_census.py",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_raw_census.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\tables.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\transcripts.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\cc_local.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\aiv.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\small.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\identities.json",
+   "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\raw_census.md"
+  ],
+  "observations": [
+   {
+    "id": "A6-O1",
+    "statement": "In Claude Code logs, the harness's Read counter toolUseResult.file.numLines equals the number of line-numbered lines in the text the model sees. This holds in both swechat and cc_local.",
+    "numbers": "swechat 2510/2514 = 0.998, Wilson [0.996, 0.999], cluster 0.998 [0.997, 1.0] over 149 files, 4 files mismatch. Mismatch diffs (text minus numLines), n=4: min -2312, median -1595, max -1. cc_local 191/194 = 0.985, Wilson [0.956, 0.995], 59 files, all 3 diffs -1.",
+    "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I4_cc_read_numlines_vs_text and parts.identities.cc_local_sample.I4_cc_read_numlines_vs_text",
+    "kind": "hit",
+    "mechanical_explanation": "Both fields are written by the same harness from the same read, so this is internal redundancy, not an independent witness. The 4 large negative mismatches may be truncated or persisted outputs (unverified)."
+   },
+   {
+    "id": "A6-O2",
+    "statement": "A subagent's totalToolUseCount (Agent/Task toolUseResult) equals the number of distinct nested tool_use ids in its agent_progress traffic.",
+    "numbers": "190/190 = 1.0, Wilson [0.980, 1.0], 71 files. A further 94 results in 20 files have no nested traffic, so they could not be checked.",
+    "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I5_cc_agent_toolcount and I5_cc_agent_toolcount_no_nested_traffic",
+    "kind": "hit",
+    "mechanical_explanation": "The harness counts the same stream it writes, so this is redundancy, not independence."
+   },
+   {
+    "id": "A6-O3",
+    "statement": "Several scaffolds write a second clock or timer per event that the IR drops: OpenCode tool-part state.time.end and message info.time.completed, Codex exec_command_end duration, Claude Code stop_hook_summary hookInfos[].durationMs, and AI Village computer_use_turns updated_at.",
+    "numbers": "OpenCode bash state.time.end 247/249 = 0.992 [0.977, 1.0] in 44 files; read 659/659; grep 120/120; info.time.completed 635/637 = 0.997 [0.992, 1.0]. Codex exec_command_end payload.duration.secs/nanos 1868/1868 in 9/9 files; mcp_tool_call_end 96/96. CC hookInfos[].durationMs 792/951 = 0.833 [0.694, 0.911]. AIV computer_use_turns updated_at 20000/20000.",
+    "json_path": "a6_raw_census.json: flagged[] where source is swechat_transcripts/opencode, swechat_transcripts/codex, swechat_transcripts/claude_code (group system/stop_hook_summary) or ai_village/computer_use_turns",
+    "kind": "hit",
+    "mechanical_explanation": "None found. Whether these clocks agree with each other was not measured."
+   },
+   {
+    "id": "A6-O4",
+    "statement": "Claude Code toolUseResult carries structured counters that cc_jsonl does not extract: Read numLines/startLine/totalLines, Edit structuredPatch line counts and Grep numLines.",
+    "numbers": "Read file.numLines 2514/2561 = 0.982 [0.972, 0.989] in 149/149 files. Edit structuredPatch[].oldLines/newLines 1958/2029 = 0.965 [0.952, 0.976]. Grep numLines 823/939 = 0.876 [0.839, 0.908]. cc_local: Read 194/210 = 0.924 [0.847, 0.986]; Glob totalMatches 375/375.",
+    "json_path": "a6_raw_census.json: flagged[] where source is swechat_transcripts/claude_code or cc_local/claude_code and group starts with toolUseResult/",
+    "kind": "hit",
+    "mechanical_explanation": "None. These fields are uncaptured by the IR spec as written."
+   },
+   {
+    "id": "A6-O5",
+    "statement": "file-history-snapshot, a harness-side log of file mutations, is present in most Claude Code sessions and is unused. Its per-file backup version and backupTime are filled in most snapshot records.",
+    "numbers": "60,218 records in 3987/4925 swechat CC files = 0.810 [0.798, 0.820]. trackedFileBackups.<key>.version/backupTime filled in 1362/1673 sampled snapshot records = 0.814 [0.756, 0.856], 121/127 files. cc_local main: 538 records in 268/332 files = 0.807 [0.761, 0.846].",
+    "json_path": "a6_raw_census.json: non_tool_entry_inventory.swechat_transcripts.claude_code.groups['file-history-snapshot']; flagged[] group file-history-snapshot",
+    "kind": "hit",
+    "mechanical_explanation": "Snapshots are taken per user message, not per edit, so edits are coalesced."
+   },
+   {
+    "id": "A6-O6",
+    "statement": "Session-level tallies that the transcript should reproduce exist outside the IR: cc_local cost-state, cc_local workflow.json totals, Entire.io checkpoint token_usage, and the swechat sessions counters.",
+    "numbers": "cc_local cost-state: 113 records in 111/332 main files = 0.334 [0.286, 0.387]; the totals fields are present in 34/34 sampled records (33 files). workflow.json durationMs/totalTokens/totalToolCalls 65/65. checkpoint_metadata_raw token_usage.api_call_count 484/500 = 0.968 [0.931, 0.992]. sessions.api_call_count 5851/5851. sessions.tool_call_count 5476/5851 = 0.936 [0.929, 0.942].",
+    "json_path": "a6_raw_census.json: flagged[] where source is cc_local/claude_code (group main:cost-state), cc_local/sidecar_json, swechat_tables_json (checkpoints.checkpoint_metadata_raw) or swechat_tables (sessions)",
+    "kind": "hit",
+    "mechanical_explanation": "The Entire.io and SWE-chat tallies are probably computed from the same transcript, so agreement would be tautological. Only disagreement would be informative."
+   },
+   {
+    "id": "A6-O7",
+    "statement": "The Codex cumulative token counter chain (total(n) = total(n-1) + last(n)) breaks in 5 of 26 files. In those breaks the total jumps down, by magnitudes matching the last_token_usage mismatches.",
+    "numbers": "I1b 1862/1919 = 0.970, Wilson [0.962, 0.977], cluster [0.941, 0.994] over 26 files; 5 files mismatch; diffs n=57 from -601429 to -19480. I1a (last total = input + output) 1935/1950 = 0.992 [0.987, 0.995]; 2 files mismatch; diffs n=15 from 19480 to 601429.",
+    "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I1b_codex_cumulative and I1a_codex_last_total",
+    "kind": "surprise",
+    "mechanical_explanation": "Possibly a counter reset at compaction or thread rollback; unverified. Codex has compacted records in 17/213 files and thread_rolled_back in 9/213."
+   },
+   {
+    "id": "A6-O8",
+    "statement": "OpenCode's token total does not equal either pre-specified sum of its parts.",
+    "numbers": "F1 (input+output+reasoning+cache.read+cache.write) 148/633 = 0.234 [0.203, 0.268], cluster [0.106, 0.381], 46 files. F2 (input+output+reasoning) 12/633 = 0.019 [0.011, 0.033]. F1 mismatch diffs n=485, min -8947, median -71, max -8.",
+    "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I3_opencode_step_finish_F1_all and I3_opencode_step_finish_F2_in_out_reasoning",
+    "kind": "null",
+    "mechanical_explanation": "The total is probably defined some other way. By design, no formula was searched for after seeing the data."
+   },
+   {
+    "id": "A6-O9",
+    "statement": "Gemini CLI's per-message token total is an exact sum of its parts.",
+    "numbers": "total == input+output+thoughts+tool: 2509/2509 = 1.0, Wilson [0.998, 1.0], 31 files. total == input+output only: 1366/2509 = 0.544 [0.525, 0.564].",
+    "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I2_gemini_F1_in_out_thoughts_tool and I2_gemini_F3_in_out",
+    "kind": "hit",
+    "mechanical_explanation": "The identity is arithmetic that a fabricated record could trivially satisfy, so it is a weak signal."
+   },
+   {
+    "id": "A6-O10",
+    "statement": "Current local Claude Code logs lack swechat-era structures: no progress/* entries and no system/turn_duration. Subagents live in separate files.",
+    "numbers": "swechat: progress/agent_progress in 1981/4925 files = 0.402 [0.389, 0.416]; system/turn_duration in 3384/4925 = 0.687 [0.674, 0.700]. cc_local: neither group appears in either stratum (332 main, 840 subagent files).",
+    "json_path": "a6_raw_census.json: non_tool_entry_inventory.swechat_transcripts.claude_code.groups and non_tool_entry_inventory.cc_local",
+    "kind": "null",
+    "mechanical_explanation": "Claude Code version difference."
+   },
+   {
+    "id": "A6-O11",
+    "statement": "Who&When has no CLOCK-class field. Its only STATUS-flagged fields are dataset labels.",
+    "numbers": "is_correct 126/126, is_corrected 58/58, mistake_reason 126/126 and 58/58; no CLOCK flag in any who_and_when row.",
+    "json_path": "a6_raw_census.json: flagged[] where source is who_and_when",
+    "kind": "null",
+    "mechanical_explanation": "The dataset has no timestamps, as the earlier recon also found."
+   },
+   {
+    "id": "A6-O12",
+    "statement": "I4b (Read numLines == line count of toolUseResult.file.content) fails about half the time, always by exactly -1.",
+    "numbers": "swechat 1172/2514 = 0.466 [0.447, 0.486]; mismatch diffs n=1342, min = max = -1. cc_local 92/194; diffs n=102, all -1.",
+    "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I4_cc_read_numlines_vs_file_content",
+    "kind": "artifact",
+    "mechanical_explanation": "A line-counting convention in my check (str.splitlines drops the trailing empty line); this is not a data inconsistency."
+   },
+   {
+    "id": "A6-O13",
+    "statement": "Some class flags are false.",
+    "numbers": "repositories.repo_github_metadata.id flagged CLOCK, 205/205. artifact-comment-monitor writtenAtMs flagged TIMER, 36/36. Who&When system_prompt.VSCode_Expert flagged STATUS, 1/126.",
+    "json_path": "a6_raw_census.json: flagged[]",
+    "kind": "artifact",
+    "mechanical_explanation": "GitHub ids fall in the epoch-seconds range; TIMER takes precedence over CLOCK; the word 'code' maps to STATUS."
+   },
+   {
+    "id": "A6-O14",
+    "statement": "In AI Village claude_code_messages, sdk_session_id cannot serve as the resampling unit, so the census uses a derived run.",
+    "numbers": "Full scan: 53 distinct sdk_session_id; the largest holds 244709 of 244820 rows; 314 init rows. The 20,000-row head touches 9 sdk_session_ids and 180 derived runs.",
+    "json_path": "a6_raw_census.json: parts.aiv.tables.claude_code_messages.sdk_session_full_scan and .distinct_cluster_keys_in_head",
+    "kind": "artifact",
+    "mechanical_explanation": "The SDK session id persists across runs. The aiv_cc loader segments runs at system/init rows, and this probe does the same."
+   },
+   {
+    "id": "A6-O15",
+    "statement": "The AI Village tables are sorted by id, and their heads are not time-sorted. This fits the premise that the head is time-uniform.",
+    "numbers": "19999/19999 adjacent id pairs ascending in claude_code_messages, computer_use_turns, events, agent_memories, chat_messages and computer_use_sessions. created_at ascending in 10004, 10040, 10069, 9981, 9941 and 10028 of 19999 pairs respectively.",
+    "json_path": "a6_raw_census.json: parts.aiv.tables.<table>.order_check",
+    "kind": "hit",
+    "mechanical_explanation": "Only the ordering was checked, not uniformity over time."
+   },
+   {
+    "id": "A6-O16",
+    "statement": "The format detected from content disagrees with SWE-chat's agent label for some files.",
+    "numbers": "4 files labelled Claude Code are Cursor format. 3 labelled Gemini CLI, 24 labelled Agent and 49 labelled unknown are Claude Code format. 3 labelled unknown are Gemini format. 1 OpenCode file fails to parse.",
+    "json_path": "a6_raw_census.json: parts.transcripts.format_by_agent_label and parts.transcripts.format_counts",
+    "kind": "surprise",
+    "mechanical_explanation": "Labels come from the dataset's own metadata, and wrappers such as 'Agent' run Claude Code."
+   },
+   {
+    "id": "A6-O17",
+    "statement": "The AI Village events table, which is not an IR source, holds a second copy of model-call accounting.",
+    "numbers": "data.cost, data.inputTokens and data.outputTokens each 19291/20000 = 0.965 [0.962, 0.967] (Wilson over rows).",
+    "json_path": "a6_raw_census.json: flagged[] where source is ai_village/events",
+    "kind": "hit",
+    "mechanical_explanation": "None found. The join to computer_use_turns was not attempted."
+   },
+   {
+    "id": "A6-O18",
+    "statement": "Claude Code Agent toolStats (per-subagent tool tallies) is too sparse to use.",
+    "numbers": "5/313 = 0.016 [0.000, 0.046], in 2/56 files.",
+    "json_path": "a6_raw_census.json: flagged[] where group is toolUseResult/Agent and path starts with toolStats",
+    "kind": "null",
+    "mechanical_explanation": "Only some Claude Code versions write it (unverified)."
+   }
+  ],
+  "candidate_mechanisms": [
+   {
+    "name": "Structured-counter vs visible-text recount",
+    "grounded_in": [
+     "CC toolUseResult.file.numLines/startLine/totalLines (0.982)",
+     "CC toolUseResult.numLines for Grep (0.876)",
+     "CC Glob totalMatches (cc_local 375/375)",
+     "CC Edit structuredPatch[].oldLines/newLines (0.965)",
+     "OpenCode state.metadata.matches / count / filediff",
+     "Gemini toolCalls[].resultDisplay.diffStat.* (0.305)"
+    ],
+    "measurement": "For each tool result, recount the quantity from the model-visible text or the call arguments and compare it to the harness counter by exact equality, pre-registered. Honest baseline I4: 2510/2514 (swechat) and 191/194 (cc_local). Rewritten or fabricated result text should break the equality unless the counter is rewritten too.",
+    "false_positive_source": "Truncated or persisted-to-file outputs, system reminders appended to result text, line-number formatting changes across harness versions, and Read calls with an offset or limit.",
+    "novelty_guess_unverified": "UNVERIFIED: I don't know of published work that uses the harness's structured copy of a tool result as a cross-check. Agent-observability tools may do this already."
+   },
+   {
+    "name": "Second-clock duration consistency",
+    "grounded_in": [
+     "Codex exec_command_end payload.duration.secs/nanos (1868/1868)",
+     "Codex task_complete.duration_ms",
+     "OpenCode state.time.start/end (>= 0.99)",
+     "OpenCode info.time.created/completed",
+     "CC stop_hook_summary hookInfos[].durationMs (0.833)",
+     "CC system/turn_duration",
+     "AIV computer_use_turns updated_at vs created_at"
+    ],
+    "measurement": "Check that each harness timer is at most the gap between the surrounding event clocks (call to end, turn start to end), with a tolerance set from an honest baseline before any outcome is examined. A reported duration longer than the wall-clock gap, or a gap with no possible execution time, would flag a result that was not produced by execution.",
+    "false_positive_source": "Parallel tool calls, clocks written at flush time rather than event time, millisecond granularity, skew between processes, and backgrounded commands.",
+    "novelty_guess_unverified": "UNVERIFIED: duration-vs-timestamp checks are standard in log forensics. Applying them to agent tool logs may be less common."
+   },
+   {
+    "name": "file-history-snapshot mutation reconciliation",
+    "grounded_in": [
+     "CC file-history-snapshot (60,218 records in 3987/4925 files)",
+     "snapshot.trackedFileBackups.<key>.version/backupTime (0.814)",
+     "cc_local file-history-delta backup.version/backupTime"
+    ],
+    "measurement": "For each successful Edit or Write on path P at time t, expect a later snapshot to show a version bump for P with backupTime >= t. Count claimed edits that have no bump, and bumps that have no claimed edit.",
+    "false_positive_source": "Snapshots are per user message, so edits coalesce. Paths outside the tracked set are missing. About 19% of files have no snapshot at all. Resumed sessions and Bash-made edits also break the mapping.",
+    "novelty_guess_unverified": "UNVERIFIED: this harness record seems unused in the literature I know of."
+   },
+   {
+    "name": "Session-tally recount",
+    "grounded_in": [
+     "cc_local cost-state totals (34/34 sampled records)",
+     "cc_local workflow.json totalToolCalls/totalTokens/durationMs (65/65)",
+     "Codex task_complete.duration_ms",
+     "OpenCode session info.summary.additions/deletions/files (46/46)",
+     "Copilot session.shutdown",
+     "swechat sessions.api_call_count/tool_call_count",
+     "Entire.io checkpoint token_usage.api_call_count (0.968)"
+    ],
+    "measurement": "Recompute each tally from the transcript (usage sums, tool counts, patch line sums) and compare. Report the disagreement rate with a session-clustered CI.",
+    "false_positive_source": "Tallies derived from the same transcript agree tautologically. Resumed or compacted sessions change the totals. Subagent tokens may be included in one count and not the other.",
+    "novelty_guess_unverified": "UNVERIFIED"
+   },
+   {
+    "name": "Cumulative counter chain",
+    "grounded_in": [
+     "Codex token_count total_token_usage / last_token_usage (0.992 fill)",
+     "CC message.usage.iterations[] (cc_local 0.999)",
+     "CC apiBlockIndex (0.727)",
+     "bridge-session lastSequenceNum"
+    ],
+    "measurement": "Check the chain identity total(n) = total(n-1) + last(n), and that ordinal counters only increase. Honest baseline I1b: 0.970, with breaks in 5/26 files.",
+    "false_positive_source": "Counter resets at compaction, rollback or resume, which plausibly explain the observed breaks (unverified).",
+    "novelty_guess_unverified": "UNVERIFIED"
+   },
+   {
+    "name": "Nested-subagent tally check",
+    "grounded_in": [
+     "CC toolUseResult.totalToolUseCount / totalTokens / totalDurationMs (captured in extra)",
+     "CC progress/agent_progress nesting (1981/4925 files)",
+     "cc_local workflow.json totalToolCalls vs subagent JSONL"
+    ],
+    "measurement": "Compare the parent's reported subagent tallies with a recount of the nested or sidecar subagent transcript. Baseline I5: 190/190.",
+    "false_positive_source": "Nesting is absent in current Claude Code (cc_local), and subagent files can be missing or truncated.",
+    "novelty_guess_unverified": "UNVERIFIED"
+   },
+   {
+    "name": "External git witness of claimed edits",
+    "grounded_in": [
+     "swechat commits.agent_changes [].structured_patch (0.632)",
+     "commits.file_attribution __aggregate__ (500/500)",
+     "commits numstat / patch"
+    ],
+    "measurement": "Match the agent-claimed patch hunks to the committed diff, and report the fraction of claimed hunks that never reach a commit.",
+    "false_positive_source": "Human edits between agent and commit, squashed or rebased commits, and work that was never committed. Another lens (phase_c_commit_witness) may already cover this.",
+    "novelty_guess_unverified": "UNVERIFIED"
+   },
+   {
+    "name": "AI Village dual record of model calls",
+    "grounded_in": [
+     "AIV events data.cost/inputTokens/outputTokens (0.965)",
+     "events data.output usage blocks",
+     "computer_use_turns agent_messages.usageMetadata (0.214)"
+    ],
+    "measurement": "Join an event to its turn and compare usage and the action between the two tables.",
+    "false_positive_source": "Events exist only for some action types, the join key is uncertain, and created_at is a row-insert time that can lag the event.",
+    "novelty_guess_unverified": "UNVERIFIED"
+   }
+  ],
+  "could_not_measure": [
+   "village-transcript.json (one 362 MB JSON document, a rendering of events and chat_messages) was not censused.",
+   "Agreement of the uncaptured second clocks and timers with event timestamps: the fields are listed, but no duration-vs-gap check was run.",
+   "file-history-snapshot vs Edit/Write reconciliation: the fields are listed, not measured.",
+   "Whether the loaders actually ingest the uncaptured fields. The loader mark is only a string-literal match on analysis/loaders/*.py, which other agents are editing; the caches were not read.",
+   "Fill rates of key paths deeper than the depth limits (4 for transcripts and cc_local, 3 for table JSON columns, 3 or 6 for AI Village), and of cc_local subtrees hidden for privacy (user-defined schemas, non-builtin tool inputs and results).",
+   "Swechat transcript key-path fill rates cover only the 300-file stratified sample. The entry-type inventory covers the full population.",
+   "Copilot (2 files) and simple_text (4 files) are too small for rates.",
+   "1 OpenCode transcript failed JSON parsing and was not censused (no salvage).",
+   "conversations.content: only 340 of 500 sampled non-null rows parsed as JSON.",
+   "AI Village computer_use_turns CIs are Wilson over rows. The head spans 17,418 distinct sessions, so no session clustering was applied.",
+   "OpenCode's actual token-total formula: by design, nothing beyond the 2 pre-specified formulas was tried."
+  ]
+ },
+ "verifier": {
+  "lens": "raw_census (Phase A6). I re-derived every check with my own code, writing only to scratchpad. All of my numbers are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\rederive_raw_census.json. The scripts that produced them sit in the same folder: rd_swechat.py, agg_swechat.py, rd_other.py, rd_cc_local.py, rd_tables.py, rd_aiv.py and diag_*.py. I used the lens's own 300-file swechat sample list to match its n, then reran every check on the full population. The cc_local outputs are aggregate counts only. Only after I had my numbers did I read the lens script, to explain the differences. My prompt cut O17 off mid-sentence, so I checked the events-table fields from the notes.",
+  "checks": [
+   {
+    "id": "A6-O1",
+    "reproduced": true,
+    "my_numbers": "Swechat sample matches exactly: 2510/2514 = 0.9984, Wilson [0.9959, 0.9994], cluster [0.9970, 1.0] over 149 files; 4 mismatching files; diffs -2312 to -1. The 4 are 3 persisted-output previews and 1 case with numLines=1 and no numbered text lines (L=0). Full swechat population: 87827/88229 = 0.9954, Wilson [0.9950, 0.9959], cluster [0.9947, 0.9960] over 4603 files; 275 mismatching files; 402 diffs from -3464 to -1, median -1140. All 402 mismatches are harness or dataset formats: 282 '<\\persisted-output>' previews, 105 'file shorter than offset' warnings, 7 '<identical to result [rN]...>' references, 7 redacted contents and 1 negative line numbers. None is unexplained. cc_local main sessions, full: 570/578 = 0.986, Wilson [0.973, 0.993], cluster [0.976, 0.994] over 182 files; all 8 mismatches are empty-file warnings with diff -1. In cc_local subagent files, 0 of 12 Read results carry numLines.",
+    "problem": "The sample understates the mismatch rate: the full-population rate 0.9954 lies below the sample's cluster CI [0.997, 1.0]. The 'unverified' explanation is now verified: every mismatch is a harness display format (persisted preview, warning, dedup reference) or dataset redaction. A detector would therefore have to whitelist these formats. 'Holds in cc_local' covers main sessions only; subagent files carry no Read numLines."
+   },
+   {
+    "id": "A6-O2",
+    "reproduced": true,
+    "my_numbers": "Sample matches exactly: 190/190, Wilson [0.980, 1.0], 71 files; 94 results in 20 files have no nested traffic. Full population: 6623/6623, Wilson [0.9994, 1.0], 1934 files. Uncheckable: 2150 results in 634 files, which is 2150/8773 = 0.245 [0.236, 0.254] of Agent/Task results. The uncheckable results have a median totalToolUseCount of 21, so they are not trivially empty.",
+    "problem": "The JSON stores the uncheckable set as I5_cc_agent_toolcount_no_nested_traffic with match 94, n 94, rate 1.0 and a Wilson CI. The code calls add(True), so a non-check is encoded as a 100% pass. It should be a bare count. The statement itself words this correctly. A quarter of Agent results cannot be checked."
+   },
+   {
+    "id": "A6-O3",
+    "reproduced": true,
+    "my_numbers": "Fill rates match exactly. OpenCode sample: bash state.time.end 247/249 in 44 files; read 659/659; grep 120/120; info.time.completed 635/637 = 0.997, cluster [0.992, 1.0]. Codex sample: exec_command_end duration 1868/1868 in 9 files; mcp_tool_call_end 96/96 in 4 files. CC hookInfos[].durationMs sample 792/951 = 0.833, cluster [0.704, 0.918]. AI Village computer_use_turns updated_at 20000/20000. Full population: OpenCode bash 5311/5317, read 10547/10547, info.time.completed 15129/15136; Codex exec 13876/13876 in 67 files; CC hookInfos 26311/33044 = 0.796, cluster [0.772, 0.819]. AI Village updated_at minus created_at is 1 ms or less in 19992/20000 rows (median 2 µs) and over 1 s in 5.",
+    "problem": "'The IR drops' is false for 3 of the 5 fields. load_swechat.py was saved before the lens ran. At line 707 it sets the OpenCode result ts to state.time.end. At lines 547/560/606/609 it maps Codex exec and MCP durations to extra.duration_s. load_aiv_cu.py line 1095 keeps updated_at in the result's extra field. The lens's own flagged[] marks these paths loader_pair or loader_leaf. Only hookInfos[].durationMs, and info.time.completed outside message-error events, are really dropped. AI Village updated_at is a copy of the row-insert time, not an independent clock."
+   },
+   {
+    "id": "A6-O4",
+    "reproduced": true,
+    "my_numbers": "Sample: Read numLines 2514/2561 = 0.982, cluster [0.972, 0.989], 149/149 files. Edit oldLines 1959/2030; the lens has 1958/2029, an off-by-one I treat as immaterial. Grep numLines 823/939 = 0.877. Full population: Read 88229/90763 = 0.972, cluster [0.969, 0.975]; Edit 70553/73460 = 0.960; Grep 29535/34208 = 0.863. Glob totalMatches is 0/6422 in swechat. cc_local main, full: Read 578/650 = 0.889 [0.863, 0.911]; Glob totalMatches 1231/1234. I grepped cc_jsonl and the loaders: none references numLines, structuredPatch or totalMatches.",
+    "problem": ""
+   },
+   {
+    "id": "A6-O5",
+    "reproduced": true,
+    "my_numbers": "60218 records in 3987/4925 files = 0.810 [0.798, 0.820]. Version/backupTime filled in 1362/1673 sample records, 121/127 files; full 50362/60218 = 0.836, cluster [0.828, 0.845]. cc_local main: 538 records in 268/332 files. Supplementary check: of the distinct paths that a successful Edit, Write, MultiEdit or NotebookEdit touched, 24031/24286 = 0.990, cluster [0.986, 0.993], appear as trackedFileBackups keys, over 3737 files. 699 CC files have successful mutations but no snapshot records at all.",
+    "problem": "The supplementary check supports calling it a mutation log. The coverage gap is 699 files with mutations and no snapshots, about 16% of files with mutations."
+   },
+   {
+    "id": "A6-O6",
+    "reproduced": true,
+    "my_numbers": "cc_local cost-state: 113 records in 111/332 main files = 0.334 [0.286, 0.387]. All 8 total fields are present in 113/113 records in the full set; the lens sampled 34/34. Workflow wf_*.json: 65/65 for durationMs, totalTokens, totalToolCalls, agentCount and startTime. checkpoint_metadata_raw token_usage.api_call_count, full table: 12975/13406 = 0.968, Wilson [0.965, 0.971], repo cluster [0.927, 0.992]. The lens sampled 484/500. sessions.api_call_count is non-null in 5851/5851, and 145 of those are 0. sessions.tool_call_count is non-null in 5476/5851 = 0.936 [0.929, 0.942].",
+    "problem": "Only presence was measured, not agreement with the transcript. The statement is correct as worded."
+   },
+   {
+    "id": "A6-O7",
+    "reproduced": true,
+    "my_numbers": "Counts match exactly. I1a: 1935/1950, 2 files, diffs 19480 to 601429. I1b: 1862/1919, cluster [0.941, 0.994] over 26 files, 5 files mismatching, 57 diffs from -601429 to -19480. Full population: I1a 16015/16106, 24 files mismatching; I1b 15302/15917 = 0.961, cluster [0.952, 0.973] over 173 files, 39 files mismatching. The total decreases in 0/57 sample breaks and 0/615 full breaks. Instead total_token_usage equals the previous event's in every break, so each diff is just -last(n). 45/57 sample breaks (531/615 full) are exact duplicate token_count events, with the whole info block equal to the previous one. After dropping consecutive duplicates, the chain holds 1862/1874 in the sample and 15302/15386 in the full population. The remaining 12 sample breaks (84 full) have a flat total and a nonzero last. 12/12 of them (81/84 full) come right after a compacted or thread_rolled_back event, and only these match the I1a magnitudes.",
+    "problem": "The direction claim is wrong. The total never 'jumps down'; it stays flat. Mechanical causes explain every break: re-emitted duplicate token_count events (45/57) and post-compaction/rollback accounting (12/57). This should be classed artifact, not surprise. 'Magnitudes matching' holds for only 12 of 57 breaks."
+   },
+   {
+    "id": "A6-O8",
+    "reproduced": true,
+    "my_numbers": "Matches exactly. F1: 148/633 = 0.234, Wilson [0.203, 0.268], cluster [0.106, 0.381], 46 files. F2: 12/633. Mismatch diffs n=485, min -8947, median -71, max -8. Full population: F1 3155/14854 = 0.212; F2 255/14854. Post hoc, formed after seeing the diffs: total == in + out + cache.read + cache.write, leaving reasoning out, holds 618/633 = 0.976 [0.961, 0.986] in the sample and 14639/14854 = 0.986 in the full population.",
+    "problem": "The null as stated is correct. However, the post-hoc fit shows that the total simply excludes reasoning. The null reflects the choice of pre-specified formula; it is not evidence that OpenCode lacks a token identity. Read it as 'formula misspecified', not 'no redundancy'."
+   },
+   {
+    "id": "A6-O9",
+    "reproduced": true,
+    "my_numbers": "F1: 2509/2509, Wilson [0.9985, 1.0], 31 files. F3: 1366/2509 = 0.544, cluster [0.442, 0.647]. Full population: 5141/5141 in 58 files. The tool field is 0 in all 2509 sample checks and all 5141 full checks, so F1 equals F2.",
+    "problem": "Minor. The 'sum of its parts' is really total = input + output + thoughts, since tool is always 0. As the lens notes, this is a weak signal."
+   },
+   {
+    "id": "A6-O10",
+    "reproduced": true,
+    "my_numbers": "Swechat: progress/agent_progress in 1981/4925 files = 0.402 [0.389, 0.416]; system/turn_duration in 3384/4925 = 0.687 [0.674, 0.700]. cc_local: 0 progress groups and 0 turn_duration records in 332 main files (Wilson upper bound 0.011) and in 840 subagent files.",
+    "problem": ""
+   },
+   {
+    "id": "A6-O11",
+    "reproduced": true,
+    "my_numbers": "Who&When has no timestamp column. Its 8 Algorithm-Generated and 9 Hand-Crafted columns contain none, and history entries carry only content, name and role keys (Hand-Crafted: content and role). ISO-datetime strings occur only inside message content, in 6/126 and 19/58 rows; they are task data such as 'datePublished'. is_correct is False in 126/126 rows.",
+    "problem": ""
+   },
+   {
+    "id": "A6-O12",
+    "reproduced": true,
+    "my_numbers": "Sample: 1172/2514 match; mismatch diffs n=1342, all exactly -1. Full population: 39951/88229 match; diffs n=48278, ranging from -27 to 70. With the content.count('\\n')+1 convention instead: 2505/2514 in the sample and 88129/88229 in the full population.",
+    "problem": "'Always by exactly -1' is true only in the sample. The artifact explanation holds for the bulk of the mismatches."
+   },
+   {
+    "id": "A6-O14",
+    "reproduced": true,
+    "my_numbers": "Full scan: 244820 rows; 53 distinct sdk_session_id; the largest holds 244709 rows; 314 init rows. The 20,000-row head touches 9 sdk_session_ids and 180 derived runs, using my own bisect-on-init definition.",
+    "problem": ""
+   },
+   {
+    "id": "A6-O15",
+    "reproduced": true,
+    "my_numbers": "Id-ascending adjacent pairs: 19999/19999 in all 6 tables. created_at ascending pairs: 10004, 10040, 10069, 9981, 9941 and 10028. Under random row order the expected count is 9999.5 with sd 40.8, giving z = 0.11, 0.99, 1.70, -0.45, -1.43 and 0.70. Head versus full table by month: TV distance 0.004 for claude_code_messages (chi2 1.37, df 2); 0.010 for events (chi2 13.3, df 17); 0.010 for computer_use_sessions (chi2 12.8, df 17).",
+    "problem": "Minor wording. The head is a uniform sample of rows, so its time distribution mirrors the whole table's. It is not time-uniform. My month comparison supports the row-uniform reading."
+   },
+   {
+    "id": "A6-O16",
+    "reproduced": true,
+    "my_numbers": "My independent detector gives identical results. Format counts: claude_code 4925, opencode 623, codex 213, gemini 59, cursor 23, simple_text 4, copilot 2, doc_parse_failed 1. Mislabels: Claude Code label but Cursor format 4; Gemini CLI label but CC format 3; Agent label but CC format 24; unknown label but CC format 49; unknown label but Gemini format 3; OpenCode label but parse failure 1. My spot check confirms the 4 'Claude Code' files carry only role and message keys. The sample split agrees on all 300 files.",
+    "problem": "Minor omission: 1 'Roger Roger Agent' file is classed CC format (a toy with uuid keys), and 1 'claude-code' file is a test fixture."
+   },
+   {
+    "id": "A6-O17",
+    "reproduced": true,
+    "my_numbers": "In the events head, data.cost, inputTokens and outputTokens are all present in 19291/20000 rows = 0.965, Wilson [0.962, 0.967]. data.cost takes only the values 1 (18989 rows) and 0 (302 rows). Where the same row carries a parseable provider usage block, inputTokens and outputTokens equal it in 5515/5515 rows; 13776 rows have no parseable block.",
+    "problem": "data.cost is a 0/1 flag, not a monetary cost, so the TOKEN class flag and any 'cost tally' reading are wrong. The tokens are copies of the usage block in the same row, not an independent second record. My prompt truncated the statement, so I checked against the notes text."
+   }
+  ],
+  "overclaims": [
+   "A6-O7: the claim that 'the total jumps down' is false. total_token_usage is unchanged in 57/57 sample breaks and 615/615 full breaks. 45/57 breaks are duplicate token_count emissions; the other 12 follow a compaction or rollback. Only those 12 match the I1a magnitudes. This is an artifact, not a surprise.",
+   "A6-O3: 'the IR drops' is false for OpenCode state.time.end (the loader uses it as the result ts), Codex exec/MCP duration (loader extra.duration_s) and AI Village updated_at (load_aiv_cu extra). The lens's own flagged[] marked these loader_pair or loader_leaf. AI Village updated_at is also within 1 ms of created_at in 19992/20000 rows, so it is not an independent clock.",
+   "A6-O1: the rate comes from the sample. The full-population rate 0.9954 [0.9947, 0.9960] falls outside the sample's cluster CI [0.997, 1.0]. All 402 full-population mismatches are harness display formats (persisted-output previews, offset warnings, dedup references) or dataset redaction. The cc_local result covers main sessions only.",
+   "A6-O2 JSON: the uncheckable Agent results (no nested traffic) are stored as match 94/94, rate 1.0, with a Wilson CI. This encodes a non-check as a pass. In the full population 24.5% of Agent results cannot be checked.",
+   "A6-O17: events data.cost is a 0/1 flag (18989 ones, 302 zeros), not a cost. inputTokens and outputTokens copy the provider usage block in the same row (5515/5515), so they are not an independent record.",
+   "A6-O8: the null is correct as stated. A post-hoc fit leaving out reasoning holds 618/633, so this is formula misspecification, not proof that no token identity exists.",
+   "A6-O12: 'always exactly -1' holds only in the sample. Full-population diffs range from -27 to 70.",
+   "A6-O9: the tool field is 0 in every row, so the identity reduces to total = input + output + thoughts.",
+   "A6-O15: the head is a uniform sample of rows, not time-uniform. The ordering and month checks support that it is row-uniform."
+  ]
+ }
+}
