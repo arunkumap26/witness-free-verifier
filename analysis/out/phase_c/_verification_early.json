@@ -1,0 +1,1608 @@
+{
+ "source": "workflow wf_aefdf80e-d22 (probe-early-discovery): each lens's returned observations + an independent skeptic's re-derivation verdicts. Verbatim agent outputs; interpretation lives in analysis/notes/.",
+ "lenses": [
+  {
+   "lens": "ext_witness",
+   "obs": {
+    "lens": "Two external witnesses with no transcript: collusion-wiki full logs (multi-clock wiki saves) and the urlquery agent-activity catalog (scan-report timestamps per data source)",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_c_ext_witness.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_c\\ext_witness.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\ext_witness.md"
+    ],
+    "observations": [
+     {
+      "id": "O1",
+      "statement": "No physically required clock ordering is violated inside collusion-wiki. The 5 checked orderings are request<=success, request<=write_date, request<=archived_at, success<=archived_at and write_date<=archived_at. Much of this agreement is by construction: time, write_date and request_time are identical on every row, so they are one clock written three times.",
+      "numbers": "Violations 0/14482, 0/14482, 0/14482, 0/14585, 0/14591; Wilson upper bound 0.0003 each. time==write_date 14591/14591; time==request_time 14482/14482. success_time - request_time values {0: 12792, 1: 1689, 2: 1}, n=14482. Deletes: success - request {0: 4746, 1: 470}; clock_delta_seconds mismatches 0/5216.",
+      "json_path": "ext_witness.json: S1_multiclock.revision_ordering_constraints, S1_multiclock.time_field_equalities, S1_multiclock.revision_pairwise_differences_s, S1_multiclock.event_clocks",
+      "kind": "null",
+      "mechanical_explanation": "The export joined request-log rows to saves by exact time equality and passed its own 'revision order failures = 0' check. Only success_time (0-2 s) and archived_at are independent of the save time."
+     },
+     {
+      "id": "O2",
+      "statement": "POST-HOC. RCS commit order (the 1.N storage sequence) disagrees with timestamp order on 72 adjacent pairs, all on 4 heavily edited shared pages. All inversions are 1-5 s, and nearly every inverted pair involves two different labels and ip16.",
+      "numbers": "72/10012 = 0.0072, Wilson [0.0057, 0.0090]; page-clustered [0.000, 0.015], 1453 pages. 59 inversions exceed 1 s. Magnitudes {-1: 13, -2: 29, -3: 28, -4: 1, -5: 1}. Labels differ in 70/72 pairs, ip16 differs in 71/72. Separately, 414/14591 revisions on 5 pages have an RCS minor number different from seq.",
+      "json_path": "ext_witness.json: S1_multiclock.posthoc_rcs_commit_order_vs_time, S1_multiclock.rcs_rev_minor_ne_seq",
+      "kind": "artifact",
+      "mechanical_explanation": "Concurrent saves to the same page: the timestamp is taken before the commit lock, so commit order and timestamp order can swap by a few seconds. This is a race, not fabrication."
+     },
+     {
+      "id": "O3",
+      "statement": "When a wiki page first names a catalog data source, a urlquery report for that same source in the preceding hour is far more common than at nearby shifted times or with sources permuted. The two independent witnesses agree on which source was being worked when.",
+      "numbers": "Before-window at 1 h: 0.566 [0.481, 0.655], n=3116 events on 2223 pages (page-clustered). Nulls: +-7/14 d shift 0.000 [0.000, 0.001]; source permutation 0.233 [0.182, 0.291]; post-hoc local +-2h/4h/1d 0.307 [0.264, 0.352]. Excess over the local null 0.259 [0.217, 0.303]; over the permutation null 0.332 [0.298, 0.365]. Excess over the local null at 24 h: 0.147 [0.140, 0.153]. Per source at 1 h: SEC county 0.423 [0.396, 0.445] (n=1432); USAspending 0.369 (n=165); MAX 0.393 (n=78); Clark 0.675 (n=60); IHME 0.595 (n=44).",
+      "json_path": "ext_witness.json: S2_precedence.forward_wiki_mention_preceded_by_report.W3600 (incl. posthoc_local_shift_null, per_bucket), .W86400",
+      "kind": "hit",
+      "mechanical_explanation": "This is campaign-level co-activity, not a link from a specific claim to a specific fetch. SEC county data is 1432 of the 3116 events, and all 455 of its reports fall on one UTC day. 8 of the 52 catalog methods were chosen partly from wiki content (urlquery_methods_with_wiki_in_reason). That makes source selection wiki-informed, though the report times are a census of each query."
+     },
+     {
+      "id": "O4",
+      "statement": "Directionality is weak. A source report is only slightly more likely before a wiki mention than after it, and a urlquery burst is only slightly more likely to be followed by a wiki mention than the local null predicts.",
+      "numbers": "Forward, before minus after: 0.042 [0.010, 0.078] at 1 h; 0.159 [0.115, 0.204] at 24 h (n=3116, 2223 pages). Reverse, burst followed by a wiki mention within 1 h: 0.085 [0.019, 0.159], local null 0.045, excess 0.040 [0.007, 0.079] (n=4935 bursts, 131 source-days). Reverse excess at 24 h: 0.031 [-0.015, 0.085].",
+      "json_path": "ext_witness.json: S2_precedence.forward_wiki_mention_preceded_by_report.W3600.before_minus_after, S2_precedence.reverse_report_burst_followed_by_wiki_mention.*.posthoc_local_shift_null",
+      "kind": "null",
+      "mechanical_explanation": "Both witnesses record overlapping streams of activity on the same source (median lag back to the prior report 971 s, forward to the next report 491.5 s), so there is no clean fetch-then-write ordering."
+     },
+     {
+      "id": "O5",
+      "statement": "urlquery coverage depends on the source. For DataUSA and the US Census API, wiki mentions are almost never preceded by a report, so a missing report is not evidence that a claimed fetch was fabricated.",
+      "numbers": "DataUSA before-window at 1 h: 0.038 [0.028, 0.049], n=1259 events on 1203 pages; 91 DataUSA reports in the catalog in total. US Census API: 0/58 at every window; 5 catalog reports, 0 days overlapping with wiki mentions. 9 mention events belong to a source with 0 catalog reports (Yahoo CYBR).",
+      "json_path": "ext_witness.json: S2_precedence.forward_wiki_mention_preceded_by_report.W3600.per_bucket, S2_precedence.bucket_day_overlap_context, S2_precedence.new_mention_events_whose_bucket_has_zero_catalog_reports",
+      "kind": "null",
+      "mechanical_explanation": "The agents had other fetch paths (direct requests, other proxies), and urlquery is one optional route."
+     },
+     {
+      "id": "O6",
+      "statement": "Bursts without regard to source (urlquery bursts vs wiki save bursts) line up only at the day scale. The alignment disappears against local +-2h/4h/1d nulls, although it looks strong against +-7/14 d nulls.",
+      "numbers": "5 min window. urlquery burst has a wiki save nearby: 0.424 [0.231, 0.582], n=4060 bursts, 31 days; shift-null excess 0.312, local-null excess 0.035 [-0.008, 0.077]. Wiki burst has a urlquery report nearby: 0.678 [0.507, 0.806], n=2267, 28 days; local-null excess 0.060 [-0.014, 0.124]. At 1 h the local-null excesses are 0.015 [-0.022, 0.053] and 0.024 [-0.039, 0.087].",
+      "json_path": "ext_witness.json: S3_bursts.burst_alignment_any_source.W300, .W3600 (incl. posthoc_local_shift_null)",
+      "kind": "null",
+      "mechanical_explanation": "Both witnesses are busiest during the same campaign days (largest wiki save burst: 4621 saves on 2026-06-18, 17:42-20:52Z, with 414 urlquery reports inside it)."
+     },
+     {
+      "id": "O7",
+      "statement": "urlquery timestamps cluster at the same second, and almost all same-second groups contain a single data source.",
+      "numbers": "Same-second group sizes {1: 28350, 2: 3051, 3: 744, 4: 231, 5: 73, 6: 30, 7: 1}; 9810/38160 reports sit in a group of 2 or more. 3998/4130 multi-report groups have one source; 132 mix sources. Zero gaps 5680/38159; median gap 10 s. 60 s bursts: 8078, of which 3828 are singletons; maximum size 1006. Multi-report bursts: 3410 single-source, 840 mixed.",
+      "json_path": "ext_witness.json: S3_bursts.same_second_group_size_histogram, .same_second_groups_homogeneity, .global_gaps_s, .global_bursts",
+      "kind": "surprise",
+      "mechanical_explanation": "Most likely batch submission by programs: one script submits many URLs for one source at once. That is consistent with the custom_program / indirection classes. The second-of-minute chi-square p=1.3e-4 is not interpretable because the reports are not independent."
+     },
+     {
+      "id": "O8",
+      "statement": "Narrated wall-clock times ('UTC', 'terminal', 'container') sit just before the save that carries them, whereas task-clock times are spread evenly around the save. This shows that the keyword classifier separates real clock readings from task-clock times.",
+      "numbers": "Real-clock time-of-day claims: n=854 new claims on 263 pages; median delta -84 s, page-clustered [-107.5, -64]. Counts in [-1h,0) vs (0,+1h]: 601 vs 95. Task-clock control: 344 vs 335 (n=6105). Unqualified times: 227 vs 201 (n=4238). Real ISO claims: n=31, median -46 s [-193, -18], 0/31 more than 60 s after the save.",
+      "json_path": "ext_witness.json: S4_timing_claims.classes.tod_real, .tod_task, .tod_unqualified, .iso_real",
+      "kind": "hit",
+      "mechanical_explanation": "None found. It also cross-validates that the wiki 'time' field is UTC to within about a minute."
+     },
+     {
+      "id": "O9",
+      "statement": "The test 'a claim about an event cannot postdate its own save' does not separate cleanly for time-of-day claims. Of the 21% of real-clock claims that postdate their save, most are projections. Among past- or present-tense claims, the near-future rate is no higher than the task-clock control or a uniform unrelated clock.",
+      "numbers": "180/854 real-clock claims are more than 1 s after the save: 0.211 [0.178, 0.245]. POST-HOC by tense: forward-looking 70/164 after the save. Past or present tense, not approximate: near-future band (1 s, 1 h] 7/125 = 0.056 [0.017, 0.100] (82 pages); task-clock control 37/550 = 0.067 [0.042, 0.095]; uniform expectation 0.042.",
+      "json_path": "ext_witness.json: S4_timing_claims.classes.tod_real.claim_after_own_save, S4_timing_claims.posthoc.tod_real, S4_timing_claims.posthoc.tod_task, S4_timing_claims.posthoc.uniform_clock_expectation_near_future_1s_to_1h",
+      "kind": "null",
+      "mechanical_explanation": "Times of day carry no date, so events more than 12 h old fold forward. The keyword tense tagging is blunt, and some times near a 'UTC' keyword are task-clock values."
+     },
+     {
+      "id": "O10",
+      "statement": "Epochs printed from a real clock never postdate the save that carries them. Agent sandbox clocks agree with the wiki server clock to about 1-2 s.",
+      "numbers": "Epochs in prose: n=747 on 297 pages, median delta -1 s [-1, -1]; 10/747 = 0.013 [0.005, 0.025] more than 1 s after the save. POST-HOC: with a fractional part (time.time() form) 0/459, Wilson upper bound 0.008, median -1 s; without a fraction 10/288. Epochs in page names (vs the first save): n=396, 183 labels, median -2 s [-3, -2].",
+      "json_path": "ext_witness.json: S4_timing_claims.classes.epoch_prose, S4_timing_claims.posthoc.epoch_prose.by_fraction, S4_timing_claims.page_name_epochs",
+      "kind": "hit",
+      "mechanical_explanation": "None for the 0/459. NTP-synced sandboxes are expected."
+     },
+     {
+      "id": "O11",
+      "statement": "POST-HOC, definition chosen after seeing examples. Epoch-like stamps that postdate their own save are concentrated among round numbers (ending in 00, 01 or 99), which suggests agents wrote a guessed 'now' without reading a clock.",
+      "numbers": "Page names more than 1 s after the first save: round 26/55 = 0.473 (label-clustered [0.118, 0.660], 34 labels) vs non-round 5/341 = 0.015 ([0.000, 0.022], 153 labels). Near-future band (1 s, 1 h]: round 0.236 [0.088, 0.316] vs non-round 0.006 [0.000, 0.016]. Prose epochs: round 6/37 = 0.162 [0.049, 0.303] vs non-round 4/710 = 0.006 [0.000, 0.013].",
+      "json_path": "ext_witness.json: S4_timing_claims.posthoc.page_name_epochs, S4_timing_claims.posthoc.epoch_prose.by_round, S4_timing_claims.page_name_epochs.examples_after_save_gt60s",
+      "kind": "surprise",
+      "mechanical_explanation": "Contaminated: the 20 inspected examples that suggested the roundness rule are inside the 26/55. Other possible causes: loop counters on a hand-picked base (e.g. ...000, ...001), or intended future markers. Needs a holdout."
+     },
+     {
+      "id": "O12",
+      "statement": "Epoch stamps inside URLs postdate the save far more often, and mostly by more than a day.",
+      "numbers": "39/370 = 0.105 [0.021, 0.231] page-clustered (81 pages) more than 1 s after the save; 30 of them more than 1 day after. Round 3/38 vs non-round 36/332.",
+      "json_path": "ext_witness.json: S4_timing_claims.classes.epoch_url, S4_timing_claims.posthoc.epoch_url",
+      "kind": "artifact",
+      "mechanical_explanation": "Server-generated expiry tokens in signed URLs, and agent-made incrementing 'uniq=' sequences on a far-future base. This is why URL epochs were pre-registered as a separate class."
+     },
+     {
+      "id": "O13",
+      "statement": "POST-HOC exploratory. Narrated task-clock to UTC mappings are not self-consistent at the minute level within a label.",
+      "numbers": "482 new mapping pairs on 162 pages. Labels with at least 2 distinct pairs: 84; median offset spread 6268 s. Spread <=60 s: 3/84 = 0.036 [0.012, 0.100]. Spread <=600 s: 18/84 = 0.214 [0.140, 0.314].",
+      "json_path": "ext_witness.json: S4_timing_claims.posthoc.task_utc_mapping",
+      "kind": "null",
+      "mechanical_explanation": "The task clock may not run at wall-clock rate, a label may span several cohorts or episodes, or the nearest-time pairing heuristic may mis-pair. Untested."
+     },
+     {
+      "id": "O14",
+      "statement": "The one exact urlquery report cited in the wiki is consistent with physical order: the citing revision comes after the report. Pages mentioning httpbin.org/base64 have an indirection-class report in the hour before in 7 of 8 cases.",
+      "numbers": "Citation (n=1): revision time minus report time = 8270 s. httpbin new mentions n=8 on 8 pages: before-window at 1 h 7/8, Wilson [0.529, 0.978]; shift-null mean 0.5 of 8; after-window 7/8.",
+      "json_path": "ext_witness.json: S2_precedence.exact_report_citations_first_appearance_per_page, S2_precedence.httpbin_base64_vs_indirection_reports",
+      "kind": "hit",
+      "mechanical_explanation": "n is tiny. There are 4568 indirection reports in total, many of them during the campaign weeks."
+     }
+    ],
+    "candidate_mechanisms": [
+     {
+      "name": "Unread-clock stamp detector: an agent-emitted epoch that is later than an external record of the save carrying it",
+      "grounded_in": [
+       "O10",
+       "O11",
+       "O12"
+      ],
+      "measurement": "For every epoch-like token an agent writes (page name, prose, not inside URLs), compute delta = token - the server's save time. Flag delta > +1 s; the server reports 1 s uncertainty, and real-clock reads show median -1 s with 0/459 fraction-form stamps after the save. The round-number feature is a prior, not the test. Validate on a holdout corpus where the agent's tool calls are known.",
+      "false_positive_source": "Server-generated expiry tokens and incrementing ID sequences inside URLs; IDs that happen to look like epochs; deliberately future-dated markers; container clock skew (small here, median -1 to -2 s).",
+      "novelty_guess_unverified": "UNVERIFIED: the idea of detecting LLM 'now' guesses by comparing them against an independent server clock seems uncommon. Clock-skew forensics exist in general."
+     },
+     {
+      "name": "Source-level cross-witness corroboration: an independent URL-scan service records activity on the same data source within the hour before the agent writes about it",
+      "grounded_in": [
+       "O3",
+       "O4",
+       "O5",
+       "O14"
+      ],
+      "measurement": "For each first mention of source S, test for >=1 scan report for S in [t-1h, t) against local shifted nulls (+-2h/4h/1d) and a source-permutation null; report the excess with page-clustered CIs. Use it only to corroborate (raise confidence when present), never to accuse when a report is missing.",
+      "false_positive_source": "Same-campaign co-activity by other agents or operators; scan catalogs whose query choice was informed by the wiki; sources the scanner rarely covers (DataUSA 0.038, Census 0/58), where absence carries no information.",
+      "novelty_guess_unverified": "UNVERIFIED: using a third-party URL scanner's public report timestamps as a witness for agent tool use seems novel. The general idea of corroborating logs across independent systems is not."
+     },
+     {
+      "name": "Narrated wall-clock residual: an agent's own 'current UTC' statement compared with the server save time",
+      "grounded_in": [
+       "O8",
+       "O9"
+      ],
+      "measurement": "Real-clock-qualified times compared with the save time: the median residual (-84 s) and the asymmetry within the +-1h fold (601 vs 95) show the agent read a clock. Present- or past-tense claims later than the save are candidate impossibilities, but at this resolution the near-future rate (0.056) does not beat the unrelated-clock control (0.067).",
+      "false_positive_source": "Projections phrased in the present tense; times of day with no date that fold across midnight; task-clock times sitting next to a 'UTC' keyword; approximate values ('~').",
+      "novelty_guess_unverified": "UNVERIFIED: probably not novel as a forensic idea. It needs a dated claim format or hand labels before it can flag individual claims."
+     },
+     {
+      "name": "Storage-order vs timestamp-order inversion (RCS commit number vs time)",
+      "grounded_in": [
+       "O2",
+       "O1"
+      ],
+      "measurement": "Per page, adjacent RCS revisions whose timestamps go backwards. Observed 72/10012 on 4 pages, all 1-5 s.",
+      "false_positive_source": "Concurrent writers on hot pages (timestamp taken before the commit lock). Every inversion observed here fits a race, so this mainly documents a false-positive source for any order-based consistency check.",
+      "novelty_guess_unverified": "UNVERIFIED: standard concurrency forensics; not novel."
+     }
+    ],
+    "could_not_measure": [
+     "Claim-level linkage between witnesses: urlquery's public catalog has no URLs, bodies, values or submitter, so a specific wiki claim cannot be tied to a specific fetch or fetched value. Only source-level co-timing is possible.",
+     "Ground truth for fabrication: there are no transcripts or tool logs for these campaigns, so 'physically impossible vs the server clock' cannot be validated as 'fabricated'.",
+     "rclog clock on saves: recent_changes_time is null on all 14591 revisions. rcs_date and write_date on delete events are null.",
+     "Independent multi-clock tests on saves: time, write_date and request_time are identical by construction, so only success_time and archived_at vary independently.",
+     "Dated time-of-day claims: most narrated times carry no date, and events more than 12 h old fold forward, so an individual time-of-day claim cannot be declared impossible.",
+     "Validation of the post-hoc heuristics (tense keywords, roundness, task-to-UTC pairing): no hand labels and no holdout corpus. The roundness definition was chosen after seeing 20 examples.",
+     "Whether the task clock runs at wall-clock rate, which the mapping-consistency test needs.",
+     "Parallelism: no subagent-spawning tool was available in this session, and the probe runs as a single short process, so it was not split."
+    ]
+   },
+   "verdict": {
+    "lens": "ext_witness (skeptical re-derivation). I wrote my own scripts in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad (o1o2.py, o3_build/o3_rate/o3_profile/o3_cluster.py, o5.py, o6.py, o7/o7b/o7c.py, epochs.py, o11.py, tod.py) and saved their outputs in out_*.txt. I read the lens script only after I had my own numbers, to explain differences. The main event-set differences come from the lens matching URL-decoded bodies, using 13/16/19-digit epoch forms with no range filter, and requiring held history to start at seq 1 for page-name epochs. Net result: every hit and surprise reproduces in its raw counts. Two of them overclaim in how they are interpreted (O3, O7), and one is reported with mislabeled numbers (O3, per source).",
+    "checks": [
+     {
+      "id": "O1",
+      "reproduced": true,
+      "my_numbers": "Ordering violations 0/14482 (req<=succ), 0/14482 (req<=write_date), 0/14482 (req<=archived), 0/14585 (succ<=archived), 0/14591 (write_date<=archived); Wilson upper bound 0.00027. time==write_date 14591/14591; time==request_time 14482/14482; time==success_time 12884/14585. success-request {0:12792, 1:1689, 2:1}. Deletes success-request {0:4746, 1:470}; clock_delta mismatches 0/5216. Revision seq order vs time: 0/10012 inversions, so seq is time-sorted by construction.",
+      "problem": "None. The 'by construction' caveat is correct. In addition, seq order has 0/10012 inversions because seq is itself time-ordered, so the export's 'revision order failures = 0' check is tautological."
+     },
+     {
+      "id": "O2",
+      "reproduced": true,
+      "my_numbers": "72/10012 adjacent RCS-minor pairs with decreasing time; Wilson [0.0057, 0.0090]; page-clustered [0.0001, 0.0146], 1453 pages. Magnitudes {-1:13, -2:29, -3:28, -4:1, -5:1}. Label differs 70/72, ip16 differs 71/72. rcs minor != seq: 414 revisions on 5 pages. Per page: WillkommenImWiki 68, OAIResearchBridgeMay3X 2, AgentOurIvyProbe1781643368 1, StartSeite 1.",
+      "problem": "Minor overclaim. 'All on 4 heavily edited shared pages' is really 68/72 on one page (dse/WillkommenImWiki), plus 1-2 each on 3 other pages, one of which is a single-agent probe page. The race explanation is plausible but untested."
+     },
+     {
+      "id": "O3",
+      "reproduced": true,
+      "my_numbers": "My own patterns (raw substrings only, no URL-decoding) give 3044 new-mention events on 2063 pages; the lens has 3116 on 2223 because it also matches decoded proxy URLs. Before-window 1h: 0.555 [0.449, 0.671] page-clustered. Local null (+-2h/4h/1d) 0.305; excess 0.250 [0.204, 0.298]. Permutation null 0.224; excess 0.331. 24h excess over local null 0.146 [0.138, 0.153]. KEY CHECKS: (a) The lens's own per-shift rates are -2h 0.536, +2h 0.473, -4h 0.510, +4h 0.302, but +-1d 0.009/0.011. The local-null 'excess' is therefore driven by the +-1d shifts, which are near 0 by construction because SEC county's 455 reports all fall on 2026-06-18 (04:23-23:27Z). With a +-2h/4h-only null, my excess is 0.102 [0.087, 0.116] page-clustered and [0.042, 0.181] with 36 source-day clusters. With +-2h only it is 0.059; against the two preceding hours it is 0.030 [0.020, 0.044]. (b) My hourly profile, P(report in the 1h window ending at t+k h), for k = -3..3: 0.523, 0.526, 0.538, 0.555, 0.536, 0.466, 0.477. This is a broad multi-hour plateau with a peak of about 0.02 at the hour before the save. (c) Clustering by source-day (36 clusters) instead of page widens before-obs to 0.555 [0.094, 0.894]. (d) SEC county is 45% of events, 80% of before-window hits and 74% of the local-null excess. Its before rate is 0.996 and its after rate is 0.925 (lens). (e) Per source, the lens JSON shows these before/after rates: MAX 0.833/0.859, IHME 0.909/0.932, Clark 0.800/1.000. Only USAspending (0.764/0.558) leans 'before'. My per-source excess over the +-2h/4h null: SEC 0.123, USAspending 0.214, MAX 0.202, Clark 0.599, IHME 0.438.",
+      "problem": "OVERCLAIM and MISLABEL. (1) 'Far more common than at nearby shifted times' is false at the hour scale. The windows at +-2h and -4h score 0.47-0.54 against 0.566 observed. The 0.259 local-null excess comes mostly from the +-1d shifts, which are ~0 for single-day sources. The honest local excess is about 0.10 (+-2h/4h), or about 0.03 against the immediately preceding hours. (2) The per-source numbers in the statement (SEC 0.423, USAspending 0.369, MAX 0.393, Clark 0.675, IHME 0.595) are excess over the local null, not before-window rates. Placed next to 'Before-window at 1 h: 0.566', they read as rates; the true before rates are 0.994, 0.764, 0.833, 0.800 and 0.909. (3) The page-clustered CI understates uncertainty, because events on different pages share one campaign burst; the source-day-clustered CI is [0.094, 0.894]. The core claim reproduces: day/campaign-level co-activity that is source-specific (permutation excess about 0.33). It is not hour-level precedence."
+     },
+     {
+      "id": "O4",
+      "reproduced": true,
+      "my_numbers": "Forward before-minus-after 1h: 0.019 [0.010, 0.027] (n=3044, 2063 pages; lens 0.042 on its 3116-event set). 24h: 0.161 [0.109, 0.215] (lens 0.159). I did not re-derive the reverse burst direction.",
+      "problem": "None for the null conclusion: directionality is weak under both event definitions. The point estimate is sensitive to the event set (0.019 vs 0.042). The reverse-direction numbers were not checked."
+     },
+     {
+      "id": "O5",
+      "reproduced": true,
+      "my_numbers": "DataUSA before 1h: 48/1259 = 0.038 [0.028, 0.049], 1203 pages. 91 DataUSA reports on 8 days; 14 mention days, 3 overlapping (500 mentions on overlap days). US Census API: 0/58 events (17 pages), 5 reports on 3 days (2026-05-12, 05-24, 06-03), 0 overlap days. Yahoo CYBR: 5 events with 0 catalog reports under my pattern (lens 9, with decoded matching).",
+      "problem": "None material. CYBR is 5 vs 9 because of URL-decoding. 'A missing report is not evidence of fabrication' is a fair caution; the data cannot say the fetches were real."
+     },
+     {
+      "id": "O6",
+      "reproduced": true,
+      "my_numbers": "60s-gap bursts within the wiki span (2026-05-24 to 07-02): urlquery 4060 bursts on 31 days, wiki 2267 on 28 days. 5 min: uq->wiki 0.424 [0.231, 0.582]; far-shift excess 0.330; local excess 0.036 [-0.007, 0.077]. Wiki->uq 0.678 [0.507, 0.806]; local excess 0.060 [-0.014, 0.124]. 1h local excess 0.016 [-0.022, 0.054] and 0.024 [-0.039, 0.087]. Largest wiki burst 4621 saves, 2026-06-18 17:42:33-20:52:40Z, 414 reports inside.",
+      "problem": "None. The local null includes +-1d shifts, which deflate the null, and the result is still null. A +-2h/4h-only null would make it more null."
+     },
+     {
+      "id": "O7",
+      "reproduced": true,
+      "my_numbers": "Same-second histogram {1:28350, 2:3051, 3:744, 4:231, 5:73, 6:30, 7:1}; 9810/38160 reports in groups >=2; 4130 multi-report groups, 3998 single-source, 132 mixed. Zero gaps 5680/38159, median gap 10 s. 60s bursts 8078 (3828 singletons, max 1006); multi-report bursts 3410 single-source, 840 mixed. NULLS I added: the source-homogeneity count expected from local temporal composition (sources shuffled within bin) is 2651 (day), 3561 (hour), 3689 (10 min) and 3899 (minute), against 3998 observed. Same-second clustering itself exceeds a uniform-within-bin null: reports in groups 3381 (60 s bins) and 5346 (10 s bins), against 9810 observed.",
+      "problem": "PARTIAL OVERCLAIM. Same-second co-occurrence is a real excess (9810 vs 3381-5346 under uniform-within-bin nulls). But 'almost all same-second groups contain a single source' is mostly compositional: shuffling sources within the same minute already gives 3899/4130 (94%) single-source, so the excess homogeneity is about 99 groups (2.4 percentage points). Single-source groups are dominated by UNCTAD (2389/3998). The batch-submission explanation is not distinguished from scanner-side queue batching."
+     },
+     {
+      "id": "O8",
+      "reproduced": true,
+      "my_numbers": "Independent classifier (fixed before I looked at outcomes): keyword nearest before the time within 30 chars on the same line, real = {utc, container, terminal, wall clock}, task = {task}, suffix ' UTC'/'Z' -> real. New per-revision claims, folded to [-12h, 12h). Real: n=738, 242 pages, median -77 s [-98, -60]; [-1h,0) 544 vs (0,1h] 87. With seconds only: n=510, median -64 s [-105, -46], 376 vs 53. Task: n=1835, 109 vs 110. Unqualified: n=6911, 372 vs 351.",
+      "problem": "None for the asymmetry. It reproduces with a different keyword set and window. The class sizes differ from the lens (task 1835 vs 6105, unqualified 6911 vs 4238) because of keyword lists, and the conclusion is unchanged. Minor overclaim: a median of about -80 s mixes clock offset with compose/POST latency, so it does not by itself show the save clock is UTC 'to within about a minute'. O10's -1 s is the stronger cross-check."
+     },
+     {
+      "id": "O9",
+      "reproduced": true,
+      "my_numbers": "Real-clock claims more than 1 s after the save: 139/738 = 0.188, Wilson [0.162, 0.218]. I did not reproduce the post-hoc tense split.",
+      "problem": "The headline rate reproduces approximately (0.188 vs 0.211). The tense-split null rests on a post-hoc keyword tagger, which I did not check."
+     },
+     {
+      "id": "O10",
+      "reproduced": true,
+      "my_numbers": "Prose epochs (10-digit, within +-365 d of the save, outside an http/www URL): n=582, 285 pages, median -1 s [-1, -1]; 7/582 more than 1 s after the save (0.012 [0.006, 0.025]). With fraction: 0/459, Wilson upper bound 0.0083 (exact match to the lens). Without fraction: 7/123. Page-name epochs vs first save: n=385, 173 labels, median -2 s [-3, -2].",
+      "problem": "None. The prose n is lower (582 vs 747) because I excluded ms/us/ns forms and applied a range filter; the conclusion is identical. Selection caveat: epochs that get written into pages probably come from scripts that print time.time() and save right away."
+     },
+     {
+      "id": "O11",
+      "reproduced": true,
+      "my_numbers": "Page-name epochs: round (mod100 in {0,1,99}) 26/54 more than 1 s after the first save, label-clustered 0.481 [0.152, 0.667], 33 labels. Non-round 5/331, 0.015 [0.000, 0.022]. Near-future (1 s, 1h]: round 13/54 = 0.241 [0.091, 0.333]; non-round 2/331. Prose round 6/27 vs non-round 1/555. The 26 round after-save cases are 26 distinct epochs from 9 labels, 18 of them from the anonymous probier label ''. Their deltas run from 15 s to 1,333,479 s: 13/26 are more than 1h ahead and 6/26 more than 1 day ahead (e.g. 1782000000, 1783000000). Robust to the roundness definition: mod10==0 18/71 vs 13/314; mod1000==0 11/17 vs 20/368. Round values are 54/385 = 14% of page-name epochs, against 3% expected for uniform last digits.",
+      "problem": "Counts reproduce, and the effect does not depend on the exact roundness rule. The interpretation 'agents wrote a guessed now without reading a clock' overclaims. Half the round after-save stamps are hours to weeks ahead, which fits hand-picked round identifiers (1782000000, 1783000000) better than guesses of now. Effective independence is low: 9 labels, 18/26 from a single anonymous label. It remains post-hoc, as the lens says."
+     },
+     {
+      "id": "O12",
+      "reproduced": false,
+      "my_numbers": "10-digit, +-365 d, http/www URL spans: URL epochs n=125 on 50 pages; 11/125 more than 1 s after the save (0.088, page-clustered [0.009, 0.198]); only 3 more than 1 day after. Round 2/15 vs non-round 9/110.",
+      "problem": "The direction reproduces (URL epochs postdate the save more often than prose), but my n differs (125 vs 370) and so does the >1 day count (3 vs 30). The lens includes 13/16/19-digit forms with no range filter, so its '30 more than a day ahead' depends on those forms. I did not verify the signed-URL expiry explanation."
+     }
+    ],
+    "overclaims": [
+     "O3: 'far more common than at nearby shifted times' is not supported. The lens's own per-shift rates are 0.536 at -2h, 0.473 at +2h and 0.510 at -4h, against 0.566 observed. The 0.259 local-null excess comes mostly from the +-1d shifts, which are ~0 because SEC county reports sit on a single UTC day. With a +-2h/4h-only null the excess is ~0.10 (my 0.102 [0.042, 0.181] with source-day clusters), and against the immediately preceding hours it is ~0.03.",
+     "O3: the per-source figures (SEC 0.423, USAspending 0.369, MAX 0.393, Clark 0.675, IHME 0.595) are excess over the local null, not before-window rates. The actual before rates are 0.994, 0.764, 0.833, 0.800 and 0.909, and after rates are similar or higher for MAX, Clark and IHME.",
+     "O3: the page-clustered CI [0.481, 0.655] treats pages as independent even though events share campaign bursts. With source-day clusters (36), before-obs is 0.555 [0.094, 0.894]. SEC county alone accounts for 80% of before-window hits.",
+     "O3/O4: these show source-specific co-activity at the campaign/day scale (permutation excess ~0.33). They do not show the hour-scale precedence that the 'which source was being worked when' framing suggests.",
+     "O7: 'almost all same-second groups contain a single data source' is mostly compositional. A within-minute source shuffle already gives 3899/4130 single-source groups against 3998 observed. The same-second clustering itself is a real excess.",
+     "O8: the median of about -80 s mixes clock offset and compose latency, so it does not independently show the save clock is UTC 'to within about a minute'. O10 (-1 s) is the real cross-check.",
+     "O11: the 'guessed now without reading a clock' reading is weak. 13/26 round after-save stamps are more than 1h ahead and 6/26 more than 1 day ahead, which fits hand-picked round IDs. The 26 come from 9 labels, 18 from one anonymous label.",
+     "O2: 'all on 4 heavily edited shared pages' is really 68/72 on one page (dse/WillkommenImWiki)."
+    ]
+   }
+  },
+  {
+   "lens": "raw_census",
+   "obs": {
+    "lens": "Phase A6 raw-field census: every key path in every source, flagged as TIMER, CLOCK, COUNTER, HASH_ID, STATUS or TOKEN; marked captured or uncaptured against ir.py COLUMNS plus cc_jsonl extra; with a non-tool entry inventory and 5 pre-specified redundancy identities",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_a6_raw_census.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_raw_census.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\tables.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\transcripts.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\cc_local.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\aiv.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\small.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_a\\a6_parts\\identities.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\raw_census.md"
+    ],
+    "observations": [
+     {
+      "id": "A6-O1",
+      "statement": "In Claude Code logs, the harness's Read counter toolUseResult.file.numLines equals the number of line-numbered lines in the text the model sees. This holds in both swechat and cc_local.",
+      "numbers": "swechat 2510/2514 = 0.998, Wilson [0.996, 0.999], cluster 0.998 [0.997, 1.0] over 149 files, 4 files mismatch. Mismatch diffs (text minus numLines), n=4: min -2312, median -1595, max -1. cc_local 191/194 = 0.985, Wilson [0.956, 0.995], 59 files, all 3 diffs -1.",
+      "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I4_cc_read_numlines_vs_text and parts.identities.cc_local_sample.I4_cc_read_numlines_vs_text",
+      "kind": "hit",
+      "mechanical_explanation": "Both fields are written by the same harness from the same read, so this is internal redundancy, not an independent witness. The 4 large negative mismatches may be truncated or persisted outputs (unverified)."
+     },
+     {
+      "id": "A6-O2",
+      "statement": "A subagent's totalToolUseCount (Agent/Task toolUseResult) equals the number of distinct nested tool_use ids in its agent_progress traffic.",
+      "numbers": "190/190 = 1.0, Wilson [0.980, 1.0], 71 files. A further 94 results in 20 files have no nested traffic, so they could not be checked.",
+      "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I5_cc_agent_toolcount and I5_cc_agent_toolcount_no_nested_traffic",
+      "kind": "hit",
+      "mechanical_explanation": "The harness counts the same stream it writes, so this is redundancy, not independence."
+     },
+     {
+      "id": "A6-O3",
+      "statement": "Several scaffolds write a second clock or timer per event that the IR drops: OpenCode tool-part state.time.end and message info.time.completed, Codex exec_command_end duration, Claude Code stop_hook_summary hookInfos[].durationMs, and AI Village computer_use_turns updated_at.",
+      "numbers": "OpenCode bash state.time.end 247/249 = 0.992 [0.977, 1.0] in 44 files; read 659/659; grep 120/120; info.time.completed 635/637 = 0.997 [0.992, 1.0]. Codex exec_command_end payload.duration.secs/nanos 1868/1868 in 9/9 files; mcp_tool_call_end 96/96. CC hookInfos[].durationMs 792/951 = 0.833 [0.694, 0.911]. AIV computer_use_turns updated_at 20000/20000.",
+      "json_path": "a6_raw_census.json: flagged[] where source is swechat_transcripts/opencode, swechat_transcripts/codex, swechat_transcripts/claude_code (group system/stop_hook_summary) or ai_village/computer_use_turns",
+      "kind": "hit",
+      "mechanical_explanation": "None found. Whether these clocks agree with each other was not measured."
+     },
+     {
+      "id": "A6-O4",
+      "statement": "Claude Code toolUseResult carries structured counters that cc_jsonl does not extract: Read numLines/startLine/totalLines, Edit structuredPatch line counts and Grep numLines.",
+      "numbers": "Read file.numLines 2514/2561 = 0.982 [0.972, 0.989] in 149/149 files. Edit structuredPatch[].oldLines/newLines 1958/2029 = 0.965 [0.952, 0.976]. Grep numLines 823/939 = 0.876 [0.839, 0.908]. cc_local: Read 194/210 = 0.924 [0.847, 0.986]; Glob totalMatches 375/375.",
+      "json_path": "a6_raw_census.json: flagged[] where source is swechat_transcripts/claude_code or cc_local/claude_code and group starts with toolUseResult/",
+      "kind": "hit",
+      "mechanical_explanation": "None. These fields are uncaptured by the IR spec as written."
+     },
+     {
+      "id": "A6-O5",
+      "statement": "file-history-snapshot, a harness-side log of file mutations, is present in most Claude Code sessions and is unused. Its per-file backup version and backupTime are filled in most snapshot records.",
+      "numbers": "60,218 records in 3987/4925 swechat CC files = 0.810 [0.798, 0.820]. trackedFileBackups.<key>.version/backupTime filled in 1362/1673 sampled snapshot records = 0.814 [0.756, 0.856], 121/127 files. cc_local main: 538 records in 268/332 files = 0.807 [0.761, 0.846].",
+      "json_path": "a6_raw_census.json: non_tool_entry_inventory.swechat_transcripts.claude_code.groups['file-history-snapshot']; flagged[] group file-history-snapshot",
+      "kind": "hit",
+      "mechanical_explanation": "Snapshots are taken per user message, not per edit, so edits are coalesced."
+     },
+     {
+      "id": "A6-O6",
+      "statement": "Session-level tallies that the transcript should reproduce exist outside the IR: cc_local cost-state, cc_local workflow.json totals, Entire.io checkpoint token_usage, and the swechat sessions counters.",
+      "numbers": "cc_local cost-state: 113 records in 111/332 main files = 0.334 [0.286, 0.387]; the totals fields are present in 34/34 sampled records (33 files). workflow.json durationMs/totalTokens/totalToolCalls 65/65. checkpoint_metadata_raw token_usage.api_call_count 484/500 = 0.968 [0.931, 0.992]. sessions.api_call_count 5851/5851. sessions.tool_call_count 5476/5851 = 0.936 [0.929, 0.942].",
+      "json_path": "a6_raw_census.json: flagged[] where source is cc_local/claude_code (group main:cost-state), cc_local/sidecar_json, swechat_tables_json (checkpoints.checkpoint_metadata_raw) or swechat_tables (sessions)",
+      "kind": "hit",
+      "mechanical_explanation": "The Entire.io and SWE-chat tallies are probably computed from the same transcript, so agreement would be tautological. Only disagreement would be informative."
+     },
+     {
+      "id": "A6-O7",
+      "statement": "The Codex cumulative token counter chain (total(n) = total(n-1) + last(n)) breaks in 5 of 26 files. In those breaks the total jumps down, by magnitudes matching the last_token_usage mismatches.",
+      "numbers": "I1b 1862/1919 = 0.970, Wilson [0.962, 0.977], cluster [0.941, 0.994] over 26 files; 5 files mismatch; diffs n=57 from -601429 to -19480. I1a (last total = input + output) 1935/1950 = 0.992 [0.987, 0.995]; 2 files mismatch; diffs n=15 from 19480 to 601429.",
+      "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I1b_codex_cumulative and I1a_codex_last_total",
+      "kind": "surprise",
+      "mechanical_explanation": "Possibly a counter reset at compaction or thread rollback; unverified. Codex has compacted records in 17/213 files and thread_rolled_back in 9/213."
+     },
+     {
+      "id": "A6-O8",
+      "statement": "OpenCode's token total does not equal either pre-specified sum of its parts.",
+      "numbers": "F1 (input+output+reasoning+cache.read+cache.write) 148/633 = 0.234 [0.203, 0.268], cluster [0.106, 0.381], 46 files. F2 (input+output+reasoning) 12/633 = 0.019 [0.011, 0.033]. F1 mismatch diffs n=485, min -8947, median -71, max -8.",
+      "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I3_opencode_step_finish_F1_all and I3_opencode_step_finish_F2_in_out_reasoning",
+      "kind": "null",
+      "mechanical_explanation": "The total is probably defined some other way. By design, no formula was searched for after seeing the data."
+     },
+     {
+      "id": "A6-O9",
+      "statement": "Gemini CLI's per-message token total is an exact sum of its parts.",
+      "numbers": "total == input+output+thoughts+tool: 2509/2509 = 1.0, Wilson [0.998, 1.0], 31 files. total == input+output only: 1366/2509 = 0.544 [0.525, 0.564].",
+      "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I2_gemini_F1_in_out_thoughts_tool and I2_gemini_F3_in_out",
+      "kind": "hit",
+      "mechanical_explanation": "The identity is arithmetic that a fabricated record could trivially satisfy, so it is a weak signal."
+     },
+     {
+      "id": "A6-O10",
+      "statement": "Current local Claude Code logs lack swechat-era structures: no progress/* entries and no system/turn_duration. Subagents live in separate files.",
+      "numbers": "swechat: progress/agent_progress in 1981/4925 files = 0.402 [0.389, 0.416]; system/turn_duration in 3384/4925 = 0.687 [0.674, 0.700]. cc_local: neither group appears in either stratum (332 main, 840 subagent files).",
+      "json_path": "a6_raw_census.json: non_tool_entry_inventory.swechat_transcripts.claude_code.groups and non_tool_entry_inventory.cc_local",
+      "kind": "null",
+      "mechanical_explanation": "Claude Code version difference."
+     },
+     {
+      "id": "A6-O11",
+      "statement": "Who&When has no CLOCK-class field. Its only STATUS-flagged fields are dataset labels.",
+      "numbers": "is_correct 126/126, is_corrected 58/58, mistake_reason 126/126 and 58/58; no CLOCK flag in any who_and_when row.",
+      "json_path": "a6_raw_census.json: flagged[] where source is who_and_when",
+      "kind": "null",
+      "mechanical_explanation": "The dataset has no timestamps, as the earlier recon also found."
+     },
+     {
+      "id": "A6-O12",
+      "statement": "I4b (Read numLines == line count of toolUseResult.file.content) fails about half the time, always by exactly -1.",
+      "numbers": "swechat 1172/2514 = 0.466 [0.447, 0.486]; mismatch diffs n=1342, min = max = -1. cc_local 92/194; diffs n=102, all -1.",
+      "json_path": "a6_raw_census.json: parts.identities.swechat_sample.I4_cc_read_numlines_vs_file_content",
+      "kind": "artifact",
+      "mechanical_explanation": "A line-counting convention in my check (str.splitlines drops the trailing empty line); this is not a data inconsistency."
+     },
+     {
+      "id": "A6-O13",
+      "statement": "Some class flags are false.",
+      "numbers": "repositories.repo_github_metadata.id flagged CLOCK, 205/205. artifact-comment-monitor writtenAtMs flagged TIMER, 36/36. Who&When system_prompt.VSCode_Expert flagged STATUS, 1/126.",
+      "json_path": "a6_raw_census.json: flagged[]",
+      "kind": "artifact",
+      "mechanical_explanation": "GitHub ids fall in the epoch-seconds range; TIMER takes precedence over CLOCK; the word 'code' maps to STATUS."
+     },
+     {
+      "id": "A6-O14",
+      "statement": "In AI Village claude_code_messages, sdk_session_id cannot serve as the resampling unit, so the census uses a derived run.",
+      "numbers": "Full scan: 53 distinct sdk_session_id; the largest holds 244709 of 244820 rows; 314 init rows. The 20,000-row head touches 9 sdk_session_ids and 180 derived runs.",
+      "json_path": "a6_raw_census.json: parts.aiv.tables.claude_code_messages.sdk_session_full_scan and .distinct_cluster_keys_in_head",
+      "kind": "artifact",
+      "mechanical_explanation": "The SDK session id persists across runs. The aiv_cc loader segments runs at system/init rows, and this probe does the same."
+     },
+     {
+      "id": "A6-O15",
+      "statement": "The AI Village tables are sorted by id, and their heads are not time-sorted. This fits the premise that the head is time-uniform.",
+      "numbers": "19999/19999 adjacent id pairs ascending in claude_code_messages, computer_use_turns, events, agent_memories, chat_messages and computer_use_sessions. created_at ascending in 10004, 10040, 10069, 9981, 9941 and 10028 of 19999 pairs respectively.",
+      "json_path": "a6_raw_census.json: parts.aiv.tables.<table>.order_check",
+      "kind": "hit",
+      "mechanical_explanation": "Only the ordering was checked, not uniformity over time."
+     },
+     {
+      "id": "A6-O16",
+      "statement": "The format detected from content disagrees with SWE-chat's agent label for some files.",
+      "numbers": "4 files labelled Claude Code are Cursor format. 3 labelled Gemini CLI, 24 labelled Agent and 49 labelled unknown are Claude Code format. 3 labelled unknown are Gemini format. 1 OpenCode file fails to parse.",
+      "json_path": "a6_raw_census.json: parts.transcripts.format_by_agent_label and parts.transcripts.format_counts",
+      "kind": "surprise",
+      "mechanical_explanation": "Labels come from the dataset's own metadata, and wrappers such as 'Agent' run Claude Code."
+     },
+     {
+      "id": "A6-O17",
+      "statement": "The AI Village events table, which is not an IR source, holds a second copy of model-call accounting.",
+      "numbers": "data.cost, data.inputTokens and data.outputTokens each 19291/20000 = 0.965 [0.962, 0.967] (Wilson over rows).",
+      "json_path": "a6_raw_census.json: flagged[] where source is ai_village/events",
+      "kind": "hit",
+      "mechanical_explanation": "None found. The join to computer_use_turns was not attempted."
+     },
+     {
+      "id": "A6-O18",
+      "statement": "Claude Code Agent toolStats (per-subagent tool tallies) is too sparse to use.",
+      "numbers": "5/313 = 0.016 [0.000, 0.046], in 2/56 files.",
+      "json_path": "a6_raw_census.json: flagged[] where group is toolUseResult/Agent and path starts with toolStats",
+      "kind": "null",
+      "mechanical_explanation": "Only some Claude Code versions write it (unverified)."
+     }
+    ],
+    "candidate_mechanisms": [
+     {
+      "name": "Structured-counter vs visible-text recount",
+      "grounded_in": [
+       "CC toolUseResult.file.numLines/startLine/totalLines (0.982)",
+       "CC toolUseResult.numLines for Grep (0.876)",
+       "CC Glob totalMatches (cc_local 375/375)",
+       "CC Edit structuredPatch[].oldLines/newLines (0.965)",
+       "OpenCode state.metadata.matches / count / filediff",
+       "Gemini toolCalls[].resultDisplay.diffStat.* (0.305)"
+      ],
+      "measurement": "For each tool result, recount the quantity from the model-visible text or the call arguments and compare it to the harness counter by exact equality, pre-registered. Honest baseline I4: 2510/2514 (swechat) and 191/194 (cc_local). Rewritten or fabricated result text should break the equality unless the counter is rewritten too.",
+      "false_positive_source": "Truncated or persisted-to-file outputs, system reminders appended to result text, line-number formatting changes across harness versions, and Read calls with an offset or limit.",
+      "novelty_guess_unverified": "UNVERIFIED: I don't know of published work that uses the harness's structured copy of a tool result as a cross-check. Agent-observability tools may do this already."
+     },
+     {
+      "name": "Second-clock duration consistency",
+      "grounded_in": [
+       "Codex exec_command_end payload.duration.secs/nanos (1868/1868)",
+       "Codex task_complete.duration_ms",
+       "OpenCode state.time.start/end (>= 0.99)",
+       "OpenCode info.time.created/completed",
+       "CC stop_hook_summary hookInfos[].durationMs (0.833)",
+       "CC system/turn_duration",
+       "AIV computer_use_turns updated_at vs created_at"
+      ],
+      "measurement": "Check that each harness timer is at most the gap between the surrounding event clocks (call to end, turn start to end), with a tolerance set from an honest baseline before any outcome is examined. A reported duration longer than the wall-clock gap, or a gap with no possible execution time, would flag a result that was not produced by execution.",
+      "false_positive_source": "Parallel tool calls, clocks written at flush time rather than event time, millisecond granularity, skew between processes, and backgrounded commands.",
+      "novelty_guess_unverified": "UNVERIFIED: duration-vs-timestamp checks are standard in log forensics. Applying them to agent tool logs may be less common."
+     },
+     {
+      "name": "file-history-snapshot mutation reconciliation",
+      "grounded_in": [
+       "CC file-history-snapshot (60,218 records in 3987/4925 files)",
+       "snapshot.trackedFileBackups.<key>.version/backupTime (0.814)",
+       "cc_local file-history-delta backup.version/backupTime"
+      ],
+      "measurement": "For each successful Edit or Write on path P at time t, expect a later snapshot to show a version bump for P with backupTime >= t. Count claimed edits that have no bump, and bumps that have no claimed edit.",
+      "false_positive_source": "Snapshots are per user message, so edits coalesce. Paths outside the tracked set are missing. About 19% of files have no snapshot at all. Resumed sessions and Bash-made edits also break the mapping.",
+      "novelty_guess_unverified": "UNVERIFIED: this harness record seems unused in the literature I know of."
+     },
+     {
+      "name": "Session-tally recount",
+      "grounded_in": [
+       "cc_local cost-state totals (34/34 sampled records)",
+       "cc_local workflow.json totalToolCalls/totalTokens/durationMs (65/65)",
+       "Codex task_complete.duration_ms",
+       "OpenCode session info.summary.additions/deletions/files (46/46)",
+       "Copilot session.shutdown",
+       "swechat sessions.api_call_count/tool_call_count",
+       "Entire.io checkpoint token_usage.api_call_count (0.968)"
+      ],
+      "measurement": "Recompute each tally from the transcript (usage sums, tool counts, patch line sums) and compare. Report the disagreement rate with a session-clustered CI.",
+      "false_positive_source": "Tallies derived from the same transcript agree tautologically. Resumed or compacted sessions change the totals. Subagent tokens may be included in one count and not the other.",
+      "novelty_guess_unverified": "UNVERIFIED"
+     },
+     {
+      "name": "Cumulative counter chain",
+      "grounded_in": [
+       "Codex token_count total_token_usage / last_token_usage (0.992 fill)",
+       "CC message.usage.iterations[] (cc_local 0.999)",
+       "CC apiBlockIndex (0.727)",
+       "bridge-session lastSequenceNum"
+      ],
+      "measurement": "Check the chain identity total(n) = total(n-1) + last(n), and that ordinal counters only increase. Honest baseline I1b: 0.970, with breaks in 5/26 files.",
+      "false_positive_source": "Counter resets at compaction, rollback or resume, which plausibly explain the observed breaks (unverified).",
+      "novelty_guess_unverified": "UNVERIFIED"
+     },
+     {
+      "name": "Nested-subagent tally check",
+      "grounded_in": [
+       "CC toolUseResult.totalToolUseCount / totalTokens / totalDurationMs (captured in extra)",
+       "CC progress/agent_progress nesting (1981/4925 files)",
+       "cc_local workflow.json totalToolCalls vs subagent JSONL"
+      ],
+      "measurement": "Compare the parent's reported subagent tallies with a recount of the nested or sidecar subagent transcript. Baseline I5: 190/190.",
+      "false_positive_source": "Nesting is absent in current Claude Code (cc_local), and subagent files can be missing or truncated.",
+      "novelty_guess_unverified": "UNVERIFIED"
+     },
+     {
+      "name": "External git witness of claimed edits",
+      "grounded_in": [
+       "swechat commits.agent_changes [].structured_patch (0.632)",
+       "commits.file_attribution __aggregate__ (500/500)",
+       "commits numstat / patch"
+      ],
+      "measurement": "Match the agent-claimed patch hunks to the committed diff, and report the fraction of claimed hunks that never reach a commit.",
+      "false_positive_source": "Human edits between agent and commit, squashed or rebased commits, and work that was never committed. Another lens (phase_c_commit_witness) may already cover this.",
+      "novelty_guess_unverified": "UNVERIFIED"
+     },
+     {
+      "name": "AI Village dual record of model calls",
+      "grounded_in": [
+       "AIV events data.cost/inputTokens/outputTokens (0.965)",
+       "events data.output usage blocks",
+       "computer_use_turns agent_messages.usageMetadata (0.214)"
+      ],
+      "measurement": "Join an event to its turn and compare usage and the action between the two tables.",
+      "false_positive_source": "Events exist only for some action types, the join key is uncertain, and created_at is a row-insert time that can lag the event.",
+      "novelty_guess_unverified": "UNVERIFIED"
+     }
+    ],
+    "could_not_measure": [
+     "village-transcript.json (one 362 MB JSON document, a rendering of events and chat_messages) was not censused.",
+     "Agreement of the uncaptured second clocks and timers with event timestamps: the fields are listed, but no duration-vs-gap check was run.",
+     "file-history-snapshot vs Edit/Write reconciliation: the fields are listed, not measured.",
+     "Whether the loaders actually ingest the uncaptured fields. The loader mark is only a string-literal match on analysis/loaders/*.py, which other agents are editing; the caches were not read.",
+     "Fill rates of key paths deeper than the depth limits (4 for transcripts and cc_local, 3 for table JSON columns, 3 or 6 for AI Village), and of cc_local subtrees hidden for privacy (user-defined schemas, non-builtin tool inputs and results).",
+     "Swechat transcript key-path fill rates cover only the 300-file stratified sample. The entry-type inventory covers the full population.",
+     "Copilot (2 files) and simple_text (4 files) are too small for rates.",
+     "1 OpenCode transcript failed JSON parsing and was not censused (no salvage).",
+     "conversations.content: only 340 of 500 sampled non-null rows parsed as JSON.",
+     "AI Village computer_use_turns CIs are Wilson over rows. The head spans 17,418 distinct sessions, so no session clustering was applied.",
+     "OpenCode's actual token-total formula: by design, nothing beyond the 2 pre-specified formulas was tried."
+    ]
+   },
+   "verdict": {
+    "lens": "raw_census (Phase A6). I re-derived every check with my own code, writing only to scratchpad. All of my numbers are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\rederive_raw_census.json. The scripts that produced them sit in the same folder: rd_swechat.py, agg_swechat.py, rd_other.py, rd_cc_local.py, rd_tables.py, rd_aiv.py and diag_*.py. I used the lens's own 300-file swechat sample list to match its n, then reran every check on the full population. The cc_local outputs are aggregate counts only. Only after I had my numbers did I read the lens script, to explain the differences. My prompt cut O17 off mid-sentence, so I checked the events-table fields from the notes.",
+    "checks": [
+     {
+      "id": "A6-O1",
+      "reproduced": true,
+      "my_numbers": "Swechat sample matches exactly: 2510/2514 = 0.9984, Wilson [0.9959, 0.9994], cluster [0.9970, 1.0] over 149 files; 4 mismatching files; diffs -2312 to -1. The 4 are 3 persisted-output previews and 1 case with numLines=1 and no numbered text lines (L=0). Full swechat population: 87827/88229 = 0.9954, Wilson [0.9950, 0.9959], cluster [0.9947, 0.9960] over 4603 files; 275 mismatching files; 402 diffs from -3464 to -1, median -1140. All 402 mismatches are harness or dataset formats: 282 '<\\persisted-output>' previews, 105 'file shorter than offset' warnings, 7 '<identical to result [rN]...>' references, 7 redacted contents and 1 negative line numbers. None is unexplained. cc_local main sessions, full: 570/578 = 0.986, Wilson [0.973, 0.993], cluster [0.976, 0.994] over 182 files; all 8 mismatches are empty-file warnings with diff -1. In cc_local subagent files, 0 of 12 Read results carry numLines.",
+      "problem": "The sample understates the mismatch rate: the full-population rate 0.9954 lies below the sample's cluster CI [0.997, 1.0]. The 'unverified' explanation is now verified: every mismatch is a harness display format (persisted preview, warning, dedup reference) or dataset redaction. A detector would therefore have to whitelist these formats. 'Holds in cc_local' covers main sessions only; subagent files carry no Read numLines."
+     },
+     {
+      "id": "A6-O2",
+      "reproduced": true,
+      "my_numbers": "Sample matches exactly: 190/190, Wilson [0.980, 1.0], 71 files; 94 results in 20 files have no nested traffic. Full population: 6623/6623, Wilson [0.9994, 1.0], 1934 files. Uncheckable: 2150 results in 634 files, which is 2150/8773 = 0.245 [0.236, 0.254] of Agent/Task results. The uncheckable results have a median totalToolUseCount of 21, so they are not trivially empty.",
+      "problem": "The JSON stores the uncheckable set as I5_cc_agent_toolcount_no_nested_traffic with match 94, n 94, rate 1.0 and a Wilson CI. The code calls add(True), so a non-check is encoded as a 100% pass. It should be a bare count. The statement itself words this correctly. A quarter of Agent results cannot be checked."
+     },
+     {
+      "id": "A6-O3",
+      "reproduced": true,
+      "my_numbers": "Fill rates match exactly. OpenCode sample: bash state.time.end 247/249 in 44 files; read 659/659; grep 120/120; info.time.completed 635/637 = 0.997, cluster [0.992, 1.0]. Codex sample: exec_command_end duration 1868/1868 in 9 files; mcp_tool_call_end 96/96 in 4 files. CC hookInfos[].durationMs sample 792/951 = 0.833, cluster [0.704, 0.918]. AI Village computer_use_turns updated_at 20000/20000. Full population: OpenCode bash 5311/5317, read 10547/10547, info.time.completed 15129/15136; Codex exec 13876/13876 in 67 files; CC hookInfos 26311/33044 = 0.796, cluster [0.772, 0.819]. AI Village updated_at minus created_at is 1 ms or less in 19992/20000 rows (median 2 µs) and over 1 s in 5.",
+      "problem": "'The IR drops' is false for 3 of the 5 fields. load_swechat.py was saved before the lens ran. At line 707 it sets the OpenCode result ts to state.time.end. At lines 547/560/606/609 it maps Codex exec and MCP durations to extra.duration_s. load_aiv_cu.py line 1095 keeps updated_at in the result's extra field. The lens's own flagged[] marks these paths loader_pair or loader_leaf. Only hookInfos[].durationMs, and info.time.completed outside message-error events, are really dropped. AI Village updated_at is a copy of the row-insert time, not an independent clock."
+     },
+     {
+      "id": "A6-O4",
+      "reproduced": true,
+      "my_numbers": "Sample: Read numLines 2514/2561 = 0.982, cluster [0.972, 0.989], 149/149 files. Edit oldLines 1959/2030; the lens has 1958/2029, an off-by-one I treat as immaterial. Grep numLines 823/939 = 0.877. Full population: Read 88229/90763 = 0.972, cluster [0.969, 0.975]; Edit 70553/73460 = 0.960; Grep 29535/34208 = 0.863. Glob totalMatches is 0/6422 in swechat. cc_local main, full: Read 578/650 = 0.889 [0.863, 0.911]; Glob totalMatches 1231/1234. I grepped cc_jsonl and the loaders: none references numLines, structuredPatch or totalMatches.",
+      "problem": ""
+     },
+     {
+      "id": "A6-O5",
+      "reproduced": true,
+      "my_numbers": "60218 records in 3987/4925 files = 0.810 [0.798, 0.820]. Version/backupTime filled in 1362/1673 sample records, 121/127 files; full 50362/60218 = 0.836, cluster [0.828, 0.845]. cc_local main: 538 records in 268/332 files. Supplementary check: of the distinct paths that a successful Edit, Write, MultiEdit or NotebookEdit touched, 24031/24286 = 0.990, cluster [0.986, 0.993], appear as trackedFileBackups keys, over 3737 files. 699 CC files have successful mutations but no snapshot records at all.",
+      "problem": "The supplementary check supports calling it a mutation log. The coverage gap is 699 files with mutations and no snapshots, about 16% of files with mutations."
+     },
+     {
+      "id": "A6-O6",
+      "reproduced": true,
+      "my_numbers": "cc_local cost-state: 113 records in 111/332 main files = 0.334 [0.286, 0.387]. All 8 total fields are present in 113/113 records in the full set; the lens sampled 34/34. Workflow wf_*.json: 65/65 for durationMs, totalTokens, totalToolCalls, agentCount and startTime. checkpoint_metadata_raw token_usage.api_call_count, full table: 12975/13406 = 0.968, Wilson [0.965, 0.971], repo cluster [0.927, 0.992]. The lens sampled 484/500. sessions.api_call_count is non-null in 5851/5851, and 145 of those are 0. sessions.tool_call_count is non-null in 5476/5851 = 0.936 [0.929, 0.942].",
+      "problem": "Only presence was measured, not agreement with the transcript. The statement is correct as worded."
+     },
+     {
+      "id": "A6-O7",
+      "reproduced": true,
+      "my_numbers": "Counts match exactly. I1a: 1935/1950, 2 files, diffs 19480 to 601429. I1b: 1862/1919, cluster [0.941, 0.994] over 26 files, 5 files mismatching, 57 diffs from -601429 to -19480. Full population: I1a 16015/16106, 24 files mismatching; I1b 15302/15917 = 0.961, cluster [0.952, 0.973] over 173 files, 39 files mismatching. The total decreases in 0/57 sample breaks and 0/615 full breaks. Instead total_token_usage equals the previous event's in every break, so each diff is just -last(n). 45/57 sample breaks (531/615 full) are exact duplicate token_count events, with the whole info block equal to the previous one. After dropping consecutive duplicates, the chain holds 1862/1874 in the sample and 15302/15386 in the full population. The remaining 12 sample breaks (84 full) have a flat total and a nonzero last. 12/12 of them (81/84 full) come right after a compacted or thread_rolled_back event, and only these match the I1a magnitudes.",
+      "problem": "The direction claim is wrong. The total never 'jumps down'; it stays flat. Mechanical causes explain every break: re-emitted duplicate token_count events (45/57) and post-compaction/rollback accounting (12/57). This should be classed artifact, not surprise. 'Magnitudes matching' holds for only 12 of 57 breaks."
+     },
+     {
+      "id": "A6-O8",
+      "reproduced": true,
+      "my_numbers": "Matches exactly. F1: 148/633 = 0.234, Wilson [0.203, 0.268], cluster [0.106, 0.381], 46 files. F2: 12/633. Mismatch diffs n=485, min -8947, median -71, max -8. Full population: F1 3155/14854 = 0.212; F2 255/14854. Post hoc, formed after seeing the diffs: total == in + out + cache.read + cache.write, leaving reasoning out, holds 618/633 = 0.976 [0.961, 0.986] in the sample and 14639/14854 = 0.986 in the full population.",
+      "problem": "The null as stated is correct. However, the post-hoc fit shows that the total simply excludes reasoning. The null reflects the choice of pre-specified formula; it is not evidence that OpenCode lacks a token identity. Read it as 'formula misspecified', not 'no redundancy'."
+     },
+     {
+      "id": "A6-O9",
+      "reproduced": true,
+      "my_numbers": "F1: 2509/2509, Wilson [0.9985, 1.0], 31 files. F3: 1366/2509 = 0.544, cluster [0.442, 0.647]. Full population: 5141/5141 in 58 files. The tool field is 0 in all 2509 sample checks and all 5141 full checks, so F1 equals F2.",
+      "problem": "Minor. The 'sum of its parts' is really total = input + output + thoughts, since tool is always 0. As the lens notes, this is a weak signal."
+     },
+     {
+      "id": "A6-O10",
+      "reproduced": true,
+      "my_numbers": "Swechat: progress/agent_progress in 1981/4925 files = 0.402 [0.389, 0.416]; system/turn_duration in 3384/4925 = 0.687 [0.674, 0.700]. cc_local: 0 progress groups and 0 turn_duration records in 332 main files (Wilson upper bound 0.011) and in 840 subagent files.",
+      "problem": ""
+     },
+     {
+      "id": "A6-O11",
+      "reproduced": true,
+      "my_numbers": "Who&When has no timestamp column. Its 8 Algorithm-Generated and 9 Hand-Crafted columns contain none, and history entries carry only content, name and role keys (Hand-Crafted: content and role). ISO-datetime strings occur only inside message content, in 6/126 and 19/58 rows; they are task data such as 'datePublished'. is_correct is False in 126/126 rows.",
+      "problem": ""
+     },
+     {
+      "id": "A6-O12",
+      "reproduced": true,
+      "my_numbers": "Sample: 1172/2514 match; mismatch diffs n=1342, all exactly -1. Full population: 39951/88229 match; diffs n=48278, ranging from -27 to 70. With the content.count('\\n')+1 convention instead: 2505/2514 in the sample and 88129/88229 in the full population.",
+      "problem": "'Always by exactly -1' is true only in the sample. The artifact explanation holds for the bulk of the mismatches."
+     },
+     {
+      "id": "A6-O14",
+      "reproduced": true,
+      "my_numbers": "Full scan: 244820 rows; 53 distinct sdk_session_id; the largest holds 244709 rows; 314 init rows. The 20,000-row head touches 9 sdk_session_ids and 180 derived runs, using my own bisect-on-init definition.",
+      "problem": ""
+     },
+     {
+      "id": "A6-O15",
+      "reproduced": true,
+      "my_numbers": "Id-ascending adjacent pairs: 19999/19999 in all 6 tables. created_at ascending pairs: 10004, 10040, 10069, 9981, 9941 and 10028. Under random row order the expected count is 9999.5 with sd 40.8, giving z = 0.11, 0.99, 1.70, -0.45, -1.43 and 0.70. Head versus full table by month: TV distance 0.004 for claude_code_messages (chi2 1.37, df 2); 0.010 for events (chi2 13.3, df 17); 0.010 for computer_use_sessions (chi2 12.8, df 17).",
+      "problem": "Minor wording. The head is a uniform sample of rows, so its time distribution mirrors the whole table's. It is not time-uniform. My month comparison supports the row-uniform reading."
+     },
+     {
+      "id": "A6-O16",
+      "reproduced": true,
+      "my_numbers": "My independent detector gives identical results. Format counts: claude_code 4925, opencode 623, codex 213, gemini 59, cursor 23, simple_text 4, copilot 2, doc_parse_failed 1. Mislabels: Claude Code label but Cursor format 4; Gemini CLI label but CC format 3; Agent label but CC format 24; unknown label but CC format 49; unknown label but Gemini format 3; OpenCode label but parse failure 1. My spot check confirms the 4 'Claude Code' files carry only role and message keys. The sample split agrees on all 300 files.",
+      "problem": "Minor omission: 1 'Roger Roger Agent' file is classed CC format (a toy with uuid keys), and 1 'claude-code' file is a test fixture."
+     },
+     {
+      "id": "A6-O17",
+      "reproduced": true,
+      "my_numbers": "In the events head, data.cost, inputTokens and outputTokens are all present in 19291/20000 rows = 0.965, Wilson [0.962, 0.967]. data.cost takes only the values 1 (18989 rows) and 0 (302 rows). Where the same row carries a parseable provider usage block, inputTokens and outputTokens equal it in 5515/5515 rows; 13776 rows have no parseable block.",
+      "problem": "data.cost is a 0/1 flag, not a monetary cost, so the TOKEN class flag and any 'cost tally' reading are wrong. The tokens are copies of the usage block in the same row, not an independent second record. My prompt truncated the statement, so I checked against the notes text."
+     }
+    ],
+    "overclaims": [
+     "A6-O7: the claim that 'the total jumps down' is false. total_token_usage is unchanged in 57/57 sample breaks and 615/615 full breaks. 45/57 breaks are duplicate token_count emissions; the other 12 follow a compaction or rollback. Only those 12 match the I1a magnitudes. This is an artifact, not a surprise.",
+     "A6-O3: 'the IR drops' is false for OpenCode state.time.end (the loader uses it as the result ts), Codex exec/MCP duration (loader extra.duration_s) and AI Village updated_at (load_aiv_cu extra). The lens's own flagged[] marked these loader_pair or loader_leaf. AI Village updated_at is also within 1 ms of created_at in 19992/20000 rows, so it is not an independent clock.",
+     "A6-O1: the rate comes from the sample. The full-population rate 0.9954 [0.9947, 0.9960] falls outside the sample's cluster CI [0.997, 1.0]. All 402 full-population mismatches are harness display formats (persisted-output previews, offset warnings, dedup references) or dataset redaction. The cc_local result covers main sessions only.",
+     "A6-O2 JSON: the uncheckable Agent results (no nested traffic) are stored as match 94/94, rate 1.0, with a Wilson CI. This encodes a non-check as a pass. In the full population 24.5% of Agent results cannot be checked.",
+     "A6-O17: events data.cost is a 0/1 flag (18989 ones, 302 zeros), not a cost. inputTokens and outputTokens copy the provider usage block in the same row (5515/5515), so they are not an independent record.",
+     "A6-O8: the null is correct as stated. A post-hoc fit leaving out reasoning holds 618/633, so this is formula misspecification, not proof that no token identity exists.",
+     "A6-O12: 'always exactly -1' holds only in the sample. Full-population diffs range from -27 to 70.",
+     "A6-O9: the tool field is 0 in every row, so the identity reduces to total = input + output + thoughts.",
+     "A6-O15: the head is a uniform sample of rows, not time-uniform. The ordering and month checks support that it is row-uniform."
+    ]
+   }
+  },
+  {
+   "lens": "swechat_tables",
+   "obs": {
+    "lens": "SWE-chat session- and checkpoint-level tallies as a second, harness-side bookkeeping. Each Entire-CLI tally (token/API counts, files_touched, checkpoint sums, attribution, timestamps) was reconciled against an exact recount of all 5,850 raw transcripts, conversations.parquet and commits. The lens also covers distribution shape, correlations and multi-axis outliers. Run as two parallel background stages (transcript scan on a 4-process pool, conversations aggregation) feeding one report stage. No subagent tool was available.",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_c_swechat_tables.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_c\\swechat_tables.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\swechat_tables.md"
+    ],
+    "observations": [
+     {
+      "id": "T1",
+      "statement": "The harness token/API tally (5 integers per session written by the Entire CLI) equals an exact recount of the stored raw transcript, with tolerance 0, in nearly all Claude-Code-format sessions. The recount is distinct message.id over top-level assistant records with last-occurrence usage. A session counts as matched if the tally equals the recount over the whole transcript, a prefix, or a contiguous window.",
+      "numbers": "n=4836 (Claude format, api>0). full 2771 = 0.573 [0.559, 0.587]; prefix 1665 = 0.344 [0.331, 0.358]; window 358 = 0.074 [0.067, 0.082]; none 42 = 0.0087 [0.0064, 0.0117]. Matched 4794/4836 = 0.9913 [0.9883, 0.9936]; repo-clustered over 183 repos [0.9874, 0.9942]. Codex X0 184/189 = 0.974 [0.940, 0.989]. OpenCode O0: full 604, prefix 8, window 1, none 9 of 622. Gemini G0 none 8 of 55.",
+      "json_path": "swechat_tables.json: part2_consistency.b_harness_tally_vs_transcript_recount.{claude_format.F0, any_formula_any_class, F0_matched_repo_clustered, codex_format, opencode_format, gemini_format}",
+      "kind": "hit",
+      "mechanical_explanation": "A deterministic recount of the same records. The prefix class is metadata written at commit time while the session continued: created_at precedes the last transcript timestamp in 1664/1665, and the transcript runs a median of 3 messages past the snapshot."
+     },
+     {
+      "id": "T2",
+      "statement": "The window class is fully accounted for by the harness's own declared offset. checkpoint_transcript_start is declared for 357 of the 358 window sessions, and the tally equals the run starting exactly there in 353 of them. transcript_identifier_at_start locates the window start less well.",
+      "numbers": "window n=358; ctx_start declared 357; matched at the declared start 353. Identifier found in transcript 876/876; identifier msg index equals window start 57/118 = 0.483 [0.395, 0.572].",
+      "json_path": "swechat_tables.json: part2_consistency.b_harness_tally_vs_transcript_recount.claude_format.{window_sessions, F0_declared_start}",
+      "kind": "hit",
+      "mechanical_explanation": "Per-checkpoint incremental accounting starting at a transcript line offset."
+     },
+     {
+      "id": "T3",
+      "statement": "Most unmatched tallies are a dataset join artifact. In 39 sessions the sessions.parquet token columns differ from session_logs.session_metadata_raw. Rescanned with the raw values, all 39 match. With the session_logs values substituted, the unmatched share across 4 scaffolds falls to 33 sessions.",
+      "numbers": "Copy agreement 5680/5719 = 0.9932 [0.9907, 0.9950]. All 39 mismatches are multi-checkpoint, with table output > raw in 39/39. Raw rescan: prefix 22, full 14, window 3. Corrected: matched 5668/5701 = 0.9942 [0.9919, 0.9959]; unmatched 33/5701 = 0.0058 [0.0041, 0.0081]. Claude format 4822/4836 = 0.9971 [0.9951, 0.9983].",
+      "json_path": "swechat_tables.json: part2_consistency.a_session_vs_raw_metadata_copy; followup.table_vs_raw_metadata_mismatch; followup.classes_using_session_logs_metadata",
+      "kind": "artifact",
+      "mechanical_explanation": "The SWE-chat dedup keeps the sessions row with the highest output_tokens (a later checkpoint), while the stored transcript and session_logs come from another checkpoint."
+     },
+     {
+      "id": "T4",
+      "statement": "Residual unmatched tallies after the correction: 33 sessions, concentrated in a few repos and dev/old CLI builds. Half of the Claude ones differ only in output_tokens. No residual tally equals any other session's recount.",
+      "numbers": "Residual 33 (claude 14, codex 3, opencode 8, gemini 8) over 18 repos, 6 of them in hirakiuc/gh-orbit. Claude 4-field (no-output) class: prefix 7, full 1, none 6. Transcript msgs > api in 26, < api in 3, = api in 4. Matches to another session's recount: 0. Subagent-inclusive formula F2 explaining F0 misses: 0.",
+      "json_path": "swechat_tables.json: followup.residual_unmatched; followup.unmatched_tally_sessions; followup.unmatched_with_other_session_full_tally; followup.F2_full_and_F0_not_full",
+      "kind": "null",
+      "mechanical_explanation": "For the 7 output-only cases, a snapshot taken mid-stream (partial output_tokens). No explanation found for the other 26."
+     },
+     {
+      "id": "T5",
+      "statement": "conversations.parquet keeps only the last record per assistant message.id and so drops parallel tool_use blocks. The builder tool_call_count equals the tool_use ids in the last record per message, not all raw tool_use ids.",
+      "numbers": "Equals all raw distinct tool_use ids: 479/4847 = 0.099 [0.091, 0.108]. Equals last-record ids: 4834/4847 = 0.9973 [0.9954, 0.9984]. Equals first-record ids: 8/4847. Dropped share 76258/407920 = 0.187 [0.180, 0.193] (cluster_rate over 4847 sessions).",
+      "json_path": "swechat_tables.json: followup.tool_call_count_vs_raw",
+      "kind": "artifact",
+      "mechanical_explanation": "Dataset-builder dedup by message.id. This produces the orphaned tool_results seen in recon, so any 'result without call' signal built on the parquet is contaminated."
+     },
+     {
+      "id": "T6",
+      "statement": "Per-turn tokens in conversations.parquet cannot rebuild session token totals: they cover about a tenth of API calls.",
+      "numbers": "Assistant rows with tokens over API calls 37966/359216 = 0.106 [0.100, 0.111]. Pooled ratios: input 0.013 [0.007, 0.027], output 0.085 [0.079, 0.091], cache_creation 0.115 [0.104, 0.128], cache_read 0.104 [0.093, 0.115]. n=5635 sessions.",
+      "json_path": "swechat_tables.json: part2_consistency.c_builder_and_auxiliary_vs_conversations.conv_per_turn_tokens_vs_session_tokens",
+      "kind": "artifact",
+      "mechanical_explanation": "Tokens are stored only on assistant_response rows, plus the last-record dedup."
+     },
+     {
+      "id": "T7",
+      "statement": "Builder-derived session columns are functions of the same transcript, not independent bookkeeping. duration_seconds is the user+assistant record span, not the span of all records.",
+      "numbers": "duration equals user/assistant span 4919/4920 = 0.9998 [0.9988, 1.0000]; equals all-record span 623/4930 = 0.126 [0.117, 0.136]. tool_call_count vs conv rows 5475/5476; research 5476/5476; action 5476/5476; turn_count 5772/5785; first_write_position (0-based) 4549/4561.",
+      "json_path": "swechat_tables.json: followup.duration_alternatives; part2_consistency.c_builder_and_auxiliary_vs_conversations",
+      "kind": "artifact",
+      "mechanical_explanation": "Definitional identities of the dataset builder. The calibration session happened to have equal spans."
+     },
+     {
+      "id": "T8",
+      "statement": "The checkpoint-level tally equals the sum of its sessions' tallies when every session is canonical to that checkpoint. The relation is a sum, not a max.",
+      "numbers": "All 5 fields equal 2504/2510 = 0.9976 [0.9948, 0.9989]. Single-session 2114/2116. Multi-session sum 390/394, max 4/394. Checkpoints with sessions canonical elsewhere: 1000/9571 = 0.104 [0.099, 0.111], with cp_output < sum in 8563.",
+      "json_path": "swechat_tables.json: part2_consistency.e_checkpoint_level.{cp_vs_sum_sessions_all_canonical, cp_vs_sum_sessions_some_canonical_elsewhere}",
+      "kind": "hit",
+      "mechanical_explanation": "Harness-internal aggregation. Session tallies from other checkpoints are later snapshots."
+     },
+     {
+      "id": "T9",
+      "statement": "Checkpoint rows are duplicated across forked or renamed repos: the same checkpoint_id appears under two repo_ids. This accounts for most groups of checkpoints with identical non-zero tallies.",
+      "numbers": "1825 of 11581 checkpoint_ids appear in multiple repos; 3650/13406 = 0.272 [0.265, 0.280] of checkpoint rows; 7 repo pairs (marcus-sa/brain + osabiohq/osabio 994). Identical-tally groups: 1622 groups, of which 1490 are a single checkpoint_id. The largest group is 101 checkpoints with the same 2 sessions, 90 of them with commit_count 0.",
+      "json_path": "swechat_tables.json: followup.checkpoint_id_in_multiple_repos; followup.checkpoint_duplicate_token_tuples; followup.checkpoint_duplicate_largest_group",
+      "kind": "artifact",
+      "mechanical_explanation": "Repo forks or transfers copy the entire/checkpoints branch. Sessions are deduplicated but checkpoints are not, so repo-clustered statistics double-count."
+     },
+     {
+      "id": "T10",
+      "statement": "files_touched is git-side bookkeeping (committed files), not the set of tool-edited paths. Under a hypothesis declared before computing, an edited path is in files_touched iff it was committed in about 90% of paths.",
+      "numbers": "Set equality with Write/Edit paths 1628/4276 = 0.381 [0.366, 0.395]. files_touched ⊆ commit files 2812/3201 = 0.878 [0.867, 0.889]. Edited path in ft iff committed: cluster_rate 0.896 [0.881, 0.909] over 2821 sessions (2x2: 7546 / 7905 / 1031 / 767). Share of ft entries that were tool-edited 0.312 [0.204, 0.500]. Out-of-cwd edits 0.049 [0.045, 0.053].",
+      "json_path": "swechat_tables.json: part2_consistency.d_files_touched_vs_write_tool_paths; followup.files_touched_vs_edits_and_commits; followup.files_touched_vs_in_cwd_write_paths",
+      "kind": "hit",
+      "mechanical_explanation": "The harness derives files_touched from git state at commit. Bash-created and human edits enter it; uncommitted edits do not."
+     },
+     {
+      "id": "T11",
+      "statement": "The round-number excess in cached-token counts is provider cache granularity: Codex cache_read is always a multiple of 128.",
+      "numbers": "Codex cache_read div10 39/181 = 0.216 [0.162, 0.281]; div128 181/181 = 1.000 [0.979, 1.000]. OpenCode div128 569/619 = 0.919 [0.895, 0.938]. Claude Code div128 49/4785 = 0.0102 [0.0078, 0.0135]. Gemini 0/57.",
+      "json_path": "swechat_tables.json: part1_distributions.<agent>.cache_read_tokens.round_numbers_ge100; followup.cache_read_tokens_granularity",
+      "kind": "surprise",
+      "mechanical_explanation": "The OpenAI-path prompt cache reports cached tokens in 128-token blocks. The check was run post hoc."
+     },
+     {
+      "id": "T12",
+      "statement": "No spikes, repeated values or digit structure in Claude Code token, tool or duration columns. Bimodality flags are all zero-inflation or boundary masses (agent_percentage at 0/100, LLM session_success scores).",
+      "numbers": "Claude Code spikes in token/tool/duration columns: 0. created_at second-of-minute χ² p=0.357 (df 59, n 5848). duration ms-digit χ² p=0.684 (n 4931). One pair of distinct sessions with an identical non-zero 5-field tally (two 1-message sessions). Claude Code div100 among values ≥100, e.g. input_tokens 27/1839 = 0.0147 [0.0101, 0.0213] against a 0.01 baseline.",
+      "json_path": "swechat_tables.json: part1_distributions; followup.session_duplicate_token_tuple_detail",
+      "kind": "null",
+      "mechanical_explanation": "The small div100 excess is consistent with the 1/k baseline being biased upward for decreasing densities near the cut at 100. Not credible as a signal."
+     },
+     {
+      "id": "T13",
+      "statement": "All attribution-column spikes (identical agent_lines/total_committed across many sessions) come from a single canonical checkpoint each. The Codex sessions with exactly 12 turns form an automation-like cluster.",
+      "numbers": "OpenCode total_committed 2864 ×122, agent_lines 2858 ×89, each from 1 canonical checkpoint with 122 and 89 distinct attribution_calculated_at. Codex turn_count=prompt_count=12 ×51 across 18 checkpoints, 4 repos, 2 users, 51 distinct output_tokens.",
+      "json_path": "swechat_tables.json: followup.spike_membership; followup.codex_turn_count_12",
+      "kind": "artifact",
+      "mechanical_explanation": "Attribution is computed against the shared checkpoint commit for every session in it."
+     },
+     {
+      "id": "T14",
+      "statement": "After partialling out session size, every strong cross-group correlation is mechanical. None involves session_success or agent_percentage.",
+      "numbers": "Claude Code complete cases 4150/4847. Spearman |ρ|≥0.5: 86 of 325 pairs (62 cross-group); top api_call_count–tool_call_count 0.938 [0.930, 0.945]. Partial given rank(n_records): 16 of 300 (6 cross-group, all tokens×tools; api–tool 0.777 [0.753, 0.799]). Next: files_touched_count–agent_lines 0.450 [0.422, 0.478]; action_count–n_sub_msgs −0.372 [−0.400, −0.343]; n_checkpoint_ids–agent_lines −0.253 [−0.283, −0.226].",
+      "json_path": "swechat_tables.json: part3_correlations.claude_code",
+      "kind": "null",
+      "mechanical_explanation": "Size; one API call per tool call; subagent progress records inflating n_records; attribution taken from the canonical checkpoint only."
+     },
+     {
+      "id": "T15",
+      "statement": "Multi-axis outliers are dominated by missing tallies and early/dev harness builds. Excluding missing tallies, they are about 20 times enriched for sessions whose row mixes two checkpoint snapshots, because derived ratio features mix columns from different snapshots.",
+      "numbers": "Primary (n=4847): 101 outliers = 0.0208 [0.0172, 0.0253]; all 34 api=0 sessions are outliers; entireio/cli 32/101 vs 771/4847; cli_version '' 18 vs 154. Sensitivity api>0 (n=4813): 69 = 0.0143 [0.0113, 0.0181]. Outlier rate among unmatched 10/42 = 0.238 [0.135, 0.385] vs matched 59/4771 = 0.0124 [0.0096, 0.0159]. Among join-artifact sessions 9/36 = 0.250 [0.138, 0.411]. Median session_success 72 vs 82.",
+      "json_path": "swechat_tables.json: part4_outliers.claude_code; followup.outliers_claude_code_api_pos",
+      "kind": "hit",
+      "mechanical_explanation": "The api=0 group is missing tallies encoded as zero. Join-artifact enrichment comes from row-internal inconsistency between the sessions-table tokens and the transcript-derived builder columns."
+     },
+     {
+      "id": "T16",
+      "statement": "api_call_count = 0 means no tally was recorded, not zero calls.",
+      "numbers": "145 sessions with api=0; 13 have a token_usage key; 88 have transcript messages; cli_version dev 58, '' 48. Sessions without a token_usage key and all tokens zero: 132/132.",
+      "json_path": "swechat_tables.json: followup.api_zero; part2_consistency.a_session_vs_raw_metadata_copy.no_token_usage_in_raw_and_all_tokens_zero",
+      "kind": "artifact",
+      "mechanical_explanation": "Older and dev CLI builds did not write token_usage, and the dataset fills the gap with 0."
+     },
+     {
+      "id": "T17",
+      "statement": "Auxiliary harness prompt counts (session_metrics.turn_count, context_md '### Prompt N') disagree often with the builder prompt_count. The dominant context_md offset is a single repo.",
+      "numbers": "session_metrics.turn_count = prompt_count 525/1292 = 0.406 [0.380, 0.433]. context_md count = prompt_count 2787/4302 = 0.648 [0.633, 0.662]. Offset −7 in 380 sessions, 302 of them in dayhaysoos/nimbus (21 repos). Builder prompt_count = non-continuation user_prompt rows 3988/5785 = 0.689 [0.677, 0.701] (Claude Code 0.637, Codex 0.986).",
+      "json_path": "swechat_tables.json: part2_consistency.c_builder_and_auxiliary_vs_conversations.{raw_session_metrics_turn_count, context_md_prompt_count, prompt_count__vs__c_user_prompt_noncont}",
+      "kind": "surprise",
+      "mechanical_explanation": "Definitions differ (per-checkpoint windows, injected or skill prompts). The repo-specific −7 points to hook- or skill-injected prompts. Not resolved."
+     },
+     {
+      "id": "T18",
+      "statement": "Attribution arithmetic is not a strict identity: total_committed ≠ agent_lines + human_added for about a fifth of sessions.",
+      "numbers": "total = agent+human_added 4345/5569 = 0.780 [0.769, 0.791]; + human_modified 4747/5569 = 0.852 [0.843, 0.862]; agent_percentage identity 5224/5392 = 0.969 [0.964, 0.973]; created_at − attribution_calculated_at never negative (median 0.217 s, 20 > 60 s).",
+      "json_path": "swechat_tables.json: part2_consistency.f_attribution_and_timestamps",
+      "kind": "null",
+      "mechanical_explanation": "Probably attribution metric versions (agent_removed / total_lines_changed fields appear in 398 raw records). Not verified."
+     }
+    ],
+    "candidate_mechanisms": [
+     {
+      "name": "Out-of-band usage-ledger reconciliation",
+      "grounded_in": [
+       "T1",
+       "T2",
+       "T3",
+       "T4"
+      ],
+      "measurement": "Recompute (count of distinct API message ids, summed last-occurrence usage) from the transcript and require an exact 5-field match with a tally the harness wrote outside the transcript at commit time. Allow prefix and declared-offset windows. Honest floor: 33/5701 = 0.0058 [0.0041, 0.0081] unexplained after correcting the join artifact.",
+      "false_positive_source": "Snapshots taken mid-stream (output-only mismatch, 7 of 14 Claude residuals), dev/old CLI builds, multi-checkpoint snapshot mixing in derived tables, OpenCode/Gemini messages whose token fields change after the snapshot. Blind to edits of tool-result content, since usage numbers do not change when a result is altered.",
+      "novelty_guess_unverified": "UNVERIFIED: using a harness-written token ledger as a witness-free check on transcript integrity (inserted, deleted or duplicated assistant turns) seems uncommon. Usage-based billing reconciliation is standard practice, but not as a transcript-integrity signal."
+     },
+     {
+      "name": "Provider cache-granularity plausibility check",
+      "grounded_in": [
+       "T11"
+      ],
+      "measurement": "Every reported cached-input count must be a multiple of the provider's cache block. On the Codex/OpenAI path: 181/181 multiples of 128. OpenCode 569/619.",
+      "false_positive_source": "Providers or proxies with different block sizes, cumulative counters mixing providers (OpenCode through several providers), and Anthropic usage, which shows no granularity (49/4785 divisible by 128).",
+      "novelty_guess_unverified": "UNVERIFIED: a stateless arithmetic check on fabricated usage numbers. Likely known to billing engineers, but I have not seen it used for log verification."
+     },
+     {
+      "name": "Cross-snapshot inconsistency via ratio outliers",
+      "grounded_in": [
+       "T3",
+       "T15"
+      ],
+      "measurement": "Robust z (|z|>3.5 on ≥3 of 22 features) including ratio features (output/API call, tools/API call, seconds/API call). Rows assembled from two different snapshots are outliers at 9/36 = 0.250 [0.138, 0.411], against 59/4771 = 0.0124 [0.0096, 0.0159] for consistent rows.",
+      "false_positive_source": "Genuinely unusual sessions (very long, many prompts, automation), missing tallies encoded as 0, and early/dev harness builds. Recall is only about 25%.",
+      "novelty_guess_unverified": "UNVERIFIED: a generic data-quality technique. Applied to agent-log rows built from mixed sources, it may be new only in this setting."
+     }
+    ],
+    "could_not_measure": [
+     "Distinct assistant message ids in conversations.parquet: the table has no message-id column, so the raw transcripts were used instead.",
+     "A recount formula for Copilot CLI (2) and Cursor (23) transcripts, nor for 2 unparsed files. 1 OpenCode transcript is invalid JSON and 1 Claude Code session has no transcript file.",
+     "The cause of the 33 residual unmatched tallies (26 with no 4-field match). This needs manual per-session reading.",
+     "Whether the harness ledger would catch a deliberately inserted or removed assistant message. No synthetic injection was run, so detection power is unmeasured.",
+     "Why prompt_count, session_metrics.turn_count and context_md prompt counts disagree (definitions not documented), including the repo-specific −7 offset.",
+     "Which attribution metric version explains the total_committed ≠ agent_lines + human_added cases.",
+     "Per-path reasons for files_touched entries that were neither tool-edited nor committed (1739 entries)."
+    ]
+   },
+   "verdict": {
+    "lens": "swechat_tables. Independent re-derivation from scratch. My own scanner covered all 5,851 session_logs rows and 5,850 raw transcripts (scratchpad/rdx_tables/scan.py, a 4-process pool run in the background). I wrote my own table and commit joins (t*.py, plus conv.py for conversations.parquet). Outputs are in scratchpad/rdx_tables/out_*.log, and the numbers are consolidated in scratchpad/rdx_tables/rdx_summary.json. I read the lens script only afterwards, to explain why some n differ. My scanner did not classify 2 transcripts: one OpenCode file is malformed JSON (ses_3353a8139ffe...), and one Gemini file is a single-line {\"messages\"} file with no token fields, which would have classified as none anyway. T14 was cut off in the task text. I assumed it is the partial-correlation null from the notes and checked only a reduced version.",
+    "checks": [
+     {
+      "id": "T1",
+      "reproduced": true,
+      "my_numbers": "Claude format with api>0: n=4836. full 2772 = 0.573 [0.559, 0.587]; prefix 1664 = 0.344 [0.331, 0.358]; window 358 = 0.074 [0.067, 0.082]; none 42 = 0.0087 [0.0064, 0.0117]. Matched 4794/4836 = 0.9913 [0.9883, 0.9936]. Repo-clustered over 183 repos: [0.9874, 0.9942]. Excluding sidechain records moves only 2 sessions from full to none. Prefix mechanism: created_at is earlier than the last transcript timestamp in 1664/1664 prefix sessions against 39/2772 full sessions. Messages past the snapshot: median 3, max 524. Codex, with a formula I derived myself (last cumulative total_token_usage at the api-th token_count event; output = output + reasoning): 184/189 = 0.974 [0.940, 0.989], split full 147, prefix 37, none 5. Per-message OpenCode sum: full 604, prefix 7, window 1, none 9 of 621 sessions with api>0. There is also 1 session with api=0 and an all-zero tally, and 1 malformed file I could not parse. Gemini: full 26, prefix 19, window 2, none 8 of 55.",
+      "problem": "The numbers reproduce. full/prefix is off by one session (2772/1664 against 2771/1665), which does not matter. The lens's OpenCode prefix count of 8 probably includes the trivial empty prefix of the api=0 all-zero session or the malformed file. The problem is interpretation. The tally is a deterministic recount of the transcript's own usage fields. Part 2 of the notes calls it an 'exact, independent second bookkeeping', and that overstates it. Its only independent content is a commit-time snapshot, which makes later edits to usage records or deletion of assistant messages detectable. It says nothing directly about whether a tool result is real."
+     },
+     {
+      "id": "T2",
+      "reproduced": true,
+      "my_numbers": "Window sessions: n=358. checkpoint_transcript_start is declared for 357. The tally equals the run of api messages starting at the first message at or after the declared line in 353. In the other 4, the window starts one message earlier, at a message whose records straddle the declared line (first_line < L <= last_line), so 357/357 are explained. transcript_identifier_at_start is found in the transcript 876/876. The identifier's message index equals the window start in 57/118 = 0.483 [0.395, 0.572].",
+      "problem": "Only the direction window ⇒ declared offset holds. checkpoint_transcript_start is also declared in 158 full-class sessions and 1 prefix-class session. In 154 of those 158, messages come before the declared line, yet the tally covers the whole transcript. So a declared offset does not predict per-checkpoint (window) accounting, and 'fully accounted for' should be stated for that one direction only."
+     },
+     {
+      "id": "T3",
+      "reproduced": true,
+      "my_numbers": "Copy agreement 5680/5719 = 0.9932 [0.9907, 0.9950]. All 39 mismatches are multi-checkpoint, and the table output is greater than raw in 39/39. canonical_checkpoint_pk differs from the session_logs checkpoint_id in 39/39 of them, and also in 374 sessions whose tallies agree. Rescanning with the raw values gives prefix 22, full 14, window 3. With the table values, the 39 classify as none 31, full 7, prefix 1. Corrected matched 5668/5701 = 0.9942 [0.9919, 0.9959]; unmatched 33 = 0.0058 [0.0041, 0.0081]. Claude format 4822/4836. Unmatched across the 4 formats falls from 64 to 33. For Claude format alone it falls from 42 to 14.",
+      "problem": "'Most unmatched tallies are a dataset join artifact' overstates it. Across the 4 scaffolds, substitution resolves 31 of 64 unmatched tallies (48%). It resolves 28 of 42 for Claude format only. The stated mechanism ('stored transcript and session_logs come from another checkpoint') also fails for 8 of the 39: the table tally already matched the stored transcript (7 full, 1 prefix). For those the transcript is the later snapshot on the table side, and both tallies are consistent with it."
+     },
+     {
+      "id": "T4",
+      "reproduced": true,
+      "my_numbers": "Residual 33: claude 14, codex 3, opencode 8, gemini 8, over 18 repos, 6 of them in hirakiuc/gh-orbit. Claude 4-field class with output excluded: prefix 7, full 1, none 6. Transcript units greater than api in 26, fewer in 3, equal in 4. Residual unmatched rate by CLI version group: 0.4.x 11/3691 = 0.0030 [0.0017, 0.0053]; 0.5.x 15/1048 = 0.0143 [0.0087, 0.0235]; dev 4/726 = 0.0055 [0.0021, 0.0141]; blank 3/164 = 0.018 [0.006, 0.052].",
+      "problem": "The counts reproduce. 'Concentrated in ... dev/old CLI builds' is not supported. The newer 0.5.x builds have the highest residual rate, and the dev CIs overlap the 0.4.x CIs (and 0.5.x is not 'old'). Only the repo concentration (gh-orbit) is borne out. I did not re-check 'matches to another session's recount: 0' or the F2 result."
+     },
+     {
+      "id": "T5",
+      "reproduced": true,
+      "my_numbers": "n=4847. tool_call_count equals all raw distinct tool_use ids in 479 = 0.099 [0.091, 0.108]. It equals the ids in the last record per message.id in 4834 = 0.9973 [0.9954, 0.9984], and the first-record ids in 8. Dropped 76349/407920 = 0.187 [0.181, 0.193] (cluster_rate).",
+      "problem": "The numerator of the dropped share differs by 91 (76349 against 76258), which does not matter."
+     },
+     {
+      "id": "T6",
+      "reproduced": true,
+      "my_numbers": "Pooled per-turn/session ratios: input 0.0133 [0.0067, 0.0268]; output 0.0850 [0.0789, 0.0913] (n=5635); cache_creation 0.115 [0.104, 0.128]; cache_read 0.104 [0.093, 0.115]. assistant_response rows over API calls: 40282/359238 = 0.112 [0.106, 0.118].",
+      "problem": "The row-coverage numerator differs: 40282 against 37966 (0.112 against 0.106). The lens probably counts a narrower set of rows. The conclusion is unchanged."
+     },
+     {
+      "id": "T7",
+      "reproduced": true,
+      "my_numbers": "duration_seconds equals the user+assistant span in 4919/4920 = 0.9998 [0.9988, 1.0000]. It equals the span of all records in 634/4920 = 0.129 [0.120, 0.139]. This uses a 1.5 ms tolerance.",
+      "problem": "The all-record numbers differ slightly (634/4920 against 623/4930) because of the tolerance and denominator. This does not matter."
+     },
+     {
+      "id": "T8",
+      "reproduced": true,
+      "my_numbers": "Without the lens's filter requiring token_usage in checkpoint_metadata_raw: checkpoints whose sessions are all canonical, 2522/2528 = 0.9976 [0.9948, 0.9989]. Single-session 2130/2132. Multi-session: sum 392/396, max 6/396. 63 of these checkpoints have an all-zero tally. Checkpoints with some session canonical elsewhere, no filters: 1069/10548 = 0.101 [0.096, 0.107], with cp_output < sum in 9465.",
+      "problem": "The n differ (2528 against 2510, 10548 against 9571). After reading the lens script, this is its extra has_tu and all-resolved filters, and the rates match. Overstated: most of the 2504 'hits' are single-session checkpoints, where checkpoint equals session is close to a tautology (the checkpoint metadata holds one session record). Only the multi-session sum, 390/394 (392/396 in my count), is informative about aggregation."
+     },
+     {
+      "id": "T9",
+      "reproduced": true,
+      "my_numbers": "1825 of 11581 checkpoint_ids appear in more than one repo. 3650/13406 = 0.272 [0.265, 0.280] of rows. 7 repo pairs; marcus-sa/brain + osabiohq/osabio has 994. 1623 groups have identical non-zero tallies (lens: 1622), 1490 of them a single checkpoint_id. The largest group is 101, with 90 at commit_count 0, all sharing one session_pks list.",
+      "problem": ""
+     },
+     {
+      "id": "T10",
+      "reproduced": true,
+      "my_numbers": "I used my own path normalization (in-cwd relative paths), so the n differ. Set equality between in-cwd Write/Edit paths and files_touched (both non-empty): 1719/4346 = 0.396 [0.381, 0.410]. files_touched ⊆ files in the canonical checkpoint's commits: 2780/3196 = 0.870 [0.858, 0.881]. 2x2 over 2828 sessions: in ft & committed 7586; not in ft & not committed 7445; in ft & not committed 1104; not in ft & committed 724. Agreement cluster_rate 0.892 [0.877, 0.905], against about 0.50 expected if the two were independent. Share of files_touched entries that were tool-edited: pooled 0.324 [0.228, 0.444] over 4815 sessions. Out-of-cwd share of edited paths: 0.046 [0.042, 0.050] on the lens's subset (files_touched non-empty and at least 1 in-cwd edit). Over all 4452 sessions with edits it is 0.084 [0.073, 0.095]. 995 of the 2412 out-of-cwd paths are under /.claude/ (plan files), and 142 sessions have only out-of-cwd edits.",
+      "problem": "The core claim reproduces within CIs. The out-of-cwd figure 0.049 is conditional on a subset that excludes the 142 sessions whose edits are all outside cwd; over all sessions with edits it is 0.084. 'files_touched is committed files' is only approximate: files_touched ⊄ commit files in 13% of sessions, and 1104 edited paths are in files_touched without being committed. The 'iff committed' hypothesis was introduced in the followup, after the set-equality null. It was declared before its own computation, but it is post hoc relative to the first pass."
+     },
+     {
+      "id": "T11",
+      "reproduced": true,
+      "my_numbers": "Codex cache_read: divisible by 10 in 39/181 = 0.216 [0.162, 0.281], close to the 1/5 that 128-granularity implies; divisible by 128 in 181/181 [0.979, 1.000]. OpenCode 569/619 = 0.919 [0.895, 0.938]. Claude Code 49/4785 = 0.0102 [0.0078, 0.0135]. Gemini 0/57. Extra per-call check: Codex last_token_usage.cached_input_tokens is a multiple of 128 in 16106/16106 calls. OpenCode per-message cache.read is a multiple of 128 for GPT/OpenAI-family models in 11393/11393, for Claude models in 1/563, and for other models in 98/899.",
+      "problem": "None. The per-call model-family split supports the provider-granularity explanation more strongly than the session totals do."
+     },
+     {
+      "id": "T12",
+      "reproduced": true,
+      "my_numbers": "created_at second-of-minute χ² p=0.357 (df 59, n 5848). Duration millisecond-digit χ² p=0.684 (n 4931, all agents); for Claude Code alone p=0.711 (n 4844). One pair of sessions shares a non-zero tally (3, 5, 2983, 17277, 1). Separately, 6 sessions share an all-zero tally with api=1. Claude Code input_tokens divisible by 100: 27/1839. With my own rule, fixed before looking (a non-zero value at or above 100 repeated at least 5 times), Claude Code cache_read_tokens has 2 repeated values: 12121 ×5 (entireio/cli) and 14331 ×5 (melagiri/code-insights). All are 1-API-call sessions from one repo within a few hours, which fits a shared cached system-prompt prefix.",
+      "problem": "The null stands. 'Spikes: 0' depends on the lens's spike definition: my rule finds 2 cache_read repeats, both mechanical. The duration χ² n=4931 covers all agents, not only the Claude Code columns as the wording implies."
+     },
+     {
+      "id": "T13",
+      "reproduced": true,
+      "my_numbers": "OpenCode total_committed 2864 ×122, from 1 canonical checkpoint with 122 distinct attribution_calculated_at. agent_lines 2858 ×89, from 1 checkpoint with 89 distinct values. Codex turn_count = prompt_count = 12 in 51 sessions, across 18 canonical checkpoints, 4 repos and 2 users, with 51 distinct output_tokens.",
+      "problem": ""
+     },
+     {
+      "id": "T14",
+      "reproduced": true,
+      "my_numbers": "Reduced check only: 6 pairs, with partialling on rank(n_lines) as a stand-in for n_records, Claude Code, n=4771. api_call_count–tool_call_count Spearman 0.937; partial 0.755 [0.728, 0.779] (bootstrap over sessions). files_touched_count–agent_lines partial 0.453 (n 4617). turn_count–duration partial 0.436. session_success–agent_percentage 0.209. session_success–api_call_count 0.001.",
+      "problem": "The observation text was cut off at 'After parti...', so I assumed this is the null that no non-mechanical cross-group |ρ| ≥ 0.5 remains after partialling out size. On the pairs I checked it holds. Only tokens×tools, which is mechanical (one API call per tool round), stays above 0.5. I did not re-run all 300 pairs, and my partial for api–tool (0.755) sits slightly below the lens's 0.777 [0.753, 0.799] because I used a different size proxy and n."
+     }
+    ],
+    "overclaims": [
+     "Notes Part 2: the harness token tally is called an 'exact, independent second bookkeeping'. It is a deterministic recount of the transcript's own usage fields. It adds only commit-time tamper-evidence for usage records and message deletion, not independent evidence about tool results.",
+     "T3: 'Most unmatched tallies are a dataset join artifact'. Across the 4 scaffolds the substitution resolves 31 of 64 (48%); only for Claude format alone is it most (28 of 42). The stated mechanism also fails for 8 of the 39 substituted sessions, which the table tally already matched (7 full, 1 prefix).",
+     "T4: residuals 'concentrated in ... dev/old CLI builds' is not supported. The residual rate is highest in 0.5.x, 15/1048 = 0.0143 [0.0087, 0.0235]. It is 0.0030 [0.0017, 0.0053] for 0.4.x and 0.0055 [0.0021, 0.0141] for dev.",
+     "T2: 'window class fully accounted for by the declared offset' holds only from window to offset. 158 full-class sessions also declare checkpoint_transcript_start, yet their tally covers the whole transcript.",
+     "T8: most of the 2504/2510 equality comes from single-session checkpoints, where it is close to a tautology. Only the 390/394 multi-session sums test aggregation.",
+     "T10: the out-of-cwd edit share 0.049 is conditional on sessions with at least one in-cwd edit and non-empty files_touched. Over all sessions with edits it is 0.084 [0.073, 0.095], with 995 of the 2412 out-of-cwd paths under /.claude/. Also, 'files_touched = committed files' fails in 13% of sessions (files_touched ⊄ commit files), so 'git-side bookkeeping' is approximate.",
+     "T12: 'no spikes' depends on the lens's spike definition. A rule fixed in advance (a value at or above 100 repeated at least 5 times) finds 2 mechanical cache_read repeats in Claude Code."
+    ]
+   }
+  },
+  {
+   "lens": "commit_witness",
+   "obs": {
+    "lens": "git as an EXISTING second witness (commit_witness): SWE-chat pinned commits/checkpoints vs the agent's own Claude Code tool log",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_c_commit_witness.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_c\\commit_witness.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\commit_witness.md"
+    ],
+    "observations": [
+     {
+      "id": "O1",
+      "statement": "Most sessions link to at least one commit that has a SHA and patch. About 30% link only to checkpoints whose commit was not found (no SHA, no patch). Coverage differs by scaffold.",
+      "numbers": "All scaffolds: 0.698 [0.686,0.710] = 4085/5850 sessions (Wilson). claude_code format: 0.693 [0.680,0.706] = 3412/4922. opencode: 0.809 [0.777,0.838] = 505/624. codex: 0.479 [0.413,0.546] = 102/213. Linked only to commit_not_found checkpoints: 0.302 [0.290,0.314] = 1765/5850. ok commits per linked session: median 1, p95 10, max 234 (n=4085; quantiles only, no CI).",
+      "json_path": "commit_witness.json: q1.coverage_all, q1.coverage_by_format, q1.commit_rows",
+      "kind": "hit",
+      "mechanical_explanation": "5205 of 14459 commit rows have status commit_not_found and no SHA or patch. These are likely squashed or deleted branch commits. Not verified."
+     },
+     {
+      "id": "O2",
+      "statement": "Git can constrain roughly half of the Claude Code file-mutation stream. About 78% of mutation calls in linked sessions can be checked, and about 68% of all such calls sit in linked sessions.",
+      "numbers": "Sample: constrained 0.785 [0.757,0.811] = 17486/22282 successful mutation calls with informative added lines, 1057 sessions (repo-clustered [0.749,0.818], 135 repos). Unconstrained because the file was never in a linked commit: 0.154 [0.128,0.182] = 3433. Unconstrained because the lines were overwritten before the commit: 0.050 [0.043,0.059] = 1125. Census of 4922 CC transcripts: 60183/88745 such calls are in linked sessions, 0.678 [0.647,0.708]. Product: 0.532 [0.513,0.550] (census share held fixed).",
+      "json_path": "commit_witness.json: q2.share_constrained_among_successful_with_added_lines, q2.unconstrained_breakdown_rates, mutation_stream_census",
+      "kind": "hit",
+      "mechanical_explanation": "Unconstrained calls are edits outside the repo or never committed, sessions with no linked commit, and edits superseded before the commit."
+     },
+     {
+      "id": "O3",
+      "statement": "Linked commit patches corroborate agent Edit calls far above chance. A calibrated decoy (different repo, same file extension, similar size) almost never matches.",
+      "numbers": "Edit, '+'-line witness (15164 calls, 925 sessions): full 0.830 [0.808,0.853] = 12586; partial 0.032 [0.026,0.038] = 482; contradicted-looking 0.138 [0.116,0.161] = 2096 (repo-clustered [0.100,0.172]). Decoy: full 0.003 [0.001,0.005] = 42; partial 0.014 [0.011,0.017] = 205. Committed-content witness: full 0.879 [0.858,0.899], contradicted-looking 0.089 [0.071,0.107] = 1340/15123; its decoy full is 0.009 [0.006,0.011].",
+      "json_path": "commit_witness.json: q2.constrained_witness_outcomes.Edit.{plus,state,decoy_plus,decoy_state}",
+      "kind": "hit",
+      "mechanical_explanation": "None found for the gap between real and decoy matches. The decoy fixes the chance-match level of the 8-character informative-line rule."
+     },
+     {
+      "id": "O4",
+      "statement": "Most 'contradicted-looking' Edits have mechanical causes rather than suggesting fabrication. The main causes are partial-line edit strings, worktree paths, formatter-heavy languages and human or mixed edits.",
+      "numbers": "POST-HOC check of the first and last lines of new_string as substrings: contradicted-looking falls to 0.093 [0.074,0.114] = 1416/15164; 680 of 1512 contradicted calls with edge lines are then found. Worktree-like paths: 0.321 [0.207,0.405] = 326/1015 vs other paths 0.125 [0.103,0.149] = 1770/14149. By extension: css 0.397 -> 0.038 after the fix (104/262); json 0.244 -> 0.081 (72/295); go 0.211 [0.150,0.267] -> 0.161 [0.105,0.214] (614/2910); rs 0.198 -> 0.181 (163/824); kt 0/397. By the target file's attribution: agent_only 0.063 [0.047,0.081] = 459/7323; human_only 0.165 [0.121,0.215] = 752/4551; mixed 0.269 [0.221,0.319] = 885/3290.",
+      "json_path": "commit_witness.json: q2.edit_contradicted_looking_edge_substring_sensitivity_POSTHOC, q2.edit_contradicted_looking_plus_by_worktree_path_POSTHOC, q2.edit_contradicted_looking_plus_by_extension_POSTHOC, q2.edit_constrained_by_target_attribution",
+      "kind": "artifact",
+      "mechanical_explanation": "1) Edit strings that start or end mid-line break whole-line matching. 2) Path-suffix matching maps a worktree edit onto another branch's commit. 3) gofmt/rustfmt/prettier run by hooks or editors leave no Bash trace. 4) Humans edit between turns."
+     },
+     {
+      "id": "O5",
+      "statement": "A small residual of contradicted-looking Edits stays unexplained after every flag. In 8 inspected examples it looks like honest later edits (a changed constant, a flipped checkbox, an extended comment). There is no ground truth to tell fabrication apart.",
+      "numbers": "After the pre-registered flags: 223 calls / 74 sessions. Also excluding same-path edits by another session of the same checkpoint: 182 / 52. Also applying the POST-HOC edge-substring rule: 53 calls / 31 sessions (mixed 32, human_only 11, agent_only 10; largest session 9 calls).",
+      "json_path": "commit_witness.json: q2.edit_contradicted_looking_plus_detail, q2.edit_contradicted_looking_edge_substring_sensitivity_POSTHOC",
+      "kind": "surprise",
+      "mechanical_explanation": "Likely later human or agent changes outside the parsed sessions and hook formatters. Not verified case by case."
+     },
+     {
+      "id": "O6",
+      "statement": "Write calls are almost never contradicted by the committed file content. Only full-content corroboration is informative: partial matches occur at chance level because common lines (imports, headers) appear in unrelated files.",
+      "numbers": "Write, committed-content witness (2320 calls, 418 sessions): full 0.836 [0.803,0.866] = 1939; partial 0.164 [0.134,0.197] = 380; contradicted-looking 1/2320 (0.0004 [0,0.0014]). Decoy: full 0.002 [0.000,0.004] = 4; partial 0.350 [0.311,0.393] = 812.",
+      "json_path": "commit_witness.json: q2.constrained_witness_outcomes.Write.{state,decoy_state}",
+      "kind": "hit",
+      "mechanical_explanation": "The high decoy partial rate comes from boilerplate lines shared across repos."
+     },
+     {
+      "id": "O7",
+      "statement": "The dataset's agent_changes field is a copy of the transcript's own Edit/Write inputs, not an independent witness. Its untraced entries mostly belong to other released sessions that the checkpoint's session list omits.",
+      "numbers": "Of 60995 entries in rows where every listed session was parsed, 0.856 [0.772,0.945] (52220) match a listed session's call on the exact key (path, old_string, new_string / content). Untraced entries: 4572 belong to another session of the same repo; 3738 belong to a session of a repo with the same name but a different GitHub owner (3738/3738 same name, 0 same owner); 452 appear in no released transcript (60 sessions); 13 match only on the looser key.",
+      "json_path": "commit_witness.json: q3.agent_changes_traceability",
+      "kind": "null",
+      "mechanical_explanation": "Entire attaches agent changes to commits by a wider window than checkpoints.session_pks. The same project also appears under several owners (forks or mirrors)."
+     },
+     {
+      "id": "O8",
+      "statement": "Most committed lines in agent-attributed files that seemed unexplained by the agent's calls are explained by sessions missing from the checkpoint's list. A small residual remains.",
+      "numbers": "agent_only files, listed sessions only: 0.167 [0.098,0.232] = 42277/252927 '+' lines unexplained; 684/8129 files have zero explained lines. Variant B (adding the sessions that own the row's agent_changes): 0.050 [0.024,0.089] = 12687/252927; 95 files. mixed files: 0.290 -> 0.109 [0.067,0.193]. Lines explained only by calls made after the commit (agent_only): 182/252927.",
+      "json_path": "commit_witness.json: q3.plus_lines_by_attribution.{agent_only,mixed}",
+      "kind": "surprise",
+      "mechanical_explanation": "The checkpoint-to-session linkage is incomplete. The rest is likely code generated by Bash scripts or codegen, and formatters."
+     },
+     {
+      "id": "O9",
+      "statement": "When a commit SHA printed in an agent's Bash result (git commit output) resolves in the repo, git independently confirms it. The commit timestamp falls inside the tool call's own time window and the subject line matches.",
+      "numbers": "1360 resolved claims, 510 sessions. commit_date in [call ts - 2 s, result ts + 2 s]: 0.993 [0.986,0.999] = 1351. author_date in the same window: 0.975 [0.964,0.985]. Subject equal: 0.996 [0.992,0.999]. Branch equal: 0.967 [0.912,0.997]. commit_date minus call ts: median -0.151 s [-0.208,-0.081], p5 -0.825 s, p95 37.55 s.",
+      "json_path": "commit_witness.json: q4.commit_claims.matched_checks",
+      "kind": "hit",
+      "mechanical_explanation": "The negative median offset matches git's commit_date being truncated to whole seconds. The p95 tail is consistent with pre-commit hooks."
+     },
+     {
+      "id": "O10",
+      "statement": "Coverage limits the commit-claim check. More than a third of printed commit SHAs do not resolve in the commit table, mostly for honest reasons, and listing-style SHAs (git log, git rev-parse) mostly do not resolve.",
+      "numbers": "2178 claims in 634 sessions. Unmatched: 0.373 [0.307,0.437] = 813. Of these: a later history-rewrite command 356; the session has a commit_not_found checkpoint 303; the subject equals a same-repo commit subject 191; none of the three 266. git log / rev-parse SHAs: 15449 claims, 0.349 [0.298,0.407] matched in the same repo. Linked commits created by the agent's own Bash call: 0.288 [0.242,0.339] = 1320/4580 session-commit pairs.",
+      "json_path": "commit_witness.json: q4.commit_claims, q4.log_claims, q4.linked_commits_made_by_agent_bash",
+      "kind": "null",
+      "mechanical_explanation": "Amend, rebase and squash change SHAs. Commits can be missing from the table. git log lists history from before Entire was installed."
+     },
+     {
+      "id": "O11",
+      "statement": "9 resolved commit claims have a commit timestamp earlier than the Bash call that printed them. This is the shape a replayed or re-printed output would have.",
+      "numbers": "9 of 1360 resolved claims, in 6 sessions. dt values (s): -2713.0, -735.5, -158.0, -122.2, -78.7, -75.1, -71.4, -66.2, -27.7. 3 come from commands containing 'git commit'.",
+      "json_path": "commit_witness.json: q4.commit_claims.matched_checks.out_of_window_dt_s, .out_of_window_sessions, .out_of_window_command_contains_git_commit",
+      "kind": "surprise",
+      "mechanical_explanation": "None found. Candidates: wrapper scripts or commands re-printing an earlier commit, or clock skew. Not verified."
+     },
+     {
+      "id": "O12",
+      "statement": "sessions.created_at is not the session start, so metadata-only time ordering of commits against sessions is invalid. Time order needs the transcript timestamps.",
+      "numbers": "created_at is later than the transcript's first event in 1200/1200 sampled sessions: median 0.797 h [0.655,0.910], p95 56.074 h. Metadata-based population order puts 6998 of 13424 (session, commit) pairs 'before_start'.",
+      "json_path": "commit_witness.json: q1.time_order_transcript_sample.created_at_minus_first_event_hours, q1.time_order_metadata_population",
+      "kind": "artifact",
+      "mechanical_explanation": "created_at appears to record when Entire first saw the session, not when the session began."
+     },
+     {
+      "id": "O13",
+      "statement": "Linked commits mostly land within the transcript's time span or after its last event. Edits reach their target commit quickly.",
+      "numbers": "4580 (session, commit) pairs in 1200 sessions: 2105 within the span, 2442 after the last event, 33 before the first event. Lag after the last event: median 5.415 h [3.292,10.978] (2442 pairs, 814 sessions). Edit-to-target-commit lag: median 0.253 h [0.195,0.335], p90 16.482 h (17486 calls). commit_date differs from author_date in 366/4580 pairs.",
+      "json_path": "commit_witness.json: q1.time_order_transcript_sample, q2.target_lag_hours",
+      "kind": "hit",
+      "mechanical_explanation": "With the manual-commit strategy, the commit triggers the checkpoint, so commits after the last event are expected."
+     },
+     {
+      "id": "O14",
+      "statement": "Attribution leakage: many agent Edits target files the dataset labels human_only, and most of those edits are present in the commit. The human_only label is therefore not evidence that the agent did not touch a file.",
+      "numbers": "4551 constrained Edits target human_only files; contradicted-looking among them is only 0.165 [0.121,0.215] = 752. human_only '+' lines unexplained by agent calls: 0.890 [0.718,0.950] of 1778657.",
+      "json_path": "commit_witness.json: q2.edit_constrained_by_target_attribution.human_only, q3.plus_lines_by_attribution.human_only",
+      "kind": "surprise",
+      "mechanical_explanation": "Entire attributes per checkpoint from its agent_changes window, so an earlier checkpoint or another session's edit can make a file look human-only. Not verified."
+     },
+     {
+      "id": "O15",
+      "statement": "Subagent Edits look somewhat more often contradicted than main-agent Edits, but the confidence intervals overlap, so the difference is not established.",
+      "numbers": "Subagent 0.195 [0.109,0.292] = 434/2227 (66 sessions) vs main 0.128 [0.107,0.152] = 1662/12937 (913 sessions).",
+      "json_path": "commit_witness.json: q2.edit_constrained_subagent_vs_main",
+      "kind": "null",
+      "mechanical_explanation": "Possibly more worktree use by subagents. Not tested."
+     }
+    ],
+    "candidate_mechanisms": [
+     {
+      "name": "Commit-claim window check",
+      "grounded_in": [
+       "O9",
+       "O10",
+       "O11"
+      ],
+      "measurement": "For each Bash result printing '[branch sha] subject', look up the SHA prefix among the repo's commits. Require commit_date within [call ts - 2 s, result ts + 2 s], plus subject and branch equality. Honest pass rate among resolvable claims is 0.993 (window) and 0.996 (subject), but only 0.624 of claims resolve. A fabricated output would fail to resolve, or resolve outside the window.",
+      "false_positive_source": "History rewrites (amend/rebase/squash: 356 of the unmatched), commit_not_found checkpoints (303), unpushed commits, commands that re-print earlier commits. 266 of 2178 claims are unmatched with no flag. 9 resolved claims fall outside the window for unknown reasons.",
+      "novelty_guess_unverified": "UNVERIFIED. Conceptually close to software provenance/attestation (in-toto/SLSA). Applying it to agent transcripts may be less common; no literature search was done."
+     },
+     {
+      "name": "Edit-to-commit line corroboration with decoy calibration",
+      "grounded_in": [
+       "O3",
+       "O4",
+       "O5",
+       "O2"
+      ],
+      "measurement": "Take the lines each Edit adds (new_string minus old_string, informative lines of 8+ characters, superseded lines removed). Look them up in the target commit's '+' lines and in the committed file content. Honest full match is 0.830 vs 0.003 for the decoy. The per-call 'contradicted' floor is 0.138, or 0.093 after the post-hoc edge-substring rule. That floor is too high for per-call alarms, so the check needs session-level aggregation and conditioning (agent_only target, no worktree, no formatter ecosystem). It covers about 0.532 of the CC mutation stream.",
+      "false_positive_source": "Partial-line edit strings, worktree path matching, hook or editor formatters (go/rs stay at 0.161/0.181), human edits between turns (mixed 0.269), other sessions in the same checkpoint. The residual is 53 calls in 31 sessions with no ground truth.",
+      "novelty_guess_unverified": "UNVERIFIED. Diff-based attribution exists (SWE-chat itself attributes code to agent vs human). Using git as a falsifier of tool-result success claims, with a decoy-calibrated chance rate, may be less explored."
+     },
+     {
+      "name": "Write full-content check against the committed file",
+      "grounded_in": [
+       "O6"
+      ],
+      "measurement": "Check whether all informative lines of a Write's content appear in the committed file (file_attribution committed_version) at the first later commit. Honest full match is 0.836 vs a decoy full rate of 0.002; contradicted-looking is 1/2320. Only 'full' is informative, because decoy partial is 0.350.",
+      "false_positive_source": "Later agent or human edits before the commit (the 0.164 partial cases). Files never committed (Write constrained share 0.684).",
+      "novelty_guess_unverified": "UNVERIFIED. Likely an obvious check, so probably not novel."
+     },
+     {
+      "name": "Harness-record vs transcript key trace (log integrity)",
+      "grounded_in": [
+       "O7"
+      ],
+      "measurement": "Hash (path, old_string, new_string) or (path, content) for each agent_changes entry and each transcript Edit/Write call, then match them. 0.856 of entries trace to a listed session. 452 entries appear in no released transcript (60 sessions). This detects transcript loss or truncation, but it cannot detect fabrication, because both records come from the same agent log.",
+      "false_positive_source": "Incomplete checkpoint session lists (4572 entries owned by other same-repo sessions), fork or mirror duplication (3738 entries from same-name repos under other owners), unreleased sessions.",
+      "novelty_guess_unverified": "UNVERIFIED."
+     },
+     {
+      "name": "Unexplained committed hunks (reverse check)",
+      "grounded_in": [
+       "O8",
+       "O14"
+      ],
+      "measurement": "Find committed '+' lines in agent-attributed files that no Edit/Write/Bash text from the linked sessions, or from the owners of the commit's agent_changes, could have produced. This is 0.050 of agent_only lines, with 95 of 8129 files having zero explained lines. It could reveal mutations that were never logged.",
+      "false_positive_source": "Code generated by Bash scripts or codegen, formatters, unparsed tools (NotebookEdit, non-CC scaffolds), linkage gaps (the listed-session-only version gives 0.167), unreliable attribution labels.",
+      "novelty_guess_unverified": "UNVERIFIED."
+     }
+    ],
+    "could_not_measure": [
+     "Transcript-side checks for OpenCode, Codex, Gemini, Copilot and Cursor. These sessions appear only in the linkage-coverage counts (Q1); their mutation-tool schemas differ and were not parsed.",
+     "NotebookEdit calls: .ipynb diffs are JSON-escaped, so line matching does not apply.",
+     "Anything inside commit_not_found checkpoints (5205 commit rows have no SHA and no patch).",
+     "Hook-run or editor formatters and human keystrokes between turns. Neither is visible in the transcript, so formatter effects are inferred only from the per-language breakdown.",
+     "Ground truth for the 53 residual contradicted-looking Edits and the 9 out-of-window commit claims: no labels exist, so fabrication cannot be confirmed or ruled out.",
+     "Concurrent edits by sessions outside the target commit's checkpoint. Only same-checkpoint sessions were checked as an explanation.",
+     "Population-level time order from metadata: sessions.created_at is not the session start, so only the transcript-based sample order is valid.",
+     "Subagent transcripts stored outside the main JSONL (if any): only in-file agent_progress nesting is parsed."
+    ]
+   },
+   "verdict": {
+    "lens": "commit_witness: skeptical re-derivation. I wrote my own transcript parser (it includes subagent agent_progress entries) and my own patch parser. I ran on the full population: 4921 Claude Code transcripts, 3411 of them with a linked commit, not the lens's 1200-session sample. All my numbers are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\cw\\rederive_commit_witness.json and the scripts are in the same folder. I read the lens script only after I had my own numbers, to diagnose O4 (edge rule), O11 and O12 (metadata order).",
+    "checks": [
+     {
+      "id": "O1",
+      "reproduced": true,
+      "my_numbers": "Sessions with at least one linked ok commit: 4085/5850 = 0.698 [0.686,0.710] (Wilson). Linked only to commit_not_found checkpoints: 1765/5850 = 0.302 [0.290,0.314]. claude_code 3411/4921 (my format check differs from the lens by 1 session). opencode 505/624 = 0.809 [0.777,0.838]. codex 102/213 = 0.479 [0.413,0.546]. ok commits per linked session: median 1, p95 10, max 234 (n=4085). Commit rows: 14459 total, 9254 ok, 5205 commit_not_found (all with null SHA), 7447 unique SHAs. The result is the same whichever checkpoint list is used (checkpoints.session_pks, sessions.checkpoint_ids, or their union).",
+      "problem": "Overclaim in 'Coverage differs by scaffold'. Sessions are clustered by repo. opencode has 624 sessions from 15 repos, and one repo holds 489 of them. codex has 213 sessions from 8 repos, and one repo holds 100. With repo-clustered CIs the formats overlap: claude_code 0.693 [0.590,0.792], opencode 0.809 [0.438,0.882], codex 0.479 [0.111,0.872]. Scaffold is confounded with repo, and Wilson CIs that treat sessions as independent understate the uncertainty."
+     },
+     {
+      "id": "O2",
+      "reproduced": true,
+      "my_numbers": "Population: constrained 47047/60170 = 0.782 [0.765,0.799] (3057 sessions); repo-clustered [0.750,0.810] (171 repos). File never in a linked commit: 9661 = 0.161 [0.143,0.178]. Overwritten before the commit: 2795 = 0.046 [0.042,0.051]. Only earlier commits: 667 = 0.011. Census: 60170/88732 calls sit in linked sessions = 0.678 [0.646,0.707] (4447 sessions); lens has 60183/88745. Direct product 47047/88732 = 0.530 (lens 0.532).",
+      "problem": "No substantive problem. Two notes: (1) before I added subagent calls logged in progress/agent_progress entries, my census was 75446, so any parser that skips them undercounts by about 15%. (2) 'Constrained' means the call can be tested against a commit, not that it was verified."
+     },
+     {
+      "id": "O3",
+      "reproduced": true,
+      "my_numbers": "Edit, '+'-line witness (40540 calls, 2689 sessions): full 33591 = 0.829 [0.812,0.844]; partial 1415 = 0.035 [0.031,0.039]; none 5534 = 0.137 [0.123,0.153] (repo-clustered [0.104,0.168]). Committed-content witness: full 35560/40449 = 0.879 [0.867,0.891]; none 3439 = 0.085 [0.075,0.096]. My own cross-repo decoy: '+' full 55/40540 = 0.0014 [0.0009,0.0020], partial 0.013; committed-content full 0.0066 [0.0049,0.0084]. Stronger nulls the lens did not run: a different file in the same repo, full 278/39496 = 0.007 [0.006,0.009]; '+' lines of the same path in commits made before the call, full 490/25750 = 0.019 [0.016,0.023]. Real full rate by number of testable lines: 1 line 0.797 (n=18470, decoy 0.0023), 2 lines 0.882, more than 8 lines 0.805.",
+      "problem": "Mild overclaim. The different-repo decoy only bounds chance matches across repos; it does not 'fix the chance-match level' in general. The same-repo and prior-commit nulls are 5 to 14 times higher than the cross-repo decoy, but still far below 0.83, so the conclusion holds. 45% of constrained Edits are tested on a single informative line."
+     },
+     {
+      "id": "O4",
+      "reproduced": false,
+      "my_numbers": "Edge-substring rule (8-character minimum, as in the lens): contradicted-looking falls from 5534 to 3582/40540 = 0.088 [0.077,0.104] (1952 rescued). Decoy for this POST-HOC rule (the lens reported none), whole-line match then match with the edge rule added: cross-repo 125 then 183 of 7714; same repo, other file 261 then 365 of 7782. Without the minimum length the cross-repo decoy jumps to 1700/7714. By attribution: agent_only 1349/19876 = 0.068 [0.057,0.080]; human_only 1579/11268 = 0.140 [0.116,0.166]; mixed 2606/9396 = 0.277 [0.239,0.318]. Worktree paths 647/2976 = 0.217 [0.161,0.273] vs other paths 0.130 [0.116,0.148] (lens 0.321). go 1523/7426 = 0.205 -> 0.150. rs 314/1416 = 0.222 -> 0.193. css 127/654 = 0.194 [0.043,0.397] -> 0.044. json 0.185 -> 0.054. kt 29/768 (lens 0/397). Repo effect: go in entireio/cli 1453/6361 = 0.228 [0.175,0.288]; go in the other 14 repos 70/1065 = 0.066 [0.032,0.105], 0.028 after the edge rule. One repo (jdsingh122918/forge) has 709 of the 1416 rs calls. entireio/cli has 1471 of the 2976 worktree calls; worktree in other repos 0.180 [0.117,0.255] vs non-worktree in other repos 0.116 [0.101,0.131]. Excluding entireio/cli, the overall rate is 0.118.",
+      "problem": "The causal reading is not supported. (1) The 'formatter-heavy languages' cause is not shown. The Go excess is one repo (entireio/cli); in other repos Go is 0.066, below average. Whitespace normalization makes gofmt alignment changes invisible. Languages formatted by prettier or black are below average (ts 0.093, tsx 0.085, py 0.098). (2) Half of the worktree calls come from the same repo, and the remaining effect is weak. (3) 'Most contradicted-looking Edits have mechanical causes' is overstated: the only demonstrated mechanism is partial-line edit strings (35% rescued, small decoy inflation). Attribution class, worktree and extension are correlates. (4) The css and kt figures are sample noise. Numbers reproduce in direction; the attribution gradient holds outside entireio/cli (agent_only 0.061, human_only 0.131, mixed 0.238)."
+     },
+     {
+      "id": "O5",
+      "reproduced": true,
+      "my_numbers": "Population, contradicted-looking Edits: 5534 calls / 884 sessions. After the pre-registered flags (later-commit union, committed content, Bash keyword or basename, REDACTED): 704 calls / 215 sessions. Also excluding same-path edits by another session of the checkpoint: 536 / 156. Also applying the edge-substring rule: 148 calls / 74 sessions (mixed 104, human_only 30, agent_only 10/14 split as agent_only 14; largest session 10 calls). This is in line with the lens's 53 / 31, since the lens sample holds about 37% of the calls. Bash flag: 4128/5534 have a later Bash command containing the file basename, and in 1724 of them the basename is the only trigger. Residual without the Bash flag: 1024 calls / 276 sessions.",
+      "problem": "The residual is small mainly because the Bash flag is permissive. Any later command that mentions the file basename (git add <file>, cat, test runs) counts as an explanation. Without that flag the residual is 1024 calls, not 148. I did not re-check the lens's 8 inspected examples. The 'no ground truth' caveat is correct."
+     },
+     {
+      "id": "O6",
+      "reproduced": true,
+      "my_numbers": "Write, committed-content witness (6413 calls, 1216 sessions): full 5409 = 0.843 [0.825,0.861]; partial 994 = 0.155 [0.137,0.174]; none 10 = 0.0016 [0.0005,0.0029]. Decoy: full 7/6413 = 0.0011 [0.0003,0.0022]; partial 2087 = 0.325 [0.302,0.350]. Write, '+' witness: full 0.667, partial 0.296, none 239 = 0.037.",
+      "problem": "No substantive problem. A note: near-zero 'none' only shows that partial matches are cheap (decoy partial 0.33); it is not evidence that Writes are verified. Only the 'full' category discriminates, as the statement says."
+     },
+     {
+      "id": "O7",
+      "reproduced": true,
+      "my_numbers": "Population, 8159 commit rows where every listed session was parsed: 84335/95892 agent_changes entries match a listed session's successful call on the normalized or raw exact key = 0.879 [0.863,0.895] (checkpoint-clustered, 4534 checkpoints). Untraced: another session of the same repo 6524; a repo with the same name but a different owner 4023 (0 same owner); in no released transcript 1010; another repo with another name 0.",
+      "problem": "None in substance. Small point: the lens clusters commit-row data by 'session', which is ill-defined because each row belongs to a checkpoint with several sessions. I clustered by checkpoint."
+     },
+     {
+      "id": "O8",
+      "reproduced": true,
+      "my_numbers": "Population, agent_only (14953 file sections, 472966 '+' lines): unexplained by listed sessions 71950 = 0.152 [0.127,0.177] (checkpoint-clustered; repo-clustered [0.072,0.231]); 1110 files with zero explained lines. Variant B (adding sessions that own the row's agent_changes): 20150 = 0.043 [0.028,0.061]; 192 files. Explained only by calls made after the commit: 321. mixed (4852 sections, 277184 lines): 0.352 [0.302,0.402] -> 0.108 [0.083,0.144].",
+      "problem": "Minor. My mixed-file listed-only rate (0.352) is above the lens's 0.290; the difference is sample vs population. The repo-clustered CI is wide. The cause given for the residual ('Bash scripts, codegen, formatters') is untested."
+     },
+     {
+      "id": "O9",
+      "reproduced": true,
+      "my_numbers": "All 3411 linked Claude Code sessions: 3936 resolved claims (3710 linked + 226 same repo) in 1491 sessions. commit_date in [call ts - 2 s, result ts + 2 s]: 3917 = 0.995 [0.992,0.998]. author_date in the window: 0.974 [0.967,0.980]. Subject equal: 0.987 [0.977,0.995]. Branch equal: 0.980 [0.960,0.992]. commit_date minus call ts: median -0.103 s [-0.137,-0.062], p5 -0.81 s, p95 40.1 s.",
+      "problem": "No substantive problem. Two caveats: the check applies only to the claims that resolve (about 36% do not; see O10), and the window is anchored on the call that printed the SHA, which breaks when output is re-read later (see O11)."
+     },
+     {
+      "id": "O10",
+      "reproduced": true,
+      "my_numbers": "6141 claims in 1839 sessions. Unmatched 2198 = 0.358 [0.321,0.394]. Flags on unmatched claims: later history-rewrite command 916; session has a commit_not_found checkpoint 660; subject equals a same-repo commit subject 424; none of the three 853 (39%). Log / rev-parse claims: 43475, of which 17713 match in the same repo or linked = 0.407 [0.375,0.439] (lens 0.349 [0.298,0.407]). Linked commits created by the agent's own Bash call: 3708/12406 session-commit pairs = 0.299 [0.271,0.328].",
+      "problem": "'Mostly for honest reasons' overclaims. The flags are co-occurrences, not verified causes: any later 'rebase' or 'reset --' anywhere in the session, or any commit_not_found checkpoint in the session. 33% (lens) or 39% (mine) of unmatched claims carry no flag."
+     },
+     {
+      "id": "O11",
+      "reproduced": true,
+      "my_numbers": "Population: 19 of 3936 resolved claims have commit_date earlier than call ts - 2 s, in 14 sessions; all 9 lens dt values are among them. Classified by the printing command: 15 are cat, tail, head or grep re-reads of earlier output files (background-task .output files under /private/tmp/claude-*/tasks/, transcript or log files); 1 is git commit --amend with an explicit GIT_COMMITTER_DATE (-735.5 s); 3 are plain git commit claims that resolve only at same-repo level (-11235.1, -2713.0, -158.0). Of the lens's 9: 6 re-reads, 1 explicit committer date, 2 unexplained (-2713.0, -158.0).",
+      "problem": "The lens's mechanical explanation ('None found') is wrong for most cases. The 'replay' shape mostly comes from the agent reading back the saved output of an earlier background Bash call that made the commit. That is honest, and the window check attributes the output to the wrong call. A detector built on this window would false-alarm on run_in_background workflows. Only 2 of the lens's 9 (3 of 19 in the population) remain unexplained; clock skew is a candidate but unverified."
+     },
+     {
+      "id": "O12",
+      "reproduced": true,
+      "my_numbers": "sessions.created_at is later than the transcript's first event in 4920/4920 parsed Claude Code sessions. Median 0.752 h [0.704,0.814], p5 0.037 h, p95 53.25 h. Metadata order: 13424 (session, commit) pairs, the same total as the lens. My rule (no tolerance, sessions with null duration still classified) gives before_start 8241, during 2062, after_end 2831, no duration 286, no created_at 4.",
+      "problem": "Minor. The lens's 6998 'before_start' uses 13424 as the denominator, but that includes 1134 pairs from sessions with null duration counted as no_span. Among pairs that have a span, it is 6998/12290. The conclusion (metadata-only ordering is invalid) holds."
+     },
+     {
+      "id": "O13",
+      "reproduced": true,
+      "my_numbers": "12406 (session, commit) pairs in 3411 sessions: within the span 5499, after the last event 6826, before the first event 81. Lag after the last event: median 5.33 h [3.80,8.00] (6826 pairs, 2278 sessions). Edit-to-target-commit lag over all constrained calls: median 0.266 h [0.232,0.302], p90 13.3 h [10.0,16.2] (47047 calls, 2837 sessions). author_date differs from commit_date in 888/12406 pairs.",
+      "problem": "Mild. The target-commit lag is short partly by construction, because the target is the earliest linked commit touching the path after the call. 'Quickly' holds for the median, not the tail (p90 13 to 16 h)."
+     }
+    ],
+    "overclaims": [
+     "O1: 'Coverage differs by scaffold' does not survive repo clustering. opencode (one repo holds 489 of 624 sessions) and codex (8 repos) have repo-clustered CIs [0.438,0.882] and [0.111,0.872], which overlap claude_code [0.590,0.792].",
+     "O4: 'formatter-heavy languages' as a cause is unsupported. The Go excess is one repo, entireio/cli (0.228); in the other 14 Go repos the rate is 0.066 [0.032,0.105], below average. Whitespace normalization neutralizes gofmt alignment. Languages formatted by prettier or black are below average. Half of the worktree calls are the same repo. 'Most contradicted-looking Edits have mechanical causes' rests on one demonstrated mechanism, the partial-line edge rule (35% rescued); the rest are correlates.",
+     "O4: css 0.397 and kt 0/397 are sample noise. In the population, css is 0.194 [0.043,0.397] and kt is 29/768.",
+     "O4: the POST-HOC edge-substring rule was reported without a decoy. With the 8-character minimum, decoy inflation is small: cross-repo 125 -> 183 of 7714, same repo 261 -> 365 of 7782. Without the minimum the decoy jumps to 1700/7714, so the 8-character guard must be stated as part of the rule.",
+     "O5: the residual is small (148 calls in the population, 53 in the lens) mainly because the Bash flag counts any later command mentioning the file basename, which includes git add <file>, as an explanation. Without that flag the residual is 1024 calls in 276 sessions.",
+     "O3: 'the decoy fixes the chance-match level' holds only for cross-repo chance. Same-repo other-file (0.007) and prior-commit same-path (0.019) nulls are higher, though still far below the 0.83 real rate.",
+     "O10: 'mostly for honest reasons' treats co-occurring flags (any later rebase or reset in the session, any commit_not_found checkpoint) as causes; 33 to 39% of unmatched claims carry no flag.",
+     "O11: 'None found' for the mechanism is wrong. 15 of 19 population cases, and 6 of the lens's own 9, are re-reads (cat/tail) of earlier background-task output files, and 1 is an explicit GIT_COMMITTER_DATE amend. The 'replayed output' shape is mostly honest re-reading, and a call-window detector would false-alarm on it.",
+     "O12: the denominator of 6998/13424 includes 1134 pairs with null duration (no_span); among pairs with a span it is 6998/12290."
+    ]
+   }
+  },
+  {
+   "lens": "aiv_accounting",
+   "obs": {
+    "lens": "Internal accounting identities in the AI Village Claude Agent SDK stream (claude_code_messages / claude_code_sessions). Unit = run (sdk_session_id split at system/init, the loader rule): 314 runs, 53 sdk sessions, all runs used. CIs are run-clustered bootstraps or Wilson intervals over runs. Four rules were added after the first run of the script. Each is listed in post_hoc_rules and reported next to the un-ruled version.",
+    "files_written": [
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_c_aiv_accounting.py",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_c\\aiv_accounting.json",
+     "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\aiv_accounting.md"
+    ],
+    "observations": [
+     {
+      "id": "O1",
+      "statement": "The SDK's duration_ms matches the created_at span from init to result almost exactly, so for Phase A created_at behaves like event time with lag of tens of ms. Nevertheless, the strict inequality duration_ms >= span holds in only about 62% of runs.",
+      "numbers": "duration_ms/span: median 1.00003 (CI 1.00001-1.00009), p25 0.99927, p75 1.00103, n=211 runs. |duration_ms - span|: median 30.1 ms (CI 26.1-38.9), p90 230.6 ms, p99 2211.4 ms. Pearson 0.99999. duration_ms >= span holds 131/211 (Wilson 0.554-0.684). duration_ms >= union of call->result intervals holds 211/211 (0.982-1.0).",
+      "json_path": "aiv_accounting.json: m1_durations.ratios.duration_over_span; m1_durations.slack_ms.abs_duration_minus_span; m1_durations.by_rule.attributable; m1_durations.correlations",
+      "kind": "hit",
+      "mechanical_explanation": "Insert-latency jitter of tens of ms makes the strict inequality fail in either direction. One outlier run (r031: duration 277325 ms vs span 509959.7 ms) is also the only num_turns mismatch."
+     },
+     {
+      "id": "O2",
+      "statement": "Rows are written as content blocks finish streaming. The created_at gap before a block within one API response grows with that block's size.",
+      "numbers": "Pearson 0.930 (CI 0.919-0.948), Spearman 0.788 (CI 0.753-0.819), n=99701 block pairs in 241 runs. Median 162.1 chars/s (CI 155.5-168.0). No identical created_at among 244506 adjacent pairs. No adjacent gap under 10 ms. Minimum gap 17.5-46.2 ms depending on transition.",
+      "json_path": "aiv_accounting.json: m3_created_at.within_message_gap_vs_next_block_chars; m3_created_at.gaps_ms_by_transition; m3_created_at.identical_created_at_adjacent_pairs",
+      "kind": "hit",
+      "mechanical_explanation": "Streaming SDK output inserted per block. The minimum gap looks like a DB insert-latency floor."
+     },
+     {
+      "id": "O3",
+      "statement": "Durations that tools report themselves fit inside the created_at call->result gap, with a median slack of a few tens of ms.",
+      "numbers": "gap >= reported duration: WebFetch 28/29 (median slack 33.3 ms, 11 runs), Glob 132/133 (44.0 ms, 26 runs), WebSearch 45/47 (27.6 ms, only 2 runs). Minimum slack -37.2 ms. Spearman(gap, reported): WebFetch 0.992, WebSearch 0.9995, Glob 0.096 (CI -0.063 to 0.350).",
+      "json_path": "aiv_accounting.json: m3_created_at.tool_reported_duration_vs_gap",
+      "kind": "hit",
+      "mechanical_explanation": "Glob's null correlation is expected: its durations are tiny next to fixed overhead. WebSearch has only 2 runs."
+     },
+     {
+      "id": "O4",
+      "statement": "num_turns is a row-count checksum: it equals the number of user rows with null subtype (tool results plus compaction summaries) plus 1. It does not count API responses.",
+      "numbers": "num_turns == user rows + 1: 210/211 (Wilson 0.974-0.999); the only exception is r031. num_turns == API responses: 143/211 (0.612-0.737).",
+      "json_path": "aiv_accounting.json: m2_counts_usage.num_turns",
+      "kind": "hit",
+      "mechanical_explanation": "This is how the SDK counts. Parallel tool calls produce one user row per result."
+     },
+     {
+      "id": "O5",
+      "statement": "Cost is an exact linear function of modelUsage tokens. Per-model coefficients recovered from the data alone reproduce every row, and total_cost_usd equals the sum of the per-model costUSD.",
+      "numbers": "Implied USD per million tokens. Opus: input 5.00, output 25.00, cache_read 0.50, cache_creation 6.25; reproduced 190/190 (Wilson 0.980-1.0). Haiku: 1.00/5.00/0.10/1.25; reproduced 172/172. Sonnet: 3.00/15.00/0.30/3.75; reproduced 141/141. Largest abs residual 1.2e-12 USD. total_cost_usd == sum costUSD within 1e-6: 265/265 (0.986-1.0).",
+      "json_path": "aiv_accounting.json: m2_counts_usage.implied_price_fit; m2_counts_usage.cost_total_vs_modelUsage_sum",
+      "kind": "hit",
+      "mechanical_explanation": "The SDK computes cost from a price table. No outside prices were used."
+     },
+     {
+      "id": "O6",
+      "statement": "modelUsage[main] equals result.usage plus one hidden main-model call per compaction. That call does not appear in the stream. Its input is a fixed 2 or 3 tokens (by version) and its cache read is zero. Its output tokens track the logged compaction-summary text closely.",
+      "numbers": "No-compaction runs: all 4 fields equal in 125/125 (Wilson 0.970-1.0). Compaction runs: n=65 runs, 595 compactions. cache_read difference 0: 65/65. Input difference == k x compactions (k=2 for v2.0.77, 3 for v2.1.38): 64/65 (0.918-0.997). Hidden output vs summary chars: Spearman 0.9975 (CI 0.9912-0.9993), pooled 3.734 chars/token (CI 3.687-3.79), per-run range 3.431-4.305. Hidden cache_creation / sum(pre_tokens): pooled 0.860 (CI 0.843-0.872).",
+      "json_path": "aiv_accounting.json: m2_counts_usage.modelUsage_main_minus_result_usage",
+      "kind": "surprise",
+      "mechanical_explanation": "The SDK's compaction summarization request is billed to the main model but not emitted as a stream message."
+     },
+     {
+      "id": "O7",
+      "statement": "Some logged API responses are missing from the result ledger. result.usage is never above the sum of logged per-response usage, but it is below it in 12 runs. In 3 more runs result.usage is all zero and the main model is absent from modelUsage, even though main-model responses are logged.",
+      "numbers": "result.usage input == stream sum: 196/211 (Wilson 0.886-0.956); result above sum: 0 runs. 12 runs below sum (non-zero), plus 3 all-zero runs (r085, r121, r140). In 6/12 a single logged response matches the deficit exactly in all 3 fields, and 6/6 of those carry a non-null stop_reason. Base rate of non-null stop_reason among non-synthetic responses: 131/65550 (Wilson 0.0017-0.0024). Excluding non-null-stop responses raises equality to 198/211.",
+      "json_path": "aiv_accounting.json: m2_counts_usage.responses_in_stream_not_in_result_usage; m2_counts_usage.result_usage_vs_per_response_sum; m2_counts_usage.modelUsage_main_minus_result_usage.runs_main_model_missing_from_modelUsage_but_main_responses_in_stream",
+      "kind": "surprise",
+      "mechanical_explanation": "Likely an SDK path that emits complete, final-usage messages without adding them to the cost tracker. This is an association only, and the stop_reason rule is incomplete (198/211)."
+     },
+     {
+      "id": "O8",
+      "statement": "Haiku and Sonnet API usage appears in modelUsage for most runs, but no responses from them are in the stream. These hidden calls are why duration_api_ms > duration_ms is common.",
+      "numbers": "Runs listing a non-main model: 172/211 (Wilson 0.757-0.862). Assistant rows in the stream: opus 168245, <synthetic> 21. Non-main pooled cost share 0.00496 (CI 0.0038-0.0064). duration_api_ms <= duration_ms: 39/39 in main-model-only runs vs 45/172 in runs with non-main models; 84/211 overall.",
+      "json_path": "aiv_accounting.json: m2_counts_usage.modelUsage_composition; m1_durations.split_by_nonmain_models; m1_durations.by_rule.attributable.duration_api_ms_le_duration_ms",
+      "kind": "surprise",
+      "mechanical_explanation": "SDK-internal auxiliary model calls that are not streamed, presumably running in parallel. What they do cannot be identified from the data."
+     },
+     {
+      "id": "O9",
+      "statement": "Cache-chain identity: cache_read(k+1) == cache_read(k) + cache_creation(k) holds almost exactly for consecutive responses, so context grows by pure appending. The next response's uncached input is about 8 tokens.",
+      "numbers": "Clean pairs: 59747/59804, run-clustered rate 0.99905 (CI 0.99858-0.99943), 190 runs. Image pairs: 4367/4570 (breaks have median diff -2104). Compact pairs: 0/933. Next-response input_tokens: median 8, p99 10. Clean breaks: 49/59772 at gaps under 300 s, 8/32 at 300 s or more.",
+      "json_path": "aiv_accounting.json: m4_context.cache_chain",
+      "kind": "hit",
+      "mechanical_explanation": "Prompt caching of an append-only history. Long idle gaps and image handling break it."
+     },
+     {
+      "id": "O10",
+      "statement": "Token conservation: per turn, the server-side context delta follows the chars appended to the log (the previous response's output plus tool results) with small residuals, including on a held-out half of runs.",
+      "numbers": "Clean pairs n=59804 in 190 runs. With thinking chars: Pearson 0.982 (CI 0.971-0.990), Spearman 0.986 (CI 0.981-0.989), pooled 2.610 chars/token (CI 2.586-2.638), per-pair median 2.535 (CI 2.508-2.57), p5-p95 2.078-2.87. Without thinking: Spearman 0.982, median 2.433. Pre-registered 3-term fit: R2 0.9663; |residual| median 49.6 tokens (CI 42.1-56.5), p90 201.0, p99 685.7. Hold-out: R2 0.9718, |residual| median 51.7, p99 667.7. |residual|/delta: median 0.023, p90 0.236, p99 0.887.",
+      "json_path": "aiv_accounting.json: m4_context.clean",
+      "kind": "hit",
+      "mechanical_explanation": "Expected, if the log faithfully records what the model saw. Thinking chars improve the fit, which suggests earlier thinking stays in context. Per-tool offsets exist: Bash, Read, Grep, Glob, Edit and TodoWrite have mean residuals of -92.7 to -193.8 tokens, while village MCP tools range from -40.3 to +35.7."
+     },
+     {
+      "id": "O11",
+      "statement": "Stripped images ([IMAGE_REMOVED]) still have a recoverable token budget: the context residual per image is tightly concentrated.",
+      "numbers": "n=4543 image pairs in 64 runs. Residual tokens per image: median 898.8 (CI 896.7-899.6), p25 887.6, p75 901.4, p95 1007.1. 259 of 4543 fall in the 316-562 bin.",
+      "json_path": "aiv_accounting.json: m4_context.image_pairs_positive_delta",
+      "kind": "hit",
+      "mechanical_explanation": "Fixed screenshot resolutions give fixed image-token costs, with several modes."
+     },
+     {
+      "id": "O12",
+      "statement": "There are unlogged context edits: 30 non-compaction pairs where context shrinks and cache_read resets to the system-prompt prefix, with no compact_boundary row.",
+      "numbers": "Negative deltas: clean 3/59804, image 27/4570, compact 933/933. Of the 30 non-compaction negatives, 30 reset cache_read to 20401-21400; median delta -9249. By version: v2.0.77 6, v2.1.38 24.",
+      "json_path": "aiv_accounting.json: m4_context.negative_delta",
+      "kind": "surprise",
+      "mechanical_explanation": "Probably client-side pruning of old screenshots or tool results, which the stream does not record."
+     },
+     {
+      "id": "O13",
+      "statement": "Compaction pre_tokens is never below the last response's context, and the excess tracks the chars appended since that response. Its chars/token (about 3.77) is unlike server deltas (about 2.5), which suggests pre_tokens includes a client-side estimate.",
+      "numbers": "pre_tokens == last ctx: 0/933; pre_tokens < last ctx: 0. Excess vs appended chars: Spearman 0.819 (CI 0.725-0.898), median 3.775 chars/token (CI 3.766-3.796), n=863 boundaries in 92 runs.",
+      "json_path": "aiv_accounting.json: m4_context.compaction",
+      "kind": "surprise",
+      "mechanical_explanation": "Likely the SDK adds a heuristic token estimate for appended content to the last server count. This is not proven."
+     },
+     {
+      "id": "O14",
+      "statement": "NULL: post-compaction context size does not track summary length. About 23k tokens of post-compaction context are not in the stream.",
+      "numbers": "Spearman(post ctx, summary chars) -0.135 (CI -0.274 to 0.030), n=940 in 100 runs. Post ctx median 26465.5. Post ctx minus summary chars/2.5: median 22975.1.",
+      "json_path": "aiv_accounting.json: m4_context.compaction",
+      "kind": "null",
+      "mechanical_explanation": "Post-compaction context is dominated by the system prompt, tools and re-attached material that is not logged."
+     },
+     {
+      "id": "O15",
+      "statement": "ARTIFACT: per-row output_tokens in the stream is a streaming snapshot, not the final count. Only the result-level output total is usable, and at run level it tracks logged assistant chars including thinking.",
+      "numbers": "Result output == sum of last-row output: 25/211. Totals 9231390 vs 1603611. Output varies across rows in 8340/65529 multi-row responses; input/cache fields never vary. Run level: Spearman(result output, assistant chars with thinking) 0.9972 (CI 0.9941-0.9983), pooled 2.379 chars/token (CI 2.277-2.485), n=190.",
+      "json_path": "aiv_accounting.json: m2_counts_usage.result_usage_vs_per_response_sum.output; m2_counts_usage.per_response_usage_constancy; m2_counts_usage.result_output_tokens_vs_logged_assistant_chars",
+      "kind": "artifact",
+      "mechanical_explanation": "The SDK copies message_start usage onto each content-block message."
+     },
+     {
+      "id": "O16",
+      "statement": "ARTIFACT: failed-resume result rows ('No conversation found', zero duration) can land inside a preceding long run that has no result of its own. They break run-level identities unless they are excluded.",
+      "numbers": "Result rows not attributable: 54 of 265. Raw rule: duration_ms >= span 129/212, tool-union 209/212, duration-span min -12058911.8 ms. Attributable rule: 131/211, 211/211, min -232634.7 ms.",
+      "json_path": "aiv_accounting.json: m1_durations.population; m1_durations.by_rule; post_hoc_rules.attributable_result",
+      "kind": "artifact",
+      "mechanical_explanation": "The failed resume has a different content.session_id and gets bucketed by sdk_session_id."
+     },
+     {
+      "id": "O17",
+      "statement": "NULL: across resumes, context continuity is not preserved. The cache chain almost never holds from one run's last response to the next run's first response.",
+      "numbers": "234 resume pairs without compaction: cache chain holds 1/234 (Wilson 0.0008-0.024); negative delta 88/234 (0.316-0.440); first-response cache_read zero 34/234.",
+      "json_path": "aiv_accounting.json: m4_context.cross_run_resume",
+      "kind": "null",
+      "mechanical_explanation": "A resume re-serializes the history and the system prompt, and the cache expires over long gaps."
+     },
+     {
+      "id": "O18",
+      "statement": "The sessions table row is written right after the init message row. It is a second timing witness of invocation start.",
+      "numbers": "303/303 sessions rows are immediately preceded by a system/init row, 302 of them from the same sdk session. Lag median 27.9 ms (CI 27.1-29.5), max 1180.3 ms. 11 sdk sessions have no sessions row.",
+      "json_path": "aiv_accounting.json: m3_created_at.sessions_table",
+      "kind": "hit",
+      "mechanical_explanation": "The village runner inserts the session record on receiving init."
+     },
+     {
+      "id": "O19",
+      "statement": "NULL: the SDK stream has no linkage fields to test ordering against. Ordering checks that are possible show no violations.",
+      "numbers": "parent_tool_use_id non-null 0, parentUuid key 0, message_uuid column non-null 0 (of 244820 rows). Tool result before its call: 0. Next response before prior results: 0 of 65309 pairs. Block-type inversions: 0. Tool results created before the calling response's last row: 3002.",
+      "json_path": "aiv_accounting.json: m3_created_at.linkage_fields; m3_created_at.ordering",
+      "kind": "null",
+      "mechanical_explanation": "The SDK output format omits parentUuid. Tools start while the response is still streaming."
+     }
+    ],
+    "candidate_mechanisms": [
+     {
+      "name": "Per-turn token conservation (context-delta witness)",
+      "grounded_in": [
+       "O9",
+       "O10",
+       "O11",
+       "O12"
+      ],
+      "measurement": "For consecutive API responses, compare the server-side context delta (input + cache_read + cache_creation) with chars logged in between (previous output, thinking and tool results) using a chars->tokens model fit per corpus. Flag turns with large residuals. Baseline: |residual| median 49.6 tokens, p99 685.7 (hold-out 51.7 / 667.7), n=59804 clean pairs in 190 runs. Each stripped image adds about 899 tokens.",
+      "false_positive_source": "Unlogged context edits (30 resets to the prefix), per-tool framing offsets (-92.7 to -193.8 tokens for 6 built-in tools), images, compaction and resumes. A crude chars model without a tokenizer. Length-preserving substitutions cannot be detected.",
+      "novelty_guess_unverified": "Possibly novel as a fabrication detector for agent tool logs (UNVERIFIED)."
+     },
+     {
+      "name": "Cache-chain continuity check",
+      "grounded_in": [
+       "O9",
+       "O12",
+       "O17"
+      ],
+      "measurement": "Test cache_read(k+1) == cache_read(k) + cache_creation(k) exactly. It holds in 0.99905 of clean pairs (CI 0.99858-0.99943). A break locates where the server saw a history different from a pure append.",
+      "false_positive_source": "Idle gaps of 300 s or more (8/32 break), image handling (203/4570 break), compaction, client-side pruning, resumes (only 1/234 hold).",
+      "novelty_guess_unverified": "Possibly novel (UNVERIFIED)."
+     },
+     {
+      "name": "Log-vs-ledger reconciliation",
+      "grounded_in": [
+       "O4",
+       "O5",
+       "O6",
+       "O7",
+       "O15"
+      ],
+      "measurement": "Check the result row against the logged stream: num_turns == user rows + 1 (210/211); result.usage == sum of per-response usage (196/211, never above the sum); modelUsage[main] == result.usage + compaction hidden calls (125/125 without compaction; input 64/65 with it); cost linear in tokens (503/503 model rows). An inserted or deleted turn or tool-result row breaks one of these.",
+      "false_positive_source": "SDK responses missing from the ledger (12 runs below the sum plus 3 all-zero runs out of 211), associated with a non-null stop_reason. Failed-resume result rows. Hidden auxiliary-model calls (172/211 runs).",
+      "novelty_guess_unverified": "Ledger reconciliation is a standard audit idea; applying it to agent SDK result rows is probably uncommon (UNVERIFIED)."
+     },
+     {
+      "name": "Hidden-call check of compaction summaries",
+      "grounded_in": [
+       "O6"
+      ],
+      "measurement": "Per run, check (modelUsage[main].output - result.usage.output) against the chars of the logged compaction summary. Spearman 0.9975 (CI 0.9912-0.9993), per-run 3.431-4.305 chars/token, n=65 runs.",
+      "false_positive_source": "Only run-level (no per-compaction split when there are several). The token rate differs from tool-content rates.",
+      "novelty_guess_unverified": "Possibly novel (UNVERIFIED)."
+     },
+     {
+      "name": "Generation-rate and wall-clock timing consistency",
+      "grounded_in": [
+       "O1",
+       "O2",
+       "O3",
+       "O18"
+      ],
+      "measurement": "The gap before each block should scale with its chars (Pearson 0.930; median 162.1 chars/s). duration_ms should equal the created_at span (|diff| median 30.1 ms). The created_at call->result gap should be at least the tool-reported duration (28/29, 132/133, 45/47). Rows written in a batch after the fact or fabricated would show floor-level gaps or a mismatched span.",
+      "false_positive_source": "Insert jitter (min slack -37.2 ms), streaming tool execution (3002 results before the calling response's last row), rare long stalls (r031). Applies only to sources with row-insert or event timestamps.",
+      "novelty_guess_unverified": "Timing checks are standard; using streaming block gaps against content size may be less common (UNVERIFIED)."
+     }
+    ],
+    "could_not_measure": [
+     "Prices from outside sources were not used. Per-token prices are only coefficients implied by the data's own costUSD.",
+     "Per-response output tokens: per-row output_tokens is a streaming snapshot, so output can only be checked at run level.",
+     "Images are stripped ([IMAGE_REMOVED]). Only their token budget is checkable, not their content. Thinking signatures are stripped ([BLOB_REMOVED]), so thinking authenticity cannot be checked.",
+     "No uuid/parentUuid or parent_tool_use_id chains exist in this SDK stream. Chain-ordering tests are impossible here.",
+     "The identity and timing of the hidden haiku/sonnet calls: modelUsage gives tokens and cost only, with no per-call timing. duration_api_ms cannot be split into main-thread and hidden time.",
+     "Whether compaction pre_tokens contains a client-side estimate: only suggested by the 3.775 chars/token rate, not proven.",
+     "Detection power against real fabrications: there are no labelled fabricated examples, so only the honest-baseline residual and violation distributions were measured. No threshold was set.",
+     "Exact token counts of logged content: no tokenizer available (no new dependencies), so the chars->tokens linear model gives an upper bound on the residual floor.",
+     "Why 15/211 runs have logged responses missing from the ledger: an association with non-null stop_reason was measured, not a mechanism.",
+     "I did not spawn subagents: no agent-spawning tool was available, and the work is one sequential probe script (about 2.5 min runtime)."
+    ]
+   },
+   "verdict": {
+    "lens": "aiv_accounting: skeptic re-derivation. I wrote my own extractor and segmenter from the raw claude_code_messages.jsonl.gz. Unit = run (sdk_session split at system/init). I got 314 runs in 53 sdk sessions, 0 pre-init rows, and 54 failed-resume result rows. Code and raw-count JSONs are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\aiv\\: extract.py, base.py, m1-m9.py, m1.json, m2.json, m3.json, m3b.json, m3c.json, m4_all.json, m4_R.json, m5-m9.json. I read the lens script only after I had my own numbers, to explain differences. One denominator issue runs through the whole lens: the lens's '211 runs with >=1 API response' includes 18 runs whose only assistant row is a '<synthetic>' message with zero usage and zero API time (dur 22-5318 ms). That makes several identities trivially true (O1, O4, O5, O8).",
+    "checks": [
+     {
+      "id": "O1",
+      "reproduced": true,
+      "my_numbers": "n=211 runs (lens definition). duration_ms>=span: 131/211 (Wilson 0.554-0.684). Ratio median 1.0000288 (CI 1.0000098-1.0000873), p25 0.99927, p75 1.00103. |dur-span| median 30.14 ms (26.13-38.87), p90 230.6, p99 2211.4. Pearson 0.9999915. dur>=tool-interval union: 211/211, but 57/211 runs have no tool calls, so it is trivial there. Largest gap: r031, dur 277325 vs span 509959.7. Excluding the 18 synthetic-only runs: 122/193 (0.562-0.697), |diff| median 30.5 ms.",
+      "problem": "Numbers reproduce exactly. Minor issues: (1) n=211 includes 18 synthetic-only runs with no API call. (2) 'strict inequality' is wrong wording: it is >=, and there are 0 ties. (3) The tool-union bound is vacuous in 57 runs. (4) Pearson 0.99999 on values spanning 5 orders of magnitude carries no information. The |diff| quantiles are the real evidence. Conclusions unchanged."
+     },
+     {
+      "id": "O2",
+      "reproduced": true,
+      "my_numbers": "Run-adjacent same-response pairs: n=99701 in 241 runs, Pearson 0.9295, Spearman 0.791. Variant using all consecutive rows of a response: n=102695, Pearson 0.930 (0.919-0.948), Spearman 0.790 (0.749-0.823). Pearson drops to 0.727 with the top 1% of gaps removed; log-log Pearson 0.812. Chars/s median: 162.1 (155.5-168.0) under the lens char definition (len(name)+compact JSON); 132.8 (123.3-141.4) without the tool name; text blocks only 159.4. Adjacent pairs 244506: identical created_at 0, gap <10 ms 0, negative gaps 0, global ties 0. Minimum gap: 17.55 ms (tool_result->status) to 46.16 ms (same response); some transitions have larger minimums (text->result 49.2, init->response 109.7, summary->response 896.3).",
+      "problem": "Reproduced. Pearson 0.930 is driven by the tail; Spearman 0.79 is the honest figure. The chars/s level depends on the char definition: adding tool-name length raises it 22% (132.8 -> 162.1). The '17.5-46.2 ms' minimum-gap range covers only the common transitions."
+     },
+     {
+      "id": "O3",
+      "reproduced": true,
+      "my_numbers": "WebFetch: gap>=reported 28/29 (Wilson 0.828-0.994), slack median 33.3 ms (CI 24.9-113.5), 11 runs. Glob: 132/133 (0.959-0.999), 44.0 ms (34.4-51.4), 26 runs. WebSearch: 45/47 (0.858-0.988), 27.6 ms (26.7-35.9), 2 runs. Minimum slack -37.2 ms (WebFetch). Spearman: WebFetch 0.992 (0.943-0.999), WebSearch 0.9995, Glob 0.096 (-0.047 to 0.343).",
+      "problem": "Reproduced. The WebFetch slack CI is wide (24.9-113.5), and WebSearch rests on 2 runs. Both durationMs and created_at are written client-side, so their agreement is internal consistency, not an independent witness."
+     },
+     {
+      "id": "O4",
+      "reproduced": true,
+      "my_numbers": "num_turns == user(null-subtype) rows + 1: 210/211 (0.974-0.999); the exception is r031 (num_turns 35, 33 user rows). 57/211 runs have 0 user rows and satisfy the identity trivially; on the non-trivial runs it holds 153/154 (0.964-0.999). num_turns == responses including synthetic: 143/211 (0.612-0.737); non-synthetic only: 125/193 (0.578-0.712). 0 user rows carry more than one tool_result.",
+      "problem": "Reproduced. The denominator mixes in 57 trivially true runs. On the non-trivial runs it holds 153/154."
+     },
+     {
+      "id": "O5",
+      "reproduced": true,
+      "my_numbers": "OLS without intercept, USD per Mtok. Opus (190 entries): 5.00/25.00/0.50/6.25. Haiku (172): 1.00/5.00/0.10/1.25. Sonnet (141): 3.00/15.00/0.30/3.75. All matrices rank 4. All entries reproduce within 1e-9 using the rounded prices. Max |residual| 2.8e-12 (free fit), 2.6e-13 (rounded). total_cost==sum(costUSD): 265/265, but only 193 result rows have a non-empty modelUsage. The other 72 (54 failed-resume + 18 synthetic-only) are 0==0. Non-trivial: 193/193 (0.980-1.0).",
+      "problem": "The 265/265 denominator includes 72 trivially true zero rows; 193/193 is the honest figure. The identity checks the client's arithmetic only: tokens and cost can be edited together. So the notes' line 'cost and tokens cannot be edited independently' overstates what the identity protects."
+     },
+     {
+      "id": "O6",
+      "reproduced": true,
+      "my_numbers": "No-compaction runs: all 4 fields equal 125/125 (0.970-1.0). Compaction runs: 65 runs, 595 compactions. cache_read diff 0: 65/65. Input diff == k x n_compactions: 64/65 (0.918-0.997); k=2 in 22 runs (v2.0.77), k=3 in 42 (v2.1.38), 2.857 in 1. No field negative. Spearman(hidden output, summary chars) 0.9975 (0.9910-0.9992), n=65. Pooled 3.734 chars/token (3.687-3.790), per-run 3.431-4.305. Hidden cache_creation/sum(pre_tokens) 0.860 (0.843-0.872). Confound: n_compactions alone gives Spearman 0.989 with hidden output and 0.990 with summary chars. Normalized per compaction: 0.923 (0.854-0.953). Single-compaction runs: 0.908 (n=15, CI 0.649-1.0).",
+      "problem": "Numbers reproduce exactly. Spearman 0.9975 mostly reflects how many compactions a run had. The per-compaction figure is 0.923, which still supports 'tracks closely', but 0.9975 overstates per-summary agreement."
+     },
+     {
+      "id": "O7",
+      "reproduced": true,
+      "my_numbers": "Input equal 196/211 (0.886-0.956). Result above sum: 0. Below: 15 = 12 non-zero + 3 all-zero (r085, r121, r140; main model absent from modelUsage 3/3; those runs have 1, 1 and 2 responses, all with non-null stop). Single-response match: 6/12, and 6/6 of those have non-null stop. Base rate 131/65550 (0.0017-0.0024). Excluding non-null-stop responses: 198/211. New, subset-sum test: in 12/12 below runs the deficit equals exactly (all 3 fields) the sum of a subset of that run's non-null-stop responses. In 11/12 that subset is all of them; r019 is the exception (7 of 9). By version: v2.1.38 drops them in 6/6 runs (17 responses). v2.0.77 drops all in 8 runs (all 8 dated 2026-02-03), keeps all in 12 runs (28 responses), and drops part in 1 run.",
+      "problem": "Understated rather than overclaimed. 15/15 discrepant runs are explained exactly by non-null-stop responses missing from result.usage. The '198/211, incomplete rule' comes from 12 v2.0.77 runs on other dates where those responses are counted. Whether they are dropped depends on version and date. That gives a mechanical marker separating this benign false positive from a fabricated turn with null stop_reason."
+     },
+     {
+      "id": "O8",
+      "reproduced": true,
+      "my_numbers": "Non-main listed: 172/211 (0.757-0.862); over runs with real API responses 172/193 (0.839-0.928). Assistant rows: opus 168245, synthetic 21. Non-main cost share 0.00496 (0.0038-0.0064). api<=dur in main-only runs: 39/39, but 18 of those runs are synthetic-only with api=0; non-synthetic main-only: 21/21 (0.845-1.0). With non-main models: 45/172 (0.202-0.332). Confounds: main-only runs are all v2.1.38 (21/21), median 103 responses, median 1328 s. Non-main runs are 141/172 v2.0.77, median 2 responses, median 14.9 s. Within non-main runs api<=dur: shortest tercile 0/95, middle 2/21, longest 43/56. Dose-response is absent: Spearman(api-dur, non-main output tokens) -0.07 (-0.26 to 0.13); vs non-main cost -0.16 (-0.33 to 0.04); vs duration_ms -0.50. api-dur median +19.3 s (n=172).",
+      "problem": "Overclaim. 'These hidden calls are why duration_api_ms > duration_ms is common' is not established. The 39/39 vs 45/172 contrast is inflated by 18 zero-API runs and confounded by version and run length. api-dur does not scale with non-main tokens or cost; it looks like a roughly fixed ~19 s per run that dominates short runs. The 172/211 rate is deflated by the same 18 runs."
+     },
+     {
+      "id": "O9",
+      "reproduced": true,
+      "my_numbers": "Clean pairs 59747/59804, run-clustered 0.99905 (0.99858-0.99943), 190 runs. Image 4367/4570, break median -2104. Compact 0/933. Next-response input median 8, p99 10. Breaks: 49/59772 at gaps <300 s, 8/32 at >=300 s. Pair categories match exactly (65307 non-zero pairs).",
+      "problem": "None numerically. Note that the identity uses only server usage fields and says nothing about logged content by itself."
+     },
+     {
+      "id": "O10",
+      "reproduced": true,
+      "my_numbers": "Clean n=59804, 190 runs. Pearson 0.982 (0.972-0.990). Spearman 0.986 (0.981-0.989). Pooled 2.602 chars/token (2.577-2.631); lens char definition gives 2.610. Per-pair median 2.524 (2.496-2.559), p5-p95 2.065-2.865. No thinking: Spearman 0.982, median 2.420. 3-term fit: R2 0.966, |res| median 49.6 (42.2-56.5), p90 203.2, p99 690.2. Baseline |delta - median| median 325. Two random half-splits: R2 0.966/0.966, |res| median 56.6/43.2, p99 735/651. |res|/delta (3-term): median 0.025, p90 0.231, p99 0.934. Per-tool mean residuals (3-term): Read -209.8, TodoWrite -213.4, Glob -152.0, Bash -132.6, Edit -117.1, Grep -106.2, Write -95.1. mcp__village__search_history -246.6 (n=146); other village tools -51.8 to +21.6.",
+      "problem": "Core numbers reproduce. Problems: (1) 'village MCP tools range from -40.3 to +35.7' leaves out mcp__village__search_history, which is -222.7 in the lens's own JSON (n=146). (2) The per-tool means and |res|/delta (0.023/0.236/0.887) come from the post-hoc 5-term fit but are presented next to the pre-registered fit without a label. (3) Hold-out results depend on the split: medians 43-57, p99 651-735 across splits; the lens reports one split."
+     },
+     {
+      "id": "O11",
+      "reproduced": true,
+      "my_numbers": "Pre-registered 3-term fit: n=4543 image pairs in 64 runs, every pair with exactly 1 image. Residual per image: median 890.1 (887.9-890.9), p25 879.1, p75 892.7, p95 998.4; 227 in the 316-562 bin. A no-intercept 2.6 chars/token model gives median 1112.5.",
+      "problem": "The concentration (IQR about 14 tokens) reproduces. The level 898.8 comes from the post-hoc 5-term fit, which O11 does not flag. Under the pre-registered fit it is 890.1, under a no-intercept model 1112. The CI covers resampling only, not model choice. 'Per image' equals per pair here."
+     },
+     {
+      "id": "O12",
+      "reproduced": true,
+      "my_numbers": "Negative deltas: clean 3/59804, image 27/4570, compact 933/933. 30 non-compaction negatives, all with next cache_read in 20401-21400; median delta -9249; v2.0.77 6, v2.1.38 24; 12 runs. 27/30 are image pairs. Inter-response gaps 7.8-29.3 s. 0/30 carry a context_management object; across the whole stream it is only ever null or {applied_edits:[]} (24 responses). 0 non-negative pairs land in that cache_read band.",
+      "problem": "None. The extra checks support 'unlogged': no context_management edit is recorded, and 27/30 involve screenshots."
+     },
+     {
+      "id": "O13",
+      "reproduced": true,
+      "my_numbers": "pre_tokens==last ctx 0/933; pre<last 0. Image-free subset: n=863 in 92 runs, Spearman 0.819 (0.774-0.858, pair bootstrap), median 3.756 chars/token (3.747-3.782); lens char definition gives 3.775. All 933 boundaries (70 with images): Spearman 0.594 (0.451-0.708). excess - chars/4: median 76.5, IQR 60.8-95.3. excess - chars/3.75: median -1.7, IQR -47.7 to 16.3.",
+      "problem": "Reproduced on the stated n=863. The 0.819 depends on excluding image boundaries. Descriptive only, not tested: 'chars/4 + ~76 tokens' fits about as tightly as '3.77 chars/token', which is consistent with a client-side chars/4 heuristic. The 3.77 figure may be the wrong framing."
+     },
+     {
+      "id": "O14 (null)",
+      "reproduced": true,
+      "my_numbers": "n=940 boundaries in 100 runs. Spearman(post ctx, summary chars) -0.135 (-0.280 to 0.039). Post ctx median 26465.5, min 23788. Post - summary/2.5 median 22975.1.",
+      "problem": "Null reproduces exactly. The roughly 23k unlogged tokens are mostly the system prompt and tool prefix (cache_read reset band 20401-21400 in O12), so this is expected, not a discovery."
+     },
+     {
+      "id": "O15 (artifact/null)",
+      "reproduced": true,
+      "my_numbers": "output_tokens varies within 8340/65529 multi-row responses; input/cache_read/cache_creation never vary. Result output total 9231390 vs sum of last snapshots 1603611. Result output == sum of snapshots: 7/193. Run-level Spearman(result output, logged chars) 0.9968 (0.9933-0.9980), n=190. Pooled 2.296 chars/token (2.182-2.409) with thinking (lens 2.379, char-definition dependent), 1.389 without.",
+      "problem": "Artifact reproduces. The pooled ratio depends on the char definition."
+     },
+     {
+      "id": "Glob duration null (in O3)",
+      "reproduced": true,
+      "my_numbers": "Spearman(gap, Glob durationMs) 0.096 (-0.047 to 0.343), n=133, 26 runs. Reported durations p50 43 ms, max 1087.",
+      "problem": "None. Expected: durations are tiny next to fixed overhead."
+     },
+     {
+      "id": "Linkage null",
+      "reproduced": true,
+      "my_numbers": "parent_tool_use_id non-null 0. parentUuid key 0. message_uuid non-null 0. content.uuid present and distinct on 244819/244820 rows.",
+      "problem": "None."
+     },
+     {
+      "id": "Cross-run resume null",
+      "reproduced": true,
+      "my_numbers": "241 consecutive-run pairs, 234 without compaction between. Negative delta 88/234. Cache chain holds 1/234. First cache_read zero 34/234. 1 version change. A stricter definition (no compaction anywhere in either run): chain 0/117.",
+      "problem": "None. The chain does not carry across resumes under either definition."
+     }
+    ],
+    "overclaims": [
+     "O8: 'These hidden calls are why duration_api_ms > duration_ms is common' is not supported. Main-only runs are all v2.1.38 and long (median 103 responses); non-main runs are mostly v2.0.77 and short (median 2). Within non-main runs api<=dur goes from 0/95 (short) to 43/56 (long). api-dur does not track non-main output tokens (Spearman -0.07, CI -0.26 to 0.13) or cost (-0.16, CI -0.33 to 0.04).",
+     "Denominator inflation (O1, O4, O5, O8): the '211 runs with >=1 API response' include 18 synthetic-only runs with zero usage and zero API time. O8's 39/39 is really 21/21 non-synthetic. O5's 265/265 includes 72 rows that are trivially 0==0 (non-trivial 193/193). O4 has 57 runs with zero user rows (non-trivial 153/154). O8's 172/211 is 172/193 over runs with real API calls.",
+     "O10: 'village MCP tools range from -40.3 to +35.7' leaves out mcp__village__search_history at -222.7 (n=146) in the lens's own JSON (-246.6 under the pre-registered fit). The per-tool means and |residual|/delta quantiles come from the post-hoc 5-term fit but are not labelled as such.",
+     "O11: the 898.8 tokens/image level comes from the post-hoc extended fit, which is not flagged in O11. Under the pre-registered fit it is 890.1, under a no-intercept model about 1112. The narrow CI covers resampling only, not model choice.",
+     "O6: Spearman 0.9975 between hidden output and summary chars mostly reflects how many compactions each run had (n_compactions alone gives 0.989-0.990). The per-compaction figure is 0.923 (0.854-0.953).",
+     "O2: Pearson 0.930 is tail-driven (0.727 with the top 1% of gaps removed). The 162.1 chars/s level depends on counting tool names as chars (132.8 without them; text blocks only 159.4).",
+     "O7 understates rather than overclaims: all 15 discrepant runs are explained exactly by non-null-stop responses missing from result.usage (12/12 by subset-sum, plus the 3 all-zero runs). Whether they are dropped depends on SDK version and date (v2.1.38 6/6 runs; v2.0.77 only on 2026-02-03), so it is not an 'association only, incomplete rule'.",
+     "Notes interpretation: 'cost and tokens cannot be edited independently' overstates a client-side arithmetic identity, since both can be rewritten together. The O3 durations and created_at are both client-written, so their agreement is internal consistency, not an independent witness."
+    ]
+   }
+  }
+ ]
+}
