@@ -1,0 +1,46 @@
+{
+ "path": "analysis/cache/pub_codex_B.parquet",
+ "rows": 3691,
+ "sessions": 12,
+ "bytes": 720035,
+ "validate": {
+  "rows": 3691,
+  "sessions": 12,
+  "meta": 1413,
+  "call": 889,
+  "result": 831,
+  "assistant": 462,
+  "system": 49,
+  "user": 47
+ },
+ "split": "B",
+ "sessions_in_split": 12,
+ "parser_stats": {
+  "lines": 4172,
+  "codex_event_user_message_texts": 48,
+  "codex_response_developer_message_as_system": 27,
+  "codex_response_user_message_as_system": 22,
+  "codex_response_user_message_as_user": 47,
+  "codex_web_search_end_without_call": 58,
+  "codex_token_count_new_total": 526,
+  "codex_exec_exit_never_shown_to_model": 0,
+  "codex_exec_exit_never_shown_to_model_nonzero": 0,
+  "utf8_replaced": 0,
+  "codex_token_count_repeat_of_previous_total": 5,
+  "codex_token_count_repeat_total_but_last_differs": 2,
+  "codex_token_count_repeat_total_but_last_differs_last_in_out_zero": 2,
+  "codex_write_stdin_output_running": 6,
+  "codex_write_stdin_output_exited_without_exec_end": 12
+ },
+ "secret_redactions": {},
+ "surrogate_cells_replaced": 0,
+ "fork_records_before_fork_meta_ts": 0,
+ "runtime_s": 0.8,
+ "D5_exclusions": {
+  "listed": 0,
+  "in_split": 0,
+  "source": "analysis/out/phase_e/newcorp_exclusions.json",
+  "decision": "D5",
+  "how": "newcorp_common.split_ids wrapped in-process by analysis/probes/phase_e_newcorp_agentcap_codex.py"
+ }
+}

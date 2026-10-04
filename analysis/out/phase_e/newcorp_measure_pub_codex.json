@@ -1,0 +1,4711 @@
+{
+ "item": "newcorp_measure_pub_codex",
+ "group": "agentcap_codex",
+ "corpus": "pub_codex",
+ "script": "analysis/probes/phase_e_newcorp_agentcap_codex.py",
+ "run_utc": "2026-10-04T10:27:11Z",
+ "prereg_e_json_sha256": "568d423f0e061f9a3dd14a4ae51926b3b5746a9a3dc33b421c3e632ad4bb1c08",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "spec_module_matches_prereg": true,
+ "prereg_json_sha256": "3189a3260e9ed2204d80e9b8496c975e9a87e383104531304ca720a2d79806e4",
+ "calibration_file": "analysis/out/phase_e/prereg_e_calibration_pub_codex.json",
+ "calibration_sha256": "c95f37397963116df5440ce8e3b783acf8701517119b042aab2dd9b7a97d49fb",
+ "calibration_sha256_matches_change_log": true,
+ "decisions_applied": {
+  "D1_calibration_unit_proxy": "Accepted as each builder used it; measurement scripts must pass the same unit argument: pub_cc_hf and pub_trace_commons -> 'cc_local' (same Claude Code generation); pub_codex -> 'swechat/codex'; agentcap -> 'swechat/opencode' (OpenCode traces) and 'agentcap/pi' (Pi traces); tbench2 and glm_tb21 -> their own names. Quantities calibrate_unit did not produce for a unit (e.g. N1 bounds, N5 truncation constants where absent) take the pre-registered pooled values where the prereg defines one, else the cell is NOT_TESTABLE.",
+  "D2_dominance_cluster": "For new corpora, the AC4 dominance and confinement cluster is the corpus stratum (source repo / submitting agent / modal model), because prereg_e_common.session_cluster_map has no new-corpus branch.",
+  "D3_split_floor": "New-corpus splits use floor = min(5, n_draw // n_cells) per cell (lib/sample._alloc does not cap floors; with many cells the floors alone exceed the draw). Applied uniformly by all builders; recorded per corpus as floor_used.",
+  "D4_field_audit_criteria": "Accepted as drawn: the builders' field audits are not identical (agentcap and pub_codex keep tool-less sessions, pub_cc_* exclude them; tbench2 keeps sessions whose stamps are nulled by the collapsed-stamp rule). Redrawing after A calibration would be worse; cross-corpus comparisons must state it.",
+  "D5_agentcap_exposure": "The 42 B and 15 E agentcap sessions parsed in an abandoned A build are EXCLUDED from B/E measurement (analysis/out/phase_e/newcorp_exclusions.json); the 14 exposed H sessions are flagged in HELDOUT_MANIFEST for Track C to drop (sha256 of their sorted ids recorded).",
+  "D6_blindness": "New-corpus results are NOT blind for the request-id bracket (R1/F1), latency (Probe 1) and reaction time (N3): Track B (B5e) computed request-id decode deltas and call->result gap quantiles over the full acquired corpora, and builders ran structure-only population passes over all files. Label these cells NOT_BLIND; they are replications on new data under frozen thresholds, not held-out confirmations.",
+  "D7_not_loaded": "openhands_eval and the group-4 corpora (tracelab-uw, cli-pi-hf, miniswe, sweagent-combo2, osworld, webarena-infinity, openhands-feedback) were not loaded (time budget): N6 cells NOT_LOADED."
+ },
+ "splits_read": [
+  "B",
+  "E"
+ ],
+ "H": "never built, read or listed",
+ "build": {
+  "B": {
+   "split": "B",
+   "split_ids": 12,
+   "excluded_D5": 0,
+   "excluded_D5_listed": 0,
+   "sessions_wanted": 12,
+   "built_now": false,
+   "build_report": {
+    "rows": 3691,
+    "sessions": 12,
+    "join": null,
+    "secret_redactions": {},
+    "parser_stats": {
+     "lines": 4172,
+     "codex_event_user_message_texts": 48,
+     "codex_response_developer_message_as_system": 27,
+     "codex_response_user_message_as_system": 22,
+     "codex_response_user_message_as_user": 47,
+     "codex_web_search_end_without_call": 58,
+     "codex_token_count_new_total": 526,
+     "codex_exec_exit_never_shown_to_model": 0,
+     "codex_exec_exit_never_shown_to_model_nonzero": 0,
+     "utf8_replaced": 0,
+     "codex_token_count_repeat_of_previous_total": 5,
+     "codex_token_count_repeat_total_but_last_differs": 2,
+     "codex_token_count_repeat_total_but_last_differs_last_in_out_zero": 2,
+     "codex_write_stdin_output_running": 6,
+     "codex_write_stdin_output_exited_without_exec_end": 12
+    },
+    "D5_exclusions": {
+     "listed": 0,
+     "in_split": 0,
+     "source": "analysis/out/phase_e/newcorp_exclusions.json",
+     "decision": "D5",
+     "how": "newcorp_common.split_ids wrapped in-process by analysis/probes/phase_e_newcorp_agentcap_codex.py"
+    },
+    "surrogate_cells_replaced": 0
+   },
+   "build_report_path": "analysis/out/phase_e/newcorp_build_pub_codex_B.json",
+   "cache_sessions": 12,
+   "cache_sha256": "faceca5c9fdf334bbfc3e2b561cfb72d1ee925c8d9bbb0ffa3ad7125099ceaff",
+   "cache_path": "analysis/cache/pub_codex_B.parquet",
+   "sessions_without_events": 0
+  },
+  "E": {
+   "split": "E",
+   "split_ids": 12,
+   "excluded_D5": 0,
+   "excluded_D5_listed": 0,
+   "sessions_wanted": 12,
+   "built_now": false,
+   "build_report": {
+    "rows": 3474,
+    "sessions": 12,
+    "join": null,
+    "secret_redactions": {
+     "text:auth_header": 4
+    },
+    "parser_stats": {
+     "lines": 3831,
+     "codex_event_user_message_texts": 97,
+     "codex_response_developer_message_as_system": 23,
+     "codex_response_user_message_as_system": 57,
+     "codex_response_user_message_as_user": 62,
+     "codex_token_count_new_total": 477,
+     "codex_web_search_end_without_call": 39,
+     "codex_exec_exit_never_shown_to_model": 0,
+     "codex_exec_exit_never_shown_to_model_nonzero": 0,
+     "utf8_replaced": 0,
+     "codex_token_count_repeat_of_previous_total": 4,
+     "codex_write_stdin_output_exited_without_exec_end": 17,
+     "codex_write_stdin_output_running": 13
+    },
+    "D5_exclusions": {
+     "listed": 0,
+     "in_split": 0,
+     "source": "analysis/out/phase_e/newcorp_exclusions.json",
+     "decision": "D5",
+     "how": "newcorp_common.split_ids wrapped in-process by analysis/probes/phase_e_newcorp_agentcap_codex.py"
+    },
+    "surrogate_cells_replaced": 0
+   },
+   "build_report_path": "analysis/out/phase_e/newcorp_build_pub_codex_E.json",
+   "cache_sessions": 12,
+   "cache_sha256": "3e53780e02737784f971ad2b6c7be93fced917166d006fd30bb01545849ad972",
+   "cache_path": "analysis/cache/pub_codex_E.parquet",
+   "sessions_without_events": 0
+  }
+ },
+ "deviations": [
+  {
+   "item": "B/E cache build with the D5 exclusions",
+   "prereg_said": "D5: the 42 B and 15 E agentcap sessions parsed in an abandoned A build are EXCLUDED from B/E measurement; the loaders' --split path builds every id of the split",
+   "what_you_did": "called the loader's build_split() unchanged with newcorp_common.split_ids wrapped in-process so the excluded ids are dropped from the list before parsing; the per-split build report is written to analysis/out/phase_e/newcorp_build_<corpus>_<split>.json (the name the loader CLI uses) with the exclusion counts. pub_codex has no exclusions (the wrapper is a no-op for it)",
+   "why": "excluded sessions are never parsed in this phase; the loader file (whose sha256 is in the extension record) stays byte-identical",
+   "effect_on_verdict": "none (the excluded sessions are simply absent)"
+  },
+  {
+   "item": "D1 threshold rule applied to Phase B thresholds",
+   "prereg_said": "D1: quantities calibrate_unit did not produce for a unit take the pre-registered pooled value where the prereg defines one, else the cell is NOT_TESTABLE. splits.new_corpora.calibration lists Probe 1 floors/G90, Probe 3 L75 and Probe 2 D_unit among the corpus-A quantities; calibrate_unit produced none of them",
+   "what_you_did": "Probe 2 D_unit -> pooled D = 6 (prereg.json resolved.probe2.depth_threshold.pooled). Probe 1 G90/floors and Probe 3 L75 have no pooled value -> P1_latency and P3a_zero_error cells NOT_TESTABLE (threshold absent, D1), unless the cell's own minimum n fails independently of the threshold (then INSUFFICIENT_N). The N1 positive control needs G90 too: N1 is INSUFFICIENT_N / DEAD where those rules decide without rho_pc, else NOT_TESTABLE. For units whose D1 argument has Phase B thresholds (swechat/opencode, swechat/codex) the same frozen code is run with the ANALOGUE thresholds and stored as analog_unit_run ('post hoc, not a verdict'; swechat A-split values, not this corpus's A)",
+   "why": "D1 is binding; the analogue run lets the orchestrator see what the other reading would give",
+   "effect_on_verdict": "P1, P3a and possibly N1 cells NOT_TESTABLE instead of a label"
+  },
+  {
+   "item": "agentcap/pi under the generic unit 'agentcap/pi'",
+   "prereg_said": "D1: Pi traces -> unit 'agentcap/pi' (no analogue). pc.error_classes returns 'no_definition' for it; N1/N3/N4/N5 unit lists do not name it; S:n6_transfer_grid.fill_rule: NOT_TESTABLE iff a required field is absent, otherwise run the mechanism's rule",
+   "what_you_did": "error-signal rows (P3a, P3b, N5f) NOT_TESTABLE(no error definition registered for 'agentcap/pi'; Pi records a native isError that the frozen code does not read for this unit). Rows whose rule needs no unit-calibrated quantity (P2 with pooled D, P4, N2 with the corpus tau, N3, N5a/b/d/e/g) run with the generic unit; N1 runs with the pooled bounds (D1); P1 and N4 need the Phase B no-human-wait filter, which has no allowed-class list for this unit (prereg_calibration.p1_qualified KeyError) -> NOT_TESTABLE",
+   "why": "the field gate and D1 decide; nothing is registered for Pi",
+   "effect_on_verdict": "stated per cell"
+  },
+  {
+   "item": "Probe 2 instrument check and antecedent status for new units",
+   "prereg_said": "instrument_check is defined on swechat/claude_code main-thread S_symbol_ref (<= 0.10); its failure caps every Probe 2 verdict",
+   "what_you_did": "the Phase B instrument result (analysis/out/probe_2.json instrument_check.ok = true) is carried as the instrument status; each unit's own main-thread S_symbol_ref is reported as context. New units are treated as 'full' antecedent units (no DEAD -> INCONCLUSIVE relabel)",
+   "why": "the instrument is a property of the matching code, validated once in Phase B",
+   "effect_on_verdict": "none"
+  },
+  {
+   "item": "Probe 4 redaction cap",
+   "prereg_said": "swechat: verdict stands only if the redaction sensitivity run gives the same label, else WEAK",
+   "what_you_did": "not applied (the cap is written for swechat units); the noredact re-run labels are stored beside the verdict",
+   "why": "the cap names swechat",
+   "effect_on_verdict": "none unless a rerun differs (stored)"
+  },
+  {
+   "item": "N5e comparator minimum (as Track A phase_e_n5_battery)",
+   "prereg_said": "WEAK if >= 0.5 of families have IQR above the comparator's CI hi; no comparator minimum stated",
+   "what_you_did": "comparator = assistant text events + subagent-class call results; IQR CI = session bootstrap (boot_stat); comparator needs >= 30 texts from >= 5 sessions (global p50 rule) else INCONCLUSIVE",
+   "why": "same reading as the Track A N5 script",
+   "effect_on_verdict": "only if the comparator is that small"
+  },
+  {
+   "item": "N5c truncation markers",
+   "prereg_said": "required field: result text with harness truncation markers (the Claude Code catalogue)",
+   "what_you_did": "count results carrying a Claude Code marker (truncation_info); 0 -> NOT_TESTABLE(field absent)",
+   "why": "these harnesses do not write the Claude Code elision markers",
+   "effect_on_verdict": "none"
+  },
+  {
+   "item": "N1 / N5g / N4 labelled NOT_BLIND",
+   "prereg_said": "D6 names bracket, latency (Probe 1) and N3",
+   "what_you_did": "N1, N4 and N5g also read call->result latency, which Track B B5e summarised over the full corpora; they carry NOT_BLIND as well",
+   "why": "same exposure",
+   "effect_on_verdict": "label only"
+  },
+  {
+   "item": "AC1 parser audit",
+   "prereg_said": "audit_sample(): 30 decision events looked up in the raw source by (session, call_id); compare stamps, join, text length, error flag, request id",
+   "what_you_did": "implemented for the pair-based decision units of any N cell that reaches WEAK on B, E or B u E: the raw OpenCode document / Pi JSONL / Codex rollout of the audited session is re-read and, by call_id, the call and result stamps (ms) and the result text length are compared with the IR; agentcap also compares the error flag and (N2) the issuing message's output-token count; N3 rows also compare the next call's stamp. Codex error flags (joined from exec/patch/mcp end events) and token_count usage are not compared. A text-length difference on a result carrying a loader redaction marker counts as explained",
+   "why": "prereg AC1",
+   "effect_on_verdict": "FAIL at >= 2 of 30 -> lower label"
+  }
+ ],
+ "units": {
+  "pub_codex": {
+   "unit_argument": "swechat/codex",
+   "calibration_unit": "swechat/codex",
+   "sessions": {
+    "B": {
+     "sessions": 12,
+     "rows": 3691,
+     "pairs": 831,
+     "qualified_pairs": 1
+    },
+    "E": {
+     "sessions": 12,
+     "rows": 3474,
+     "pairs": 693,
+     "qualified_pairs": 1
+    },
+    "BuE": {
+     "sessions": 24,
+     "rows": 7165,
+     "pairs": 1524,
+     "qualified_pairs": 2
+    }
+   },
+   "field_gate": {
+    "B": {
+     "pairs": 831,
+     "pairs_stamped": 831,
+     "pairs_distinct_stamps": 765,
+     "request_ids_rows": 0,
+     "request_ids_distinct": 0,
+     "request_ids_decodable": 0,
+     "image_usage_rows": 0,
+     "usage_granular": true,
+     "granularity": {
+      "responses": 482,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 285.5,
+      "G2_not_partial": true,
+      "G3_identifiable": true,
+      "GRANULAR": true
+     },
+     "error_definition": true,
+     "results_with_text": 831,
+     "commit_claims": 2,
+     "cc_truncation_marked_results": 0,
+     "external_commit_table": false,
+     "raw_structured_counters": false,
+     "external_usage_tally": false,
+     "note": "external tables / raw structured counters: none exist for this corpus (calibration n6_field_gate_corrections; prereg_e_calibration_<corpus>.json)",
+     "calibration_A": {
+      "pairs": 726,
+      "pairs_stamped": 726,
+      "pairs_distinct_stamps": 636,
+      "request_ids": 0,
+      "request_ids_decodable": 0,
+      "image_usage_rows": 0,
+      "usage_granular": true,
+      "error_definition": true,
+      "results_with_text": 726,
+      "commit_claims": 0,
+      "external_commit_table": false,
+      "raw_structured_counters": false,
+      "external_usage_tally": false
+     }
+    },
+    "E": {
+     "pairs": 693,
+     "pairs_stamped": 693,
+     "pairs_distinct_stamps": 693,
+     "request_ids_rows": 0,
+     "request_ids_distinct": 0,
+     "request_ids_decodable": 0,
+     "image_usage_rows": 0,
+     "usage_granular": true,
+     "granularity": {
+      "responses": 383,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 294.0,
+      "G2_not_partial": true,
+      "G3_identifiable": true,
+      "GRANULAR": true
+     },
+     "error_definition": true,
+     "results_with_text": 693,
+     "commit_claims": 2,
+     "cc_truncation_marked_results": 0,
+     "external_commit_table": false,
+     "raw_structured_counters": false,
+     "external_usage_tally": false,
+     "note": "external tables / raw structured counters: none exist for this corpus (calibration n6_field_gate_corrections; prereg_e_calibration_<corpus>.json)",
+     "calibration_A": {
+      "pairs": 726,
+      "pairs_stamped": 726,
+      "pairs_distinct_stamps": 636,
+      "request_ids": 0,
+      "request_ids_decodable": 0,
+      "image_usage_rows": 0,
+      "usage_granular": true,
+      "error_definition": true,
+      "results_with_text": 726,
+      "commit_claims": 0,
+      "external_commit_table": false,
+      "raw_structured_counters": false,
+      "external_usage_tally": false
+     }
+    },
+    "BuE": {
+     "pairs": 1524,
+     "pairs_stamped": 1524,
+     "pairs_distinct_stamps": 1458,
+     "request_ids_rows": 0,
+     "request_ids_distinct": 0,
+     "request_ids_decodable": 0,
+     "image_usage_rows": 0,
+     "usage_granular": true,
+     "granularity": {
+      "responses": 865,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 290.0,
+      "G2_not_partial": true,
+      "G3_identifiable": true,
+      "GRANULAR": true
+     },
+     "error_definition": true,
+     "results_with_text": 1524,
+     "commit_claims": 4,
+     "cc_truncation_marked_results": 0,
+     "external_commit_table": false,
+     "raw_structured_counters": false,
+     "external_usage_tally": false,
+     "note": "external tables / raw structured counters: none exist for this corpus (calibration n6_field_gate_corrections; prereg_e_calibration_<corpus>.json)",
+     "calibration_A": {
+      "pairs": 726,
+      "pairs_stamped": 726,
+      "pairs_distinct_stamps": 636,
+      "request_ids": 0,
+      "request_ids_decodable": 0,
+      "image_usage_rows": 0,
+      "usage_granular": true,
+      "error_definition": true,
+      "results_with_text": 726,
+      "commit_claims": 0,
+      "external_commit_table": false,
+      "raw_structured_counters": false,
+      "external_usage_tally": false
+     }
+    }
+   },
+   "mechanisms": {
+    "P1_latency": {
+     "B": {
+      "analog_unit_run": {
+       "status": "post hoc, not a verdict (analogue thresholds: prereg.json resolved.probe1 for swechat/codex, swechat A)",
+       "G90_analog": 76.54145995747696,
+       "W_eligible": {
+        "n": 1,
+        "sessions": 1
+       },
+       "G_eligible": {
+        "n": 0,
+        "sessions": 0
+       },
+       "W_qualified_positive": 1,
+       "G_usable": 0,
+       "fp_share": {
+        "num": 0,
+        "den": 1
+       },
+       "fp_label": "INSUFFICIENT_N",
+       "auc": {
+        "auc_point_unreportable": null
+       },
+       "auc_label": "INSUFFICIENT_N",
+       "separability_label_analog": "INSUFFICIENT_N",
+       "note": "separability only; the Phase B kill tests (flat, floor step, transfer, A1 recheck) not run"
+      }
+     },
+     "E": {
+      "analog_unit_run": {
+       "status": "post hoc, not a verdict (analogue thresholds: prereg.json resolved.probe1 for swechat/codex, swechat A)",
+       "G90_analog": 76.54145995747696,
+       "W_eligible": {
+        "n": 1,
+        "sessions": 1
+       },
+       "G_eligible": {
+        "n": 0,
+        "sessions": 0
+       },
+       "W_qualified_positive": 1,
+       "G_usable": 0,
+       "fp_share": {
+        "num": 0,
+        "den": 1
+       },
+       "fp_label": "INSUFFICIENT_N",
+       "auc": {
+        "auc_point_unreportable": null
+       },
+       "auc_label": "INSUFFICIENT_N",
+       "separability_label_analog": "INSUFFICIENT_N",
+       "note": "separability only; the Phase B kill tests (flat, floor step, transfer, A1 recheck) not run"
+      }
+     },
+     "BuE": {
+      "analog_unit_run": {
+       "status": "post hoc, not a verdict (analogue thresholds: prereg.json resolved.probe1 for swechat/codex, swechat A)",
+       "G90_analog": 76.54145995747696,
+       "W_eligible": {
+        "n": 2,
+        "sessions": 2
+       },
+       "G_eligible": {
+        "n": 0,
+        "sessions": 0
+       },
+       "W_qualified_positive": 2,
+       "G_usable": 0,
+       "fp_share": {
+        "num": 0,
+        "den": 2
+       },
+       "fp_label": "INSUFFICIENT_N",
+       "auc": {
+        "auc_point_unreportable": null
+       },
+       "auc_label": "INSUFFICIENT_N",
+       "separability_label_analog": "INSUFFICIENT_N",
+       "note": "separability only; the Phase B kill tests (flat, floor step, transfer, A1 recheck) not run"
+      }
+     }
+    },
+    "P2_knowledge": {
+     "B": {
+      "D_unit": 6,
+      "D_source": "prereg.json resolved.probe2.depth_threshold.pooled (D1 pooled value)",
+      "instrument_ok_phase_b": true,
+      "sessions": 12,
+      "threads_with_calls": {
+       "main": 10,
+       "sub": 1
+      },
+      "strata": {
+       "main": {
+        "verdict": {
+         "verdict": "INSUFFICIENT_N",
+         "deciding_statistic": null,
+         "S_deep_n": 0,
+         "S_deep_sessions": 0,
+         "S_path_any_n": 91,
+         "S_path_any_sessions": 10,
+         "min_n": {
+          "S_deep": [
+           100,
+           20
+          ],
+          "S_path_any": [
+           200,
+           20
+          ]
+         },
+         "labels": [],
+         "caps_applied": []
+        },
+        "S_deep": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0
+        },
+        "S_path_any": {
+         "k": 24,
+         "n": 91,
+         "n_sessions": 10,
+         "rate": 0.26373626373626374,
+         "lo": 0.15302257266542982,
+         "hi": 0.3750309405940594
+        },
+        "S_symbol_ref_context": {
+         "k": 35,
+         "n": 324,
+         "n_sessions": 10,
+         "rate": 0.10802469135802469,
+         "lo": 0.0065268700072621645,
+         "hi": 0.265501779245855
+        },
+        "first_try_success": {
+         "k": 35,
+         "n": 35,
+         "n_sessions": 10,
+         "rate": 1.0,
+         "lo": 1.0,
+         "hi": 1.0
+        },
+        "n_deep_success": 0,
+        "n_deep_success_sessions": 0
+       },
+       "sub": {
+        "verdict": {
+         "verdict": "INSUFFICIENT_N",
+         "deciding_statistic": null,
+         "S_deep_n": 0,
+         "S_deep_sessions": 0,
+         "S_path_any_n": 1,
+         "S_path_any_sessions": 1,
+         "min_n": {
+          "S_deep": [
+           100,
+           20
+          ],
+          "S_path_any": [
+           200,
+           20
+          ]
+         },
+         "labels": [],
+         "caps_applied": []
+        },
+        "S_deep": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0
+        },
+        "S_path_any": {
+         "k": 1,
+         "n": 1,
+         "n_sessions": 1,
+         "rate": 1.0,
+         "lo": 1.0,
+         "hi": 1.0
+        },
+        "S_symbol_ref_context": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0,
+         "label": "insufficient n"
+        },
+        "first_try_success": null,
+        "n_deep_success": null,
+        "n_deep_success_sessions": null
+       }
+      }
+     },
+     "E": {
+      "D_unit": 6,
+      "D_source": "prereg.json resolved.probe2.depth_threshold.pooled (D1 pooled value)",
+      "instrument_ok_phase_b": true,
+      "sessions": 12,
+      "threads_with_calls": {
+       "main": 10,
+       "sub": 1
+      },
+      "strata": {
+       "main": {
+        "verdict": {
+         "verdict": "INSUFFICIENT_N",
+         "deciding_statistic": null,
+         "S_deep_n": 0,
+         "S_deep_sessions": 0,
+         "S_path_any_n": 105,
+         "S_path_any_sessions": 10,
+         "min_n": {
+          "S_deep": [
+           100,
+           20
+          ],
+          "S_path_any": [
+           200,
+           20
+          ]
+         },
+         "labels": [],
+         "caps_applied": []
+        },
+        "S_deep": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0
+        },
+        "S_path_any": {
+         "k": 16,
+         "n": 105,
+         "n_sessions": 10,
+         "rate": 0.1523809523809524,
+         "lo": 0.10098484848484848,
+         "hi": 0.2
+        },
+        "S_symbol_ref_context": {
+         "k": 6,
+         "n": 326,
+         "n_sessions": 8,
+         "rate": 0.018404907975460124,
+         "lo": 0.0,
+         "hi": 0.04706229394412632
+        },
+        "first_try_success": {
+         "k": 39,
+         "n": 39,
+         "n_sessions": 8,
+         "rate": 1.0,
+         "lo": 1.0,
+         "hi": 1.0
+        },
+        "n_deep_success": 0,
+        "n_deep_success_sessions": 0
+       },
+       "sub": {
+        "verdict": {
+         "verdict": "INSUFFICIENT_N",
+         "deciding_statistic": null,
+         "S_deep_n": 0,
+         "S_deep_sessions": 0,
+         "S_path_any_n": 0,
+         "S_path_any_sessions": 0,
+         "min_n": {
+          "S_deep": [
+           100,
+           20
+          ],
+          "S_path_any": [
+           200,
+           20
+          ]
+         },
+         "labels": [],
+         "caps_applied": []
+        },
+        "S_deep": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0
+        },
+        "S_path_any": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0
+        },
+        "S_symbol_ref_context": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0,
+         "label": "insufficient n"
+        },
+        "first_try_success": null,
+        "n_deep_success": null,
+        "n_deep_success_sessions": null
+       }
+      }
+     },
+     "BuE": {
+      "D_unit": 6,
+      "D_source": "prereg.json resolved.probe2.depth_threshold.pooled (D1 pooled value)",
+      "instrument_ok_phase_b": true,
+      "sessions": 24,
+      "threads_with_calls": {
+       "main": 20,
+       "sub": 2
+      },
+      "strata": {
+       "main": {
+        "verdict": {
+         "verdict": "INSUFFICIENT_N",
+         "deciding_statistic": null,
+         "S_deep_n": 0,
+         "S_deep_sessions": 0,
+         "S_path_any_n": 196,
+         "S_path_any_sessions": 20,
+         "min_n": {
+          "S_deep": [
+           100,
+           20
+          ],
+          "S_path_any": [
+           200,
+           20
+          ]
+         },
+         "labels": [],
+         "caps_applied": []
+        },
+        "S_deep": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0
+        },
+        "S_path_any": {
+         "k": 40,
+         "n": 196,
+         "n_sessions": 20,
+         "rate": 0.20408163265306123,
+         "lo": 0.14673557363988166,
+         "hi": 0.26857589285714284
+        },
+        "S_symbol_ref_context": {
+         "k": 41,
+         "n": 650,
+         "n_sessions": 18,
+         "rate": 0.06307692307692307,
+         "lo": 0.006115124614641756,
+         "hi": 0.15404819520064525
+        },
+        "first_try_success": {
+         "k": 74,
+         "n": 74,
+         "n_sessions": 18,
+         "rate": 1.0,
+         "lo": 1.0,
+         "hi": 1.0
+        },
+        "n_deep_success": 0,
+        "n_deep_success_sessions": 0
+       },
+       "sub": {
+        "verdict": {
+         "verdict": "INSUFFICIENT_N",
+         "deciding_statistic": null,
+         "S_deep_n": 0,
+         "S_deep_sessions": 0,
+         "S_path_any_n": 1,
+         "S_path_any_sessions": 1,
+         "min_n": {
+          "S_deep": [
+           100,
+           20
+          ],
+          "S_path_any": [
+           200,
+           20
+          ]
+         },
+         "labels": [],
+         "caps_applied": []
+        },
+        "S_deep": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0
+        },
+        "S_path_any": {
+         "k": 1,
+         "n": 1,
+         "n_sessions": 1,
+         "rate": 1.0,
+         "lo": 1.0,
+         "hi": 1.0
+        },
+        "S_symbol_ref_context": {
+         "k": 0,
+         "n": 0,
+         "n_sessions": 0,
+         "label": "insufficient n"
+        },
+        "first_try_success": null,
+        "n_deep_success": null,
+        "n_deep_success_sessions": null
+       }
+      }
+     }
+    },
+    "P3": {
+     "B": {
+      "calls": 889,
+      "results": 831,
+      "paired_calls": 831,
+      "sessions_with_paired_calls": 11,
+      "error_status_defined_pairs": 831,
+      "error_rate_per_call": {
+       "primary": {
+        "rate": 0.10589651022864019,
+        "lo": 0.06380922724596895,
+        "hi": 0.15405716956149235,
+        "n_sessions": 11,
+        "num": 88.0,
+        "den": 831.0,
+        "reportable": true
+       },
+       "primary_label": "primary",
+       "class_counts": {
+        "ok": 743,
+        "exit_header": 84,
+        "native": 4
+       },
+       "per_class": {
+        "exit_header": {
+         "rate": 0.10108303249097472,
+         "lo": 0.06260614399036912,
+         "hi": 0.14285714285714285,
+         "n_sessions": 11,
+         "num": 84.0,
+         "den": 831.0,
+         "reportable": true,
+         "sessions_with_class": 9
+        },
+        "native": {
+         "rate": 0.0048134777376654635,
+         "lo": 0.0,
+         "hi": 0.011017412810064608,
+         "n_sessions": 11,
+         "num": 4.0,
+         "den": 831.0,
+         "reportable": true,
+         "sessions_with_class": 3
+        }
+       }
+      },
+      "sessions_with_any_primary_error": {
+       "k": 9,
+       "n": 11,
+       "share": 0.8181818181818182,
+       "lo": 0.5230138624217553,
+       "hi": 0.9486333993289995
+      },
+      "retry": {
+       "successor_pairs": 820,
+       "successor_pairs_next_unpaired": 19,
+       "c_i_status_counts": {
+        "ok": 732,
+        "fail": 88
+       },
+       "R_fail": {
+        "rate": 0.18181818181818182,
+        "lo": 0.049984567901234574,
+        "hi": 0.34315257352941175,
+        "n_sessions": 9,
+        "num": 16.0,
+        "den": 88.0,
+        "reportable": true
+       },
+       "R_ok": {
+        "rate": 0.09153005464480875,
+        "lo": 0.054767766580684656,
+        "hi": 0.12839580162354136,
+        "n_sessions": 10,
+        "num": 67.0,
+        "den": 732.0,
+        "reportable": true
+       },
+       "R_fail_exact": {
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_sessions": 9,
+        "num": 0.0,
+        "den": 88.0,
+        "reportable": true,
+        "zero_count_wilson_hi_per_event": 0.04182853957248131,
+        "zero_count_wilson_hi_per_session": 0.2991527535509594
+       },
+       "R_ok_exact": {
+        "rate": 0.00273224043715847,
+        "lo": 0.0,
+        "hi": 0.00963188612265416,
+        "n_sessions": 10,
+        "num": 2.0,
+        "den": 732.0,
+        "reportable": true
+       },
+       "effect": {
+        "n_sessions": 11,
+        "n_boot": 1000,
+        "seed": 20261003,
+        "value": 0.09028812717337308,
+        "valid_draws": 1000,
+        "lo": -0.037498842817386045,
+        "hi": 0.2524851128652541,
+        "ci_reported": true
+       },
+       "effect_exact": {
+        "n_sessions": 11,
+        "n_boot": 1000,
+        "seed": 20261003,
+        "value": -0.00273224043715847,
+        "valid_draws": 1000,
+        "lo": -0.009105396996972027,
+        "hi": 0.0,
+        "ci_reported": true
+       },
+       "n_fail_with_successor": 88,
+       "sessions_fail_with_successor": 9,
+       "n_ok_with_successor": 732,
+       "rows_apart": {},
+       "retry_after_fail_share_of_successor_pairs": {
+        "rate": 0.01951219512195122,
+        "lo": 0.005870841487279843,
+        "hi": 0.0372767976191746,
+        "n_sessions": 10,
+        "num": 16.0,
+        "den": 820.0,
+        "reportable": true
+       },
+       "retry_after_fail_share_of_paired_calls": {
+        "rate": 0.019253910950661854,
+        "lo": 0.005614389403756253,
+        "hi": 0.039156422603323915,
+        "n_sessions": 11,
+        "num": 16.0,
+        "den": 831.0,
+        "reportable": true
+       },
+       "retry_any_share_of_successor_pairs": {
+        "rate": 0.10121951219512196,
+        "lo": 0.06261447346392097,
+        "hi": 0.14444870071719718,
+        "n_sessions": 10,
+        "num": 83.0,
+        "den": 820.0,
+        "reportable": true
+       },
+       "same_tool_successor_jaccard": {
+        "fail": {
+         "same_tool_successors": 74,
+         "identical_args": 0,
+         "jaccard_hist_10bins_0_to_1": [
+          37,
+          8,
+          6,
+          4,
+          3,
+          3,
+          5,
+          4,
+          1,
+          3
+         ],
+         "jaccard_ge_0.5": 16,
+         "share_same_tool_of_successors": 0.8409090909090909
+        },
+        "ok": {
+         "same_tool_successors": 545,
+         "identical_args": 2,
+         "jaccard_hist_10bins_0_to_1": [
+          226,
+          96,
+          64,
+          30,
+          62,
+          40,
+          11,
+          7,
+          3,
+          6
+         ],
+         "jaccard_ge_0.5": 67,
+         "share_same_tool_of_successors": 0.744535519125683
+        }
+       },
+       "per_tool_key_counts": {
+        "exec_command": {
+         "fail_n": 24,
+         "fail_retry": 6,
+         "ok_n": 335,
+         "ok_retry": 15
+        },
+        "shell_command": {
+         "fail_n": 60,
+         "fail_retry": 10,
+         "ok_n": 239,
+         "ok_retry": 43
+        },
+        "apply_patch": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 121,
+         "ok_retry": 3
+        },
+        "write_stdin": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 16,
+         "ok_retry": 5
+        },
+        "docs_mcp_search_gradio_docs": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 7,
+         "ok_retry": 0
+        },
+        "load_workspace_dependencies": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 5,
+         "ok_retry": 0
+        },
+        "view_image": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 5,
+         "ok_retry": 1
+        },
+        "js": {
+         "fail_n": 4,
+         "fail_retry": 0,
+         "ok_n": 0,
+         "ok_retry": 0
+        },
+        "tool_search": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 2,
+         "ok_retry": 0
+        },
+        "docs_mcp_load_gradio_docs": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 1,
+         "ok_retry": 0
+        },
+        "js_reset": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 1,
+         "ok_retry": 0
+        }
+       },
+       "post_hoc_tool_stratified_effect": {
+        "label": "POST HOC descriptive; not pre-registered; no verdict",
+        "value": 0.04917135779560059,
+        "valid_draws": 1000,
+        "tools_used": 2,
+        "failed_c_i_covered": 84,
+        "failed_c_i_total": 88,
+        "lo": -0.08222603244332495,
+        "hi": 0.2268255827743562
+       }
+      },
+      "early_late": {
+       "eligible_sessions": 9,
+       "min_calls": 20,
+       "primary": {
+        "early_rate": {
+         "rate": 0.10123456790123457,
+         "lo": 0.05641025641025641,
+         "hi": 0.14860292232760827,
+         "n_sessions": 9,
+         "num": 41.0,
+         "den": 405.0,
+         "reportable": true
+        },
+        "late_rate": {
+         "rate": 0.11219512195121951,
+         "lo": 0.05588200247255612,
+         "hi": 0.17832270069112174,
+         "n_sessions": 9,
+         "num": 46.0,
+         "den": 410.0,
+         "reportable": true
+        },
+        "late_minus_early": {
+         "n_sessions": 9,
+         "n_boot": 1000,
+         "seed": 20261003,
+         "value": 0.010960554049984944,
+         "valid_draws": 1000,
+         "lo": -0.051854957862319036,
+         "hi": 0.06673669073116782,
+         "ci_reported": true
+        },
+        "label": "stable",
+        "sessions_errors_early_none_late": {
+         "k": 1,
+         "n": 9,
+         "share": 0.1111111111111111,
+         "lo": 0.019890371327130535,
+         "hi": 0.4350062147680601
+        },
+        "sessions_errors_late_none_early": {
+         "k": 0,
+         "n": 9,
+         "share": 0.0,
+         "lo": 0.0,
+         "hi": 0.2991527535509594
+        },
+        "sessions_errors_both_halves": {
+         "k": 7,
+         "n": 9,
+         "share": 0.7777777777777778,
+         "lo": 0.4525833436728054,
+         "hi": 0.9367762376877727
+        },
+        "sessions_no_errors": {
+         "k": 1,
+         "n": 9,
+         "share": 0.1111111111111111,
+         "lo": 0.019890371327130535,
+         "hi": 0.4350062147680601
+        },
+        "per_session_late_minus_early": {
+         "n": 9,
+         "min": -0.1735632183908046,
+         "p10": -0.07737931034482758,
+         "p25": -0.05263157894736842,
+         "p50": 0.0,
+         "p75": 0.06153846153846154,
+         "p90": 0.10503579209461565,
+         "max": 0.24338624338624337,
+         "mean": 0.010380480728005629
+        },
+        "by_position_decile": [
+         {
+          "decile": 0,
+          "rate": 0.05952380952380952,
+          "lo": 0.0,
+          "hi": 0.15384615384615385,
+          "num": 5.0,
+          "den": 84.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 1,
+          "rate": 0.09876543209876543,
+          "lo": 0.043432971014492755,
+          "hi": 0.15791562238930656,
+          "num": 8.0,
+          "den": 81.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 2,
+          "rate": 0.12195121951219512,
+          "lo": 0.021972049689440994,
+          "hi": 0.25008333333333327,
+          "num": 10.0,
+          "den": 82.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 3,
+          "rate": 0.15853658536585366,
+          "lo": 0.07039464509831266,
+          "hi": 0.29172794117647055,
+          "num": 13.0,
+          "den": 82.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 4,
+          "rate": 0.06172839506172839,
+          "lo": 0.016803221288515406,
+          "hi": 0.13850877192982453,
+          "num": 5.0,
+          "den": 81.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 5,
+          "rate": 0.14814814814814814,
+          "lo": 0.05331578947368421,
+          "hi": 0.25,
+          "num": 12.0,
+          "den": 81.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 6,
+          "rate": 0.07142857142857142,
+          "lo": 0.016666666666666666,
+          "hi": 0.16417910447761194,
+          "num": 6.0,
+          "den": 84.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 7,
+          "rate": 0.125,
+          "lo": 0.047600446428571426,
+          "hi": 0.2,
+          "num": 10.0,
+          "den": 80.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 8,
+          "rate": 0.1566265060240964,
+          "lo": 0.07056771545827634,
+          "hi": 0.2727272727272727,
+          "num": 13.0,
+          "den": 83.0,
+          "n_sessions": 9,
+          "reportable": true
+         },
+         {
+          "decile": 9,
+          "rate": 0.06493506493506493,
+          "lo": 0.0,
+          "hi": 0.13333333333333333,
+          "num": 5.0,
+          "den": 77.0,
+          "n_sessions": 9,
+          "reportable": true
+         }
+        ]
+       }
+      },
+      "zero_error_tail_analog": {
+       "status": "post hoc, not a verdict (analogue L75/L90: prereg.json resolved.probe3.long_session.swechat/codex, swechat A)",
+       "L75_analog": 120,
+       "L90_analog": 184,
+       "L75": {
+        "L": 120,
+        "n_long": 3,
+        "n_zero": 0,
+        "Z": {
+         "k": 0,
+         "n": 3,
+         "share": 0.0,
+         "lo": 0.0,
+         "hi": 0.5615060804490177
+        },
+        "E0": 1.7874810458922236e-07,
+        "log10_E0": -6.747758554678244,
+        "Z_over_E0": 0.0,
+        "p_used_for_E0": 0.10589651022864019
+       },
+       "verdict_analog": {
+        "verdict": "INSUFFICIENT_N",
+        "deciding_number": {
+         "Z": {
+          "k": 0,
+          "n": 3,
+          "share": 0.0,
+          "lo": 0.0,
+          "hi": 0.5615060804490177
+         },
+         "n_long": 3
+        },
+        "rule_applied": "n_long 3 < 20",
+        "capped_from_ALIVE": false
+       }
+      },
+      "reaction_verdict": {
+       "verdict": "INSUFFICIENT_N",
+       "deciding_number": {
+        "effect": {
+         "n_sessions": 11,
+         "n_boot": 1000,
+         "seed": 20261003,
+         "value": 0.09028812717337308,
+         "valid_draws": 1000,
+         "lo": -0.037498842817386045,
+         "hi": 0.2524851128652541,
+         "ci_reported": true
+        },
+        "n_fail_with_successor": 88,
+        "sessions_fail_with_successor": 9,
+        "n_ok_with_successor": 732
+       },
+       "rule_applied": "failed c_i with successor 88 from 9 sessions, non-failed 732 (need >= 30 from >= 10, and >= 30)",
+       "capped_from_ALIVE": false
+      },
+      "labels": [
+       "small n"
+      ],
+      "calls_per_session_quantiles": {
+       "n": 11,
+       "min": 1.0,
+       "p1": 2.4000000000000004,
+       "p5": 8.0,
+       "p25": 38.0,
+       "p50": 69.0,
+       "p75": 127.0,
+       "p95": 169.5,
+       "p99": 169.9,
+       "max": 170.0,
+       "mean": 80.81818181818181
+      }
+     },
+     "E": {
+      "calls": 732,
+      "results": 693,
+      "paired_calls": 693,
+      "sessions_with_paired_calls": 11,
+      "error_status_defined_pairs": 693,
+      "error_rate_per_call": {
+       "primary": {
+        "rate": 0.08225108225108226,
+        "lo": 0.045842931250819334,
+        "hi": 0.1288683117973597,
+        "n_sessions": 11,
+        "num": 57.0,
+        "den": 693.0,
+        "reportable": true
+       },
+       "primary_label": "primary",
+       "class_counts": {
+        "ok": 636,
+        "exit_header": 56,
+        "native": 1
+       },
+       "per_class": {
+        "exit_header": {
+         "rate": 0.08080808080808081,
+         "lo": 0.0453860656281483,
+         "hi": 0.12555916305916304,
+         "n_sessions": 11,
+         "num": 56.0,
+         "den": 693.0,
+         "reportable": true,
+         "sessions_with_class": 9
+        },
+        "native": {
+         "rate": 0.001443001443001443,
+         "lo": 0.0,
+         "hi": 0.00476304945054945,
+         "n_sessions": 11,
+         "num": 1.0,
+         "den": 693.0,
+         "reportable": true,
+         "sessions_with_class": 1
+        }
+       }
+      },
+      "sessions_with_any_primary_error": {
+       "k": 9,
+       "n": 11,
+       "share": 0.8181818181818182,
+       "lo": 0.5230138624217553,
+       "hi": 0.9486333993289995
+      },
+      "retry": {
+       "successor_pairs": 682,
+       "successor_pairs_next_unpaired": 14,
+       "c_i_status_counts": {
+        "ok": 625,
+        "fail": 57
+       },
+       "R_fail": {
+        "rate": 0.21052631578947367,
+        "lo": 0.09800759013282732,
+        "hi": 0.2916666666666667,
+        "n_sessions": 9,
+        "num": 12.0,
+        "den": 57.0,
+        "reportable": true
+       },
+       "R_ok": {
+        "rate": 0.1152,
+        "lo": 0.06745291400142146,
+        "hi": 0.158831027175268,
+        "n_sessions": 10,
+        "num": 72.0,
+        "den": 625.0,
+        "reportable": true
+       },
+       "R_fail_exact": {
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_sessions": 9,
+        "num": 0.0,
+        "den": 57.0,
+        "reportable": true,
+        "zero_count_wilson_hi_per_event": 0.06314100878346394,
+        "zero_count_wilson_hi_per_session": 0.2991527535509594
+       },
+       "R_ok_exact": {
+        "rate": 0.0048,
+        "lo": 0.0,
+        "hi": 0.013333889816360602,
+        "n_sessions": 10,
+        "num": 3.0,
+        "den": 625.0,
+        "reportable": true
+       },
+       "effect": {
+        "n_sessions": 11,
+        "n_boot": 1000,
+        "seed": 20261003,
+        "value": 0.09532631578947368,
+        "valid_draws": 1000,
+        "lo": -0.03329939519995284,
+        "hi": 0.181685192801507,
+        "ci_reported": true
+       },
+       "effect_exact": {
+        "n_sessions": 11,
+        "n_boot": 1000,
+        "seed": 20261003,
+        "value": -0.0048,
+        "valid_draws": 1000,
+        "lo": -0.013406405430534117,
+        "hi": 0.0,
+        "ci_reported": true
+       },
+       "n_fail_with_successor": 57,
+       "sessions_fail_with_successor": 9,
+       "n_ok_with_successor": 625,
+       "rows_apart": {},
+       "retry_after_fail_share_of_successor_pairs": {
+        "rate": 0.017595307917888565,
+        "lo": 0.004991915087690203,
+        "hi": 0.032646890371268784,
+        "n_sessions": 10,
+        "num": 12.0,
+        "den": 682.0,
+        "reportable": true
+       },
+       "retry_after_fail_share_of_paired_calls": {
+        "rate": 0.017316017316017316,
+        "lo": 0.0050965376043124455,
+        "hi": 0.032148900169204735,
+        "n_sessions": 11,
+        "num": 12.0,
+        "den": 693.0,
+        "reportable": true
+       },
+       "retry_any_share_of_successor_pairs": {
+        "rate": 0.12316715542521994,
+        "lo": 0.0847086693657806,
+        "hi": 0.162180204236279,
+        "n_sessions": 10,
+        "num": 84.0,
+        "den": 682.0,
+        "reportable": true
+       },
+       "same_tool_successor_jaccard": {
+        "fail": {
+         "same_tool_successors": 44,
+         "identical_args": 0,
+         "jaccard_hist_10bins_0_to_1": [
+          21,
+          5,
+          3,
+          2,
+          1,
+          5,
+          0,
+          3,
+          1,
+          3
+         ],
+         "jaccard_ge_0.5": 12,
+         "share_same_tool_of_successors": 0.7719298245614035
+        },
+        "ok": {
+         "same_tool_successors": 444,
+         "identical_args": 3,
+         "jaccard_hist_10bins_0_to_1": [
+          200,
+          66,
+          41,
+          14,
+          51,
+          23,
+          32,
+          6,
+          5,
+          6
+         ],
+         "jaccard_ge_0.5": 72,
+         "share_same_tool_of_successors": 0.7104
+        }
+       },
+       "per_tool_key_counts": {
+        "exec_command": {
+         "fail_n": 34,
+         "fail_retry": 8,
+         "ok_n": 362,
+         "ok_retry": 35
+        },
+        "shell_command": {
+         "fail_n": 16,
+         "fail_retry": 4,
+         "ok_n": 128,
+         "ok_retry": 29
+        },
+        "apply_patch": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 91,
+         "ok_retry": 2
+        },
+        "write_stdin": {
+         "fail_n": 6,
+         "fail_retry": 0,
+         "ok_n": 24,
+         "ok_retry": 5
+        },
+        "update_plan": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 10,
+         "ok_retry": 0
+        },
+        "docs_mcp_search_gradio_docs": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 2,
+         "ok_retry": 0
+        },
+        "load_workspace_dependencies": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 2,
+         "ok_retry": 0
+        },
+        "update_goal": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 2,
+         "ok_retry": 0
+        },
+        "view_image": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 2,
+         "ok_retry": 1
+        },
+        "js": {
+         "fail_n": 1,
+         "fail_retry": 0,
+         "ok_n": 0,
+         "ok_retry": 0
+        },
+        "request_user_input": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 1,
+         "ok_retry": 0
+        },
+        "tool_search": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 1,
+         "ok_retry": 0
+        }
+       },
+       "post_hoc_tool_stratified_effect": {
+        "label": "POST HOC descriptive; not pre-registered; no verdict",
+        "value": 0.06853048539857931,
+        "valid_draws": 1000,
+        "tools_used": 3,
+        "failed_c_i_covered": 56,
+        "failed_c_i_total": 57,
+        "lo": -0.059338346844236875,
+        "hi": 0.15596883829537267
+       }
+      },
+      "early_late": {
+       "eligible_sessions": 7,
+       "min_calls": 20,
+       "primary": {
+        "early_rate": {
+         "rate": 0.09907120743034056,
+         "lo": 0.048371449205584977,
+         "hi": 0.17262024212915741,
+         "n_sessions": 7,
+         "num": 32.0,
+         "den": 323.0,
+         "reportable": true
+        },
+        "late_rate": {
+         "rate": 0.06748466257668712,
+         "lo": 0.041378661776461184,
+         "hi": 0.0980427807486631,
+         "n_sessions": 7,
+         "num": 22.0,
+         "den": 326.0,
+         "reportable": true
+        },
+        "late_minus_early": {
+         "n_sessions": 7,
+         "n_boot": 1000,
+         "seed": 20261003,
+         "value": -0.03158654485365345,
+         "valid_draws": 1000,
+         "lo": -0.08456898962281736,
+         "hi": 0.005121449208296261,
+         "ci_reported": true
+        },
+        "label": "stable",
+        "sessions_errors_early_none_late": {
+         "k": 0,
+         "n": 7,
+         "share": 0.0,
+         "lo": 0.0,
+         "hi": 0.35433884297520657
+        },
+        "sessions_errors_late_none_early": {
+         "k": 1,
+         "n": 7,
+         "share": 0.14285714285714285,
+         "lo": 0.02567895594897479,
+         "hi": 0.51313450331903
+        },
+        "sessions_errors_both_halves": {
+         "k": 6,
+         "n": 7,
+         "share": 0.8571428571428571,
+         "lo": 0.48686549668097007,
+         "hi": 0.9743210440510253
+        },
+        "sessions_no_errors": {
+         "k": 0,
+         "n": 7,
+         "share": 0.0,
+         "lo": 0.0,
+         "hi": 0.35433884297520657
+        },
+        "per_session_late_minus_early": {
+         "n": 7,
+         "min": -0.23809523809523808,
+         "p10": -0.15670150987224157,
+         "p25": -0.07344173441734418,
+         "p50": -0.020408163265306124,
+         "p75": -0.0009426847662141746,
+         "p90": 0.02666666666666669,
+         "max": 0.06666666666666667,
+         "mean": -0.048657939008713465
+        },
+        "by_position_decile": [
+         {
+          "decile": 0,
+          "rate": 0.014705882352941176,
+          "lo": 0.0,
+          "hi": 0.04918032786885246,
+          "num": 1.0,
+          "den": 68.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 1,
+          "rate": 0.07692307692307693,
+          "lo": 0.0,
+          "hi": 0.22227011494252868,
+          "num": 5.0,
+          "den": 65.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 2,
+          "rate": 0.09375,
+          "lo": 0.04410166240409207,
+          "hi": 0.17779761904761904,
+          "num": 6.0,
+          "den": 64.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 3,
+          "rate": 0.13636363636363635,
+          "lo": 0.0449438202247191,
+          "hi": 0.28578296703296696,
+          "num": 9.0,
+          "den": 66.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 4,
+          "rate": 0.1746031746031746,
+          "lo": 0.0483678955453149,
+          "hi": 0.3464285714285712,
+          "num": 11.0,
+          "den": 63.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 5,
+          "rate": 0.045454545454545456,
+          "lo": 0.0,
+          "hi": 0.14121848739495793,
+          "num": 3.0,
+          "den": 66.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 6,
+          "rate": 0.045454545454545456,
+          "lo": 0.0,
+          "hi": 0.11323450134770888,
+          "num": 3.0,
+          "den": 66.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 7,
+          "rate": 0.046875,
+          "lo": 0.0,
+          "hi": 0.09803921568627451,
+          "num": 3.0,
+          "den": 64.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 8,
+          "rate": 0.13846153846153847,
+          "lo": 0.04878048780487805,
+          "hi": 0.2592777777777778,
+          "num": 9.0,
+          "den": 65.0,
+          "n_sessions": 7,
+          "reportable": true
+         },
+         {
+          "decile": 9,
+          "rate": 0.06451612903225806,
+          "lo": 0.01369400222139948,
+          "hi": 0.1379827586206896,
+          "num": 4.0,
+          "den": 62.0,
+          "n_sessions": 7,
+          "reportable": true
+         }
+        ]
+       }
+      },
+      "zero_error_tail_analog": {
+       "status": "post hoc, not a verdict (analogue L75/L90: prereg.json resolved.probe3.long_session.swechat/codex, swechat A)",
+       "L75_analog": 120,
+       "L90_analog": 184,
+       "L75": {
+        "L": 120,
+        "n_long": 1,
+        "n_zero": 0,
+        "Z": {
+         "k": 0,
+         "n": 1,
+         "share": 0.0,
+         "lo": 0.0,
+         "hi": 0.7934567085261071
+        },
+        "E0": 2.750445617826209e-07,
+        "log10_E0": -6.560596937557145,
+        "Z_over_E0": 0.0,
+        "p_used_for_E0": 0.08225108225108226
+       },
+       "verdict_analog": {
+        "verdict": "INSUFFICIENT_N",
+        "deciding_number": {
+         "Z": {
+          "k": 0,
+          "n": 1,
+          "share": 0.0,
+          "lo": 0.0,
+          "hi": 0.7934567085261071
+         },
+         "n_long": 1
+        },
+        "rule_applied": "n_long 1 < 20",
+        "capped_from_ALIVE": false
+       }
+      },
+      "reaction_verdict": {
+       "verdict": "INSUFFICIENT_N",
+       "deciding_number": {
+        "effect": {
+         "n_sessions": 11,
+         "n_boot": 1000,
+         "seed": 20261003,
+         "value": 0.09532631578947368,
+         "valid_draws": 1000,
+         "lo": -0.03329939519995284,
+         "hi": 0.181685192801507,
+         "ci_reported": true
+        },
+        "n_fail_with_successor": 57,
+        "sessions_fail_with_successor": 9,
+        "n_ok_with_successor": 625
+       },
+       "rule_applied": "failed c_i with successor 57 from 9 sessions, non-failed 625 (need >= 30 from >= 10, and >= 30)",
+       "capped_from_ALIVE": false
+      },
+      "labels": [
+       "small n"
+      ],
+      "calls_per_session_quantiles": {
+       "n": 11,
+       "min": 1.0,
+       "p1": 2.1,
+       "p5": 6.5,
+       "p25": 15.5,
+       "p50": 59.0,
+       "p75": 102.5,
+       "p95": 145.5,
+       "p99": 173.10000000000002,
+       "max": 180.0,
+       "mean": 66.54545454545455
+      }
+     },
+     "BuE": {
+      "calls": 1621,
+      "results": 1524,
+      "paired_calls": 1524,
+      "sessions_with_paired_calls": 22,
+      "error_status_defined_pairs": 1524,
+      "error_rate_per_call": {
+       "primary": {
+        "rate": 0.09514435695538058,
+        "lo": 0.0650328630278509,
+        "hi": 0.12771435080056118,
+        "n_sessions": 22,
+        "num": 145.0,
+        "den": 1524.0,
+        "reportable": true
+       },
+       "primary_label": "primary",
+       "class_counts": {
+        "ok": 1379,
+        "exit_header": 140,
+        "native": 5
+       },
+       "per_class": {
+        "exit_header": {
+         "rate": 0.09186351706036745,
+         "lo": 0.06369776685269861,
+         "hi": 0.12155755836874152,
+         "n_sessions": 22,
+         "num": 140.0,
+         "den": 1524.0,
+         "reportable": true,
+         "sessions_with_class": 18
+        },
+        "native": {
+         "rate": 0.0032808398950131233,
+         "lo": 0.0006226070659345074,
+         "hi": 0.007097558998836036,
+         "n_sessions": 22,
+         "num": 5.0,
+         "den": 1524.0,
+         "reportable": true,
+         "sessions_with_class": 4
+        }
+       }
+      },
+      "sessions_with_any_primary_error": {
+       "k": 18,
+       "n": 22,
+       "share": 0.8181818181818182,
+       "lo": 0.6148297802336213,
+       "hi": 0.9269323397589488
+      },
+      "retry": {
+       "successor_pairs": 1502,
+       "successor_pairs_next_unpaired": 33,
+       "c_i_status_counts": {
+        "ok": 1357,
+        "fail": 145
+       },
+       "R_fail": {
+        "rate": 0.19310344827586207,
+        "lo": 0.09802725968436155,
+        "hi": 0.2887406470070423,
+        "n_sessions": 18,
+        "num": 28.0,
+        "den": 145.0,
+        "reportable": true
+       },
+       "R_ok": {
+        "rate": 0.10243183492999262,
+        "lo": 0.07252791201864303,
+        "hi": 0.131142716280628,
+        "n_sessions": 20,
+        "num": 139.0,
+        "den": 1357.0,
+        "reportable": true
+       },
+       "R_fail_exact": {
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_sessions": 18,
+        "num": 0.0,
+        "den": 145.0,
+        "reportable": true,
+        "zero_count_wilson_hi_per_event": 0.02580998860533614,
+        "zero_count_wilson_hi_per_session": 0.1758845505823749
+       },
+       "R_ok_exact": {
+        "rate": 0.0036845983787767134,
+        "lo": 0.0,
+        "hi": 0.008493150154199016,
+        "n_sessions": 20,
+        "num": 5.0,
+        "den": 1357.0,
+        "reportable": true
+       },
+       "effect": {
+        "n_sessions": 22,
+        "n_boot": 1000,
+        "seed": 20261003,
+        "value": 0.09067161334586944,
+        "valid_draws": 1000,
+        "lo": -0.013260703063226183,
+        "hi": 0.18945299585314562,
+        "ci_reported": true
+       },
+       "effect_exact": {
+        "n_sessions": 22,
+        "n_boot": 1000,
+        "seed": 20261003,
+        "value": -0.0036845983787767134,
+        "valid_draws": 1000,
+        "lo": -0.009010541153398296,
+        "hi": 0.0,
+        "ci_reported": true
+       },
+       "n_fail_with_successor": 145,
+       "sessions_fail_with_successor": 18,
+       "n_ok_with_successor": 1357,
+       "rows_apart": {},
+       "retry_after_fail_share_of_successor_pairs": {
+        "rate": 0.018641810918774968,
+        "lo": 0.00905656941447014,
+        "hi": 0.03008542563244882,
+        "n_sessions": 20,
+        "num": 28.0,
+        "den": 1502.0,
+        "reportable": true
+       },
+       "retry_after_fail_share_of_paired_calls": {
+        "rate": 0.01837270341207349,
+        "lo": 0.008589963873469029,
+        "hi": 0.03100947563996696,
+        "n_sessions": 22,
+        "num": 28.0,
+        "den": 1524.0,
+        "reportable": true
+       },
+       "retry_any_share_of_successor_pairs": {
+        "rate": 0.11118508655126498,
+        "lo": 0.08238247425309562,
+        "hi": 0.13982461161079313,
+        "n_sessions": 20,
+        "num": 167.0,
+        "den": 1502.0,
+        "reportable": true
+       },
+       "same_tool_successor_jaccard": {
+        "fail": {
+         "same_tool_successors": 118,
+         "identical_args": 0,
+         "jaccard_hist_10bins_0_to_1": [
+          58,
+          13,
+          9,
+          6,
+          4,
+          8,
+          5,
+          7,
+          2,
+          6
+         ],
+         "jaccard_ge_0.5": 28,
+         "share_same_tool_of_successors": 0.8137931034482758
+        },
+        "ok": {
+         "same_tool_successors": 989,
+         "identical_args": 5,
+         "jaccard_hist_10bins_0_to_1": [
+          426,
+          162,
+          105,
+          44,
+          113,
+          63,
+          43,
+          13,
+          8,
+          12
+         ],
+         "jaccard_ge_0.5": 139,
+         "share_same_tool_of_successors": 0.7288135593220338
+        }
+       },
+       "per_tool_key_counts": {
+        "exec_command": {
+         "fail_n": 58,
+         "fail_retry": 14,
+         "ok_n": 697,
+         "ok_retry": 50
+        },
+        "shell_command": {
+         "fail_n": 76,
+         "fail_retry": 14,
+         "ok_n": 367,
+         "ok_retry": 72
+        },
+        "apply_patch": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 212,
+         "ok_retry": 5
+        },
+        "write_stdin": {
+         "fail_n": 6,
+         "fail_retry": 0,
+         "ok_n": 40,
+         "ok_retry": 10
+        },
+        "update_plan": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 10,
+         "ok_retry": 0
+        },
+        "docs_mcp_search_gradio_docs": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 9,
+         "ok_retry": 0
+        },
+        "load_workspace_dependencies": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 7,
+         "ok_retry": 0
+        },
+        "view_image": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 7,
+         "ok_retry": 2
+        },
+        "js": {
+         "fail_n": 5,
+         "fail_retry": 0,
+         "ok_n": 0,
+         "ok_retry": 0
+        },
+        "tool_search": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 3,
+         "ok_retry": 0
+        },
+        "update_goal": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 2,
+         "ok_retry": 0
+        },
+        "docs_mcp_load_gradio_docs": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 1,
+         "ok_retry": 0
+        },
+        "js_reset": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 1,
+         "ok_retry": 0
+        },
+        "request_user_input": {
+         "fail_n": 0,
+         "fail_retry": 0,
+         "ok_n": 1,
+         "ok_retry": 0
+        }
+       },
+       "post_hoc_tool_stratified_effect": {
+        "label": "POST HOC descriptive; not pre-registered; no verdict",
+        "value": 0.053065925645861434,
+        "valid_draws": 1000,
+        "tools_used": 3,
+        "failed_c_i_covered": 140,
+        "failed_c_i_total": 145,
+        "lo": -0.048528678003751345,
+        "hi": 0.15937281184582688
+       }
+      },
+      "early_late": {
+       "eligible_sessions": 16,
+       "min_calls": 20,
+       "primary": {
+        "early_rate": {
+         "rate": 0.10027472527472528,
+         "lo": 0.0665165562733133,
+         "hi": 0.14158323208064777,
+         "n_sessions": 16,
+         "num": 73.0,
+         "den": 728.0,
+         "reportable": true
+        },
+        "late_rate": {
+         "rate": 0.09239130434782608,
+         "lo": 0.05824487828825269,
+         "hi": 0.13595379154471957,
+         "n_sessions": 16,
+         "num": 68.0,
+         "den": 736.0,
+         "reportable": true
+        },
+        "late_minus_early": {
+         "n_sessions": 16,
+         "n_boot": 1000,
+         "seed": 20261003,
+         "value": -0.007883420926899198,
+         "valid_draws": 1000,
+         "lo": -0.04621542494770396,
+         "hi": 0.02957744091514683,
+         "ci_reported": true
+        },
+        "label": "stable",
+        "sessions_errors_early_none_late": {
+         "k": 1,
+         "n": 16,
+         "share": 0.0625,
+         "lo": 0.01111905730833121,
+         "hi": 0.2832926836802987
+        },
+        "sessions_errors_late_none_early": {
+         "k": 1,
+         "n": 16,
+         "share": 0.0625,
+         "lo": 0.01111905730833121,
+         "hi": 0.2832926836802987
+        },
+        "sessions_errors_both_halves": {
+         "k": 13,
+         "n": 16,
+         "share": 0.8125,
+         "lo": 0.5699064013154177,
+         "hi": 0.9340852122641324
+        },
+        "sessions_no_errors": {
+         "k": 1,
+         "n": 16,
+         "share": 0.0625,
+         "lo": 0.01111905730833121,
+         "hi": 0.2832926836802987
+        },
+        "per_session_late_minus_early": {
+         "n": 16,
+         "min": -0.23809523809523808,
+         "p10": -0.13800112139052426,
+         "p25": -0.05280701754385965,
+         "p50": -0.011146766398867237,
+         "p75": 0.04354667072058377,
+         "p90": 0.06855742296918768,
+         "max": 0.24338624338624337,
+         "mean": -0.01544882790680898
+        },
+        "by_position_decile": [
+         {
+          "decile": 0,
+          "rate": 0.039473684210526314,
+          "lo": 0.0,
+          "hi": 0.09304142441860463,
+          "num": 6.0,
+          "den": 152.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 1,
+          "rate": 0.08904109589041095,
+          "lo": 0.03333333333333333,
+          "hi": 0.15278186274509806,
+          "num": 13.0,
+          "den": 146.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 2,
+          "rate": 0.1095890410958904,
+          "lo": 0.04522450964499919,
+          "hi": 0.19404636111478007,
+          "num": 16.0,
+          "den": 146.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 3,
+          "rate": 0.14864864864864866,
+          "lo": 0.08693778110944528,
+          "hi": 0.2336505125113054,
+          "num": 22.0,
+          "den": 148.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 4,
+          "rate": 0.1111111111111111,
+          "lo": 0.04025512244988666,
+          "hi": 0.19861702127659572,
+          "num": 16.0,
+          "den": 144.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 5,
+          "rate": 0.10204081632653061,
+          "lo": 0.034763383614315295,
+          "hi": 0.18033356102003642,
+          "num": 15.0,
+          "den": 147.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 6,
+          "rate": 0.06,
+          "lo": 0.019468190037810293,
+          "hi": 0.11378049270586343,
+          "num": 9.0,
+          "den": 150.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 7,
+          "rate": 0.09027777777777778,
+          "lo": 0.0410958904109589,
+          "hi": 0.14019463968486906,
+          "num": 13.0,
+          "den": 144.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 8,
+          "rate": 0.14864864864864866,
+          "lo": 0.07953421931176169,
+          "hi": 0.22794117647058823,
+          "num": 22.0,
+          "den": 148.0,
+          "n_sessions": 16,
+          "reportable": true
+         },
+         {
+          "decile": 9,
+          "rate": 0.06474820143884892,
+          "lo": 0.025476357551549176,
+          "hi": 0.1130583003952569,
+          "num": 9.0,
+          "den": 139.0,
+          "n_sessions": 16,
+          "reportable": true
+         }
+        ]
+       }
+      },
+      "zero_error_tail_analog": {
+       "status": "post hoc, not a verdict (analogue L75/L90: prereg.json resolved.probe3.long_session.swechat/codex, swechat A)",
+       "L75_analog": 120,
+       "L90_analog": 184,
+       "L75": {
+        "L": 120,
+        "n_long": 4,
+        "n_zero": 0,
+        "Z": {
+         "k": 0,
+         "n": 4,
+         "share": 0.0,
+         "lo": 0.0,
+         "hi": 0.48990002040399916
+        },
+        "E0": 6.604485174795041e-07,
+        "log10_E0": -6.180161030352222,
+        "Z_over_E0": 0.0,
+        "p_used_for_E0": 0.09514435695538058
+       },
+       "verdict_analog": {
+        "verdict": "INSUFFICIENT_N",
+        "deciding_number": {
+         "Z": {
+          "k": 0,
+          "n": 4,
+          "share": 0.0,
+          "lo": 0.0,
+          "hi": 0.48990002040399916
+         },
+         "n_long": 4
+        },
+        "rule_applied": "n_long 4 < 20",
+        "capped_from_ALIVE": false
+       }
+      },
+      "reaction_verdict": {
+       "verdict": "DEAD",
+       "deciding_number": {
+        "effect": {
+         "n_sessions": 22,
+         "n_boot": 1000,
+         "seed": 20261003,
+         "value": 0.09067161334586944,
+         "valid_draws": 1000,
+         "lo": -0.013260703063226183,
+         "hi": 0.18945299585314562,
+         "ci_reported": true
+        },
+        "n_fail_with_successor": 145,
+        "sessions_fail_with_successor": 18,
+        "n_ok_with_successor": 1357
+       },
+       "rule_applied": "effect 0.0907, CI lo -0.0133 <= 0",
+       "capped_from_ALIVE": false
+      },
+      "labels": [
+       "small n"
+      ],
+      "calls_per_session_quantiles": {
+       "n": 22,
+       "min": 1.0,
+       "p1": 1.0,
+       "p5": 1.5500000000000005,
+       "p25": 19.75,
+       "p50": 64.0,
+       "p75": 108.0,
+       "p95": 169.95,
+       "p99": 177.89999999999998,
+       "max": 180.0,
+       "mean": 73.68181818181819
+      }
+     }
+    },
+    "P4": {
+     "B": {
+      "hex": {
+       "verdict": "INSUFFICIENT_N",
+       "reason": "T_orig symbols 0 < N_min 1131",
+       "deciding": {
+        "N_min": 1131,
+        "T_orig_symbols": 0,
+        "T_orig_tokens": 0,
+        "T_orig_sessions": 0,
+        "control": "M_all",
+        "control_symbols": 2314,
+        "control_sessions": 9,
+        "control_w_adj": 0.08459393955679079,
+        "control_w_adj_hi": 0.2509966463675574,
+        "instrument_ceiling": 0.15,
+        "alive_w": 0.15,
+        "T_orig_w_adj": null,
+        "T_orig_w_adj_lo": null,
+        "T_orig_w_adj_hi": null,
+        "T_orig_chi2": null,
+        "T_orig_p": null
+       }
+      },
+      "round": {
+       "verdict": "INSUFFICIENT_N",
+       "reason": "T_orig has 27 distinct values from 7 sessions (< 100 / 10)",
+       "deciding": {
+        "T_orig_distinct": 27,
+        "T_orig_sessions": 7,
+        "M_all_distinct": 160,
+        "M_all_sessions": 9,
+        "T_orig_last0": null,
+        "T_orig_last0_lo": null,
+        "T_orig_last0_hi": null,
+        "T_orig_last0_k_n": [
+         22,
+         27
+        ],
+        "M_all_last0": 0.18125,
+        "M_all_last0_lo": 0.14285714285714285,
+        "M_all_last0_hi": 0.2558471760797342,
+        "M_all_last0_k_n": [
+         29,
+         160
+        ],
+        "margin": 0.05,
+        "min_values": 100,
+        "min_sessions": 10
+       }
+      },
+      "redaction_reruns_context": {
+       "noredact": {
+        "hex": "INSUFFICIENT_N",
+        "round": "INSUFFICIENT_N"
+       },
+       "noredact_strict": {
+        "hex": "INSUFFICIENT_N",
+        "round": "INSUFFICIENT_N"
+       }
+      },
+      "sessions": 12,
+      "git_calls": 90,
+      "N_min": 1131
+     },
+     "E": {
+      "hex": {
+       "verdict": "INSUFFICIENT_N",
+       "reason": "T_orig symbols 0 < N_min 1131",
+       "deciding": {
+        "N_min": 1131,
+        "T_orig_symbols": 0,
+        "T_orig_tokens": 0,
+        "T_orig_sessions": 0,
+        "control": "M_all",
+        "control_symbols": 2504,
+        "control_sessions": 8,
+        "control_w_adj": 0.0,
+        "control_w_adj_hi": 0.12045126080126665,
+        "instrument_ceiling": 0.15,
+        "alive_w": 0.15,
+        "T_orig_w_adj": null,
+        "T_orig_w_adj_lo": null,
+        "T_orig_w_adj_hi": null,
+        "T_orig_chi2": null,
+        "T_orig_p": null
+       }
+      },
+      "round": {
+       "verdict": "INSUFFICIENT_N",
+       "reason": "T_orig has 23 distinct values from 5 sessions (< 100 / 10)",
+       "deciding": {
+        "T_orig_distinct": 23,
+        "T_orig_sessions": 5,
+        "M_all_distinct": 198,
+        "M_all_sessions": 10,
+        "T_orig_last0": null,
+        "T_orig_last0_lo": null,
+        "T_orig_last0_hi": null,
+        "T_orig_last0_k_n": [
+         16,
+         23
+        ],
+        "M_all_last0": 0.10606060606060606,
+        "M_all_last0_lo": 0.04626432988258181,
+        "M_all_last0_hi": 0.27693069306930695,
+        "M_all_last0_k_n": [
+         21,
+         198
+        ],
+        "margin": 0.05,
+        "min_values": 100,
+        "min_sessions": 10
+       }
+      },
+      "redaction_reruns_context": {
+       "noredact": {
+        "hex": "INSUFFICIENT_N",
+        "round": "INSUFFICIENT_N"
+       },
+       "noredact_strict": {
+        "hex": "INSUFFICIENT_N",
+        "round": "INSUFFICIENT_N"
+       }
+      },
+      "sessions": 12,
+      "git_calls": 78,
+      "N_min": 1131
+     },
+     "BuE": {
+      "hex": {
+       "verdict": "INSUFFICIENT_N",
+       "reason": "T_orig symbols 0 < N_min 1131",
+       "deciding": {
+        "N_min": 1131,
+        "T_orig_symbols": 0,
+        "T_orig_tokens": 0,
+        "T_orig_sessions": 0,
+        "control": "M_all",
+        "control_symbols": 4387,
+        "control_sessions": 17,
+        "control_w_adj": 0.046429543595880085,
+        "control_w_adj_hi": 0.12703074910282983,
+        "instrument_ceiling": 0.15,
+        "alive_w": 0.15,
+        "T_orig_w_adj": null,
+        "T_orig_w_adj_lo": null,
+        "T_orig_w_adj_hi": null,
+        "T_orig_chi2": null,
+        "T_orig_p": null
+       }
+      },
+      "round": {
+       "verdict": "INSUFFICIENT_N",
+       "reason": "T_orig has 33 distinct values from 10 sessions (< 100 / 10)",
+       "deciding": {
+        "T_orig_distinct": 33,
+        "T_orig_sessions": 10,
+        "M_all_distinct": 327,
+        "M_all_sessions": 19,
+        "T_orig_last0": 0.7272727272727273,
+        "T_orig_last0_lo": 0.47058823529411764,
+        "T_orig_last0_hi": 0.9395577395577395,
+        "T_orig_last0_k_n": [
+         24,
+         33
+        ],
+        "M_all_last0": 0.12538226299694188,
+        "M_all_last0_lo": 0.07036990508096036,
+        "M_all_last0_hi": 0.21907142857142856,
+        "M_all_last0_k_n": [
+         41,
+         327
+        ],
+        "margin": 0.05,
+        "min_values": 100,
+        "min_sessions": 10
+       }
+      },
+      "redaction_reruns_context": {
+       "noredact": {
+        "hex": "INSUFFICIENT_N",
+        "round": "INSUFFICIENT_N"
+       },
+       "noredact_strict": {
+        "hex": "INSUFFICIENT_N",
+        "round": "INSUFFICIENT_N"
+       }
+      },
+      "sessions": 24,
+      "git_calls": 168,
+      "N_min": 1131
+     }
+    },
+    "N1": {
+     "B": {
+      "bounds": [
+       -1.255296488587848,
+       1.5676685275828843
+      ],
+      "scopes": {
+       "shell": {
+        "qualified_calls": 1,
+        "sessions": 1,
+        "RR": {
+         "rate": 0.0,
+         "lo": 0.0,
+         "hi": 0.0,
+         "n_sessions": 1,
+         "num": 0.0,
+         "den": 1.0
+        },
+        "residuals": 0,
+        "residual_sessions": 0
+       },
+       "auto_read": {
+        "qualified_calls": 0,
+        "sessions": 0,
+        "residuals": 0,
+        "residual_sessions": 0
+       }
+      },
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "shell residuals 0 from 0 sessions (< 200 from 20)"
+      },
+      "bounds_source": "pooled bounds from prereg_e.json resolved.n1 (unit has < 500 A residuals or < 5 sessions)"
+     },
+     "E": {
+      "bounds": [
+       -1.255296488587848,
+       1.5676685275828843
+      ],
+      "scopes": {
+       "shell": {
+        "qualified_calls": 1,
+        "sessions": 1,
+        "RR": {
+         "rate": 0.0,
+         "lo": 0.0,
+         "hi": 0.0,
+         "n_sessions": 1,
+         "num": 0.0,
+         "den": 1.0
+        },
+        "residuals": 0,
+        "residual_sessions": 0
+       },
+       "auto_read": {
+        "qualified_calls": 0,
+        "sessions": 0,
+        "residuals": 0,
+        "residual_sessions": 0
+       }
+      },
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "shell residuals 0 from 0 sessions (< 200 from 20)"
+      },
+      "bounds_source": "pooled bounds from prereg_e.json resolved.n1 (unit has < 500 A residuals or < 5 sessions)"
+     },
+     "BuE": {
+      "bounds": [
+       -1.255296488587848,
+       1.5676685275828843
+      ],
+      "scopes": {
+       "shell": {
+        "qualified_calls": 2,
+        "sessions": 2,
+        "RR": {
+         "rate": 0.0,
+         "lo": 0.0,
+         "hi": 0.0,
+         "n_sessions": 2,
+         "num": 0.0,
+         "den": 2.0
+        },
+        "residuals": 0,
+        "residual_sessions": 0
+       },
+       "auto_read": {
+        "qualified_calls": 0,
+        "sessions": 0,
+        "residuals": 0,
+        "residual_sessions": 0
+       }
+      },
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "shell residuals 0 from 0 sessions (< 200 from 20)"
+      },
+      "bounds_source": "pooled bounds from prereg_e.json resolved.n1 (unit has < 500 A residuals or < 5 sessions)"
+     }
+    },
+    "N2": {
+     "B": {
+      "granularity": {
+       "responses": 482,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 285.5,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.3622926662713174,
+      "label": "WEAK",
+      "rule": "honest <= 0.20 and recall(0.8 tau) >= 0.50, ALIVE fails",
+      "honest_flag_rate": {
+       "k": 9,
+       "n": 142,
+       "n_sessions": 11,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 0.06338028169014084,
+       "lo": 0.014590719499478624,
+       "hi": 0.12422969187675066,
+       "hi_used": 0.12422969187675066,
+       "reportable": true
+      },
+      "recall_tau": {
+       "k": 142,
+       "n": 142,
+       "n_sessions": 11,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "hi_used": 1.0,
+       "reportable": true
+      },
+      "recall_0.8tau": {
+       "k": 141,
+       "n": 142,
+       "n_sessions": 11,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 0.9929577464788732,
+       "lo": 0.9705772607550482,
+       "hi": 1.0,
+       "hi_used": 1.0,
+       "reportable": true
+      }
+     },
+     "E": {
+      "granularity": {
+       "responses": 383,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 294.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.3622926662713174,
+      "label": "ALIVE",
+      "rule": "honest <= 0.05 (hi <= 0.10) and recall(0.8 tau) >= 0.90",
+      "honest_flag_rate": {
+       "k": 5,
+       "n": 134,
+       "n_sessions": 10,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 0.03731343283582089,
+       "lo": 0.0,
+       "hi": 0.06452193084242283,
+       "hi_used": 0.06452193084242283,
+       "reportable": true
+      },
+      "recall_tau": {
+       "k": 134,
+       "n": 134,
+       "n_sessions": 10,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "hi_used": 1.0,
+       "reportable": true
+      },
+      "recall_0.8tau": {
+       "k": 134,
+       "n": 134,
+       "n_sessions": 10,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "hi_used": 1.0,
+       "reportable": true
+      }
+     },
+     "BuE": {
+      "granularity": {
+       "responses": 865,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 290.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.3622926662713174,
+      "label": "WEAK",
+      "rule": "honest <= 0.20 and recall(0.8 tau) >= 0.50, ALIVE fails",
+      "honest_flag_rate": {
+       "k": 14,
+       "n": 276,
+       "n_sessions": 21,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 0.050724637681159424,
+       "lo": 0.022465667915106118,
+       "hi": 0.0828592629235716,
+       "hi_used": 0.0828592629235716,
+       "reportable": true
+      },
+      "recall_tau": {
+       "k": 276,
+       "n": 276,
+       "n_sessions": 21,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 1.0,
+       "lo": 1.0,
+       "hi": 1.0,
+       "hi_used": 1.0,
+       "reportable": true
+      },
+      "recall_0.8tau": {
+       "k": 275,
+       "n": 276,
+       "n_sessions": 21,
+       "min_n": [
+        100,
+        10
+       ],
+       "rate": 0.9963768115942029,
+       "lo": 0.9864818585708997,
+       "hi": 1.0,
+       "hi_used": 1.0,
+       "reportable": true
+      }
+     }
+    },
+    "N3": {
+     "B": {
+      "sessions_ge_20_gaps": 8,
+      "gaps_total": 444,
+      "sessions_with_gaps": 11,
+      "label": "INSUFFICIENT_N",
+      "rule": "8 sessions with >= 20 gaps (< 20)",
+      "rho_pooled": {
+       "value": 0.033044593996569324,
+       "n_sessions": 8,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": -0.07866289309184306,
+       "hi": 0.1119878066222285
+      },
+      "share_rho_s_le_0": {
+       "k": 4,
+       "n": 8,
+       "share": 0.5,
+       "lo": 0.21521252682444186,
+       "hi": 0.7847874731755582
+      },
+      "positive_control_permutation": {
+       "sessions_ge_20_gaps": 8,
+       "rho_pooled": {
+        "value": 0.012183895144688879,
+        "n_sessions": 8,
+        "valid_draws": 1000,
+        "ci_reported": true,
+        "lo": -0.14367978252096972,
+        "hi": 0.13660649886855794
+       },
+       "share_rho_s_le_0": {
+        "k": 4,
+        "n": 8,
+        "share": 0.5,
+        "lo": 0.21521252682444186,
+        "hi": 0.7847874731755582
+       }
+      }
+     },
+     "E": {
+      "sessions_ge_20_gaps": 6,
+      "gaps_total": 380,
+      "sessions_with_gaps": 11,
+      "label": "INSUFFICIENT_N",
+      "rule": "6 sessions with >= 20 gaps (< 20)",
+      "rho_pooled": {
+       "value": 0.25478851529712,
+       "n_sessions": 6,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": 0.1364374503178651,
+       "hi": 0.38969895204212024
+      },
+      "share_rho_s_le_0": {
+       "k": 0,
+       "n": 6,
+       "share": 0.0,
+       "lo": 0.0,
+       "hi": 0.3903430336530645
+      },
+      "positive_control_permutation": {
+       "sessions_ge_20_gaps": 6,
+       "rho_pooled": {
+        "value": 0.04240513692191974,
+        "n_sessions": 6,
+        "valid_draws": 1000,
+        "ci_reported": true,
+        "lo": -0.01267944994795332,
+        "hi": 0.09551915761660183
+       },
+       "share_rho_s_le_0": {
+        "k": 2,
+        "n": 6,
+        "share": 0.3333333333333333,
+        "lo": 0.09676933255921683,
+        "hi": 0.7000116786584712
+       }
+      }
+     },
+     "BuE": {
+      "sessions_ge_20_gaps": 14,
+      "gaps_total": 824,
+      "sessions_with_gaps": 22,
+      "label": "INSUFFICIENT_N",
+      "rule": "14 sessions with >= 20 gaps (< 20)",
+      "rho_pooled": {
+       "value": 0.14116424862263488,
+       "n_sessions": 14,
+       "valid_draws": 1000,
+       "ci_reported": true,
+       "lo": 0.0386976753813641,
+       "hi": 0.23681280625135043
+      },
+      "share_rho_s_le_0": {
+       "k": 4,
+       "n": 14,
+       "share": 0.2857142857142857,
+       "lo": 0.11721187910109099,
+       "hi": 0.5464954117248438
+      },
+      "positive_control_permutation": {
+       "sessions_ge_20_gaps": 14,
+       "rho_pooled": {
+        "value": 0.029540828346814218,
+        "n_sessions": 14,
+        "valid_draws": 1000,
+        "ci_reported": true,
+        "lo": -0.057280534470869233,
+        "hi": 0.09833281526840583
+       },
+       "share_rho_s_le_0": {
+        "k": 6,
+        "n": 14,
+        "share": 0.42857142857142855,
+        "lo": 0.21380509930400526,
+        "hi": 0.6740973309713064
+       }
+      }
+     }
+    },
+    "N4": {
+     "B": {
+      "W": {
+       "pairs": 1,
+       "pairs_k_ge_2": 0,
+       "sessions_k_ge_2": 0,
+       "pairs_k_ge_4": 0,
+       "k_hist": {
+        "1": 1
+       },
+       "meets_min_n": false
+      },
+      "G": {
+       "pairs": 0,
+       "pairs_k_ge_2": 0,
+       "sessions_k_ge_2": 0,
+       "pairs_k_ge_4": 0,
+       "k_hist": {},
+       "meets_min_n": false
+      },
+      "label": "INSUFFICIENT_N",
+      "rule": "W pairs at k >= 2: 0 from 0 sessions (< 100 from 10)"
+     },
+     "E": {
+      "W": {
+       "pairs": 1,
+       "pairs_k_ge_2": 0,
+       "sessions_k_ge_2": 0,
+       "pairs_k_ge_4": 0,
+       "k_hist": {
+        "1": 1
+       },
+       "meets_min_n": false
+      },
+      "G": {
+       "pairs": 0,
+       "pairs_k_ge_2": 0,
+       "sessions_k_ge_2": 0,
+       "pairs_k_ge_4": 0,
+       "k_hist": {},
+       "meets_min_n": false
+      },
+      "label": "INSUFFICIENT_N",
+      "rule": "W pairs at k >= 2: 0 from 0 sessions (< 100 from 10)"
+     },
+     "BuE": {
+      "W": {
+       "pairs": 2,
+       "pairs_k_ge_2": 0,
+       "sessions_k_ge_2": 0,
+       "pairs_k_ge_4": 0,
+       "k_hist": {
+        "1": 2
+       },
+       "meets_min_n": false
+      },
+      "G": {
+       "pairs": 0,
+       "pairs_k_ge_2": 0,
+       "sessions_k_ge_2": 0,
+       "pairs_k_ge_4": 0,
+       "k_hist": {},
+       "meets_min_n": false
+      },
+      "label": "INSUFFICIENT_N",
+      "rule": "W pairs at k >= 2: 0 from 0 sessions (< 100 from 10)"
+     }
+    },
+    "N5a_determinism": {
+     "B": {
+      "label": "INSUFFICIENT_N",
+      "violation": {
+       "k": 0,
+       "n": 0,
+       "n_sessions": 0,
+       "min_n": [
+        100,
+        20
+       ],
+       "rate": null,
+       "reportable": false
+      }
+     },
+     "E": {
+      "label": "INSUFFICIENT_N",
+      "violation": {
+       "k": 0,
+       "n": 0,
+       "n_sessions": 0,
+       "min_n": [
+        100,
+        20
+       ],
+       "rate": null,
+       "reportable": false
+      }
+     },
+     "BuE": {
+      "label": "INSUFFICIENT_N",
+      "violation": {
+       "k": 0,
+       "n": 0,
+       "n_sessions": 0,
+       "min_n": [
+        100,
+        20
+       ],
+       "rate": null,
+       "reportable": false
+      }
+     }
+    },
+    "N5b_sort": {
+     "B": {
+      "ls": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 4,
+        "n_sessions": 3,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.48990002040399916,
+        "wilson_hi_per_session": 0.5615060804490177,
+        "hi_used": 0.48990002040399916,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 3,
+        "n": 4,
+        "n_sessions": 3,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 0.75,
+        "lo": 0.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "git_log": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 0,
+        "n_sessions": 0,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": null,
+        "reportable": false
+       }
+      },
+      "grep_n": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 41,
+        "n_sessions": 7,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.08567044886890744,
+        "wilson_hi_per_session": 0.35433884297520657,
+        "hi_used": 0.08567044886890744,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 26,
+        "n": 41,
+        "n_sessions": 7,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 0.6341463414634146,
+        "lo": 0.5161290322580645,
+        "hi": 0.85,
+        "hi_used": 0.85,
+        "reportable": true
+       }
+      }
+     },
+     "E": {
+      "ls": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 1,
+        "n": 2,
+        "n_sessions": 2,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.5,
+        "lo": 0.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 2,
+        "n": 2,
+        "n_sessions": 2,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "git_log": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 0,
+        "n_sessions": 0,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": null,
+        "reportable": false
+       }
+      },
+      "grep_n": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 20,
+        "n_sessions": 6,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.16113012549493322,
+        "wilson_hi_per_session": 0.3903430336530645,
+        "hi_used": 0.16113012549493322,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 12,
+        "n": 20,
+        "n_sessions": 6,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 0.6,
+        "lo": 0.39972222222222226,
+        "hi": 0.7777777777777778,
+        "hi_used": 0.7777777777777778,
+        "reportable": false
+       }
+      }
+     },
+     "BuE": {
+      "ls": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 1,
+        "n": 6,
+        "n_sessions": 5,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.16666666666666666,
+        "lo": 0.0,
+        "hi": 0.6,
+        "hi_used": 0.6,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 5,
+        "n": 6,
+        "n_sessions": 5,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 0.8333333333333334,
+        "lo": 0.4,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "git_log": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 0,
+        "n_sessions": 0,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": null,
+        "reportable": false
+       }
+      },
+      "grep_n": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 61,
+        "n_sessions": 13,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.05924591620194442,
+        "wilson_hi_per_session": 0.22810184305529166,
+        "hi_used": 0.05924591620194442,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 38,
+        "n": 61,
+        "n_sessions": 13,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 0.6229508196721312,
+        "lo": 0.5151403743315508,
+        "hi": 0.7608695652173914,
+        "hi_used": 0.7608695652173914,
+        "reportable": true
+       }
+      }
+     }
+    },
+    "N5d_whitespace": {
+     "B": {
+      "ls_long_alignment": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 4,
+        "n_sessions": 3,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.48990002040399916,
+        "wilson_hi_per_session": 0.5615060804490177,
+        "hi_used": 0.48990002040399916,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 4,
+        "n": 4,
+        "n_sessions": 3,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "git_status_tab": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 1,
+        "n_sessions": 1,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.7934567085261071,
+        "wilson_hi_per_session": 0.7934567085261071,
+        "hi_used": 0.7934567085261071,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 1,
+        "n": 1,
+        "n_sessions": 1,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "wc_alignment": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 0,
+        "n_sessions": 0,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": null,
+        "reportable": false
+       }
+      },
+      "pytest_banner": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 3,
+        "n_sessions": 2,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.5615060804490177,
+        "wilson_hi_per_session": 0.6576280471103807,
+        "hi_used": 0.5615060804490177,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 0,
+        "n": 3,
+        "n_sessions": 2,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.5615060804490177,
+        "wilson_hi_per_session": 0.6576280471103807,
+        "hi_used": 0.5615060804490177,
+        "reportable": false
+       }
+      }
+     },
+     "E": {
+      "ls_long_alignment": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 2,
+        "n_sessions": 2,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.6576280471103807,
+        "wilson_hi_per_session": 0.6576280471103807,
+        "hi_used": 0.6576280471103807,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 2,
+        "n": 2,
+        "n_sessions": 2,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "git_status_tab": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 0,
+        "n_sessions": 0,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": null,
+        "reportable": false
+       }
+      },
+      "wc_alignment": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 2,
+        "n_sessions": 1,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.6576280471103807,
+        "wilson_hi_per_session": 0.7934567085261071,
+        "hi_used": 0.6576280471103807,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 2,
+        "n": 2,
+        "n_sessions": 1,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "pytest_banner": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 8,
+        "n_sessions": 1,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.3244156195108769,
+        "wilson_hi_per_session": 0.7934567085261071,
+        "hi_used": 0.3244156195108769,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 0,
+        "n": 8,
+        "n_sessions": 1,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.3244156195108769,
+        "wilson_hi_per_session": 0.7934567085261071,
+        "hi_used": 0.3244156195108769,
+        "reportable": false
+       }
+      }
+     },
+     "BuE": {
+      "ls_long_alignment": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 6,
+        "n_sessions": 5,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.3903430336530645,
+        "wilson_hi_per_session": 0.43449149475208104,
+        "hi_used": 0.3903430336530645,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 6,
+        "n": 6,
+        "n_sessions": 5,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "git_status_tab": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 1,
+        "n_sessions": 1,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.7934567085261071,
+        "wilson_hi_per_session": 0.7934567085261071,
+        "hi_used": 0.7934567085261071,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 1,
+        "n": 1,
+        "n_sessions": 1,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "wc_alignment": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 2,
+        "n_sessions": 1,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.6576280471103807,
+        "wilson_hi_per_session": 0.7934567085261071,
+        "hi_used": 0.6576280471103807,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 2,
+        "n": 2,
+        "n_sessions": 1,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "hi_used": 1.0,
+        "reportable": false
+       }
+      },
+      "pytest_banner": {
+       "label": "INSUFFICIENT_N",
+       "violation": {
+        "k": 0,
+        "n": 11,
+        "n_sessions": 3,
+        "min_n": [
+         100,
+         20
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.2588400172488141,
+        "wilson_hi_per_session": 0.5615060804490177,
+        "hi_used": 0.2588400172488141,
+        "reportable": false
+       },
+       "positive_control_recall": {
+        "k": 0,
+        "n": 11,
+        "n_sessions": 3,
+        "min_n": [
+         1,
+         1
+        ],
+        "rate": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "wilson_hi_per_event": 0.2588400172488141,
+        "wilson_hi_per_session": 0.5615060804490177,
+        "hi_used": 0.2588400172488141,
+        "reportable": false
+       }
+      }
+     }
+    },
+    "N5c_truncation": {
+     "B": {
+      "cc_marked_results": 0,
+      "by_item": {}
+     },
+     "E": {
+      "cc_marked_results": 0,
+      "by_item": {}
+     },
+     "BuE": {
+      "cc_marked_results": 0,
+      "by_item": {}
+     }
+    },
+    "N5e_size": {
+     "B": {
+      "comparator": {
+       "texts": 462,
+       "sessions": 11,
+       "iqr": {
+        "value": 0.19791697846701206,
+        "n_sessions": 11,
+        "valid_draws": 1000,
+        "ci_reported": true,
+        "lo": 0.15710856227407477,
+        "hi": 0.24857523991135544
+       }
+      },
+      "families_meeting_min": 0,
+      "families_total": 55,
+      "label": "INSUFFICIENT_N",
+      "rule": "no family with >= 100 results from >= 10 sessions"
+     },
+     "E": {
+      "comparator": {
+       "texts": 422,
+       "sessions": 12,
+       "iqr": {
+        "value": 0.22269932116863833,
+        "n_sessions": 12,
+        "valid_draws": 1000,
+        "ci_reported": true,
+        "lo": 0.1756798648825891,
+        "hi": 0.25251749956807124
+       }
+      },
+      "families_meeting_min": 0,
+      "families_total": 52,
+      "label": "INSUFFICIENT_N",
+      "rule": "no family with >= 100 results from >= 10 sessions"
+     },
+     "BuE": {
+      "comparator": {
+       "texts": 884,
+       "sessions": 23,
+       "iqr": {
+        "value": 0.21292457639474094,
+        "n_sessions": 23,
+        "valid_draws": 1000,
+        "ci_reported": true,
+        "lo": 0.17858070137633186,
+        "hi": 0.24014274141688086
+       }
+      },
+      "families_meeting_min": 2,
+      "families_total": 79,
+      "families": {
+       "python": {
+        "n": 179,
+        "sessions": 15,
+        "iqr": {
+         "value": 1.0342907001497448,
+         "n_sessions": 15,
+         "valid_draws": 1000,
+         "ci_reported": true,
+         "lo": 0.8737876842714545,
+         "hi": 1.1369974720106129
+        }
+       },
+       "sed": {
+        "n": 237,
+        "sessions": 13,
+        "iqr": {
+         "value": 0.6900729632362212,
+         "n_sessions": 13,
+         "valid_draws": 1000,
+         "ci_reported": true,
+         "lo": 0.537668229325095,
+         "hi": 0.8310934925567314
+        }
+       }
+      },
+      "share_above": 1.0,
+      "label": "WEAK",
+      "rule": ">= 0.5 of families above comparator CI hi -> WEAK (cap), else DEAD"
+     }
+    },
+    "N5f_error_fidelity": {
+     "B": {
+      "label": "INSUFFICIENT_N",
+      "rule": "0 checkable frames (< 100 from 20 sessions)",
+      "frames": 0
+     },
+     "E": {
+      "label": "INSUFFICIENT_N",
+      "rule": "0 checkable frames (< 100 from 20 sessions)",
+      "frames": 0
+     },
+     "BuE": {
+      "label": "INSUFFICIENT_N",
+      "rule": "0 checkable frames (< 100 from 20 sessions)",
+      "frames": 0
+     }
+    },
+    "N5g_cold_start": {
+     "B": {
+      "eligible_sessions": 0,
+      "label": "INSUFFICIENT_N",
+      "rule": "0 eligible sessions (< 30)"
+     },
+     "E": {
+      "eligible_sessions": 0,
+      "label": "INSUFFICIENT_N",
+      "rule": "0 eligible sessions (< 30)"
+     },
+     "BuE": {
+      "eligible_sessions": 0,
+      "label": "INSUFFICIENT_N",
+      "rule": "0 eligible sessions (< 30)"
+     }
+    }
+   },
+   "length_tercile_cuts_A": [
+    37.999999999999986,
+    91.99999999999999
+   ],
+   "session_strata": {
+    "B": {
+     "Codex Desktop": 6,
+     "codex_vscode": 6
+    },
+    "E": {
+     "Codex Desktop": 6,
+     "codex_vscode": 6
+    }
+   }
+  }
+ },
+ "cells": {
+  "P1_latency": {
+   "pub_codex": {
+    "label": "NOT_TESTABLE(G90/floors not calibrated on the corpus's A; no pooled value; D1)",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": {
+     "B": {
+      "separability_label_analog": "INSUFFICIENT_N",
+      "fp": {
+       "num": 0,
+       "den": 1,
+       "rate": null,
+       "verdict_hi": null
+      },
+      "auc": null,
+      "W_eligible": {
+       "n": 1,
+       "sessions": 1
+      },
+      "G_eligible": {
+       "n": 0,
+       "sessions": 0
+      }
+     },
+     "E": {
+      "separability_label_analog": "INSUFFICIENT_N",
+      "fp": {
+       "num": 0,
+       "den": 1,
+       "rate": null,
+       "verdict_hi": null
+      },
+      "auc": null,
+      "W_eligible": {
+       "n": 1,
+       "sessions": 1
+      },
+      "G_eligible": {
+       "n": 0,
+       "sessions": 0
+      }
+     },
+     "BuE": {
+      "separability_label_analog": "INSUFFICIENT_N",
+      "fp": {
+       "num": 0,
+       "den": 2,
+       "rate": null,
+       "verdict_hi": null
+      },
+      "auc": null,
+      "W_eligible": {
+       "n": 2,
+       "sessions": 2
+      },
+      "G_eligible": {
+       "n": 0,
+       "sessions": 0
+      }
+     }
+    },
+    "n": 2,
+    "sessions": 2,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.P1_latency.<pop>.analog_unit_run",
+    "not_blind_reason": "latency (D6)",
+    "suffixes": [
+     "NOT_BLIND"
+    ],
+    "analog_note": "post hoc, not a verdict: analogue thresholds prereg.json resolved.probe1.swechat/codex"
+   }
+  },
+  "P2_knowledge": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "statistic": null,
+     "value": null,
+     "k": null,
+     "S_deep_n": 0,
+     "S_path_any_n": 91
+    },
+    "n": 91,
+    "sessions": 10,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.P2_knowledge.B.strata.main.verdict",
+    "suffixes": [],
+    "sub_stratum": {
+     "B": "INSUFFICIENT_N",
+     "E": "INSUFFICIENT_N",
+     "BuE": "INSUFFICIENT_N"
+    },
+    "D_unit": 6,
+    "checks": "artifact checks not required (applies_to: A1 candidates and N1-N5 cells)"
+   }
+  },
+  "P3a_zero_error": {
+   "pub_codex": {
+    "label": "NOT_TESTABLE(L75 not calibrated on the corpus's A; no pooled value; D1)",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": {
+     "B": {
+      "analog_verdict": "INSUFFICIENT_N",
+      "n_long_at_analog_L75": 3,
+      "L75_analog": 120
+     },
+     "E": {
+      "analog_verdict": "INSUFFICIENT_N",
+      "n_long_at_analog_L75": 1,
+      "L75_analog": 120
+     },
+     "BuE": {
+      "analog_verdict": "INSUFFICIENT_N",
+      "n_long_at_analog_L75": 4,
+      "L75_analog": 120
+     }
+    },
+    "n": null,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.P3.<pop>.zero_error_tail_analog",
+    "suffixes": [],
+    "analog_note": "post hoc, not a verdict: analogue L75 prereg.json resolved.probe3.long_session.swechat/codex"
+   }
+  },
+  "P3b_reaction": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "DEAD",
+    "deciding_number": {
+     "effect_R_fail_minus_R_ok": 0.09028812717337308,
+     "n_fail_with_successor": 88,
+     "sessions_fail_with_successor": 9,
+     "n_ok_with_successor": 732
+    },
+    "n": 88,
+    "sessions": 9,
+    "ci": [
+     -0.037498842817386045,
+     0.2524851128652541
+    ],
+    "json_path": "units.pub_codex.mechanisms.P3.B.reaction_verdict",
+    "suffixes": [],
+    "checks": "artifact checks not required (applies_to: A1 candidates and N1-N5 cells)"
+   }
+  },
+  "P4a_hex": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "T_orig_symbols": 0,
+     "N_min": 1131,
+     "control": "M_all",
+     "control_symbols": 2314,
+     "T_orig_w_adj": null,
+     "control_w_adj_hi": 0.2509966463675574
+    },
+    "n": 0,
+    "sessions": 0,
+    "ci": [
+     null,
+     null
+    ],
+    "json_path": "units.pub_codex.mechanisms.P4.B.hex.deciding",
+    "suffixes": [],
+    "checks": "artifact checks not required (applies_to: A1 candidates and N1-N5 cells)"
+   }
+  },
+  "P4b_round": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "T_orig_distinct": 27,
+     "T_orig_last0": null,
+     "M_all_last0": 0.18125,
+     "M_all_last0_hi": 0.2558471760797342,
+     "min_values": 100
+    },
+    "n": 27,
+    "sessions": 7,
+    "ci": [
+     null,
+     null
+    ],
+    "json_path": "units.pub_codex.mechanisms.P4.B.round.deciding",
+    "suffixes": [],
+    "checks": "artifact checks not required (applies_to: A1 candidates and N1-N5 cells)"
+   }
+  },
+  "R1_bracket": {
+   "pub_codex": {
+    "label": "NOT_TESTABLE(provider request ids decodable to ms)",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": {
+     "B": {
+      "request_ids_distinct": 0,
+      "decodable": 0
+     },
+     "E": {
+      "request_ids_distinct": 0,
+      "decodable": 0
+     }
+    },
+    "n": null,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.field_gate.<pop>.request_ids_decodable",
+    "not_blind_reason": "request-id bracket (D6)",
+    "suffixes": [
+     "NOT_BLIND"
+    ],
+    "see": "Codex rollouts log no provider request id"
+   }
+  },
+  "R2_image": {
+   "pub_codex": {
+    "label": "NOT_TESTABLE(per-response prompt IMAGE token counts)",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": {
+     "B": 0,
+     "E": 0
+    },
+    "n": null,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.field_gate.<pop>.image_usage_rows",
+    "suffixes": []
+   }
+  },
+  "R3_git": {
+   "pub_codex": {
+    "label": "NOT_TESTABLE(external commit table linked by repo)",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": {
+     "B": {
+      "commit_claims": 2
+     },
+     "E": {
+      "commit_claims": 2
+     }
+    },
+    "n": null,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.field_gate.<pop>.commit_claims",
+    "suffixes": []
+   }
+  },
+  "R4_dual": {
+   "pub_codex": {
+    "label": "NOT_TESTABLE(harness structured counters toolUseResult numLines)",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": null,
+    "n": null,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.field_gate.<pop>.raw_structured_counters",
+    "suffixes": []
+   }
+  },
+  "R5_ledger": {
+   "pub_codex": {
+    "label": "NOT_TESTABLE(external usage tally)",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": null,
+    "n": null,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.field_gate.<pop>.external_usage_tally",
+    "suffixes": []
+   }
+  },
+  "N1": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N (NOT_BLIND)",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "shell_residuals": 0,
+     "residual_sessions": 0,
+     "RR_shell": 0.0,
+     "rho_hon": null,
+     "rule": "shell residuals 0 from 0 sessions (< 200 from 20)"
+    },
+    "n": 0,
+    "sessions": 0,
+    "ci": [
+     null,
+     null
+    ],
+    "json_path": "units.pub_codex.mechanisms.N1.B.scopes.shell",
+    "not_blind_reason": "call->result latency (D6 latency)",
+    "suffixes": [
+     "NOT_BLIND"
+    ],
+    "bounds_source": "pooled bounds from prereg_e.json resolved.n1 (unit has < 500 A residuals or < 5 sessions)",
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  },
+  "N2": {
+   "pub_codex": {
+    "label": "WEAK",
+    "label_B": "WEAK",
+    "label_E": "ALIVE",
+    "label_BuE": "WEAK",
+    "deciding_number": {
+     "honest_flag_rate": 0.03731343283582089,
+     "k": 5,
+     "recall_0.8tau": 1.0,
+     "tau": 0.3622926662713174
+    },
+    "n": 134,
+    "sessions": 10,
+    "ci": [
+     0.0,
+     0.06452193084242283
+    ],
+    "json_path": "units.pub_codex.mechanisms.N2.E",
+    "suffixes": [],
+    "artifact_checks": {
+     "population": "B u E",
+     "base_label_BuE": "WEAK",
+     "AC2_truncation": {
+      "label": "WEAK",
+      "rows_dropped": 0,
+      "FAIL": false
+     },
+     "AC3_join": {
+      "label": "WEAK",
+      "rows_dropped": 30,
+      "FAIL": false
+     },
+     "AC4_dominance": {
+      "clusters": {
+       "stratum": {
+        "top_share_events": 0.6739130434782609,
+        "top_share_sessions": 0.5714285714285714,
+        "top_session_share_events": 0.17391304347826086,
+        "n_clusters": 2,
+        "dominated": true,
+        "top_cluster": "codex_vscode",
+        "leave_outs": [
+         {
+          "left_out": "codex_vscode",
+          "label": "INSUFFICIENT_N"
+         },
+         {
+          "left_out": "Codex Desktop",
+          "label": "WEAK"
+         }
+        ]
+       },
+       "model": {
+        "top_share_events": 0.9492753623188406,
+        "top_share_sessions": 0.9047619047619048,
+        "top_session_share_events": 0.17391304347826086,
+        "n_clusters": 3,
+        "dominated": true,
+        "top_cluster": "gpt-5.5",
+        "leave_outs": [
+         {
+          "left_out": "gpt-5.5",
+          "label": "INSUFFICIENT_N"
+         },
+         {
+          "left_out": "gpt-5.4-mini",
+          "label": "ALIVE"
+         },
+         {
+          "left_out": "codex-auto-review",
+          "label": "WEAK"
+         }
+        ]
+       },
+       "session": {
+        "top_share_events": 0.17391304347826086,
+        "top_share_sessions": 0.047619047619047616,
+        "top_session_share_events": 0.17391304347826086,
+        "n_clusters": 21,
+        "dominated": true,
+        "leave_outs": [
+         {
+          "left_out": "session#1",
+          "label": "ALIVE"
+         },
+         {
+          "left_out": "session#2",
+          "label": "ALIVE"
+         },
+         {
+          "left_out": "session#3",
+          "label": "WEAK"
+         },
+         {
+          "left_out": "session#4",
+          "label": "WEAK"
+         },
+         {
+          "left_out": "session#5",
+          "label": "WEAK"
+         }
+        ]
+       }
+      },
+      "dominated": true,
+      "result": "UNTESTABLE_WITHOUT_DOMINANT"
+     },
+     "AC5_sampling": {
+      "status": "NOT_RUN",
+      "why": "no population table registered for new corpora (prereg_e_common.population_cells raises for them)"
+     },
+     "AC1_parser": {
+      "sampled": 30,
+      "checked": 30,
+      "differing": 0,
+      "by_field": {},
+      "fields_compared": [
+       "call_ts",
+       "result_ts",
+       "text_length"
+      ],
+      "FAIL": false,
+      "PARSER_NOTE": false,
+      "rule": "FAIL if >= 2 of 30 differ on a field the statistic uses"
+     },
+     "stratification": {
+      "tool": {
+       "labels": {
+        "docs_mcp_search_gradio_docs": "INSUFFICIENT_N",
+        "exec_command": "WEAK",
+        "shell_command": "INSUFFICIENT_N",
+        "tool_search": "INSUFFICIENT_N",
+        "update_goal": "INSUFFICIENT_N",
+        "write_stdin": "INSUFFICIENT_N"
+       },
+       "status": "UNTESTABLE"
+      },
+      "model": {
+       "labels": {
+        "codex-auto-review": "INSUFFICIENT_N",
+        "gpt-5.4-mini": "INSUFFICIENT_N",
+        "gpt-5.5": "ALIVE"
+       },
+       "status": "UNTESTABLE"
+      },
+      "repo": {
+       "labels": {
+        "Codex Desktop": "INSUFFICIENT_N",
+        "codex_vscode": "WEAK"
+       },
+       "status": "UNTESTABLE"
+      },
+      "length": {
+       "labels": {
+        "long": "INSUFFICIENT_N",
+        "mid": "INSUFFICIENT_N",
+        "short": "INSUFFICIENT_N"
+       },
+       "status": "UNTESTABLE"
+      }
+     },
+     "effects": {
+      "failed_checks": [],
+      "failed_check_labels": {},
+      "dominance": "UNTESTABLE_WITHOUT_DOMINANT",
+      "confined_axes": []
+     },
+     "label_after_checks_BuE": "WEAK",
+     "effect_rule": "applied to the cell label: failed AC -> lower label; DOMINATED -> one level down; UNTESTABLE_WITHOUT_DOMINANT -> cap WEAK; CONFINED -> one level down"
+    },
+    "label_before_checks": "ALIVE"
+   }
+  },
+  "N3": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N (NOT_BLIND)",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "rho_pooled": 0.033044593996569324,
+     "share_rho_s_le_0": 0.5,
+     "sessions_ge_20_gaps": 8
+    },
+    "n": 444,
+    "sessions": 8,
+    "ci": [
+     -0.07866289309184306,
+     0.1119878066222285
+    ],
+    "json_path": "units.pub_codex.mechanisms.N3.B",
+    "not_blind_reason": "reaction time (D6)",
+    "suffixes": [
+     "NOT_BLIND"
+    ],
+    "unit_note": null,
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  },
+  "N4": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N (NOT_BLIND)",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "W_pairs_k_ge_2": 0,
+     "W_sessions_k_ge_2": 0,
+     "G_pairs_k_ge_2": 0,
+     "W_share_k_ge_4": 0.0
+    },
+    "n": 0,
+    "sessions": 0,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.N4.B",
+    "not_blind_reason": "call->result latency (D6 latency)",
+    "suffixes": [
+     "NOT_BLIND"
+    ],
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  },
+  "N5a_determinism": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "drift": null,
+     "k": 0
+    },
+    "n": 0,
+    "sessions": 0,
+    "ci": [
+     null,
+     null
+    ],
+    "json_path": "units.pub_codex.mechanisms.N5a_determinism.B.violation",
+    "suffixes": [],
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  },
+  "N5b_sort": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": {
+     "ls": {
+      "n": 4,
+      "sessions": 3
+     },
+     "git_log": {
+      "n": 0,
+      "sessions": 0
+     },
+     "grep_n": {
+      "n": 41,
+      "sessions": 7
+     }
+    },
+    "n": 45,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.N5b_sort.<pop>.<checker>",
+    "suffixes": [],
+    "per_checker": {
+     "ls": {
+      "label": "INSUFFICIENT_N",
+      "label_B": "INSUFFICIENT_N",
+      "label_E": "INSUFFICIENT_N",
+      "label_BuE": "INSUFFICIENT_N",
+      "violation": 0.0,
+      "k": 0,
+      "n": 4,
+      "sessions": 3,
+      "json_path": "units.pub_codex.mechanisms.N5b_sort.B.ls.violation"
+     },
+     "git_log": {
+      "label": "INSUFFICIENT_N",
+      "label_B": "INSUFFICIENT_N",
+      "label_E": "INSUFFICIENT_N",
+      "label_BuE": "INSUFFICIENT_N",
+      "violation": null,
+      "k": 0,
+      "n": 0,
+      "sessions": 0,
+      "json_path": "units.pub_codex.mechanisms.N5b_sort.B.git_log.violation"
+     },
+     "grep_n": {
+      "label": "INSUFFICIENT_N",
+      "label_B": "INSUFFICIENT_N",
+      "label_E": "INSUFFICIENT_N",
+      "label_BuE": "INSUFFICIENT_N",
+      "violation": 0.0,
+      "k": 0,
+      "n": 41,
+      "sessions": 7,
+      "json_path": "units.pub_codex.mechanisms.N5b_sort.B.grep_n.violation"
+     }
+    },
+    "aggregation": "row label = best per-checker label (each checker is its own pre-registered sub-item); per-checker labels stored",
+    "checkers_testable": [],
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  },
+  "N5d_whitespace": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": {
+     "ls_long_alignment": {
+      "n": 4,
+      "sessions": 3
+     },
+     "git_status_tab": {
+      "n": 1,
+      "sessions": 1
+     },
+     "wc_alignment": {
+      "n": 0,
+      "sessions": 0
+     },
+     "pytest_banner": {
+      "n": 3,
+      "sessions": 2
+     }
+    },
+    "n": 8,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.N5d_whitespace.<pop>.<checker>",
+    "suffixes": [],
+    "per_checker": {
+     "ls_long_alignment": {
+      "label": "INSUFFICIENT_N",
+      "label_B": "INSUFFICIENT_N",
+      "label_E": "INSUFFICIENT_N",
+      "label_BuE": "INSUFFICIENT_N",
+      "violation": 0.0,
+      "k": 0,
+      "n": 4,
+      "sessions": 3,
+      "json_path": "units.pub_codex.mechanisms.N5d_whitespace.B.ls_long_alignment.violation"
+     },
+     "git_status_tab": {
+      "label": "INSUFFICIENT_N",
+      "label_B": "INSUFFICIENT_N",
+      "label_E": "INSUFFICIENT_N",
+      "label_BuE": "INSUFFICIENT_N",
+      "violation": 0.0,
+      "k": 0,
+      "n": 1,
+      "sessions": 1,
+      "json_path": "units.pub_codex.mechanisms.N5d_whitespace.B.git_status_tab.violation"
+     },
+     "wc_alignment": {
+      "label": "INSUFFICIENT_N",
+      "label_B": "INSUFFICIENT_N",
+      "label_E": "INSUFFICIENT_N",
+      "label_BuE": "INSUFFICIENT_N",
+      "violation": null,
+      "k": 0,
+      "n": 0,
+      "sessions": 0,
+      "json_path": "units.pub_codex.mechanisms.N5d_whitespace.B.wc_alignment.violation"
+     },
+     "pytest_banner": {
+      "label": "INSUFFICIENT_N",
+      "label_B": "INSUFFICIENT_N",
+      "label_E": "INSUFFICIENT_N",
+      "label_BuE": "INSUFFICIENT_N",
+      "violation": 0.0,
+      "k": 0,
+      "n": 3,
+      "sessions": 2,
+      "json_path": "units.pub_codex.mechanisms.N5d_whitespace.B.pytest_banner.violation"
+     }
+    },
+    "aggregation": "row label = best per-checker label (each checker is its own pre-registered sub-item); per-checker labels stored",
+    "checkers_testable": [],
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  },
+  "N5c_truncation": {
+   "pub_codex": {
+    "label": "NOT_TESTABLE(result text with harness truncation markers: 0 Claude Code markers)",
+    "label_B": null,
+    "label_E": null,
+    "label_BuE": null,
+    "deciding_number": {
+     "B": 0,
+     "E": 0
+    },
+    "n": 0,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.N5c_truncation.<pop>.cc_marked_results",
+    "suffixes": [],
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  },
+  "N5e_size": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "WEAK",
+    "deciding_number": {
+     "families_meeting_min": 0,
+     "share_above": null,
+     "comparator_iqr": 0.19791697846701206
+    },
+    "n": 55,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.N5e_size.B",
+    "suffixes": [],
+    "check_note": "checks hold the comparator fixed (the full B u E comparator)",
+    "artifact_checks": {
+     "population": "B u E",
+     "base_label_BuE": "WEAK",
+     "AC2_truncation": {
+      "label": "WEAK",
+      "rows_dropped": 0,
+      "FAIL": false
+     },
+     "AC3_join": {
+      "label": "WEAK",
+      "rows_dropped": 130,
+      "FAIL": false
+     },
+     "AC4_dominance": {
+      "clusters": {
+       "stratum": {
+        "top_share_events": 0.587171052631579,
+        "top_share_sessions": 0.5454545454545454,
+        "top_session_share_events": 0.10855263157894737,
+        "n_clusters": 2,
+        "dominated": true,
+        "top_cluster": "codex_vscode",
+        "leave_outs": [
+         {
+          "left_out": "codex_vscode",
+          "label": "INSUFFICIENT_N"
+         },
+         {
+          "left_out": "Codex Desktop",
+          "label": "WEAK"
+         }
+        ]
+       },
+       "model": {
+        "top_share_events": 0.9580592105263158,
+        "top_share_sessions": 0.8636363636363636,
+        "top_session_share_events": 0.10855263157894737,
+        "n_clusters": 3,
+        "dominated": true,
+        "top_cluster": "gpt-5.5",
+        "leave_outs": [
+         {
+          "left_out": "gpt-5.5",
+          "label": "INSUFFICIENT_N"
+         },
+         {
+          "left_out": "gpt-5.4-mini",
+          "label": "WEAK"
+         },
+         {
+          "left_out": "codex-auto-review",
+          "label": "WEAK"
+         }
+        ]
+       },
+       "session": {
+        "top_share_events": 0.10855263157894737,
+        "top_share_sessions": 0.045454545454545456,
+        "top_session_share_events": 0.10855263157894737,
+        "n_clusters": 22,
+        "dominated": true,
+        "leave_outs": [
+         {
+          "left_out": "session#1",
+          "label": "WEAK"
+         },
+         {
+          "left_out": "session#2",
+          "label": "WEAK"
+         },
+         {
+          "left_out": "session#3",
+          "label": "WEAK"
+         },
+         {
+          "left_out": "session#4",
+          "label": "WEAK"
+         },
+         {
+          "left_out": "session#5",
+          "label": "WEAK"
+         }
+        ]
+       }
+      },
+      "dominated": true,
+      "result": "UNTESTABLE_WITHOUT_DOMINANT"
+     },
+     "AC5_sampling": {
+      "status": "NOT_RUN",
+      "why": "no population table registered for new corpora (prereg_e_common.population_cells raises for them)"
+     },
+     "AC1_parser": {
+      "sampled": 30,
+      "checked": 30,
+      "differing": 0,
+      "by_field": {},
+      "fields_compared": [
+       "call_ts",
+       "result_ts",
+       "text_length"
+      ],
+      "FAIL": false,
+      "PARSER_NOTE": false,
+      "rule": "FAIL if >= 2 of 30 differ on a field the statistic uses"
+     },
+     "stratification": {
+      "tool": {
+       "labels": {
+        "exec_command": "WEAK",
+        "shell_command": "INSUFFICIENT_N"
+       },
+       "status": "UNTESTABLE"
+      },
+      "model": {
+       "labels": {
+        "codex-auto-review": "INSUFFICIENT_N",
+        "gpt-5.4-mini": "INSUFFICIENT_N",
+        "gpt-5.5": "WEAK"
+       },
+       "status": "UNTESTABLE"
+      },
+      "repo": {
+       "labels": {
+        "Codex Desktop": "INSUFFICIENT_N",
+        "codex_vscode": "WEAK"
+       },
+       "status": "UNTESTABLE"
+      },
+      "length": {
+       "labels": {
+        "long": "INSUFFICIENT_N",
+        "mid": "INSUFFICIENT_N",
+        "short": "INSUFFICIENT_N"
+       },
+       "status": "UNTESTABLE"
+      }
+     },
+     "effects": {
+      "failed_checks": [],
+      "failed_check_labels": {},
+      "dominance": "UNTESTABLE_WITHOUT_DOMINANT",
+      "confined_axes": []
+     },
+     "label_after_checks_BuE": "WEAK"
+    }
+   }
+  },
+  "N5f_error_fidelity": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "B": 0,
+     "E": 0
+    },
+    "n": 0,
+    "sessions": null,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.N5f_error_fidelity.<pop>",
+    "suffixes": [],
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  },
+  "N5g_cold_start": {
+   "pub_codex": {
+    "label": "INSUFFICIENT_N (NOT_BLIND)",
+    "label_B": "INSUFFICIENT_N",
+    "label_E": "INSUFFICIENT_N",
+    "label_BuE": "INSUFFICIENT_N",
+    "deciding_number": {
+     "median_c": null,
+     "share_c_le_0": null,
+     "eligible_sessions": 0
+    },
+    "n": 0,
+    "sessions": 0,
+    "ci": null,
+    "json_path": "units.pub_codex.mechanisms.N5g_cold_start.B",
+    "not_blind_reason": "call->result latency (D6 latency)",
+    "suffixes": [
+     "NOT_BLIND"
+    ],
+    "artifact_checks": "not required (no label >= WEAK on B, E or B u E)"
+   }
+  }
+ },
+ "n_cells": 22,
+ "n_verdict_cells_computed": 1,
+ "runtime_s": 13.6
+}

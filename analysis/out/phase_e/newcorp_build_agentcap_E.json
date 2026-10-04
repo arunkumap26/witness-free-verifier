@@ -1,0 +1,70 @@
+{
+ "path": "analysis/cache/agentcap_E.parquet",
+ "rows": 13947,
+ "sessions": 199,
+ "bytes": 4999147,
+ "validate": {
+  "rows": 13947,
+  "sessions": 199,
+  "meta": 4980,
+  "call": 2859,
+  "result": 2854,
+  "assistant": 2491,
+  "user": 726,
+  "system": 37
+ },
+ "split": "E",
+ "sessions_in_split": 199,
+ "parser_stats": {
+  "pi:lines": 4489,
+  "pi:utf8_replaced": 0,
+  "opencode:doc_ok": 95,
+  "opencode:messages": 1676,
+  "opencode:utf8_replaced": 0,
+  "opencode:opencode_results_completed_with_nonzero_exit": 50
+ },
+ "join": {
+  "rank_map_agrees": 141,
+  "sessions_no_prompt_match": 46,
+  "rank_map_unavailable": 9,
+  "rank_map_disagrees": 3,
+  "tasks_claimed_by_more_than_one_session": 0,
+  "capture_rows_loaded": 2994,
+  "capture_rows_first_user_mismatch": 739,
+  "sessions_joined_to_task": 153,
+  "trace_responses": 2569,
+  "capture_rows": 2255,
+  "capture_rows_matched_more_than_once": 0,
+  "joined_by_response_id": 1483,
+  "trace_responses_unjoined": 382,
+  "joined_by_tool_call_id": 510,
+  "joined_by_positional": 194
+ },
+ "task_rank_map_runs": {
+  "runs": 31,
+  "runs_session_count_eq_task_count": 29,
+  "runs_mismatched": {
+   "opencode-hf-router-20260604-033019": {
+    "sessions": 29,
+    "tasks": 30
+   },
+   "opencode-local-20260601-183720": {
+    "sessions": 16,
+    "tasks": 30
+   }
+  }
+ },
+ "secret_redactions": {
+  "text:auth_header": 3,
+  "text:hf_token": 2
+ },
+ "surrogate_cells_replaced": 0,
+ "runtime_s": 20.0,
+ "D5_exclusions": {
+  "listed": 15,
+  "in_split": 15,
+  "source": "analysis/out/phase_e/newcorp_exclusions.json",
+  "decision": "D5",
+  "how": "newcorp_common.split_ids wrapped in-process by analysis/probes/phase_e_newcorp_agentcap_codex.py"
+ }
+}

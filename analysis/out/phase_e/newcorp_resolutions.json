@@ -1,0 +1,14 @@
+{
+ "what": "Orchestrator resolution of blocking verifier findings in the new-corpus measurement workflow (wf_425e22f0-016), which had no fix stage.",
+ "resolutions": [
+  {
+   "corpus": "tbench2",
+   "cell": "R1_bracket",
+   "label_before": "ALIVE (group's label_after_checks_BuE)",
+   "label_after": "WEAK",
+   "rule": "prereg_e.json change_log decision D2 (AC4 dominance cluster = corpus stratum for new corpora) + survival_rule: the R1 population is the single WozCode__Claude-Opus-4.6 stratum, so the stratum leave-out is untestable (UNTESTABLE_WITHOUT_DOMINANT), which caps the label at WEAK. Same reading the pubcc and agentcap_codex groups applied.",
+   "numbers_unchanged": "all R1 numbers reproduce (verifier 20/20); only the post-check label changes",
+   "verifier_finding": "Every number and the E-verdict ALIVE reproduce. The problem is the after-checks label. The group reports AC4 as PASS, with 'one stratum by construction: labelled only (as aiv_cc)', and label_after_checks_BuE ALIVE. Under D2 the AC4 cluster is the stratum, and the whole R1 denominator (82/86/168 streams) is one submission: one agent, one model, share 1.0. The prereg's AC4 says: if dominated, leave the dominant cluster out; a leave-out below min n caps the label at WEAK (UNTESTABLE_WITHOUT_DOMINANT). The only 'labelled only' exemption in the prereg is aiv_cc, a single-agent corpus. Track A applied the cap in the closest analogue: cc_local R1, repo share 0.999, leave-out of 1 stream, effect cap_weak, ceiling_after_checks WEAK (f1_bracket.json). Applied the same way, tbench2 R1 after checks is WEAK, and 'checks AC1-AC4 PASS' should read 'AC4 UNTESTABLE_WITHOUT_DOMINANT, capped at WEAK'. Caveat: the prereg mandates ACs only for A1 candidates and N1-N5 cells, so if the orchestrator treats the N6 cell as the raw E verdict, the cell stays ALIVE. This is a relabel; nothing needs recomputing. The notes are transparent that R1 covers one submission."
+  }
+ ]
+}

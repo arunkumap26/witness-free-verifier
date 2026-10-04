@@ -1,0 +1,1502 @@
+[
+ {
+  "key": "pubcc",
+  "res": {
+   "group": "pubcc",
+   "files_written": [
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_e_newcorp_pubcc.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_measure_pub_cc_hf.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_measure_pub_trace_commons.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\phase_e_newcorp_pubcc.md",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_cc_hf_B.parquet (loader --split B, unmodified loader)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_cc_hf_E.parquet (loader --split E)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_trace_commons_B.parquet (loader --split B)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_trace_commons_E.parquet (loader --split E)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_cc_hf_B.json (loader report)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_cc_hf_E.json (loader report)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_trace_commons_B.json (loader report)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_trace_commons_E.json (loader report)"
+   ],
+   "cells": [
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "R1_bracket",
+     "label": "WEAK (DOMINATED: AC4 model leave-out on B u E); B ALIVE, E ALIVE before checks; NOT_BLIND",
+     "deciding_number": "honest inconsistent B 0/45 streams (37 s, W hi 0.079), E 0/37 (37 s, W hi 0.094), BuE 0/82 (74 s, W hi 0.045); 30 s back-date 76/82 CI lo 0.867 > bar 0.045 (clears); 5 s 11/82 (does not clear); N7 leg on E DETECTS (time_response_early>=10 s, time_result_late>=10 s, id_swap 37/37, id_splice nearest 35/38); AC4 model leave-out of claude-fable-5 leaves 0/30 streams, Wilson hi 0.1135 > 0.10 -> one-level downgrade",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.R1_bracket; r1.pooled_BuE.verdict; r1.splits.{B,E}.honest/placebo/n7_r1_session_level; r1.pooled_BuE.artifact_checks.AC4_dominance"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "F1_benign_and_placebo",
+     "label": "no honest failures to categorise; no correction adopted; FP_eff E 0/37",
+     "deciding_number": "benign category table empty (0 inconsistent streams in B and E); placebo B 5s 7/45, 30s 42/45; E 5s 4/37, 30s 34/37; later 5/30/300 s 0 everywhere; roll_ids 45/45 B, 37/37 E; consistent slack p50 2,283 ms B, 3,760 ms E; AC1 extension 30+30 denominator streams match raw JSONL, 0 differences",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: r1.splits.{B,E}.benign / placebo / corrections_single / AC1_denominator_extension; r1.f1_effective_fp"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "P1_latency",
+     "label": "WEAK (B WEAK, E WEAK, BuE WEAK); NOT_BLIND",
+     "deciding_number": "E fp 0/144 (W hi 0.026), AUC 1.000 [1.000,1.000], G 67 from 10 s; downgraded from ALIVE by FLOOR_SHIFT on read (A p5 = 0.001 s = stamp resolution; sensitivity excluding it: no shift) and on B floor UNSTABLE (1/2 series)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.P1_latency; p1.E"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "P2_knowledge_main",
+     "label": "DEAD (matching instrument suspect)",
+     "deciding_number": "S_deep 9/35 from 8 s (below min n) -> S_path_any 443/746 = 0.594, CI hi 0.700; instrument S_symbol_ref 0.282 > 0.10 on this corpus; D_unit 4 from A",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.P2_knowledge; p2.E.verdict.main"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "P2_knowledge_subagent",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "21 first accesses from 1 session (B)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.P2_knowledge_subagent"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "P3a_zero_error",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "n_long 3 (B), 4 (E), 7 (BuE) at L75 = 111; needs 20",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.P3a_zero_error; p3.*.zero_error_tail_L75"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "P3b_reaction",
+     "label": "DEAD (B, E, BuE)",
+     "deciding_number": "E effect R_fail - R_ok 0.118, CI [-0.034, 0.248]; 66 failed calls with successor from 21 s",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.P3b_reaction; p3.E.retry"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "P4a_hex",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig symbols 104 (B), 16 (E) < N_min 1,131",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.P4a_hex; p4.*.hex"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "P4b_round",
+     "label": "INSUFFICIENT_N (BuE ALIVE, context only)",
+     "deciding_number": "T_orig distinct 76 (B), 39 (E) < 100; BuE 43/106 = 0.41, CI lo 0.263 > M_all hi 0.188 + 0.05 (F3 parameter exclusion not applied)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.P4b_round; p4.*.round"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N1",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "shell RR 15/1,079 (B), 13/417 (E); residuals 13 from 5 s (B), 11 from 5 s (E); needs 200 from 20",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N1; n1.*.shell"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N2",
+     "label": "WEAK (B, E, BuE; all artifact checks pass)",
+     "deciding_number": "E honest flag 45/361 = 0.125 [0.083, 0.166] from 28 s; recall at 0.8 tau 0.992; tau_A 0.668; B 0.198 [0.138, 0.233]",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N2; n2.E; n2.artifact_checks_BuE"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N3",
+     "label": "DEAD (B, E, BuE); NOT_BLIND",
+     "deciding_number": "E pooled rho 0.059 [-0.034, 0.165] over 21 sessions with >= 20 gaps; rho_s <= 0 in 9/21",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N3; n3.E"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N4",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 W pairs at k >= 2 in B, E, BuE (G: 20 B, 29 E)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N4; n4"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N5a_determinism",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "2 pairs (B), 1 pair (E)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N5a_determinism; n5.*.a_determinism"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N5b_sort",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "largest checker grep -n 59 from 9 s (B), 49 from 15 s (E); needs 100 from 20; git log 0",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N5b_sort; n5.*.b_sort"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N5c_truncation",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 elisions (B), 1 (E); needs 50 from 10",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N5c_truncation"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N5d_whitespace",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "largest checker pytest banner 97 from 6 s (B), 20 from 11 s (E)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N5d_whitespace; n5.*.d_whitespace"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N5e_size",
+     "label": "WEAK (capped; B DEAD, E WEAK, BuE WEAK; checks pass)",
+     "deciding_number": "E 2/2 qualifying families (cd, grep) with IQR above comparator CI hi 0.931; B 0/1",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N5e_size; n5.E.e_size; n5.e_artifact_checks_BuE"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N5f_error_fidelity",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 checkable frames (134 B / 66 E error results)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N5f_error_fidelity"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "N5g_cold_start",
+     "label": "INSUFFICIENT_N (BuE DEAD, context)",
+     "deciding_number": "18 (B), 21 (E) eligible sessions < 30; BuE median c -0.18, CI hi 0.0; c_s <= 0 in 26/39",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.N5g_cold_start; n5.*.g_cold_start"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "R4_dual",
+     "label": "INSUFFICIENT_N (BuE honest leg ALIVE-eligible; N7 leg NOT_RUN)",
+     "deciding_number": "decided sessions 27 (B), 24 (E) < 30; BuE 0/51 sessions flagged over 513 Read results; 13 mismatches all whitelisted (8 shorter-than-offset, 5 redaction)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: cells.R4_dual; r4.*"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "R2_image",
+     "label": "NOT_TESTABLE(per-response prompt IMAGE token counts + GUI actions)",
+     "deciding_number": "image_usage_rows 0 on B (and A)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: field_gate_B.image_usage_rows"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "R3_git",
+     "label": "NOT_TESTABLE(external commit table linked by repo)",
+     "deciding_number": "26 commit claims on B (24 generator) but no external commit table",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: field_gate_B.external_commit_table / r3_git_claims_B"
+    },
+    {
+     "corpus": "pub_cc_hf",
+     "mechanism": "R5_ledger",
+     "label": "NOT_TESTABLE(external usage tally)",
+     "deciding_number": "external_usage_tally false",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_cc_hf.json :: field_gate_B.external_usage_tally"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "R1_bracket",
+     "label": "INSUFFICIENT_N; NOT_BLIND",
+     "deciding_number": "honest 0/7 streams B, 0/7 E, 0/14 BuE (needs 30 streams from 5 s); 30 s back-date 13/14, 5 s 6/14, later 0/14; all N7 R1 cells INSUFFICIENT_N (7 sessions); AC1 extension 7+7 streams match raw",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.R1_bracket; r1.pooled_BuE"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "P1_latency",
+     "label": "INSUFFICIENT_N (BuE WEAK context); NOT_BLIND",
+     "deciding_number": "W eligible 170 from 7 s (B), 203 from 7 s (E) < 10 s; BuE fp 0/373, AUC not computable (G 23 < 30)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.P1_latency; p1.*"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "P2_knowledge",
+     "label": "INSUFFICIENT_N (main and subagent)",
+     "deciding_number": "S_deep / S_path_any below min n",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.P2_knowledge"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "P3a_zero_error",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "n_long 2 at L75 = 251",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.P3a_zero_error"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "P3b_reaction",
+     "label": "INSUFFICIENT_N (BuE DEAD context)",
+     "deciding_number": "failed with successor 61 from 5 s (B), 81 from 6 s (E) < 10 s; BuE effect 0.047 [-0.019, 0.106]",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.P3b_reaction; p3.*.retry"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "P4a_hex",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig 21 symbols < 1,131",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.P4a_hex"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "P4b_round",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig distinct 12 per split, 18 BuE < 100",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.P4b_round"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "N1",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "shell residuals 0 (B), 34 from 3 s (E)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.N1; n1.*"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "N2",
+     "label": "INSUFFICIENT_N (BuE WEAK context)",
+     "deciding_number": "7 sessions per split < 10; BuE honest flag 0.082 over 428 responses / 14 s, recall 0.97",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.N2; n2.*"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "N3",
+     "label": "INSUFFICIENT_N; NOT_BLIND",
+     "deciding_number": "7 (B), 5 (E), 12 (BuE) sessions with >= 20 gaps < 20",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.N3"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "N4",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 W pairs at k >= 2",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.N4"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "N5a-N5g",
+     "label": "INSUFFICIENT_N (all seven items)",
+     "deciding_number": "determinism 0-1 pairs; grep -n 23 from 3 s; pytest banner 106 from 3 s; 3+3 elisions; 0 qualifying size families; 0 fidelity frames; cold start 7 / 4 sessions",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.N5*; n5.*"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "R4_dual",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "7 decided sessions per split; 0 mismatches over 442 Read results BuE",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: cells.R4_dual; r4.*"
+    },
+    {
+     "corpus": "pub_trace_commons",
+     "mechanism": "R2_image / R3_git / R5_ledger",
+     "label": "NOT_TESTABLE (image usage / external commit table / external usage tally)",
+     "deciding_number": "field gate on B: image_usage_rows 0, external_commit_table false (1 claim), external_usage_tally false",
+     "json_path": "analysis/out/phase_e/newcorp_measure_pub_trace_commons.json :: field_gate_B"
+    }
+   ],
+   "deviations": [
+    "Probes 1-4 run the committed Phase B code (probe_1/2/3/4) with unit 'cc_local' (D1). For the duration of each call, the module-level 'cc_local' threshold entries (floors, G90, L75/L90, D_unit) are swapped for this corpus's A values, resolved with the prereg_calibration.main() rules, then restored. No file is edited.",
+    "R1/F1 code is copied (not imported) from Track A's uncommitted phase_e_f1_bracket.py so this output does not depend on that file. The R1 N7 leg is computed here at session level for the R1_BRACKET detector (n7_cell_label, single-call types from SPEC_E).",
+    "The N6 R1 cell shows the per-split E label lowered by the pooled B u E artifact-check effects (AC4 downgrade). Per-split verdicts, before checks, are stored beside it.",
+    "AC4 for new corpora uses the stratum (D2) in place of repo, and keeps the model and single-session axes. The pub_cc_hf R1 downgrade comes from the model axis.",
+    "AC1 extension, not pre-registered and with no verdict effect: with no numerator events, 30 denominator streams per split were checked against the raw JSONL.",
+    "probe_2's instrument check is re-run on each corpus's own main-thread S_symbol_ref.",
+    "probe_4 runs with private=True, so no token or integer values are emitted.",
+    "R4: dual_whitelisted(text, 'cc_local') (D1), so the empty-file class applies; it excused 0 extra units. The R4 N7 leg was NOT_RUN.",
+    "Not run: AC1 for non-R1 cells; AC5 for all cells (no population table for new corpora); the N4 delta statistic (min n not met anyway); the N3 usage-adjusted secondary.",
+    "N5e follows Track A's convention (session-bootstrap comparator CI; comparator >= 30 texts from 5 s), as in phase_e_n5_battery.",
+    "N1 positive-control seed rng_for('N1pc', session, n1key) is my choice; N1 is INSUFFICIENT_N, so it has no verdict effect.",
+    "F3 (parameter-exclusion round numbers) was not run for the new corpora. P4b is INSUFFICIENT_N per split; B u E ALIVE is context only.",
+    "Where a cell is INSUFFICIENT_N on both B and E, its JSON deciding_number holds the B values (the fill-rule fallback). The E values are under p4.E, n5.E, and so on."
+   ],
+   "nulls": [
+    "R1 benign-cause analysis is a null of coverage: 0 honest inconsistent streams in pub_cc_hf (0/45 B, 0/37 E) and pub_trace_commons (0/7, 0/7), so no category can be tested and no correction adopted. FP_eff on E is 0/37.",
+    "0/82 honest failures in pub_cc_hf is statistically compatible with swechat's about 0.3% (expected about 0.25 failures). It is not evidence of a lower rate.",
+    "pub_trace_commons: 20 of 23 cells INSUFFICIENT_N (7+7 sessions), the other 3 NOT_TESTABLE. pub_cc_hf: 12 of 23 INSUFFICIENT_N.",
+    "R2, R3, R5 NOT_TESTABLE in both corpora (no image usage, no external commit table, no usage tally).",
+    "N4: 0 qualified W pairs at k >= 2 in either corpus (announced null held).",
+    "N5f: 0 checkable error frames (announced null held). git log sort: 0 outputs.",
+    "N3 DEAD on pub_cc_hf: reaction time does not scale with result size (pooled rho 0.059, CI includes 0).",
+    "P3b DEAD on pub_cc_hf: retry-after-failure effect CI includes 0 on B, E and B u E.",
+    "R1 blind attack types in pub_cc_hf: forward-dating (time_response_late), early results, delete_response, delete_pair, and every shift <= 2 s. The 5 s back-date does not clear the honest bar (stream level 10/82, CI lo 0.041 vs bar 0.045)."
+   ],
+   "surprises": [
+    "The pub_cc_hf R1 downgrade to WEAK comes only from a zero-count Wilson bar: leaving out claude-fable-5 leaves 30 streams with 0 failures, Wilson hi 0.1135 > 0.10. B and E alone are ALIVE, and the N7 leg on E DETECTS.",
+    "Wider consistent-stream slack in pub_cc_hf E (p50 3,760 ms vs 2,283 ms on B and about 2,270 ms on swechat) gives lower 5 s placebo power (4/37 E, 7/45 B, vs 0.39 on swechat). The 30 s power stays above 0.9.",
+    "id_splice_foreign random is PARTIAL here (16/38 E), not blind as on swechat. The corpus spans a narrow time window, so random donor ids often decode within 1 day and are not dropped.",
+    "P2 instrument check fails on pub_cc_hf (own S_symbol_ref 0.23 B / 0.28 E vs 0.10): DEAD via S_path_any 0.59-0.73, with creation targets 97/99 unsourced on E. Likely an incomplete antecedent record (for example, attachments kept as meta), not honest path guessing. The corpus is not on the antecedents_incomplete list, so the DEAD stands.",
+    "P1 pub_cc_hf is WEAK only through the pre-registered downgrade. The A read floor p5 = 0.001 s equals the 1 ms stamp resolution, which gives FLOOR_SHIFT; the Phase B sensitivity that excludes it shows no shift. fp 0/144 and AUC 1.0 on E.",
+    "N2 honest flag rate is 0.125 (E) to 0.198 (B) in pub_cc_hf, so WEAK. This is the prereg's expected hidden-output false-positive source. Inline-fabrication recall is 0.99.",
+    "<synthetic>-model entries carry request ids (15 B, 7 E); excluding them changes nothing (0 inconsistent).",
+    "Both corpora have whole-session raw/IR agreement on all 74 audited R1 denominator streams (AC1 extension)."
+   ]
+  },
+  "v": {
+   "group": "pubcc",
+   "checks": [
+    {
+     "cell": "pub_cc_hf R1_bracket",
+     "reproduced": true,
+     "my_numbers": "I used the frozen bracket_responses/bracket_streams and also wrote my own bracket on the IR, independent of the frozen helpers. Honest: B 0/45 streams (37 s; 37 main + 8 subagent), Wilson hi 0.0787. E 0/37 (37 s), W hi 0.0941. BuE 0/82 (74 s), W hi 0.0448. A second bracket built straight from the raw JSONL, bypassing the loader, gives the same result: B 37 and E 37 main streams, 0 inconsistent, max gap 368 ms (B) and -237 ms (E). Kill rule: placebo BuE 30 s back-date 76/82 = 0.927 [0.867, 0.973], which clears the 0.045 bar; 5 s back-date 11/82 [0.041, 0.233], which does not. Session-level N7 leg on E, with my own target draws: time_response_early 10 s 23/38 and 30 s 35/38; time_result_late 10 s 31/43; id_swap_adjacent 37/37; id_splice_foreign nearest 35/38. All are DETECTS against an honest FPR of 0/37-0/43. B gives the same pattern. AC4: model claude-fable-5 holds 0.634 of streams and 0.703 of sessions. Leaving it out gives 0/30 streams (22 s), W hi 0.1135 > 0.10, so WEAK and a one-level DOMINATED downgrade. Every stratum (repo) leave-out stays ALIVE (worst 0/57, hi 0.063). The top session holds 0.1098; leaving it out stays ALIVE. Final: E ALIVE before checks, WEAK (DOMINATED).",
+     "problem": "Numbers and label reproduce. The WEAK label depends on reading D2 as adding the stratum cluster next to the AC4 model and single-session axes. That is also how the agentcap_codex group reads it. If D2 instead replaced every AC4 axis with the stratum, no leave-out would drop the label and R1 would be ALIVE. The downgrade is a zero-count Wilson bound at n=30, not an observed failure; the group discloses this.",
+     "severity": "minor"
+    },
+    {
+     "cell": "pub_cc_hf F1_benign_and_placebo",
+     "reproduced": true,
+     "my_numbers": "Placebo B: 5 s 7/45, 30 s 42/45, later 5/30/300 s 0/45, roll_ids 45/45. Placebo E: 4/37, 34/37, 0/37, 37/37. Consistent slack p50 is 2,283 ms (B) and 3,760 ms (E). Request ids in more than one BuE session: 0. Without <synthetic> entries: 0/81 inconsistent. There are 0 inconsistent streams, so no benign category or correction applies. FP_eff E 0/37.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "pub_cc_hf P1_latency",
+     "reproduced": true,
+     "my_numbers": "I wrote my own qualification filter. E: W eligible 144 pairs (18 s), G 67 (10 s); fp 0/144, W hi 0.0260; AUC 1.000 (min log10 r_G -1.13 > max log10 r_W -1.26). B: W 184 (20 s), G 55 (12 s), fp 0/184, AUC 0.992. BuE: W 328 (38 s), G 122 (22 s), AUC 0.997. Floor transfer on read (A p5 = 0.001 s): E n=164 (23 s), 0 below, W hi 0.0229 < 0.025, so FLOOR_SHIFT. B n=276, FLOOR_SHIFT. B floor-step series 1/2, UNSTABLE; E has no eligible series. Label WEAK on B, E and BuE.",
+     "problem": "The label is mechanically correct, but the downgrade is structural. The A p5 equals the 1 ms stamp resolution, so the share of pairs below it is 0 by construction. The test trips FLOOR_SHIFT only because n >= ~150 pushes the zero-count Wilson hi below 0.025. E is just over that line at n=164; with fewer than 150 read pairs, E would have TRANSFERRED and been ALIVE. The group discloses this in a sensitivity entry.",
+     "severity": "minor"
+    },
+    {
+     "cell": "pub_cc_hf P2_knowledge_main",
+     "reproduced": true,
+     "my_numbers": "This is an approximate recompute. First-mention paths on the E main thread: 746 from 34 s, matching the group's n exactly. Unsourced share with strict path-key matching and no enumeration credit: 0.714. Generous lower bound (basename anywhere in earlier result/user/system/assistant text): 0.448 [0.346, 0.560]. B: 1,237 from 36 s; 0.79 strict, 0.563 generous. The group's 443/746 = 0.594 sits between my bounds. Every variant is above 0.20, so DEAD. I did not recompute S_deep or the instrument check.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "pub_cc_hf P3b_reaction",
+     "reproduced": true,
+     "my_numbers": "E: R_fail 16/66 (21 s), R_ok 0.1245 over 1,630; effect 0.1179 [-0.0344, 0.2484]. B: 129 failed from 23 s, effect 0.038 [-0.025, 0.099]. BuE: 195 failed from 44 s, effect 0.062 [-0.003, 0.139]. CI lo <= 0 everywhere, so DEAD.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "pub_cc_hf N2",
+     "reproduced": true,
+     "my_numbers": "Responses are GRANULAR (G1 1.0); τ_A 0.6676. E: 45/361 = 0.1247 [0.0829, 0.1657] (28 s), recall at 0.8τ 0.9917. B: 84/425 = 0.1976 [0.138, 0.233] (32 s). BuE: 129/786 = 0.164. AC2 truncation: 0.1645. AC4 leave-outs on model, stratum and top session are all still WEAK; the worst is dropping armand0e, at 0.1954. Label WEAK.",
+     "problem": "The B WEAK is 0.0024 below the 0.20 DEAD line. The prereg lists artifact checks for any N cell at WEAK, but AC1 was not run and AC5 is NOT_RUN. So the summary's \"all artifact checks pass\" overstates; the notes do say AC1 was not run for non-R1 cells.",
+     "severity": "minor"
+    },
+    {
+     "cell": "pub_cc_hf N3",
+     "reproduced": true,
+     "my_numbers": "E: pooled ρ 0.0592 [-0.0335, 0.1647] over 1,235 gaps in the 21 sessions with >= 20 gaps; ρ_s <= 0 in 9/21. B: 0.039 [-0.055, 0.144] (22 s). BuE: 0.043 [-0.017, 0.118]. DEAD.",
+     "problem": "Two issues, neither changing the label. (1) The result depends on the definition. Pooling over all E gaps (1,398 gaps, 43 s) gives 0.086 [0.006, 0.174], which would be WEAK. The group's population follows Track A's documented convention, which the prereg leaves open. (2) The cell's n=1,398 is the all-gaps count, paired with sessions=21. The ρ actually uses 1,235 gaps from those 21 sessions.",
+     "severity": "minor"
+    },
+    {
+     "cell": "pub_cc_hf N5e_size",
+     "reproduced": true,
+     "my_numbers": "E: comparator IQR 0.736, CI hi 0.9313 (43 s). Family cd: 109 results / 11 s, IQR 0.949. Family grep: 109 / 17 s, IQR 1.236. Both are above, 2/2, so WEAK. B: cd 412 / 13 s, IQR 0.667 < 0.724, so DEAD. BuE: cat, cd and grep above, ls not; 3/4, WEAK. Every AC4 leave-out (model and stratum, top 5 each) keeps a share >= 0.5.",
+     "problem": "The E label rests partly on the 'cd' family (the first program of 'cd X && ...' compounds), which clears the comparator's CI hi by only 0.018. AC1 was not run. The label is per rule.",
+     "severity": "minor"
+    },
+    {
+     "cell": "pub_cc_hf N4",
+     "reproduced": false,
+     "my_numbers": "I used the prereg JSON's in-flight definition, which counts all calls of the session (Track A's convention), with the group's W set from the Phase B qualification. W pairs at k >= 2: 23 in 6 s (B) and 1 (E). The group's 0 comes from calling inflight_counts on the W subset only. Both are far below 100 pairs from 10 s, so INSUFFICIENT_N.",
+     "problem": "The deciding number is not reproduced: W k>=2 is 23 (B), not 0. The label is unchanged.",
+     "severity": "minor"
+    },
+    {
+     "cell": "pub_cc_hf P4b_round / P4a and other INSUFFICIENT_N gates",
+     "reproduced": true,
+     "my_numbers": "P4b distinct T_orig: B 76 (12 s), last-0 35/76 = 0.461; E 39 (12 s); BuE 106 (23 s), 43/106. N1 shell RR: B 15/1,079, E 13/417. N5g eligible sessions: 18 (B), 21 (E), below 30. P3a n_long at L75=111: 3 (B), 4 (E). R4 proxy: sessions with >= 1 Read result are 31 (B) and 25 (E); the group's decided counts are 27 and 24, which I did not re-derive from raw numLines. The R4 N7 leg is NOT_RUN, so no R4 verdict is possible either way. Thresholds G90 76.48, τ 0.6676, L75 111, D_unit 4, read p5 0.001 and pooled N1 bounds all come from the corpus's own A calibration, whose sha256 matches change_log.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "pub_cc_hf R2_image / R3_git / R5_ledger",
+     "reproduced": true,
+     "my_numbers": "Field gate on B, matching A: image_usage_rows 0, external_commit_table false, external_usage_tally false. All three are NOT_TESTABLE.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "both corpora: D5 / H / NOT_BLIND / frozen",
+     "reproduced": true,
+     "my_numbers": "D5: newcorp_exclusions.json lists only agentcap, so 0 sessions are excluded here. Cache session sets equal the sample files: pub_cc_hf B 43 and E 43, pub_trace_commons 7 and 7; all disjoint from A and from each other. No diff since 669124a in loaders, lib, prereg_e_common, prereg_e.json, the calibration files or samples. check_frozen passes. Calibration sha256 values match the change_log records. Redactions total 72 (42 B + 30 E) and 0. The group script reads only through read_cache, which refuses H, and asserts split in (B,E) before any raw JSONL read; the index has no H entries. NOT_BLIND is set on R1, P1 and N3 cells in both corpora.",
+     "problem": "Two disclosures, neither a defect in the group's work. The loader's --split path re-runs a structure-only population pass over all files, including H; this is pre-registered loader behaviour and is disclosed. In my own checks, I once read the length of the H id list in samples/<corpus>_EH.json (counts only; no H event data).",
+     "severity": "none"
+    },
+    {
+     "cell": "pub_trace_commons (all cells)",
+     "reproduced": true,
+     "my_numbers": "R1: honest 0/7 (B) and 0/7 (E) streams, also 0 in the raw-JSONL check; BuE 0/14; 30 s back-date 13/14, 5 s 6/14. P1: W eligible 170 from 7 s (B) and 203 from 7 s (E); BuE fp 0/373, G 23 from 10 s. N2: B 34/232 (7 s), E 1/196 (7 s), BuE 35/428 = 0.082, recall 0.97. P3b: 61 failed from 5 s (B), 81 from 6 s (E); BuE 0.047 [-0.019, 0.106]. N3: sessions with >= 20 gaps 7/5/12. P4b: distinct T_orig 12/12/18. N1 RR 4/344 (B). Every split is below its min-n because there are only 7 sessions per split, so INSUFFICIENT_N is correct. R2, R3 and R5 are NOT_TESTABLE.",
+     "problem": "none",
+     "severity": "none"
+    }
+   ]
+  }
+ },
+ {
+  "key": "tbench",
+  "res": {
+   "group": "tbench (corpora tbench2, glm_tb21; unit argument = corpus name per D1; AC4 cluster = stratum per D2; D5 exclusions: none listed for either corpus; D6 NOT_BLIND on R1, P1, N1, N3, N4, N5g)",
+   "files_written": [
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_e_newcorp_tbench.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_measure_tbench2.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_measure_glm_tb21.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\phase_e_newcorp_tbench.md",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\tbench2_B.parquet (gitignored; built by load_tbench2 --split B: 2,000 sessions, 230,991 rows, 0 errors)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\tbench2_E.parquet (gitignored; load_tbench2 --split E: 2,000 sessions, 231,800 rows, 0 errors)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\glm_tb21_B.parquet (gitignored; load_glm_tb21 --split B: 23 sessions, 2,735 rows)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\glm_tb21_E.parquet (gitignored; load_glm_tb21 --split E: 23 sessions, 3,455 rows)"
+   ],
+   "cells": [
+    {
+     "corpus": "tbench2",
+     "mechanism": "R1_bracket",
+     "label": "ALIVE [B ALIVE, E ALIVE, BuE ALIVE] NOT_BLIND; population = stratum WozCode__Claude-Opus-4.6 (the only stratum with request ids, 79 s/split); checks AC1-AC4 PASS, not confined",
+     "deciding_number": "E: honest inconsistent streams 0/82 (per-event Wilson hi 0.0448); 30 s back-date 79/82 (cluster lo 0.918); N7 single-response DETECTS: time_response_early >= 10 s, id_swap_adjacent 75/79, id_splice_foreign random 79/79, time_result_late >= 5 s; BuE 0/168 honest, 161/168 at 30 s",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.R1_bracket -> detail.R1.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "P4b_round",
+     "label": "ALIVE [B ALIVE, E ALIVE, BuE ALIVE]",
+     "deciding_number": "E: T_orig last-0 321/653 = 0.492 [0.412, 0.574] vs M_all 0.150 (CI hi 0.175), 204 s; F3 parameter exclusion as context only: remaining 532 values, g 0.279 vs g_full 0.342, F3 rule would also give ALIVE",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.P4b_round -> detail.P4.E.verdicts.round_numbers_secondary"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "R4_dual",
+     "label": "WEAK [B WEAK, E WEAK, BuE WEAK]; population = Claude Code JSONL strata carrying raw toolUseResult.file.numLines (ClaudeCode__GLM-4.7, cchuter__minimax-m2.5); checks PASS",
+     "deciding_number": "E: honest sessions flagged 0/117 (Wilson hi 0.032), 428 units; N7: no single-call type DETECTS; PARTIAL sub_matched_bytes base 11/156, reorder_adjacent_pairs 27/156",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.R4_dual -> detail.R4.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N1",
+     "label": "WEAK [B WEAK, E WEAK, BuE WEAK] NOT_BLIND; pooled bounds (D1); AC1 30/30, AC2-AC4 PASS, not confined",
+     "deciding_number": "E: ALIVE fails only on flag rate at pooled bounds 47/1,368 = 0.034 (CI hi 0.054); rho_hon 0.036 [-0.001, 0.076]; rho_pc 0.433 [0.335, 0.524] (G90-invariant); RR 0.152; 204 s",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N1 -> detail.N1.E.shell.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N2",
+     "label": "WEAK [B WEAK, E WEAK, BuE WEAK]; AC1 30/30, AC2-AC4 PASS; strata range ALIVE..DEAD (not confined)",
+     "deciding_number": "E: honest flag 2,078/13,018 = 0.160 [0.133, 0.188]; recall at 0.8 tau 0.897; tau_A 0.344; 1,352 s",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N2 -> detail.N2.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N3",
+     "label": "WEAK [B WEAK, E WEAK, BuE WEAK] NOT_BLIND; AC1 30/30, AC2-AC4 PASS",
+     "deciding_number": "E: pooled rho 0.261 [0.233, 0.289]; share rho_s <= 0 = 278/1,037 = 0.268; 50,068 gaps",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N3 -> detail.N3.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "P2_knowledge",
+     "label": "DEAD [B DEAD, E DEAD, BuE DEAD]",
+     "deciding_number": "S_deep empty (no error definition -> first_try_success never set); fallback S_path_any 8,429/14,019 = 0.601 [0.574, 0.628], 1,146 s (pooled D=6)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.P2_knowledge -> detail.P2.E.main.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N5a_determinism",
+     "label": "DEAD [B DEAD, E DEAD, BuE DEAD]",
+     "deciding_number": "E drift 167/206 = 0.811 (hi 0.883), 90 s; B 0.679",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N5a_determinism -> detail.N5a.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N5b_sort",
+     "label": "DEAD [B DEAD, E DEAD, BuE DEAD] (lowest checker)",
+     "deciding_number": "E: ls violation 0.383 (1,420 outputs, 504 s), grep_n 0.104 (452), git_log INSUFFICIENT_N (16)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N5b_sort -> detail.N5b.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N5c_truncation",
+     "label": "INSUFFICIENT_N [all splits] (pooled constants, D1)",
+     "deciding_number": "cc_chars_mid marked results 14 (B) / 20 (E) < 50; glob cap 2 / 0",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N5c_truncation -> detail.N5c.B.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N5d_whitespace",
+     "label": "DEAD [B DEAD, E DEAD, BuE DEAD] (lowest checker)",
+     "deciding_number": "E: pytest_banner 0.666 (548), wc 0.400 (105), ls -l 0.077 (1,561); git_status INSUFFICIENT_N (29)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N5d_whitespace -> detail.N5d.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N5e_size",
+     "label": "DEAD [B DEAD, E DEAD, BuE DEAD]",
+     "deciding_number": "E: 14 of 38 families above comparator IQR CI hi 0.868 (share 0.37 < 0.5)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N5e_size -> detail.N5e.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N5g_cold_start",
+     "label": "DEAD [B WEAK, E DEAD, BuE WEAK] NOT_BLIND (B WEAK is CONFINED on length tercile)",
+     "deciding_number": "E: median c CI lo 0.0 (median 0.023), share c_s <= 0 = 183/374 = 0.489",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N5g_cold_start -> detail.N5g.E.verdict"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "P4a_hex",
+     "label": "INSUFFICIENT_N [B INSUFF, E INSUFF, BuE ALIVE]",
+     "deciding_number": "T_orig symbols 832 (B) / 768 (E) < N_min 1,131; BuE (not the cell) w_adj 0.620 [0.373, 0.981] vs M_git hi 0.059",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.P4a_hex -> detail.P4.B.verdicts.hex_primary"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "P1_latency",
+     "label": "NOT_TESTABLE(Phase B Probe 1 qualification classes, floors, G90 and G set exist only for registered units; no pooled value, D1) NOT_BLIND",
+     "deciding_number": "n/a (13,950 of 56,550 B pairs have distinct stamps, 6 of 25 strata)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.P1_latency"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "P3a_zero_error",
+     "label": "NOT_TESTABLE(error signal: no error definition for the unit, D1)",
+     "deciding_number": "n/a (context: 15,279/66,124 B results carry native_error, 1,462 True, unused by construction)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.P3a_zero_error"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "P3b_reaction",
+     "label": "NOT_TESTABLE(error signal, D1)",
+     "deciding_number": "n/a",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.P3b_reaction"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "R2_image",
+     "label": "NOT_TESTABLE(prompt IMAGE token counts absent)",
+     "deciding_number": "field gate image_usage_rows 0",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.R2_image"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "R3_git",
+     "label": "NOT_TESTABLE(external commit table absent)",
+     "deciding_number": "field gate external_commit_table False",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.R3_git"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "R5_ledger",
+     "label": "NOT_TESTABLE(external usage tally absent)",
+     "deciding_number": "field gate external_usage_tally False (result.json trial token tally exists; not the pre-registered source)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.R5_ledger"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N4",
+     "label": "NOT_TESTABLE(Phase B W/G pair populations defined only for registered units; D1) NOT_BLIND",
+     "deciding_number": "n/a",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N4"
+    },
+    {
+     "corpus": "tbench2",
+     "mechanism": "N5f_error_fidelity",
+     "label": "NOT_TESTABLE(error signal, D1)",
+     "deciding_number": "n/a",
+     "json_path": "analysis/out/phase_e/newcorp_measure_tbench2.json#cells.N5f_error_fidelity"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N2",
+     "label": "WEAK [B WEAK, E WEAK, BuE WEAK]; AC1 30/30 PASS, AC2 PASS, AC3 INSUFFICIENT_N (no effect), single stratum (label only)",
+     "deciding_number": "E: honest flag 21/224 = 0.094 (CI hi 0.248), recall 0.8 tau 0.973, 17 s; B: 9/247 = 0.036 (hi 0.082), recall 0.858, 19 s",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N2 -> detail.N2.E.verdict"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N3",
+     "label": "INSUFFICIENT_N [B INSUFF, E INSUFF, BuE DEAD] NOT_BLIND",
+     "deciding_number": "sessions with >= 20 gaps: 11 (B), 10 (E) < 20; BuE 21 s, pooled rho 0.127, CI lo -0.00001",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N3 -> detail.N3.B.verdict"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "P2_knowledge",
+     "label": "INSUFFICIENT_N [all splits]",
+     "deciding_number": "0 first mentions (Terminus bash_command keystrokes are not parsed as shell by the Phase B code)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.P2_knowledge -> detail.P2.B.main.verdict"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "P4a_hex",
+     "label": "INSUFFICIENT_N [all splits]",
+     "deciding_number": "T_orig symbols 0 < N_min 1,131",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.P4a_hex -> detail.P4.B.verdicts.hex_primary"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "P4b_round",
+     "label": "INSUFFICIENT_N [all splits]",
+     "deciding_number": "T_orig 10 distinct values from 5 s < 100/10",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.P4b_round -> detail.P4.B.verdicts.round_numbers_secondary"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N5a_determinism",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "2 pairs / 1 s",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N5a_determinism"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N5b_sort",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 eligible outputs per checker",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N5b_sort"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N5c_truncation",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 marked results",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N5c_truncation"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N5d_whitespace",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 eligible outputs per check",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N5d_whitespace"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N5e_size",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 families with >= 100 results from >= 10 s",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N5e_size"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "P1_latency",
+     "label": "NOT_TESTABLE(distinct call/result stamps) NOT_BLIND",
+     "deciding_number": "pairs_distinct_stamps 0 on A, B (550 pairs), E (652 pairs)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.P1_latency"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N1",
+     "label": "NOT_TESTABLE(distinct call/result stamps) NOT_BLIND",
+     "deciding_number": "pairs_distinct_stamps 0",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N1"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N4",
+     "label": "NOT_TESTABLE(distinct call/result stamps) NOT_BLIND",
+     "deciding_number": "pairs_distinct_stamps 0",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N4"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N5g_cold_start",
+     "label": "NOT_TESTABLE(distinct call/result stamps) NOT_BLIND",
+     "deciding_number": "pairs_distinct_stamps 0",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N5g_cold_start"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "R1_bracket",
+     "label": "NOT_TESTABLE(no provider request ids; self-hosted vLLM) NOT_BLIND",
+     "deciding_number": "request_ids 0 on A, B, E",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.R1_bracket"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "P3a_zero_error",
+     "label": "NOT_TESTABLE(error signal, D1)",
+     "deciding_number": "n/a (native_error 0/765 B results)",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.P3a_zero_error"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "P3b_reaction",
+     "label": "NOT_TESTABLE(error signal, D1)",
+     "deciding_number": "n/a",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.P3b_reaction"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "N5f_error_fidelity",
+     "label": "NOT_TESTABLE(error signal, D1)",
+     "deciding_number": "n/a",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.N5f_error_fidelity"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "R2_image",
+     "label": "NOT_TESTABLE(IMAGE usage absent)",
+     "deciding_number": "field gate",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.R2_image"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "R3_git",
+     "label": "NOT_TESTABLE(external commit table absent)",
+     "deciding_number": "field gate",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.R3_git"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "R4_dual",
+     "label": "NOT_TESTABLE(no toolUseResult numLines: ATIF only)",
+     "deciding_number": "field gate",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.R4_dual"
+    },
+    {
+     "corpus": "glm_tb21",
+     "mechanism": "R5_ledger",
+     "label": "NOT_TESTABLE(external usage tally absent)",
+     "deciding_number": "field gate",
+     "json_path": "analysis/out/phase_e/newcorp_measure_glm_tb21.json#cells.R5_ledger"
+    }
+   ],
+   "deviations": [
+    "D1 applied literally: with unit = corpus name, prereg_common.error_classes has no definition, so P3a/P3b/N5f are NOT_TESTABLE(error signal), and Probe 2's S_deep population is empty, so the Phase B rule falls back to S_path_any capped at WEAK. Probe 1 qualification, floors, G90, the G set and the N4 W/G populations exist only for registered units and have no pooled value, so P1 and N4 are NOT_TESTABLE. N1 uses the pooled bounds, N5c the pooled truncation constants, and P2 the pooled D = 6.",
+    "N1 positive control without a calibrated G90: computed with G90 = 1 and G90 = 100. G90 only shifts every tampered residual by the same constant, so rho_pc is rank-invariant (|diff| <= 2.5e-5 from floating-point ties, stored in detail.N1.*.rho_pc_G90_invariance). Detector recall on tampered instances, which does depend on G90, was not computed.",
+    "R1 population = sessions of stratum WozCode__Claude-Opus-4.6, the only stratum with request ids (task instruction), for the honest bracket, the placebo, stream-level kill-rule tampers (one per stream), session-level N7 cells (one per session), strata and checks. rewrite_consistent_k was NOT_RUN for R1 (not single-call; not an input of the rule). The B u E R1 verdict reads the N7 leg and the 'other types' leg from E.",
+    "R4 was run on tbench2 although the A field gate says raw_structured_counters False. That gate is set by unit name. A structural count of the raw B logs found toolUseResult.file.numLines in the ClaudeCode__GLM-4.7 and cchuter__minimax-m2.5 strata (470 B units; WozCode has none), and the prereg makes R4 NOT_RUN only when the raw join is missing. Method: the phase_e_r4_r5.py recount; population = those two strata; N7 targets attack-defined, as in phase_e_n7_timing.py.",
+    "AC1 parser audit implemented with an independent raw reader (ATIF, Claude Code JSONL, Gemini CLI, hookele) for every cell at WEAK or better: R1, N1, N2 and N3 on tbench2 and N2 on glm_tb21, all PASS 30/30. R4 audited 0 because no unit was flagged. N5g (B WEAK, cell DEAD) has AC1 NOT_RUN. Naive raw stamps were read as UTC, the loader's rule.",
+    "AC5 is NOT_RUN for every check: prereg_e_common.population_cells() has no new-corpus branch and is frozen.",
+    "Multi-checker items (N5b, N5c, N5d): the item cell is the lowest checker label, the same rule phase_e_n5_battery.py uses. Verdict-rule gaps are read the same way as the Track A item scripts: N1 INCONCLUSIVE branch; N2 WEAK uses recall at 0.8 tau; N3 pooled rho over sessions with >= 20 gaps; N5e log10(bytes+1); N5c PC re-truncation.",
+    "An AC2/AC3 recompute label that is not a level (INSUFFICIENT_N) is recorded as NO_EFFECT, as Track A does. Example: glm_tb21 N2 AC3 keeps 42/471 responses because Terminus call ids repeat across sessions and join_clean_mask treats them as copied.",
+    "D6 NOT_BLIND was put on N1, N4 and N5g as well as on R1/F1, P1 and N3, because they are built on the same call->result gaps Track B profiled.",
+    "F3 parameter exclusion was computed on P4b as context only. The prereg assigns F3 to A1 candidates, not N6 cells, so the cell keeps the Phase B rule label. Its counts were checked equal to prereg_e_calibration.cal_round on the same frames.",
+    "Loaders were run unchanged (--split B and --split E code paths; no bug fix was needed). Caches are gitignored.",
+    "Output names follow the task: analysis/probes/phase_e_newcorp_tbench.py -> newcorp_measure_<corpus>.json."
+   ],
+   "nulls": [
+    "tbench2 N5 battery is DEAD on B and E:\n- N5a determinism drift 0.811 (E).\n- N5b ls 0.383, grep_n 0.104.\n- N5d pytest_banner 0.666, wc 0.400, ls -l 0.077.\n- N5e: 14 of 38 families.\nThis matches Track A's swechat/claude_code DEADs for the same items, so it transfers as a null.",
+    "tbench2 P2 knowledge DEAD: S_path_any 0.601 [0.574, 0.628]. S_deep is empty by construction (no error definition).",
+    "tbench2 N5g cold start is DEAD on E (median c CI lo 0.0). B is WEAK but CONFINED on length tercile.",
+    "glm_tb21: 13 of 22 cells are NOT_TESTABLE: no distinct call/result stamps, no request ids, no error definition, plus field gates. 8 are INSUFFICIENT_N with 23+23 sessions in one stratum. glm N3 B u E (21 s) is DEAD with pooled rho CI lo -0.00001, though the cell itself is INSUFFICIENT_N.",
+    "R1 N7 BLIND cells (E): time_response_early <= 2 s, time_result_early (all D), time_response_late, delete_response, delete_pair, id_splice_foreign with the nearest-time donor (1/79). R4 N7 BLIND: sub_single_digit, reorder_lines, delete_pair, insert_pair_*. No single-call type DETECTS for R4.",
+    "INSUFFICIENT_N: tbench2 P4a hex on each split (T_orig 832/768 symbols < 1,131), tbench2 N5c (14/20 marked results < 50), N5b git_log, N5d git_status.",
+    "NOT_TESTABLE by D1 definitions, not by missing data:\n- tbench2 P1 and N4. Their latency field exists in 6 strata.\n- P3a, P3b and N5f. tbench2 has native_error on 15,279/66,124 B results, unused because the unit has no error definition.",
+    "N1 auto_read (secondary scope) is INSUFFICIENT_N on tbench2 B (158 residuals)."
+   ],
+   "surprises": [
+    "R1 transfers cleanly to a second Anthropic-id harness (WozCode on Terminal-Bench 2.0). It had 0/168 honest inconsistent streams on B u E, and the 30 s back-date was flagged in 161/168. Single-response tampers are DETECTED (id swap 75/79, foreign splice 79/79, response back-date >= 10 s), and time_result_late >= 5 s is detected through the next response's lower bound. The consistent-stream slack (p50 about 2.3 s) matches swechat's. It is one submission and NOT_BLIND.",
+    "R4 dual-rendering recount had 0 honest flags in 898 Read units on two Claude Code harnesses driving non-Anthropic models (GLM-4.7, local MiniMax). It only reaches WEAK because attack-defined substitutions mostly hit non-Read results.",
+    "P4b round numbers are ALIVE on tbench2 and survive the F3 parameter exclusion (context: g/g_full = 0.82, F3 rule would give ALIVE). Model-typed integers stay rounder than machine output even after CLI options, sleep/timeout and key=value parameters are removed.",
+    "Probe 4 hex on pooled B u E (not the cell): T_orig w_adj 0.620 [0.373, 0.981] against the M_git control's 0.024 (hi 0.059), a very large deviation. Each split alone is below N_min.",
+    "tbench2 N2 strata split sharply: WozCode, JJAgent and Terminus2__DeepSeek are ALIVE, while Meta-Harness, both Terminus-KIRA strata, Terminus2__GLM-5, Terminus2__GPT-5.3-Codex and vix are DEAD. The corpus-level WEAK averages incompatible usage-accounting conventions, such as litellm proxies and completion_tokens that may include hidden reasoning.",
+    "19 of 25 tbench2 strata (all ATIF / Terminus-family) have shared call/result stamps written per step after execution. Latency mechanisms therefore run on only 6 strata. N3 'gaps' in ATIF strata are step-to-step times that include the next LLM call, not reading time.",
+    "The frozen AC3 join check (call_id not in another session) excludes about half the tbench2 pairs and nearly all glm_tb21 pairs, because Terminus-style call ids repeat across sessions. The copy-detection assumption does not transfer to harnesses with per-session sequential ids.",
+    "The new-corpus field gate's raw_structured_counters / external_* flags are set by unit name. tbench2's Claude Code JSONL strata do carry toolUseResult.file.numLines, and result.json carries a trial-level token tally that is not the pre-registered R5 source."
+   ]
+  },
+  "v": {
+   "group": "tbench (tbench2, glm_tb21). Re-derived with my own scratch code; nothing was written under analysis/. Scripts and outputs are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\rederive (r1.py, ncells.py, p2p4.py, r4.py, r4s.py, n5shell.py, *_out.json). Every deciding number of every non-INSUFFICIENT_N cell reproduces, either exactly or, for my own tamper draws, at the same label. One label question remains: the R1 AC4 handling. Process checks: D5 lists no exclusions for either corpus. The B/E caches hold exactly the split ids (2,000 / 2,000 / 23 / 23) and none of the H ids. Loader sha256 matches the extension records. check_frozen passes. Thresholds are the frozen ones (N1 pooled bounds [-1.2553, 1.5677], tau 0.34443 / 0.28948, P2 D 6, N_min 1131, R1 2,000 ms). The NOT_BLIND flag is present on R1, P1, N1, N3, N4 and N5g in both corpora. Disclosure: to check that the splits do not overlap, I loaded the H id list from the *_EH.json files and compared its sha256 with the manifest. I read ids only, no H event data.",
+   "checks": [
+    {
+     "cell": "tbench2 R1_bracket (ALIVE; B/E/BuE ALIVE)",
+     "reproduced": true,
+     "my_numbers": "Request ids appear only in the WozCode__Claude-Opus-4.6 stratum (79 sessions per split). All ids are decodable: 1,463 (B) and 1,418 (E). I ran on all 2,000 sessions with no stratum filter. Honest: E 0/82 streams (79 s), Wilson hi 0.04475; B 0/86, hi 0.04276; BuE 0/168, hi 0.02236. Max gap -580 ms (B) and -623 ms (E). E slack p50 2,297 ms. Placebo (same seeds): E back5 38/82, back30 79/82 (cluster lo 0.9176); B back5 32/86, back30 82/86 (lo 0.908); late 5/30/300 s 0 in both splits. My own N7 session draws: E id_swap_adjacent 78/79 DETECTS; id_splice_foreign random 77/79 DETECTS; time_response_early 10 s 64/79 and 30 s 77/79 DETECTS (5 s 25/79 PARTIAL); time_result_late 5 s 61/79 DETECTS. B gives the same labels. FPR 0/79 throughout.",
+     "problem": "Every number and the E-verdict ALIVE reproduce. The problem is the after-checks label. The group reports AC4 as PASS, with 'one stratum by construction: labelled only (as aiv_cc)', and label_after_checks_BuE ALIVE. Under D2 the AC4 cluster is the stratum, and the whole R1 denominator (82/86/168 streams) is one submission: one agent, one model, share 1.0. The prereg's AC4 says: if dominated, leave the dominant cluster out; a leave-out below min n caps the label at WEAK (UNTESTABLE_WITHOUT_DOMINANT). The only 'labelled only' exemption in the prereg is aiv_cc, a single-agent corpus. Track A applied the cap in the closest analogue: cc_local R1, repo share 0.999, leave-out of 1 stream, effect cap_weak, ceiling_after_checks WEAK (f1_bracket.json). Applied the same way, tbench2 R1 after checks is WEAK, and 'checks AC1-AC4 PASS' should read 'AC4 UNTESTABLE_WITHOUT_DOMINANT, capped at WEAK'. Caveat: the prereg mandates ACs only for A1 candidates and N1-N5 cells, so if the orchestrator treats the N6 cell as the raw E verdict, the cell stays ALIVE. This is a relabel; nothing needs recomputing. The notes are transparent that R1 covers one submission.",
+     "severity": "blocking"
+    },
+    {
+     "cell": "tbench2 P4b_round (ALIVE)",
+     "reproduced": true,
+     "my_numbers": "My own walk of the extraction (pc.large_ints / args_strings, antecedent sets) gives exact matches. E: T_orig 321/653 = 0.4916 [0.4118, 0.5744], 204 s, vs M_all 4,083/27,304 = 0.1495 [0.1303, 0.1746]. B: 329/695 = 0.4734 [0.3676, 0.5771] vs 0.1560 [0.1327, 0.1906]. BuE: 522/1,120, lo 0.396 (theirs 0.392; my B-then-E dedupe order differs). F3 context on E: 532 remaining, g 0.279 vs g_full 0.342, remaining lo 0.348 > 0.225. All ALIVE.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 P4a_hex (INSUFFICIENT_N)",
+     "reproduced": true,
+     "my_numbers": "T_orig hex: B 76 tokens / 832 symbols / 40 s; E 63 / 768 / 36. Both are below N_min 1,131. BuE has 1,360 symbols and is testable, but BuE is not the cell.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 R4_dual (WEAK)",
+     "reproduced": true,
+     "my_numbers": "I wrote my own raw reader for toolUseResult.file.numLines in the CC JSONL. numLines appears in 117 E / 114 B sessions, all in ClaudeCode__GLM-4.7 and cchuter__minimax-m2.5; WozCode has none. Honest E: 0/117 decided sessions, 428 units, Wilson hi 0.0318. B: 0/114, 470 units. My own N7 draws on E: reorder_adjacent_pairs 28/156 PARTIAL (theirs 27/156); sub_matched_bytes 8/154 PARTIAL. On BuE leave-one-stratum-out, reorder_adjacent_pairs stays PARTIAL in each stratum (26/156 and 28/156), so WEAK survives the AC4 leave-out with the N7 leg included. The group's leave-out recomputed only the honest part.",
+     "problem": "Minor, documented deviation: the cell was run although the A field gate says raw_structured_counters False. That flag is set by unit name in prereg_e_calibration, not measured. The field is present in the raw data, so running it is defensible. A strict reading of the fill rule would make the cell NOT_TESTABLE instead of WEAK.",
+     "severity": "minor"
+    },
+    {
+     "cell": "tbench2 N1 (WEAK)",
+     "reproduced": true,
+     "my_numbers": "E: 1,368 residuals / 204 s; flag 47/1,368 = 0.0344 [0.0199, 0.0542]; rho_hon 0.0357 [-0.0011, 0.0760]; RR 0.1524; rho_pc (my draws, G90-invariant) 0.420 [0.326, 0.519] vs theirs 0.433 [0.335, 0.524]. B: 1,485 / 206 s; flag 0.0438 [0.0272, 0.0643]; rho_hon -0.030 [-0.080, 0.026]; RR 0.1478. BuE: 2,853; flag 0.0393; RR 0.150. WEAK because only the flag-rate condition fails.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 N2 (WEAK)",
+     "reproduced": true,
+     "my_numbers": "E: 2,078/13,018 = 0.1596 [0.1334, 0.1883], 1,352 s, recall at 0.8 tau 0.8971. B: 1,891/13,121 = 0.1441 [0.1224, 0.1662], recall 0.8899. BuE: 3,969/26,139 = 0.1518. Pooled granularity G1 1.0, median usage_out 187 (E).",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 N3 (WEAK)",
+     "reproduced": true,
+     "my_numbers": "E: 59,536 gaps; 1,037 sessions with >= 20 gaps (50,068 gaps); pooled rho 0.2607 [0.2329, 0.2894]; rho_s <= 0 in 278/1,037 = 0.268. B: 1,031 sessions; rho 0.229 [0.202, 0.255]; 267/1,031. BuE: rho 0.245 [0.226, 0.265].",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 P2_knowledge (DEAD)",
+     "reproduced": true,
+     "my_numbers": "Frozen Phase B code: E S_path_any 8,429/14,019 = 0.6013 [0.5745, 0.6281], 1,146 s; B 7,854/13,378 = 0.587. S_deep is empty because first_try_success needs prim is False and error_classes returns None for 'tbench2'. My crude independent sourcing check (structured paths plus free paths, no enumeration sourcing) gives 0.673 (E) and 0.658 (B). Both are far above 0.20.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 N5a_determinism (DEAD)",
+     "reproduced": true,
+     "my_numbers": "All pairs, as in the calibration and Track A: E 167/206 = 0.811 [0.713, 0.883], 90 s; B 152/224 = 0.679; BuE 319/430 = 0.742. By key on E: bash_command 137 pairs (drift 0.87), shell 56 (0.84), read 13 (0.08).",
+     "problem": "Minor and disclosed in the notes. 137/206 E and 148/224 B pairs are Terminus bash_command keystroke screens: determinism_pairs runs readonly_command on the command column whatever the key. With shell-family and read pairs only, E has 69 and B 76 pairs, below 100, so the cell would be INSUFFICIENT_N. Shell-only drift is 0.84, so it would never be WEAK or better. Under frozen code and 'no rescue', DEAD stands.",
+     "severity": "minor"
+    },
+    {
+     "cell": "tbench2 N5b_sort (DEAD)",
+     "reproduced": true,
+     "my_numbers": "Shell-family eligibility (cal_n5 path), E: ls 0.3831 (1,420 outputs / 504 s); grep_n 0.1040 (452 / 139); git_log 16 outputs, INSUFFICIENT_N. B: ls 0.380 (1,409); grep_n 0.172 (378). Including bash_command, E ls is 0.337 (1,678), still DEAD.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 N5c_truncation (INSUFFICIENT_N)",
+     "reproduced": true,
+     "my_numbers": "cc_chars_mid B 14 (9 s), E 20 (17 s); cc_glob_cap B 2. All below 50/10.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 N5d_whitespace (DEAD)",
+     "reproduced": true,
+     "my_numbers": "E: pytest_banner 0.666 (548 / 183 s); wc 0.400 (105 / 69); ls -l 0.0769 (1,561 / 566); git_status 29 outputs, INSUFFICIENT_N. B: pytest 0.739, wc 0.390, ls -l 0.058.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 N5e_size (DEAD)",
+     "reproduced": true,
+     "my_numbers": "E: 14 of 38 families above the comparator IQR CI hi 0.8676 (share 0.368). B: 15/45 (0.333), hi 0.8638.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 N5g_cold_start (DEAD; B WEAK)",
+     "reproduced": true,
+     "my_numbers": "E: 374 s; median c 0.0232, CI [0.0, 0.1027]. The CI lo is exactly 0 because 23 c_s values are exactly 0. c_s <= 0 in 183/374 = 0.489, so DEAD (CI lo not > 0). B: 382 s; median 0.1125 [0.0273, 0.1761]; 163/382, so WEAK. BuE: 756 s; median 0.0605 [0.0105, 0.1233].",
+     "problem": "none (borderline but mechanical: E CI lo = 0.0 exactly)",
+     "severity": "none"
+    },
+    {
+     "cell": "tbench2 NOT_TESTABLE cells (P1, P3a, P3b, N4, N5f, R2, R3, R5)",
+     "reproduced": true,
+     "my_numbers": "error_classes('tbench2', ...) returns None ('no_definition'). prereg.json probe1 allowed_classes, floors and G90 exist per unit only, with no pooled value. 0 image-usage fields; 0 commit claims and no external commit table. Distinct-stamp pairs: B 13,950 / 56,550 and E 13,171 / 56,918.",
+     "problem": "Minor: P1, N4 and the error-based cells are switched off by the D1 own-name unit argument, although native_error and distinct stamps exist. The group discloses this in the notes (item 7).",
+     "severity": "minor"
+    },
+    {
+     "cell": "glm_tb21 N2 (WEAK)",
+     "reproduced": true,
+     "my_numbers": "E: 21/224 = 0.0938 [0.0, 0.2477], 17 s, recall at 0.8 tau 0.9732. B: 9/247 = 0.0364 [0.0, 0.0818], 19 s, recall 0.8583. ALIVE fails on B (recall) and on E (flag rate), so WEAK. BuE: 30/471 = 0.0637.",
+     "problem": "none. Single stratum: an AC4 cap at WEAK would not change WEAK.",
+     "severity": "none"
+    },
+    {
+     "cell": "glm_tb21 N3 (INSUFFICIENT_N; BuE DEAD)",
+     "reproduced": true,
+     "my_numbers": "Sessions with >= 20 gaps: B 11, E 10, both < 20. BuE: 21 s, pooled rho 0.1274 [-0.0000105, 0.2366], so DEAD (not the cell).",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "glm_tb21 P2_knowledge (INSUFFICIENT_N)",
+     "reproduced": true,
+     "my_numbers": "Frozen Phase B code: 0 first mentions in B and E. My crude check treats the Terminus bash_command keystrokes as shell commands and finds 211 first mentions (22 s, unsourced 0.583) in B and 292 (23 s, 0.743) in E.",
+     "problem": "Minor. INSUFFICIENT_N follows from the frozen loader keeping bash_command out of the shell fold. If keystrokes counted as shell commands, the min n (200 / 20 s) would be met and the cell would be DEAD. The group discloses this.",
+     "severity": "minor"
+    },
+    {
+     "cell": "glm_tb21 P4a / P4b / N5a-e (INSUFFICIENT_N)",
+     "reproduced": true,
+     "my_numbers": "P4b T_orig: B 10 values / 5 s, E 1. P4a: 0 hex symbols. N5a: B 2 pairs / 1 s, E 1. N5b and N5d in B: 0 eligible. N5e B/E: 0 families with >= 100 results from >= 10 s.",
+     "problem": "none. My BuE finds 1 N5e family (python3, 123 results / 24 s) where the group finds 0, but BuE is not the cell.",
+     "severity": "none"
+    },
+    {
+     "cell": "glm_tb21 NOT_TESTABLE (R1, P1, N1, N4, N5g, P3, N5f, R2-R5)",
+     "reproduced": true,
+     "my_numbers": "request_id rows 0 in B and E. Distinct-stamp pairs 0/550 (B) and 0/652 (E). No error definition. 0 image fields.",
+     "problem": "none",
+     "severity": "none"
+    }
+   ]
+  }
+ },
+ {
+  "key": "agentcap_codex",
+  "res": {
+   "group": "agentcap_codex",
+   "files_written": [
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\probes\\phase_e_newcorp_agentcap_codex.py",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_measure_agentcap.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_measure_pub_codex.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\notes\\phase_e_newcorp_agentcap_codex.md",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_agentcap_B.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_agentcap_E.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_codex_B.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_codex_E.json",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\agentcap_B.parquet (gitignored cache)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\agentcap_E.parquet (gitignored cache)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_codex_B.parquet (gitignored cache)",
+    "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\cache\\pub_codex_E.parquet (gitignored cache)"
+   ],
+   "cells": [
+    {
+     "corpus": "agentcap",
+     "mechanism": "P1_latency|agentcap/opencode",
+     "label": "NOT_TESTABLE(G90/floors not calibrated on the corpus's A; no pooled value; D1)",
+     "deciding_number": "D1: threshold absent. Analog run, post hoc and not a verdict, with the swechat/opencode Phase B thresholds: fp 0/588, AUC 1.000 [1.000, 1.000], G 48 pairs / 41 s on B u E (analog ALIVE). B and E alone: G 19 and 29 pairs (< 30)",
+     "json_path": "newcorp_measure_agentcap.json#cells.P1_latency.agentcap/opencode -> units.agentcap/opencode.mechanisms.P1_latency.<pop>.analog_unit_run"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P1_latency|agentcap/pi",
+     "label": "NOT_TESTABLE(Probe 1 no-human-wait filter and G90 undefined for unit 'agentcap/pi'; D1)",
+     "deciding_number": "no analogue unit",
+     "json_path": "newcorp_measure_agentcap.json#cells.P1_latency.agentcap/pi"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P2_knowledge|agentcap/opencode",
+     "label": "DEAD",
+     "deciding_number": "S_path_any (S_deep n 6 < 100): E 108/267 = 0.404 [0.307, 0.510], 55 s; D = pooled 6; DEAD on B, E and B u E",
+     "json_path": "newcorp_measure_agentcap.json#cells.P2_knowledge.agentcap/opencode -> units.agentcap/opencode.mechanisms.P2_knowledge.E.strata.main.verdict"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P2_knowledge|agentcap/pi",
+     "label": "DEAD",
+     "deciding_number": "S_path_any E 317/583 = 0.544 [0.474, 0.616], 82 s; S_deep 0 (no error definition, so no first-try success)",
+     "json_path": "newcorp_measure_agentcap.json#cells.P2_knowledge.agentcap/pi -> units.agentcap/pi.mechanisms.P2_knowledge.E.strata.main.verdict"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P3a_zero_error|agentcap/opencode",
+     "label": "NOT_TESTABLE(L75 not calibrated on the corpus's A; no pooled value; D1)",
+     "deciding_number": "the analog L75 = 185 gives n_long 1 on B u E (INSUFFICIENT_N in any case)",
+     "json_path": "newcorp_measure_agentcap.json#cells.P3a_zero_error.agentcap/opencode -> units.agentcap/opencode.mechanisms.P3.<pop>.zero_error_tail_analog"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P3a_zero_error|agentcap/pi",
+     "label": "NOT_TESTABLE(error signal: no error definition for unit 'agentcap/pi')",
+     "deciding_number": "n/a",
+     "json_path": "newcorp_measure_agentcap.json#cells.P3a_zero_error.agentcap/pi"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P3b_reaction|agentcap/opencode",
+     "label": "DEAD",
+     "deciding_number": "E effect R_fail - R_ok = -0.008 [-0.058, 0.049]; 193 failed c_i from 60 s; B u E 0.008 [-0.032, 0.049] from 122 s",
+     "json_path": "newcorp_measure_agentcap.json#cells.P3b_reaction.agentcap/opencode -> units.agentcap/opencode.mechanisms.P3.E.reaction_verdict"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P3b_reaction|agentcap/pi",
+     "label": "NOT_TESTABLE(error signal: no error definition for unit 'agentcap/pi')",
+     "deciding_number": "n/a",
+     "json_path": "newcorp_measure_agentcap.json#cells.P3b_reaction.agentcap/pi"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P4a_hex|agentcap/opencode",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig hex 32 symbols on B u E (N_min 1,131)",
+     "json_path": "newcorp_measure_agentcap.json#cells.P4a_hex.agentcap/opencode -> units.agentcap/opencode.mechanisms.P4.<pop>.hex.deciding"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P4a_hex|agentcap/pi",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig hex 15 symbols on B u E (N_min 1,131)",
+     "json_path": "newcorp_measure_agentcap.json#cells.P4a_hex.agentcap/pi -> units.agentcap/pi.mechanisms.P4.<pop>.hex.deciding"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P4b_round|agentcap/opencode",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig 9 distinct ints on B u E (< 100)",
+     "json_path": "newcorp_measure_agentcap.json#cells.P4b_round.agentcap/opencode -> units.agentcap/opencode.mechanisms.P4.<pop>.round.deciding"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "P4b_round|agentcap/pi",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig 513 distinct ints, but from only 8 sessions (< 10)",
+     "json_path": "newcorp_measure_agentcap.json#cells.P4b_round.agentcap/pi -> units.agentcap/pi.mechanisms.P4.<pop>.round.deciding"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "R1_bracket|agentcap/opencode",
+     "label": "NOT_TESTABLE(provider request ids decodable to ms)",
+     "deciding_number": "0 decodable of 877 (B) / 704 (E) distinct operator-minted ids",
+     "json_path": "newcorp_measure_agentcap.json#cells.R1_bracket.agentcap/opencode -> units.agentcap/opencode.field_gate.<pop>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "R1_bracket|agentcap/pi",
+     "label": "NOT_TESTABLE(provider request ids decodable to ms)",
+     "deciding_number": "0 decodable of 1,559 (B) / 1,483 (E) distinct ids",
+     "json_path": "newcorp_measure_agentcap.json#cells.R1_bracket.agentcap/pi -> units.agentcap/pi.field_gate.<pop>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "R2_image|agentcap/opencode,agentcap/pi",
+     "label": "NOT_TESTABLE(per-response prompt IMAGE token counts)",
+     "deciding_number": "0 image usage rows on B and E",
+     "json_path": "newcorp_measure_agentcap.json#cells.R2_image.<unit>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "R3_git|agentcap/opencode,agentcap/pi",
+     "label": "NOT_TESTABLE(external commit table linked by repo)",
+     "deciding_number": "no external commit table; 0 commit claims",
+     "json_path": "newcorp_measure_agentcap.json#cells.R3_git.<unit>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "R4_dual|agentcap/opencode,agentcap/pi",
+     "label": "NOT_TESTABLE(harness structured counters toolUseResult numLines)",
+     "deciding_number": "field absent",
+     "json_path": "newcorp_measure_agentcap.json#cells.R4_dual.<unit>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "R5_ledger|agentcap/opencode,agentcap/pi",
+     "label": "NOT_TESTABLE(external usage tally)",
+     "deciding_number": "field absent",
+     "json_path": "newcorp_measure_agentcap.json#cells.R5_ledger.<unit>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N1|agentcap/opencode",
+     "label": "INSUFFICIENT_N (NOT_BLIND)",
+     "deciding_number": "shell residuals 33 from 9 s on B u E (< 200 from 20); RR 0.055; rho_hon -0.02; analog rho_pc 0.96",
+     "json_path": "newcorp_measure_agentcap.json#cells.N1.agentcap/opencode -> units.agentcap/opencode.mechanisms.N1.<pop>.scopes.shell"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N1|agentcap/pi",
+     "label": "INSUFFICIENT_N (NOT_BLIND)",
+     "deciding_number": "shell residuals 119 from 32 s on B u E (< 200); RR 0.070; rho_hon 0.035; pooled bounds (D1)",
+     "json_path": "newcorp_measure_agentcap.json#cells.N1.agentcap/pi -> units.agentcap/pi.mechanisms.N1.<pop>.scopes.shell"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N2|agentcap/opencode",
+     "label": "ALIVE",
+     "deciding_number": "E honest flag 0/417 (68 s; Wilson hi 0.009); recall at 0.8 tau 0.974; tau 0.260 from A. ALIVE on B, E and B u E. AC1 0/30 differ; AC2/AC3 pass; AC4 dominated by stratum but each leave-out stays ALIVE",
+     "json_path": "newcorp_measure_agentcap.json#cells.N2.agentcap/opencode -> units.agentcap/opencode.mechanisms.N2.E"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N2|agentcap/pi",
+     "label": "WEAK",
+     "deciding_number": "E honest 2/722 = 0.003 (hi 0.009); recall 0.997. ALIVE on B, E and B u E; capped at WEAK by AC4: pi/local holds 0.95 of events, so leaving it out -> INSUFFICIENT_N -> UNTESTABLE_WITHOUT_DOMINANT",
+     "json_path": "newcorp_measure_agentcap.json#cells.N2.agentcap/pi -> units.agentcap/pi.mechanisms.N2.E"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N3|agentcap/opencode",
+     "label": "INSUFFICIENT_N (NOT_BLIND)",
+     "deciding_number": "16 (B) / 14 (E) sessions with >= 20 gaps (< 20). B u E: 30 s, rho 0.454 [0.330, 0.562] (WEAK)",
+     "json_path": "newcorp_measure_agentcap.json#cells.N3.agentcap/opencode -> units.agentcap/opencode.mechanisms.N3.<pop>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N3|agentcap/pi",
+     "label": "WEAK (NOT_BLIND)",
+     "deciding_number": "E pooled rho 0.280 [0.187, 0.382], 31 s; share rho_s <= 0 = 5/31; WEAK on B, E and B u E; AC4 UNTESTABLE_WITHOUT_DOMINANT (cap WEAK)",
+     "json_path": "newcorp_measure_agentcap.json#cells.N3.agentcap/pi -> units.agentcap/pi.mechanisms.N3.E"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N4|agentcap/opencode",
+     "label": "INSUFFICIENT_N (NOT_BLIND)",
+     "deciding_number": "W pairs at k >= 2: 9 in 3 s on B u E (< 100 from 10)",
+     "json_path": "newcorp_measure_agentcap.json#cells.N4.agentcap/opencode -> units.agentcap/opencode.mechanisms.N4.<pop>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N4|agentcap/pi",
+     "label": "NOT_TESTABLE(Phase B W/G populations undefined for unit 'agentcap/pi'; D1)",
+     "deciding_number": "n/a",
+     "json_path": "newcorp_measure_agentcap.json#cells.N4.agentcap/pi"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5a_determinism|agentcap/opencode,agentcap/pi",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "determinism pairs on B u E: opencode 2, pi 17 (drift 1/17) (< 100 from 20)",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5a_determinism.<unit>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5b_sort|agentcap/opencode,agentcap/pi",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "opencode: ls 73 / grep -n 61 outputs on B u E. pi: on B u E only, grep -n 0/149 (27 s, ALIVE) and ls 2/108 (WEAK); every B/E checker is < 100 from 20",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5b_sort.<unit>.per_checker"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5d_whitespace|agentcap/opencode,agentcap/pi",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "ls -l outputs: opencode 68 on B u E; pi 103 on B u E (0 violations, WEAK on B u E only)",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5d_whitespace.<unit>.per_checker"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5c_truncation|agentcap/opencode,agentcap/pi",
+     "label": "NOT_TESTABLE(result text with harness truncation markers: 0 Claude Code markers)",
+     "deciding_number": "0 marked results on B and E",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5c_truncation.<unit>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5e_size|agentcap/opencode",
+     "label": "WEAK",
+     "deciding_number": "E: 1 family (grep, IQR 1.49) above the comparator CI hi 1.21; share 1.0 (capped at WEAK). B INSUFFICIENT_N; B u E 2 of 3 families above",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5e_size.agentcap/opencode -> units.agentcap/opencode.mechanisms.N5e_size.E"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5e_size|agentcap/pi",
+     "label": "DEAD",
+     "deciding_number": "E: 1 of 4 families above the comparator CI hi (share 0.25). B WEAK (0.75); B u E DEAD (0.40)",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5e_size.agentcap/pi -> units.agentcap/pi.mechanisms.N5e_size.E"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5f_error_fidelity|agentcap/opencode",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "0 checkable frames on B and E",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5f_error_fidelity.agentcap/opencode"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5f_error_fidelity|agentcap/pi",
+     "label": "NOT_TESTABLE(error results: no error definition for unit 'agentcap/pi')",
+     "deciding_number": "n/a",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5f_error_fidelity.agentcap/pi"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5g_cold_start|agentcap/opencode",
+     "label": "INSUFFICIENT_N (NOT_BLIND)",
+     "deciding_number": "27 (B) / 26 (E) eligible sessions (< 30). B u E: 53 s, median c 0.097 [0.038, 0.204] (WEAK; AC4 DOMINATED)",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5g_cold_start.agentcap/opencode -> units.agentcap/opencode.mechanisms.N5g_cold_start.<pop>"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "N5g_cold_start|agentcap/pi",
+     "label": "WEAK (NOT_BLIND)",
+     "deciding_number": "E median c 0.243 [0.163, 0.426] decades; share c <= 0 = 11/49 (0.22 > 0.05); WEAK on B, E and B u E; AC4 cap WEAK",
+     "json_path": "newcorp_measure_agentcap.json#cells.N5g_cold_start.agentcap/pi -> units.agentcap/pi.mechanisms.N5g_cold_start.E"
+    },
+    {
+     "corpus": "agentcap",
+     "mechanism": "X_two_clock_created|all (EXPLORATORY, not pre-registered)",
+     "label": "EXPLORATORY (descriptive; NOT_BLIND)",
+     "deciding_number": "Inequality: ts(prev result/user event) <= server first-chunk time in [created, created+1 s) <= ts(first harness event of the response), with one constant offset per stream; inconsistent if max lo - min hi > 2,000 ms. Inconsistent streams: B 0/149, E 0/146, B u E 0/295 (Wilson hi 0.013). Absolute (theta = 0) violations 0/4,608 responses (hi 0.0008); also 0 at tolerance 0. Placebo back-date of one response: 5 s caught in 0.37 of streams, 30 s in 0.93. hf-router (remote clock) 0/31 streams",
+     "json_path": "newcorp_measure_agentcap.json#exploratory_two_clock.by_population.<B|E|BuE>"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "P1_latency|pub_codex",
+     "label": "NOT_TESTABLE(G90/floors not calibrated on the corpus's A; no pooled value; D1)",
+     "deciding_number": "analog run (swechat/codex thresholds): 2 eligible W pairs and no G tool -> INSUFFICIENT_N in any case",
+     "json_path": "newcorp_measure_pub_codex.json#cells.P1_latency.pub_codex -> units.pub_codex.mechanisms.P1_latency.<pop>.analog_unit_run"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "P2_knowledge|pub_codex",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "S_path_any 91 (B) / 105 (E) first mentions from 10 s (< 200 from 20); S_deep 0",
+     "json_path": "newcorp_measure_pub_codex.json#cells.P2_knowledge.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "P3a_zero_error|pub_codex",
+     "label": "NOT_TESTABLE(L75 not calibrated on the corpus's A; no pooled value; D1)",
+     "deciding_number": "analog L75 = 120 gives n_long 4 on B u E (INSUFFICIENT_N in any case)",
+     "json_path": "newcorp_measure_pub_codex.json#cells.P3a_zero_error.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "P3b_reaction|pub_codex",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "9 sessions with a failed c_i on B and on E (< 10). B u E: effect 0.091 [-0.013, 0.189], 18 s (DEAD)",
+     "json_path": "newcorp_measure_pub_codex.json#cells.P3b_reaction.pub_codex -> units.pub_codex.mechanisms.P3.<pop>.reaction_verdict"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "P4a_hex|pub_codex",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig hex 0 symbols",
+     "json_path": "newcorp_measure_pub_codex.json#cells.P4a_hex.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "P4b_round|pub_codex",
+     "label": "INSUFFICIENT_N",
+     "deciding_number": "T_orig 33 distinct ints on B u E (< 100)",
+     "json_path": "newcorp_measure_pub_codex.json#cells.P4b_round.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "R1-R5|pub_codex",
+     "label": "NOT_TESTABLE (R1 decodable request ids; R2 image usage; R3 external commit table; R4 raw counters; R5 external tally)",
+     "deciding_number": "Codex rollouts log no provider request or response id (0 ids)",
+     "json_path": "newcorp_measure_pub_codex.json#cells.R1_bracket..R5_ledger.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "N1|pub_codex",
+     "label": "INSUFFICIENT_N (NOT_BLIND)",
+     "deciding_number": "0 residuals: 2 qualified pairs, because approval_policy 'never' is rare",
+     "json_path": "newcorp_measure_pub_codex.json#cells.N1.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "N2|pub_codex",
+     "label": "WEAK",
+     "deciding_number": "E honest 5/134 = 0.037 (hi 0.065, 10 s), recall 1.0 -> ALIVE; B 9/142 = 0.063 (WEAK); capped at WEAK by AC4 (gpt-5.5 holds 0.95 of events, codex_vscode 0.67; leave-out INSUFFICIENT_N). AC1 0/30 differ",
+     "json_path": "newcorp_measure_pub_codex.json#cells.N2.pub_codex -> units.pub_codex.mechanisms.N2.E"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "N3|pub_codex",
+     "label": "INSUFFICIENT_N (NOT_BLIND)",
+     "deciding_number": "8 (B) / 6 (E) sessions with >= 20 gaps (< 20)",
+     "json_path": "newcorp_measure_pub_codex.json#cells.N3.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "N4|pub_codex",
+     "label": "INSUFFICIENT_N (NOT_BLIND)",
+     "deciding_number": "0 W pairs at k >= 2",
+     "json_path": "newcorp_measure_pub_codex.json#cells.N4.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "N5a/b/d/e/f/g|pub_codex",
+     "label": "INSUFFICIENT_N (N5g NOT_BLIND)",
+     "deciding_number": "0 determinism pairs; grep -n 61 outputs; 0 families with >= 100 results from 10 s on B or E (B u E: 2 of 2 above, WEAK); 0 error frames; 0 cold-start sessions",
+     "json_path": "newcorp_measure_pub_codex.json#cells.N5*.pub_codex"
+    },
+    {
+     "corpus": "pub_codex",
+     "mechanism": "N5c_truncation|pub_codex",
+     "label": "NOT_TESTABLE(result text with harness truncation markers: 0 Claude Code markers)",
+     "deciding_number": "0 marked results",
+     "json_path": "newcorp_measure_pub_codex.json#cells.N5c_truncation.pub_codex"
+    }
+   ],
+   "deviations": [
+    "D1 applied literally. Probe 1 (G90/floors) and Probe 3a (L75) have no corpus-A value and no pooled value, so those cells are NOT_TESTABLE. The N1 positive control needs G90 too, so N1 could at best reach INSUFFICIENT_N or DEAD. Probe 2 uses the pooled D = 6. Where the D1 unit argument has Phase B thresholds (swechat/opencode, swechat/codex), the same frozen code was also run with those analogue thresholds and stored as analog_unit_run, marked 'post hoc, not a verdict'; it never fills a cell.",
+    "D5 exclusions: the loader's build_split() was called unchanged with newcorp_common.split_ids wrapped in-process, so the excluded ids were never parsed (agentcap B 214 -> 172, E 214 -> 199). The loader file is byte-identical. Build reports are newcorp_build_<corpus>_<split>.json, with the exclusion counts.",
+    "agentcap/pi ran under the generic unit 'agentcap/pi'. P3a, P3b and N5f are NOT_TESTABLE (no error definition registered; Pi's native isError is not read). P1 and N4 are NOT_TESTABLE (prereg.json has no no-human-wait class list for the unit). P2, P4, N2, N3 and N5a/b/d/e/g ran because they need no unit-calibrated quantity. N1 used the pooled bounds (D1).",
+    "Probe 2: the Phase B instrument result (probe_2.json instrument_check.ok = true) was carried over; new units were treated as 'full' antecedent units. Probe 4: the swechat-only redaction cap was not applied; the rerun labels are stored.",
+    "N5e followed the Track A reading: the comparator needs >= 30 texts from >= 5 sessions, and its IQR CI comes from the session bootstrap. The comparator is held fixed in every artifact check.",
+    "N1, N4 and N5g are labelled NOT_BLIND too, because they read call->result latency, which falls under D6's 'latency'. The (NOT_BLIND) suffix is appended to the label string.",
+    "Artifact checks ran on B u E for every N cell that reached WEAK on B, E or B u E. The run included AC1, implemented as a raw-source audit of 30 events per cell (OpenCode/Pi/Codex files; stamps, text length, error flag, and for agentcap the N2 usage). AC5 was NOT_RUN: new corpora have no registered population table. Check effects were applied to the cell label: a cap at WEAK for UNTESTABLE_WITHOUT_DOMINANT, one level down for DOMINATED or CONFINED, and the lower label for a failed AC.",
+    "N5b/N5d row label = the best per-checker label, because each checker is its own pre-registered sub-item. Per-checker labels are stored.",
+    "Two-clock cell: EXPLORATORY and not pre-registered. It reuses the frozen bracket_streams and placebo_shift, with created_first (integer seconds) as the id clock. The 1 s floor is folded in as lo = prev - created - 1 s."
+   ],
+   "nulls": [
+    "P1 latency, the strongest Phase B candidate, has no cell on any unit of either corpus under D1. The post-hoc analogue run on agentcap/opencode gives fp 0/588 and AUC 1.0 on B u E, but the G arm is below 30 pairs on B (19) and on E (29).",
+    "R1 request-id bracket is NOT_TESTABLE on both corpora. agentcap ids are operator-minted chatcmpl-/other ids with no embedded clock (0 decodable); Codex logs no request id at all.",
+    "P2 knowledge precedence is DEAD on agentcap/opencode (S_path_any 0.40) and agentcap/pi (0.54). S_deep is insufficient, and S_path_any includes creation targets, which have no antecedent by construction.",
+    "P3b reaction is DEAD on agentcap/opencode: R_fail 0.113 vs R_ok 0.105 on B u E (442 failed calls from 122 s). Agents do not retry more after failures.",
+    "N5e size distribution is DEAD on agentcap/pi (E: 1 of 4 families above the comparator).",
+    "pub_codex (12 + 12 sessions) is INSUFFICIENT_N or NOT_TESTABLE everywhere except N2. Only 2 qualified pairs survive the swechat/codex approval_policy filter.",
+    "Coverage nulls on agentcap: P4 (too few model-originated hex tokens and ints), N1 (repeat coverage RR 0.055-0.13), N4 (9 W pairs at k >= 2), N5a (17 determinism pairs at most), N5f (0 checkable error frames). N5c has 0 Claude Code markers -> NOT_TESTABLE.",
+    "agentcap/pi P3a, P3b, P1, N4 and N5f are NOT_TESTABLE solely because nothing is registered for the unit (error definition and no-human-wait class list)."
+   ],
+   "surprises": [
+    "Two-clock (exploratory): the serving process's integer-second `created` brackets every agentcap response. There are 0 violations in 4,608 responses and 0 of 295 inconsistent streams, even at tolerance 0. Back-dating one response is caught in 0.37 of streams at 5 s and 0.93 at 30 s, close to the swechat Claude Code R1 placebo quoted in the prereg (0.39 / 0.975). The witness is operator-side (local llama.cpp server or HF Router); only 31 hf-router streams use a remote clock.",
+    "The A build report read a q0.01 of -16.7 s for 'trace end minus created_last' as a host clock offset. On B/E, hi = first harness event - created is never below +14 ms. The negative A values most likely come from OpenCode rows whose stamp is a part start, not the response end.",
+    "N2 token accounting transfers cleanly to local GGUF models. agentcap/opencode is ALIVE: honest 0/417, recall 0.974, and it survives AC4 because the hf-router stratum alone is also ALIVE. Pi is ALIVE on B, E and B u E but capped at WEAK by AC4.",
+    "With D2 (cluster = stratum), every agentcap unit has 2 strata and the local route holds 0.84-0.95 of events. AC4 therefore caps almost every agentcap and pub_codex N cell at WEAK by construction (UNTESTABLE_WITHOUT_DOMINANT).",
+    "N3 reaction time transfers weakly to Pi: rho 0.26-0.28, CI lo > 0, on B and on E. Pi stamps calls at the response end, so the gap includes the full next generation. OpenCode reaches WEAK only on B u E (rho 0.45, 30 s).",
+    "N5g cold start is WEAK on Pi: the first call is about x1.75 slower (median c 0.243 decades), but 22% of sessions show no cold start.",
+    "pub_codex tool results are mostly unqualifiable under the frozen swechat/codex rules: approval_policy 'on-request' dominates, leaving 1 qualified pair per split, so every latency mechanism is empty."
+   ]
+  },
+  "v": {
+   "group": "agentcap_codex",
+   "checks": [
+    {
+     "cell": "BUILD: agentcap and pub_codex B/E caches, D5 exclusions, H, frozen files",
+     "reproduced": true,
+     "my_numbers": "I rebuilt B and E into scratch with each loader's build_split(), with the D5 ids removed in my own wrapper. Every frame is identical to the group's cache (DataFrame.equals): agentcap B 172 sessions / 12,366 rows; agentcap E 199 / 13,947; pub_codex B 12 / 3,691; pub_codex E 12 / 3,474. All 42 B and 15 E excluded ids are in their split and none is in a cache. The cache id sets equal split ids minus exclusions, and no cache id falls outside B or E. Since 669124a (git diff): prereg_e.json, prereg_e_common.py, prereg.json, lib, loaders and probes 1-4 are unchanged. The calibration sha256 values (f0ae0eea..., c95f3739...) match the change_log entries. The group's script never asks for split H; its raw audit opens only B∪E sessions.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "R1_bracket | agentcap/opencode, agentcap/pi -> NOT_TESTABLE (NOT_BLIND)",
+     "reproduced": true,
+     "my_numbers": "Distinct request ids, opencode: B 877, E 704, BuE 1,581. Pi: B 1,559, E 1,483. decode_req_ms decodes 0 of them. The ids are of two kinds. Local route: chatcmpl- followed by 32 alphanumerics (B 2,199 distinct). hf-router: 32-character hex strings (B 237, E 233) whose UUID-version nibble is spread across all 16 values, so they are random and not UUIDv7. No id has a time-bearing layout under any decoder, not only the frozen one. The cell carries the NOT_BLIND suffix (D6).",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "R1_bracket | pub_codex -> NOT_TESTABLE",
+     "reproduced": true,
+     "my_numbers": "0 request-id rows in B and in E.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "X_two_clock_created | agentcap (EXPLORATORY, R1 analogue)",
+     "reproduced": true,
+     "my_numbers": "Written from scratch, without bracket_streams. Clock: extra.capture.resp_created_first_s. Inconsistent streams: B 0/149, E 0/146, BuE 0/295. Absolute (theta = 0) violations: 0/2,430, 0/2,178, 0/4,608. Min hi +14 ms, max lo -134 ms. Consistent-stream slack p50 1.78 s. By unit: opencode 0/120 streams, pi 0/175. Placebo, with my own RNG: 5 s back-date flags 0.41 (B) / 0.40 (E); 30 s flags 0.93 / 0.89. The group has 0.38/0.36 and 0.92/0.93.",
+     "problem": "Only the placebo shares differ, and only by RNG draw. The cell is descriptive with no verdict.",
+     "severity": "none"
+    },
+    {
+     "cell": "N2 | agentcap/opencode -> ALIVE",
+     "reproduced": true,
+     "my_numbers": "My own detector, cross-checked against n2_flags, with tau 0.2604 from the calibration file. E: honest 0/417 from 68 s, per-event Wilson hi 0.0091; recall at 0.8 tau 406/417 = 0.974. B: 1/331 (62 s), ALIVE. BuE: 1/748 (130 s), ALIVE. GRANULAR on B and E (G1 0.999 / 0.994, median usage_out 106 / 104). AC4 on BuE. Stratum: opencode/local holds 0.836 of events; leaving out each stratum gives ALIVE, ALIVE. Model: GLM-4.7-Flash holds 0.269; all 5 leave-outs ALIVE. Session: top session 0.11; all 5 leave-outs ALIVE. Result: dominated but stable, so the cell stays ALIVE. Confinement on BuE: tool, model, repo and length axes all OK. AC2 does not change the label. AC1 (raw audit) was not re-derived.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "N2 | agentcap/pi -> WEAK (ALIVE capped by AC4)",
+     "reproduced": true,
+     "my_numbers": "tau 0.2601. E: 2/722 = 0.0028 from 85 s, CI hi 0.0089; recall 720/722 = 0.997. B: 1/533, ALIVE. BuE: 3/1,255, ALIVE. AC4 on BuE: pi/local holds 0.952 of events; leaving it out gives INSUFFICIENT_N, so UNTESTABLE_WITHOUT_DOMINANT and a cap at WEAK. The model leave-outs are all ALIVE. No confinement.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "N2 | pub_codex -> WEAK (E ALIVE, capped)",
+     "reproduced": true,
+     "my_numbers": "tau 0.3623 with unit swechat/codex. E: 5/134 = 0.0373 from 10 s (exactly the 10-session minimum), CI hi 0.0645; recall 1.0; ALIVE. B: 9/142 = 0.063, CI hi 0.124; WEAK. BuE: 14/276 = 0.0507; WEAK. AC4: codex_vscode holds 0.674 of events and gpt-5.5 holds 0.949. Leaving out either gives INSUFFICIENT_N, so the cell is capped at WEAK. No confinement: every axis has fewer than 2 reportable strata, so all are UNTESTABLE.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "N3 | agentcap/pi -> WEAK (NOT_BLIND)",
+     "reproduced": true,
+     "my_numbers": "E: pooled rho 0.280 [0.187, 0.382] from 31 sessions with at least 20 gaps; 5/31 sessions have rho_s <= 0 (Wilson hi 0.326). B: 0.259 [0.164, 0.347], 26 s, WEAK. BuE: 0.274 [0.214, 0.348], 57 s, WEAK. AC4: pi/local holds 0.991; leaving it out gives INSUFFICIENT_N, so the cap is WEAK. No confinement.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "N3 | agentcap/opencode -> INSUFFICIENT_N (NOT_BLIND)",
+     "reproduced": true,
+     "my_numbers": "Sessions with at least 20 gaps: B 16, E 14, both below 20. BuE: 30 s, rho 0.454 [0.330, 0.562], 4/30 sessions <= 0, which is WEAK and is not the cell label.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "N5g_cold_start | agentcap/pi -> WEAK (NOT_BLIND)",
+     "reproduced": true,
+     "my_numbers": "E: 49 eligible sessions; median c 0.243 [0.163, 0.426]; 11/49 have c <= 0. B: 37 s, median 0.250 [0.125, 0.301], WEAK. BuE: 86 s, WEAK. AC4: pi/local holds 0.93; leaving it out gives INSUFFICIENT_N, so the cap is WEAK. No confinement.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "N5g_cold_start | agentcap/opencode -> INSUFFICIENT_N (NOT_BLIND)",
+     "reproduced": true,
+     "my_numbers": "Eligible sessions: B 27, E 26, both below 30. BuE: 53 s, median c 0.097 [0.038, 0.204], WEAK. AC4 marks it DOMINATED: leaving out hf-router gives DEAD. This matches the group.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "N5e_size | agentcap/opencode -> WEAK (cap)",
+     "reproduced": true,
+     "my_numbers": "Using log10(bytes+1), the group's choice. E: 1 qualifying family, grep (138 results from 17 s), IQR 1.486, above the comparator CI hi 1.211 (comparator IQR 1.106). Share 1.0, so WEAK. B: 0 families, INSUFFICIENT_N. BuE: 2 of 3 families above the comparator CI hi 1.148 (find 1.54, grep 1.46; ls 1.06 is below), WEAK. Plain log10(bytes) gives the same labels. AC4 gives UNTESTABLE_WITHOUT_DOMINANT, with a cap at WEAK, whether the comparator is held fixed or recomputed; no leave-out lowers the label. AC2 leaves the label unchanged after dropping 210 results with extra.truncated.",
+     "problem": "The E label rests on one family in which one session holds 0.25 of the results. Leaving that session out gives INSUFFICIENT_N. The cell is already capped at WEAK, so the label does not change.",
+     "severity": "none"
+    },
+    {
+     "cell": "N5e_size | agentcap/pi -> DEAD",
+     "reproduced": true,
+     "my_numbers": "E: 1 of 4 families above the comparator CI hi 1.256 (grep 1.477; cd 1.15, find 1.08 and ls 1.04 are below), share 0.25, DEAD. B: 3 of 4, WEAK. BuE: 2 of 5, DEAD.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "P2_knowledge | agentcap/opencode -> DEAD",
+     "reproduced": true,
+     "my_numbers": "Frozen probe_2 run with my own glue: unit swechat/opencode, pooled D = 6, Phase B instrument check passed. E: S_deep n 6, so the S_path_any fallback applies: 108/267 = 0.404 [0.307, 0.510] from 55 s, DEAD. B: 173/301 = 0.575, DEAD. BuE: 281/568 = 0.495, DEAD. The subagent stratum has n = 0.",
+     "problem": "The label is correct under the frozen rule. One antecedent is mostly missing, though: the system prompt is in the IR for only 8/85 B and 7/95 E opencode sessions. Phase B would turn DEAD into INCONCLUSIVE for a unit registered as antecedents-incomplete, but that list covers Phase B units only, so DEAD stands. The notes name creation targets as an inflation source but not the missing system prompts.",
+     "severity": "minor"
+    },
+    {
+     "cell": "P2_knowledge | agentcap/pi -> DEAD",
+     "reproduced": true,
+     "my_numbers": "E: S_path_any 317/583 = 0.544 [0.474, 0.616] from 82 s, DEAD. B: 360/540 = 0.667. BuE: 677/1,123 = 0.603. Only 3 (B) / 2 (E) / 5 (BuE) first accesses reach depth 6. So S_deep would fall below its minimum n even with a Pi error definition, and the label does not depend on the missing definition. System prompts are in the IR for only 13/87 B and 22/104 E sessions.",
+     "problem": "The same missing-antecedent caveat as opencode applies. The label stands under the frozen rule.",
+     "severity": "minor"
+    },
+    {
+     "cell": "P3b_reaction | agentcap/opencode -> DEAD",
+     "reproduced": true,
+     "my_numbers": "My own retry implementation (same tool_key and identical args, or Jaccard of sim_tokens >= 0.5), with native error from error_classes for swechat/opencode. E: effect -0.0077 [-0.058, 0.052], from 193 failed c_i in 60 s and 844 ok c_i, DEAD. BuE: 0.0084 [-0.030, 0.051], 442 failed from 122 s. B: 0.024 [-0.038, 0.078].",
+     "problem": "The CI upper ends differ slightly (group: E hi 0.049, BuE [-0.032, 0.049]), most likely from the bootstrap implementation. Every CI lower bound is negative, so the label is unchanged.",
+     "severity": "none"
+    },
+    {
+     "cell": "P1_latency | agentcap/opencode, agentcap/pi, pub_codex -> NOT_TESTABLE (D1, NOT_BLIND)",
+     "reproduced": true,
+     "my_numbers": "prereg.json resolved.probe1 has no pooled generation_rate and no pooled floors. Its only units are the 6 Phase B units. Neither prereg_e_calibration_agentcap.json nor _pub_codex.json contains G90, floors or L75. Under the literal D1 text the cells are NOT_TESTABLE. I did not re-derive the group's analog run.",
+     "problem": "This is an interpretation point, not an error. Under the other D1 reading (the analogue unit's Phase B thresholds), the group's own analog makes agentcap/opencode WEAK on E: fp 0/345, and AUC is insufficient because G has 29 pairs (< 30). That cell would read WEAK instead of NOT_TESTABLE. The group applied D1 as written and disclosed the alternative.",
+     "severity": "minor"
+    },
+    {
+     "cell": "P3a_zero_error | agentcap/opencode, pub_codex -> NOT_TESTABLE (D1)",
+     "reproduced": true,
+     "my_numbers": "There is no pooled L75 in prereg.json resolved.probe3, and the calibration files hold no L75. Under the analog L75 values (185 / 120), n_long would be 1 and 4 on BuE, so the cell would be INSUFFICIENT_N under either reading.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "P3a/P3b/N5f | agentcap/pi -> NOT_TESTABLE (no error definition)",
+     "reproduced": true,
+     "my_numbers": "pc.error_classes returns None for unit agentcap/pi, and the registered A field gate has error_definition=false. However, the IR does carry a native error flag for Pi: native_error is non-null on every result, true on 230/1,568 (B) and 210/1,735 (E).",
+     "problem": "The missing piece is a registered error definition, not a field. NOT_TESTABLE agrees with the registered gate and D1, and the group flagged it. P3a would be NOT_TESTABLE anyway because L75 is absent.",
+     "severity": "minor"
+    },
+    {
+     "cell": "N4 | agentcap/pi -> NOT_TESTABLE",
+     "reproduced": true,
+     "my_numbers": "The Phase B W/G sets are undefined for this unit, as the group says. With a generic W set (auto_read via E.qualify_pairs), W pairs at k >= 2 are 32 (B, 10 s), 64 (E, 13 s) and 96 (BuE, 23 s), all below 100, and there is no G tool. So the cell would be INSUFFICIENT_N at most, and could not reach a verdict under either reading. agentcap/opencode N4: 9 W pairs at k >= 2 from 3 s on BuE, matching the group.",
+     "problem": "NOT_TESTABLE and INSUFFICIENT_N are interchangeable here; neither gives a verdict.",
+     "severity": "minor"
+    },
+    {
+     "cell": "N5c_truncation | agentcap/opencode, agentcap/pi, pub_codex -> NOT_TESTABLE",
+     "reproduced": true,
+     "my_numbers": "0 Claude Code truncation items (cc_chars_mid, glob cap, tail). But truncated_result() matches 137 (B) / 210 (E) agentcap/opencode results through OpenCode's own extra.truncated flag. Pi and pub_codex: 0.",
+     "problem": "The deciding number \"0 marked results on B and E\" is wrong for agentcap/opencode, which carries 137 / 210 harness-truncated results. The label still holds because no truncation constants exist for non-Claude Code markers (D1). The reason should read 'truncation constants absent for this harness (D1)'.",
+     "severity": "minor"
+    },
+    {
+     "cell": "R2_image / R3_git / R4_dual / R5_ledger | all units -> NOT_TESTABLE",
+     "reproduced": true,
+     "my_numbers": "IMAGE usage rows: 0 in B and E for every unit. Commit claims: agentcap 0; pub_codex 2 in B and 2 in E, with no external commit table (calibration correction external_commit_table=false). The R4 raw counters and the R5 external tally are absent.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "MIN-N gating of INSUFFICIENT_N cells (both corpora)",
+     "reproduced": true,
+     "my_numbers": "N1 shell residuals (all below 200 from 20 s): opencode 12/4 s (B), 21/5 (E), 33/9 (BuE); pi 66/14, 53/18, 119/32; pub_codex 0. N5a determinism pairs: opencode 2; pi 17 on BuE with drift 1. N5b pi on BuE: grep -n 149 outputs from 27 s (0 violations), ls 108 from 45 s (2 violations); on E, 83 and 57. N5d pi ls -l: 103 on BuE, 58 on E. P4 hex and round: every pop INSUFFICIENT_N; pi round on E has 504 distinct values but from only 5 s. pub_codex: P2 S_path_any 91 (B) / 105 (E), below 200; P3b failures from 9 s (below 10); N3 8 / 6 sessions; N5g 0; N5e 0 families in B and E.",
+     "problem": "none",
+     "severity": "none"
+    },
+    {
+     "cell": "Labels: NOT_BLIND, frozen thresholds, D1 unit argument, D2 cluster",
+     "reproduced": true,
+     "my_numbers": "The P1, R1 and N3 cells carry NOT_BLIND (D6). The group also puts it on N1, N4 and N5g, a conservative extension it discloses. Thresholds come from the frozen files: tau from the corpus calibration, pooled D = 6, pooled N1 bounds, and the prereg verdict cut points. The unit arguments are swechat/opencode, agentcap/pi and swechat/codex. The AC4 cluster is the stratum, with model and single-session checks added. Running my own code with these settings reproduces every label. No cell needs the 'B only' suffix: wherever E is INSUFFICIENT_N, B is too.",
+     "problem": "none",
+     "severity": "none"
+    }
+   ]
+  }
+ }
+]

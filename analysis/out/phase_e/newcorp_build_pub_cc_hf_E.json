@@ -1,0 +1,479 @@
+{
+ "corpus": "pub_cc_hf",
+ "split": "E",
+ "cache": "analysis/cache/pub_cc_hf_E.parquet",
+ "validate": {
+  "rows": 7556,
+  "sessions": 43,
+  "meta": 2748,
+  "call": 1745,
+  "result": 1745,
+  "assistant": 620,
+  "system": 505,
+  "user": 193
+ },
+ "stats": {
+  "rows": 7556,
+  "sessions": 43,
+  "events_by_kind": {
+   "meta": 2748,
+   "call": 1745,
+   "result": 1745,
+   "assistant": 620,
+   "system": 505,
+   "user": 193
+  },
+  "ts_kind": {
+   "event": 7556
+  },
+  "ts_fill": {
+   "with_ts": 7556,
+   "without_ts": 0
+  },
+  "ts_fractional_digits": {
+   "3": 7556
+  },
+  "ts_ties": {
+   "tie_groups": 368,
+   "events_in_tie_groups": 911,
+   "largest_tie_group": 89
+  },
+  "adjacent_ts_inversions_in_seq_order": 0,
+  "pairing": {
+   "call_events": 1745,
+   "result_events": 1745,
+   "call_ids_unique": 1745,
+   "result_ids_unique": 1745,
+   "duplicate_call_events_same_session_id": 0,
+   "duplicate_result_events_same_session_id": 0,
+   "result_events_null_call_id": 0,
+   "paired": 1745,
+   "paired_result_seq_before_call_seq": 0,
+   "calls_without_result": 0,
+   "results_without_call_in_session": 0,
+   "results_without_call_but_call_id_elsewhere_in_frame": 0,
+   "paired_both_ts": 1745,
+   "paired_identical_ts": 3,
+   "paired_negative_delta": 0,
+   "delta_seconds": {
+    "n": 1745,
+    "min": 0.0,
+    "p1": 0.003,
+    "p5": 0.008,
+    "p25": 0.021,
+    "p50": 0.094,
+    "p75": 0.436,
+    "p95": 8.100399999999995,
+    "p99": 51.139039999998985,
+    "max": 600.782,
+    "mean": 4.580319197707737
+   }
+  },
+  "native_error": {
+   "results": 1745,
+   "filled": 768,
+   "true": 73,
+   "false": 695,
+   "fill_rate": 0.44011461318051576
+  },
+  "exit_code_filled": 0,
+  "stderr_filled_results": 695,
+  "usage_fill": {
+   "assistant": {
+    "n": 620,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "usage_cache_read": 1.0,
+    "usage_cache_create": 1.0,
+    "api_msg_id": 1.0,
+    "request_id": 0.7967741935483871,
+    "model": 1.0,
+    "api_msg_ids_unique": 620
+   },
+   "call": {
+    "n": 1745,
+    "usage_in": 1.0,
+    "usage_out": 1.0,
+    "usage_cache_read": 1.0,
+    "usage_cache_create": 1.0,
+    "api_msg_id": 1.0,
+    "request_id": 0.7123209169054441,
+    "model": 1.0,
+    "api_msg_ids_unique": 1397
+   }
+  },
+  "result_error_marker": {
+   "None": 1682,
+   "cc_exit_code": 33,
+   "cc_tool_use_error": 23,
+   "cc_interrupt_reject": 7
+  },
+  "extra_key_fill_by_kind": {
+   "meta": {
+    "entry_type": {
+     "present": 2748,
+     "fill_rate": 1.0
+    },
+    "attachment_type": {
+     "present": 1231,
+     "fill_rate": 0.447962154294032
+    },
+    "visibility": {
+     "present": 1231,
+     "fill_rate": 0.447962154294032
+    },
+    "toolUseID": {
+     "present": 1207,
+     "fill_rate": 0.43922852983988353
+    },
+    "hookEvent": {
+     "present": 1207,
+     "fill_rate": 0.43922852983988353
+    },
+    "thinking_chars": {
+     "present": 1032,
+     "fill_rate": 0.37554585152838427
+    },
+    "family_member": {
+     "present": 442,
+     "fill_rate": 0.16084425036390101
+    },
+    "subtype": {
+     "present": 278,
+     "fill_rate": 0.10116448326055313
+    },
+    "operation": {
+     "present": 207,
+     "fill_rate": 0.07532751091703056
+    },
+    "durationMs": {
+     "present": 173,
+     "fill_rate": 0.06295487627365356
+    },
+    "level": {
+     "present": 79,
+     "fill_rate": 0.028748180494905386
+    },
+    "compactMetadata": {
+     "present": 2,
+     "fill_rate": 0.000727802037845706
+    }
+   },
+   "system": {
+    "entry_type": {
+     "present": 359,
+     "fill_rate": 0.7108910891089109
+    },
+    "attachment_type": {
+     "present": 359,
+     "fill_rate": 0.7108910891089109
+    },
+    "visibility": {
+     "present": 359,
+     "fill_rate": 0.7108910891089109
+    },
+    "text_source": {
+     "present": 359,
+     "fill_rate": 0.7108910891089109
+    },
+    "family_member": {
+     "present": 141,
+     "fill_rate": 0.27920792079207923
+    },
+    "notification_statuses": {
+     "present": 76,
+     "fill_rate": 0.1504950495049505
+    },
+    "command_mode": {
+     "present": 27,
+     "fill_rate": 0.053465346534653464
+    },
+    "toolUseID": {
+     "present": 6,
+     "fill_rate": 0.011881188118811881
+    },
+    "hookEvent": {
+     "present": 6,
+     "fill_rate": 0.011881188118811881
+    }
+   },
+   "result": {
+    "marker": {
+     "present": 1745,
+     "fill_rate": 1.0
+    },
+    "interrupted": {
+     "present": 695,
+     "fill_rate": 0.3982808022922636
+    },
+    "noOutputExpected": {
+     "present": 646,
+     "fill_rate": 0.3702005730659026
+    },
+    "family_member": {
+     "present": 485,
+     "fill_rate": 0.27793696275071633
+    },
+    "backgroundTaskId": {
+     "present": 64,
+     "fill_rate": 0.03667621776504298
+    },
+    "durationMs": {
+     "present": 43,
+     "fill_rate": 0.02464183381088825
+    },
+    "bytes": {
+     "present": 38,
+     "fill_rate": 0.02177650429799427
+    },
+    "code": {
+     "present": 38,
+     "fill_rate": 0.02177650429799427
+    },
+    "durationSeconds": {
+     "present": 30,
+     "fill_rate": 0.017191977077363897
+    },
+    "numFiles": {
+     "present": 16,
+     "fill_rate": 0.009169054441260744
+    },
+    "returnCodeInterpretation": {
+     "present": 7,
+     "fill_rate": 0.0040114613180515755
+    },
+    "truncated": {
+     "present": 5,
+     "fill_rate": 0.0028653295128939827
+    },
+    "persistedOutputSize": {
+     "present": 4,
+     "fill_rate": 0.002292263610315186
+    }
+   },
+   "user": {
+    "family_member": {
+     "present": 65,
+     "fill_rate": 0.33678756476683935
+    },
+    "entry_type": {
+     "present": 7,
+     "fill_rate": 0.03626943005181347
+    },
+    "attachment_type": {
+     "present": 7,
+     "fill_rate": 0.03626943005181347
+    },
+    "visibility": {
+     "present": 7,
+     "fill_rate": 0.03626943005181347
+    },
+    "command_mode": {
+     "present": 7,
+     "fill_rate": 0.03626943005181347
+    },
+    "text_source": {
+     "present": 7,
+     "fill_rate": 0.03626943005181347
+    }
+   },
+   "call": {
+    "family_member": {
+     "present": 485,
+     "fill_rate": 0.27793696275071633
+    }
+   },
+   "assistant": {
+    "family_member": {
+     "present": 150,
+     "fill_rate": 0.24193548387096775
+    },
+    "thinking_chars": {
+     "present": 4,
+     "fill_rate": 0.0064516129032258064
+    }
+   }
+  },
+  "meta_entry_types": {
+   "attachment:hook_success": 1207,
+   "assistant_thinking_only:None": 1032,
+   "queue-operation:None": 207,
+   "system:turn_duration": 173,
+   "system:stop_hook_summary": 46,
+   "system:away_summary": 25,
+   "system:local_command": 23,
+   "attachment:command_permissions": 12,
+   "attachment:plan_mode_exit": 8,
+   "system:api_error": 5,
+   "attachment:goal_status": 3,
+   "system:model_refusal_fallback": 3,
+   "system:compact_boundary": 2,
+   "system:scheduled_task_fire": 1,
+   "attachment:plan_mode": 1
+  },
+  "timer_keys_in_extra": {
+   "meta": {
+    "durationMs": {
+     "present": 173,
+     "of": 2748,
+     "fill_rate": 0.06295487627365356
+    },
+    "compactMetadata.durationMs": {
+     "present": 2,
+     "of": 2748,
+     "fill_rate": 0.000727802037845706
+    }
+   },
+   "result": {
+    "durationMs": {
+     "present": 43,
+     "of": 1745,
+     "fill_rate": 0.02464183381088825
+    },
+    "durationSeconds": {
+     "present": 30,
+     "of": 1745,
+     "fill_rate": 0.017191977077363897
+    }
+   }
+  },
+  "timer_keys_by_result_tool": {
+   "webfetch": {
+    "durationMs": {
+     "present": 38,
+     "of": 38,
+     "fill_rate": 1.0
+    }
+   },
+   "websearch": {
+    "durationSeconds": {
+     "present": 30,
+     "of": 32,
+     "fill_rate": 0.9375
+    }
+   },
+   "glob": {
+    "durationMs": {
+     "present": 5,
+     "of": 5,
+     "fill_rate": 1.0
+    }
+   }
+  },
+  "subagent": {
+   "timing_vs_parent": {
+    "subagent_events_with_parent_call_id": 0,
+    "with_ts": 0,
+    "parent_call_in_same_session": 0,
+    "parent_result_in_same_session": 0,
+    "ts_before_parent_call": 0,
+    "ts_after_parent_result": 0,
+    "by_parent_tool": {}
+   },
+   "events": 0,
+   "event_share": 0.0,
+   "calls": 0,
+   "call_share": 0.0,
+   "sessions_with_subagent_events": 0,
+   "subagent_events_parent_call_id_filled": 0,
+   "subagent_events_agent_id_filled": 0,
+   "distinct_agent_ids": 0
+  },
+  "results_by_tool_top": {
+   "shell": 679,
+   "edit": 335,
+   "read": 333,
+   "write": 198,
+   "powershell": 58,
+   "webfetch": 38,
+   "websearch": 32,
+   "toolsearch": 18,
+   "grep": 13,
+   "skill": 10,
+   "taskcreate": 8,
+   "glob": 5,
+   "monitor": 3,
+   "askuserquestion": 3,
+   "taskstop": 2,
+   "mcp__plugin_claude-mem_mcp-search__get_observations": 2,
+   "schedulewakeup": 1,
+   "mcp__plugin_claude-mem_mcp-search__save_memory": 1,
+   "taskupdate": 1,
+   "headroom_retrieve": 1,
+   "mcp__headroom__headroom_retrieve": 1,
+   "exitplanmode": 1,
+   "mcp__plugin_claude-mem_mcp-search__search": 1,
+   "sendusermessage": 1
+  },
+  "events_per_session": {
+   "n": 43,
+   "min": 9.0,
+   "p1": 9.42,
+   "p5": 11.0,
+   "p25": 16.5,
+   "p50": 111.0,
+   "p75": 229.0,
+   "p95": 539.4999999999999,
+   "p99": 916.3599999999996,
+   "max": 1018.0,
+   "mean": 175.72093023255815
+  }
+ },
+ "request_id": {
+  "events_with_request_id": 2405,
+  "by_kind": {
+   "call": 1243,
+   "meta": 668,
+   "assistant": 494
+  },
+  "assistant_fill": {
+   "n": 620,
+   "with_request_id": 494,
+   "fill_rate": 0.7967741935483871
+  },
+  "call_fill": {
+   "n": 1745,
+   "with_request_id": 1243,
+   "fill_rate": 0.7123209169054441
+  },
+  "api_responses": {
+   "n": 1600,
+   "with_request_id": 1230
+  },
+  "distinct_request_ids": 1230,
+  "distinct_decodable_ms": 1230,
+  "decodable_rate": 1.0,
+  "decoder": "analysis.probes.prereg_e_common.decode_req_ms (inferred UUIDv7-like ms layout; undocumented)",
+  "distinct_shapes": {
+   "req_24": 1230
+  },
+  "events_with_request_id_and_model_synthetic": 7,
+  "distinct_request_ids_in_more_than_one_session": 0,
+  "sessions_with_any_request_id": 38,
+  "sessions": 43
+ },
+ "loader_counters": {
+  "bad_json_lines": 0,
+  "copy_events_dropped_fingerprint": 52,
+  "copy_events_dropped_uuid": 1701,
+  "dropped_untimestamped:agent-name": 30,
+  "dropped_untimestamped:ai-title": 633,
+  "dropped_untimestamped:bridge-session": 31,
+  "dropped_untimestamped:file-history-snapshot": 448,
+  "dropped_untimestamped:last-prompt": 658,
+  "dropped_untimestamped:mode": 673,
+  "dropped_untimestamped:permission-mode": 615,
+  "events_redacted": 24,
+  "files_main": 52,
+  "lines_main": 12311,
+  "loader_emitted_meta:queue-operation": 259,
+  "user_entry_task_notification_events_copies_included:system": 71
+ },
+ "redactions": {
+  "args|env_secret": 5,
+  "text|env_secret": 23,
+  "text|json_secret_field": 2
+ },
+ "residual_secret_matches": {},
+ "runtime_s": 6.2
+}

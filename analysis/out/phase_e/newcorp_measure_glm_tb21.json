@@ -1,0 +1,2937 @@
+{
+ "corpus": "glm_tb21",
+ "group": "tbench",
+ "script": "analysis/probes/phase_e_newcorp_tbench.py",
+ "notes": "analysis/notes/phase_e_newcorp_tbench.md",
+ "unit_argument": "glm_tb21",
+ "decisions_applied": [
+  "D1",
+  "D2",
+  "D5",
+  "D6"
+ ],
+ "prereg_e_json_sha256": "568d423f0e061f9a3dd14a4ae51926b3b5746a9a3dc33b421c3e632ad4bb1c08",
+ "spec_module_sha256_lf": "31924af28f05d0969f51387183a0281980cb5ca1288e2ee7e0f98a5b210a20c7",
+ "spec_module_matches_prereg": true,
+ "calibration": {
+  "path": "analysis/out/phase_e/prereg_e_calibration_glm_tb21.json",
+  "sha256": "f340bebb29b666a68fec70fed4b7b7e3ed9aea2e7dae8f6d83c24e7cb5ce7779",
+  "matches_change_log": true,
+  "change_log_entry": {
+   "when": "2026-10-04 (orchestrator, before any new-corpus B/E read)",
+   "kind": "pre-registered extension (splits.new_corpora)",
+   "corpus": "glm_tb21",
+   "calibration_file": "analysis/out/phase_e/prereg_e_calibration_glm_tb21.json",
+   "calibration_sha256": "f340bebb29b666a68fec70fed4b7b7e3ed9aea2e7dae8f6d83c24e7cb5ce7779",
+   "calibration_sha256_matches_record": true,
+   "extension_record": "analysis/out/phase_e/prereg_e_extensions/glm_tb21.json",
+   "extension_record_sha256": "1394a1a4acea6a016901477bf63d6a3acfb30e4142a25ef41c57f887afd06b2b"
+  }
+ },
+ "phase_b_code": {
+  "probe_2.py": "eadd690597d86af89c7659d14920d16f78aec2b5f3b2f147826048ec769fdbc5",
+  "probe_4.py": "3afbad9b9758f27a3f944c2f6e62873cefa556f58e614442af303b6752d621ba",
+  "probe_4_prereg_provenance": {
+   "prereg_json_sha256": "3189a3260e9ed2204d80e9b8496c975e9a87e383104531304ca720a2d79806e4",
+   "spec_module_sha256": "bb50f6902f89c34c293e3c2e4b76841a929c1210b153b6255aecfd88e7ff6947",
+   "spec_module_sha256_expected": "bb50f6902f89c34c293e3c2e4b76841a929c1210b153b6255aecfd88e7ff6947",
+   "spec_sha_ok": true,
+   "calibration_script_sha256": "dd186a7d7d5b2d6401e9876cf8e0cb49941293cf0092abb9450c5de3eb6e2296",
+   "calibration_sha_ok": true,
+   "prereg_commit": "3df8d28"
+  }
+ },
+ "exclusions_D5": {
+  "file": "analysis/out/phase_e/newcorp_exclusions.json",
+  "listed_for_corpus": {}
+ },
+ "caches": {
+  "B": {
+   "sessions_in_cache": 23,
+   "excluded_D5": 0,
+   "sessions_used": 23,
+   "split_ids": 23,
+   "rows": 2735,
+   "path": "analysis/cache/glm_tb21_B.parquet",
+   "sha256": "6b34d00eae2056f7bedeec359139c5cbfcb17e9e66526c9dffe2a36c3e19a0de"
+  },
+  "E": {
+   "sessions_in_cache": 23,
+   "excluded_D5": 0,
+   "sessions_used": 23,
+   "split_ids": 23,
+   "rows": 3455,
+   "path": "analysis/cache/glm_tb21_E.parquet",
+   "sha256": "3d4c20059917d1de5c4769d6cb320720a5226bde6f6ee7c902d4308348d8be2c"
+  }
+ },
+ "credential_redaction_counts": {
+  "B": {
+   "text:rows_with_marker": 0,
+   "text:markers": 0,
+   "args:rows_with_marker": 0,
+   "args:markers": 0,
+   "command:rows_with_marker": 0,
+   "command:markers": 0,
+   "stderr:rows_with_marker": 0,
+   "stderr:markers": 0,
+   "extra.credential_redactions_sum": 0
+  },
+  "E": {
+   "text:rows_with_marker": 0,
+   "text:markers": 0,
+   "args:rows_with_marker": 0,
+   "args:markers": 0,
+   "command:rows_with_marker": 0,
+   "command:markers": 0,
+   "stderr:rows_with_marker": 0,
+   "stderr:markers": 0,
+   "extra.credential_redactions_sum": 0
+  }
+ },
+ "blindness_D6": "NOT_BLIND: R1 bracket / placebo / tamper cells, Probe 1, N1, N3, N4, N5g (Track B computed request-id decode deltas and call->result gap quantiles over the full corpus)",
+ "field_gate": {
+  "A": {
+   "pairs": 299,
+   "pairs_stamped": 299,
+   "pairs_distinct_stamps": 0,
+   "request_ids": 0,
+   "request_ids_decodable": 0,
+   "image_usage_rows": 0,
+   "usage_granular": true,
+   "error_definition": false,
+   "results_with_text": 299,
+   "commit_claims": 0,
+   "external_commit_table": false,
+   "raw_structured_counters": false,
+   "external_usage_tally": false
+  },
+  "A_path": "analysis/out/phase_e/prereg_e_calibration_glm_tb21.json#units.glm_tb21.n6_field_gate",
+  "B": {
+   "pairs": 550,
+   "pairs_stamped": 550,
+   "pairs_distinct_stamps": 0,
+   "request_ids": 0,
+   "request_ids_decodable": 0,
+   "image_usage_rows": 0,
+   "usage_granular": true,
+   "error_definition": false,
+   "results_with_text": 550,
+   "commit_claims": 0,
+   "external_commit_table": false,
+   "raw_structured_counters": false,
+   "external_usage_tally": false
+  },
+  "E": {
+   "pairs": 652,
+   "pairs_stamped": 652,
+   "pairs_distinct_stamps": 0,
+   "request_ids": 0,
+   "request_ids_decodable": 0,
+   "image_usage_rows": 0,
+   "usage_granular": true,
+   "error_definition": false,
+   "results_with_text": 652,
+   "commit_claims": 0,
+   "external_commit_table": false,
+   "raw_structured_counters": false,
+   "external_usage_tally": false
+  }
+ },
+ "error_signal_context": {
+  "B": {
+   "results": 765,
+   "native_error_nonnull": 0,
+   "native_error_true": 0,
+   "exit_code_nonnull": 0
+  },
+  "E": {
+   "results": 951,
+   "native_error_nonnull": 0,
+   "native_error_true": 0,
+   "exit_code_nonnull": 0
+  }
+ },
+ "detail": {
+  "N1": {
+   "label": "NOT_TESTABLE",
+   "reason": "no call/result pair with distinct stamps (A, B, E)"
+  },
+  "N2": {
+   "B": {
+    "granularity": {
+     "responses": 765,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 194.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": true
+    },
+    "tau_A": 0.28948438463736237,
+    "eligible_responses": 247,
+    "eligible_sessions": 19,
+    "honest_flag_rate": {
+     "rate": 0.03643724696356275,
+     "lo": 0.0,
+     "hi": 0.08183034044145154,
+     "n_sessions": 19,
+     "num": 9.0,
+     "den": 247.0
+    },
+    "recall_tau_prime_1": {
+     "rate": 0.902834008097166,
+     "lo": 0.804574783160567,
+     "hi": 0.965522612525513,
+     "n_sessions": 19,
+     "num": 223.0,
+     "den": 247.0
+    },
+    "recall_tau_prime_0.8": {
+     "rate": 0.8582995951417004,
+     "lo": 0.7464079125901593,
+     "hi": 0.9367335068417524,
+     "n_sessions": 19,
+     "num": 212.0,
+     "den": 247.0
+    },
+    "U_over_tau_rc_quantiles": {
+     "n": 247,
+     "q0": -5.2961915510736866,
+     "q0.05": -0.8622939329820477,
+     "q0.25": -0.08628297914027067,
+     "q0.5": 0.0016616518430690368,
+     "q0.75": 0.02350394024850255,
+     "q0.95": 0.36191839025768324,
+     "q1": 5.832185344222412
+    },
+    "result_chars_quantiles": {
+     "n": 247,
+     "q0": 804.0,
+     "q0.05": 899.1,
+     "q0.25": 1326.5,
+     "q0.5": 2104.0,
+     "q0.75": 4159.0,
+     "q0.95": 9716.499999999998,
+     "q1": 10068.0
+    },
+    "flagged_by_last_call_key": {
+     "bash_command": 9
+    },
+    "verdict": {
+     "label": "WEAK",
+     "rule": "flag <= 0.20 and recall(0.8 tau) >= 0.50; ALIVE fails",
+     "deciding_number": {
+      "flag_rate": 0.03643724696356275,
+      "flag_hi": 0.08183034044145154,
+      "recall_0.8tau": 0.8582995951417004
+     },
+     "deciding_path": "detail.N2.B"
+    }
+   },
+   "E": {
+    "granularity": {
+     "responses": 951,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 172.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": true
+    },
+    "tau_A": 0.28948438463736237,
+    "eligible_responses": 224,
+    "eligible_sessions": 17,
+    "honest_flag_rate": {
+     "rate": 0.09375,
+     "lo": 0.0,
+     "hi": 0.24768215369962496,
+     "n_sessions": 17,
+     "num": 21.0,
+     "den": 224.0
+    },
+    "recall_tau_prime_1": {
+     "rate": 0.9866071428571429,
+     "lo": 0.9613250757440741,
+     "hi": 1.0,
+     "n_sessions": 17,
+     "num": 221.0,
+     "den": 224.0
+    },
+    "recall_tau_prime_0.8": {
+     "rate": 0.9732142857142857,
+     "lo": 0.9416544117647059,
+     "hi": 0.9902450864314468,
+     "n_sessions": 17,
+     "num": 218.0,
+     "den": 224.0
+    },
+    "U_over_tau_rc_quantiles": {
+     "n": 224,
+     "q0": -0.8725742036736492,
+     "q0.05": -0.16332418974638493,
+     "q0.25": 0.0018451645645264142,
+     "q0.5": 0.018938587534559,
+     "q0.75": 0.039491089674032705,
+     "q0.95": 1.924022013381588,
+     "q1": 5.176749352481527
+    },
+    "result_chars_quantiles": {
+     "n": 224,
+     "q0": 801.0,
+     "q0.05": 925.2,
+     "q0.25": 1887.5,
+     "q0.5": 2953.0,
+     "q0.75": 4085.75,
+     "q0.95": 9205.249999999998,
+     "q1": 10068.0
+    },
+    "flagged_by_last_call_key": {
+     "bash_command": 21
+    },
+    "verdict": {
+     "label": "WEAK",
+     "rule": "flag <= 0.20 and recall(0.8 tau) >= 0.50; ALIVE fails",
+     "deciding_number": {
+      "flag_rate": 0.09375,
+      "flag_hi": 0.24768215369962496,
+      "recall_0.8tau": 0.9732142857142857
+     },
+     "deciding_path": "detail.N2.E"
+    }
+   },
+   "BuE": {
+    "granularity": {
+     "GRANULAR": true,
+     "per_split": {
+      "B": {
+       "responses": 765,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 194.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "E": {
+       "responses": 951,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 172.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      }
+     }
+    },
+    "tau_A": 0.28948438463736237,
+    "eligible_responses": 471,
+    "eligible_sessions": 36,
+    "honest_flag_rate": {
+     "rate": 0.06369426751592357,
+     "lo": 0.012618208828522921,
+     "hi": 0.14482905564263324,
+     "n_sessions": 36,
+     "num": 30.0,
+     "den": 471.0
+    },
+    "recall_tau_prime_1": {
+     "rate": 0.9426751592356688,
+     "lo": 0.8884417636715707,
+     "hi": 0.978438446676049,
+     "n_sessions": 36,
+     "num": 444.0,
+     "den": 471.0
+    },
+    "recall_tau_prime_0.8": {
+     "rate": 0.9129511677282378,
+     "lo": 0.8456301250788474,
+     "hi": 0.9575196457893502,
+     "n_sessions": 36,
+     "num": 430.0,
+     "den": 471.0
+    },
+    "U_over_tau_rc_quantiles": {
+     "n": 471,
+     "q0": -5.2961915510736866,
+     "q0.05": -0.5355778671966985,
+     "q0.25": -0.02366517962965487,
+     "q0.5": 0.010056685724408652,
+     "q0.75": 0.027733649994515504,
+     "q0.95": 0.7356493433646766,
+     "q1": 5.832185344222412
+    },
+    "result_chars_quantiles": {
+     "n": 471,
+     "q0": 801.0,
+     "q0.05": 905.0,
+     "q0.25": 1456.0,
+     "q0.5": 2370.0,
+     "q0.75": 4109.5,
+     "q0.95": 9608.5,
+     "q1": 10068.0
+    },
+    "flagged_by_last_call_key": {
+     "bash_command": 30
+    },
+    "verdict": {
+     "label": "WEAK",
+     "rule": "flag <= 0.20 and recall(0.8 tau) >= 0.50; ALIVE fails",
+     "deciding_number": {
+      "flag_rate": 0.06369426751592357,
+      "flag_hi": 0.14482905564263324,
+      "recall_0.8tau": 0.9129511677282378
+     },
+     "deciding_path": "detail.N2.BuE"
+    }
+   }
+  },
+  "N3": {
+   "B": {
+    "gaps": 734,
+    "sessions_with_gaps": 23,
+    "eligible_sessions": 11,
+    "eligible_gaps": 633,
+    "rho_s": {
+     "n_defined": 11,
+     "n_undefined": 0,
+     "quantiles": {
+      "n": 11,
+      "q0": -0.2876229933571002,
+      "q0.05": -0.15510774112787634,
+      "q0.25": 0.099283289997733,
+      "q0.5": 0.1471813340295906,
+      "q0.75": 0.18900131630857514,
+      "q0.95": 0.330894103582698,
+      "q1": 0.45340685101821043
+     }
+    },
+    "share_rho_s_le_0": {
+     "k": 2,
+     "n": 11,
+     "share": 0.18181818181818182,
+     "lo": 0.05136660067100063,
+     "hi": 0.4769861375782448
+    },
+    "rho_pooled": {
+     "value": 0.0971064286800813,
+     "n_sessions": 11,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.10665724491509944,
+     "hi": 0.2720916187329397,
+     "n": 633
+    },
+    "gap_s_quantiles": {
+     "n": 633,
+     "n_sessions": 11,
+     "q0": 2.2791,
+     "q0.05": 4.599507,
+     "q0.25": 11.80512,
+     "q0.5": 32.154305,
+     "q0.75": 57.50208,
+     "q0.95": 198.7554812,
+     "q1": 483.08365
+    },
+    "rho_pooled_all_sessions": {
+     "value": 0.11132308734802822,
+     "n_sessions": 23,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -0.09387618470280228,
+     "hi": 0.29947548318497047,
+     "n": 734
+    },
+    "positive_control_permutation": {
+     "recall": {
+      "k": 7,
+      "n": 11,
+      "share": 0.6363636363636364,
+      "lo": 0.35379677689163724,
+      "hi": 0.8483377638586862
+     },
+     "rule": "within-session permutation, rng_for('N3pc', session, 'gaps')"
+    },
+    "secondary_usage_adjusted": {
+     "label": "NOT_RUN",
+     "reason": "needs G50 (Phase B generation rate), which is not defined for this unit (D1)"
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "min n: >= 20 sessions with >= 20 gaps",
+     "deciding_number": 11,
+     "deciding_path": "detail.N3.B.eligible_sessions"
+    }
+   },
+   "E": {
+    "gaps": 925,
+    "sessions_with_gaps": 23,
+    "eligible_sessions": 10,
+    "eligible_gaps": 822,
+    "rho_s": {
+     "n_defined": 10,
+     "n_undefined": 0,
+     "quantiles": {
+      "n": 10,
+      "q0": -0.1332175381519767,
+      "q0.05": -0.07140991582525992,
+      "q0.25": 0.07612289571355976,
+      "q0.5": 0.2443950786056049,
+      "q0.75": 0.33598045640367813,
+      "q0.95": 0.5596655741964954,
+      "q1": 0.6867477667614995
+     }
+    },
+    "share_rho_s_le_0": {
+     "k": 1,
+     "n": 10,
+     "share": 0.1,
+     "lo": 0.01787574951572113,
+     "hi": 0.4041563854975721
+    },
+    "rho_pooled": {
+     "value": 0.17621355631011282,
+     "n_sessions": 10,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": 0.018916906430797943,
+     "hi": 0.26133145924562534,
+     "n": 822
+    },
+    "gap_s_quantiles": {
+     "n": 822,
+     "n_sessions": 10,
+     "q0": 2.592983,
+     "q0.05": 5.88855785,
+     "q0.25": 12.3034325,
+     "q0.5": 13.8823385,
+     "q0.75": 34.6927575,
+     "q0.95": 105.52558609999988,
+     "q1": 578.50191
+    },
+    "rho_pooled_all_sessions": {
+     "value": 0.1965064245704179,
+     "n_sessions": 23,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": 0.05307967646016564,
+     "hi": 0.2939510505742521,
+     "n": 925
+    },
+    "positive_control_permutation": {
+     "recall": {
+      "k": 5,
+      "n": 10,
+      "share": 0.5,
+      "lo": 0.23658959361548731,
+      "hi": 0.7634104063845126
+     },
+     "rule": "within-session permutation, rng_for('N3pc', session, 'gaps')"
+    },
+    "secondary_usage_adjusted": {
+     "label": "NOT_RUN",
+     "reason": "needs G50 (Phase B generation rate), which is not defined for this unit (D1)"
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "min n: >= 20 sessions with >= 20 gaps",
+     "deciding_number": 10,
+     "deciding_path": "detail.N3.E.eligible_sessions"
+    }
+   },
+   "BuE": {
+    "gaps": 1659,
+    "sessions_with_gaps": 46,
+    "eligible_sessions": 21,
+    "eligible_gaps": 1455,
+    "rho_s": {
+     "n_defined": 21,
+     "n_undefined": 0,
+     "quantiles": {
+      "n": 21,
+      "q0": -0.2876229933571002,
+      "q0.05": -0.1332175381519767,
+      "q0.25": 0.06895913728863819,
+      "q0.5": 0.18828583226027815,
+      "q0.75": 0.2796992481203007,
+      "q0.95": 0.45340685101821043,
+      "q1": 0.6867477667614995
+     }
+    },
+    "share_rho_s_le_0": {
+     "k": 3,
+     "n": 21,
+     "share": 0.14285714285714285,
+     "lo": 0.04980921798213492,
+     "hi": 0.346364941492295
+    },
+    "rho_pooled": {
+     "value": 0.12743072317665485,
+     "n_sessions": 21,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": -1.0533416805994784e-05,
+     "hi": 0.23658625050433305,
+     "n": 1455
+    },
+    "gap_s_quantiles": {
+     "n": 1455,
+     "n_sessions": 21,
+     "q0": 2.2791,
+     "q0.05": 5.2708327,
+     "q0.25": 12.226325,
+     "q0.5": 18.706274,
+     "q0.75": 42.954357,
+     "q0.95": 149.06774879999992,
+     "q1": 578.50191
+    },
+    "rho_pooled_all_sessions": {
+     "value": 0.15416179827855428,
+     "n_sessions": 46,
+     "valid_draws": 1000,
+     "ci_reported": true,
+     "lo": 0.02590250070419148,
+     "hi": 0.2591319504818166,
+     "n": 1659
+    },
+    "positive_control_permutation": {
+     "recall": {
+      "k": 12,
+      "n": 21,
+      "share": 0.5714285714285714,
+      "lo": 0.3654621629703244,
+      "hi": 0.7553030051347894
+     },
+     "rule": "within-session permutation, rng_for('N3pc', session, 'gaps')"
+    },
+    "secondary_usage_adjusted": {
+     "label": "NOT_RUN",
+     "reason": "needs G50 (Phase B generation rate), which is not defined for this unit (D1)"
+    },
+    "verdict": {
+     "label": "DEAD",
+     "rule": "pooled rho CI lo <= 0",
+     "deciding_number": -1.0533416805994784e-05,
+     "deciding_path": "detail.N3.BuE.rho_pooled.lo"
+    }
+   }
+  },
+  "N5a": {
+   "B": {
+    "pairs": 2,
+    "sessions": 1,
+    "drift": {
+     "rate": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n_sessions": 1,
+     "num": 2.0,
+     "den": 2.0
+    },
+    "byte_identical_share": {
+     "k": 0,
+     "n": 2,
+     "share": 0.0,
+     "lo": 0.0,
+     "hi": 0.6576280471103807
+    },
+    "positive_control_digit": {
+     "rate": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n_sessions": 1,
+     "num": 2.0,
+     "den": 2.0
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "min n: >= 100 from >= 20 sessions",
+     "deciding_number": {
+      "n": 2,
+      "sessions": 1
+     },
+     "deciding_path": "detail.N5a.B.drift"
+    }
+   },
+   "E": {
+    "pairs": 1,
+    "sessions": 1,
+    "drift": {
+     "rate": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n_sessions": 1,
+     "num": 1.0,
+     "den": 1.0
+    },
+    "byte_identical_share": {
+     "k": 0,
+     "n": 1,
+     "share": 0.0,
+     "lo": 0.0,
+     "hi": 0.7934567085261071
+    },
+    "positive_control_digit": {
+     "rate": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n_sessions": 1,
+     "num": 1.0,
+     "den": 1.0
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "min n: >= 100 from >= 20 sessions",
+     "deciding_number": {
+      "n": 1,
+      "sessions": 1
+     },
+     "deciding_path": "detail.N5a.E.drift"
+    }
+   },
+   "BuE": {
+    "pairs": 3,
+    "sessions": 2,
+    "drift": {
+     "rate": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n_sessions": 2,
+     "num": 3.0,
+     "den": 3.0
+    },
+    "byte_identical_share": {
+     "k": 0,
+     "n": 3,
+     "share": 0.0,
+     "lo": 0.0,
+     "hi": 0.5615060804490177
+    },
+    "positive_control_digit": {
+     "rate": 1.0,
+     "lo": 1.0,
+     "hi": 1.0,
+     "n_sessions": 2,
+     "num": 3.0,
+     "den": 3.0
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "min n: >= 100 from >= 20 sessions",
+     "deciding_number": {
+      "n": 3,
+      "sessions": 2
+     },
+     "deciding_path": "detail.N5a.BuE.drift"
+    }
+   }
+  },
+  "N5b": {
+   "B": {
+    "per_checker": {
+     "ls": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.B.per_checker.ls"
+      }
+     },
+     "git_log": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.B.per_checker.git_log"
+      }
+     },
+     "grep_n": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.B.per_checker.grep_n"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest checker label among ALIVE/WEAK/DEAD checkers",
+     "per_checker_labels": {
+      "ls": "INSUFFICIENT_N",
+      "git_log": "INSUFFICIENT_N",
+      "grep_n": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5b.B.per_checker"
+    }
+   },
+   "E": {
+    "per_checker": {
+     "ls": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.E.per_checker.ls"
+      }
+     },
+     "git_log": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.E.per_checker.git_log"
+      }
+     },
+     "grep_n": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.E.per_checker.grep_n"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest checker label among ALIVE/WEAK/DEAD checkers",
+     "per_checker_labels": {
+      "ls": "INSUFFICIENT_N",
+      "git_log": "INSUFFICIENT_N",
+      "grep_n": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5b.E.per_checker"
+    }
+   },
+   "BuE": {
+    "per_checker": {
+     "ls": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.BuE.per_checker.ls"
+      }
+     },
+     "git_log": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.BuE.per_checker.git_log"
+      }
+     },
+     "grep_n": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5b.BuE.per_checker.grep_n"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest checker label among ALIVE/WEAK/DEAD checkers",
+     "per_checker_labels": {
+      "ls": "INSUFFICIENT_N",
+      "git_log": "INSUFFICIENT_N",
+      "grep_n": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5b.BuE.per_checker"
+    }
+   }
+  },
+  "N5c": {
+   "B": {
+    "per_item": {
+     "cc_chars_mid": {
+      "marked": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no marked result",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5c.B.per_item.cc_chars_mid"
+      }
+     },
+     "cc_glob_cap": {
+      "marked": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no marked result",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5c.B.per_item.cc_glob_cap"
+      }
+     },
+     "cc_lines_tail": {
+      "marked": 0,
+      "verdict": {
+       "label": "NOT_RUN",
+       "rule": "A constant INSUFFICIENT_N (resolved.n5.truncation_constants_pooled.cc_lines_tail)"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest sub-item label among ALIVE/WEAK/DEAD sub-items",
+     "per_item_labels": {
+      "cc_chars_mid": "INSUFFICIENT_N",
+      "cc_glob_cap": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5c.B.per_item"
+    }
+   },
+   "E": {
+    "per_item": {
+     "cc_chars_mid": {
+      "marked": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no marked result",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5c.E.per_item.cc_chars_mid"
+      }
+     },
+     "cc_glob_cap": {
+      "marked": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no marked result",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5c.E.per_item.cc_glob_cap"
+      }
+     },
+     "cc_lines_tail": {
+      "marked": 0,
+      "verdict": {
+       "label": "NOT_RUN",
+       "rule": "A constant INSUFFICIENT_N (resolved.n5.truncation_constants_pooled.cc_lines_tail)"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest sub-item label among ALIVE/WEAK/DEAD sub-items",
+     "per_item_labels": {
+      "cc_chars_mid": "INSUFFICIENT_N",
+      "cc_glob_cap": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5c.E.per_item"
+    }
+   },
+   "BuE": {
+    "per_item": {
+     "cc_chars_mid": {
+      "marked": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no marked result",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5c.BuE.per_item.cc_chars_mid"
+      }
+     },
+     "cc_glob_cap": {
+      "marked": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no marked result",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5c.BuE.per_item.cc_glob_cap"
+      }
+     },
+     "cc_lines_tail": {
+      "marked": 0,
+      "verdict": {
+       "label": "NOT_RUN",
+       "rule": "A constant INSUFFICIENT_N (resolved.n5.truncation_constants_pooled.cc_lines_tail)"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest sub-item label among ALIVE/WEAK/DEAD sub-items",
+     "per_item_labels": {
+      "cc_chars_mid": "INSUFFICIENT_N",
+      "cc_glob_cap": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5c.BuE.per_item"
+    }
+   }
+  },
+  "N5d": {
+   "B": {
+    "per_checker": {
+     "ls_long_alignment": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.B.per_checker.ls_long_alignment"
+      }
+     },
+     "git_status_tab": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.B.per_checker.git_status_tab"
+      }
+     },
+     "wc_alignment": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.B.per_checker.wc_alignment"
+      }
+     },
+     "pytest_banner": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.B.per_checker.pytest_banner"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest checker label among ALIVE/WEAK/DEAD checkers",
+     "per_checker_labels": {
+      "ls_long_alignment": "INSUFFICIENT_N",
+      "git_status_tab": "INSUFFICIENT_N",
+      "wc_alignment": "INSUFFICIENT_N",
+      "pytest_banner": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5d.B.per_checker"
+    }
+   },
+   "E": {
+    "per_checker": {
+     "ls_long_alignment": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.E.per_checker.ls_long_alignment"
+      }
+     },
+     "git_status_tab": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.E.per_checker.git_status_tab"
+      }
+     },
+     "wc_alignment": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.E.per_checker.wc_alignment"
+      }
+     },
+     "pytest_banner": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.E.per_checker.pytest_banner"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest checker label among ALIVE/WEAK/DEAD checkers",
+     "per_checker_labels": {
+      "ls_long_alignment": "INSUFFICIENT_N",
+      "git_status_tab": "INSUFFICIENT_N",
+      "wc_alignment": "INSUFFICIENT_N",
+      "pytest_banner": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5d.E.per_checker"
+    }
+   },
+   "BuE": {
+    "per_checker": {
+     "ls_long_alignment": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.BuE.per_checker.ls_long_alignment"
+      }
+     },
+     "git_status_tab": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.BuE.per_checker.git_status_tab"
+      }
+     },
+     "wc_alignment": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.BuE.per_checker.wc_alignment"
+      }
+     },
+     "pytest_banner": {
+      "outputs": 0,
+      "verdict": {
+       "label": "INSUFFICIENT_N",
+       "rule": "no eligible output",
+       "deciding_number": {
+        "n": 0
+       },
+       "deciding_path": "detail.N5d.BuE.per_checker.pytest_banner"
+      }
+     }
+    },
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "lowest checker label among ALIVE/WEAK/DEAD checkers",
+     "per_checker_labels": {
+      "ls_long_alignment": "INSUFFICIENT_N",
+      "git_status_tab": "INSUFFICIENT_N",
+      "wc_alignment": "INSUFFICIENT_N",
+      "pytest_banner": "INSUFFICIENT_N"
+     },
+     "deciding_path": "detail.N5d.BuE.per_checker"
+    }
+   }
+  },
+  "N5e": {
+   "B": {
+    "families": {},
+    "comparator": {
+     "texts": 765,
+     "sessions": 23,
+     "iqr_log10_bytes": {
+      "value": 0.3692308851608632,
+      "n_sessions": 23,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.23482973194211024,
+      "hi": 0.5125813591561414
+     },
+     "by_source": {
+      "assistant": 765
+     }
+    },
+    "qualifying_families": 0,
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "no family with >= 100 results from >= 10 sessions",
+     "deciding_path": "detail.N5e.B"
+    }
+   },
+   "E": {
+    "families": {},
+    "comparator": {
+     "texts": 953,
+     "sessions": 23,
+     "iqr_log10_bytes": {
+      "value": 0.4659738939438651,
+      "n_sessions": 23,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.21222615214305757,
+      "hi": 0.5820493601121546
+     },
+     "by_source": {
+      "assistant": 953
+     }
+    },
+    "qualifying_families": 0,
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "no family with >= 100 results from >= 10 sessions",
+     "deciding_path": "detail.N5e.E"
+    }
+   },
+   "BuE": {
+    "families": {},
+    "comparator": {
+     "texts": 1718,
+     "sessions": 46,
+     "iqr_log10_bytes": {
+      "value": 0.39844959911170896,
+      "n_sessions": 46,
+      "valid_draws": 1000,
+      "ci_reported": true,
+      "lo": 0.24642793440298427,
+      "hi": 0.5651915996519296
+     },
+     "by_source": {
+      "assistant": 1718
+     }
+    },
+    "qualifying_families": 0,
+    "verdict": {
+     "label": "INSUFFICIENT_N",
+     "rule": "no family with >= 100 results from >= 10 sessions",
+     "deciding_path": "detail.N5e.BuE"
+    }
+   }
+  },
+  "N5g": {
+   "label": "NOT_TESTABLE",
+   "reason": "no call/result pair with distinct stamps (A, B, E)"
+  },
+  "P2": {
+   "B": {
+    "D_unit": 6,
+    "D_source": "prereg.json resolved.probe2.depth_threshold.pooled.D (D1)",
+    "instrument_check": {
+     "ok": true,
+     "source": "analysis/out/probe_2.json instrument_check (Phase B, swechat/claude_code main)"
+    },
+    "main": {
+     "first_mentions": 0,
+     "first_accesses": 0,
+     "verdict": {
+      "verdict": "INSUFFICIENT_N",
+      "deciding_statistic": null,
+      "S_deep_n": 0,
+      "S_deep_sessions": 0,
+      "S_path_any_n": 0,
+      "S_path_any_sessions": 0,
+      "min_n": {
+       "S_deep": [
+        100,
+        20
+       ],
+       "S_path_any": [
+        200,
+        20
+       ]
+      },
+      "labels": [],
+      "caps_applied": []
+     }
+    },
+    "sub": {
+     "first_mentions": 0,
+     "first_accesses": 0,
+     "verdict": {
+      "verdict": "INSUFFICIENT_N",
+      "deciding_statistic": null,
+      "S_deep_n": 0,
+      "S_deep_sessions": 0,
+      "S_path_any_n": 0,
+      "S_path_any_sessions": 0,
+      "min_n": {
+       "S_deep": [
+        100,
+        20
+       ],
+       "S_path_any": [
+        200,
+        20
+       ]
+      },
+      "labels": [],
+      "caps_applied": []
+     }
+    },
+    "extraction": {
+     "B": {
+      "sessions": 23,
+      "threads_with_calls": {
+       "main": 23,
+       "sub": 0
+      },
+      "calls": {
+       "main": 1159
+      },
+      "redacted_path": {},
+      "sessions_with_workspace_root": 0
+     }
+    }
+   },
+   "E": {
+    "D_unit": 6,
+    "D_source": "prereg.json resolved.probe2.depth_threshold.pooled.D (D1)",
+    "instrument_check": {
+     "ok": true,
+     "source": "analysis/out/probe_2.json instrument_check (Phase B, swechat/claude_code main)"
+    },
+    "main": {
+     "first_mentions": 0,
+     "first_accesses": 0,
+     "verdict": {
+      "verdict": "INSUFFICIENT_N",
+      "deciding_statistic": null,
+      "S_deep_n": 0,
+      "S_deep_sessions": 0,
+      "S_path_any_n": 0,
+      "S_path_any_sessions": 0,
+      "min_n": {
+       "S_deep": [
+        100,
+        20
+       ],
+       "S_path_any": [
+        200,
+        20
+       ]
+      },
+      "labels": [],
+      "caps_applied": []
+     }
+    },
+    "sub": {
+     "first_mentions": 0,
+     "first_accesses": 0,
+     "verdict": {
+      "verdict": "INSUFFICIENT_N",
+      "deciding_statistic": null,
+      "S_deep_n": 0,
+      "S_deep_sessions": 0,
+      "S_path_any_n": 0,
+      "S_path_any_sessions": 0,
+      "min_n": {
+       "S_deep": [
+        100,
+        20
+       ],
+       "S_path_any": [
+        200,
+        20
+       ]
+      },
+      "labels": [],
+      "caps_applied": []
+     }
+    },
+    "extraction": {
+     "E": {
+      "sessions": 23,
+      "threads_with_calls": {
+       "main": 23,
+       "sub": 0
+      },
+      "calls": {
+       "main": 1503
+      },
+      "redacted_path": {},
+      "sessions_with_workspace_root": 0
+     }
+    }
+   },
+   "BuE": {
+    "D_unit": 6,
+    "D_source": "prereg.json resolved.probe2.depth_threshold.pooled.D (D1)",
+    "instrument_check": {
+     "ok": true,
+     "source": "analysis/out/probe_2.json instrument_check (Phase B, swechat/claude_code main)"
+    },
+    "main": {
+     "first_mentions": 0,
+     "first_accesses": 0,
+     "verdict": {
+      "verdict": "INSUFFICIENT_N",
+      "deciding_statistic": null,
+      "S_deep_n": 0,
+      "S_deep_sessions": 0,
+      "S_path_any_n": 0,
+      "S_path_any_sessions": 0,
+      "min_n": {
+       "S_deep": [
+        100,
+        20
+       ],
+       "S_path_any": [
+        200,
+        20
+       ]
+      },
+      "labels": [],
+      "caps_applied": []
+     }
+    },
+    "sub": {
+     "first_mentions": 0,
+     "first_accesses": 0,
+     "verdict": {
+      "verdict": "INSUFFICIENT_N",
+      "deciding_statistic": null,
+      "S_deep_n": 0,
+      "S_deep_sessions": 0,
+      "S_path_any_n": 0,
+      "S_path_any_sessions": 0,
+      "min_n": {
+       "S_deep": [
+        100,
+        20
+       ],
+       "S_path_any": [
+        200,
+        20
+       ]
+      },
+      "labels": [],
+      "caps_applied": []
+     }
+    },
+    "extraction": {
+     "B": {
+      "sessions": 23,
+      "threads_with_calls": {
+       "main": 23,
+       "sub": 0
+      },
+      "calls": {
+       "main": 1159
+      },
+      "redacted_path": {},
+      "sessions_with_workspace_root": 0
+     },
+     "E": {
+      "sessions": 23,
+      "threads_with_calls": {
+       "main": 23,
+       "sub": 0
+      },
+      "calls": {
+       "main": 1503
+      },
+      "redacted_path": {},
+      "sessions_with_workspace_root": 0
+     }
+    }
+   }
+  },
+  "P4": {
+   "B": {
+    "hex": {
+     "T_orig": {
+      "distinct_tokens": 0,
+      "by_length": {},
+      "symbols": 0,
+      "sessions": 0,
+      "meets_N_min": false,
+      "digit_test": null,
+      "label": "insufficient n (symbols 0 < N_min 1131): raw counts only"
+     },
+     "T_copy": {
+      "distinct_tokens": 1,
+      "by_length": {
+       "64": 1
+      },
+      "symbols": 64,
+      "sessions": 1,
+      "meets_N_min": false,
+      "digit_share_observed": 0.625,
+      "digit_share_expected": 0.6249999999999677,
+      "digit_test": null,
+      "label": "insufficient n (symbols 64 < N_min 1131): raw counts only"
+     },
+     "M_git": {
+      "distinct_tokens": 0,
+      "by_length": {},
+      "symbols": 0,
+      "sessions": 0,
+      "meets_N_min": false,
+      "digit_test": null,
+      "label": "insufficient n (symbols 0 < N_min 1131): raw counts only"
+     },
+     "M_all": {
+      "distinct_tokens": 346,
+      "by_length": {
+       "7": 4,
+       "8": 232,
+       "32": 45,
+       "40": 53,
+       "64": 12
+      },
+      "symbols": 6212,
+      "sessions": 11,
+      "meets_N_min": true,
+      "digit_share_observed": 0.7023502897617514,
+      "digit_share_expected": 0.6223404317980374,
+      "digit_test": {
+       "w_adj": 0.7840880951795175,
+       "chi2": 3834.101203905941,
+       "p": 0.0,
+       "n_symbols": 6212,
+       "n_tokens": 346,
+       "n_sessions": 11,
+       "w_adj_lo": 0.12685927517905832,
+       "w_adj_hi": 1.956860132737686,
+       "n_valid_boot": 1000
+      }
+     }
+    },
+    "ints": {
+     "T_orig": {
+      "distinct_values": 10,
+      "sessions": 5,
+      "round": {
+       "last_0": {
+        "k": 5,
+        "n": 10,
+        "n_sessions": 5,
+        "label": "insufficient n",
+        "expected_uniform": 0.1
+       },
+       "last_00": {
+        "k": 5,
+        "n": 10,
+        "n_sessions": 5,
+        "label": "insufficient n",
+        "expected_uniform": 0.01
+       },
+       "last_000": {
+        "k": 5,
+        "n": 10,
+        "n_sessions": 5,
+        "label": "insufficient n",
+        "expected_uniform": 0.001
+       },
+       "last_0_or_5": {
+        "k": 6,
+        "n": 10,
+        "n_sessions": 5,
+        "label": "insufficient n",
+        "expected_uniform": 0.2
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 898,
+      "sessions": 19,
+      "round": {
+       "last_0": {
+        "k": 129,
+        "n": 898,
+        "n_sessions": 19,
+        "rate": 0.14365256124721604,
+        "lo": 0.10161374664484979,
+        "hi": 0.2689085903309979,
+        "expected_uniform": 0.1,
+        "excess_over_uniform": 0.04365256124721603
+       },
+       "last_00": {
+        "k": 54,
+        "n": 898,
+        "n_sessions": 19,
+        "rate": 0.060133630289532294,
+        "lo": 0.02146178741766977,
+        "hi": 0.1865550196498749,
+        "expected_uniform": 0.01,
+        "excess_over_uniform": 0.05013363028953229
+       },
+       "last_000": {
+        "k": 42,
+        "n": 898,
+        "n_sessions": 19,
+        "rate": 0.0467706013363029,
+        "lo": 0.008270142588368262,
+        "hi": 0.1684683427572985,
+        "expected_uniform": 0.001,
+        "excess_over_uniform": 0.045770601336302896
+       },
+       "last_0_or_5": {
+        "k": 205,
+        "n": 898,
+        "n_sessions": 19,
+        "rate": 0.22828507795100222,
+        "lo": 0.18845254155871366,
+        "hi": 0.3453168860333104,
+        "expected_uniform": 0.2,
+        "excess_over_uniform": 0.028285077951002213
+       }
+      }
+     }
+    },
+    "verdicts": {
+     "hex_primary": {
+      "verdict_uncapped": "INSUFFICIENT_N",
+      "reason": "T_orig symbols 0 < N_min 1131",
+      "deciding": {
+       "N_min": 1131,
+       "T_orig_symbols": 0,
+       "T_orig_tokens": 0,
+       "T_orig_sessions": 0,
+       "control": "M_all",
+       "control_symbols": 6212,
+       "control_sessions": 11,
+       "control_w_adj": 0.7840880951795175,
+       "control_w_adj_hi": 1.956860132737686,
+       "instrument_ceiling": 0.15,
+       "alive_w": 0.15,
+       "T_orig_w_adj": null,
+       "T_orig_w_adj_lo": null,
+       "T_orig_w_adj_hi": null,
+       "T_orig_chi2": null,
+       "T_orig_p": null
+      },
+      "verdict": "INSUFFICIENT_N",
+      "labels": []
+     },
+     "round_numbers_secondary": {
+      "verdict_uncapped": "INSUFFICIENT_N",
+      "reason": "T_orig has 10 distinct values from 5 sessions (< 100 / 10)",
+      "deciding": {
+       "T_orig_distinct": 10,
+       "T_orig_sessions": 5,
+       "M_all_distinct": 898,
+       "M_all_sessions": 19,
+       "T_orig_last0": null,
+       "T_orig_last0_lo": null,
+       "T_orig_last0_hi": null,
+       "T_orig_last0_k_n": [
+        5,
+        10
+       ],
+       "M_all_last0": 0.14365256124721604,
+       "M_all_last0_lo": 0.10161374664484979,
+       "M_all_last0_hi": 0.2689085903309979,
+       "M_all_last0_k_n": [
+        129,
+        898
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10
+      },
+      "verdict": "INSUFFICIENT_N",
+      "labels": []
+     }
+    },
+    "thresholds": {
+     "N_min": 1131,
+     "instrument_ceiling": 0.15,
+     "alive_w": 0.15,
+     "round_margin": 0.05,
+     "round_min_values": 100,
+     "round_min_sessions": 10
+    },
+    "F3_context": {
+     "note": "CONTEXT ONLY: prereg_e.json followups.F3 rule applied to this cell's data; F3 is pre-registered for A1 candidates, not for N6 cells, so the cell keeps the Phase B rule label",
+     "T_orig_distinct": 10,
+     "excluded_strict": 3,
+     "remaining_strict": 7,
+     "remaining_first_occurrence_rule": 8,
+     "p_T_orig_last0": null,
+     "p_T_noparam_last0": null,
+     "p_M_all_last0": 0.14365256124721604,
+     "g": null,
+     "g_full": null,
+     "round_rule_on_remaining": {
+      "label": "INSUFFICIENT_N",
+      "reason": "T_orig has 7 distinct values from 5 sessions (< 100 / 10)"
+     },
+     "round_rule_first_occurrence_variant": "INSUFFICIENT_N",
+     "F3_rule_label": "INSUFFICIENT_N (cap WEAK: parameter-confounded, residual untestable)",
+     "path": "detail.P4.B.F3_context",
+     "cal_round_counts_check": {
+      "T_orig_distinct_values": 10,
+      "excluded_strict_any_occurrence": 3,
+      "excluded_first_occurrence": 2,
+      "first_occurrence_json_number": 0,
+      "remaining_strict": 7,
+      "remaining_first": 8,
+      "note": "counts only; no round-number share was computed on A"
+     },
+     "own_loop_counts": {
+      "T_orig_distinct_values": 10,
+      "excluded_strict_any_occurrence": 3,
+      "excluded_first_occurrence": 2
+     }
+    }
+   },
+   "E": {
+    "hex": {
+     "T_orig": {
+      "distinct_tokens": 0,
+      "by_length": {},
+      "symbols": 0,
+      "sessions": 0,
+      "meets_N_min": false,
+      "digit_test": null,
+      "label": "insufficient n (symbols 0 < N_min 1131): raw counts only"
+     },
+     "T_copy": {
+      "distinct_tokens": 5,
+      "by_length": {
+       "7": 1,
+       "40": 3,
+       "64": 1
+      },
+      "symbols": 191,
+      "sessions": 3,
+      "meets_N_min": false,
+      "digit_share_observed": 0.6020942408376964,
+      "digit_share_expected": 0.6244924655318598,
+      "digit_test": null,
+      "label": "insufficient n (symbols 191 < N_min 1131): raw counts only"
+     },
+     "M_git": {
+      "distinct_tokens": 0,
+      "by_length": {},
+      "symbols": 0,
+      "sessions": 0,
+      "meets_N_min": false,
+      "digit_test": null,
+      "label": "insufficient n (symbols 0 < N_min 1131): raw counts only"
+     },
+     "M_all": {
+      "distinct_tokens": 252,
+      "by_length": {
+       "7": 14,
+       "8": 211,
+       "40": 22,
+       "64": 5
+      },
+      "symbols": 2986,
+      "sessions": 12,
+      "meets_N_min": true,
+      "digit_share_observed": 0.725385130609511,
+      "digit_share_expected": 0.6196315739875995,
+      "digit_test": {
+       "w_adj": 0.4856407541358428,
+       "chi2": 719.2389690438035,
+       "p": 1.4722765346147323e-143,
+       "n_symbols": 2986,
+       "n_tokens": 252,
+       "n_sessions": 12,
+       "w_adj_lo": 0.12972869249406924,
+       "w_adj_hi": 0.7720722495080204,
+       "n_valid_boot": 1000
+      }
+     }
+    },
+    "ints": {
+     "T_orig": {
+      "distinct_values": 1,
+      "sessions": 1,
+      "round": {
+       "last_0": {
+        "k": 0,
+        "n": 1,
+        "n_sessions": 1,
+        "label": "insufficient n",
+        "expected_uniform": 0.1
+       },
+       "last_00": {
+        "k": 0,
+        "n": 1,
+        "n_sessions": 1,
+        "label": "insufficient n",
+        "expected_uniform": 0.01
+       },
+       "last_000": {
+        "k": 0,
+        "n": 1,
+        "n_sessions": 1,
+        "label": "insufficient n",
+        "expected_uniform": 0.001
+       },
+       "last_0_or_5": {
+        "k": 0,
+        "n": 1,
+        "n_sessions": 1,
+        "label": "insufficient n",
+        "expected_uniform": 0.2
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 644,
+      "sessions": 17,
+      "round": {
+       "last_0": {
+        "k": 111,
+        "n": 644,
+        "n_sessions": 17,
+        "rate": 0.17236024844720496,
+        "lo": 0.12119672333086967,
+        "hi": 0.245942364260326,
+        "expected_uniform": 0.1,
+        "excess_over_uniform": 0.07236024844720496
+       },
+       "last_00": {
+        "k": 29,
+        "n": 644,
+        "n_sessions": 17,
+        "rate": 0.04503105590062112,
+        "lo": 0.02804146365350244,
+        "hi": 0.10472581978506475,
+        "expected_uniform": 0.01,
+        "excess_over_uniform": 0.03503105590062112
+       },
+       "last_000": {
+        "k": 18,
+        "n": 644,
+        "n_sessions": 17,
+        "rate": 0.027950310559006212,
+        "lo": 0.014334366509776911,
+        "hi": 0.07531502031411073,
+        "expected_uniform": 0.001,
+        "excess_over_uniform": 0.02695031055900621
+       },
+       "last_0_or_5": {
+        "k": 171,
+        "n": 644,
+        "n_sessions": 17,
+        "rate": 0.265527950310559,
+        "lo": 0.2307670126874279,
+        "hi": 0.35603130993727644,
+        "expected_uniform": 0.2,
+        "excess_over_uniform": 0.06552795031055897
+       }
+      }
+     }
+    },
+    "verdicts": {
+     "hex_primary": {
+      "verdict_uncapped": "INSUFFICIENT_N",
+      "reason": "T_orig symbols 0 < N_min 1131",
+      "deciding": {
+       "N_min": 1131,
+       "T_orig_symbols": 0,
+       "T_orig_tokens": 0,
+       "T_orig_sessions": 0,
+       "control": "M_all",
+       "control_symbols": 2986,
+       "control_sessions": 12,
+       "control_w_adj": 0.4856407541358428,
+       "control_w_adj_hi": 0.7720722495080204,
+       "instrument_ceiling": 0.15,
+       "alive_w": 0.15,
+       "T_orig_w_adj": null,
+       "T_orig_w_adj_lo": null,
+       "T_orig_w_adj_hi": null,
+       "T_orig_chi2": null,
+       "T_orig_p": null
+      },
+      "verdict": "INSUFFICIENT_N",
+      "labels": []
+     },
+     "round_numbers_secondary": {
+      "verdict_uncapped": "INSUFFICIENT_N",
+      "reason": "T_orig has 1 distinct values from 1 sessions (< 100 / 10)",
+      "deciding": {
+       "T_orig_distinct": 1,
+       "T_orig_sessions": 1,
+       "M_all_distinct": 644,
+       "M_all_sessions": 17,
+       "T_orig_last0": null,
+       "T_orig_last0_lo": null,
+       "T_orig_last0_hi": null,
+       "T_orig_last0_k_n": [
+        0,
+        1
+       ],
+       "M_all_last0": 0.17236024844720496,
+       "M_all_last0_lo": 0.12119672333086967,
+       "M_all_last0_hi": 0.245942364260326,
+       "M_all_last0_k_n": [
+        111,
+        644
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10
+      },
+      "verdict": "INSUFFICIENT_N",
+      "labels": []
+     }
+    },
+    "thresholds": {
+     "N_min": 1131,
+     "instrument_ceiling": 0.15,
+     "alive_w": 0.15,
+     "round_margin": 0.05,
+     "round_min_values": 100,
+     "round_min_sessions": 10
+    },
+    "F3_context": {
+     "note": "CONTEXT ONLY: prereg_e.json followups.F3 rule applied to this cell's data; F3 is pre-registered for A1 candidates, not for N6 cells, so the cell keeps the Phase B rule label",
+     "T_orig_distinct": 1,
+     "excluded_strict": 0,
+     "remaining_strict": 1,
+     "remaining_first_occurrence_rule": 1,
+     "p_T_orig_last0": null,
+     "p_T_noparam_last0": null,
+     "p_M_all_last0": 0.17236024844720496,
+     "g": null,
+     "g_full": null,
+     "round_rule_on_remaining": {
+      "label": "INSUFFICIENT_N",
+      "reason": "T_orig has 1 distinct values from 1 sessions (< 100 / 10)"
+     },
+     "round_rule_first_occurrence_variant": "INSUFFICIENT_N",
+     "F3_rule_label": "INSUFFICIENT_N (cap WEAK: parameter-confounded, residual untestable)",
+     "path": "detail.P4.E.F3_context",
+     "cal_round_counts_check": {
+      "T_orig_distinct_values": 1,
+      "excluded_strict_any_occurrence": 0,
+      "excluded_first_occurrence": 0,
+      "first_occurrence_json_number": 0,
+      "remaining_strict": 1,
+      "remaining_first": 1,
+      "note": "counts only; no round-number share was computed on A"
+     },
+     "own_loop_counts": {
+      "T_orig_distinct_values": 1,
+      "excluded_strict_any_occurrence": 0,
+      "excluded_first_occurrence": 0
+     }
+    }
+   },
+   "BuE": {
+    "hex": {
+     "T_orig": {
+      "distinct_tokens": 0,
+      "by_length": {},
+      "symbols": 0,
+      "sessions": 0,
+      "meets_N_min": false,
+      "digit_test": null,
+      "label": "insufficient n (symbols 0 < N_min 1131): raw counts only"
+     },
+     "T_copy": {
+      "distinct_tokens": 6,
+      "by_length": {
+       "7": 1,
+       "40": 3,
+       "64": 2
+      },
+      "symbols": 255,
+      "sessions": 4,
+      "meets_N_min": false,
+      "digit_share_observed": 0.6078431372549019,
+      "digit_share_expected": 0.6246198467316986,
+      "digit_test": null,
+      "label": "insufficient n (symbols 255 < N_min 1131): raw counts only"
+     },
+     "M_git": {
+      "distinct_tokens": 0,
+      "by_length": {},
+      "symbols": 0,
+      "sessions": 0,
+      "meets_N_min": false,
+      "digit_test": null,
+      "label": "insufficient n (symbols 0 < N_min 1131): raw counts only"
+     },
+     "M_all": {
+      "distinct_tokens": 597,
+      "by_length": {
+       "7": 18,
+       "8": 442,
+       "32": 45,
+       "40": 75,
+       "64": 17
+      },
+      "symbols": 9190,
+      "sessions": 23,
+      "meets_N_min": true,
+      "digit_share_observed": 0.7096844396082699,
+      "digit_share_expected": 0.6214655258348241,
+      "digit_test": {
+       "w_adj": 0.6484556538076677,
+       "chi2": 3879.3466142376424,
+       "p": 0.0,
+       "n_symbols": 9190,
+       "n_tokens": 597,
+       "n_sessions": 23,
+       "w_adj_lo": 0.20705800867041413,
+       "w_adj_hi": 1.3030554611416203,
+       "n_valid_boot": 1000
+      }
+     }
+    },
+    "ints": {
+     "T_orig": {
+      "distinct_values": 11,
+      "sessions": 6,
+      "round": {
+       "last_0": {
+        "k": 5,
+        "n": 11,
+        "n_sessions": 6,
+        "label": "insufficient n",
+        "expected_uniform": 0.1
+       },
+       "last_00": {
+        "k": 5,
+        "n": 11,
+        "n_sessions": 6,
+        "label": "insufficient n",
+        "expected_uniform": 0.01
+       },
+       "last_000": {
+        "k": 5,
+        "n": 11,
+        "n_sessions": 6,
+        "label": "insufficient n",
+        "expected_uniform": 0.001
+       },
+       "last_0_or_5": {
+        "k": 6,
+        "n": 11,
+        "n_sessions": 6,
+        "label": "insufficient n",
+        "expected_uniform": 0.2
+       }
+      }
+     },
+     "M_all": {
+      "distinct_values": 1529,
+      "sessions": 35,
+      "round": {
+       "last_0": {
+        "k": 235,
+        "n": 1529,
+        "n_sessions": 35,
+        "rate": 0.15369522563767168,
+        "lo": 0.11726765585461237,
+        "hi": 0.21675040324338463,
+        "expected_uniform": 0.1,
+        "excess_over_uniform": 0.05369522563767168
+       },
+       "last_00": {
+        "k": 79,
+        "n": 1529,
+        "n_sessions": 35,
+        "rate": 0.051667756703727925,
+        "lo": 0.026765733734730044,
+        "hi": 0.11409126593299929,
+        "expected_uniform": 0.01,
+        "excess_over_uniform": 0.04166775670372792
+       },
+       "last_000": {
+        "k": 56,
+        "n": 1529,
+        "n_sessions": 35,
+        "rate": 0.03662524525833878,
+        "lo": 0.012680894567336216,
+        "hi": 0.09528234927836936,
+        "expected_uniform": 0.001,
+        "excess_over_uniform": 0.03562524525833878
+       },
+       "last_0_or_5": {
+        "k": 370,
+        "n": 1529,
+        "n_sessions": 35,
+        "rate": 0.2419882275997384,
+        "lo": 0.20816983684934373,
+        "hi": 0.31029718022408265,
+        "expected_uniform": 0.2,
+        "excess_over_uniform": 0.04198822759973839
+       }
+      }
+     }
+    },
+    "verdicts": {
+     "hex_primary": {
+      "verdict_uncapped": "INSUFFICIENT_N",
+      "reason": "T_orig symbols 0 < N_min 1131",
+      "deciding": {
+       "N_min": 1131,
+       "T_orig_symbols": 0,
+       "T_orig_tokens": 0,
+       "T_orig_sessions": 0,
+       "control": "M_all",
+       "control_symbols": 9190,
+       "control_sessions": 23,
+       "control_w_adj": 0.6484556538076677,
+       "control_w_adj_hi": 1.3030554611416203,
+       "instrument_ceiling": 0.15,
+       "alive_w": 0.15,
+       "T_orig_w_adj": null,
+       "T_orig_w_adj_lo": null,
+       "T_orig_w_adj_hi": null,
+       "T_orig_chi2": null,
+       "T_orig_p": null
+      },
+      "verdict": "INSUFFICIENT_N",
+      "labels": [
+       "pooled B u E"
+      ]
+     },
+     "round_numbers_secondary": {
+      "verdict_uncapped": "INSUFFICIENT_N",
+      "reason": "T_orig has 11 distinct values from 6 sessions (< 100 / 10)",
+      "deciding": {
+       "T_orig_distinct": 11,
+       "T_orig_sessions": 6,
+       "M_all_distinct": 1529,
+       "M_all_sessions": 35,
+       "T_orig_last0": null,
+       "T_orig_last0_lo": null,
+       "T_orig_last0_hi": null,
+       "T_orig_last0_k_n": [
+        5,
+        11
+       ],
+       "M_all_last0": 0.15369522563767168,
+       "M_all_last0_lo": 0.11726765585461237,
+       "M_all_last0_hi": 0.21675040324338463,
+       "M_all_last0_k_n": [
+        235,
+        1529
+       ],
+       "margin": 0.05,
+       "min_values": 100,
+       "min_sessions": 10
+      },
+      "verdict": "INSUFFICIENT_N",
+      "labels": [
+       "pooled B u E"
+      ]
+     }
+    },
+    "thresholds": {
+     "N_min": 1131,
+     "instrument_ceiling": 0.15,
+     "alive_w": 0.15,
+     "round_margin": 0.05,
+     "round_min_values": 100,
+     "round_min_sessions": 10
+    },
+    "F3_context": {
+     "note": "CONTEXT ONLY: prereg_e.json followups.F3 rule applied to this cell's data; F3 is pre-registered for A1 candidates, not for N6 cells, so the cell keeps the Phase B rule label",
+     "T_orig_distinct": 11,
+     "excluded_strict": 3,
+     "remaining_strict": 8,
+     "remaining_first_occurrence_rule": 9,
+     "p_T_orig_last0": null,
+     "p_T_noparam_last0": null,
+     "p_M_all_last0": 0.15369522563767168,
+     "g": null,
+     "g_full": null,
+     "round_rule_on_remaining": {
+      "label": "INSUFFICIENT_N",
+      "reason": "T_orig has 8 distinct values from 6 sessions (< 100 / 10)"
+     },
+     "round_rule_first_occurrence_variant": "INSUFFICIENT_N",
+     "F3_rule_label": "INSUFFICIENT_N (cap WEAK: parameter-confounded, residual untestable)",
+     "path": "detail.P4.BuE.F3_context"
+    }
+   }
+  }
+ },
+ "cells": {
+  "P1_latency": {
+   "label": "NOT_TESTABLE(distinct call/result stamps)",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": [
+    "NOT_BLIND (D6)"
+   ]
+  },
+  "P2_knowledge": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "INSUFFICIENT_N",
+   "deciding_number": {
+    "statistic": null,
+    "value": null,
+    "caps": [],
+    "S_deep_n": 0,
+    "S_path_any_n": 0
+   },
+   "n": 0,
+   "sessions": 0,
+   "ci": null,
+   "json_path": "detail.P2.B.main.verdict",
+   "flags": [],
+   "subagent_stratum": {
+    "B": "INSUFFICIENT_N",
+    "E": "INSUFFICIENT_N",
+    "BuE": "INSUFFICIENT_N"
+   }
+  },
+  "P3a_zero_error": {
+   "label": "NOT_TESTABLE(error signal: no error definition for this unit (prereg_common.error_classes, D1))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": []
+  },
+  "P3b_reaction": {
+   "label": "NOT_TESTABLE(error signal: no error definition for this unit (prereg_common.error_classes, D1))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": []
+  },
+  "P4a_hex": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "INSUFFICIENT_N",
+   "deciding_number": {
+    "statistic": "T_orig w_adj vs control hi",
+    "N_min": 1131,
+    "T_orig_symbols": 0,
+    "T_orig_tokens": 0,
+    "T_orig_sessions": 0,
+    "control": "M_all",
+    "control_symbols": 6212,
+    "control_sessions": 11,
+    "control_w_adj": 0.7840880951795175,
+    "control_w_adj_hi": 1.956860132737686,
+    "instrument_ceiling": 0.15,
+    "alive_w": 0.15,
+    "T_orig_w_adj": null,
+    "T_orig_w_adj_lo": null,
+    "T_orig_w_adj_hi": null,
+    "T_orig_chi2": null,
+    "T_orig_p": null
+   },
+   "n": 0,
+   "sessions": 0,
+   "ci": [
+    null,
+    null
+   ],
+   "json_path": "detail.P4.B.verdicts.hex_primary",
+   "flags": []
+  },
+  "P4b_round": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "INSUFFICIENT_N",
+   "deciding_number": {
+    "statistic": "T_orig last-0 vs M_all",
+    "T_orig_distinct": 10,
+    "T_orig_sessions": 5,
+    "M_all_distinct": 898,
+    "M_all_sessions": 19,
+    "T_orig_last0": null,
+    "T_orig_last0_lo": null,
+    "T_orig_last0_hi": null,
+    "T_orig_last0_k_n": [
+     5,
+     10
+    ],
+    "M_all_last0": 0.14365256124721604,
+    "M_all_last0_lo": 0.10161374664484979,
+    "M_all_last0_hi": 0.2689085903309979,
+    "M_all_last0_k_n": [
+     129,
+     898
+    ],
+    "margin": 0.05,
+    "min_values": 100,
+    "min_sessions": 10
+   },
+   "n": 10,
+   "sessions": 5,
+   "ci": [
+    null,
+    null
+   ],
+   "json_path": "detail.P4.B.verdicts.round_numbers_secondary",
+   "flags": [],
+   "F3_context_label": "INSUFFICIENT_N (cap WEAK: parameter-confounded, residual untestable)",
+   "F3_context_path": "detail.P4.B.F3_context"
+  },
+  "R1_bracket": {
+   "label": "NOT_TESTABLE(provider request ids decodable to ms: 0 on A, B, E)",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": [
+    "NOT_BLIND (D6)"
+   ]
+  },
+  "R2_image": {
+   "label": "NOT_TESTABLE(per-response prompt IMAGE token counts (field gate image_usage_rows = 0))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": []
+  },
+  "R3_git": {
+   "label": "NOT_TESTABLE(external commit table linked by repo (field gate external_commit_table False))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": []
+  },
+  "R4_dual": {
+   "label": "NOT_TESTABLE(harness structured counters (toolUseResult numLines) in the raw source (field gate raw_structured_counters False; ATIF has no such field))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": []
+  },
+  "R5_ledger": {
+   "label": "NOT_TESTABLE(external usage tally (field gate external_usage_tally False))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": []
+  },
+  "N1": {
+   "label": "NOT_TESTABLE(distinct call/result stamps (pairs_distinct_stamps 0 on A, B, E))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": [
+    "NOT_BLIND (D6)"
+   ]
+  },
+  "N2": {
+   "label": "WEAK",
+   "label_source": "E verdict",
+   "label_B": "WEAK",
+   "label_E": "WEAK",
+   "label_BuE": "WEAK",
+   "deciding_number": {
+    "flag_rate": 0.09375,
+    "flag_hi": 0.24768215369962496,
+    "recall_0.8tau": 0.9732142857142857
+   },
+   "n": 224,
+   "sessions": 17,
+   "ci": [
+    0.0,
+    0.24768215369962496
+   ],
+   "json_path": "detail.N2.E.verdict",
+   "flags": [],
+   "artifact_checks_path": "checks.N2",
+   "label_after_checks_BuE": "WEAK"
+  },
+  "N3": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "DEAD",
+   "deciding_number": 11,
+   "n": 633,
+   "sessions": 11,
+   "ci": [
+    -0.10665724491509944,
+    0.2720916187329397
+   ],
+   "json_path": "detail.N3.B.verdict",
+   "flags": [
+    "NOT_BLIND (D6)"
+   ]
+  },
+  "N4": {
+   "label": "NOT_TESTABLE(distinct call/result stamps)",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": [
+    "NOT_BLIND (D6)"
+   ]
+  },
+  "N5a_determinism": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "INSUFFICIENT_N",
+   "deciding_number": {
+    "n": 2,
+    "sessions": 1
+   },
+   "n": 2,
+   "sessions": 1,
+   "ci": [
+    1.0,
+    1.0
+   ],
+   "json_path": "detail.N5a.B.verdict",
+   "flags": []
+  },
+  "N5b_sort": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "INSUFFICIENT_N",
+   "deciding_number": {
+    "ls": "INSUFFICIENT_N",
+    "git_log": "INSUFFICIENT_N",
+    "grep_n": "INSUFFICIENT_N"
+   },
+   "n": {
+    "ls": 0,
+    "git_log": 0,
+    "grep_n": 0
+   },
+   "sessions": {
+    "ls": null,
+    "git_log": null,
+    "grep_n": null
+   },
+   "ci": {},
+   "json_path": "detail.N5b.B.verdict",
+   "flags": []
+  },
+  "N5c_truncation": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "INSUFFICIENT_N",
+   "deciding_number": {
+    "cc_chars_mid": "INSUFFICIENT_N",
+    "cc_glob_cap": "INSUFFICIENT_N"
+   },
+   "n": {
+    "cc_chars_mid": 0,
+    "cc_glob_cap": 0,
+    "cc_lines_tail": 0
+   },
+   "sessions": {
+    "cc_chars_mid": null,
+    "cc_glob_cap": null,
+    "cc_lines_tail": null
+   },
+   "ci": null,
+   "json_path": "detail.N5c.B.verdict",
+   "flags": [
+    "pooled constants (D1)"
+   ]
+  },
+  "N5d_whitespace": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "INSUFFICIENT_N",
+   "deciding_number": {
+    "ls_long_alignment": "INSUFFICIENT_N",
+    "git_status_tab": "INSUFFICIENT_N",
+    "wc_alignment": "INSUFFICIENT_N",
+    "pytest_banner": "INSUFFICIENT_N"
+   },
+   "n": {
+    "ls_long_alignment": 0,
+    "git_status_tab": 0,
+    "wc_alignment": 0,
+    "pytest_banner": 0
+   },
+   "sessions": {
+    "ls_long_alignment": null,
+    "git_status_tab": null,
+    "wc_alignment": null,
+    "pytest_banner": null
+   },
+   "ci": {},
+   "json_path": "detail.N5d.B.verdict",
+   "flags": []
+  },
+  "N5e_size": {
+   "label": "INSUFFICIENT_N",
+   "label_source": "B only (E INSUFFICIENT_N)",
+   "label_B": "INSUFFICIENT_N",
+   "label_E": "INSUFFICIENT_N",
+   "label_BuE": "INSUFFICIENT_N",
+   "deciding_number": null,
+   "n": 0,
+   "sessions": 23,
+   "ci": null,
+   "json_path": "detail.N5e.B.verdict",
+   "flags": []
+  },
+  "N5f_error_fidelity": {
+   "label": "NOT_TESTABLE(error signal: no error definition for this unit (prereg_common.error_classes, D1))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": []
+  },
+  "N5g_cold_start": {
+   "label": "NOT_TESTABLE(distinct call/result stamps (pairs_distinct_stamps 0 on A, B, E))",
+   "label_B": null,
+   "label_E": null,
+   "label_BuE": null,
+   "deciding_number": null,
+   "n": null,
+   "sessions": null,
+   "ci": null,
+   "json_path": null,
+   "flags": [
+    "NOT_BLIND (D6)"
+   ]
+  }
+ },
+ "checks": {
+  "N2": {
+   "base_label": "WEAK",
+   "AC2_truncation": {
+    "label": "WEAK",
+    "units": 471,
+    "result": "PASS"
+   },
+   "AC3_join": {
+    "label": "INSUFFICIENT_N",
+    "units": 42,
+    "result": "NO_EFFECT (recompute label INSUFFICIENT_N is not a level)"
+   },
+   "units_total": 471,
+   "AC4_dominance": {
+    "dominated": true,
+    "top_cluster": "terminus-2__openai/GLM-5.2",
+    "top_share_events": 1.0,
+    "top_share_sessions": 1.0,
+    "top_session_share_events": 0.18471337579617833,
+    "n_clusters": 1,
+    "note": "single-cluster population: dominated by construction, labelled only (as aiv_cc)",
+    "leave_outs": [
+     {
+      "left_out": "top session",
+      "label": "WEAK"
+     }
+    ],
+    "effect": "pass"
+   },
+   "AC5_post_strat": {
+    "result": "NOT_RUN",
+    "reason": "population_cells() has no new-corpus branch (frozen)"
+   },
+   "AC1_parser": {
+    "audited": 30,
+    "match": 30,
+    "differ": 0,
+    "detail": {
+     "usage_out_equal": 30,
+     "rc_equal": 30,
+     "chars_out_within_1pct": 30
+    },
+    "formats": {
+     "atif": 30
+    },
+    "result": "PASS",
+    "fields": "usage_out, chars of assistant text + call args (compact JSON) + thinking, and the last call's result chars, read from the raw log; an event differs if the flag recomputed from the raw values is not set",
+    "sample": "audit_sample of flagged responses, B u E, seed ('N2','AC1','flagged',unit)"
+   },
+   "strata": {
+    "key": {
+     "strata": {
+      "bash_command": {
+       "units": 470,
+       "sessions": 35,
+       "label": "WEAK"
+      },
+      "mark_task_complete": {
+       "units": 1,
+       "sessions": 1,
+       "label": "INSUFFICIENT_N"
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "model": {
+     "strata": {
+      "GLM-5.2": {
+       "units": 471,
+       "sessions": 36,
+       "label": "WEAK"
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "stratum": {
+     "strata": {
+      "terminus-2__openai/GLM-5.2": {
+       "units": 471,
+       "sessions": 36,
+       "label": "WEAK"
+      }
+     },
+     "confinement": "UNTESTABLE"
+    },
+    "length_tercile": {
+     "strata": {
+      "long": {
+       "units": 399,
+       "sessions": 15,
+       "label": "WEAK"
+      },
+      "mid": {
+       "units": 33,
+       "sessions": 6,
+       "label": "INSUFFICIENT_N"
+      },
+      "short": {
+       "units": 39,
+       "sessions": 15,
+       "label": "INSUFFICIENT_N"
+      }
+     },
+     "confinement": "UNTESTABLE"
+    }
+   },
+   "effects": [],
+   "label_after_checks": "WEAK"
+  }
+ },
+ "n_verdict_cells": {
+  "cells": 22,
+  "split_labels_computed": 30
+ },
+ "session_meta_summary": {
+  "strata": {
+   "terminus-2__openai/GLM-5.2": 46
+  },
+  "models": {
+   "GLM-5.2": 46
+  },
+  "length_tercile_cuts_A": [
+   9.0,
+   20.0
+  ]
+ },
+ "f1_step0_context": {
+  "result": "REPRODUCED",
+  "path": "analysis/out/phase_e/f1_bracket.json#step0.result",
+  "sha256_read": "e0bbbd598d3695056523a3118043852e89f638cccafb7e1d28ef580830bbc69e",
+  "note": "Track A output (uncommitted when read); context only"
+ },
+ "deviations": [
+  {
+   "item": "unit argument (D1) and its mechanical consequences",
+   "prereg_said": "D1: tbench2 and glm_tb21 calibrate and measure under their own names; quantities calibrate_unit did not produce take the pre-registered pooled value where one exists, else NOT_TESTABLE",
+   "what_you_did": "every frozen function is called with unit = the corpus name. Consequences, applied mechanically: (1) prereg_common.error_classes has no definition for these units (primary None), so Probe 3 (3a, 3b) and N5f are NOT_TESTABLE(error signal) and Probe 2's first_try_success is never True (its S_deep population is empty, the Phase B rule falls back to S_path_any capped at WEAK); (2) the Phase B Probe 1 qualification (prereg.json probe1 allowed_classes), floors, G90 and G set, and the N4 W / G populations built on them, exist only for registered units and have no pooled value: Probe 1 and N4 are NOT_TESTABLE; (3) N1 detector bounds = the pooled bounds (prereg_e.json resolved.n1.swechat/codex.bounds); (4) N5c constants = resolved.n5.truncation_constants_pooled; (5) Probe 2 D = the pooled D 6 (prereg.json resolved.probe2.depth_threshold.pooled.D)",
+   "why": "D1 is binding",
+   "effect_on_verdict": "decides the NOT_TESTABLE cells listed in cells.*"
+  },
+  {
+   "item": "N1 positive control without a calibrated G90",
+   "prereg_said": "rho_pc: tampered instance gets delta' = result chars x 0.25 / G90(unit)",
+   "what_you_did": "computed with G90 = 1 tok/s as a placeholder and recomputed with G90 = 100 tok/s; both values are stored and must be identical: r' = log10(chars) + log10(0.25 / G90) - median(ref), so G90 shifts every tampered residual by the same constant and a rank statistic cannot see it. The detector recall on tampered instances (which does depend on G90) is not computed",
+   "why": "D1 leaves G90 undefined for these units; rho_pc, the only N1 verdict input that uses G90, is invariant to it",
+   "effect_on_verdict": "none on rho_pc (checked: n1.*.rho_pc_G90_invariance)"
+  },
+  {
+   "item": "R1 population",
+   "prereg_said": "R1 runs where decodable request ids exist; N7 sessions = every session with >= 1 eligible target",
+   "what_you_did": "tbench2 R1 (honest bracket, placebo, stream-level kill-rule tampers, N7 session cells, strata, artifact checks) runs on the sessions of the stratum WozCode__Claude-Opus-4.6, the only stratum whose IR carries request ids (checked per split: r1.<split>.request_id_sessions_by_stratum). The N7 session set is that stratum's sessions with an eligible target",
+   "why": "the orchestrator's task assigns R1 to that stratum; running N7 over all 25 strata would count the 24 id-less strata as abstentions (not flagged) and measure corpus composition, not the detector",
+   "effect_on_verdict": "R1 cells describe one submission (one agent, one model)"
+  },
+  {
+   "item": "R1 kill rule and N7 leg (as analysis/probes/phase_e_f1_bracket.py does for swechat)",
+   "prereg_said": "a1.proposal_rules R1_specific; F1 placebo; N7 single-call / single-response types",
+   "what_you_did": "kill-rule cells are stream-level: one tamper per stream (frame of that stream only), target rng_for(attack, param, session, stream), donor rng_for('donor', attack, param, session, stream); the back-dating leg is the F1 placebo (placebo_shift 30 s); the honest bar = session-clustered CI hi of the honest stream rate (per-event Wilson hi when the numerator is 0). The N7 leg is session-level: one tamper per session, target rng_for(attack, param, session), session flagged iff >= 1 stream is inconsistent, FPR on the same sessions untampered, n7_cell_label(). E is the replication split; B and B u E are reported. insert_pair donors = main-thread pairs (delta > 0, call gap >= 0) of other sessions of the R1 population of the same split. rewrite_consistent_k is NOT_RUN for R1 (not a single-call type; not an input of the R1 rule)",
+   "why": "same construction as the swechat R1 so the cells are comparable",
+   "effect_on_verdict": "none"
+  },
+  {
+   "item": "R4 on tbench2 although the A field gate says raw_structured_counters False",
+   "prereg_said": "N6 fill rule: NOT_TESTABLE iff a required field is absent (R4: harness structured counters toolUseResult numLines in the raw source); a1.proposal_rules R4_specific: NOT_RUN if the raw join is not implemented",
+   "what_you_did": "the calibration's field gate sets raw_structured_counters by unit name (True only for swechat/claude_code and cc_local) and the new-corpus calibration copies False. A structural count of the B raw logs finds toolUseResult.file.numLines in the Claude Code JSONL strata ClaudeCode__GLM-4.7 and cchuter__minimax-m2.5 (WozCode carries none), so the field is present and R4 was run there with the analysis/probes/phase_e_r4_r5.py recount: raw numLines of a top-level entry carrying a tool_result block (first occurrence per tool_use_id) against the IR text's numbered lines (^\\s*\\d+(U+2192|\\t)); unit flagged iff they differ and dual_whitelisted() (swechat class list) is None; session flag = >= 1 flagged unit; honest part = Wilson session share (>= 30 decided sessions). N7 R4_DUAL cells: session-level, attack-defined targets (phase_e_n7_timing.py TARGET_RULES) inside the sessions of the field-bearing strata, donors for substitutions = other real results of tbench2 of the same split and tool key (pick_donor, 5 %). glm_tb21 (ATIF only) has no such field: NOT_TESTABLE",
+   "why": "a definitional False would hide a testable cell; the prereg's own rule (NOT_RUN only when the join is missing) points to running it",
+   "effect_on_verdict": "adds the tbench2 R4 cell"
+  },
+  {
+   "item": "AC5 sampling check",
+   "prereg_said": "post-stratified recompute with population_cells(corpus)",
+   "what_you_did": "NOT_RUN: prereg_e_common.population_cells() has no branch for new corpora (it raises), and the frozen module may not be edited",
+   "why": "frozen code",
+   "effect_on_verdict": "none (a check can only lower a label)"
+  },
+  {
+   "item": "multi-checker items (N5b sort, N5c truncation, N5d whitespace)",
+   "prereg_said": "statistic and verdict per checker / sub-item; one N6 row per item; no combination rule",
+   "what_you_did": "each checker has its own verdict; the item cell is the LOWEST label among checkers whose label is ALIVE/WEAK/DEAD (INSUFFICIENT_N if none), the rule analysis/probes/phase_e_n5_battery.py uses",
+   "why": "cannot raise a label",
+   "effect_on_verdict": "cell <= best checker"
+  },
+  {
+   "item": "verdict-rule gaps and CIs (same readings as the Track A item scripts)",
+   "prereg_said": "N1 / N3 / N5 verdict rules",
+   "what_you_did": "N1: INCONCLUSIVE when rho_hon < -0.15 without a DEAD condition or a needed CI has < 900 valid draws; rule order DEAD, ALIVE, WEAK. N3: pooled rho over the gaps of the sessions with >= 20 gaps; positive control = within-session permutation (rng_for('N3pc', session, 'gaps')). N2: WEAK uses recall at 0.8 tau. N5 rates: rate_by_session; zero numerator -> per-event Wilson hi in the ALIVE rule. N5e: log10(bytes + 1); comparator IQR CI by boot_stat with >= 30 texts from >= 5 sessions. N5g: median c by cluster_quantile over sessions, share by Wilson. N5c exactness CI lo = 1 - CI hi of the inexact rate",
+   "why": "smallest faithful reading; identical to the Track A item scripts",
+   "effect_on_verdict": "none expected"
+  },
+  {
+   "item": "N6 cell for B u E",
+   "prereg_said": "the cell is the E verdict where E is not INSUFFICIENT_N, else the B verdict 'B only'; artifact checks on B u E",
+   "what_you_did": "B, E and B u E are all computed and stored; the cell follows the fill rule; B u E is the artifact-check population and is reported, it is never the cell",
+   "why": "as written",
+   "effect_on_verdict": "none"
+  },
+  {
+   "item": "AC1 parser audit for new corpora",
+   "prereg_said": "AC1: 30 numerator (or flagged) events looked up in the raw source; the fields the statistic uses are compared; FAIL at >= 2 of 30 differing in a way that changes their contribution",
+   "what_you_did": "an independent raw reader (RawSession: ATIF trajectory.json, Claude Code JSONL, Gemini CLI JSON, hookele JSONL; read-only; no value printed) for the cells at WEAK or better: R1 (30 decoded responses + binding events of inconsistent streams: uuid, requestId, stamp), N1 (flagged shell calls: both stamps -> delta within 1 ms, n1 command key), N2 (flagged responses: flag recomputed from raw usage_out, raw chars of text + compact-JSON args + thinking, raw last-result chars), N3 (gaps of flagged sessions: raw stamps of the last result and the next model event, gap within 1 ms; the row-level walk is asserted equal to n3_gaps). FAIL = one-level downgrade (as the Track A item scripts apply it). Naive raw stamps are read as UTC, the loader's stated rule",
+   "why": "the loaders are new code never audited on B/E; AC1 is the check that exercises them",
+   "effect_on_verdict": "see checks.<item>.AC1_parser"
+  },
+  {
+   "item": "D6 blindness scope",
+   "prereg_said": "D6: bracket, latency (Probe 1) and reaction time (N3) cells are NOT_BLIND",
+   "what_you_did": "NOT_BLIND is also put on N1, N4 and N5g: Track B computed call->result gap quantiles over the full corpora, and these three are built on the same gaps",
+   "why": "the conservative reading of 'latency'",
+   "effect_on_verdict": "label only"
+  }
+ ],
+ "thresholds": {
+  "N1_bounds": {
+   "bounds": [
+    -1.255296488587848,
+    1.5676685275828843
+   ],
+   "path": "prereg_e.json resolved.n1.swechat/codex.bounds",
+   "pooled_n_A": 4503,
+   "pooled_sessions_A": 115,
+   "source": "pooled bounds (unit has < 500 A residuals or < 5 sessions)"
+  },
+  "N5c_constants": {
+   "cc_glob_cap": {
+    "lines": 100,
+    "n_A": 52,
+    "status": "OK"
+   },
+   "cc_chars_mid": {
+    "prefix_u16": 5002,
+    "suffix_u16": 5002,
+    "n_A": 30,
+    "status": "OK"
+   },
+   "cc_lines_tail": {
+    "prefix_raw_by_tool": {
+     "grep": 20006,
+     "shell": 30006
+    },
+    "n_A": 4,
+    "status": "INSUFFICIENT_N (item NOT_RUN)"
+   }
+  },
+  "P2_D": 6,
+  "N2_tau_A": 0.28948438463736237,
+  "N1": [
+   0.15,
+   0.3,
+   0.1,
+   0.02,
+   0.05,
+   [
+    200,
+    20
+   ]
+  ],
+  "N2": [
+   0.05,
+   0.1,
+   0.2,
+   0.9,
+   0.5,
+   [
+    100,
+    10
+   ]
+  ],
+  "N3": [
+   20,
+   20,
+   0.3,
+   0.1,
+   0.2
+  ],
+  "N5": {
+   "min": {
+    "a": [
+     100,
+     20
+    ],
+    "b": [
+     100,
+     20
+    ],
+    "c": [
+     50,
+     10
+    ],
+    "d": [
+     100,
+     20
+    ]
+   },
+   "th": {
+    "a": [
+     0.05,
+     0.1,
+     0.2
+    ],
+    "b": [
+     0.01,
+     0.03,
+     0.05
+    ],
+    "d": [
+     0.01,
+     0.03,
+     0.05
+    ]
+   },
+   "e": [
+    [
+     100,
+     10
+    ],
+    [
+     30,
+     5
+    ]
+   ],
+   "g": [
+    30,
+    0.17609125905568124,
+    0.05
+   ]
+  },
+  "R1": {
+   "tol_ms": 2000.0,
+   "rate_min": [
+    30,
+    5
+   ]
+  }
+ },
+ "opened_files": [
+  "analysis/cache/glm_tb21_B.parquet",
+  "analysis/cache/glm_tb21_E.parquet",
+  "analysis/cache/glm_tb21_split_index.parquet"
+ ],
+ "runtime_s": 15.5
+}
