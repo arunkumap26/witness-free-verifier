@@ -1,0 +1,906 @@
+{
+ "schema": "scaffold_check/1",
+ "generated": "2026-10-04 (Track C integrator, analysis worktree, branch div/analysis; nothing committed)",
+ "scope": "End-to-end run of the verifier/eval scaffold with the reference check only (no detection check is implemented; ENABLED_CHECKS = ()). Every number below was measured in this session on the dev box; timings are machine-dependent and were taken while a swarm process (python -m swarm.run, not touched) was running on the same machine.",
+ "tests": {
+  "command": "PYTHONIOENCODING=utf-8 python -m unittest discover tests",
+  "ran": 115,
+  "seconds": 132.193,
+  "result": "OK (skipped=1)",
+  "by_module": {
+   "tests/test_verifier_core.py": 39,
+   "tests/test_loaders.py": 31,
+   "tests/test_eval.py": 35,
+   "tests/test_integration.py": 10
+  },
+  "skipped": "1: tests.test_loaders sidecar parity, which runs only with VERIFIER_SLOW_TESTS=1",
+  "slow_run": {
+   "command": "VERIFIER_SLOW_TESTS=1 python -m unittest tests.test_loaders",
+   "ran": 31,
+   "seconds": 11.7,
+   "result": "OK"
+  },
+  "baseline_before_integration": {
+   "ran": 105,
+   "result": "OK (skipped=1)",
+   "seconds": 99.1
+  },
+  "note": "`python -m unittest discover -s tests -t .` fails (tests/ has no __init__.py); the DESIGN.md form `python -m unittest discover tests` works. pyflakes is clean on every file the integrator touched."
+ },
+ "eval": {
+  "contract": "every run printed exactly one stdout line holding one JSON object, exit 0, ok true, check_errors 0, gate null",
+  "runs": {
+   "A": {
+    "command": "python eval/run_eval.py --seeds 0 1 2",
+    "note": "default checks (ENABLED_CHECKS = ()); first run, builds the dev pack",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "f755ae37c862e60bd850d2bed70bbc8abbb1e451020f082e1c21dcee791453a6",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_e3b0c44298fc.json",
+    "timing_s": {
+     "load_s": 304.29,
+     "honest_s": 7.87,
+     "attack_s": 51.22,
+     "metrics_s": 0.14,
+     "total_s": 363.57
+    },
+    "per_check": {},
+    "pack_build_s_by_unit": {
+     "agentcap/opencode": 8.7,
+     "agentcap/pi": 11.7,
+     "aiv_cc": 9.9,
+     "aiv_cu": 21.2,
+     "cc_local": 111.8,
+     "glm_tb21": 2.4,
+     "pub_cc_hf": 13.3,
+     "pub_codex": 0.9,
+     "pub_trace_commons": 2.7,
+     "swechat/claude_code": 69.1,
+     "swechat/codex": 3.9,
+     "swechat/cursor": 0.2,
+     "swechat/gemini": 0.5,
+     "swechat/opencode": 13.0,
+     "tbench2": 25.4,
+     "whowhen": 2.6
+    }
+   },
+   "B": {
+    "command": "python eval/run_eval.py --seeds 0 1 2",
+    "note": "default checks; cached pack; file-access audit on",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "f755ae37c862e60bd850d2bed70bbc8abbb1e451020f082e1c21dcee791453a6",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_e3b0c44298fc.json",
+    "timing_s": {
+     "load_s": 0.88,
+     "honest_s": 6.0,
+     "attack_s": 49.85,
+     "metrics_s": 0.08,
+     "total_s": 56.87
+    },
+    "per_check": {}
+   },
+   "C": {
+    "command": "python eval/run_eval.py --seeds 0 1 2",
+    "note": "default checks; cached pack",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "f755ae37c862e60bd850d2bed70bbc8abbb1e451020f082e1c21dcee791453a6",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_e3b0c44298fc.json",
+    "timing_s": {
+     "load_s": 0.62,
+     "honest_s": 5.46,
+     "attack_s": 47.34,
+     "metrics_s": 0.16,
+     "total_s": 53.63
+    },
+    "per_check": {}
+   },
+   "F1": {
+    "command": "python eval/run_eval.py --seeds 0 1 2",
+    "note": "default checks; cached pack; after all integration edits",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "f755ae37c862e60bd850d2bed70bbc8abbb1e451020f082e1c21dcee791453a6",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_e3b0c44298fc.json",
+    "timing_s": {
+     "load_s": 0.6,
+     "honest_s": 6.03,
+     "attack_s": 48.26,
+     "metrics_s": 0.1,
+     "total_s": 55.03
+    },
+    "per_check": {}
+   },
+   "F2": {
+    "command": "python eval/run_eval.py --seeds 0,1,2",
+    "note": "DESIGN.md 5.1 seed syntax; cached pack; after all edits",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "f755ae37c862e60bd850d2bed70bbc8abbb1e451020f082e1c21dcee791453a6",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_e3b0c44298fc.json",
+    "timing_s": {
+     "load_s": 0.6,
+     "honest_s": 5.38,
+     "attack_s": 48.14,
+     "metrics_s": 0.09,
+     "total_s": 54.27
+    },
+    "per_check": {}
+   },
+   "D1": {
+    "command": "python eval/run_eval.py --checks ref_result_present --seeds 0 1 2",
+    "note": "reference check; cached pack",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "a39d33b8fcfab6c8fb0cae4a668a376de1b2cc60d0b9219e627d16d0272c3e93",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_edcbe0f2f110.json",
+    "timing_s": {
+     "load_s": 0.6,
+     "honest_s": 6.29,
+     "attack_s": 54.55,
+     "metrics_s": 0.13,
+     "total_s": 61.62
+    },
+    "per_check": {
+     "ref_result_present": {
+      "contradicted_calls": 0,
+      "decided_calls": 107080,
+      "errors": 0,
+      "fpr_session": {
+       "hi": 0.003101,
+       "k": 0,
+       "lo": 0.0,
+       "n": 1235,
+       "p": 0.0
+      },
+      "kind": "reference",
+      "screened_calls": 0
+     }
+    }
+   },
+   "D2": {
+    "command": "python eval/run_eval.py --checks ref_result_present --seeds 0 1 2",
+    "note": "reference check; cached pack",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "a39d33b8fcfab6c8fb0cae4a668a376de1b2cc60d0b9219e627d16d0272c3e93",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_edcbe0f2f110.json",
+    "timing_s": {
+     "load_s": 0.86,
+     "honest_s": 6.37,
+     "attack_s": 57.26,
+     "metrics_s": 0.11,
+     "total_s": 64.65
+    },
+    "per_check": {
+     "ref_result_present": {
+      "contradicted_calls": 0,
+      "decided_calls": 107080,
+      "errors": 0,
+      "fpr_session": {
+       "hi": 0.003101,
+       "k": 0,
+       "lo": 0.0,
+       "n": 1235,
+       "p": 0.0
+      },
+      "kind": "reference",
+      "screened_calls": 0
+     }
+    }
+   },
+   "E0": {
+    "command": "python eval/run_eval.py --checks ref_result_present --seeds 0",
+    "note": "one seed",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     0
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "34e1409abca096683192b31a7dc3482402290b09308094699f83fdfe4f13498b",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_edcbe0f2f110.json",
+    "timing_s": {
+     "load_s": 0.66,
+     "honest_s": 5.57,
+     "attack_s": 19.03,
+     "metrics_s": 0.07,
+     "total_s": 25.35
+    },
+    "per_check": {
+     "ref_result_present": {
+      "contradicted_calls": 0,
+      "decided_calls": 107080,
+      "errors": 0,
+      "fpr_session": {
+       "hi": 0.003101,
+       "k": 0,
+       "lo": 0.0,
+       "n": 1235,
+       "p": 0.0
+      },
+      "kind": "reference",
+      "screened_calls": 0
+     }
+    }
+   },
+   "E1": {
+    "command": "python eval/run_eval.py --checks ref_result_present --seeds 1",
+    "note": "one seed",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     1
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "41aac37bf61f0b432cd064ff0d2527ba947df0eda6042043e5ec03274ac4d588",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_edcbe0f2f110.json",
+    "timing_s": {
+     "load_s": 0.61,
+     "honest_s": 6.28,
+     "attack_s": 21.56,
+     "metrics_s": 0.06,
+     "total_s": 28.55
+    },
+    "per_check": {
+     "ref_result_present": {
+      "contradicted_calls": 0,
+      "decided_calls": 107080,
+      "errors": 0,
+      "fpr_session": {
+       "hi": 0.003101,
+       "k": 0,
+       "lo": 0.0,
+       "n": 1235,
+       "p": 0.0
+      },
+      "kind": "reference",
+      "screened_calls": 0
+     }
+    }
+   },
+   "E2": {
+    "command": "python eval/run_eval.py --checks ref_result_present --seeds 2",
+    "note": "one seed",
+    "exit_code": 0,
+    "stdout_lines": 1,
+    "ok": true,
+    "headline": 0.0,
+    "stdev": 0.0,
+    "gate": null,
+    "seeds": [
+     2
+    ],
+    "check_errors": 0,
+    "headline_cells": 124,
+    "content_sha256": "b77c407b4615234c979e52c311f572fd7568e208f881ad4f592f048dd793d26a",
+    "report": "C:\\Swarms\\ops\\state\\eval\\reports\\run_eval_E_quick_edcbe0f2f110.json",
+    "timing_s": {
+     "load_s": 0.71,
+     "honest_s": 5.52,
+     "attack_s": 19.05,
+     "metrics_s": 0.06,
+     "total_s": 25.38
+    },
+    "per_check": {
+     "ref_result_present": {
+      "contradicted_calls": 0,
+      "decided_calls": 107080,
+      "errors": 0,
+      "fpr_session": {
+       "hi": 0.003101,
+       "k": 0,
+       "lo": 0.0,
+       "n": 1235,
+       "p": 0.0
+      },
+      "kind": "reference",
+      "screened_calls": 0
+     }
+    }
+   }
+  },
+  "runtime_per_seed_s": {
+   "three_seed_run_cached_total": [
+    56.87,
+    53.63,
+    55.03,
+    54.27,
+    61.62,
+    64.65
+   ],
+   "three_seed_run_attack_pass": [
+    49.85,
+    47.34,
+    48.26,
+    48.14,
+    54.55,
+    57.26
+   ],
+   "single_seed_run_total": {
+    "0": 25.35,
+    "1": 28.55,
+    "2": 25.38
+   },
+   "single_seed_run_attack_pass": {
+    "0": 19.03,
+    "1": 21.56,
+    "2": 19.05
+   },
+   "run_seed_hook_wall": {
+    "0": 18.3,
+    "1": 13.29,
+    "2": 13.68
+   },
+   "run_seed_hook_note": "eval/run_eval.run_seed(repo, seed), the eval/core.py compatibility hook, in one process against the real verifier (default checks); seed 0 includes the memoized honest pass",
+   "first_run_with_pack_build_total": 363.57,
+   "budget": "DESIGN.md 5.3 target <= 110 s, cap 120 s: met by every cached run (53.6-64.7 s for three seeds). Not met by the one-time dev-pack build (363.6 s, of which 304.3 s load/build; cc_local 111.8 s and swechat/claude_code 69.1 s). With no detection check enabled these times carry almost no verification cost."
+  },
+  "pack": {
+   "kind": "dev_pack (eval/heldout.py does not exist, so no official pack)",
+   "dir": "C:\\Swarms\\ops\\state\\eval\\devpack\\E_quick_bba88627af83d009 (gitignored runtime state)",
+   "units": 16,
+   "sessions": 1381,
+   "plans": 14763,
+   "plans_per_seed": 4921,
+   "headline_cells": 124
+  },
+  "determinism": {
+   "same_command_same_output": {
+    "default_checks": {
+     "runs": [
+      "A",
+      "B",
+      "C",
+      "F1",
+      "F2"
+     ],
+     "content_sha256": "f755ae37c862e60bd850d2bed70bbc8abbb1e451020f082e1c21dcee791453a6",
+     "all_equal": true,
+     "stdout_equal_except_timing": true,
+     "report_equal_except_timing": true
+    },
+    "reference_check": {
+     "runs": [
+      "D1",
+      "D2"
+     ],
+     "content_sha256": "a39d33b8fcfab6c8fb0cae4a668a376de1b2cc60d0b9219e627d16d0272c3e93",
+     "all_equal": true,
+     "report_equal_except_timing": true
+    },
+    "seed_syntax": "--seeds 0 1 2 and --seeds 0,1,2 give the same content_sha256"
+   },
+   "per_seed_independence": "Single-seed runs E0, E1, E2 reproduce the three-seed run D1's per-seed values exactly: cells[*].per_seed[s] and per_check[ref_result_present][s] are equal for every one of the cells, and headline.per_seed[s] is equal. The only difference is cell_label / cell_label_basis, which run_eval computes on the run's first seed (seed 1 or 2 in a one-seed run, seed 0 by default).",
+   "attack_pass_digest": {
+    "what": "scratch probe (not in the repo): for every plan row of the cached pack, apply eval/attacks.apply, hash the tampered IR frame, the Tamper record and the reference-check verdicts; one sha256 per seed; run twice in separate processes with PYTHONHASHSEED 1 and 987",
+    "run_1": {
+     "0": {
+      "digest": "9992b40013cf3e7c6674d8577aadc205e2c458ee08b603b0da93d0fde3c06b95",
+      "inject_failed": 1,
+      "n": 4921
+     },
+     "1": {
+      "digest": "1a44dcdba7e177f48ae01073fd963183e68c1ce000965fe8ca3319cb0a6e9ac7",
+      "inject_failed": 3,
+      "n": 4921
+     },
+     "2": {
+      "digest": "0ed38cb73de1ebcd36b08d00cd236414f42fb24790839a27fa85b8755679ed9d",
+      "inject_failed": 1,
+      "n": 4921
+     }
+    },
+    "run_2": {
+     "0": {
+      "digest": "9992b40013cf3e7c6674d8577aadc205e2c458ee08b603b0da93d0fde3c06b95",
+      "inject_failed": 1,
+      "n": 4921
+     },
+     "1": {
+      "digest": "1a44dcdba7e177f48ae01073fd963183e68c1ce000965fe8ca3319cb0a6e9ac7",
+      "inject_failed": 3,
+      "n": 4921
+     },
+     "2": {
+      "digest": "0ed38cb73de1ebcd36b08d00cd236414f42fb24790839a27fa85b8755679ed9d",
+      "inject_failed": 1,
+      "n": 4921
+     }
+    },
+    "equal": true,
+    "why": "with no detection check every headline number is 0.0, so equal reports alone would not show that the tampered copies are reproducible; this digest does"
+   },
+   "pack_rebuild": {
+    "what": "rebuilt 7 units from the IR caches into a scratch --devpack-root (swechat/claude_code, swechat/codex, tbench2, aiv_cu, glm_tb21, pub_codex, agentcap/pi; cc_local left out because it is private) and compared with the cached pack",
+    "pack_parquet_equal": true,
+    "plan_parquet_equal": true,
+    "meta_equal_except_build_s": true,
+    "rows_compared": {
+     "swechat/claude_code": [
+      79520,
+      1800
+     ],
+     "swechat/codex": [
+      29266,
+      1281
+     ],
+     "tbench2": [
+      16985,
+      1290
+     ],
+     "aiv_cu": [
+      12051,
+      1080
+     ],
+     "glm_tb21": [
+      3455,
+      0
+     ],
+     "pub_codex": [
+      3474,
+      0
+     ],
+     "agentcap/pi": [
+      7780,
+      1440
+     ]
+    },
+    "rows_compared_note": "[pack rows, plan rows] per unit"
+   }
+  },
+  "heldout": {
+   "h_path_run": false,
+   "audit": "sys.addaudithook('open') plus wrappers on pyarrow.parquet/dataset readers, injected through a scratch sitecustomize into the eval process and all 8 spawn workers (runs A and B), and into the figures, demo and CLI runs",
+   "data_files_opened_by_eval_build_run_A": [
+    "analysis/cache/<corpus>_E.parquet for agentcap, aiv_cu, glm_tb21, pub_cc_hf, pub_codex, pub_trace_commons, swechat, tbench2",
+    "analysis/cache/<corpus>_B.parquet for aiv_cc, cc_local, whowhen (no E split)",
+    "analysis/cache/samples/<corpus>_EH.json (8 corpora) and <corpus>.json (aiv_cc, cc_local, whowhen)",
+    "analysis/cache/swechat_population.parquet",
+    "analysis/out/phase_e/newcorp_exclusions.json",
+    "ops/state/eval/devpack/... and ops/state/eval/reports/..."
+   ],
+   "data_files_opened_by_cached_run_B": "the samples/*.json split files, swechat_population.parquet, agentcap_E.parquet (unit assignment), newcorp_exclusions.json, the devpack and the report directory",
+   "h_event_files_opened": 0,
+   "note": "No *_H.parquet, H_pack or held-out event file was opened by any run. run_eval does parse samples/<corpus>_EH.json, which holds the H id list beside the E list; it keeps key 'E' only (DESIGN.md 5.2 rule 3 allows reading id lists; no H event data is read). It does so on cached runs too, because unit assignment is recomputed each run.",
+   "static": "no file under verifier/ contains _EH.json, HELDOUT, _H.parquet or H_pack; eval/ refers to H_pack only on the --final --freeze path"
+  }
+ },
+ "cli": {
+  "e_split_session": {
+   "command": "python -m verifier analysis/cache/swechat_E.parquet --session 022d9e55-d3e6-4a20-a604-247fa9f6f22e --checks all --json OUT.jsonl --html OUT.html",
+   "exit_code": 0,
+   "seconds": 1.5,
+   "calls": 17,
+   "events": 174,
+   "unit": "swechat/claude_code",
+   "per_check": {
+    "ref_result_present": {
+     "ok:result_joined": 17
+    }
+   },
+   "composed": {
+    "unconstrained (abstain:reference_only)": 17
+   }
+  },
+  "raw_transcript_claude_code": {
+   "command": "python -m verifier C:/Swarms/data/swe-chat-pinned/transcripts/022d9e55-d3e6-4a20-a604-247fa9f6f22e.jsonl --checks all --show all --json --html",
+   "exit_code": 0,
+   "seconds": 0.7,
+   "format_sniffed": "claude_code",
+   "calibration": "swechat/claude_code (borrowed by format)",
+   "sidecar": "cc_numlines read from the file (capability sidecar.cc_numlines present)",
+   "same_verdicts_as_ir_cache_path": true
+  },
+  "raw_transcript_atif": {
+   "command": "python -m verifier C:/Swarms/data/acquired/glm52-nf3-tb21-traces/hf_repo/traces/build-pov-ray__cvRqLLL/agent/trajectory.json --checks all --json",
+   "exit_code": 0,
+   "format_sniffed": "atif",
+   "calls": 106,
+   "calibration": "tbench2 (borrowed by format)",
+   "same_verdicts_as_ir_cache_path": true,
+   "note": "glm_tb21 E session (from analysis/cache/glm_tb21_E.parquet). 21 of 106 calls join a result; 37 results have no call_id. That is a property of the cached IR, which records it as calls_paired 652 of 1,503 and results_orphan 299 for glm_tb21 E (verifier/loaders/capabilities.json corpora.glm_tb21.splits.E.all)."
+  },
+  "default_checks": "with ENABLED_CHECKS = () every call is unconstrained (abstain:no_enabled_checks), exit 0",
+  "other_subcommands": {
+   "checks": "exit 0",
+   "checks --json": "exit 0",
+   "inspect analysis/cache/glm_tb21_E.parquet": "exit 0",
+   "render VERDICTS.jsonl --source RAW --html": "exit 0",
+   "census --corpus glm_tb21 --split E --limit 5": "exit 0, 544 rows",
+   "census --split H": "exit 2 (argparse refuses H)",
+   "demo": "exit 2: verifier.render.demo is not built"
+  },
+  "entry_point": "python -m verifier works after adding verifier/__main__.py; before, only python -m verifier.cli did"
+ },
+ "figures_and_demo": {
+  "figures": {
+   "command": "python -m verifier.figures",
+   "exit_code": 0,
+   "source": "Track A outputs (n6_grid.json, newcorp_resolutions.json, n7_timing.json, n7_content.json), all committed",
+   "transfer_matrix_changed": "yes. analysis/out/phase_e/n6_grid.json changed upstream after the figure was first drawn (it is now committed in f829639, 'tbench2 R1 resolution applied to the N6 grid'); the manifest previously recorded it as uncommitted (sha256_lf 329af3bb...), now committed (2f4c5bbd...)",
+   "recall_figures_changed": false,
+   "from_eval_report": "python -m verifier.figures --report <run_eval report> now draws all three figures (tested on a stub-verifier report in tests/test_integration.py); on today's reference-only report there is no deciding check, so only the transfer matrix is drawn"
+  },
+  "demo": {
+   "command": "python -m verifier.render.html demo --pipeline verifier",
+   "exit_code": 0,
+   "session": "swechat/claude_code E 022d9e55-d3e6-4a20-a604-247fa9f6f22e (17 calls)",
+   "pipeline": "verifier (real pipeline, not the stand-in)",
+   "byte_identical_to_previous_build": true,
+   "publish": "local only (swechat HF gate terms unconfirmed, DESIGN.md 6.3)"
+  },
+  "outputs": [
+   {
+    "path": "analysis/out/phase_e/figures/transfer_matrix.svg",
+    "sha256": "f309a763e1730ba32c2587cc1fc0a7e81be38923d91e7506a0b39902dc709326",
+    "git": "untracked"
+   },
+   {
+    "path": "analysis/out/phase_e/figures/recall_per_attack.svg",
+    "sha256": "5115c5e09882d4757c81d58c756fac5c8a3a192a64c6d561ddf37110a60609cd",
+    "git": "untracked"
+   },
+   {
+    "path": "analysis/out/phase_e/figures/recall_per_attack.html",
+    "sha256": "0bb6e6914df78c63ec921f9c34a99b9be42ea15ebc237e594aea3391813311bb",
+    "git": "untracked"
+   },
+   {
+    "path": "analysis/out/phase_e/figures/figures_manifest.json",
+    "sha256": "1185361bfa49491362fa0e84fee010700000393ceafd8dc2bd52884a25b10411",
+    "git": "untracked"
+   },
+   {
+    "path": "analysis/out/phase_e/demo/index.html",
+    "sha256": "3826b40228a83b548a0b9d51edf3a94c7100d388fededb30b294d6c875a79cb6",
+    "git": "untracked"
+   },
+   {
+    "path": "analysis/out/phase_e/demo/demo_meta.json",
+    "sha256": "d8368e970b867eb1cc3403e049e46350d387f48715437afcc59d18f7d92da0cd",
+    "git": "untracked"
+   }
+  ]
+ },
+ "integration_fixes": [
+  {
+   "path": "eval/run_eval.py",
+   "change": "--seeds accepts '0 1 2' as well as '0,1,2' (task syntax and DESIGN.md 5.1 syntax)"
+  },
+  {
+   "path": "verifier/__main__.py",
+   "change": "new: `python -m verifier` (DESIGN.md 2.1, 6.1); was missing"
+  },
+  {
+   "path": "verifier/cli.py",
+   "change": "argparse prog name 'python -m verifier' (now that __main__.py exists)"
+  },
+  {
+   "path": "eval/README.md",
+   "change": "flag table: --seeds also accepts the space form"
+  },
+  {
+   "path": "verifier/figures.py",
+   "change": "load_report converts an eval/run_eval.py report's cells[unit|attack|param].per_check[check][first seed] into the figure contract's recall[check][attack][param][unit] (reference checks skipped); before, an eval report produced only the transfer matrix"
+  },
+  {
+   "path": "tests/test_integration.py",
+   "change": "new: 10 cross-lane tests (real Verdict/CallVerdict through eval metrics, Tamper localization by call_id / blame_seq / stream key / inserted / deleted, stream-key parity, eval report -> figures, python -m verifier)"
+  }
+ ],
+ "cross_lane_checks_passed": [
+  "verifier Verdict/CallVerdict field names equal what eval/metrics.summarize_session reads (test stub agrees)",
+  "Verdict.version carries ir/<12 hex> and checks/<12 hex>, the parts run_eval parses for ir_schema_mismatch",
+  "pack ir_schema_sha (analysis/lib/ir.py, LF) equals verifier/ir EXPECTED_IR_SCHEMA_SHA ac603f32cbaf...",
+  "Session.streams equals eval/attacks._stream on all 1,381 cached pack sessions (242 with subagent streams)",
+  "Tamper.target_call_ids are raw IR call_ids, as Verdict.call_id is; inserted calls keep 'inserted:<id>'",
+  "raw-file and IR-cache loading give identical verdicts (Claude Code JSONL and ATIF)"
+ ],
+ "left_open": [
+  "eval/core.py is not wired to run_eval (DESIGN.md 5.1; a daytime change on main). Until then the orchestrator's judge still raises NotImplementedError (ok false).",
+  "eval/heldout.py, eval/_stats.py, eval/labeled.py and eval/config_eval.json do not exist. So: no official pack (dev pack under ops/state/eval/devpack instead); no sidecars in packs (checks needing cc_numlines / entire_tally / copied_request_ids would emit missing:sidecar.*); fpr_cap and CLEAN_CAP empty (gates inert); no H build or H run path beyond run_eval's guard; no labeled-corpus register; check_reads and h_exposure empty, so NA_BLIND_BY_CONSTRUCTION labels and blind_on_H are not computed.",
+  "verifier/render/demo.py is not built: `python -m verifier demo` exits 2, and the tampered demo pages (DESIGN.md 6.3) wait for heldout.py demo-input. The demo page is the reference-only page.",
+  "Layout deviations from DESIGN.md 2.1 that the lanes recorded and the integrator left as they are: verifier/api.py -> verifier/__init__.py; verifier/session/ package -> verifier/session.py; checks registry lists in verifier/registry.py, with no verifier/checks/__init__.py; reference check in checks/reference.py; render/text.py and render/jsonl.py folded into cli.py; figures at verifier/figures.py with output under analysis/out/phase_e/figures/ rather than verifier/render/figures.py and reports/figures/; labels in verifier/labels.py rather than eval/labeled.py; no tests/__init__.py.",
+  "Label-join status names differ between verifier/labels.py (no_match for a label whose session exists but whose call does not) and eval/metrics.join_labels (orphan_label for a call_id miss, seq_mismatch for a seq miss); verifier/labels.py also adds 'unknown' rows. The ok share, which is what the 0.99 gate reads, is the same. DESIGN.md names no status for this case; pick one by day.",
+  "First eval run on a machine without the dev pack takes about 6 minutes (pack build), over the 2-minute budget; cached runs take about 1 minute. The orchestrator's 15-minute eval_timeout_min covers the build.",
+  "The eval needs analysis/cache (and it parses samples/*_EH.json) on every run, cached or not.",
+  "cell_label is computed on the run's first seed; DESIGN.md 5.3 says seed 0. Equal for the default seeds.",
+  "The id-decoder parity wording in DESIGN.md 2.4 contradicts the DA20 gate for 17 old-format Anthropic message ids in split A (reported by the core lane; DESIGN text not edited).",
+  "A scratch copy of 7 dev-pack units (no cc_local, but includes the gated aiv_cu E rows) remains under the session scratchpad (integ/devpack2): deleting it was refused by the permission system. Delete it by hand.",
+  "Real-data runs exercise no deciding verdict. The contradicted path (flag, flag_loc, blame, stream localization, disagreement) is covered only by the stub-verifier eval tests and the hand-made contradictions in tests/test_integration.py, until a detection check exists."
+ ],
+ "files": [
+  {
+   "path": "verifier/__init__.py",
+   "sha256_lf": "f7b1aafd86b11409e4f3cc9ac5c0e27dafff868d3b174ea581d546f718dc5cf8",
+   "lines": 199,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/__main__.py",
+   "sha256_lf": "eaadb87f88903aa1db0f026e9cd808ad459658437210816be7508ad2b25aad36",
+   "lines": 5,
+   "git": "untracked",
+   "integrator_change": "new: `python -m verifier` (DESIGN.md 2.1, 6.1); was missing"
+  },
+  {
+   "path": "verifier/checks/base.py",
+   "sha256_lf": "243e81fe9e7ed7abeece2a7d043374401e5daa8f8812b6f0148dd2b579105d7a",
+   "lines": 398,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/checks/reference.py",
+   "sha256_lf": "a4f34ae00e9500d017d393cf88d14b86b515b61fe0b7f8a7e9ce7b0d03acb1dd",
+   "lines": 56,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/cli.py",
+   "sha256_lf": "460b2b1a28f376e2b1f6d3d46fc99e9cdcede1d365c2d51396dc8e28b9a8fff7",
+   "lines": 612,
+   "git": "untracked",
+   "integrator_change": "argparse prog name 'python -m verifier' (now that __main__.py exists)"
+  },
+  {
+   "path": "verifier/compose.py",
+   "sha256_lf": "151364c3ead64c58bbee06f3fea26cfd2b82a97e81ec68a21068507de7cd9e9f",
+   "lines": 104,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/figures.py",
+   "sha256_lf": "4151f2bec9e58f9610db51cbc6c68c4b52b0cbd7075919a3f26613e2359ab994",
+   "lines": 995,
+   "git": "untracked",
+   "integrator_change": "load_report converts an eval/run_eval.py report's cells[unit|attack|param].per_check[check][first seed] into the figure contract's recall[check][attack][param][unit] (reference checks skipped); before, an eval report produced only the transfer matrix"
+  },
+  {
+   "path": "verifier/ir/__init__.py",
+   "sha256_lf": "5ff17bdbb11bc9c81226712870981b6ca5f72b04cde57f66636da3cc5ec1bb7c",
+   "lines": 46,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/ir/turns.py",
+   "sha256_lf": "4591b5e53562aa42dbc4c25a080a8f545893db3a2609bf7ac07b8c8962a32039",
+   "lines": 152,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/labels.py",
+   "sha256_lf": "5131fb0712c62c4c8010115d0e7949bfaacf55ce7fb1cd7b8bb6f80ad92b6912",
+   "lines": 214,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/loaders/__init__.py",
+   "sha256_lf": "0bf0a5a5e4cacb5f9752465b679c260ed49b1110b7ac2cdf013c25ba64a286f5",
+   "lines": 24,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/loaders/capabilities.json",
+   "sha256_lf": "f704a7e01bf7763178e5dce84081a13fa27d82857a29332e7b9578a0d69ccd11",
+   "lines": 10621,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/loaders/capabilities.py",
+   "sha256_lf": "2072bb2a1fdf917fb871a56c56c04c1a09fbc14afe72a5592079f0be0e34a7bb",
+   "lines": 507,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/loaders/corpora.py",
+   "sha256_lf": "5cc5b53625f4617cf3e66c9efd2b71c4bf49001254b874ab250edd4bc91925f5",
+   "lines": 450,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/loaders/detect.py",
+   "sha256_lf": "2ce076ab8db79d226fcd0fad081bff531cc050b6c6119847062aeeae30971ec2",
+   "lines": 89,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/loaders/files.py",
+   "sha256_lf": "84f3263b2ce1b606e0399590a0ef278dc5bc863cf046ab39168c1215bad5f0e2",
+   "lines": 286,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/loaders/sidecar.py",
+   "sha256_lf": "52b37400e2f06aa71495fded3ccef8af9dc4396858d7a956cc4e78afdba4462a",
+   "lines": 161,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/loaders/units.py",
+   "sha256_lf": "49af00752b2bcc4c41eda1a4be9ee9c7ffc518a276ef36395885f720bc41dd55",
+   "lines": 131,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/registry.py",
+   "sha256_lf": "8cbeade90ee66049166d164ab1dc363d2d6cb827d1bb80ae376eb182aa429e4d",
+   "lines": 205,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/render/html.py",
+   "sha256_lf": "778d6665d44ebfa074cc0a0c2bcc2f651bf0933c420ef01c905523c412894273",
+   "lines": 1041,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "verifier/session.py",
+   "sha256_lf": "cdb94fa80d74d9f3e234e8db590f30dca04cd1f18c7d4e31c01cfd9a34f8488f",
+   "lines": 652,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "eval/attacks.py",
+   "sha256_lf": "e02cc6819c1c2e27e27eaf3b81d0edfd606890f67fa2565a060d6401372c0242",
+   "lines": 1783,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "eval/metrics.py",
+   "sha256_lf": "7e9907e2f494354d1e1f8a2685b3f3d0aea438ecddfbdd0c95577b81d0a74ab2",
+   "lines": 499,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "eval/README.md",
+   "sha256_lf": "0b55adf842ba201e524d9bbce5c7c41ff1bd948e7e0c46ab73ad5b9ab17c8ea9",
+   "lines": 242,
+   "git": "untracked",
+   "integrator_change": "flag table: --seeds also accepts the space form"
+  },
+  {
+   "path": "eval/run_eval.py",
+   "sha256_lf": "0d94e42154c4586fb70b06549bc1bff5e31f341631271ca6004ca7f807202a82",
+   "lines": 1037,
+   "git": "untracked",
+   "integrator_change": "--seeds accepts '0 1 2' as well as '0,1,2' (task syntax and DESIGN.md 5.1 syntax)"
+  },
+  {
+   "path": "tests/test_eval.py",
+   "sha256_lf": "fa0d9b3d7b19578c370d428e2ef0999252a6a76c787a2de5378285704927a272",
+   "lines": 952,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "tests/test_integration.py",
+   "sha256_lf": "1b621544c73dc54b54c5306d4c3eb0e2a4d4bc95c847354f2d2dd7290fb65586",
+   "lines": 201,
+   "git": "untracked",
+   "integrator_change": "new: 10 cross-lane tests (real Verdict/CallVerdict through eval metrics, Tamper localization by call_id / blame_seq / stream key / inserted / deleted, stream-key parity, eval report -> figures, python -m verifier)"
+  },
+  {
+   "path": "tests/test_loaders.py",
+   "sha256_lf": "e5507564af66f0eec9ad43ee38092f9eae952e64035293c3b42f767b694892cf",
+   "lines": 571,
+   "git": "untracked",
+   "integrator_change": null
+  },
+  {
+   "path": "tests/test_verifier_core.py",
+   "sha256_lf": "748fac89565ee1849f629de41908449c57e45df2954ccd5f6ead74b7e367bb67",
+   "lines": 821,
+   "git": "untracked",
+   "integrator_change": null
+  }
+ ]
+}

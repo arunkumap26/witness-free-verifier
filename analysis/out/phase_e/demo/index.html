@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>swechat/claude_code · session 022d9e55 · reference check only</title><style>
+:root { color-scheme: light; --plane:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10); --good:#0ca30c; --good-ink:#006300; --warn:#fab219;
+  --crit:#d03b3b; --unc:#e2e1dc; --hatch:#c3c2b7; --accent:#2a78d6; --codebg:#f0efec; --add:#e3f4e3; --del:#fbe4e4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; --plane:#0d0d0d;
+  --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a; --axis:#383835;
+  --ring:rgba(255,255,255,0.10); --good-ink:#0ca30c; --unc:#383835; --hatch:#4a4a46; --accent:#3987e5;
+  --codebg:#232321; --add:#173a17; --del:#3d1b1b; } }
+:root[data-theme="dark"] { color-scheme: dark; --plane:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7;
+  --muted:#898781; --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10); --good-ink:#0ca30c; --unc:#383835;
+  --hatch:#4a4a46; --accent:#3987e5; --codebg:#232321; --add:#173a17; --del:#3d1b1b; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--plane); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 40px; }
+h1 { font-size: 21px; margin: 0 0 4px; } h2 { font-size: 16px; margin: 18px 0 8px; }
+code, pre { font: 12px/1.4 ui-monospace, "Cascadia Mono", Consolas, monospace; }
+pre { white-space: pre-wrap; word-break: break-word; background: var(--codebg); padding: 8px; border-radius: 4px; margin: 6px 0; max-height: 420px; overflow: auto; }
+.facts { color: var(--ink2); margin: 2px 0 8px; word-break: break-word; }
+.how { color: var(--ink2); font-size: 13px; }
+.caps { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.cap { font-size: 12px; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--axis); }
+.cap.yes { border-color: var(--good); color: var(--good-ink); } .cap.no { color: var(--muted); } .cap.unk { color: var(--ink2); border-style: dashed; }
+.banner { margin: 8px 0; padding: 8px 10px; border-left: 4px solid var(--warn); background: var(--surface); font-size: 13px; }
+.chip { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.chip.supp { background: var(--good); color: #fff; } .chip.contra { background: var(--crit); color: #fff; }
+.chip.split { background: linear-gradient(90deg, var(--crit) 50%, var(--good) 50%); color: #fff; }
+.chip.unc { background: var(--unc); color: var(--ink2); }
+.chip.unc.missing { background: repeating-linear-gradient(45deg, var(--unc) 0 4px, var(--surface) 4px 8px); }
+.chip.unc.screened { background: transparent; border: 1px solid var(--axis); }
+.chip.unc.error { background: transparent; border: 1px dashed var(--crit); color: var(--crit); }
+.chip.mini { font-weight: 400; font-size: 11px; padding: 1px 6px; }
+.toggle { display: inline-flex; border: 1px solid var(--axis); border-radius: 6px; overflow: hidden; margin: 8px 0; flex-wrap: wrap; }
+.toggle button { font: inherit; font-size: 13px; padding: 6px 12px; border: 0; background: var(--surface); color: var(--ink); cursor: pointer; }
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--plane); }
+.coverage { background: var(--surface); border: 1px solid var(--ring); border-radius: 6px; padding: 10px 12px; margin: 6px 0 12px; }
+.bar { display: flex; height: 14px; border-radius: 3px; overflow: hidden; gap: 2px; margin: 6px 0; background: var(--surface); }
+.seg, .sw { display: inline-block; height: 100%; }
+.seg.contra, .sw.contra { background: var(--crit); } .seg.supp, .sw.supp { background: var(--good); }
+.seg.screened, .sw.screened { background: var(--surface); box-shadow: inset 0 0 0 1px var(--axis); }
+.seg.missing, .sw.missing { background: repeating-linear-gradient(45deg, var(--unc) 0 4px, var(--hatch) 4px 6px); }
+.seg.abstain, .sw.abstain { background: var(--unc); } .seg.error, .sw.error { background: transparent; box-shadow: inset 0 0 0 1px var(--crit); }
+.legend { font-size: 12px; color: var(--ink2); display: flex; flex-wrap: wrap; gap: 12px; }
+.lg { display: inline-flex; align-items: center; gap: 4px; } .sw { width: 12px; height: 12px; border-radius: 2px; }
+.reasons { font-size: 12px; color: var(--muted); margin-top: 4px; word-break: break-word; }
+table.per { border-collapse: collapse; font-size: 12px; margin-top: 8px; font-variant-numeric: tabular-nums; }
+table.per th, table.per td { padding: 2px 10px 2px 0; text-align: left; border-bottom: 1px solid var(--grid); }
+table.per td.num { text-align: right; } .ref-tag { color: var(--muted); font-size: 11px; }
+.transcript { position: relative; padding-left: 56px; }
+svg.arcs { position: absolute; left: 0; top: 0; width: 56px; height: 100%; overflow: visible; pointer-events: none; }
+svg.arcs path { fill: none; stroke: var(--crit); stroke-width: 1.6; } svg.arcs path.dash { stroke-dasharray: 4 3; }
+svg.arcs path.bracket { stroke: var(--crit); stroke-width: 3; }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 6px; padding: 8px 10px; margin: 6px 0; transition: box-shadow .3s; }
+.card.v-contradicted { border-left: 4px solid var(--crit); } .card.v-supported { border-left: 4px solid var(--good); }
+.card.target { box-shadow: 0 0 0 2px var(--warn); }
+.card.hl, .msg.hl, .ev.hl { outline: 2px solid var(--accent); outline-offset: 1px; }
+.c-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.seq { font-weight: 600; font-variant-numeric: tabular-nums; min-width: 36px; }
+.time { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 12px; }
+.tool { font-weight: 600; } .cmd { flex: 1 1 260px; min-width: 0; font: 12px/1.4 ui-monospace, Consolas, monospace; color: var(--ink2); word-break: break-word; }
+.exist { font-size: 11px; color: var(--ink2); border: 1px solid var(--axis); border-radius: 10px; padding: 1px 6px; }
+.result { margin: 6px 0 0 46px; font-size: 12px; } .result.none { color: var(--muted); font-style: italic; }
+.rlabel { color: var(--muted); margin-right: 6px; } .flag { color: var(--crit); margin-right: 6px; font-weight: 600; }
+code.excerpt { white-space: pre-wrap; word-break: break-word; color: var(--ink2); }
+details.full > summary { cursor: pointer; list-style: none; } details.full > summary::-webkit-details-marker { display: none; }
+.evidence { margin: 8px 0 0 46px; border-top: 1px dashed var(--axis); padding-top: 6px; font-size: 13px; }
+.ev-item p { margin: 4px 0; } .explain .reason, .reason { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--ink2); }
+.detail { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--ink2); }
+.kv b { color: var(--ink); font-weight: 600; }
+.refs { margin-top: 4px; font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+a.ref { color: var(--accent); text-decoration: none; } a.ref:hover { text-decoration: underline; }
+.role { font-size: 10px; text-transform: uppercase; color: var(--muted); } a.r-conflict .role { color: var(--crit); }
+details.checks { margin: 6px 0 0 46px; font-size: 12px; } details.checks summary { cursor: pointer; color: var(--ink2); }
+details.checks .lbl { margin-right: 4px; } details.checks ul { margin: 6px 0; padding-left: 18px; }
+details.checks li { margin: 4px 0; } .sub { color: var(--ink2); } .ver { color: var(--muted); font-size: 11px; }
+.msg { margin: 4px 0; border-left: 3px solid var(--grid); padding: 2px 8px; font-size: 12.5px; }
+.msg summary { cursor: pointer; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; color: var(--ink2); }
+.msg .who { font-weight: 600; color: var(--ink); } .msg .mmeta { color: var(--muted); font-size: 11px; }
+.msg .first { flex: 1 1 300px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.m-user { border-left-color: var(--accent); }
+.ev { font-size: 12px; color: var(--ink2); margin: 4px 0; padding: 2px 8px; border-left: 3px dotted var(--axis); word-break: break-word; }
+.diff { margin: 8px 0 0 46px; font-size: 12px; } .diff table { border-collapse: collapse; width: 100%; }
+.diff th { width: 92px; white-space: nowrap; }
+.diff th, .diff td { text-align: left; padding: 2px 6px; border-bottom: 1px solid var(--grid); vertical-align: top; word-break: break-word; }
+.diff td.old { background: var(--del); } .diff td.new { background: var(--add); }
+pre.ldiff span { display: block; } pre.ldiff .add { background: var(--add); } pre.ldiff .del { background: var(--del); }
+.tamper { background: var(--surface); border: 1px solid var(--warn); border-radius: 6px; padding: 6px 12px; margin: 6px 0 12px; font-size: 13px; }
+.tamper h2 { margin: 4px 0; font-size: 14px; }
+.scanline { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent); opacity: 0; top: 0; pointer-events: none; transition: top 40ms linear; }
+.js .frame.scanning .scanline { opacity: .6; }
+.js .frame.scanning .card:not(.lit) .chip { opacity: 0; }
+.chip { transition: opacity .25s; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(208,59,59,.6); } 100% { box-shadow: 0 0 0 12px rgba(208,59,59,0); } }
+.card.pulse { animation: pulse 0.9s ease-out 1; }
+@media (prefers-reduced-motion: reduce) { .card.pulse { animation: none; } .scanline { display: none; } .chip { transition: none; } }
+footer { margin-top: 24px; border-top: 1px solid var(--grid); padding-top: 8px; font-size: 12px; color: var(--ink2); }
+footer p { margin: 3px 0; word-break: break-word; }
+@media (max-width: 640px) { .transcript { padding-left: 24px; } svg.arcs { width: 24px; }
+  .result, .evidence, details.checks, .diff { margin-left: 0; } }
+</style></head>
+<body><main>
+<header>
+<h1>swechat/claude_code · session 022d9e55 · reference check only</h1>
+<p class="facts"><b>swechat</b> · swechat/claude_code · format claude_code · model claude-opus-4-6
+ · 17 tool calls · 174 events · 2026-02-20 · session <code>022d9e55-d3e6-4a20-a604-247fa9f6f22e</code></p>
+<div class="caps"><span class="cap yes" title="ts.ms">ms clocks ✓</span><span class="cap yes" title="request_id.decodable">request ids ✓</span><span class="cap yes" title="usage.io">usage ✓</span><span class="cap yes" title="join.call_id">call↔result join ✓</span><span class="cap no" title="sidecar.cc_numlines">dual render ✗</span><span class="cap no" title="sidecar.entire_tally">session tally ✗</span></div><div class="banner">SWE-chat is gated on Hugging Face. This page is built locally and is not for publication until a human confirms the gate terms allow a derivative (DESIGN.md §6.3; open item 8).</div>
+<p class="how">Each card is one tool call. The large chip is the composed verdict; <i>every check</i> lists each
+check's own verdict. Verdicts: <span class="chip supp">supported</span> a check constrained the result and it is
+consistent; <span class="chip contra">CONTRADICTED</span> a check constrained it and it is not;
+<span class="chip unc missing">unconstrained</span> nothing in this record tests it (hatched: the record lacks the
+data; outlined: screened by a statistical check, nothing found; plain: no rule covers it).</p>
+
+</header>
+<section class="frame" data-frame="h" aria-label="Honest record"><h2 class="ftitle">Honest record</h2><section class="coverage"><div class="cov-head"><b>0 of 17</b> calls constrained · <b>0</b> contradicted (localized 0, unit-level 0)</div><div class="bar" role="img" aria-label="coverage bar"><span class="seg abstain" style="width:100.000%" title="no rule covers it: 17"></span></div><div class="legend"><span class="lg"><span class="sw seg abstain"></span>no rule covers it 17</span></div><div class="reasons">unconstrained by reason: abstain:reference_only 17</div><table class="per"><thead><tr><th>check</th><th>supported</th><th>contradicted</th><th>unconstrained</th></tr></thead><tbody><tr><td>ref_result_present <span class=ref-tag>reference: never decides</span></td><td class=num>17</td><td class=num>0</td><td class=num>0</td></tr></tbody></table></section><div class="transcript"><svg class="arcs" aria-hidden="true"></svg><div class="scanline" aria-hidden="true"></div><details class="msg m-user" id="h-seq-2" data-seqs="2"><summary><span class="seq">#2</span><span class="time">15:18:23.783</span><span class="who">user</span><span class="mmeta"></span><span class="first">Implement the following plan:
+
+# Fix: Separate OpenCode tool detail extraction in summarize.go
+
+## Context
+
+`e… [1052 chars]</span></summary><pre>Implement the following plan:
+
+# Fix: Separate OpenCode tool detail extraction in summarize.go
+
+## Context
+
+`extractGenericToolDetail` in summarize.go is shared between OpenCode (camelCase `&quot;filePath&quot;`) and Gemini (snake_case `&quot;file_path&quot;`). Adding `&quot;filePath&quot;` to the shared function mixes format concerns from two different agents.
+
+## Changes
+
+### `cmd/entire/cli/summarize/summarize.go`
+
+1. Revert `extractGenericToolDetail` — remove `&quot;filePath&quot;`, keep original Gemini/generic keys
+2. Add `extractOpenCodeToolDetail` with camelCase keys (`&quot;filePath&quot;` instead of `&quot;file_path&quot;`)
+3. Change `buildCondensedTranscriptFromOpenCode` (line 206) to call the new function
+
+### `../TASK-jsonl.md`
+
+Write analysis of the `.jsonl` filename issue for OpenCode/Gemini agents as a follow-up task.
+
+## Verification
+
+```bash
+mise run fmt &amp;&amp; mise run lint &amp;&amp; mise run test:ci
+```
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /Users/soph/.REDACTED.jsonl</pre></details>
+<details class="msg m-assistant" id="h-seq-3" data-seqs="3"><summary><span class="seq">#3</span><span class="time">15:18:26.849</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 9.0 tok · req req_011CYKYXvNpJ7A…</span><span class="first">
+
+</span></summary><pre>
+
+</pre></details>
+<details class="msg m-assistant" id="h-seq-5" data-seqs="5"><summary><span class="seq">#5</span><span class="time">15:18:27.718</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 9.0 tok · req req_011CYKYXvNpJ7A…</span><span class="first">Let me read the current state of the relevant code.</span></summary><pre>Let me read the current state of the relevant code.</pre></details>
+<article class="card v-unconstrained" id="h-seq-6" data-seqs="6 8" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#6</span><span class="time">15:18:28.470</span><span class="tool">Read</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/summarize/summarize.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-8"><span class="rlabel">result #8 · 15:18:28.481</span><details class="full"><summary><code class="excerpt">     1→// Package summarize provides AI-powered summarization of development sessions.
+     2→package summarize
+     3→
+     4→import (
+     5→	&quot;context&quot;
+… [401 lines]</code></summary><pre>     1→// Package summarize provides AI-powered summarization of development sessions.
+     2→package summarize
+     3→
+     4→import (
+     5→	&quot;context&quot;
+     6→	&quot;encoding/json&quot;
+     7→	&quot;errors&quot;
+     8→	&quot;fmt&quot;
+     9→	&quot;strings&quot;
+    10→
+    11→	&quot;github.com/entireio/cli/cmd/entire/cli/agent&quot;
+    12→	&quot;github.com/entireio/cli/cmd/entire/cli/agent/geminicli&quot;
+    13→	&quot;github.com/entireio/cli/cmd/entire/cli/agent/opencode&quot;
+    14→	&quot;github.com/entireio/cli/cmd/entire/cli/checkpoint&quot;
+    15→	&quot;github.com/entireio/cli/cmd/entire/cli/transcript&quot;
+    16→)
+    17→
+    18→// GenerateFromTranscript generates a summary from raw transcript bytes.
+    19→// This is the shared implementation used by both explain --generate and auto-summarize.
+    20→//
+    21→// Parameters:
+    22→//   - ctx: context for cancellation
+    23→//   - transcriptBytes: raw transcript bytes (JSONL or JSON format depending on agent)
+    24→//   - filesTouched: list of files modified during the session
+    25→//   - agentType: the agent type to determine transcript format
+    26→//   - generator: summary generator to use (if nil, uses default ClaudeGenerator)
+    27→//
+    28→// Returns nil, error if transcript is empty or cannot be parsed.
+    29→func GenerateFromTranscript(ctx context.Context, transcriptBytes []byte, filesTouched []string, agentType agent.AgentType, generator Generator) (*checkpoint.Summary, error) {
+    30→	if len(transcriptBytes) == 0 {
+    31→		return nil, errors.New(&quot;empty transcript&quot;)
+    32→	}
+    33→
+    34→	// Build condensed transcript for summarization
+    35→	condensed, err := BuildCondensedTranscriptFromBytes(transcriptBytes, agentType)
+    36→	if err != nil {
+    37→		return nil, fmt.Errorf(&quot;failed to parse transcript: %w&quot;, err)
+    38→	}
+    39→	if len(condensed) == 0 {
+    40→		return nil, errors.New(&quot;transcript has no content to summarize&quot;)
+    41→	}
+    42→
+    43→	input := Input{
+    44→		Transcript:   condensed,
+    45→		FilesTouched: filesTouched,
+    46→	}
+    47→
+    48→… [14800 chars]</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 8. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 8</span></div><div class=refs><a class="ref r-subject" href="#h-seq-6" data-target="h-seq-6"><span class="role">subject</span> #6 call_id</a> = <code>toolu_0183WhLKjpZ2fTY15tyK3Jhy</code> <a class="ref r-witness" href="#h-seq-8" data-target="h-seq-8"><span class="role">witness</span> #8 call_id</a> = <code>toolu_0183WhLKjpZ2fTY15tyK3Jhy</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-9" data-seqs="9"><summary><span class="seq">#9</span><span class="time">15:18:31.076</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 2.0 tok · req req_011CYKYYDiqy7i…</span><span class="first">Now let me read the test file to understand the existing tests.</span></summary><pre>Now let me read the test file to understand the existing tests.</pre></details>
+<article class="card v-unconstrained" id="h-seq-10" data-seqs="10 12" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#10</span><span class="time">15:18:32.687</span><span class="tool">Read</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/summarize/summarize_test.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-12"><span class="rlabel">result #12 · 15:18:32.694</span><details class="full"><summary><code class="excerpt">     1→package summarize
+     2→
+     3→import (
+     4→	&quot;context&quot;
+     5→	&quot;encoding/json&quot;
+… [815 lines]</code></summary><pre>     1→package summarize
+     2→
+     3→import (
+     4→	&quot;context&quot;
+     5→	&quot;encoding/json&quot;
+     6→	&quot;os/exec&quot;
+     7→	&quot;strings&quot;
+     8→	&quot;testing&quot;
+     9→
+    10→	&quot;github.com/entireio/cli/cmd/entire/cli/agent&quot;
+    11→	&quot;github.com/entireio/cli/cmd/entire/cli/transcript&quot;
+    12→)
+    13→
+    14→func TestBuildCondensedTranscript_UserPrompts(t *testing.T) {
+    15→	lines := []transcript.Line{
+    16→		{
+    17→			Type: &quot;user&quot;,
+    18→			UUID: &quot;user-1&quot;,
+    19→			Message: mustMarshal(t, transcript.UserMessage{
+    20→				Content: &quot;Hello, please help me with this task&quot;,
+    21→			}),
+    22→		},
+    23→	}
+    24→
+    25→	entries := BuildCondensedTranscript(lines)
+    26→
+    27→	if len(entries) != 1 {
+    28→		t.Fatalf(&quot;expected 1 entry, got %d&quot;, len(entries))
+    29→	}
+    30→
+    31→	if entries[0].Type != EntryTypeUser {
+    32→		t.Errorf(&quot;expected type %s, got %s&quot;, EntryTypeUser, entries[0].Type)
+    33→	}
+    34→
+    35→	if entries[0].Content != &quot;Hello, please help me with this task&quot; {
+    36→		t.Errorf(&quot;unexpected content: %s&quot;, entries[0].Content)
+    37→	}
+    38→}
+    39→
+    40→func TestBuildCondensedTranscript_AssistantResponses(t *testing.T) {
+    41→	lines := []transcript.Line{
+    42→		{
+    43→			Type: &quot;assistant&quot;,
+    44→			UUID: &quot;assistant-1&quot;,
+    45→			Message: mustMarshal(t, transcript.AssistantMessage{
+    46→				Content: []transcript.ContentBlock{
+    47→					{Type: &quot;text&quot;, Text: &quot;I&#x27;ll help you with that.&quot;},
+    48→				},
+    49→			}),
+    50→		},
+    51→	}
+    52→
+    53→	entries := BuildCondensedTranscript(lines)
+    54→
+    55→	if len(entries) != 1 {
+    56→		t.Fatalf(&quot;expected 1 entry, got %d&quot;, len(entries))
+    57→	}
+    58→
+    59→	if entries[0].Type != EntryTypeAssistant {
+    60→		t.Errorf(&quot;expected type %s, got %s&quot;, EntryTypeAssistant, entries[0].Type)
+    61→	}
+    62→
+    63→	if entries[0].Content != &quot;I&#x27;ll help you with that.&quot; {
+    64→		t.Errorf(&quot;unexpected content: %s&quot;, entries[0].Content)
+    65→	}
+    66→}
+    67→
+    68→func TestBuildConde… [29327 chars]</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 12. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 12</span></div><div class=refs><a class="ref r-subject" href="#h-seq-10" data-target="h-seq-10"><span class="role">subject</span> #10 call_id</a> = <code>toolu_018owjF2KVLLybLEQsMeb6MZ</code> <a class="ref r-witness" href="#h-seq-12" data-target="h-seq-12"><span class="role">witness</span> #12 call_id</a> = <code>toolu_018owjF2KVLLybLEQsMeb6MZ</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-14" data-seqs="14"><summary><span class="seq">#14</span><span class="time">15:18:39.733</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 8.0 tok · req req_011CYKYYXgaxUm…</span><span class="first">I can see the current state clearly. Let me make the changes:
+
+1. Remove `&quot;filePath&quot;` from `extractGenericTool… [231 chars]</span></summary><pre>I can see the current state clearly. Let me make the changes:
+
+1. Remove `&quot;filePath&quot;` from `extractGenericToolDetail`
+2. Add `extractOpenCodeToolDetail` with camelCase keys
+3. Update `buildCondensedTranscriptFromOpenCode` to use it</pre></details>
+<article class="card v-unconstrained" id="h-seq-15" data-seqs="15 17" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#15</span><span class="time">15:18:45.859</span><span class="tool">Edit</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/summarize/summarize.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-17"><span class="rlabel">result #17 · 15:18:45.866</span><code class="excerpt">The file /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/summarize/summarize.go has been updated successfully.</code></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 17. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 17</span></div><div class=refs><a class="ref r-subject" href="#h-seq-15" data-target="h-seq-15"><span class="role">subject</span> #15 call_id</a> = <code>toolu_01X9DMihFqpkqVSXxsaqvxhY</code> <a class="ref r-witness" href="#h-seq-17" data-target="h-seq-17"><span class="role">witness</span> #17 call_id</a> = <code>toolu_01X9DMihFqpkqVSXxsaqvxhY</code></div></li></ul></details></article>
+<article class="card v-unconstrained" id="h-seq-18" data-seqs="18 20" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#18</span><span class="time">15:18:49.264</span><span class="tool">Edit</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/summarize/summarize.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-20"><span class="rlabel">result #20 · 15:18:49.268</span><code class="excerpt">The file /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/summarize/summarize.go has been updated successfully.</code></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 20. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 20</span></div><div class=refs><a class="ref r-subject" href="#h-seq-18" data-target="h-seq-18"><span class="role">subject</span> #18 call_id</a> = <code>toolu_01KbuCeRMCqovxr9niy59M2y</code> <a class="ref r-witness" href="#h-seq-20" data-target="h-seq-20"><span class="role">witness</span> #20 call_id</a> = <code>toolu_01KbuCeRMCqovxr9niy59M2y</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-21" data-seqs="21"><summary><span class="seq">#21</span><span class="time">15:18:52.197</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 2.0 tok · req req_011CYKYZkaG42d…</span><span class="first">Now write the TASK-jsonl.md follow-up task document.</span></summary><pre>Now write the TASK-jsonl.md follow-up task document.</pre></details>
+<article class="card v-unconstrained" id="h-seq-22" data-seqs="22 24" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#22</span><span class="time">15:18:59.391</span><span class="tool">Write</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/docs/TASK-jsonl.md</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-24"><span class="rlabel">result #24 · 15:18:59.393</span><code class="excerpt">File created successfully at: /Users/soph/Work/entire/devenv/cli_experiments/docs/TASK-jsonl.md</code></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 24. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 24</span></div><div class=refs><a class="ref r-subject" href="#h-seq-22" data-target="h-seq-22"><span class="role">subject</span> #22 call_id</a> = <code>toolu_011Cshe72BdCHn3zrm8UFzfo</code> <a class="ref r-witness" href="#h-seq-24" data-target="h-seq-24"><span class="role">witness</span> #24 call_id</a> = <code>toolu_011Cshe72BdCHn3zrm8UFzfo</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-25" data-seqs="25"><summary><span class="seq">#25</span><span class="time">15:19:02.096</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 6.0 tok · req req_011CYKYaVs1PF6…</span><span class="first">Now let me run the verification steps.</span></summary><pre>Now let me run the verification steps.</pre></details>
+<article class="card v-unconstrained" id="h-seq-26" data-seqs="26 27" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#26</span><span class="time">15:19:02.857</span><span class="tool">Bash</span><span class="cmd">mise run fmt</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-27"><span class="rlabel">result #27 · 15:19:03.067</span><code class="excerpt">[fmt] $ gofmt -s -w .</code></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 27. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 27</span></div><div class=refs><a class="ref r-subject" href="#h-seq-26" data-target="h-seq-26"><span class="role">subject</span> #26 call_id</a> = <code>toolu_01UPzhzRFv12mSh4nKcJ2AKr</code> <a class="ref r-witness" href="#h-seq-27" data-target="h-seq-27"><span class="role">witness</span> #27 call_id</a> = <code>toolu_01UPzhzRFv12mSh4nKcJ2AKr</code></div></li></ul></details></article>
+<article class="card v-unconstrained" id="h-seq-28" data-seqs="28 29" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#28</span><span class="time">15:19:05.477</span><span class="tool">Bash</span><span class="cmd">mise run lint 2&gt;&amp;1</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-29"><span class="rlabel">result #29 · 15:19:08.250</span><details class="full"><summary><code class="excerpt">[lint:go] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/go
+[lint:gofmt] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/gofmt
+[lint:shellcheck] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/shellc…
+[lint:gomod] $ ~/… [341 chars]</code></summary><pre>[lint:go] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/go
+[lint:gofmt] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/gofmt
+[lint:shellcheck] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/shellc…
+[lint:gomod] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/gomod
+[lint:gofmt] Finished in 48.4ms
+[lint:gomod] Finished in 80.0ms
+[lint:shellcheck] Finished in 154.5ms
+[lint:go] 0 issues.
+[lint:go] Finished in 2.70s
+[lint] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/_default
+[lint] Finished in 2.8ms
+Finished in 2.70s</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 29. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 29</span></div><div class=refs><a class="ref r-subject" href="#h-seq-28" data-target="h-seq-28"><span class="role">subject</span> #28 call_id</a> = <code>toolu_011zUdppegJmfq5zi6eZnEr5</code> <a class="ref r-witness" href="#h-seq-29" data-target="h-seq-29"><span class="role">witness</span> #29 call_id</a> = <code>toolu_011zUdppegJmfq5zi6eZnEr5</code></div></li></ul></details></article>
+<article class="card v-unconstrained" id="h-seq-30" data-seqs="30 82" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#30</span><span class="time">15:19:11.855</span><span class="tool">Bash</span><span class="cmd">mise run test:ci 2&gt;&amp;1</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-82"><span class="rlabel">result #82 · 15:20:05.405</span><details class="full"><summary><code class="excerpt">[test:ci] $ go test -tags=integration -race ./...
+?   	github.com/entireio/cli/cmd/entire	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli	5.190s
+ok  	github.com/entireio/cli/cmd/entire/cli/agent	(cached)
+ok  	github.com/entireio… [298 chars]</code></summary><pre>[test:ci] $ go test -tags=integration -race ./...
+?   	github.com/entireio/cli/cmd/entire	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli	5.190s
+ok  	github.com/entireio/cli/cmd/entire/cli/agent	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/agent/claudecode	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/agent/geminicli	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/agent/opencode	(cached)
+?   	github.com/entireio/cli/cmd/entire/cli/agent/testutil	[no test files]
+?   	github.com/entireio/cli/cmd/entire/cli/buildinfo	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli/checkpoint	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/checkpoint/id	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/integration_test	50.441s
+?   	github.com/entireio/cli/cmd/entire/cli/jsonutil	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli/logging	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/paths	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/session	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/settings	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/strategy	13.974s
+ok  	github.com/entireio/cli/cmd/entire/cli/stringutil	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/summarize	1.708s
+ok  	github.com/entireio/cli/cmd/entire/cli/telemetry	(cached)
+?   	github.com/entireio/cli/cmd/entire/cli/testutil	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli/textutil	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/trailers	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/transcript	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/validation	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/versioncheck	(cached)
+ok  	github.com/entireio/cli/redact	(cached)</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 82. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 82</span></div><div class=refs><a class="ref r-subject" href="#h-seq-30" data-target="h-seq-30"><span class="role">subject</span> #30 call_id</a> = <code>toolu_01RoRJJV1fRCbWa1fQ39gghM</code> <a class="ref r-witness" href="#h-seq-82" data-target="h-seq-82"><span class="role">witness</span> #82 call_id</a> = <code>toolu_01RoRJJV1fRCbWa1fQ39gghM</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-83" data-seqs="83"><summary><span class="seq">#83</span><span class="time">15:20:10.719</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 1.0 tok · req req_011CYKYfN3MFHu…</span><span class="first">All passing. Here&#x27;s what I did:
+
+1. **Added `extractOpenCodeToolDetail`** — a dedicated function for OpenCode … [591 chars]</span></summary><pre>All passing. Here&#x27;s what I did:
+
+1. **Added `extractOpenCodeToolDetail`** — a dedicated function for OpenCode with camelCase keys (`&quot;filePath&quot;`) plus fallbacks for snake_case
+2. **Reverted `extractGenericToolDetail`** — removed `&quot;filePath&quot;`, keeping only the original Gemini/generic snake_case keys (`&quot;file_path&quot;`, `&quot;path&quot;`, etc.)
+3. **Updated `buildCondensedTranscriptFromOpenCode`** (line 206) to call `extractOpenCodeToolDetail` instead of `extractGenericToolDetail`
+4. **Created `docs/TASK-jsonl.md`** — follow-up task documenting the `.jsonl` filename investigation needed across agents</pre></details>
+<details class="msg m-user" id="h-seq-87" data-seqs="87"><summary><span class="seq">#87</span><span class="time">15:21:02.246</span><span class="who">user</span><span class="mmeta"></span><span class="first">can we update the files directly attached to opencode to only have the right filePath format?</span></summary><pre>can we update the files directly attached to opencode to only have the right filePath format?</pre></details>
+<details class="msg m-assistant" id="h-seq-88" data-seqs="88"><summary><span class="seq">#88</span><span class="time">15:21:05.036</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 9.0 tok · req req_011CYKYjbnx4XS…</span><span class="first">
+
+</span></summary><pre>
+
+</pre></details>
+<details class="msg m-assistant" id="h-seq-90" data-seqs="90"><summary><span class="seq">#90</span><span class="time">15:21:06.368</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 9.0 tok · req req_011CYKYjbnx4XS…</span><span class="first">Let me find the OpenCode agent files to see what needs updating.</span></summary><pre>Let me find the OpenCode agent files to see what needs updating.</pre></details>
+<article class="card v-unconstrained" id="h-seq-91" data-seqs="91 93" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#91</span><span class="time">15:21:06.744</span><span class="tool">Glob</span><span class="cmd">pattern: cmd/entire/cli/agent/opencode/**/*.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-93"><span class="rlabel">result #93 · 15:21:06.972</span><details class="full"><summary><code class="excerpt">/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/cli_commands.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/hooks.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli… [464 chars]</code></summary><pre>/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/cli_commands.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/hooks.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/hooks_test.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/lifecycle_test.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/plugin.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/types.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/lifecycle.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/opencode.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/transcript.go
+/Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/transcript_test.go</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 93. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 93</span></div><div class=refs><a class="ref r-subject" href="#h-seq-91" data-target="h-seq-91"><span class="role">subject</span> #91 call_id</a> = <code>toolu_01P7apuue6eYTBYi5YcN56z9</code> <a class="ref r-witness" href="#h-seq-93" data-target="h-seq-93"><span class="role">witness</span> #93 call_id</a> = <code>toolu_01P7apuue6eYTBYi5YcN56z9</code></div></li></ul></details></article>
+<article class="card v-unconstrained" id="h-seq-94" data-seqs="94 96" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#94</span><span class="time">15:21:10.685</span><span class="tool">Read</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/types.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-96"><span class="rlabel">result #96 · 15:21:10.704</span><details class="full"><summary><code class="excerpt">     1→package opencode
+     2→
+     3→// sessionInfoRaw matches the JSON payload piped from the OpenCode plugin for session events.
+     4→// The plugin sends only session_id; Go calls `opencode export` to get the transcript.
+     5→type s… [276 chars]</code></summary><pre>     1→package opencode
+     2→
+     3→// sessionInfoRaw matches the JSON payload piped from the OpenCode plugin for session events.
+     4→// The plugin sends only session_id; Go calls `opencode export` to get the transcript.
+     5→type sessionInfoRaw struct {
+     6→	SessionID string `json:&quot;session_id&quot;`
+     7→}
+     8→
+     9→// turnStartRaw matches the JSON payload for turn-start (user prompt submission).
+    10→type turnStartRaw struct {
+    11→	SessionID string `json:&quot;session_id&quot;`
+    12→	Prompt    string `json:&quot;prompt&quot;`
+    13→}
+    14→
+    15→// --- Export JSON types (from `opencode export`) ---
+    16→
+    17→// ExportSession represents the top-level structure of `opencode export` output.
+    18→// This is OpenCode&#x27;s native format for session data.
+    19→type ExportSession struct {
+    20→	Info     SessionInfo     `json:&quot;info&quot;`
+    21→	Messages []ExportMessage `json:&quot;messages&quot;`
+    22→}
+    23→
+    24→// SessionInfo contains session metadata from the export.
+    25→type SessionInfo struct {
+    26→	ID        string `json:&quot;id&quot;`
+    27→	Title     string `json:&quot;title,omitempty&quot;`
+    28→	CreatedAt int64  `json:&quot;createdAt,omitempty&quot;`
+    29→	UpdatedAt int64  `json:&quot;updatedAt,omitempty&quot;`
+    30→}
+    31→
+    32→// ExportMessage represents a single message in the export format.
+    33→// Each message contains info (metadata) and parts (content).
+    34→type ExportMessage struct {
+    35→	Info  MessageInfo `json:&quot;info&quot;`
+    36→	Parts []Part      `json:&quot;parts&quot;`
+    37→}
+    38→
+    39→// MessageInfo contains message metadata.
+    40→type MessageInfo struct {
+    41→	ID        string  `json:&quot;id&quot;`
+    42→	SessionID string  `json:&quot;sessionID,omitempty&quot;`
+    43→	Role      string  `json:&quot;role&quot;` // &quot;user&quot; or &quot;assistant&quot;
+    44→	Time      Time    `json:&quot;time&quot;`
+    45→	Tokens    *Tokens `json:&quot;tokens,omitempty&quot;`
+    46→	Cost      float64 `json:&quot;cost,omitempty&quot;`
+    47→}
+    48→
+    49→// Message role constants.
+    50→const (
+    51→	roleAssistant = &quot;assistant&quot;
+    52→	rol… [3769 chars]</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 96. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 96</span></div><div class=refs><a class="ref r-subject" href="#h-seq-94" data-target="h-seq-94"><span class="role">subject</span> #94 call_id</a> = <code>toolu_013CHAbTsgDQFhpd6D9iwEyc</code> <a class="ref r-witness" href="#h-seq-96" data-target="h-seq-96"><span class="role">witness</span> #96 call_id</a> = <code>toolu_013CHAbTsgDQFhpd6D9iwEyc</code></div></li></ul></details></article>
+<article class="card v-unconstrained" id="h-seq-97" data-seqs="97 99" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#97</span><span class="time">15:21:11.208</span><span class="tool">Read</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/transcript.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-99"><span class="rlabel">result #99 · 15:21:11.216</span><details class="full"><summary><code class="excerpt">     1→package opencode
+     2→
+     3→import (
+     4→	&quot;encoding/json&quot;
+     5→	&quot;fmt&quot;
+… [318 lines]</code></summary><pre>     1→package opencode
+     2→
+     3→import (
+     4→	&quot;encoding/json&quot;
+     5→	&quot;fmt&quot;
+     6→	&quot;os&quot;
+     7→	&quot;slices&quot;
+     8→	&quot;strings&quot;
+     9→
+    10→	&quot;github.com/entireio/cli/cmd/entire/cli/agent&quot;
+    11→)
+    12→
+    13→// Compile-time interface assertions
+    14→var (
+    15→	_ agent.TranscriptAnalyzer = (*OpenCodeAgent)(nil)
+    16→	_ agent.TokenCalculator    = (*OpenCodeAgent)(nil)
+    17→)
+    18→
+    19→// ParseExportSession parses export JSON content into an ExportSession structure.
+    20→func ParseExportSession(data []byte) (*ExportSession, error) {
+    21→	if len(data) == 0 {
+    22→		return nil, nil //nolint:nilnil // nil for empty data is expected
+    23→	}
+    24→
+    25→	var session ExportSession
+    26→	if err := json.Unmarshal(data, &amp;session); err != nil {
+    27→		return nil, fmt.Errorf(&quot;failed to parse export session: %w&quot;, err)
+    28→	}
+    29→
+    30→	return &amp;session, nil
+    31→}
+    32→
+    33→// parseExportSessionFromFile reads and parses an export JSON transcript file.
+    34→func parseExportSessionFromFile(path string) (*ExportSession, error) {
+    35→	data, err := os.ReadFile(path) //nolint:gosec // Path from agent hook
+    36→	if err != nil {
+    37→		return nil, err //nolint:wrapcheck // Callers check os.IsNotExist on this error
+    38→	}
+    39→	return ParseExportSession(data)
+    40→}
+    41→
+    42→// SliceFromMessage returns an OpenCode export transcript scoped to messages starting from
+    43→// startMessageIndex. This is the OpenCode equivalent of transcript.SliceFromLine —
+    44→// for OpenCode&#x27;s JSON format, scoping is done by message index rather than line offset.
+    45→// Returns the original data if startMessageIndex &lt;= 0.
+    46→// Returns nil if startMessageIndex exceeds the number of messages.
+    47→func SliceFromMessage(data []byte, startMessageIndex int) []byte {
+    48→	if len(data) == 0 || startMessageIndex &lt;= 0 {
+    49→		return data
+    50→	}
+    51→
+    52→	session, err := ParseExportSession(data)
+    53→	if err !=… [10783 chars]</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 99. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 99</span></div><div class=refs><a class="ref r-subject" href="#h-seq-97" data-target="h-seq-97"><span class="role">subject</span> #97 call_id</a> = <code>toolu_016uS1ybbWevxyqecWZiHifw</code> <a class="ref r-witness" href="#h-seq-99" data-target="h-seq-99"><span class="role">witness</span> #99 call_id</a> = <code>toolu_016uS1ybbWevxyqecWZiHifw</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-101" data-seqs="101"><summary><span class="seq">#101</span><span class="time">15:21:18.353</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 8.0 tok · req req_011CYKYkDPbGs7…</span><span class="first">I see — `extractFilePathFromInput` in `transcript.go:164` has snake_case fallbacks (`&quot;file_path&quot;`, `&quot;file&quot;`, `… [181 chars]</span></summary><pre>I see — `extractFilePathFromInput` in `transcript.go:164` has snake_case fallbacks (`&quot;file_path&quot;`, `&quot;file&quot;`, `&quot;filename&quot;`) that aren&#x27;t OpenCode&#x27;s format. Let me check the tests too.</pre></details>
+<article class="card v-unconstrained" id="h-seq-102" data-seqs="102 104" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#102</span><span class="time">15:21:19.434</span><span class="tool">Read</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/transcript_test.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-104"><span class="rlabel">result #104 · 15:21:19.450</span><details class="full"><summary><code class="excerpt">     1→package opencode
+     2→
+     3→import (
+     4→	&quot;encoding/json&quot;
+     5→	&quot;os&quot;
+… [557 lines]</code></summary><pre>     1→package opencode
+     2→
+     3→import (
+     4→	&quot;encoding/json&quot;
+     5→	&quot;os&quot;
+     6→	&quot;path/filepath&quot;
+     7→	&quot;testing&quot;
+     8→
+     9→	&quot;github.com/entireio/cli/cmd/entire/cli/agent&quot;
+    10→)
+    11→
+    12→// testExportJSON is an export JSON transcript with 4 messages.
+    13→var testExportJSON = func() string {
+    14→	session := ExportSession{
+    15→		Info: SessionInfo{ID: &quot;test-session-id&quot;},
+    16→		Messages: []ExportMessage{
+    17→			{
+    18→				Info: MessageInfo{ID: &quot;msg-1&quot;, Role: &quot;user&quot;, Time: Time{Created: 1708300000}},
+    19→				Parts: []Part{
+    20→					{Type: &quot;text&quot;, Text: &quot;Fix the bug in main.go&quot;},
+    21→				},
+    22→			},
+    23→			{
+    24→				Info: MessageInfo{
+    25→					ID: &quot;msg-2&quot;, Role: &quot;assistant&quot;,
+    26→					Time:   Time{Created: 1708300001, Completed: 1708300005},
+    27→					Tokens: &amp;Tokens{Input: 150, Output: 80, Reasoning: 10, Cache: Cache{Read: 5, Write: 15}},
+    28→					Cost:   0.003,
+    29→				},
+    30→				Parts: []Part{
+    31→					{Type: &quot;text&quot;, Text: &quot;I&#x27;ll fix the bug.&quot;},
+    32→					{Type: &quot;tool&quot;, Tool: &quot;edit&quot;, CallID: &quot;call-1&quot;, State: &amp;ToolState{Status: &quot;completed&quot;, Input: map[string]any{&quot;filePath&quot;: &quot;main.go&quot;}, Output: &quot;Applied edit&quot;}},
+    33→				},
+    34→			},
+    35→			{
+    36→				Info: MessageInfo{ID: &quot;msg-3&quot;, Role: &quot;user&quot;, Time: Time{Created: 1708300010}},
+    37→				Parts: []Part{
+    38→					{Type: &quot;text&quot;, Text: &quot;Also fix util.go&quot;},
+    39→				},
+    40→			},
+    41→			{
+    42→				Info: MessageInfo{
+    43→					ID: &quot;msg-4&quot;, Role: &quot;assistant&quot;,
+    44→					Time:   Time{Created: 1708300011, Completed: 1708300015},
+    45→					Tokens: &amp;Tokens{Input: 200, Output: 100, Reasoning: 5, Cache: Cache{Read: 10, Write: 20}},
+    46→					Cost:   0.005,
+    47→				},
+    48→				Parts: []Part{
+    49→					{Type: &quot;tool&quot;, Tool: &quot;write&quot;, CallID: &quot;call-2&quot;, State: &amp;ToolState{Status: &quot;completed&quot;, Input: map[string]any{&quot;filePath&quot;: &quot;util.go&quot;}, Output: &quot;File written&quot;}},
+    50→					{Type: &quot;text&quot;, Text: &quot;Done fixing util.go.&quot;},
+ … [19792 chars]</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 104. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 104</span></div><div class=refs><a class="ref r-subject" href="#h-seq-102" data-target="h-seq-102"><span class="role">subject</span> #102 call_id</a> = <code>toolu_01A6zYZGAQy9rmvtCpHrXkTk</code> <a class="ref r-witness" href="#h-seq-104" data-target="h-seq-104"><span class="role">witness</span> #104 call_id</a> = <code>toolu_01A6zYZGAQy9rmvtCpHrXkTk</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-105" data-seqs="105"><summary><span class="seq">#105</span><span class="time">15:21:28.045</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 2.0 tok · req req_011CYKYkpkLaUA…</span><span class="first">Now I can see the full picture. The `extractFilePathFromInput` function in `transcript.go:164` has snake_case … [678 chars]</span></summary><pre>Now I can see the full picture. The `extractFilePathFromInput` function in `transcript.go:164` has snake_case fallbacks that aren&#x27;t part of OpenCode&#x27;s format. And in `summarize.go`, the new `extractOpenCodeToolDetail` still has `&quot;file_path&quot;` as a fallback too. Let me also check what `extractOpenCodeToolDetail` in summarize.go currently has — and then clean up both.
+
+The two functions to update:
+1. `extractFilePathFromInput` in `transcript.go:164` — remove `&quot;file_path&quot;`, `&quot;file&quot;`, `&quot;filename&quot;` (keep `&quot;filePath&quot;` and `&quot;path&quot;`)
+2. `extractOpenCodeToolDetail` in `summarize.go` — remove `&quot;file_path&quot;` (keep `&quot;filePath&quot;`)
+
+And update the test that verifies those fallback keys.</pre></details>
+<article class="card v-unconstrained" id="h-seq-106" data-seqs="106 108" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#106</span><span class="time">15:21:32.493</span><span class="tool">Edit</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/transcript.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-108"><span class="rlabel">result #108 · 15:21:32.498</span><code class="excerpt">The file /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/transcript.go has been updated successfully.</code></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 108. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 108</span></div><div class=refs><a class="ref r-subject" href="#h-seq-106" data-target="h-seq-106"><span class="role">subject</span> #106 call_id</a> = <code>toolu_01WPw64A2emsfYjYW9hG2w8V</code> <a class="ref r-witness" href="#h-seq-108" data-target="h-seq-108"><span class="role">witness</span> #108 call_id</a> = <code>toolu_01WPw64A2emsfYjYW9hG2w8V</code></div></li></ul></details></article>
+<article class="card v-unconstrained" id="h-seq-109" data-seqs="109 111" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#109</span><span class="time">15:21:38.416</span><span class="tool">Edit</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/summarize/summarize.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-111"><span class="rlabel">result #111 · 15:21:38.420</span><code class="excerpt">The file /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/summarize/summarize.go has been updated successfully.</code></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 111. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 111</span></div><div class=refs><a class="ref r-subject" href="#h-seq-109" data-target="h-seq-109"><span class="role">subject</span> #109 call_id</a> = <code>toolu_015h1QdDJ1P48GsB2FFKWX1a</code> <a class="ref r-witness" href="#h-seq-111" data-target="h-seq-111"><span class="role">witness</span> #111 call_id</a> = <code>toolu_015h1QdDJ1P48GsB2FFKWX1a</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-112" data-seqs="112"><summary><span class="seq">#112</span><span class="time">15:21:41.592</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 1.0 tok · req req_011CYKYnDpSYTk…</span><span class="first">Now update the test cases that relied on the removed keys.</span></summary><pre>Now update the test cases that relied on the removed keys.</pre></details>
+<article class="card v-unconstrained" id="h-seq-113" data-seqs="113 115" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#113</span><span class="time">15:21:47.973</span><span class="tool">Edit</span><span class="cmd">file_path: /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/transcript_test.go</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-115"><span class="rlabel">result #115 · 15:21:47.977</span><code class="excerpt">The file /Users/soph/Work/entire/devenv/cli_experiments/cmd/entire/cli/agent/opencode/transcript_test.go has been updated successfully.</code></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 115. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 115</span></div><div class=refs><a class="ref r-subject" href="#h-seq-113" data-target="h-seq-113"><span class="role">subject</span> #113 call_id</a> = <code>toolu_01XQ4Rg4gx1ToCpZ52jqCgpk</code> <a class="ref r-witness" href="#h-seq-115" data-target="h-seq-115"><span class="role">witness</span> #115 call_id</a> = <code>toolu_01XQ4Rg4gx1ToCpZ52jqCgpk</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-116" data-seqs="116"><summary><span class="seq">#116</span><span class="time">15:21:50.768</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 2.0 tok · req req_011CYKYnve6up8…</span><span class="first">Now run the checks.</span></summary><pre>Now run the checks.</pre></details>
+<article class="card v-unconstrained" id="h-seq-117" data-seqs="117 118" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#117</span><span class="time">15:21:51.783</span><span class="tool">Bash</span><span class="cmd">mise run fmt &amp;&amp; mise run lint 2&gt;&amp;1</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-118"><span class="rlabel">result #118 · 15:21:54.542</span><details class="full"><summary><code class="excerpt">[fmt] $ gofmt -s -w .
+[lint:go] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/go
+[lint:gomod] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/gomod
+[lint:shellcheck] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/she… [331 chars]</code></summary><pre>[fmt] $ gofmt -s -w .
+[lint:go] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/go
+[lint:gomod] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/gomod
+[lint:shellcheck] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/shellc…
+[lint:gofmt] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/gofmt
+[lint:gofmt] Finished in 48.0ms
+[lint:gomod] Finished in 74.0ms
+[lint:shellcheck] Finished in 152.6ms
+[lint:go] 0 issues.
+[lint:go] Finished in 2.61s
+[lint] $ ~/Work/entire/devenv/cli_experiments/mise-tasks/lint/_default
+[lint] Finished in 3.0ms
+Finished in 2.61s</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 118. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 118</span></div><div class=refs><a class="ref r-subject" href="#h-seq-117" data-target="h-seq-117"><span class="role">subject</span> #117 call_id</a> = <code>toolu_01Kgs2ov62GFGZTRf1z7kqjL</code> <a class="ref r-witness" href="#h-seq-118" data-target="h-seq-118"><span class="role">witness</span> #118 call_id</a> = <code>toolu_01Kgs2ov62GFGZTRf1z7kqjL</code></div></li></ul></details></article>
+<article class="card v-unconstrained" id="h-seq-119" data-seqs="119 169" data-verdict="unconstrained" data-core="" data-blame="" data-unitkey=""><div class="c-head"><span class="seq">#119</span><span class="time">15:21:58.359</span><span class="tool">Bash</span><span class="cmd">mise run test:ci 2&gt;&amp;1</span><span class="exist" title="What an existence check (OverclaimBench / Kraishan style) reports: the call is present in the log">exists ✓</span><span class="chip unc abstain" title="abstain:reference_only">unconstrained</span></div><div class="result" id="h-seq-169"><span class="rlabel">result #169 · 15:22:50.374</span><details class="full"><summary><code class="excerpt">[test:ci] $ go test -tags=integration -race ./...
+?   	github.com/entireio/cli/cmd/entire	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli	5.315s
+ok  	github.com/entireio/cli/cmd/entire/cli/agent	(cached)
+ok  	github.com/entireio… [298 chars]</code></summary><pre>[test:ci] $ go test -tags=integration -race ./...
+?   	github.com/entireio/cli/cmd/entire	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli	5.315s
+ok  	github.com/entireio/cli/cmd/entire/cli/agent	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/agent/claudecode	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/agent/geminicli	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/agent/opencode	1.392s
+?   	github.com/entireio/cli/cmd/entire/cli/agent/testutil	[no test files]
+?   	github.com/entireio/cli/cmd/entire/cli/buildinfo	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli/checkpoint	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/checkpoint/id	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/integration_test	48.284s
+?   	github.com/entireio/cli/cmd/entire/cli/jsonutil	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli/logging	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/paths	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/session	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/settings	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/strategy	13.152s
+ok  	github.com/entireio/cli/cmd/entire/cli/stringutil	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/summarize	1.663s
+ok  	github.com/entireio/cli/cmd/entire/cli/telemetry	(cached)
+?   	github.com/entireio/cli/cmd/entire/cli/testutil	[no test files]
+ok  	github.com/entireio/cli/cmd/entire/cli/textutil	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/trailers	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/transcript	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/validation	(cached)
+ok  	github.com/entireio/cli/cmd/entire/cli/versioncheck	(cached)
+ok  	github.com/entireio/cli/redact	(cached)</pre></details></div><details class="checks"><summary><span class="lbl">every check</span> <span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span></summary><ul><li><span class="chip supp mini" title="ok:result_joined"><b>ref_result_present</b> supported</span> <span class="reason">ok:result_joined</span> <span class="ver">v1.0.0+nocalib</span><div class="sub">A result with the same call_id follows this call at seq 169. Reference check: this proves the pipeline, not the result.</div><div class="detail"><span class=kv><b>n_results</b> 1</span> <span class=kv><b>result_seq</b> 169</span></div><div class=refs><a class="ref r-subject" href="#h-seq-119" data-target="h-seq-119"><span class="role">subject</span> #119 call_id</a> = <code>toolu_01FBDdMnDL1BEGVWnMSXs1wA</code> <a class="ref r-witness" href="#h-seq-169" data-target="h-seq-169"><span class="role">witness</span> #169 call_id</a> = <code>toolu_01FBDdMnDL1BEGVWnMSXs1wA</code></div></li></ul></details></article>
+<details class="msg m-assistant" id="h-seq-170" data-seqs="170"><summary><span class="seq">#170</span><span class="time">15:22:56.098</span><span class="who">assistant</span><span class="mmeta">claude-opus-4-6 · out 1.0 tok · req req_011CYKYsXNmVz1…</span><span class="first">All passing. Here&#x27;s what changed:
+
+**`cmd/entire/cli/agent/opencode/transcript.go`** — `extractFilePathFromInp… [632 chars]</span></summary><pre>All passing. Here&#x27;s what changed:
+
+**`cmd/entire/cli/agent/opencode/transcript.go`** — `extractFilePathFromInput` now only checks `&quot;filePath&quot;` and `&quot;path&quot;` (OpenCode&#x27;s actual keys), removing the snake_case fallbacks `&quot;file_path&quot;`, `&quot;file&quot;`, `&quot;filename&quot;`.
+
+**`cmd/entire/cli/summarize/summarize.go`** — `extractOpenCodeToolDetail` now only checks camelCase keys, removing the `&quot;file_path&quot;` fallback.
+
+**`cmd/entire/cli/agent/opencode/transcript_test.go`** — Updated test cases: removed tests for the dropped keys, added a priority test (`filePath` over `path`) and a test confirming unrecognized keys like `&quot;file_path&quot;` return empty.</pre></details></div></section>
+<footer><p>Demo session (DESIGN.md §6.3, DA9: split E of a redistributable corpus, never H, never cc_local or aiv_*). Selection: Fixed before any session was looked at: the first session by sorted session_id among the unit&#x27;s sessions in the split&#x27;s IR cache that has 12 to 30 call events, a request_id on at least one assistant/call/meta row, and millisecond-resolution timestamps (&gt;= 3 fractional digits) on every call and result.</p><p>Only reference checks ran. A reference check proves the pipeline end to end and never decides a verdict, so every composed verdict is unconstrained (DESIGN.md §4.6, §4.8). No detection check is enabled before the morning gate (DESIGN.md §7.3, G0).</p><p>verifier version: verifier/0.1.0 ir/ac603f32cbaf checks/edcbe0f2f110</p><p>checkset sha: edcbe0f2f110</p><p>calibration unit: swechat/claude_code</p><p>checks run: ref_result_present</p><p>Every displayed string passed through analysis/loaders/newcorp_common.redact, then html.escape; excerpts over 2000 characters are cut.</p><p>source: format=claude_code, loader=ir_cache, path=analysis/cache/swechat_E.parquet, split=E</p></footer>
+</main><script>
+(function(){
+  var doc = document; doc.body.classList.add('js');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var frames = Array.prototype.slice.call(doc.querySelectorAll('.frame'));
+  var NS = 'http://www.w3.org/2000/svg';
+  function seqMap(frame){
+    var m = {};
+    frame.querySelectorAll('[data-seqs]').forEach(function(el){
+      el.getAttribute('data-seqs').split(' ').forEach(function(s){ if (s && !(s in m)) m[s] = el; });
+    });
+    return m;
+  }
+  function draw(frame){
+    var svg = frame.querySelector('svg.arcs'); if (!svg || frame.hidden) return;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var box = frame.querySelector('.transcript').getBoundingClientRect();
+    var W = svg.getBoundingClientRect().width || 56, m = seqMap(frame), units = {};
+    function mid(el){ var r = el.getBoundingClientRect(); return r.top - box.top + Math.min(r.height / 2, 18); }
+    frame.querySelectorAll('.card[data-verdict="contradicted"], .card[data-verdict="supported"]').forEach(function(card){
+      var uk = card.getAttribute('data-unitkey');
+      if (uk) { (units[uk] = units[uk] || []).push(card); return; }
+      var y1 = mid(card), blame = card.getAttribute('data-blame');
+      var core = (card.getAttribute('data-core') || '').split(' ').filter(Boolean);
+      var own = (card.getAttribute('data-seqs') || '').split(' ');
+      core.forEach(function(s){
+        var t = m[s]; if (!t || t === card || own.indexOf(s) >= 0) return;
+        var y2 = mid(t), d = Math.min(W - 6, 14 + Math.abs(y2 - y1) / 18);
+        var p = doc.createElementNS(NS, 'path');
+        p.setAttribute('d', 'M' + W + ' ' + y1 + ' C' + (W - d) + ' ' + y1 + ' ' + (W - d) + ' ' + y2 + ' ' + W + ' ' + y2);
+        if (s !== blame) p.setAttribute('class', 'dash');
+        if (card.getAttribute('data-verdict') === 'supported') p.style.stroke = 'var(--good)';
+        svg.appendChild(p);
+      });
+    });
+    Object.keys(units).forEach(function(k){            // a non-localized contradiction: one bracket over its calls
+      var cs = units[k], top = cs[0].getBoundingClientRect().top - box.top;
+      var last = cs[cs.length - 1].getBoundingClientRect(), bot = last.bottom - box.top, x = W - 10;
+      var p = doc.createElementNS(NS, 'path');
+      p.setAttribute('d', 'M' + (x + 6) + ' ' + top + ' H' + x + ' V' + bot + ' H' + (x + 6));
+      p.setAttribute('class', 'bracket'); svg.appendChild(p);
+    });
+  }
+  function drawAll(){ frames.forEach(draw); }
+  function scan(frame){
+    var cards = Array.prototype.slice.call(frame.querySelectorAll('.card'));
+    if (reduce || !cards.length) { cards.forEach(function(c){ c.classList.add('lit'); }); return; }
+    var line = frame.querySelector('.scanline'), box = frame.querySelector('.transcript');
+    cards.forEach(function(c){ c.classList.remove('lit'); });
+    frame.classList.add('scanning');
+    cards.forEach(function(c, i){
+      setTimeout(function(){
+        c.classList.add('lit');
+        if (line) line.style.top = (c.offsetTop + c.offsetHeight) + 'px';
+        if (c.getAttribute('data-verdict') === 'contradicted') c.classList.add('pulse');
+        if (i === cards.length - 1) setTimeout(function(){ frame.classList.remove('scanning'); }, 120);
+      }, 40 * i);
+    });
+  }
+  var buttons = Array.prototype.slice.call(doc.querySelectorAll('.toggle button'));
+  function show(which){
+    frames.forEach(function(f){ f.hidden = buttons.length ? f.getAttribute('data-frame') !== which : false; });
+    buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-show') === which)); });
+    drawAll();
+    frames.forEach(function(f){ if (!f.hidden) scan(f); });
+  }
+  buttons.forEach(function(b){ b.addEventListener('click', function(){ show(b.getAttribute('data-show')); }); });
+  doc.addEventListener('mouseover', function(e){
+    var a = e.target.closest && e.target.closest('a.ref'); if (!a) return;
+    var t = doc.getElementById(a.getAttribute('data-target')); if (t) t.classList.add('hl');
+  });
+  doc.addEventListener('mouseout', function(e){
+    var a = e.target.closest && e.target.closest('a.ref'); if (!a) return;
+    var t = doc.getElementById(a.getAttribute('data-target')); if (t) t.classList.remove('hl');
+  });
+  doc.addEventListener('toggle', function(){ drawAll(); }, true);
+  window.addEventListener('resize', drawAll);
+  show('h');
+})();
+</script></body></html>

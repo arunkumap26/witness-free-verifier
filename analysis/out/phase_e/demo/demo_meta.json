@@ -1,0 +1,26 @@
+{
+ "cache": "analysis/cache/swechat_E.parquet",
+ "checks": [
+  "ref_result_present"
+ ],
+ "composed_verdicts": {
+  "unconstrained": 17
+ },
+ "corpus": "swechat",
+ "generated_by": "verifier/render/html.py demo",
+ "html_path": "analysis/out/phase_e/demo/index.html",
+ "html_sha256": "3826b40228a83b548a0b9d51edf3a94c7100d388fededb30b294d6c875a79cb6",
+ "n_calls": 17,
+ "n_events": 174,
+ "per_check_reasons": {
+  "ref_result_present|ok:result_joined": 17
+ },
+ "pipeline": "verifier",
+ "pipeline_note": "",
+ "publish": "local only: swechat is HF-gated; do not publish until the gate terms are confirmed (DESIGN.md \u00a76.3, open item 8)",
+ "selection_rule": "Fixed before any session was looked at: the first session by sorted session_id among the unit's sessions in the split's IR cache that has 12 to 30 call events, a request_id on at least one assistant/call/meta row, and millisecond-resolution timestamps (>= 3 fractional digits) on every call and result.",
+ "session_id": "022d9e55-d3e6-4a20-a604-247fa9f6f22e",
+ "session_ir_sha": "285d895a6b73ce2d390cdd3c346f5c3ee0ecdd1079c360e9233aacd21e7a6b7d",
+ "split": "E",
+ "unit": "swechat/claude_code"
+}
