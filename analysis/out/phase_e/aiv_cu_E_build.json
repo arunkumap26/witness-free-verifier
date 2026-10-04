@@ -1,0 +1,475 @@
+{
+ "corpus": "aiv_cu",
+ "split": "E",
+ "built_at": "2026-10-04T01:35:04",
+ "loader": "analysis/loaders/load_aiv_cu.py",
+ "entry_point": "python -m analysis.loaders.load_aiv_cu --split E",
+ "split_source": "analysis/cache/samples/aiv_cu_EH.json#E",
+ "cache": {
+  "path": "analysis/cache/aiv_cu_E.parquet",
+  "rows": 158746,
+  "sessions": 2000,
+  "sessions_requested": 2000,
+  "bytes": 55734246
+ },
+ "pass2": {
+  "mode": "single process line scan, fixed-offset session_id",
+  "wall_s": 21.7,
+  "rows_scanned": 2510487,
+  "decompressed_bytes": 8320640815,
+  "rows_per_s": 115877.8,
+  "mb_per_s": 384.06,
+  "prefix_fallbacks": 0,
+  "rows_kept": 134663,
+  "sessions_found": 4200
+ },
+ "split_E": {
+  "validate": {
+   "rows": 158746,
+   "sessions": 2000,
+   "call": 60396,
+   "result": 60396,
+   "assistant": 36267,
+   "system": 1687
+  },
+  "sessions": 2000,
+  "sessions_requested": 2000,
+  "events_by_kind": {
+   "call": 60396,
+   "result": 60396,
+   "assistant": 36267,
+   "system": 1687
+  },
+  "events_by_stratum": {
+   "openai-responses": 31674,
+   "gemini-pro": 28764,
+   "anthropic-sonnet": 24622,
+   "anthropic-opus": 24266,
+   "compat-chat": 21040,
+   "anthropic-haiku": 11686,
+   "gemini-flash": 7313,
+   "openai-chat": 4145,
+   "anthropic-fable": 3080,
+   "anthropic-claude-code": 2156
+  },
+  "sessions_by_stratum": {
+   "openai-responses": 483,
+   "gemini-pro": 312,
+   "anthropic-opus": 291,
+   "anthropic-sonnet": 272,
+   "compat-chat": 268,
+   "anthropic-haiku": 119,
+   "gemini-flash": 91,
+   "openai-chat": 85,
+   "anthropic-fable": 44,
+   "anthropic-claude-code": 35
+  },
+  "turn_rows": 64270,
+  "rows_by_shape": {
+   "anthropic": 23548,
+   "empty-list": 383,
+   "openai-responses": 14230,
+   "gemini": 14352,
+   "openai-chat": 10971,
+   "anthropic-sdk": 786
+  },
+  "synthetic_rows_by_rule": {
+   "zero_msg_id": 726,
+   "empty_responses_list": 383,
+   "gemini_bare_call": 403,
+   "zero_call_id": 175
+  },
+  "talk_only_rows": 2187,
+  "empty_text_assistant_events": 57,
+  "talk_only_rows_with_output": 0,
+  "calls_by_tool": {
+   "gui": 27348,
+   "shell": 24985,
+   "get_pixel_coords_of_element": 4012,
+   "send_message_back_to_chat": 2617,
+   "pause": 1041,
+   "search_history": 298,
+   "view_clipboard": 51,
+   "move_to_room": 23,
+   "request_google_sign_in": 12,
+   "request_human_helper": 4,
+   "request_approval_for_unsolicited_outreach": 3,
+   "cancel_request_for_human_helper": 2
+  },
+  "calls_by_tool_raw": {
+   "bash": 24985,
+   "use_computer": 13047,
+   "computer": 12563,
+   "get_pixel_coords_of_element": 4012,
+   "send_message_to_chat": 2617,
+   "computer_call": 1179,
+   "pause": 1041,
+   "search_history": 298,
+   "left_click": 171,
+   "scroll": 166,
+   "key": 88,
+   "view_clipboard": 51,
+   "screenshot": 51,
+   "type": 41,
+   "wait": 26,
+   "move_to_room": 23,
+   "triple_click": 16,
+   "request_google_sign_in": 12,
+   "request_human_helper": 4,
+   "request_approval_for_unsolicited_outreach": 3,
+   "cancel_request_for_human_helper": 2
+  },
+  "shell_share_of_calls": {
+   "k": 24985,
+   "n": 60396,
+   "frac": 0.413686
+  },
+  "shell_calls_with_command": {
+   "k": 24922,
+   "n": 24985,
+   "frac": 0.997478
+  },
+  "results": {
+   "n": 60396,
+   "output_non_null": {
+    "k": 28972,
+    "n": 60396,
+    "frac": 0.479701
+   },
+   "output_non_empty": {
+    "k": 28972,
+    "n": 60396,
+    "frac": 0.479701
+   },
+   "stderr_non_null": {
+    "k": 3776,
+    "n": 60396,
+    "frac": 0.062521
+   },
+   "stderr_non_empty": {
+    "k": 3776,
+    "n": 60396,
+    "frac": 0.062521
+   }
+  },
+  "results_shell": {
+   "n": 24985,
+   "output_non_empty": {
+    "k": 20929,
+    "n": 24985,
+    "frac": 0.837663
+   },
+   "stderr_non_empty": {
+    "k": 3455,
+    "n": 24985,
+    "frac": 0.138283
+   }
+  },
+  "usage_fill_by_shape_first_row_of_message": {
+   "anthropic": {
+    "k": 22822,
+    "n": 22822,
+    "frac": 1.0
+   },
+   "anthropic-sdk": {
+    "k": 786,
+    "n": 786,
+    "frac": 1.0
+   },
+   "gemini": {
+    "k": 13949,
+    "n": 13949,
+    "frac": 1.0
+   },
+   "openai-chat": {
+    "k": 0,
+    "n": 10697,
+    "frac": 0.0
+   },
+   "openai-responses": {
+    "k": 0,
+    "n": 14230,
+    "frac": 0.0
+   }
+  },
+  "usage_fill_by_row_shape_all_non_synthetic_rows": {
+   "anthropic": {
+    "k": 22822,
+    "n": 22822,
+    "frac": 1.0
+   },
+   "anthropic-sdk": {
+    "k": 786,
+    "n": 786,
+    "frac": 1.0
+   },
+   "gemini": {
+    "k": 13949,
+    "n": 13949,
+    "frac": 1.0
+   },
+   "openai-chat": {
+    "k": 0,
+    "n": 10796,
+    "frac": 0.0
+   },
+   "openai-responses": {
+    "k": 0,
+    "n": 14230,
+    "frac": 0.0
+   }
+  },
+  "usage_events_sharing_session_api_msg_id": 0,
+  "usage_events_with_null_api_msg_id": 1923,
+  "anthropic_sdk": {
+   "rows": 786,
+   "rule": {
+    "prompt_tokens": 33,
+    "same_id": 551,
+    "history": 202
+   },
+   "rows_text_id_ne_thinking_id": 235,
+   "rows_text_id_ne_thinking_id_by_acting_message": {
+    "thinkingMessage": 235
+   },
+   "history_overrides_of_row_local_pick": 2,
+   "rows_with_new_text_msg_id": 584,
+   "rows_with_new_thinking_msg_id": 786,
+   "pre_fix_key_rows_repeating_earlier_text_id": 202,
+   "pre_fix_key_of_which_new_thinking_id": 202,
+   "dup_message_rows_acting_id_repeated": 0,
+   "call_events": 786,
+   "call_events_with_usage": {
+    "k": 786,
+    "n": 786,
+    "frac": 1.0
+   },
+   "call_events_distinct_api_msg_id": 786,
+   "non_acting_text_message_usage_on_text_event": 33,
+   "new_non_acting_message_usage_in_extra_only": 0,
+   "messages_with_reasoning_attached": 786
+  },
+  "timing_fill_by_shape_first_row_of_message": {
+   "anthropic": {
+    "server_timing_dur": {
+     "k": 0,
+     "n": 22822,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 22822,
+     "frac": 0.0
+    }
+   },
+   "anthropic-sdk": {
+    "server_timing_dur": {
+     "k": 0,
+     "n": 786,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 786,
+     "frac": 0.0
+    }
+   },
+   "gemini": {
+    "server_timing_dur": {
+     "k": 12026,
+     "n": 13949,
+     "frac": 0.862141
+    },
+    "http_date": {
+     "k": 12026,
+     "n": 13949,
+     "frac": 0.862141
+    }
+   },
+   "openai-chat": {
+    "server_timing_dur": {
+     "k": 0,
+     "n": 10697,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 10697,
+     "frac": 0.0
+    }
+   },
+   "openai-responses": {
+    "server_timing_dur": {
+     "k": 0,
+     "n": 14230,
+     "frac": 0.0
+    },
+    "http_date": {
+     "k": 0,
+     "n": 14230,
+     "frac": 0.0
+    }
+   }
+  },
+  "call_id_source": {
+   "call_id_provider": 52393,
+   "no_provider_call": 8003
+  },
+  "call_match": {
+   "action_exact": 25604,
+   "command": 24743,
+   "name": 9255,
+   "none": 786,
+   "action": 4,
+   "single": 4
+  },
+  "dup_message_rows": 99,
+  "dup_message_rows_by_shape": {
+   "openai-chat": 99
+  },
+  "unexecuted_calls": 377,
+  "unexecuted_calls_by_shape": {
+   "gemini": 366,
+   "openai-chat": 2,
+   "anthropic": 8,
+   "openai-responses": 1
+  },
+  "unexecuted_calls_on_talk_only_turns": 13,
+  "unexecuted_calls_on_action_turns": 364,
+  "calls_whose_action_has_no_name_by_tool": {
+   "gui": 2,
+   "shell": 2
+  },
+  "call_stop_reason_when_action_empty": {
+   "STOP": 1,
+   "max_tokens": 1
+  },
+  "created_at_ties": {
+   "tie_groups": 0,
+   "rows_in_ties": 0,
+   "tie_groups_within_one_message": 0,
+   "tie_break": "(created_at, executed-call index within the shared message, row id)"
+  },
+  "call_ids_duplicated_within_session": 0,
+  "calls_without_result": 0,
+  "results_without_call": 0,
+  "ts_null": 0,
+  "assistant_text_chars": {
+   "n": 36267,
+   "min": 0.0,
+   "p1": 6.0,
+   "p5": 44.0,
+   "p25": 85.0,
+   "p50": 133.0,
+   "p75": 206.0,
+   "p95": 461.0,
+   "p99": 1018.679999999993,
+   "max": 21623.0,
+   "mean": 185.63644635619158
+  },
+  "assistant_text_containing_thinking_tag": {
+   "k": 24,
+   "n": 36267,
+   "frac": 0.000662
+  },
+  "usage_in_on_events": {
+   "k": 37590,
+   "n": 158746,
+   "frac": 0.236793
+  },
+  "created_minus_http_date_seconds": {
+   "n": 12026,
+   "min": 0.08949,
+   "p1": 0.24137775,
+   "p5": 0.51145975,
+   "p25": 1.7272985,
+   "p50": 4.605076,
+   "p75": 5.9520634999999995,
+   "p95": 19.81621825,
+   "p99": 63.196651249999995,
+   "max": 364.257293,
+   "mean": 7.453989515799101
+  },
+  "server_timing_dur_ms": {
+   "n": 12026,
+   "min": 1097.0,
+   "p1": 1850.25,
+   "p5": 2493.0,
+   "p25": 3746.25,
+   "p50": 5137.0,
+   "p75": 7235.5,
+   "p95": 12235.0,
+   "p99": 23564.75,
+   "max": 239553.0,
+   "mean": 6245.5778313653755
+  },
+  "result_updated_minus_created_seconds": {
+   "n": 60396,
+   "min": 0.0,
+   "p1": 1e-06,
+   "p5": 1e-06,
+   "p25": 2e-06,
+   "p50": 2e-06,
+   "p75": 3e-06,
+   "p95": 3e-06,
+   "p99": 4e-06,
+   "max": 6812.262421,
+   "mean": 0.17349537709450957
+  },
+  "call_events_vs_pass1_index": {
+   "api_msg_id_equal": {
+    "k": 60396,
+    "n": 60396,
+    "frac": 1.0
+   },
+   "api_msg_id_differs_by_shape": {},
+   "usage_in_out_equal_where_call_has_usage": {
+    "k": 37223,
+    "n": 37223,
+    "frac": 1.0
+   }
+  },
+  "anthropic_sdk_raw_check": {
+   "sessions": 35,
+   "rows": 786,
+   "sessions_reasoning_chars_equal": 35,
+   "reasoning_chars_raw": 232887,
+   "reasoning_chars_ir": 232887,
+   "calls_ids_differ": 235,
+   "calls_ids_differ_api_eq_thinking_id": 235,
+   "calls_ids_differ_api_eq_text_id": 0,
+   "calls_with_usage": 786,
+   "calls_usage_equal_raw_message": 786,
+   "raw_distinct_message_ids": 819,
+   "raw_ids_with_usage_on_an_event": 819,
+   "usage_events_api_msg_id_not_in_raw": 0,
+   "usage_events_repeating_an_api_msg_id": 0
+  }
+ },
+ "wall_s_E_build": 3.3,
+ "rederived": {
+  "A": {
+   "path": "scratch (throwaway)",
+   "validate": {
+    "rows": 16085,
+    "sessions": 200,
+    "call": 6107,
+    "result": 6107,
+    "assistant": 3708,
+    "system": 163
+   }
+  },
+  "B": {
+   "path": "scratch (throwaway)",
+   "validate": {
+    "rows": 158111,
+    "sessions": 2000,
+    "call": 59956,
+    "result": 59956,
+    "assistant": 36509,
+    "system": 1690
+   }
+  }
+ },
+ "wall_s_total": 33.2
+}

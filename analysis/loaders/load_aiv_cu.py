@@ -12,6 +12,8 @@ Outputs
 
 Run: python -m analysis.loaders.load_aiv_cu                 end to end, idempotent
      python -m analysis.loaders.load_aiv_cu --reuse-pass1   reuse the pass-1 parquet if present (development only)
+     python -m analysis.loaders.load_aiv_cu --split E [--rederive A --scratch DIR]
+         Phase E: analysis/cache/aiv_cu_E.parquet + analysis/out/phase_e/aiv_cu_E_build.json only (build_split_e)
 
 PASS 1 (all rows). The file is ordered by random UUID `id`, so each session's turns are scattered through it. The main
 process decompresses 64 MB blocks (cut at a newline) and a spawn pool json-parses every line with the same message parser
@@ -1184,15 +1186,89 @@ def sdk_raw_check(df, lines, ids):
     return dict(c)
 
 
-def build_split(name, ids, lines, sess_by_id, counters):
+def build_split(name, ids, lines, sess_by_id, counters, path=None):
+    """Per-session IR build of every split (A/B in main(), E in build_split_e()). path: default SPLIT_PQ.format(name)."""
     evs = []
     for sid in ids:
         s = sess_by_id[sid]
         evs += build_session(sid, s["stratum"], s["model_string"], lines.get(sid, []), counters)
     df = ir.to_frame(evs)
     v = ir.validate(df)
-    df.to_parquet(SPLIT_PQ.format(name), index=False)
+    df.to_parquet(path or SPLIT_PQ.format(name), index=False)
     return df, v
+
+
+def pass1_agreement(df, p1_key):
+    """pass 1 (row-parallel + resolve_sdk_turns) and pass 2 (per session) must key every executed turn the same way.
+    p1_key: pass-1 index rows (index = turn id; columns shape, api_msg_id, usage_in, usage_out)."""
+    c = df[df.kind == "call"][["uuid", "api_msg_id", "usage_in", "usage_out"]].astype(object)
+    c = c.join(p1_key.astype(object), on="uuid", rsuffix="_p1")
+    same_id = (c["api_msg_id"].isna() & c["api_msg_id_p1"].isna()) | (c["api_msg_id"] == c["api_msg_id_p1"])
+    has_u = c["usage_in"].notna()
+    same_u = (c.loc[has_u, "usage_in"].astype(float) == c.loc[has_u, "usage_in_p1"].astype(float)) & \
+             (c.loc[has_u, "usage_out"].astype(float) == c.loc[has_u, "usage_out_p1"].astype(float))
+    return {"api_msg_id_equal": _frac(same_id.sum(), len(c)),
+            "api_msg_id_differs_by_shape": _vc(c.loc[~same_id.to_numpy(), "shape"]),
+            "usage_in_out_equal_where_call_has_usage": _frac(same_u.sum(), int(has_u.sum()))}
+
+
+def build_split_e(rederive=(), scratch=None):
+    """E split -> analysis/cache/aiv_cu_E.parquet through build_split (the A/B per-session code path).
+    E ids = analysis/cache/samples/aiv_cu_EH.json key "E" (analysis/probes/phase_e_split.py); the "H" key is never used.
+    Session attributes (stratum, model_string, shape) come from aiv_cu_sessions.parquet (written by main), read for the
+    requested sessions only. Pass 2 (pass2_extract, the fixed-offset single-process scan of computer_use_turns) keeps
+    raw lines of the requested sessions only. The pass-1 agreement check reads the pass-1 index rows of E sessions only.
+    The sample files, aiv_cu_sessions/turns parquet, the A/B caches and analysis/out/build/aiv_cu_build.json are not
+    written. Report: analysis/out/phase_e/aiv_cu_E_build.json.
+    rederive: splits from aiv_cu.json (e.g. "A") re-derived through the same path into `scratch`
+    (aiv_cu_<split>.rederived.parquet; never analysis/cache) for an equivalence check against the existing caches."""
+    t_start = time.perf_counter()
+    with open(os.path.join(CACHE, "samples", f"{CORPUS}_EH.json"), encoding="utf-8") as f:
+        e_ids = list(json.load(f)["E"])
+    with open(SAMPLE_JSON, encoding="utf-8") as f:
+        smp = json.load(f)
+    assert not set(e_ids) & (set(smp["A"]) | set(smp["B"]))
+    want = sorted(set(e_ids).union(*[smp[sp] for sp in rederive]))
+    sessions = pd.read_parquet(SESS_PQ, filters=[("session_id", "in", want)])
+    assert set(sessions.session_id) == set(want), "sessions table lacks requested sessions"
+    sess_by_id = sessions.set_index("session_id")[["stratum", "model_string", "shape"]].to_dict("index")
+    lines, p2 = pass2_extract(want)
+    print("pass2:", p2, flush=True)
+    t1 = time.perf_counter()
+    counters = collections.Counter()
+    df, v = build_split("E", e_ids, lines, sess_by_id, counters)
+    e_secs = time.perf_counter() - t1
+    rep = split_report(df, v, counters, sess_by_id, e_ids)
+    p1 = pd.read_parquet(TURNS_PQ, columns=["id", "session_id", "shape", "api_msg_id", "usage_in", "usage_out"],
+                         filters=[("session_id", "in", e_ids)])
+    rep["call_events_vs_pass1_index"] = pass1_agreement(df, p1.set_index("id")[["shape", "api_msg_id", "usage_in", "usage_out"]])
+    rep["anthropic_sdk_raw_check"] = sdk_raw_check(df, lines, e_ids)
+    print("E", v, rep["call_events_vs_pass1_index"], rep["anthropic_sdk_raw_check"], flush=True)
+    report = {"corpus": CORPUS, "split": "E", "built_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+              "loader": "analysis/loaders/load_aiv_cu.py", "entry_point": "python -m analysis.loaders.load_aiv_cu --split E",
+              "split_source": "analysis/cache/samples/aiv_cu_EH.json#E",
+              "cache": {"path": f"analysis/cache/{CORPUS}_E.parquet", "rows": int(len(df)),
+                        "sessions": int(df.session_id.nunique()), "sessions_requested": len(e_ids),
+                        "bytes": os.path.getsize(SPLIT_PQ.format("E"))},
+              "pass2": p2, "split_E": rep, "wall_s_E_build": round(e_secs, 1)}
+    del df
+    if rederive:
+        assert scratch and not os.path.abspath(scratch).startswith(os.path.abspath(CACHE)), \
+            "rederive needs a scratch dir outside analysis/cache"
+        os.makedirs(scratch, exist_ok=True)
+        report["rederived"] = {}
+        for sp in rederive:
+            c2 = collections.Counter()
+            d2, v2 = build_split(sp, smp[sp], lines, sess_by_id, c2,
+                                 path=os.path.join(scratch, f"{CORPUS}_{sp}.rederived.parquet"))
+            report["rederived"][sp] = {"path": "scratch (throwaway)", "validate": {k: int(x) for k, x in v2.items()}}
+            del d2
+    report["wall_s_total"] = round(time.perf_counter() - t_start, 1)
+    out = os.path.join(ROOT, "analysis", "out", "phase_e")
+    os.makedirs(out, exist_ok=True)
+    with open(os.path.join(out, f"{CORPUS}_E_build.json"), "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=1, default=str)
+    print("wrote", os.path.join(out, f"{CORPUS}_E_build.json"), flush=True)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -1422,7 +1498,14 @@ def split_report(df, v, counters, sess_by_id, ids):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--reuse-pass1", action="store_true", help="reuse analysis/cache/aiv_cu_turns.parquet if present")
+    ap.add_argument("--split", choices=["E"], help="build only this extra split's cache (E); default: full A/B build")
+    ap.add_argument("--rederive", nargs="*", default=[], choices=["A", "B"],
+                    help="with --split E: also re-derive these A/B splits into --scratch for an equivalence check")
+    ap.add_argument("--scratch", help="output dir for --rederive (must be outside analysis/cache)")
     args = ap.parse_args(argv)
+    if args.split == "E":
+        return build_split_e(rederive=args.rederive, scratch=args.scratch)
+    assert not args.rederive, "--rederive needs --split E"
     os.makedirs(os.path.dirname(SAMPLE_JSON), exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
     turns, p1 = run_pass1(reuse=args.reuse_pass1)
@@ -1444,17 +1527,7 @@ def main(argv=None):
         counters = collections.Counter()
         df, v = build_split(name, smp[name], lines, sess_by_id, counters)
         splits[name] = split_report(df, v, counters, sess_by_id, smp[name])
-        # pass 1 (row-parallel + resolve_sdk_turns) and pass 2 (per session) must key every executed turn the same way
-        c = df[df.kind == "call"][["uuid", "api_msg_id", "usage_in", "usage_out"]].astype(object)
-        c = c.join(p1_key.astype(object), on="uuid", rsuffix="_p1")
-        same_id = (c["api_msg_id"].isna() & c["api_msg_id_p1"].isna()) | (c["api_msg_id"] == c["api_msg_id_p1"])
-        has_u = c["usage_in"].notna()
-        same_u = (c.loc[has_u, "usage_in"].astype(float) == c.loc[has_u, "usage_in_p1"].astype(float)) & \
-                 (c.loc[has_u, "usage_out"].astype(float) == c.loc[has_u, "usage_out_p1"].astype(float))
-        splits[name]["call_events_vs_pass1_index"] = {
-            "api_msg_id_equal": _frac(same_id.sum(), len(c)),
-            "api_msg_id_differs_by_shape": _vc(c.loc[~same_id.to_numpy(), "shape"]),
-            "usage_in_out_equal_where_call_has_usage": _frac(same_u.sum(), int(has_u.sum()))}
+        splits[name]["call_events_vs_pass1_index"] = pass1_agreement(df, p1_key)
         splits[name]["anthropic_sdk_raw_check"] = sdk_raw_check(df, lines, smp[name])
         print(name, v, splits[name]["call_events_vs_pass1_index"], splits[name]["anthropic_sdk_raw_check"], flush=True)
 

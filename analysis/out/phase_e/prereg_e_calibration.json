@@ -1,0 +1,3083 @@
+{
+ "script": "analysis/probes/prereg_e_calibration.py",
+ "split": "A only (asserted; B/E/EH/H never opened)",
+ "not_computed": "Phase E outcomes: N1/N3 correlations, detector flag or violation rates (N2, N5, R2, R3), determinism drift, round-number shares, recalls, tamper results, second-pass statistics",
+ "units": {
+  "swechat/claude_code": {
+   "sessions_A": 128,
+   "length_terciles": {
+    "sessions": 126,
+    "cuts": [
+     33.0,
+     102.66666666666661
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 0.33902421075870187,
+     "top_share_sessions": 0.3888888888888889,
+     "top_session_share_events": 0.07638531164912797,
+     "n_clusters": 46,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.41489439988225774,
+     "top_share_sessions": 0.30158730158730157,
+     "top_session_share_events": 0.07638531164912797,
+     "n_clusters": 42,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.7050555596438296,
+     "top_share_sessions": 0.6111111111111112,
+     "n_clusters": 6,
+     "dominated_at_A": true
+    }
+   },
+   "bracket": {
+    "responses_decoded": 11047,
+    "sessions": 125,
+    "streams_ge2": 280,
+    "tol_ms": 2000.0,
+    "inconsistent_streams": 0,
+    "inconsistent_rate_by_session": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 123,
+     "num": 0.0,
+     "den": 280.0,
+     "wilson_hi_per_event": 0.013534309276723356,
+     "wilson_hi_per_session": 0.03028659367273828
+    },
+    "slack_U_minus_L_consistent_ms": {
+     "n": 280,
+     "n_sessions": 123,
+     "q0.05": 1119.8,
+     "q0.5": 2301.0,
+     "q0.95": 3893.7500000000014
+    },
+    "benign_category_counts_inconsistent_A": {},
+    "request_ids_in_more_than_one_A_session": 0,
+    "note": "A-split honest bracket baseline: context for the fixed 2,000 ms tolerance; sets no threshold"
+   },
+   "n1": {
+    "qualified_by_class": {
+     "shell": 2812,
+     "auto_read": 2046
+    },
+    "qualified_sessions": 113,
+    "repeat_coverage_counts_A": {
+     "auto_read": {
+      "calls_in_repeat_groups": 195,
+      "qualified_calls": 2046,
+      "sessions": 92,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     },
+     "shell": {
+      "calls_in_repeat_groups": 509,
+      "qualified_calls": 2812,
+      "sessions": 109,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     }
+    },
+    "residuals": {
+     "n": 646,
+     "n_sessions": 62,
+     "by_class": {
+      "shell": 453,
+      "auto_read": 193
+     },
+     "quantiles": {
+      "n": 646,
+      "n_sessions": 62,
+      "q0.005": -2.02543481934223,
+      "q0.01": -1.5006798562216284,
+      "q0.05": -0.5288441182894029,
+      "q0.25": -0.10914446942506806,
+      "q0.5": 0.0,
+      "q0.75": 0.10880411296930562,
+      "q0.95": 0.5593986923987031,
+      "q0.99": 1.656109398478929,
+      "q0.995": 1.9983802037547433
+     }
+    },
+    "bounds_ok": true
+   },
+   "latency_counts": {
+    "n3": {
+     "gaps": 12186,
+     "sessions_with_gaps": 125,
+     "sessions_ge_20_gaps": 96
+    },
+    "n4": {
+     "W_pairs": 2046,
+     "W_k_ge_2": 9,
+     "W_k_ge_2_sessions": 4,
+     "W_k_ge_4": 0,
+     "G_pairs": 338,
+     "G_k_ge_2": 79,
+     "G_k_ge_2_sessions": 21,
+     "k_hist_W": {
+      "1": 2037,
+      "2": 9
+     },
+     "note": "eligibility counts; G here omits the Phase B nested-human-marker exclusion (count only)"
+    }
+   },
+   "cold_start": {
+    "eligible_sessions": 85
+   },
+   "n2": {
+    "granularity": {
+     "responses": 10144,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 104.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": true
+    },
+    "tau": 0.4088050314465409,
+    "tau_n": 4215,
+    "tau_sessions": 109,
+    "eligible_responses": 3966,
+    "eligible_sessions": 122,
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n5": {
+    "a_determinism_pairs": {
+     "pairs": 89,
+     "sessions": 27
+    },
+    "b_sort_eligible": {
+     "ls": {
+      "outputs": 96,
+      "sessions": 39
+     },
+     "grep_n": {
+      "outputs": 388,
+      "sessions": 55
+     }
+    },
+    "d_whitespace_eligible": {
+     "git_status_tab": {
+      "outputs": 75,
+      "sessions": 47
+     },
+     "ls_long_alignment": {
+      "outputs": 85,
+      "sessions": 29
+     },
+     "pytest_banner": {
+      "outputs": 36,
+      "sessions": 11
+     },
+     "wc_alignment": {
+      "outputs": 4,
+      "sessions": 4
+     }
+    },
+    "c_truncation_A": {
+     "cc_glob_cap": {
+      "n": 44,
+      "sessions": 25,
+      "lines_mode": [
+       [
+        100,
+        44
+       ]
+      ]
+     },
+     "cc_chars_mid": {
+      "n": 15,
+      "sessions": 10,
+      "prefix_u16_mode": [
+       [
+        5002,
+        14
+       ],
+       [
+        4732,
+        1
+       ]
+      ],
+      "suffix_u16_mode": [
+       [
+        5002,
+        14
+       ],
+       [
+        4462,
+        1
+       ]
+      ],
+      "prefix_u16_stripped_mode": [
+       [
+        5000,
+        13
+       ],
+       [
+        4998,
+        1
+       ],
+       [
+        4730,
+        1
+       ]
+      ],
+      "suffix_u16_stripped_mode": [
+       [
+        5000,
+        13
+       ],
+       [
+        4460,
+        1
+       ],
+       [
+        4999,
+        1
+       ]
+      ]
+     },
+     "cc_lines_tail": {
+      "n": 3,
+      "sessions": 2,
+      "prefix_raw_mode_by_tool": {
+       "grep": [
+        [
+         20006,
+         2
+        ]
+       ],
+       "shell": [
+        [
+         30006,
+         1
+        ]
+       ]
+      }
+     }
+    },
+    "e_size_families_A": {
+     "families_ge_100_results_ge_10_sessions": 12,
+     "families_total": 128
+    },
+    "f_error_fidelity_checkable": {
+     "frames": 0,
+     "sessions": 0,
+     "error_results": 550
+    }
+   },
+   "f3_round": {
+    "T_orig_distinct_values": 47,
+    "excluded_strict_any_occurrence": 23,
+    "excluded_first_occurrence": 23,
+    "first_occurrence_json_number": 19,
+    "remaining_strict": 24,
+    "remaining_first": 24,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "r3_git": {
+    "claims_by_class": {
+     "generator": 194,
+     "rereader": 4,
+     "other": 1
+    },
+    "sessions_by_class": {
+     "generator": 58,
+     "rereader": 1,
+     "other": 1
+    },
+    "results": 13589,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 13589,
+    "pairs_stamped": 13589,
+    "pairs_distinct_stamps": 13552,
+    "request_ids": 21742,
+    "request_ids_decodable": 11047,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": true,
+    "results_with_text": 13589,
+    "commit_claims": 199,
+    "external_commit_table": true,
+    "raw_structured_counters": true,
+    "external_usage_tally": true
+   }
+  },
+  "swechat/codex": {
+   "sessions_A": 19,
+   "length_terciles": {
+    "sessions": 15,
+    "cuts": [
+     29.0,
+     88.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 0.3776785714285714,
+     "top_share_sessions": 0.4666666666666667,
+     "top_session_share_events": 0.1875,
+     "n_clusters": 6,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.5732142857142857,
+     "top_share_sessions": 0.5333333333333333,
+     "top_session_share_events": 0.1875,
+     "n_clusters": 4,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.8232142857142857,
+     "top_share_sessions": 0.9333333333333333,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    }
+   },
+   "n1": {
+    "qualified_by_class": {
+     "shell": 807
+    },
+    "qualified_sessions": 13,
+    "repeat_coverage_counts_A": {
+     "shell": {
+      "calls_in_repeat_groups": 137,
+      "qualified_calls": 807,
+      "sessions": 13,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     }
+    },
+    "residuals": {
+     "n": 133,
+     "n_sessions": 5,
+     "by_class": {
+      "shell": 133
+     },
+     "quantiles": {
+      "n": 133,
+      "n_sessions": 5,
+      "q0.005": -1.3337890482294819,
+      "q0.01": -1.1596082906901737,
+      "q0.05": -0.6222280195276054,
+      "q0.25": -0.05083701608995017,
+      "q0.5": 0.002093960054249111,
+      "q0.75": 0.042423814133633275,
+      "q0.95": 0.7242459789144273,
+      "q0.99": 1.293941803872085,
+      "q0.995": 1.3337890482294823
+     }
+    },
+    "bounds_ok": false
+   },
+   "latency_counts": {
+    "n3": {
+     "gaps": 650,
+     "sessions_with_gaps": 15,
+     "sessions_ge_20_gaps": 8
+    },
+    "n4": {
+     "W_pairs": 929,
+     "W_k_ge_2": 492,
+     "W_k_ge_2_sessions": 13,
+     "W_k_ge_4": 62,
+     "G_pairs": 0,
+     "G_k_ge_2": 0,
+     "G_k_ge_2_sessions": 0,
+     "k_hist_W": {
+      "1": 437,
+      "2": 205,
+      "3": 225,
+      "4": 33,
+      "5": 5,
+      "6": 9,
+      "7": 12,
+      "9": 3
+     },
+     "note": "eligibility counts; G here omits the Phase B nested-human-marker exclusion (count only)"
+    }
+   },
+   "cold_start": {
+    "eligible_sessions": 13
+   },
+   "n2": {
+    "granularity": {
+     "responses": 659,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 305.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": true
+    },
+    "tau": 0.49228374464870306,
+    "tau_n": 546,
+    "tau_sessions": 15,
+    "eligible_responses": 282,
+    "eligible_sessions": 14,
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n5": {
+    "a_determinism_pairs": {
+     "pairs": 0,
+     "sessions": 0
+    },
+    "b_sort_eligible": {
+     "grep_n": {
+      "outputs": 72,
+      "sessions": 11
+     },
+     "ls": {
+      "outputs": 1,
+      "sessions": 1
+     }
+    },
+    "d_whitespace_eligible": {
+     "ls_long_alignment": {
+      "outputs": 2,
+      "sessions": 2
+     },
+     "wc_alignment": {
+      "outputs": 1,
+      "sessions": 1
+     }
+    },
+    "c_truncation_A": {},
+    "e_size_families_A": {
+     "families_ge_100_results_ge_10_sessions": 0,
+     "families_total": 42
+    },
+    "f_error_fidelity_checkable": {
+     "frames": 0,
+     "sessions": 0,
+     "error_results": 52
+    }
+   },
+   "f3_round": {
+    "T_orig_distinct_values": 20,
+    "excluded_strict_any_occurrence": 18,
+    "excluded_first_occurrence": 18,
+    "first_occurrence_json_number": 17,
+    "remaining_strict": 2,
+    "remaining_first": 2,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "r3_git": {
+    "claims_by_class": {
+     "generator": 6,
+     "other": 1
+    },
+    "sessions_by_class": {
+     "generator": 3,
+     "other": 1
+    },
+    "results": 1120,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 1120,
+    "pairs_stamped": 1120,
+    "pairs_distinct_stamps": 1120,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": true,
+    "results_with_text": 1120,
+    "commit_claims": 7,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   }
+  },
+  "swechat/copilot": {
+   "sessions_A": 2,
+   "length_terciles": {
+    "sessions": 2,
+    "cuts": [
+     128.66666666666666,
+     136.33333333333334
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 0.5433962264150943,
+     "top_share_sessions": 0.5,
+     "top_session_share_events": 0.5433962264150943,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.5433962264150943,
+     "top_share_sessions": 0.5,
+     "top_session_share_events": 0.5433962264150943,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.5433962264150943,
+     "top_share_sessions": 0.5,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    }
+   },
+   "n2": {
+    "granularity": {
+     "responses": 177,
+     "G1_share_both": 0.0,
+     "G2_median_usage_out": 134.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": false
+    },
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "r3_git": {
+    "claims_by_class": {},
+    "sessions_by_class": {},
+    "results": 265,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 265,
+    "pairs_stamped": 265,
+    "pairs_distinct_stamps": 265,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 265,
+    "commit_claims": 0,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   }
+  },
+  "swechat/cursor": {
+   "sessions_A": 7,
+   "length_terciles": {
+    "sessions": 0
+   },
+   "dominance_context": {},
+   "n2": {
+    "granularity": {
+     "responses": 0,
+     "GRANULAR": false
+    },
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "r3_git": {
+    "claims_by_class": {},
+    "sessions_by_class": {},
+    "results": 0,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 0,
+    "pairs_stamped": 0,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": false,
+    "results_with_text": 0,
+    "commit_claims": 0,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   }
+  },
+  "swechat/gemini": {
+   "sessions_A": 15,
+   "length_terciles": {
+    "sessions": 10,
+    "cuts": [
+     111.0,
+     183.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 0.7916126242974492,
+     "top_share_sessions": 0.7,
+     "top_session_share_events": 0.25248594898400345,
+     "n_clusters": 3,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.7916126242974492,
+     "top_share_sessions": 0.7,
+     "top_session_share_events": 0.25248594898400345,
+     "n_clusters": 3,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    }
+   },
+   "n1": {
+    "qualified_by_class": {
+     "shell": 800,
+     "auto_read": 360
+    },
+    "qualified_sessions": 9,
+    "repeat_coverage_counts_A": {
+     "auto_read": {
+      "calls_in_repeat_groups": 240,
+      "qualified_calls": 360,
+      "sessions": 9,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     },
+     "shell": {
+      "calls_in_repeat_groups": 515,
+      "qualified_calls": 800,
+      "sessions": 8,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     }
+    },
+    "residuals": {
+     "n": 729,
+     "n_sessions": 8,
+     "by_class": {
+      "auto_read": 240,
+      "shell": 489
+     },
+     "quantiles": {
+      "n": 729,
+      "n_sessions": 8,
+      "q0.005": -1.717226725716463,
+      "q0.01": -1.37949347194496,
+      "q0.05": -0.6999818874025785,
+      "q0.25": -0.11440074516839194,
+      "q0.5": 0.0,
+      "q0.75": 0.09139758836974932,
+      "q0.95": 0.7045287118852095,
+      "q0.99": 1.598801404339214,
+      "q0.995": 1.8536806630010416
+     }
+    },
+    "bounds_ok": true
+   },
+   "latency_counts": {
+    "n3": {
+     "gaps": 2270,
+     "sessions_with_gaps": 10,
+     "sessions_ge_20_gaps": 8
+    },
+    "n4": {
+     "W_pairs": 360,
+     "W_k_ge_2": 0,
+     "W_k_ge_2_sessions": 0,
+     "W_k_ge_4": 0,
+     "G_pairs": 25,
+     "G_k_ge_2": 0,
+     "G_k_ge_2_sessions": 0,
+     "k_hist_W": {
+      "1": 360
+     },
+     "note": "eligibility counts; G here omits the Phase B nested-human-marker exclusion (count only)"
+    }
+   },
+   "cold_start": {
+    "eligible_sessions": 8
+   },
+   "n2": {
+    "granularity": {
+     "responses": 2791,
+     "G1_share_both": 0.8233608025797206,
+     "G2_median_usage_out": 138.5,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": false
+    },
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n5": {
+    "a_determinism_pairs": {
+     "pairs": 1,
+     "sessions": 1
+    },
+    "b_sort_eligible": {
+     "ls": {
+      "outputs": 3,
+      "sessions": 1
+     }
+    },
+    "d_whitespace_eligible": {
+     "git_status_tab": {
+      "outputs": 9,
+      "sessions": 5
+     },
+     "pytest_banner": {
+      "outputs": 32,
+      "sessions": 1
+     },
+     "ls_long_alignment": {
+      "outputs": 3,
+      "sessions": 1
+     }
+    },
+    "c_truncation_A": {},
+    "e_size_families_A": {
+     "families_ge_100_results_ge_10_sessions": 0,
+     "families_total": 37
+    },
+    "f_error_fidelity_checkable": {
+     "frames": 0,
+     "sessions": 0,
+     "error_results": 423
+    }
+   },
+   "f3_round": {
+    "T_orig_distinct_values": 4,
+    "excluded_strict_any_occurrence": 1,
+    "excluded_first_occurrence": 1,
+    "first_occurrence_json_number": 0,
+    "remaining_strict": 3,
+    "remaining_first": 3,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "r3_git": {
+    "claims_by_class": {
+     "generator": 4
+    },
+    "sessions_by_class": {
+     "generator": 3
+    },
+    "results": 2313,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 2313,
+    "pairs_stamped": 2313,
+    "pairs_distinct_stamps": 2313,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 2313,
+    "commit_claims": 4,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   }
+  },
+  "swechat/opencode": {
+   "sessions_A": 25,
+   "length_terciles": {
+    "sessions": 25,
+    "cuts": [
+     24.0,
+     134.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 0.9199464524765729,
+     "top_share_sessions": 0.88,
+     "top_session_share_events": 0.2037483266398929,
+     "n_clusters": 4,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.7646586345381526,
+     "top_share_sessions": 0.72,
+     "top_session_share_events": 0.2037483266398929,
+     "n_clusters": 5,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.7911646586345381,
+     "top_share_sessions": 0.8,
+     "n_clusters": 5,
+     "dominated_at_A": true
+    }
+   },
+   "n1": {
+    "qualified_by_class": {
+     "auto_read": 1554,
+     "shell": 1140
+    },
+    "qualified_sessions": 25,
+    "repeat_coverage_counts_A": {
+     "auto_read": {
+      "calls_in_repeat_groups": 197,
+      "qualified_calls": 1554,
+      "sessions": 25,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     },
+     "shell": {
+      "calls_in_repeat_groups": 520,
+      "qualified_calls": 1140,
+      "sessions": 25,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     }
+    },
+    "residuals": {
+     "n": 710,
+     "n_sessions": 10,
+     "by_class": {
+      "shell": 513,
+      "auto_read": 197
+     },
+     "quantiles": {
+      "n": 710,
+      "n_sessions": 10,
+      "q0.005": -0.708055895608718,
+      "q0.01": -0.6517373763184082,
+      "q0.05": -0.35096863593685346,
+      "q0.25": -0.05098757537765806,
+      "q0.5": 0.0,
+      "q0.75": 0.06400333580858515,
+      "q0.95": 0.3465464877588139,
+      "q0.99": 0.5935174501455909,
+      "q0.995": 0.645293949877318
+     }
+    },
+    "bounds_ok": true
+   },
+   "latency_counts": {
+    "n3": {
+     "gaps": 3201,
+     "sessions_with_gaps": 25,
+     "sessions_ge_20_gaps": 12
+    },
+    "n4": {
+     "W_pairs": 1554,
+     "W_k_ge_2": 411,
+     "W_k_ge_2_sessions": 20,
+     "W_k_ge_4": 99,
+     "G_pairs": 133,
+     "G_k_ge_2": 6,
+     "G_k_ge_2_sessions": 2,
+     "k_hist_W": {
+      "1": 1143,
+      "2": 185,
+      "3": 127,
+      "4": 58,
+      "5": 33,
+      "7": 1,
+      "8": 7
+     },
+     "note": "eligibility counts; G here omits the Phase B nested-human-marker exclusion (count only)"
+    }
+   },
+   "cold_start": {
+    "eligible_sessions": 25
+   },
+   "n2": {
+    "granularity": {
+     "responses": 3054,
+     "G1_share_both": 0.9718402095612312,
+     "G2_median_usage_out": 149.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": true
+    },
+    "tau": 0.3676106673737005,
+    "tau_n": 1780,
+    "tau_sessions": 25,
+    "eligible_responses": 1308,
+    "eligible_sessions": 25,
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n5": {
+    "a_determinism_pairs": {
+     "pairs": 2,
+     "sessions": 2
+    },
+    "b_sort_eligible": {
+     "ls": {
+      "outputs": 7,
+      "sessions": 2
+     },
+     "grep_n": {
+      "outputs": 22,
+      "sessions": 2
+     }
+    },
+    "d_whitespace_eligible": {
+     "ls_long_alignment": {
+      "outputs": 6,
+      "sessions": 2
+     },
+     "git_status_tab": {
+      "outputs": 2,
+      "sessions": 1
+     },
+     "wc_alignment": {
+      "outputs": 1,
+      "sessions": 1
+     }
+    },
+    "c_truncation_A": {},
+    "e_size_families_A": {
+     "families_ge_100_results_ge_10_sessions": 2,
+     "families_total": 54
+    },
+    "f_error_fidelity_checkable": {
+     "frames": 0,
+     "sessions": 0,
+     "error_results": 197
+    }
+   },
+   "f3_round": {
+    "T_orig_distinct_values": 17,
+    "excluded_strict_any_occurrence": 9,
+    "excluded_first_occurrence": 9,
+    "first_occurrence_json_number": 6,
+    "remaining_strict": 8,
+    "remaining_first": 8,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "r3_git": {
+    "claims_by_class": {
+     "generator": 34
+    },
+    "sessions_by_class": {
+     "generator": 6
+    },
+    "results": 3735,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 3735,
+    "pairs_stamped": 3735,
+    "pairs_distinct_stamps": 3721,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": true,
+    "results_with_text": 3735,
+    "commit_claims": 34,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   }
+  },
+  "swechat/simple_text": {
+   "sessions_A": 4,
+   "length_terciles": {
+    "sessions": 0
+   },
+   "dominance_context": {},
+   "n2": {
+    "granularity": {
+     "responses": 0,
+     "GRANULAR": false
+    },
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "r3_git": {
+    "claims_by_class": {},
+    "sessions_by_class": {},
+    "results": 0,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 0,
+    "pairs_stamped": 0,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": false,
+    "results_with_text": 0,
+    "commit_claims": 0,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   }
+  },
+  "cc_local": {
+   "sessions_A": 123,
+   "length_terciles": {
+    "sessions": 107,
+    "cuts": [
+     5.666666666666657,
+     17.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 0.8962044926413633,
+     "top_share_sessions": 0.9532710280373832,
+     "top_session_share_events": 0.44965143299767624,
+     "n_clusters": 4,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.9333849728892332,
+     "top_share_sessions": 0.7663551401869159,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    }
+   },
+   "bracket": {
+    "responses_decoded": 4294,
+    "sessions": 118,
+    "streams_ge2": 187,
+    "tol_ms": 2000.0,
+    "inconsistent_streams": 0,
+    "inconsistent_rate_by_session": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 106,
+     "num": 0.0,
+     "den": 187.0,
+     "wilson_hi_per_event": 0.020129783024246284,
+     "wilson_hi_per_session": 0.034973998922084165
+    },
+    "slack_U_minus_L_consistent_ms": {
+     "n": 187,
+     "n_sessions": 106,
+     "q0.05": 1292.1000000000001,
+     "q0.5": 1882.0,
+     "q0.95": 3834.399999999998
+    },
+    "benign_category_counts_inconsistent_A": {},
+    "request_ids_in_more_than_one_A_session": 0,
+    "note": "A-split honest bracket baseline: context for the fixed 2,000 ms tolerance; sets no threshold"
+   },
+   "n1": {
+    "qualified_by_class": {
+     "shell": 2710,
+     "auto_read": 439
+    },
+    "qualified_sessions": 106,
+    "repeat_coverage_counts_A": {
+     "auto_read": {
+      "calls_in_repeat_groups": 20,
+      "qualified_calls": 439,
+      "sessions": 60,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     },
+     "shell": {
+      "calls_in_repeat_groups": 39,
+      "qualified_calls": 2710,
+      "sessions": 57,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     }
+    },
+    "residuals": {
+     "n": 57,
+     "n_sessions": 3,
+     "by_class": {
+      "shell": 37,
+      "auto_read": 20
+     },
+     "quantiles": {
+      "n": 57,
+      "n_sessions": 3,
+      "q0.005": -0.6814337300197777,
+      "q0.01": -0.6065446471515845,
+      "q0.05": -0.4769425489087508,
+      "q0.25": -0.0207646386139424,
+      "q0.5": 0.0,
+      "q0.75": 0.016470736973605793,
+      "q0.95": 0.39519185879400004,
+      "q0.99": 0.8537391615443561,
+      "q0.995": 0.9157313834166019
+     }
+    },
+    "bounds_ok": false
+   },
+   "latency_counts": {
+    "n3": {
+     "gaps": 2670,
+     "sessions_with_gaps": 76,
+     "sessions_ge_20_gaps": 7
+    },
+    "n4": {
+     "W_pairs": 439,
+     "W_k_ge_2": 0,
+     "W_k_ge_2_sessions": 0,
+     "W_k_ge_4": 0,
+     "G_pairs": 49,
+     "G_k_ge_2": 16,
+     "G_k_ge_2_sessions": 4,
+     "k_hist_W": {
+      "1": 439
+     },
+     "note": "eligibility counts; G here omits the Phase B nested-human-marker exclusion (count only)"
+    }
+   },
+   "cold_start": {
+    "eligible_sessions": 31
+   },
+   "n2": {
+    "granularity": {
+     "responses": 4036,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 926.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": true
+    },
+    "tau": 0.7717569786535303,
+    "tau_n": 3509,
+    "tau_sessions": 107,
+    "eligible_responses": 1737,
+    "eligible_sessions": 106,
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n5": {
+    "a_determinism_pairs": {
+     "pairs": 15,
+     "sessions": 1
+    },
+    "b_sort_eligible": {
+     "ls": {
+      "outputs": 99,
+      "sessions": 22
+     },
+     "grep_n": {
+      "outputs": 81,
+      "sessions": 13
+     }
+    },
+    "d_whitespace_eligible": {
+     "ls_long_alignment": {
+      "outputs": 178,
+      "sessions": 52
+     },
+     "pytest_banner": {
+      "outputs": 452,
+      "sessions": 14
+     },
+     "wc_alignment": {
+      "outputs": 14,
+      "sessions": 5
+     }
+    },
+    "c_truncation_A": {},
+    "e_size_families_A": {
+     "families_ge_100_results_ge_10_sessions": 5,
+     "families_total": 64
+    },
+    "f_error_fidelity_checkable": {
+     "frames": 1,
+     "sessions": 1,
+     "error_results": 167
+    }
+   },
+   "f3_round": {
+    "T_orig_distinct_values": 91,
+    "excluded_strict_any_occurrence": 40,
+    "excluded_first_occurrence": 33,
+    "first_occurrence_json_number": 30,
+    "remaining_strict": 51,
+    "remaining_first": 58,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "r3_git": {
+    "claims_by_class": {
+     "other": 9
+    },
+    "sessions_by_class": {
+     "other": 1
+    },
+    "results": 5164,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 5164,
+    "pairs_stamped": 5164,
+    "pairs_distinct_stamps": 5164,
+    "request_ids": 10242,
+    "request_ids_decodable": 4294,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": true,
+    "results_with_text": 5164,
+    "commit_claims": 9,
+    "external_commit_table": false,
+    "raw_structured_counters": true,
+    "external_usage_tally": false
+   }
+  },
+  "aiv_cc": {
+   "sessions_A": 125,
+   "length_terciles": {
+    "sessions": 77,
+    "cuts": [
+     2.333333333333332,
+     222.66666666666654
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "top_session_share_events": 0.08337565347274085,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    }
+   },
+   "n1": {
+    "qualified_by_class": {
+     "shell": 5876,
+     "auto_read": 2668
+    },
+    "qualified_sessions": 52,
+    "repeat_coverage_counts_A": {
+     "auto_read": {
+      "calls_in_repeat_groups": 126,
+      "qualified_calls": 2668,
+      "sessions": 33,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     },
+     "shell": {
+      "calls_in_repeat_groups": 2180,
+      "qualified_calls": 5876,
+      "sessions": 47,
+      "note": "feasibility count (coverage bound); the B/E RR with CI is a Phase E outcome"
+     }
+    },
+    "residuals": {
+     "n": 2228,
+     "n_sessions": 27,
+     "by_class": {
+      "shell": 2108,
+      "auto_read": 120
+     },
+     "quantiles": {
+      "n": 2228,
+      "n_sessions": 27,
+      "q0.005": -0.7622644215908978,
+      "q0.01": -0.6423929911527838,
+      "q0.05": -0.2781356676430054,
+      "q0.25": -0.0420544782328059,
+      "q0.5": -3.647621966618164e-05,
+      "q0.75": 0.048744426285455805,
+      "q0.95": 0.32090996813380407,
+      "q0.99": 0.7357112863723857,
+      "q0.995": 1.0910543754313946
+     }
+    },
+    "bounds_ok": true
+   },
+   "latency_counts": {
+    "n3": {
+     "gaps": 31045,
+     "sessions_with_gaps": 74,
+     "sessions_ge_20_gaps": 40
+    },
+    "n4": {
+     "W_pairs": 7485,
+     "W_k_ge_2": 0,
+     "W_k_ge_2_sessions": 0,
+     "W_k_ge_4": 0,
+     "G_pairs": 184,
+     "G_k_ge_2": 32,
+     "G_k_ge_2_sessions": 2,
+     "k_hist_W": {
+      "1": 7485
+     },
+     "note": "eligibility counts; G here omits the Phase B nested-human-marker exclusion (count only)"
+    }
+   },
+   "cold_start": {
+    "eligible_sessions": 38
+   },
+   "n2": {
+    "granularity": {
+     "responses": 30016,
+     "G1_share_both": 1.0,
+     "G2_median_usage_out": 1.0,
+     "G2_not_partial": false,
+     "G3_identifiable": true,
+     "GRANULAR": false
+    },
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n5": {
+    "a_determinism_pairs": {
+     "pairs": 4,
+     "sessions": 2
+    },
+    "b_sort_eligible": {
+     "ls": {
+      "outputs": 93,
+      "sessions": 17
+     },
+     "grep_n": {
+      "outputs": 35,
+      "sessions": 5
+     }
+    },
+    "d_whitespace_eligible": {
+     "ls_long_alignment": {
+      "outputs": 66,
+      "sessions": 13
+     },
+     "git_status_tab": {
+      "outputs": 15,
+      "sessions": 6
+     },
+     "pytest_banner": {
+      "outputs": 21,
+      "sessions": 6
+     },
+     "wc_alignment": {
+      "outputs": 1,
+      "sessions": 1
+     }
+    },
+    "c_truncation_A": {
+     "cc_lines_tail": {
+      "n": 1,
+      "sessions": 1,
+      "prefix_raw_mode_by_tool": {
+       "shell": [
+        [
+         30006,
+         1
+        ]
+       ]
+      }
+     },
+     "cc_glob_cap": {
+      "n": 8,
+      "sessions": 3,
+      "lines_mode": [
+       [
+        100,
+        8
+       ]
+      ]
+     },
+     "cc_chars_mid": {
+      "n": 15,
+      "sessions": 2,
+      "prefix_u16_mode": [
+       [
+        5002,
+        15
+       ]
+      ],
+      "suffix_u16_mode": [
+       [
+        5002,
+        15
+       ]
+      ],
+      "prefix_u16_stripped_mode": [
+       [
+        5000,
+        13
+       ],
+       [
+        4999,
+        2
+       ]
+      ],
+      "suffix_u16_stripped_mode": [
+       [
+        5000,
+        14
+       ],
+       [
+        4999,
+        1
+       ]
+      ]
+     }
+    },
+    "e_size_families_A": {
+     "families_ge_100_results_ge_10_sessions": 6,
+     "families_total": 47
+    },
+    "f_error_fidelity_checkable": {
+     "frames": 0,
+     "sessions": 0,
+     "error_results": 538
+    }
+   },
+   "f3_round": {
+    "T_orig_distinct_values": 123,
+    "excluded_strict_any_occurrence": 28,
+    "excluded_first_occurrence": 26,
+    "first_occurrence_json_number": 20,
+    "remaining_strict": 95,
+    "remaining_first": 97,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "r3_git": {
+    "claims_by_class": {
+     "generator": 180
+    },
+    "sessions_by_class": {
+     "generator": 15
+    },
+    "results": 33475,
+    "note": "counts only; resolution and window checks are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 33475,
+    "pairs_stamped": 33475,
+    "pairs_distinct_stamps": 33475,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 33475,
+    "commit_claims": 180,
+    "external_commit_table": false,
+    "raw_structured_counters": false,
+    "external_usage_tally": false
+   }
+  },
+  "aiv_cu": {
+   "sessions_A": 200,
+   "length_terciles": {
+    "sessions": 199,
+    "cuts": [
+     29.0,
+     40.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 0.09611920746684133,
+     "top_share_sessions": 0.08040201005025126,
+     "top_session_share_events": 0.015392172916325528,
+     "n_clusters": 34,
+     "dominated_at_A": false
+    },
+    "model": {
+     "top_share_events": 0.16915015555919435,
+     "top_share_sessions": 0.15577889447236182,
+     "n_clusters": 35,
+     "dominated_at_A": false
+    }
+   },
+   "n2": {
+    "granularity": {
+     "responses": 4801,
+     "G1_share_both": 0.8491980837325557,
+     "G2_median_usage_out": 123.0,
+     "G2_not_partial": true,
+     "G3_identifiable": true,
+     "GRANULAR": false
+    },
+    "granularity_by_stratum": {
+     "anthropic-claude-code": {
+      "granularity": {
+       "responses": 561,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 1.0,
+       "G2_not_partial": false,
+       "G3_identifiable": true,
+       "GRANULAR": false
+      }
+     },
+     "anthropic-fable": {
+      "granularity": {
+       "responses": 436,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 294.5,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.7087628865979382,
+      "tau_n": 229
+     },
+     "anthropic-haiku": {
+      "granularity": {
+       "responses": 552,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 201.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.8654836464857342,
+      "tau_n": 242
+     },
+     "anthropic-opus": {
+      "granularity": {
+       "responses": 684,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 338.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.7780996214406612,
+      "tau_n": 532
+     },
+     "anthropic-sonnet": {
+      "granularity": {
+       "responses": 683,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 194.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.6726906318082788,
+      "tau_n": 378
+     },
+     "gemini-flash": {
+      "granularity": {
+       "responses": 528,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 51.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.29767441860465116,
+      "tau_n": 173
+     },
+     "gemini-pro": {
+      "granularity": {
+       "responses": 633,
+       "G1_share_both": 1.0,
+       "G2_median_usage_out": 50.0,
+       "G2_not_partial": true,
+       "G3_identifiable": true,
+       "GRANULAR": true
+      },
+      "tau": 0.2714285714285714,
+      "tau_n": 219
+     },
+     "openai-responses": {
+      "granularity": {
+       "responses": 724,
+       "G1_share_both": 0.0,
+       "G2_median_usage_out": null,
+       "G2_not_partial": false,
+       "G3_identifiable": true,
+       "GRANULAR": false
+      }
+     }
+    },
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "n5": {
+    "a_determinism_pairs": {
+     "pairs": 0,
+     "sessions": 0
+    },
+    "b_sort_eligible": {
+     "grep_n": {
+      "outputs": 28,
+      "sessions": 13
+     },
+     "ls": {
+      "outputs": 15,
+      "sessions": 14
+     },
+     "git_log": {
+      "outputs": 3,
+      "sessions": 2
+     }
+    },
+    "d_whitespace_eligible": {
+     "pytest_banner": {
+      "outputs": 126,
+      "sessions": 32
+     },
+     "ls_long_alignment": {
+      "outputs": 18,
+      "sessions": 14
+     },
+     "git_status_tab": {
+      "outputs": 7,
+      "sessions": 6
+     },
+     "wc_alignment": {
+      "outputs": 2,
+      "sessions": 2
+     }
+    },
+    "c_truncation_A": {},
+    "e_size_families_A": {
+     "families_ge_100_results_ge_10_sessions": 3,
+     "families_total": 33
+    },
+    "f_error_fidelity_checkable": {
+     "frames": 0,
+     "sessions": 0,
+     "error_results": 118
+    }
+   },
+   "f3_round": {
+    "T_orig_distinct_values": 75,
+    "excluded_strict_any_occurrence": 7,
+    "excluded_first_occurrence": 6,
+    "first_occurrence_json_number": 0,
+    "remaining_strict": 68,
+    "remaining_first": 69,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "r2_image": {
+    "windows": 1240,
+    "sessions": 40,
+    "by_model": {
+     "gemini-2.5-pro": {
+      "windows": 354,
+      "gui_windows": 194,
+      "non_gui_windows": 160,
+      "positive_d_image_mode": [
+       [
+        258.0,
+        192
+       ]
+      ],
+      "unit": 258.0,
+      "sessions": 10
+     },
+     "gemini-2.5-pro-preview-03-25": {
+      "windows": 6,
+      "gui_windows": 3,
+      "non_gui_windows": 3,
+      "positive_d_image_mode": [
+       [
+        258.0,
+        3
+       ]
+      ],
+      "unit": 258.0,
+      "sessions": 1
+     },
+     "gemini-2.5-pro-preview-06-05": {
+      "windows": 69,
+      "gui_windows": 54,
+      "non_gui_windows": 15,
+      "positive_d_image_mode": [
+       [
+        258.0,
+        54
+       ]
+      ],
+      "unit": 258.0,
+      "sessions": 3
+     },
+     "gemini-3-pro-preview": {
+      "windows": 5,
+      "gui_windows": 0,
+      "non_gui_windows": 5,
+      "positive_d_image_mode": [],
+      "unit": null,
+      "sessions": 1
+     },
+     "gemini-3.1-pro-preview": {
+      "windows": 295,
+      "gui_windows": 169,
+      "non_gui_windows": 126,
+      "positive_d_image_mode": [
+       [
+        1064.0,
+        168
+       ]
+      ],
+      "unit": 1064.0,
+      "sessions": 8
+     },
+     "gemini-3.5-flash": {
+      "windows": 453,
+      "gui_windows": 191,
+      "non_gui_windows": 262,
+      "positive_d_image_mode": [
+       [
+        1064.0,
+        191
+       ]
+      ],
+      "unit": 1064.0,
+      "sessions": 15
+     },
+     "gemini-3.8-flash": {
+      "windows": 58,
+      "gui_windows": 0,
+      "non_gui_windows": 58,
+      "positive_d_image_mode": [],
+      "unit": null,
+      "sessions": 2
+     }
+    },
+    "note": "lattice unit per model string and window counts only; violation rates are Phase E outcomes"
+   },
+   "n6_field_gate": {
+    "pairs": 6107,
+    "pairs_stamped": 6107,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 1274,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 2714,
+    "commit_claims": 0,
+    "external_commit_table": false,
+    "raw_structured_counters": false,
+    "external_usage_tally": false
+   }
+  },
+  "whowhen": {
+   "sessions_A": 73,
+   "length_terciles": {
+    "sessions": 63,
+    "cuts": [
+     2.0,
+     4.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "dominance_context": {
+    "repo": {
+     "top_share_events": 0.7535410764872521,
+     "top_share_sessions": 0.38095238095238093,
+     "top_session_share_events": 0.0821529745042493,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    }
+   },
+   "n2": {
+    "granularity": {
+     "responses": 0,
+     "GRANULAR": false
+    },
+    "note": "granularity and tau only; the honest flag rate and recall are Phase E outcomes"
+   },
+   "f3_round": {
+    "T_orig_distinct_values": 13,
+    "excluded_strict_any_occurrence": 2,
+    "excluded_first_occurrence": 2,
+    "first_occurrence_json_number": 0,
+    "remaining_strict": 11,
+    "remaining_first": 11,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "n6_field_gate": {
+    "pairs": 353,
+    "pairs_stamped": 0,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 353,
+    "commit_claims": 0,
+    "external_commit_table": false,
+    "raw_structured_counters": false,
+    "external_usage_tally": false
+   }
+  }
+ },
+ "ac5_population_cells_check": {
+  "swechat": {
+   "cells_match_sample_file": true,
+   "n_cells": 23,
+   "n_population": 5850
+  },
+  "aiv_cu": {
+   "cells_match_sample_file": true,
+   "n_cells": 30,
+   "n_population": 78114
+  }
+ },
+ "self_tests": {
+  "honest_stream_consistent": true,
+  "response_early_30s_detected": true,
+  "response_late_30s_not_detected": true,
+  "tail_late_30s_detected": true,
+  "id_swap_detected": true,
+  "placebo_table_30s_detected": true,
+  "roll_ids_detected": true,
+  "digit_edit_changes_text": true,
+  "reorder_lines_violates_ls_order": true,
+  "delete_pair_removes_two_rows": true,
+  "insert_consistent_adds_two_rows": true,
+  "insert_squeezed_adds_two_rows": true,
+  "substitute_sets_text_and_error": true,
+  "reorder_pairs_swaps_call_ids_content": true,
+  "error_fidelity_faithful_frame": true,
+  "error_fidelity_shifted_line_flagged": true,
+  "gitlog_ordered_ok": true,
+  "gitlog_violation_flagged": true,
+  "ls_long_aligned_ok": true,
+  "ls_long_normalized_flagged": true,
+  "image_rule": true,
+  "git_window": true,
+  "git_cmd_classes": true,
+  "determinism_pair_found": true,
+  "readonly_rejects_writing_find_sort": true,
+  "truncation_raw_lengths": true,
+  "applicable_N4_none": true,
+  "applicable_bracket_ids": true,
+  "n7_label_example": true,
+  "all_passed": true
+ },
+ "references_preview_keys": [
+  "P1_verdict/cc_local",
+  "P1_verdict/swechat/claude_code",
+  "P1_verdict/swechat/opencode",
+  "P2_verdict/aiv_cc/main",
+  "P2_verdict/swechat/claude_code/main",
+  "P2_verdict/swechat/claude_code/sub",
+  "P2_verdict/swechat/codex/sub",
+  "P2_verdict/swechat/opencode/sub",
+  "P3_zero_error_B",
+  "P4_round_B/cc_local",
+  "P4_round_B/swechat/claude_code",
+  "bracket_B_committed_lens",
+  "bracket_cc_local_committed_lens",
+  "bracket_x_copies_swechat",
+  "cc_local_G_bimodal",
+  "dual_population",
+  "floor_steps_B",
+  "git_nonresolution",
+  "heldout_manifest_counts",
+  "image_B",
+  "ledger_unmatched",
+  "opencode_one_repo",
+  "placebo_skeptic_text",
+  "population_B"
+ ],
+ "resolved_preview": {
+  "length_terciles_A": {
+   "swechat/claude_code": {
+    "sessions": 126,
+    "cuts": [
+     33.0,
+     102.66666666666661
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "swechat/codex": {
+    "sessions": 15,
+    "cuts": [
+     29.0,
+     88.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "swechat/copilot": {
+    "sessions": 2,
+    "cuts": [
+     128.66666666666666,
+     136.33333333333334
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "swechat/cursor": {
+    "sessions": 0
+   },
+   "swechat/gemini": {
+    "sessions": 10,
+    "cuts": [
+     111.0,
+     183.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "swechat/opencode": {
+    "sessions": 25,
+    "cuts": [
+     24.0,
+     134.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "swechat/simple_text": {
+    "sessions": 0
+   },
+   "cc_local": {
+    "sessions": 107,
+    "cuts": [
+     5.666666666666657,
+     17.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "aiv_cc": {
+    "sessions": 77,
+    "cuts": [
+     2.333333333333332,
+     222.66666666666654
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "aiv_cu": {
+    "sessions": 199,
+    "cuts": [
+     29.0,
+     40.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   },
+   "whowhen": {
+    "sessions": 63,
+    "cuts": [
+     2.0,
+     4.0
+    ],
+    "rule": "A-split terciles of paired calls/session"
+   }
+  },
+  "dominance_context_A": {
+   "swechat/claude_code": {
+    "repo": {
+     "top_share_events": 0.33902421075870187,
+     "top_share_sessions": 0.3888888888888889,
+     "top_session_share_events": 0.07638531164912797,
+     "n_clusters": 46,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.41489439988225774,
+     "top_share_sessions": 0.30158730158730157,
+     "top_session_share_events": 0.07638531164912797,
+     "n_clusters": 42,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.7050555596438296,
+     "top_share_sessions": 0.6111111111111112,
+     "n_clusters": 6,
+     "dominated_at_A": true
+    }
+   },
+   "swechat/codex": {
+    "repo": {
+     "top_share_events": 0.3776785714285714,
+     "top_share_sessions": 0.4666666666666667,
+     "top_session_share_events": 0.1875,
+     "n_clusters": 6,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.5732142857142857,
+     "top_share_sessions": 0.5333333333333333,
+     "top_session_share_events": 0.1875,
+     "n_clusters": 4,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.8232142857142857,
+     "top_share_sessions": 0.9333333333333333,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    }
+   },
+   "swechat/copilot": {
+    "repo": {
+     "top_share_events": 0.5433962264150943,
+     "top_share_sessions": 0.5,
+     "top_session_share_events": 0.5433962264150943,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.5433962264150943,
+     "top_share_sessions": 0.5,
+     "top_session_share_events": 0.5433962264150943,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.5433962264150943,
+     "top_share_sessions": 0.5,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    }
+   },
+   "swechat/cursor": {},
+   "swechat/gemini": {
+    "repo": {
+     "top_share_events": 0.7916126242974492,
+     "top_share_sessions": 0.7,
+     "top_session_share_events": 0.25248594898400345,
+     "n_clusters": 3,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.7916126242974492,
+     "top_share_sessions": 0.7,
+     "top_session_share_events": 0.25248594898400345,
+     "n_clusters": 3,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    }
+   },
+   "swechat/opencode": {
+    "repo": {
+     "top_share_events": 0.9199464524765729,
+     "top_share_sessions": 0.88,
+     "top_session_share_events": 0.2037483266398929,
+     "n_clusters": 4,
+     "dominated_at_A": true
+    },
+    "user": {
+     "top_share_events": 0.7646586345381526,
+     "top_share_sessions": 0.72,
+     "top_session_share_events": 0.2037483266398929,
+     "n_clusters": 5,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.7911646586345381,
+     "top_share_sessions": 0.8,
+     "n_clusters": 5,
+     "dominated_at_A": true
+    }
+   },
+   "swechat/simple_text": {},
+   "cc_local": {
+    "repo": {
+     "top_share_events": 0.8962044926413633,
+     "top_share_sessions": 0.9532710280373832,
+     "top_session_share_events": 0.44965143299767624,
+     "n_clusters": 4,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 0.9333849728892332,
+     "top_share_sessions": 0.7663551401869159,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    }
+   },
+   "aiv_cc": {
+    "repo": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "top_session_share_events": 0.08337565347274085,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    }
+   },
+   "aiv_cu": {
+    "repo": {
+     "top_share_events": 0.09611920746684133,
+     "top_share_sessions": 0.08040201005025126,
+     "top_session_share_events": 0.015392172916325528,
+     "n_clusters": 34,
+     "dominated_at_A": false
+    },
+    "model": {
+     "top_share_events": 0.16915015555919435,
+     "top_share_sessions": 0.15577889447236182,
+     "n_clusters": 35,
+     "dominated_at_A": false
+    }
+   },
+   "whowhen": {
+    "repo": {
+     "top_share_events": 0.7535410764872521,
+     "top_share_sessions": 0.38095238095238093,
+     "top_session_share_events": 0.0821529745042493,
+     "n_clusters": 2,
+     "dominated_at_A": true
+    },
+    "model": {
+     "top_share_events": 1.0,
+     "top_share_sessions": 1.0,
+     "n_clusters": 1,
+     "dominated_at_A": true
+    }
+   }
+  },
+  "n1": {
+   "swechat/claude_code": {
+    "bounds": [
+     -2.02543481934223,
+     1.9983802037547433
+    ],
+    "source": "unit",
+    "n_A": 646,
+    "sessions_A": 62
+   },
+   "swechat/codex": {
+    "bounds": [
+     -1.255296488587848,
+     1.5676685275828843
+    ],
+    "source": "pooled bounds (unit has < 500 A residuals or < 5 sessions)",
+    "n_A": 133,
+    "sessions_A": 5,
+    "pooled_n_A": 4503,
+    "pooled_sessions_A": 115
+   },
+   "swechat/gemini": {
+    "bounds": [
+     -1.717226725716463,
+     1.8536806630010416
+    ],
+    "source": "unit",
+    "n_A": 729,
+    "sessions_A": 8
+   },
+   "swechat/opencode": {
+    "bounds": [
+     -0.708055895608718,
+     0.645293949877318
+    ],
+    "source": "unit",
+    "n_A": 710,
+    "sessions_A": 10
+   },
+   "cc_local": {
+    "bounds": [
+     -1.255296488587848,
+     1.5676685275828843
+    ],
+    "source": "pooled bounds (unit has < 500 A residuals or < 5 sessions)",
+    "n_A": 57,
+    "sessions_A": 3,
+    "pooled_n_A": 4503,
+    "pooled_sessions_A": 115
+   },
+   "aiv_cc": {
+    "bounds": [
+     -0.7622644215908978,
+     1.0910543754313946
+    ],
+    "source": "unit",
+    "n_A": 2228,
+    "sessions_A": 27
+   }
+  },
+  "n2": {
+   "swechat/claude_code": {
+    "GRANULAR": true,
+    "G1_share_both": 1.0,
+    "G2_median_usage_out": 104.0,
+    "responses_A": 10144,
+    "tau": 0.4088050314465409,
+    "tau_n_A": 4215
+   },
+   "swechat/codex": {
+    "GRANULAR": true,
+    "G1_share_both": 1.0,
+    "G2_median_usage_out": 305.0,
+    "responses_A": 659,
+    "tau": 0.49228374464870306,
+    "tau_n_A": 546
+   },
+   "swechat/copilot": {
+    "GRANULAR": false,
+    "G1_share_both": 0.0,
+    "G2_median_usage_out": 134.0,
+    "responses_A": 177,
+    "tau": null,
+    "tau_n_A": null
+   },
+   "swechat/cursor": {
+    "GRANULAR": false,
+    "G1_share_both": null,
+    "G2_median_usage_out": null,
+    "responses_A": 0,
+    "tau": null,
+    "tau_n_A": null
+   },
+   "swechat/gemini": {
+    "GRANULAR": false,
+    "G1_share_both": 0.8233608025797206,
+    "G2_median_usage_out": 138.5,
+    "responses_A": 2791,
+    "tau": null,
+    "tau_n_A": null
+   },
+   "swechat/opencode": {
+    "GRANULAR": true,
+    "G1_share_both": 0.9718402095612312,
+    "G2_median_usage_out": 149.0,
+    "responses_A": 3054,
+    "tau": 0.3676106673737005,
+    "tau_n_A": 1780
+   },
+   "swechat/simple_text": {
+    "GRANULAR": false,
+    "G1_share_both": null,
+    "G2_median_usage_out": null,
+    "responses_A": 0,
+    "tau": null,
+    "tau_n_A": null
+   },
+   "cc_local": {
+    "GRANULAR": true,
+    "G1_share_both": 1.0,
+    "G2_median_usage_out": 926.0,
+    "responses_A": 4036,
+    "tau": 0.7717569786535303,
+    "tau_n_A": 3509
+   },
+   "aiv_cc": {
+    "GRANULAR": false,
+    "G1_share_both": 1.0,
+    "G2_median_usage_out": 1.0,
+    "responses_A": 30016,
+    "tau": null,
+    "tau_n_A": null
+   },
+   "aiv_cu": {
+    "GRANULAR": false,
+    "G1_share_both": 0.8491980837325557,
+    "G2_median_usage_out": 123.0,
+    "responses_A": 4801,
+    "tau": null,
+    "tau_n_A": null,
+    "by_stratum": {
+     "anthropic-claude-code": {
+      "GRANULAR": false,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 1.0,
+      "responses_A": 561,
+      "tau": null,
+      "tau_n_A": null
+     },
+     "anthropic-fable": {
+      "GRANULAR": true,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 294.5,
+      "responses_A": 436,
+      "tau": 0.7087628865979382,
+      "tau_n_A": 229
+     },
+     "anthropic-haiku": {
+      "GRANULAR": true,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 201.0,
+      "responses_A": 552,
+      "tau": 0.8654836464857342,
+      "tau_n_A": 242
+     },
+     "anthropic-opus": {
+      "GRANULAR": true,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 338.0,
+      "responses_A": 684,
+      "tau": 0.7780996214406612,
+      "tau_n_A": 532
+     },
+     "anthropic-sonnet": {
+      "GRANULAR": true,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 194.0,
+      "responses_A": 683,
+      "tau": 0.6726906318082788,
+      "tau_n_A": 378
+     },
+     "gemini-flash": {
+      "GRANULAR": true,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 51.0,
+      "responses_A": 528,
+      "tau": 0.29767441860465116,
+      "tau_n_A": 173
+     },
+     "gemini-pro": {
+      "GRANULAR": true,
+      "G1_share_both": 1.0,
+      "G2_median_usage_out": 50.0,
+      "responses_A": 633,
+      "tau": 0.2714285714285714,
+      "tau_n_A": 219
+     },
+     "openai-responses": {
+      "GRANULAR": false,
+      "G1_share_both": 0.0,
+      "G2_median_usage_out": null,
+      "responses_A": 724,
+      "tau": null,
+      "tau_n_A": null
+     }
+    }
+   },
+   "whowhen": {
+    "GRANULAR": false,
+    "G1_share_both": null,
+    "G2_median_usage_out": null,
+    "responses_A": 0,
+    "tau": null,
+    "tau_n_A": null
+   }
+  },
+  "n5": {
+   "truncation_constants": {
+    "cc_glob_cap": {
+     "swechat/claude_code": {
+      "n": 44,
+      "sessions": 25,
+      "lines_mode": [
+       [
+        100,
+        44
+       ]
+      ]
+     },
+     "aiv_cc": {
+      "n": 8,
+      "sessions": 3,
+      "lines_mode": [
+       [
+        100,
+        8
+       ]
+      ]
+     }
+    },
+    "cc_chars_mid": {
+     "swechat/claude_code": {
+      "n": 15,
+      "sessions": 10,
+      "prefix_u16_mode": [
+       [
+        5002,
+        14
+       ],
+       [
+        4732,
+        1
+       ]
+      ],
+      "suffix_u16_mode": [
+       [
+        5002,
+        14
+       ],
+       [
+        4462,
+        1
+       ]
+      ],
+      "prefix_u16_stripped_mode": [
+       [
+        5000,
+        13
+       ],
+       [
+        4998,
+        1
+       ],
+       [
+        4730,
+        1
+       ]
+      ],
+      "suffix_u16_stripped_mode": [
+       [
+        5000,
+        13
+       ],
+       [
+        4460,
+        1
+       ],
+       [
+        4999,
+        1
+       ]
+      ]
+     },
+     "aiv_cc": {
+      "n": 15,
+      "sessions": 2,
+      "prefix_u16_mode": [
+       [
+        5002,
+        15
+       ]
+      ],
+      "suffix_u16_mode": [
+       [
+        5002,
+        15
+       ]
+      ],
+      "prefix_u16_stripped_mode": [
+       [
+        5000,
+        13
+       ],
+       [
+        4999,
+        2
+       ]
+      ],
+      "suffix_u16_stripped_mode": [
+       [
+        5000,
+        14
+       ],
+       [
+        4999,
+        1
+       ]
+      ]
+     }
+    },
+    "cc_lines_tail": {
+     "swechat/claude_code": {
+      "n": 3,
+      "sessions": 2,
+      "prefix_raw_mode_by_tool": {
+       "grep": [
+        [
+         20006,
+         2
+        ]
+       ],
+       "shell": [
+        [
+         30006,
+         1
+        ]
+       ]
+      }
+     },
+     "aiv_cc": {
+      "n": 1,
+      "sessions": 1,
+      "prefix_raw_mode_by_tool": {
+       "shell": [
+        [
+         30006,
+         1
+        ]
+       ]
+      }
+     }
+    }
+   },
+   "truncation_constants_pooled": {
+    "cc_glob_cap": {
+     "lines": 100,
+     "n_A": 52,
+     "status": "OK"
+    },
+    "cc_chars_mid": {
+     "prefix_u16": 5002,
+     "suffix_u16": 5002,
+     "n_A": 30,
+     "status": "OK"
+    },
+    "cc_lines_tail": {
+     "prefix_raw_by_tool": {
+      "grep": 20006,
+      "shell": 30006
+     },
+     "n_A": 4,
+     "status": "INSUFFICIENT_N (item NOT_RUN)"
+    }
+   }
+  },
+  "image_units_A": {
+   "gemini-2.5-pro": {
+    "unit": 258.0,
+    "windows_A": 354,
+    "sessions_A": 10,
+    "mode_A": [
+     [
+      258.0,
+      192
+     ]
+    ]
+   },
+   "gemini-2.5-pro-preview-03-25": {
+    "unit": 258.0,
+    "windows_A": 6,
+    "sessions_A": 1,
+    "mode_A": [
+     [
+      258.0,
+      3
+     ]
+    ]
+   },
+   "gemini-2.5-pro-preview-06-05": {
+    "unit": 258.0,
+    "windows_A": 69,
+    "sessions_A": 3,
+    "mode_A": [
+     [
+      258.0,
+      54
+     ]
+    ]
+   },
+   "gemini-3-pro-preview": {
+    "unit": null,
+    "windows_A": 5,
+    "sessions_A": 1,
+    "mode_A": []
+   },
+   "gemini-3.1-pro-preview": {
+    "unit": 1064.0,
+    "windows_A": 295,
+    "sessions_A": 8,
+    "mode_A": [
+     [
+      1064.0,
+      168
+     ]
+    ]
+   },
+   "gemini-3.5-flash": {
+    "unit": 1064.0,
+    "windows_A": 453,
+    "sessions_A": 15,
+    "mode_A": [
+     [
+      1064.0,
+      191
+     ]
+    ]
+   },
+   "gemini-3.8-flash": {
+    "unit": null,
+    "windows_A": 58,
+    "sessions_A": 2,
+    "mode_A": []
+   },
+   "rule": {
+    "family_units": {
+     "gemini-2.5": 258.0,
+     "gemini-3": 1064.0
+    },
+    "per_model": {
+     "gemini-2.5-pro": {
+      "unit": 258.0,
+      "status": "model unit",
+      "positive_windows_A": 192
+     },
+     "gemini-2.5-pro-preview-03-25": {
+      "unit": 258.0,
+      "status": "family unit (gemini-2.5)",
+      "positive_windows_A": 3,
+      "gui_windows_A": 3
+     },
+     "gemini-2.5-pro-preview-06-05": {
+      "unit": 258.0,
+      "status": "model unit",
+      "positive_windows_A": 54
+     },
+     "gemini-3-pro-preview": {
+      "unit": 1064.0,
+      "status": "family unit (gemini-3)",
+      "positive_windows_A": 0,
+      "gui_windows_A": 0
+     },
+     "gemini-3.1-pro-preview": {
+      "unit": 1064.0,
+      "status": "model unit",
+      "positive_windows_A": 168
+     },
+     "gemini-3.5-flash": {
+      "unit": 1064.0,
+      "status": "model unit",
+      "positive_windows_A": 191
+     },
+     "gemini-3.8-flash": {
+      "unit": 1064.0,
+      "status": "family unit (gemini-3)",
+      "positive_windows_A": 0,
+      "gui_windows_A": 0
+     }
+    },
+    "absent_from_A": "family unit; a family absent from A is NOT_TESTABLE"
+   }
+  },
+  "n7": {
+   "floor_thresholds": {
+    "swechat/claude_code": {
+     "glob": {
+      "threshold_s": 0.011525,
+      "from": "p5/2"
+     },
+     "grep": {
+      "threshold_s": 0.009810000000000001,
+      "from": "p1"
+     },
+     "read": {
+      "threshold_s": 0.003,
+      "from": "p1"
+     },
+     "taskupdate": {
+      "threshold_s": 0.0005,
+      "from": "p5/2"
+     }
+    },
+    "cc_local": {
+     "glob": {
+      "threshold_s": 0.016,
+      "from": "p5/2"
+     },
+     "read": {
+      "threshold_s": 0.0025,
+      "from": "p5/2"
+     }
+    },
+    "aiv_cc": {
+     "edit": {
+      "threshold_s": 0.031699649999999996,
+      "from": "p5/2"
+     },
+     "grep": {
+      "threshold_s": 0.029492425000000003,
+      "from": "p5/2"
+     },
+     "mcp__village__bash": {
+      "threshold_s": 0.06838792,
+      "from": "p1"
+     },
+     "mcp__village__chat_message": {
+      "threshold_s": 0.13650047999999998,
+      "from": "p1"
+     },
+     "mcp__village__computer_use": {
+      "threshold_s": 0.06415812,
+      "from": "p1"
+     },
+     "mcp__village__edit_memory": {
+      "threshold_s": 0.11213580999999999,
+      "from": "p1"
+     },
+     "mcp__village__get_events": {
+      "threshold_s": 0.23591564,
+      "from": "p1"
+     },
+     "mcp__village__get_pixel_coordinates": {
+      "threshold_s": 1.42746545,
+      "from": "p5/2"
+     },
+     "mcp__village__start_computer_session": {
+      "threshold_s": 0.08523675,
+      "from": "p5/2"
+     },
+     "mcp__village__stop_computer_session": {
+      "threshold_s": 0.0740284,
+      "from": "p5/2"
+     },
+     "read": {
+      "threshold_s": 0.05881363,
+      "from": "p1"
+     },
+     "shell": {
+      "threshold_s": 0.06357579,
+      "from": "p1"
+     },
+     "todo": {
+      "threshold_s": 0.027573075,
+      "from": "p5/2"
+     },
+     "write": {
+      "threshold_s": 0.029887875,
+      "from": "p5/2"
+     }
+    },
+    "swechat/codex": {
+     "shell_command": {
+      "threshold_s": 0.045,
+      "from": "p1"
+     }
+    },
+    "swechat/opencode": {
+     "glob": {
+      "threshold_s": 0.0045,
+      "from": "p5/2"
+     },
+     "grep": {
+      "threshold_s": 0.0029500000000000012,
+      "from": "p5/2"
+     },
+     "read": {
+      "threshold_s": 0.001,
+      "from": "p1"
+     }
+    },
+    "swechat/gemini": {
+     "read": {
+      "threshold_s": 0.0305,
+      "from": "p5/2"
+     }
+    }
+   },
+   "floor_source": "analysis/prereg.json resolved.probe1.floors (Phase B, split A)",
+   "generation_rate_source": "analysis/prereg.json resolved.probe1.generation_rate (Phase B, split A)",
+   "long_session_source": "analysis/prereg.json resolved.probe3.long_session (Phase B, split A)",
+   "depth_threshold_source": "analysis/prereg.json resolved.probe2.depth_threshold (Phase B, split A)"
+  },
+  "n6_field_gate_A": {
+   "swechat/claude_code": {
+    "pairs": 13589,
+    "pairs_stamped": 13589,
+    "pairs_distinct_stamps": 13552,
+    "request_ids": 21742,
+    "request_ids_decodable": 11047,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": true,
+    "results_with_text": 13589,
+    "commit_claims": 199,
+    "external_commit_table": true,
+    "raw_structured_counters": true,
+    "external_usage_tally": true
+   },
+   "swechat/codex": {
+    "pairs": 1120,
+    "pairs_stamped": 1120,
+    "pairs_distinct_stamps": 1120,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": true,
+    "results_with_text": 1120,
+    "commit_claims": 7,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   },
+   "swechat/copilot": {
+    "pairs": 265,
+    "pairs_stamped": 265,
+    "pairs_distinct_stamps": 265,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 265,
+    "commit_claims": 0,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   },
+   "swechat/cursor": {
+    "pairs": 0,
+    "pairs_stamped": 0,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": false,
+    "results_with_text": 0,
+    "commit_claims": 0,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   },
+   "swechat/gemini": {
+    "pairs": 2313,
+    "pairs_stamped": 2313,
+    "pairs_distinct_stamps": 2313,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 2313,
+    "commit_claims": 4,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   },
+   "swechat/opencode": {
+    "pairs": 3735,
+    "pairs_stamped": 3735,
+    "pairs_distinct_stamps": 3721,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": true,
+    "results_with_text": 3735,
+    "commit_claims": 34,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   },
+   "swechat/simple_text": {
+    "pairs": 0,
+    "pairs_stamped": 0,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": false,
+    "results_with_text": 0,
+    "commit_claims": 0,
+    "external_commit_table": true,
+    "raw_structured_counters": false,
+    "external_usage_tally": true
+   },
+   "cc_local": {
+    "pairs": 5164,
+    "pairs_stamped": 5164,
+    "pairs_distinct_stamps": 5164,
+    "request_ids": 10242,
+    "request_ids_decodable": 4294,
+    "image_usage_rows": 0,
+    "usage_granular": true,
+    "error_definition": true,
+    "results_with_text": 5164,
+    "commit_claims": 9,
+    "external_commit_table": false,
+    "raw_structured_counters": true,
+    "external_usage_tally": false
+   },
+   "aiv_cc": {
+    "pairs": 33475,
+    "pairs_stamped": 33475,
+    "pairs_distinct_stamps": 33475,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 33475,
+    "commit_claims": 180,
+    "external_commit_table": false,
+    "raw_structured_counters": false,
+    "external_usage_tally": false
+   },
+   "aiv_cu": {
+    "pairs": 6107,
+    "pairs_stamped": 6107,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 1274,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 2714,
+    "commit_claims": 0,
+    "external_commit_table": false,
+    "raw_structured_counters": false,
+    "external_usage_tally": false
+   },
+   "whowhen": {
+    "pairs": 353,
+    "pairs_stamped": 0,
+    "pairs_distinct_stamps": 0,
+    "request_ids": 0,
+    "request_ids_decodable": 0,
+    "image_usage_rows": 0,
+    "usage_granular": false,
+    "error_definition": true,
+    "results_with_text": 353,
+    "commit_claims": 0,
+    "external_commit_table": false,
+    "raw_structured_counters": false,
+    "external_usage_tally": false
+   }
+  },
+  "bracket_A": {
+   "swechat/claude_code": {
+    "responses_decoded": 11047,
+    "sessions": 125,
+    "streams_ge2": 280,
+    "tol_ms": 2000.0,
+    "inconsistent_streams": 0,
+    "inconsistent_rate_by_session": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 123,
+     "num": 0.0,
+     "den": 280.0,
+     "wilson_hi_per_event": 0.013534309276723356,
+     "wilson_hi_per_session": 0.03028659367273828
+    },
+    "slack_U_minus_L_consistent_ms": {
+     "n": 280,
+     "n_sessions": 123,
+     "q0.05": 1119.8,
+     "q0.5": 2301.0,
+     "q0.95": 3893.7500000000014
+    },
+    "benign_category_counts_inconsistent_A": {},
+    "request_ids_in_more_than_one_A_session": 0,
+    "note": "A-split honest bracket baseline: context for the fixed 2,000 ms tolerance; sets no threshold"
+   },
+   "cc_local": {
+    "responses_decoded": 4294,
+    "sessions": 118,
+    "streams_ge2": 187,
+    "tol_ms": 2000.0,
+    "inconsistent_streams": 0,
+    "inconsistent_rate_by_session": {
+     "rate": 0.0,
+     "lo": 0.0,
+     "hi": 0.0,
+     "n_sessions": 106,
+     "num": 0.0,
+     "den": 187.0,
+     "wilson_hi_per_event": 0.020129783024246284,
+     "wilson_hi_per_session": 0.034973998922084165
+    },
+    "slack_U_minus_L_consistent_ms": {
+     "n": 187,
+     "n_sessions": 106,
+     "q0.05": 1292.1000000000001,
+     "q0.5": 1882.0,
+     "q0.95": 3834.399999999998
+    },
+    "benign_category_counts_inconsistent_A": {},
+    "request_ids_in_more_than_one_A_session": 0,
+    "note": "A-split honest bracket baseline: context for the fixed 2,000 ms tolerance; sets no threshold"
+   }
+  },
+  "f3_counts_A": {
+   "swechat/claude_code": {
+    "T_orig_distinct_values": 47,
+    "excluded_strict_any_occurrence": 23,
+    "excluded_first_occurrence": 23,
+    "first_occurrence_json_number": 19,
+    "remaining_strict": 24,
+    "remaining_first": 24,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "swechat/codex": {
+    "T_orig_distinct_values": 20,
+    "excluded_strict_any_occurrence": 18,
+    "excluded_first_occurrence": 18,
+    "first_occurrence_json_number": 17,
+    "remaining_strict": 2,
+    "remaining_first": 2,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "swechat/gemini": {
+    "T_orig_distinct_values": 4,
+    "excluded_strict_any_occurrence": 1,
+    "excluded_first_occurrence": 1,
+    "first_occurrence_json_number": 0,
+    "remaining_strict": 3,
+    "remaining_first": 3,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "swechat/opencode": {
+    "T_orig_distinct_values": 17,
+    "excluded_strict_any_occurrence": 9,
+    "excluded_first_occurrence": 9,
+    "first_occurrence_json_number": 6,
+    "remaining_strict": 8,
+    "remaining_first": 8,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "cc_local": {
+    "T_orig_distinct_values": 91,
+    "excluded_strict_any_occurrence": 40,
+    "excluded_first_occurrence": 33,
+    "first_occurrence_json_number": 30,
+    "remaining_strict": 51,
+    "remaining_first": 58,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "aiv_cc": {
+    "T_orig_distinct_values": 123,
+    "excluded_strict_any_occurrence": 28,
+    "excluded_first_occurrence": 26,
+    "first_occurrence_json_number": 20,
+    "remaining_strict": 95,
+    "remaining_first": 97,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "aiv_cu": {
+    "T_orig_distinct_values": 75,
+    "excluded_strict_any_occurrence": 7,
+    "excluded_first_occurrence": 6,
+    "first_occurrence_json_number": 0,
+    "remaining_strict": 68,
+    "remaining_first": 69,
+    "note": "counts only; no round-number share was computed on A"
+   },
+   "whowhen": {
+    "T_orig_distinct_values": 13,
+    "excluded_strict_any_occurrence": 2,
+    "excluded_first_occurrence": 2,
+    "first_occurrence_json_number": 0,
+    "remaining_strict": 11,
+    "remaining_first": 11,
+    "note": "counts only; no round-number share was computed on A"
+   }
+  },
+  "e_projection": {
+   "swechat/claude_code": 1532.1,
+   "swechat/opencode": 195.3,
+   "swechat/codex": 70.3,
+   "swechat/gemini": 20.1,
+   "swechat/cursor": 7.3,
+   "swechat/copilot": 0.0,
+   "swechat/simple_text": 0.0,
+   "aiv_cu": 2000.0,
+   "rule": "n_E(corpus) x B_unit / B_corpus_total; projection only"
+  }
+ },
+ "runtime_s": 157.2,
+ "opened_files": [
+  "C:/Swarms/.claude/worktrees/analysis/analysis/HELDOUT_MANIFEST.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/aiv_cc_A.parquet",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/aiv_cu_A.parquet",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/aiv_cu_sessions.parquet",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/cc_local_A.parquet",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/samples/aiv_cu.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/samples/swechat.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/swechat_A.parquet",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/swechat_population.parquet",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/cache/whowhen_A.parquet",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/out/phase_c/_index.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/out/phase_c/ids_and_clocks_in_ids.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/out/phase_d/ranking.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/out/probe_1.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/out/probe_2.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/out/probe_3.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/out/probe_4.json",
+  "C:/Swarms/.claude/worktrees/analysis/analysis/prereg.json",
+  "C:/Swarms/data/swe-chat-pinned/sessions.parquet"
+ ]
+}

@@ -1,6 +1,8 @@
 """SWE-chat loader: pinned snapshot SALT-NLP/SWE-chat@f66cca95 raw transcripts -> common event IR (analysis/lib/ir.py).
 
 Run from the worktree root:  PYTHONIOENCODING=utf-8 python -m analysis.loaders.load_swechat
+     E split only (Phase E): PYTHONIOENCODING=utf-8 python -m analysis.loaders.load_swechat --split E [--rederive A --scratch DIR]
+     -> analysis/cache/swechat_E.parquet + analysis/out/phase_e/swechat_E_build.json; touches nothing below (build_split_e).
 main() rebuilds everything end to end and is idempotent (same inputs -> same sample, caches and report):
   analysis/cache/samples/swechat.json        stratified disjoint A/B session lists (lib/sample.py)
   analysis/cache/swechat_population.parquet  one row per session with a transcript: session_id, agent label, stratum, format, length
@@ -1336,6 +1338,133 @@ def aggregate_by_format(rows):
     return agg
 
 
+# ------------------------------------------------------------------------------------------------------ split caches
+
+def write_split_cache(split, ids, fmt_of, strat, ctx, path=None):
+    """Parse sessions `ids` (in that order) with build_worker on an N_PROC pool into one zstd parquet IR cache
+    (row group flushed at >= 250,000 rows, so a session never spans row groups), then validate the whole file one row
+    group at a time with ir.validate. The per-session code path of every split (A/B in main(), E in build_split_e()).
+    path: output file (default analysis/cache/swechat_<split>.parquet).
+    Returns (cache info dict, [(session_id, format, stat, summary)] in `ids` order)."""
+    path = path or os.path.join(CACHE, f"{CORPUS}_{split}.parquet")
+    tmp = path + ".tmp"
+    writer = pq.ParquetWriter(tmp, SCHEMA, compression="zstd")
+    buf, buf_rows, rows, sessions, empty, val, per = [], 0, 0, 0, [], collections.Counter(), []
+    jobs = [(sid, fmt_of[sid], strat[sid], ctx) for sid in ids]
+    with Pool(N_PROC) as pool:
+        for sid, tbl, summ, st, v in pool.imap(build_worker, jobs, chunksize=1):
+            per.append((sid, fmt_of[sid], st, summ))
+            if tbl is None:
+                empty.append(sid)
+                continue
+            val.update({k: v2 for k, v2 in v.items() if k not in ("sessions",)})
+            buf.append(tbl)
+            buf_rows += tbl.num_rows
+            sessions += 1
+            if buf_rows >= 250_000:
+                writer.write_table(pa.concat_tables(buf), row_group_size=10**9)
+                rows += buf_rows
+                buf, buf_rows = [], 0
+    if buf:
+        writer.write_table(pa.concat_tables(buf), row_group_size=10**9)
+        rows += buf_rows
+    writer.close()
+    os.replace(tmp, path)
+    # whole-file validation, one row group at a time (a session never spans row groups)
+    pf = pq.ParquetFile(path)
+    seen, vrows = set(), 0
+    for g in range(pf.num_row_groups):
+        df = pf.read_row_group(g).to_pandas(types_mapper={pa.string(): pd.StringDtype(), pa.int64(): pd.Int64Dtype(),
+                                                          pa.bool_(): pd.BooleanDtype()}.get)
+        df["seq"] = df["seq"].astype("int64")
+        ir.validate(df)
+        ids_g = set(df.session_id.unique())
+        assert not (ids_g & seen), "a session spans row groups"
+        seen |= ids_g
+        vrows += len(df)
+    assert vrows == rows
+    info = {"path": f"analysis/cache/{CORPUS}_{split}.parquet", "rows": rows, "sessions": sessions,
+            "sessions_in_sample": len(ids), "sessions_with_zero_events": empty,
+            "row_groups": pf.num_row_groups, "bytes": os.path.getsize(path),
+            "validate_kind_counts": {k: int(v) for k, v in val.items() if k != "rows"}}
+    print(f"{split}: {rows} rows, {sessions} sessions", flush=True)
+    return info, per
+
+
+def _links_worker(sid):
+    """Format sniff + cross-session subagent links of one transcript, exactly as full_pass_worker computes them."""
+    path = os.path.join(TRANS, sid + ".jsonl")
+    fmt = sniff_text(read_head(path))
+    text, _ = read_text(path)
+    return sid, fmt, _child_links(fmt, text)
+
+
+def build_split_e(rederive=(), scratch=None):
+    """E split -> analysis/cache/swechat_E.parquet through write_split_cache (the A/B per-session code path).
+    E ids = analysis/cache/samples/swechat_EH.json key "E" (analysis/probes/phase_e_split.py); the "H" key is never used and
+    no H transcript is opened. Differences from main(), all forced by that rule or by not rewriting A/B artifacts:
+      * no full-population pass: format and stratum come from swechat_population.parquet (written by main's full pass);
+        each E transcript's format is re-sniffed and must agree with it.
+      * cross-session subagent links (ctx) are collected with the same _child_links over the transcripts of A, B and E
+        only. An E child session whose spawning call lives in a transcript outside A+B+E keeps parent_call_id = None
+        (main() resolved links against all 5,850 transcripts). ctx only feeds the parent_call_id of session-level
+        OpenCode/Codex subagent sessions.
+      * the sample files, swechat_population.parquet, the A/B caches and analysis/out/build/swechat_build.json are not
+        written. Report: analysis/out/phase_e/swechat_E_build.json.
+    rederive: splits from swechat.json (e.g. "A") re-derived through the same path with the same ctx into `scratch`
+    (swechat_<split>.rederived.parquet; never analysis/cache) for an equivalence check against the existing caches."""
+    t_start = time.time()
+    with open(os.path.join(CACHE, "samples", f"{CORPUS}_EH.json"), encoding="utf-8") as f:
+        e_ids = list(json.load(f)["E"])
+    with open(os.path.join(CACHE, "samples", f"{CORPUS}.json"), encoding="utf-8") as f:
+        ab = json.load(f)
+    allowed = sorted(set(ab["A"]) | set(ab["B"]) | set(e_ids))
+    assert len(set(e_ids) & (set(ab["A"]) | set(ab["B"]))) == 0
+    pop = pd.read_parquet(os.path.join(CACHE, "swechat_population.parquet"), filters=[("session_id", "in", allowed)])
+    assert set(pop.session_id) == set(allowed), "population table lacks sampled sessions"
+    fmt_of = dict(zip(pop.session_id, pop.format))
+    strat = dict(zip(pop.session_id, pop.stratum))
+    t0 = time.time()
+    with Pool(N_PROC) as pool:
+        lk = sorted(pool.imap_unordered(_links_worker, allowed, chunksize=4))
+    links_secs = time.time() - t0
+    fmt_mismatch = [sid for sid, fmt, _ in lk if fmt != fmt_of[sid]]
+    assert not fmt_mismatch, f"re-sniffed format differs from the population table: {fmt_mismatch[:5]}"
+    links_oc, links_cx = {}, {}
+    for sid, fmt, links in lk:  # session_id order, as in main()
+        (links_oc if fmt == "opencode" else links_cx if fmt == "codex" else {}).update(links)
+    ctx = {"opencode_task": links_oc, "codex_spawn": links_cx}
+    t1 = time.time()
+    info, per = write_split_cache("E", e_ids, fmt_of, strat, ctx)
+    e_secs = time.time() - t1
+    report = {"corpus": CORPUS, "snapshot": SNAPSHOT, "loader_version": LOADER_VERSION, "split": "E",
+              "entry_point": "python -m analysis.loaders.load_swechat --split E",
+              "split_source": "analysis/cache/samples/swechat_EH.json#E",
+              "cache": info,
+              "ctx": {"transcripts_scanned": len(allowed), "scope": "A + B + E transcripts (H never opened)",
+                      "opencode_child_to_task_call": len(links_oc), "codex_thread_to_spawn_call": len(links_cx),
+                      "format_resniff_mismatches": len(fmt_mismatch), "wall_seconds": round(links_secs, 1)},
+              "per_format_E": aggregate_by_format((fmt, st, summ) for _, fmt, st, summ in per),
+              "session_level_subagent_sessions_E": sum(1 for _, _, st, _ in per if st.get("session_subagent")),
+              "parser_exceptions_E": [(sid, fmt, st["exception"]) for sid, fmt, st, _ in per if st.get("exception")],
+              "wall_seconds_E_cache": round(e_secs, 1)}
+    if rederive:
+        assert scratch and not os.path.abspath(scratch).startswith(os.path.abspath(CACHE)), "rederive needs a scratch dir outside analysis/cache"
+        os.makedirs(scratch, exist_ok=True)
+        report["rederived"] = {}
+        for sp in rederive:
+            p = os.path.join(scratch, f"{CORPUS}_{sp}.rederived.parquet")
+            ri, _ = write_split_cache(sp, ab[sp], fmt_of, strat, ctx, path=p)
+            ri["path"] = "scratch (throwaway)"
+            report["rederived"][sp] = ri
+    report["wall_seconds_total"] = round(time.time() - t_start, 1)
+    out = os.path.join(HERE, "out", "phase_e")
+    os.makedirs(out, exist_ok=True)
+    with open(os.path.join(out, f"{CORPUS}_E_build.json"), "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=1, default=lambda o: int(o) if isinstance(o, np.integer) else str(o))
+    print(f"E done in {time.time() - t_start:.0f}s")
+
+
 # ------------------------------------------------------------------------------------------------------------- main
 
 def normalize_label(label):
@@ -1449,49 +1578,10 @@ def main():
     strat = dict(zip(pop.session_id, pop.stratum))
     ab_rows, xcheck_raw, cache_info = [], {}, {}
     for split in ("A", "B"):
-        path = os.path.join(CACHE, f"{CORPUS}_{split}.parquet")
-        tmp = path + ".tmp"
-        writer = pq.ParquetWriter(tmp, SCHEMA, compression="zstd")
-        buf, buf_rows, rows, sessions, empty, val = [], 0, 0, 0, [], collections.Counter()
-        jobs = [(sid, fmt_of[sid], strat[sid], ctx) for sid in smp[split]]
-        with Pool(N_PROC) as pool:
-            for sid, tbl, summ, st, v in pool.imap(build_worker, jobs, chunksize=1):
-                ab_rows.append((fmt_of[sid], st, summ))
-                xcheck_raw[sid] = summ["xcheck_call_ids"]
-                if tbl is None:
-                    empty.append(sid)
-                    continue
-                val.update({k: v2 for k, v2 in v.items() if k not in ("sessions",)})
-                buf.append(tbl)
-                buf_rows += tbl.num_rows
-                sessions += 1
-                if buf_rows >= 250_000:
-                    writer.write_table(pa.concat_tables(buf), row_group_size=10**9)
-                    rows += buf_rows
-                    buf, buf_rows = [], 0
-        if buf:
-            writer.write_table(pa.concat_tables(buf), row_group_size=10**9)
-            rows += buf_rows
-        writer.close()
-        os.replace(tmp, path)
-        # whole-file validation, one row group at a time (a session never spans row groups)
-        pf = pq.ParquetFile(path)
-        seen, vrows = set(), 0
-        for g in range(pf.num_row_groups):
-            df = pf.read_row_group(g).to_pandas(types_mapper={pa.string(): pd.StringDtype(), pa.int64(): pd.Int64Dtype(),
-                                                              pa.bool_(): pd.BooleanDtype()}.get)
-            df["seq"] = df["seq"].astype("int64")
-            ir.validate(df)
-            ids = set(df.session_id.unique())
-            assert not (ids & seen), "a session spans row groups"
-            seen |= ids
-            vrows += len(df)
-        assert vrows == rows
-        cache_info[split] = {"path": f"analysis/cache/{CORPUS}_{split}.parquet", "rows": rows, "sessions": sessions,
-                             "sessions_in_sample": len(smp[split]), "sessions_with_zero_events": empty,
-                             "row_groups": pf.num_row_groups, "bytes": os.path.getsize(path),
-                             "validate_kind_counts": {k: int(v) for k, v in val.items() if k != "rows"}}
-        print(f"{split}: {rows} rows, {sessions} sessions", flush=True)
+        cache_info[split], per = write_split_cache(split, smp[split], fmt_of, strat, ctx)
+        for sid, fmt, st, summ in per:
+            ab_rows.append((fmt, st, summ))
+            xcheck_raw[sid] = summ["xcheck_call_ids"]
     report["caches"] = cache_info
 
     # ---- per-format stats over A+B caches
@@ -1694,4 +1784,15 @@ def format_notes(full):
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    _ap = argparse.ArgumentParser()
+    _ap.add_argument("--split", choices=["E"], help="build only this extra split's cache (E); default: full A/B build")
+    _ap.add_argument("--rederive", nargs="*", default=[], choices=["A", "B"],
+                     help="with --split E: also re-derive these A/B splits into --scratch for an equivalence check")
+    _ap.add_argument("--scratch", help="output dir for --rederive (must be outside analysis/cache)")
+    _a = _ap.parse_args()
+    if _a.split == "E":
+        build_split_e(rederive=_a.rederive, scratch=_a.scratch)
+    else:
+        assert not _a.rederive, "--rederive needs --split E"
+        main()
