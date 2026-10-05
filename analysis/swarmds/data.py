@@ -14,10 +14,11 @@ Protocol (reports/TESTER_HANDOFF.md, task brief):
     v_answers or observed.host_stdout (witness). `labels()` is the only function that reads v_answers; it is called by
     the scorer after every verdict exists.
   * session view per row:
-      injected        data/eval/injected_v1/<session_id>/<class>-seed<k>.jsonl (the whole tampered transcript)
+      injected        <INJ>/<session_id>/<class>-seed<k>.jsonl (the whole tampered transcript)
       tiered / cf     the honest transcript with that call's tool_result content replaced by v_blind.claimed_output
       execlog / other the honest transcript as is
-      claim units     data/swarm/<block>/transcripts/<session_id>.jsonl (as dev_claims.py used it)
+      claim units     tdir(<block>)/<session_id>.jsonl (as dev_claims.py used it)
+  * paths: see set_root() below (--data / WFV_DATA / ./dataset; packaged and original layouts).
     Session ids are reused across re-run blocks, so for tool-output rows the block's own copy is used when it contains
     the call, else the copy that does.
 Nothing here writes anywhere.
@@ -34,11 +35,56 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterator, Optional
 
-DATA = Path(os.environ.get("SWARMS_DATA", "C:/Swarms/data"))
-DB = DATA / "eval" / "spoof_v1.db"
-INJ = DATA / "eval" / "injected_v1"
-SWARM = DATA / "swarm"
-ROWS_JSONL = DATA / "eval" / "spoof_dataset_v1" / "rows.jsonl"
+# ----------------------------------------------------------------------------------------------- data root
+# Where the dataset lives: set_root(path) (scripts pass --data) > env WFV_DATA > env SWARMS_DATA (legacy) >
+# <repo>/dataset. Two layouts are recognised, nothing else changes between them:
+#   packaged (the release asset, spoof_dataset_v1.zip):     original (the swarm repo's data/ tree):
+#     <root>/spoof_v1.db                                      <root>/eval/spoof_v1.db
+#     <root>/injected_v1/<sid>/<class>-seed<k>.jsonl          <root>/eval/injected_v1/...
+#     <root>/transcripts/<block>/<sid>.jsonl                  <root>/swarm/<block>/transcripts/<sid>.jsonl
+#     <root>/rows.jsonl                                       <root>/eval/spoof_dataset_v1/rows.jsonl
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_ROOT = REPO_ROOT / "dataset"
+
+
+def _layout(root: Path) -> dict:
+    root = Path(root)
+    if not (root / "spoof_v1.db").is_file() and (root / "eval" / "spoof_v1.db").is_file():
+        return {"layout": "original", "DATA": root, "DB": root / "eval" / "spoof_v1.db",
+                "INJ": root / "eval" / "injected_v1", "SWARM": root / "swarm", "TSUB": "transcripts",
+                "ROWS_JSONL": root / "eval" / "spoof_dataset_v1" / "rows.jsonl"}
+    return {"layout": "packaged", "DATA": root, "DB": root / "spoof_v1.db", "INJ": root / "injected_v1",
+            "SWARM": root / "transcripts", "TSUB": "", "ROWS_JSONL": root / "rows.jsonl"}
+
+
+def set_root(root=None) -> Path:
+    """Point every path in this module at `root` (None: env WFV_DATA, SWARMS_DATA, else <repo>/dataset)."""
+    global LAYOUT, DATA, DB, INJ, SWARM, TSUB, ROWS_JSONL
+    if root is None:
+        root = os.environ.get("WFV_DATA") or os.environ.get("SWARMS_DATA") or DEFAULT_ROOT
+    L = _layout(Path(root).expanduser().resolve())
+    LAYOUT, DATA, DB, INJ, SWARM, TSUB, ROWS_JSONL = (L["layout"], L["DATA"], L["DB"], L["INJ"], L["SWARM"],
+                                                       L["TSUB"], L["ROWS_JSONL"])
+    return DATA
+
+
+def tdir(block: Optional[str]) -> Path:
+    """Directory holding the honest transcripts of `block` ('*' works for globbing)."""
+    d = SWARM / (block or "")
+    return d / TSUB if TSUB else d
+
+
+def require() -> None:
+    """Fail with a readable message when the dataset is not where the paths point."""
+    if not DB.is_file():
+        raise SystemExit(f"dataset not found: {DB} does not exist.\n"
+                         f"  download it:  python scripts/download_dataset.py   (extracts to ./dataset)\n"
+                         f"  or point at it: --data <dir>  /  set WFV_DATA=<dir>")
+
+
+LAYOUT = DATA = DB = INJ = SWARM = ROWS_JSONL = None   # set below
+TSUB = ""
+set_root()
 
 ALLOWED_OBSERVED = ("supported_digests", "own_digests_by_file", "claimed_digests", "board_reads")
 WITNESS_OBSERVED = ("host_stdout",)
@@ -74,7 +120,7 @@ def splice(turns: list[dict], call_id: str, claimed: Optional[str]) -> tuple[lis
 
 def honest_transcripts() -> list[Path]:
     """Every honest swarm transcript (all blocks, both splits; a reused session id appears once per block)."""
-    return [Path(p) for p in sorted(glob.glob(str(SWARM / "*" / "transcripts" / "*.jsonl")))]
+    return [Path(p) for p in sorted(glob.glob(str(tdir("*") / "*.jsonl")))]
 
 
 class SessionIndex:
@@ -84,7 +130,7 @@ class SessionIndex:
             self.by_sid[p.stem].append(p)
 
     def honest_path(self, block: Optional[str], sid: str, call_id: Optional[str]) -> Optional[Path]:
-        own = SWARM / (block or "") / "transcripts" / f"{sid}.jsonl"
+        own = tdir(block) / f"{sid}.jsonl"
         cands = ([own] if own.is_file() else []) + [c for c in self.by_sid.get(sid, []) if c != own]
         if not cands:
             return None
@@ -125,7 +171,7 @@ def row_view(r, idx: SessionIndex) -> RowView:
     claimed_output)."""
     rid, src, sid, cid = r["row_id"], r["source"], r["session_id"], r["call_id"]
     if r["unit"] == "claim":
-        p = SWARM / (r["block"] or "") / "transcripts" / f"{sid}.jsonl"
+        p = tdir(r["block"]) / f"{sid}.jsonl"
         return RowView("claim", p if p.is_file() else None, cid, note="" if p.is_file() else "missing:no_transcript")
     if src == "injected":
         _, call, cls, seed = rid.split(":")                      # inj:<call_id>:<class>:seed<k>

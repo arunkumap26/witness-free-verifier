@@ -32,7 +32,7 @@ from analysis.swarmds import data as D
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 OUT = ROOT / "analysis" / "out" / "swarmds"
-MAIN = Path("C:/Swarms")
+BASELINE = HERE / "baseline"      # byte-identical copies of the swarm repo's swarm/delta.py + eval/score_detector.py
 
 SESSION_CHECKS = ("t0_structural", "t1_recompute", "t3_shadow_state", "token_conservation")
 CHECKS = SESSION_CHECKS + ("claim_provenance",)
@@ -54,8 +54,9 @@ def _load(name: str, path: Path):
 
 
 def _shas(path: Path) -> tuple[str, str]:
-    b = path.read_bytes()
-    return hashlib.sha256(b.replace(b"\r\n", b"\n")).hexdigest(), hashlib.sha256(b).hexdigest()
+    """(LF-normalised, CRLF-normalised) sha256: a frozen sha matches whichever line endings the checkout has."""
+    b = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(b).hexdigest(), hashlib.sha256(b.replace(b"\n", b"\r\n")).hexdigest()
 
 
 def load_checks() -> tuple[dict, dict, object]:
@@ -107,14 +108,15 @@ def load_checks() -> tuple[dict, dict, object]:
 
 def load_baseline():
     """eval/score_detector.py:detect and swarm/delta.py are pure functions. delta.py has no import-time side effects
-    (regex constants + defs); score_detector.py at import reconfigures sys.stdout to utf-8 and inserts C:/Swarms on
-    sys.path. Both are loaded by path; sys.path is restored afterwards. Nothing in the swarm package is executed."""
+    (regex constants + defs); score_detector.py at import reconfigures sys.stdout to utf-8 and inserts its grandparent
+    dir on sys.path. Both are loaded by path from analysis/swarmds/baseline/ (unmodified copies, sha256 in
+    baseline/PROVENANCE.json); sys.path is restored afterwards. Nothing in the swarm package is executed."""
     saved = list(sys.path)
     pkg = types.ModuleType("swarm")
     pkg.__path__ = []
     sys.modules.setdefault("swarm", pkg)
-    _load("swarm.delta", MAIN / "swarm" / "delta.py")
-    sd = _load("baseline_score_detector", MAIN / "eval" / "score_detector.py")
+    _load("swarm.delta", BASELINE / "swarm" / "delta.py")
+    sd = _load("baseline_score_detector", BASELINE / "eval" / "score_detector.py")
     sys.path[:] = saved
     return sd.detect
 
@@ -123,7 +125,7 @@ def build_population(db, C):
     pop = C.ChorePopulation()
     task = dict(db.execute("SELECT session_id, task_id FROM sessions WHERE block IN (?,?,?)", CHORE_BLOCKS).fetchall())
     for b in CHORE_BLOCKS:
-        for p in sorted((D.SWARM / b / "transcripts").glob("*.jsonl")):
+        for p in sorted(D.tdir(b).glob("*.jsonl")):
             t = task.get(p.stem)
             if t and str(t).startswith("chore"):
                 pop.add_session(p.stem, t, D.load_turns(p))
@@ -443,8 +445,11 @@ def text_report(J: dict) -> str:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--data", default=None, help="dataset root (default: env WFV_DATA, else <repo>/dataset)")
     a = ap.parse_args(argv)
     t0 = time.time()
+    D.set_root(a.data)
+    D.require()
     runners, prov, mods = load_checks()
     db = D.connect()
     print("honest pass ...", flush=True)

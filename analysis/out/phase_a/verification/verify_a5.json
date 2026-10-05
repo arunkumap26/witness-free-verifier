@@ -113,7 +113,7 @@
   ]
  },
  "verifier": {
-  "question": "A5 - Token accounting: which per-turn token fields exist per corpus, does any field count tool-result tokens apart from model-generated tokens, and is token conservation (context delta between consecutive API calls vs appended chars) tight enough to be worth a Phase C probe? I re-derived this independently with scratch code (C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\a5_rederive.py, sens.py, misc.py). I read only the *_A caches plus raw split-A swechat transcripts for fields the IR drops. I read the measurer's script only after I had my own numbers.",
+  "question": "A5 - Token accounting: which per-turn token fields exist per corpus, does any field count tool-result tokens apart from model-generated tokens, and is token conservation (context delta between consecutive API calls vs appended chars) tight enough to be worth a Phase C probe? I re-derived this independently with scratch code (<home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\a5_rederive.py, sens.py, misc.py). I read only the *_A caches plus raw split-A swechat transcripts for fields the IR drops. I read the measurer's script only after I had my own numbers.",
   "checks": [
    {
     "corpus": "ALL (separate tool-result accounting)",

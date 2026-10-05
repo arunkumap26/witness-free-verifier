@@ -45,10 +45,15 @@ def _load_t1():
 
 T1, T1_SHA = _load_t1()
 
-DATA = Path(os.environ.get("SWARMS_DATA", "C:/Swarms/data"))
-DB = DATA / "eval" / "spoof_v1.db"
-INJ = DATA / "eval" / "injected_v1"
-SWARM = DATA / "swarm"
+import importlib.util as _ilu_d  # noqa: E402
+# data root: env WFV_DATA (else SWARMS_DATA, else <repo>/dataset); both layouts, see analysis/swarmds/data.py
+_dspec = _ilu_d.spec_from_file_location("swarmds_data", Path(__file__).resolve().parent / "data.py")
+_D = _ilu_d.module_from_spec(_dspec)
+_dspec.loader.exec_module(_D)
+DATA = _D.DATA
+DB = _D.DB
+INJ = _D.INJ
+SWARM = _D.SWARM
 HERE = Path(__file__).resolve().parent
 OUT_DEV = HERE / "dev_t1_recompute.json"
 OUT_FROZEN = HERE / "frozen_t1_recompute.json"
@@ -67,7 +72,7 @@ def load_turns(path) -> list:
 
 def honest_index() -> dict:
     idx = defaultdict(list)
-    for p in sorted(glob.glob(str(SWARM / "*" / "transcripts" / "*.jsonl"))):
+    for p in sorted(glob.glob(str(_D.tdir("*") / "*.jsonl"))):
         idx[Path(p).stem].append(Path(p))
     return idx
 

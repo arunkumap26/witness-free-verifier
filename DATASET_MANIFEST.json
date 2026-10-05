@@ -1,0 +1,161 @@
+{
+ "dataset": "spoof_dataset_v1",
+ "licence": "CC BY 4.0",
+ "release": "v1.0.0",
+ "url_base": "https://github.com/arunkumap26/witness-free-verifier/releases/download/v1.0.0/",
+ "assets": {
+  "spoof_dataset_v1.tar.xz": {
+   "bytes": 25590280,
+   "MB": 25.59,
+   "sha256": "c630aa7c37c1ea29778caad0cdcc9b13b47451cf5d20f487b9e60fc69a514d2b",
+   "ratio_vs_raw": 0.0348,
+   "format": "tar + xz -9e single-threaded (LZMA2, 64 MiB dictionary)"
+  },
+  "spoof_dataset_v1_db.zip": {
+   "bytes": 10574636,
+   "sha256": "194d2a8314bb0e41b7088e3323bc14378d9faea0312737ca516c56c88410c590",
+   "format": "zip; spoof_v1.db + docs under spoof_dataset_v1/"
+  },
+  "spoof_dataset_v1_transcripts.zip": {
+   "bytes": 80807174,
+   "sha256": "8ce3e99f3550c0f969c27f14a3ac78ebd71e189b444e9786340d07ed946e45e7",
+   "format": "zip; injected_v1/ + transcripts/ under spoof_dataset_v1/ (no rows.jsonl)"
+  }
+ },
+ "compression_comparison": {
+  "raw_bytes": 735941724,
+  "raw_MB": 735.9,
+  "n_files": 12680,
+  "zip_deflate9_python": {
+   "kind": "zip",
+   "file": "spoof_dataset_v1.zip",
+   "seconds": 11.8,
+   "bytes": 97495820,
+   "raw_bytes": 735941597,
+   "n_files": 12680,
+   "ratio": 0.1325
+  },
+  "zip_deflate_7zip_ultra": {
+   "kind": "zip-7z-deflate-ultra",
+   "seconds": 261.0,
+   "bytes": 94237143
+  },
+  "tar_xz_9e_T0_multithread": {
+   "kind": "xz",
+   "file": "spoof_dataset_v1.tar.xz",
+   "seconds": 122.2,
+   "bytes": 25848780,
+   "raw_bytes": 735941597,
+   "n_files": 12680,
+   "ratio": 0.0351
+  },
+  "tar_xz_9e_T1_single_thread": {
+   "kind": "xz",
+   "file": "spoof_dataset_v1.T1.tar.xz",
+   "seconds": 209.6,
+   "bytes": 25588352,
+   "raw_bytes": 735941597,
+   "n_files": 12680,
+   "ratio": 0.0348
+  },
+  "final_zip_build": {
+   "kind": "zip (7-Zip, Deflate, -mx=9 -mfb=258 -mpass=15)",
+   "rc": 0,
+   "seconds": 311.8,
+   "bytes": 94237179
+  },
+  "final_xz_build": {
+   "kind": "xz",
+   "file": "spoof_dataset_v1.T1.tar.xz",
+   "seconds": 239.8,
+   "bytes": 25590280,
+   "raw_bytes": 735941724,
+   "n_files": 12680,
+   "ratio": 0.0348
+  },
+  "xz_smaller_than_zip_by": 0.7284,
+  "decision": "ship both: xz is 73% smaller than the zip (rule: also ship xz if >= 30% smaller); zip kept as the universal format"
+ },
+ "contents": {
+  "rows": 31987,
+  "by_label": {
+   "not_spoofed": 19977,
+   "spoofed": 12010
+  },
+  "by_source": {
+   "chore_answer": 53,
+   "claim": 166,
+   "counterfactual": 2300,
+   "execlog": 19496,
+   "false_pass_assertion": 32,
+   "injected": 6441,
+   "interstitial_false_pass": 8,
+   "mode_claim": 300,
+   "mode_claim_prompted": 53,
+   "scope_substitution": 80,
+   "supported_shared_value": 61,
+   "tiered": 2979,
+   "unsupported_shared_value": 17,
+   "verbatim_contradicted_pass": 1
+  },
+  "by_unit": {
+   "claim": 770,
+   "tool_output": 31217
+  },
+  "tables": {
+   "items": 31987,
+   "sessions": 4694,
+   "scenarios": 16,
+   "source_notes": 9,
+   "observed": 16032
+  },
+  "honest_transcripts_by_block": {
+   "_r4_smoke": 2,
+   "b1": 1441,
+   "b2": 437,
+   "b5_lat": 1357,
+   "r1_abl": 381,
+   "r2_stock": 982,
+   "r3_board": 275,
+   "r4_incident": 239,
+   "r4b": 127,
+   "r4b_incident": 2,
+   "r4c": 50,
+   "r4d": 139,
+   "rung1": 303,
+   "rung3": 339,
+   "rung3b": 158
+  },
+  "injected_transcripts": 6441,
+  "injected_sessions": 500,
+  "honest_transcripts": 6232
+ },
+ "sources": {
+  "spoof_v1.db": "data/eval/spoof_v1.db (swarm repo, read-only copy)",
+  "rows.jsonl, summary.json, detector_score.json": "data/eval/spoof_dataset_v1/",
+  "injected_v1/": "data/eval/injected_v1/",
+  "transcripts/<block>/": "data/swarm/<block>/transcripts/ for every block (all 6,232 honest transcripts: the soundness population the scorer reads, and the session view of every non-injected row)",
+  "DATASET_README.md": "written for the package from reports/DATASET_V1.md, reports/TESTER_HANDOFF.md and data/eval/spoof_dataset_v1/README.md"
+ },
+ "secret_privacy_scan": {
+  "files_scanned": 12679,
+  "hits_by_pattern": {},
+  "patterns": [
+   "sk-ant-",
+   "sk-or-v1-",
+   "ghp_",
+   "gho_",
+   "github_pat_",
+   "AKIA",
+   "Bearer <20+ chars>",
+   "CLAUDE_CODE_OAUTH_TOKEN=",
+   "PRIVATE KEY block",
+   "C:\\Users\\<user> / /c/Users/<user> / /mnt/c/Users/<user> / /home/<user>",
+   "user name",
+   "user email domain"
+  ]
+ },
+ "notes": [
+  "spoof_dataset_v1.zip (94.2 MB, sha256 e38985cb0babe8b38da24a9a986a4ffc95ef974877a982498bd60f3f65898d89) was built for the compression comparison and not published; the split zips above carry the same db and transcripts."
+ ]
+}

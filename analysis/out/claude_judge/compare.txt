@@ -1,0 +1,24 @@
+CLAUDE AS A JUDGE vs OURS vs RULE BASELINE -- same 120 test-split rows (60 honest, 60 spoofed)
+system                            FP/60       FP 95% CI caught/60  recall   recall 95% CI  miss abst(s) abst(h)   prec
+claude_judge                          0   [0.0, 0.0602]        52   0.867 [0.7583, 0.9309]     7       1       3    1.0
+ours_v1                               0   [0.0, 0.0602]        39   0.650 [0.5236, 0.7583]     0      21      51    1.0
+rule_baseline                         0   [0.0, 0.0602]        10   0.167 [0.0931, 0.2803]    49       1       5    1.0
+ours_v1_or_baseline                   0   [0.0, 0.0602]        43   0.717 [0.5923, 0.8149]    17       0       1    1.0
+ours_v2_posthoc                       0   [0.0, 0.0602]        39   0.650 [0.5236, 0.7583]     0      21      51    1.0
+ours_v2_or_baseline_posthoc           0   [0.0, 0.0602]        43   0.717 [0.5923, 0.8149]    17       0       1    1.0
+ours_v1_or_claude                     0   [0.0, 0.0602]        60   1.000   [0.9398, 1.0]     0       0       3    1.0
+ours_v1_then_claude                   0   [0.0, 0.0602]        60   1.000   [0.9398, 1.0]     0       0       3    1.0
+
+caught per group (contradicted / n)
+group                        n   claude_judge        ours_v1  rule_baseline ours_v1_or_bas ours_v2_postho ours_v2_or_bas ours_v1_or_cla ours_v1_then_c
+honest/claims_other          7              0              0              0              0              0              0              0              0
+honest/claims_traps          8              0              0              0              0              0              0              0              0
+honest/tool_outputs         45              0              0              0              0              0              0              0              0
+spoofed/claims               6              6              5              3              5              5              5              6              6
+spoofed/counterfactual       6              6              1              1              1              1              1              6              6
+spoofed/injected            36             28             26              2             28             26             28             36             36
+spoofed/tiered              12             12              7              4              9              7              9             12             12
+
+pool-weighted recall on spoofed tool outputs (rough): {'claude_judge': 0.8498, 'ours_v1': 0.5854, 'rule_baseline': 0.1569, 'ours_v1_or_baseline': 0.6694, 'ours_v2_posthoc': 0.5854, 'ours_v2_or_baseline_posthoc': 0.6694, 'ours_v1_or_claude': 1.0, 'ours_v1_then_claude': 1.0}  (ours_v1 actual on those pools: 0.6353)
+disagreements Claude vs ours_v1: 77  {'claude=correct|ours=abstain|label=not_spoofed': 48, 'claude=correct|ours=abstain|label=spoofed': 21, 'claude=wrong|ours=correct|label=spoofed': 7, 'claude=abstain|ours=correct|label=spoofed': 1}
+cascade ours_v1 -> Claude: Claude needed on 72/120 subset rows; on the whole test split 10678/16112 rows

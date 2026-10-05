@@ -570,7 +570,7 @@
     ]
    },
    "verdict": {
-    "lens": "correlations (skeptical re-derivation; own code in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\corr\\: build.py, feats.py, chk_o1/o2/o3/o3b/o6/o7/o8/o9/o10/o11/nulls/more/o16/runmax.py. I read the lens script only afterwards, to explain why my gap definitions differed. Nothing was written into analysis/.)",
+    "lens": "correlations (skeptical re-derivation; own code in <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\corr\\: build.py, feats.py, chk_o1/o2/o3/o3b/o6/o7/o8/o9/o10/o11/nulls/more/o16/runmax.py. I read the lens script only afterwards, to explain why my gap definitions differed. Nothing was written into analysis/.)",
     "checks": [
      {
       "id": "O1",
@@ -864,7 +864,7 @@
      {
       "id": "O1",
       "reproduced": true,
-      "my_numbers": "I wrote my own binary-segmentation detector (det.py) and ran 300 replicates per cell. FP rates for n=50/200/1000: rho 0 0.057/0.047/0.010; rho 0.2 0.207/0.273/0.167; rho 0.3 0.343/0.393/0.407; rho 0.5 0.650/0.877/0.930; rho 0.7 0.950/0.990/1.000. Median swechat lag-1 on log1p series: latency 0.354, result_len 0.220, gap 0.127. These match the JSON. Scripts are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\cp\\ (ar1.py, det.py, engine.py).",
+      "my_numbers": "I wrote my own binary-segmentation detector (det.py) and ran 300 replicates per cell. FP rates for n=50/200/1000: rho 0 0.057/0.047/0.010; rho 0.2 0.207/0.273/0.167; rho 0.3 0.343/0.393/0.407; rho 0.5 0.650/0.877/0.930; rho 0.7 0.950/0.990/1.000. Median swechat lag-1 on log1p series: latency 0.354, result_len 0.220, gap 0.127. These match the JSON. Scripts are in <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\cp\\ (ar1.py, det.py, engine.py).",
       "problem": "None for the numbers; they agree within Monte Carlo error. The mechanism holds: sd(diff)/sqrt(2) = sigma*sqrt(1-rho). Shrinking effective sample size would also cause false positives even with the correct sigma, so the explanation is incomplete but not wrong. On heavy tails, the block control's 0.569 for latency is above the AR(1) rate at rho 0.35."
      },
      {
@@ -1833,7 +1833,7 @@
      "N8 and the second candidate mechanism: the asserted-vs-unmentioned evidence gap is a between-session contrast confounded by coding topic. Among sessions that run other git commands, CONS push falls from +0.386 to +0.200 and CONS commit is +0.126 (-0.006 to +0.251).",
      "N2: 'CONSOLIDATE after 2026-03-24' is not exact, since 7 sampled STOP sessions start on 2026-03-24 to 03-27. 'Neither 0' holds for the sample only; the population has 86 sessions with neither.",
      "N12: the 8 sessions have one synthetic system IR event each, not zero IR events.",
-     "Scratch re-derivation scripts (my own code, written before reading the lens script): C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\narr\\{ex_events,link,cov,prov,claims,ana,act}.py"
+     "Scratch re-derivation scripts (my own code, written before reading the lens script): <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\narr\\{ex_events,link,cov,prov,claims,ana,act}.py"
     ]
    }
   },
@@ -2113,7 +2113,7 @@
       "id": "O1",
       "reproduced": true,
       "my_numbers": "I parsed the raw SWE-chat CC B transcripts myself: 1679 files, 1033211 lines, 0 duplicate uuids. Joined stop_hook_summary to Stop hook_progress on (session, toolUseID). Using summaries with at least 1 durationMs (8786): n=6714 in 903 sessions. 0 violations at 2 ms, at 0 ms and at 1 s; Wilson hi 5.7e-4. Slack median 1 [1,1], p95 5, p99 15, MAX 25930 ms. Slack in [0,1]: 5285. |slack|<=2: 6183. hookCount==len(hookInfos) 10997/10997. n_hook_progress==hookCount 8719/8719. Serial sum fails 2482/2512, rate 0.988 [0.981,0.993] over 388 sessions. Restricted to summaries where EVERY hook has a durationMs: n=5704 in 693 sessions, slack in [0,1] 4502 (78.9%), |slack|<=2 5277, max 182 ms. 1368 summaries are partial (one hookInfo has no durationMs), and the 25930 ms tail is in that group. Every timed summary is v2.1.x (5704/5704). Hook starts are simultaneous: first-to-last Stop hook_progress spread median 0 ms, p99 4. Where sum-max >10 ms, 1614/1621 fail the serial test.",
-      "problem": "All numbers reproduce exactly. 'Equals ... to the millisecond' overclaims: 0-1 ms in only 5285/6714 (78.7%) and the max is 25930 ms. The 'max' is taken over the PRESENT durations only, and 1010 of the 6714 pairs have a hook with no durationMs. The parallel conclusion is independently supported by the 0 ms start spread. Scope: v2.1 only. Scripts: C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\tc\\ (raw_cc.py, o1b.py)."
+      "problem": "All numbers reproduce exactly. 'Equals ... to the millisecond' overclaims: 0-1 ms in only 5285/6714 (78.7%) and the max is 25930 ms. The 'max' is taken over the PRESENT durations only, and 1010 of the 6714 pairs have a hook with no durationMs. The parallel conclusion is independently supported by the 0 ms start spread. Scope: v2.1 only. Scripts: <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\tc\\ (raw_cc.py, o1b.py)."
      },
      {
       "id": "O2",

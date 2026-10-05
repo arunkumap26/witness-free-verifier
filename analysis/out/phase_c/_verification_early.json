@@ -181,7 +181,7 @@
     ]
    },
    "verdict": {
-    "lens": "ext_witness (skeptical re-derivation). I wrote my own scripts in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad (o1o2.py, o3_build/o3_rate/o3_profile/o3_cluster.py, o5.py, o6.py, o7/o7b/o7c.py, epochs.py, o11.py, tod.py) and saved their outputs in out_*.txt. I read the lens script only after I had my own numbers, to explain differences. The main event-set differences come from the lens matching URL-decoded bodies, using 13/16/19-digit epoch forms with no range filter, and requiring held history to start at seq 1 for page-name epochs. Net result: every hit and surprise reproduces in its raw counts. Two of them overclaim in how they are interpreted (O3, O7), and one is reported with mislabeled numbers (O3, per source).",
+    "lens": "ext_witness (skeptical re-derivation). I wrote my own scripts in <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad (o1o2.py, o3_build/o3_rate/o3_profile/o3_cluster.py, o5.py, o6.py, o7/o7b/o7c.py, epochs.py, o11.py, tod.py) and saved their outputs in out_*.txt. I read the lens script only after I had my own numbers, to explain differences. The main event-set differences come from the lens matching URL-decoded bodies, using 13/16/19-digit epoch forms with no range filter, and requiring held history to start at seq 1 for page-name epochs. Net result: every hit and surprise reproduces in its raw counts. Two of them overclaim in how they are interpreted (O3, O7), and one is reported with mislabeled numbers (O3, per source).",
     "checks": [
      {
       "id": "O1",
@@ -546,7 +546,7 @@
     ]
    },
    "verdict": {
-    "lens": "raw_census (Phase A6). I re-derived every check with my own code, writing only to scratchpad. All of my numbers are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\rederive_raw_census.json. The scripts that produced them sit in the same folder: rd_swechat.py, agg_swechat.py, rd_other.py, rd_cc_local.py, rd_tables.py, rd_aiv.py and diag_*.py. I used the lens's own 300-file swechat sample list to match its n, then reran every check on the full population. The cc_local outputs are aggregate counts only. Only after I had my numbers did I read the lens script, to explain the differences. My prompt cut O17 off mid-sentence, so I checked the events-table fields from the notes.",
+    "lens": "raw_census (Phase A6). I re-derived every check with my own code, writing only to scratchpad. All of my numbers are in <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\rederive_raw_census.json. The scripts that produced them sit in the same folder: rd_swechat.py, agg_swechat.py, rd_other.py, rd_cc_local.py, rd_tables.py, rd_aiv.py and diag_*.py. I used the lens's own 300-file swechat sample list to match its n, then reran every check on the full population. The cc_local outputs are aggregate counts only. Only after I had my numbers did I read the lens script, to explain the differences. My prompt cut O17 off mid-sentence, so I checked the events-table fields from the notes.",
     "checks": [
      {
       "id": "A6-O1",
@@ -1151,7 +1151,7 @@
     ]
    },
    "verdict": {
-    "lens": "commit_witness: skeptical re-derivation. I wrote my own transcript parser (it includes subagent agent_progress entries) and my own patch parser. I ran on the full population: 4921 Claude Code transcripts, 3411 of them with a linked commit, not the lens's 1200-session sample. All my numbers are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\cw\\rederive_commit_witness.json and the scripts are in the same folder. I read the lens script only after I had my own numbers, to diagnose O4 (edge rule), O11 and O12 (metadata order).",
+    "lens": "commit_witness: skeptical re-derivation. I wrote my own transcript parser (it includes subagent agent_progress entries) and my own patch parser. I ran on the full population: 4921 Claude Code transcripts, 3411 of them with a linked commit, not the lens's 1200-session sample. All my numbers are in <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\cw\\rederive_commit_witness.json and the scripts are in the same folder. I read the lens script only after I had my own numbers, to diagnose O4 (edge rule), O11 and O12 (metadata order).",
     "checks": [
      {
       "id": "O1",
@@ -1481,7 +1481,7 @@
     ]
    },
    "verdict": {
-    "lens": "aiv_accounting: skeptic re-derivation. I wrote my own extractor and segmenter from the raw claude_code_messages.jsonl.gz. Unit = run (sdk_session split at system/init). I got 314 runs in 53 sdk sessions, 0 pre-init rows, and 54 failed-resume result rows. Code and raw-count JSONs are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\aiv\\: extract.py, base.py, m1-m9.py, m1.json, m2.json, m3.json, m3b.json, m3c.json, m4_all.json, m4_R.json, m5-m9.json. I read the lens script only after I had my own numbers, to explain differences. One denominator issue runs through the whole lens: the lens's '211 runs with >=1 API response' includes 18 runs whose only assistant row is a '<synthetic>' message with zero usage and zero API time (dur 22-5318 ms). That makes several identities trivially true (O1, O4, O5, O8).",
+    "lens": "aiv_accounting: skeptic re-derivation. I wrote my own extractor and segmenter from the raw claude_code_messages.jsonl.gz. Unit = run (sdk_session split at system/init). I got 314 runs in 53 sdk sessions, 0 pre-init rows, and 54 failed-resume result rows. Code and raw-count JSONs are in <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\aiv\\: extract.py, base.py, m1-m9.py, m1.json, m2.json, m3.json, m3b.json, m3c.json, m4_all.json, m4_R.json, m5-m9.json. I read the lens script only after I had my own numbers, to explain differences. One denominator issue runs through the whole lens: the lens's '211 runs with >=1 API response' includes 18 runs whose only assistant row is a '<synthetic>' message with zero usage and zero API time (dur 22-5318 ms). That makes several identities trivially true (O1, O4, O5, O8).",
     "checks": [
      {
       "id": "O1",

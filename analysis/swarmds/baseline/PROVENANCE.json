@@ -1,0 +1,17 @@
+{
+ "what": "Unmodified copies of the rule-based baseline from the swarm repo (main checkout), vendored so the scorer runs without it. analysis/swarmds/score.py loads them by path and calls only score_detector.detect (which calls swarm.delta's grammar / consistency / digest oracles).",
+ "files": {
+  "swarm/delta.py": {
+   "source": "<swarm repo>/swarm/delta.py",
+   "sha256": "4aa3f0773ed6ad0e17e030957cfee4f33ff7e3cbe2c687af378e50ec5829cdfa",
+   "identical_to_source": true,
+   "bytes": 25549
+  },
+  "eval/score_detector.py": {
+   "source": "<swarm repo>/eval/score_detector.py",
+   "sha256": "a154ee5f014d809293a23fcae469b784aef3ee8f7ed7f87772cc65f022992cf3",
+   "identical_to_source": true,
+   "bytes": 11928
+  }
+ }
+}

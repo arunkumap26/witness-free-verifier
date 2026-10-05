@@ -260,8 +260,8 @@
      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\pub_cc_hf.json",
      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_pub_cc_hf.json",
      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_cc_hf.json",
-     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v6_resplit_cc.py",
-     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v7_reparse.py"
+     "<home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v6_resplit_cc.py",
+     "<home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v7_reparse.py"
     ]
    },
    {
@@ -380,11 +380,11 @@
      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\prereg_e_extensions\\pub_codex.json",
      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\heldout_manifest_pub_codex.json",
      "C:\\Swarms\\.claude\\worktrees\\analysis\\analysis\\out\\phase_e\\newcorp_build_pub_codex.json",
-     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v1_hashes.py",
-     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v2_secrets.py",
-     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v5_resplit.py",
-     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v8_envsecrets.py",
-     "C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\reparse_result.json"
+     "<home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v1_hashes.py",
+     "<home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v2_secrets.py",
+     "<home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v5_resplit.py",
+     "<home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\v8_envsecrets.py",
+     "<home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\reparse_result.json"
     ]
    }
   ],
@@ -405,7 +405,7 @@
    "Decision needed (field-audit consistency): agentcap and pub_codex N include tool-less sessions, while pub_cc_* exclude them. tbench2 N includes sessions whose timestamps are all nulled by the collapsed-stamp rule. Each split follows the rule exactly against its own loader's audit, but the audits are not the same criterion. Changing the audits now would redraw splits after A was calibrated, so either accept and log the difference, or re-audit, redraw and rebuild A before any B/E read.",
    "Decision needed (calibration units): the proxy-versus-literal unit choice differs per builder (see surprises). tbench2, glm_tb21 and agentcap/pi have no N1 bounds and no N5 truncation constants. The measurement scripts must pass the same unit argument per corpus that each calibration used: cc_local; swechat/codex; swechat/opencode plus agentcap/pi; tbench2; glm_tb21.",
    "Minor overclaim in the pub_cc_common docstring (POPULATION PASS says no content is measured). scan_file computes len(json.dumps(message)) for every uuid entry of every file, B/E/H included. It is used only in the copy census, and the builder disclosed it in its own report. tbench2 and glm format discovery and the tbench2 VIEWED_BEFORE_SPLIT trial (in H) are documented in the loaders.",
-   "Verifier self-disclosure: while locating the ROLLOUT_TOKEN context, one of my scratch prints showed two short fragments of anonymous YouTube visitor-cookie values next to cookie names. They appeared only in this session's console, not in any file, and they are not repeated here. Every other check printed counts, shapes or booleans only. My checks opened raw files of A sessions only, plus the loader's own structure-only population pass for pub_cc_hf and pub_trace_commons (to re-derive their splits) and agentcap capture metadata columns run_id and task_id. Scratch scripts are in C:\\Users\\Prathik\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\."
+   "Verifier self-disclosure: while locating the ROLLOUT_TOKEN context, one of my scratch prints showed two short fragments of anonymous YouTube visitor-cookie values next to cookie names. They appeared only in this session's console, not in any file, and they are not repeated here. Every other check printed counts, shapes or booleans only. My checks opened raw files of A sessions only, plus the loader's own structure-only population pass for pub_cc_hf and pub_trace_commons (to re-derive their splits) and agentcap capture metadata columns run_id and task_id. Scratch scripts are in <home>\\AppData\\Local\\Temp\\claude\\C--Swarms\\5b3cb362-197f-4ccc-a976-2d9bb1ddbc1a\\scratchpad\\verify\\."
   ]
  }
 }

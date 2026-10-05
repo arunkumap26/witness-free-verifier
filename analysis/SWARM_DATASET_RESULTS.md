@@ -265,3 +265,37 @@ These checks read swarm turns directly and are not IR-Session `Check` classes, s
 in `REGISTRY`. On this host, `verifier/__init__.py` and `verifier/session.py` import pandas, which Application Control
 blocks. Because of that, `swarm_profile` loads each check by file path, and the registry test checks `registry.py`
 statically.
+
+## Ours vs Claude as a judge (120 test rows)
+
+Claude Opus 5.5 judged a stratified test-split subset of 60 honest and 60 spoofed rows on blinded renderings of the
+same session views our checks read (5 items per call, no tools beyond its own batch file). Full method, all
+disagreements and caveats: [`CLAUDE_JUDGE_COMPARISON.md`](CLAUDE_JUDGE_COMPARISON.md). Numbers:
+`analysis/out/claude_judge/compare.json`, from `python -m analysis.probes.claude_judge_compare`.
+
+| system | honest flagged (FP) | spoofed caught | recall (Wilson 95%) | spoofed passed as genuine | abstained (spoofed / honest) |
+|---|---:|---:|---:|---:|---:|
+| Claude Opus 5.5 as judge | 0 / 60 | 52 / 60 | 86.7% (75.8-93.1%) | 7 | 1 / 3 |
+| ours (frozen v1; T3 v2 identical here) | 0 / 60 | 39 / 60 | 65.0% (52.4-75.8%) | 0 | 21 / 51 |
+| rule-based baseline | 0 / 60 | 10 / 60 | 16.7% (9.3-28.0%) | 49 | 1 / 5 |
+| ours OR baseline | 0 / 60 | 43 / 60 | 71.7% (59.2-81.5%) | 17 | 0 / 1 |
+| ours OR Claude (combination, not pre-registered) | 0 / 60 | 60 / 60 | 100% (94.0-100%) | 0 | 0 / 3 |
+
+Claude caught more of the semantic forgeries:
+
+| class | Claude | ours |
+|---|---:|---:|
+| counterfactual | 6/6 | 1/6 |
+| tiered | 12/12 | 7/12 |
+| I-grammar | 6/6 | 1/6 |
+| I-forge | 6/6 | 3/6 |
+
+Its 8 misses (7 passed as genuine, 1 abstained) were all caught by ours:
+
+* All six I-struct rows (the call's own turn deleted; T0 orphan_result).
+* Two I-launder rows (the `Exit code 1` header stripped; T1 exit_code).
+
+Ours was right on all 48 rows where it gave a verdict. Claude was right on 109 of 116.
+
+Neither system flagged an honest row. Claude's 0 of 60 bounds its false-positive rate only below 6.0%, while ours
+has 0 false positives on 179,365 honest calls (section 3).

@@ -6,7 +6,7 @@ Protocol: split by session (sha256(session_id) % 2 == 0 -> dev). Labels (v_answe
 Soundness is reported on every honest row we are allowed to see labels for (dev), plus a label-free count of how often
 each rule fires on the 19,496 execlog honest tool outputs (unit tool_output -> the claim check must abstain) and on
 test-split claim rows WITHOUT reading their labels (fire counts only; the test split is scored by someone else).
-Read-only on C:/Swarms/data. --freeze writes analysis/swarmds/frozen_claims.json from verifier.checks.claims.FROZEN_DEFAULTS.
+Read-only on the dataset (WFV_DATA / ./dataset). --freeze writes analysis/swarmds/frozen_claims.json from verifier.checks.claims.FROZEN_DEFAULTS.
 """
 from __future__ import annotations
 
@@ -26,8 +26,13 @@ _spec = _ilu.spec_from_file_location("verifier_checks_claims",
 C = _ilu.module_from_spec(_spec)
 _spec.loader.exec_module(C)
 
-DATA = Path("C:/Swarms/data")
-DB = DATA / "eval" / "spoof_v1.db"
+import importlib.util as _ilu_d  # noqa: E402
+# data root: env WFV_DATA (else SWARMS_DATA, else <repo>/dataset); both layouts, see analysis/swarmds/data.py
+_dspec = _ilu_d.spec_from_file_location("swarmds_data", Path(__file__).resolve().parent / "data.py")
+_D = _ilu_d.module_from_spec(_dspec)
+_dspec.loader.exec_module(_D)
+DATA = _D.DATA
+DB = _D.DB
 OUT = Path(__file__).resolve().parent
 CHORE_BLOCKS = ("b1", "b2", "b5_lat")
 
@@ -37,7 +42,7 @@ def split(sid: str) -> str:
 
 
 def load_turns(block: str, sid: str) -> list[dict]:
-    p = DATA / "swarm" / block / "transcripts" / f"{sid}.jsonl"
+    p = _D.tdir(block) / f"{sid}.jsonl"
     if not p.exists():
         return []
     return [json.loads(l) for l in p.open(encoding="utf-8") if l.strip()]
@@ -47,7 +52,7 @@ def build_population(db) -> C.ChorePopulation:
     pop = C.ChorePopulation()
     task = dict(db.execute("SELECT session_id, task_id FROM sessions WHERE block IN (?,?,?)", CHORE_BLOCKS).fetchall())
     for b in CHORE_BLOCKS:
-        for p in sorted((DATA / "swarm" / b / "transcripts").glob("*.jsonl")):
+        for p in sorted(_D.tdir(b).glob("*.jsonl")):
             sid = p.stem
             t = task.get(sid)
             if not t or not str(t).startswith("chore"):
@@ -128,7 +133,7 @@ def main(argv: list[str]) -> int:
     # real executed outputs: the digest-form rule (M2) must never fire on a digest a real command printed
     n_results = n_digest_fields = form_fires = 0
     form_examples = []
-    for tdir in sorted((DATA / "swarm").glob("*/transcripts")):
+    for tdir in sorted(_D.SWARM.glob(("*/" + _D.TSUB) if _D.TSUB else "*")):
         for p in tdir.glob("*.jsonl"):
             for line in p.open(encoding="utf-8"):
                 if '"tool_result"' not in line:

@@ -68,7 +68,8 @@ def frozen_sha_ok(name: str) -> Optional[bool]:
     if not want:
         return None
     raw = (REPO_ROOT / SWARM_CHECKS[name]["module"]).read_bytes()
-    return want in (module_sha256(name), hashlib.sha256(raw).hexdigest())
+    return want in (module_sha256(name), hashlib.sha256(raw).hexdigest(),  # + CRLF form: checkout EOLs don't matter
+                    hashlib.sha256(raw.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")).hexdigest())
 
 
 def load(name: str):

@@ -27,8 +27,13 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DATA = Path(os.environ.get("SWARMS_DATA", r"C:\Swarms\data"))
-DB = DATA / "eval" / "spoof_v1.db"
+import importlib.util as _ilu_d  # noqa: E402
+# data root: env WFV_DATA (else SWARMS_DATA, else <repo>/dataset); both layouts, see analysis/swarmds/data.py
+_dspec = _ilu_d.spec_from_file_location("swarmds_data", Path(__file__).resolve().parent / "data.py")
+_D = _ilu_d.module_from_spec(_dspec)
+_dspec.loader.exec_module(_D)
+DATA = _D.DATA
+DB = _D.DB
 
 
 def _load_t3():
@@ -67,7 +72,7 @@ def load_jsonl(p) -> list[dict]:
 
 def honest_index() -> dict[str, Path]:
     idx = {}
-    for p in glob.glob(str(DATA / "swarm" / "*" / "transcripts" / "*.jsonl")):
+    for p in glob.glob(str(_D.tdir("*") / "*.jsonl")):
         idx.setdefault(Path(p).stem, Path(p))
     return idx
 
@@ -131,7 +136,7 @@ def main(argv=None) -> int:
             continue
         if src == "injected":
             _, call_id, cls, seed = r["row_id"].split(":")
-            p = DATA / "eval" / "injected_v1" / sid / f"{cls}-{seed}.jsonl"
+            p = _D.INJ / sid / f"{cls}-{seed}.jsonl"
             if not p.exists():
                 preds[r["row_id"]] = {"verdict": "unconstrained", "reason": "missing:no_transcript"}
                 continue

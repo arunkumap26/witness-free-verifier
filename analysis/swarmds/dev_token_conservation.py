@@ -11,7 +11,7 @@ Protocol (binding, see the task brief / reports/TESTER_HANDOFF.md):
     v_answers is joined only in `score()`, after every verdict exists.
 
 Run from the analysis worktree:  PYTHONIOENCODING=utf-8 python -m analysis.swarmds.dev_token_conservation
-(or `python analysis/swarmds/dev_token_conservation.py`). Read-only on C:/Swarms/data.
+(or `python analysis/swarmds/dev_token_conservation.py`). Read-only on the dataset (WFV_DATA / ./dataset).
 """
 from __future__ import annotations
 
@@ -30,9 +30,14 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-DATA = Path(os.environ.get("SWARMS_DATA", "C:/Swarms/data"))
-DB = DATA / "eval" / "spoof_v1.db"
-INJ = DATA / "eval" / "injected_v1"
+import importlib.util as _ilu_d  # noqa: E402
+# data root: env WFV_DATA (else SWARMS_DATA, else <repo>/dataset); both layouts, see analysis/swarmds/data.py
+_dspec = _ilu_d.spec_from_file_location("swarmds_data", Path(__file__).resolve().parent / "data.py")
+_D = _ilu_d.module_from_spec(_dspec)
+_dspec.loader.exec_module(_D)
+DATA = _D.DATA
+DB = _D.DB
+INJ = _D.INJ
 OUT_JSON = HERE / "dev_token_conservation.json"
 FROZEN = HERE / "frozen_token_conservation.json"
 
@@ -74,7 +79,7 @@ def trimmed_fit(X, y, trim_q=99.5, rounds=2):
 
 # ------------------------------------------------------------------------------------------- 1. honest windows
 def honest_windows():
-    paths = sorted(glob.glob(str(DATA / "swarm" / "*" / "transcripts" / "*.jsonl")))
+    paths = sorted(glob.glob(str(_D.tdir("*") / "*.jsonl")))
     W = []                      # (sid, dev, path, window)
     calls_total = 0
     for p in paths:
@@ -114,7 +119,7 @@ def fit(W):
 # ------------------------------------------------------------------------------------------- 2. tampered views
 def session_index():
     idx = collections.defaultdict(list)
-    for p in glob.glob(str(DATA / "swarm" / "*" / "transcripts" / "*.jsonl")):
+    for p in glob.glob(str(_D.tdir("*") / "*.jsonl")):
         idx[os.path.basename(p)[:-6]].append(p)
     return idx
 

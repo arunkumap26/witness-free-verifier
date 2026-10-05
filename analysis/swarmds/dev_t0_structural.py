@@ -52,10 +52,15 @@ def _load_t0():
 
 T0 = _load_t0()
 
-DATA = Path(os.environ.get("SWARMS_DATA", "C:/Swarms/data"))
-DB = DATA / "eval" / "spoof_v1.db"
-INJ = DATA / "eval" / "injected_v1"
-SWARM = DATA / "swarm"
+import importlib.util as _ilu_d  # noqa: E402
+# data root: env WFV_DATA (else SWARMS_DATA, else <repo>/dataset); both layouts, see analysis/swarmds/data.py
+_dspec = _ilu_d.spec_from_file_location("swarmds_data", Path(__file__).resolve().parent / "data.py")
+_D = _ilu_d.module_from_spec(_dspec)
+_dspec.loader.exec_module(_D)
+DATA = _D.DATA
+DB = _D.DB
+INJ = _D.INJ
+SWARM = _D.SWARM
 HERE = Path(__file__).resolve().parent
 OUT_DEV = HERE / "dev_t0_structural.json"
 OUT_FROZEN = HERE / "frozen_t0_structural.json"
@@ -88,7 +93,7 @@ def connect() -> sqlite3.Connection:
 # ------------------------------------------------------------------------------------------------ honest soundness
 def honest_validation() -> dict:
     """Run the check on every honest swarm transcript; every 'contradicted' is a false positive."""
-    files = sorted(glob.glob(str(SWARM / "*" / "transcripts" / "*.jsonl")))
+    files = sorted(glob.glob(str(_D.tdir("*") / "*.jsonl")))
     c = Counter()
     by_rule = Counter()
     fps = []
@@ -125,14 +130,14 @@ def honest_validation() -> dict:
 class SessionIndex:
     def __init__(self) -> None:
         self.by_sid: dict[str, list[Path]] = defaultdict(list)
-        for p in sorted(glob.glob(str(SWARM / "*" / "transcripts" / "*.jsonl"))):
+        for p in sorted(glob.glob(str(_D.tdir("*") / "*.jsonl"))):
             self.by_sid[Path(p).stem].append(Path(p))
 
     def honest_path(self, block: str, sid: str, call_id: str | None) -> Path | None:
         # session ids are reused across re-run blocks (r4_incident / r4b / r4b_incident / r4c / r4d), so the block's
         # own copy is preferred but must actually contain the call; else the copy that does (41 r4b execlog rows live
         # in r4b_incident's copy).
-        p = SWARM / block / "transcripts" / f"{sid}.jsonl"
+        p = _D.tdir(block) / f"{sid}.jsonl"
         cands = ([p] if p.is_file() else []) + [c for c in self.by_sid.get(sid, []) if c != p]
         if not call_id:
             return cands[0] if cands else None
