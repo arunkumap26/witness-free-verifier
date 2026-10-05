@@ -83,6 +83,9 @@ def _target(dest: Path, name: str) -> Path | None:
             n = n[len(pre):]
             break
     n = n.strip("/")
+    parts = n.split("/")                  # split zips: transcripts/<block>/transcripts/<sid>.jsonl -> transcripts/<block>/
+    if len(parts) == 4 and parts[0] == "transcripts" and parts[2] == "transcripts":
+        n = "/".join(parts[:2] + parts[3:])
     if not n:
         return None
     p = (dest / n).resolve()
